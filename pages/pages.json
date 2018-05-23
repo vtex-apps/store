@@ -1,0 +1,93 @@
+{
+  "pages": {
+    "store": {
+      "path": "/"
+    },
+    "store/home": {
+      "path": "/"
+    },
+    "store/account": {
+      "path": "/account"
+    },
+    "store/compare": {
+      "path": "/compare"
+    },
+    "store/login": {
+      "path": "/login"
+    },
+    "store/brand": {
+      "path": "/:brand/b"
+    },
+    "store/department": {
+      "path": "/:department"
+    },
+    "store/category": {
+      "path": "/:department/:category"
+    },
+    "store/subcategory": {
+      "path": "/:department/:category/:subcategory"
+    },
+    "store/search": {
+      "path": "/:term/s"
+    },
+    "store/product": {
+      "path": "/:slug/p"
+    }
+  },
+  "extensions": {
+    "store": {
+      "component": "StoreTemplate"
+    },
+    "store/account": {
+      "component": "AccountPage"
+    },
+    "store/compare": {
+      "component": "ComparePage"
+    },
+    "store/login": {
+      "component": "LoginPage"
+    },
+    "store/brand": {
+      "component": "BrandPage"
+    },
+    "store/brand/container": {
+      "component": "vtex.render-runtime/ExtensionContainer"
+    },
+    "store/department": {
+      "component": "DepartmentPage"
+    },
+    "store/department/container": {
+      "component": "vtex.render-runtime/ExtensionContainer"
+    },
+    "store/category": {
+      "component": "CategoryPage"
+    },
+    "store/category/container": {
+      "component": "vtex.render-runtime/ExtensionContainer"
+    },
+    "store/subcategory": {
+      "component": "SubcategoryPage"
+    },
+    "store/subcategory/container": {
+      "component": "vtex.render-runtime/ExtensionContainer"
+    },
+    "store/home": {
+      "component": "HomePage"
+    },
+    "store/home/container": {
+      "component": "vtex.render-runtime/ExtensionContainer"
+    },
+    "store/search": {
+      "component": "SearchPage"
+    },
+    "store/search/container": {
+      "component": "vtex.render-runtime/ExtensionContainer"
+    },
+    "store/product": {
+      "component": "ProductPage"
+    },
+    "store/product/container": {
+      "component": "vtex.render-runtime/ExtensionContainer"
+    }
+  }
+}
