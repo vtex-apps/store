@@ -1,19 +1,17 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import GalleryWrapper from './components/GalleryWrapper'
+import { ExtensionPoint } from 'render'
 
 export default class SearchPage extends Component {
+  static propTypes = {
+    params: PropTypes.shape({
+      term: PropTypes.string.isRequired,
+    }),
+  }
+
   render() {
     return (
-      <div className="vtex-dreamstore__container w-100 h-100">
-        <GalleryWrapper query={this.props.params.term} />
-      </div>
+      <ExtensionPoint id="container" />
     )
   }
-}
-
-SearchPage.propTypes = {
-  params: PropTypes.shape({
-    term: PropTypes.string.isRequired,
-  }),
 }

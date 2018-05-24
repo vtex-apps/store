@@ -1,5 +1,5 @@
 {
-  "name": "vtex.dreamstore",
+  "name": "vtex.store",
   "scripts": {
     "test": "jest"
   },

@@ -19,7 +19,7 @@
       "path": "/:brand/b"
     },
     "store/department": {
-      "path": "/:department"
+      "path": "/:department/d"
     },
     "store/category": {
       "path": "/:department/:category"
@@ -28,7 +28,7 @@
       "path": "/:department/:category/:subcategory"
     },
     "store/search": {
-      "path": "/:term/s"
+      "path": "/:term"
     },
     "store/product": {
       "path": "/:slug/p"
@@ -54,7 +54,7 @@
       "component": "vtex.render-runtime/ExtensionContainer"
     },
     "store/department": {
-      "component": "DepartmentPage"
+      "component": "CategoryPage"
     },
     "store/department/container": {
       "component": "vtex.render-runtime/ExtensionContainer"
@@ -66,7 +66,7 @@
       "component": "vtex.render-runtime/ExtensionContainer"
     },
     "store/subcategory": {
-      "component": "SubcategoryPage"
+      "component": "CategoryPage"
     },
     "store/subcategory/container": {
       "component": "vtex.render-runtime/ExtensionContainer"

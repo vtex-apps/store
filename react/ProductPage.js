@@ -1,28 +1,24 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { compose, graphql } from 'react-apollo'
+import { graphql } from 'react-apollo'
 import { ExtensionPoint } from 'render'
-import withPrefetch from './withPrefetch'
+
 import productQuery from './queries/productQuery.gql'
 
 import WrappedSpinner from './components/WrappedSpinner'
 
 class ProductPage extends Component {
-  static propTypes = {
-    params: PropTypes.object,
-    data: PropTypes.object,
+  static contextTypes = {
     prefetch: PropTypes.func,
   }
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      isModalOpen: false,
-    }
+  static propTypes = {
+    params: PropTypes.object,
+    data: PropTypes.object,
   }
 
   componentDidMount() {
-    this.props.prefetch('store/home')
+    this.context.prefetch('store/home')
   }
 
   render() {
@@ -33,9 +29,9 @@ class ProductPage extends Component {
         {loading ? (
           <WrappedSpinner />
         ) : (
-          <div className="pv9-ns">
+          <div>
             <div className="vtex-product-details-container">
-              <ExtensionPoint id="sections" slug={variables.slug} />
+              <ExtensionPoint id="container" slug={variables.slug} />
             </div>
           </div>
         )}
@@ -52,6 +48,6 @@ const options = {
   }),
 }
 
-export default compose(graphql(productQuery, options), withPrefetch())(
+export default graphql(productQuery, options)(
   ProductPage
 )
