@@ -4,11 +4,11 @@ import { ExtensionPoint } from 'render'
 
 export default class AccountPage extends Component {
   static contextTypes = {
-    prefetch: PropTypes.func,
+    prefetchPage: PropTypes.func,
   }
 
   componentDidMount() {
-    this.context.prefetch('store/home')
+    this.context.prefetchPage('store/home')
   }
 
   render() {

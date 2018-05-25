@@ -9,7 +9,7 @@ import WrappedSpinner from './components/WrappedSpinner'
 
 class ProductPage extends Component {
   static contextTypes = {
-    prefetch: PropTypes.func,
+    prefetchPage: PropTypes.func,
   }
 
   static propTypes = {
@@ -18,7 +18,7 @@ class ProductPage extends Component {
   }
 
   componentDidMount() {
-    this.context.prefetch('store/home')
+    this.context.prefetchPage('store/home')
   }
 
   render() {
