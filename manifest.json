@@ -15,6 +15,9 @@
   "scripts": {
     "postreleasy": "vtex publish --public --verbose"
   },
+  "billingOptions": {
+    "free": true
+  },
   "dependencies": {
     "vtex.store-graphql": "2.x"
   }
