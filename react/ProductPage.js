@@ -16,6 +16,9 @@ class ProductPage extends Component {
     params: PropTypes.object,
     data: PropTypes.object,
   }
+  state = {
+    isModalOpen: false,
+  }
 
   componentDidMount() {
     this.context.prefetchPage('store/home')
@@ -23,18 +26,21 @@ class ProductPage extends Component {
 
   render() {
     const { data } = this.props
-    const { loading, variables } = data
+    const { loading, variables, product } = data
     return (
       <div>
         {loading ? (
           <WrappedSpinner />
         ) : (
-          <div>
-            <div className="vtex-product-details-container">
-              <ExtensionPoint id="container" slug={variables.slug} />
+            <div>
+              <div className="vtex-product-details-container">
+                <ExtensionPoint
+                  id="container"
+                  slug={variables.slug}
+                  categories={product.categories} />
+              </div>
             </div>
-          </div>
-        )}
+          )}
       </div>
     )
   }

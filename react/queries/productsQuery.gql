@@ -4,6 +4,7 @@ query Products($query: String) {
     productName
     linkText
     description
+    categories
     items {
       itemId
       name
