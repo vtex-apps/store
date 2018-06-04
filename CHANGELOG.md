@@ -8,5 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Added
-- Add categories prop on `ProductPage`.
+- Add categories prop in _ProductPage_ component.
 - Add billing policy free on `manifest.json`.
+
+### Fixed
+- Removed redundant Spinner in _ProductPage_ component.
