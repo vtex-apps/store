@@ -12,9 +12,6 @@ class ProductPage extends Component {
     params: PropTypes.object,
     data: PropTypes.object,
   }
-  state = {
-    isModalOpen: false,
-  }
 
   componentDidMount() {
     this.context.prefetchPage('store/home')
