@@ -5,18 +5,19 @@ import { ExtensionPoint } from 'render'
 import productQuery from './queries/productQuery.gql'
 
 class ProductPage extends Component {
+  static contextTypes = {
+    prefetchPage: PropTypes.func,
+  }
   static propTypes = {
     params: PropTypes.object,
     data: PropTypes.object,
-    prefetch: PropTypes.func,
   }
-
   state = {
     isModalOpen: false,
   }
 
   componentDidMount() {
-    this.props.prefetch('store/home')
+    this.context.prefetchPage('store/home')
   }
 
   render() {
@@ -25,16 +26,14 @@ class ProductPage extends Component {
 
     return (
       <div>
-        <div className="pv9-ns">
-          <div className="vtex-product-details-container">
-            {!loading && (
-              <ExtensionPoint
-                id="sections"
-                slug={variables.slug}
-                categories={product.categories}
-              />
-            )}
-          </div>
+        <div className="vtex-product-details-container">
+          {!loading && (
+            <ExtensionPoint
+              id="container"
+              slug={variables.slug}
+              categories={product.categories}
+            />
+          )}
         </div>
       </div>
     )
