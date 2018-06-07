@@ -3,12 +3,18 @@ query Product($slug: String) {
     productName
     productId
     description
+    linkText
+    brand
     items {
       itemId
       name
       nameComplete
       complementName
       ean
+      referenceId {
+        Key
+        Value
+      }
       measurementUnit
       unitMultiplier
       images {
