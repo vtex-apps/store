@@ -29,6 +29,7 @@ class ProductPage extends Component {
               id="container"
               slug={variables.slug}
               categories={product.categories}
+              product={product}
             />
           )}
         </div>
