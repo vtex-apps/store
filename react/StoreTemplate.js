@@ -12,7 +12,7 @@ export default class StoreTemplate extends Component {
       <Fragment>
         <ExtensionPoint id="theme" />
         <ExtensionPoint id="header" />
-        <div className="vtex-store__template w-100 h-100">{this.props.children}</div>
+        <div className="vtex-store__template">{this.props.children}</div>
         <ExtensionPoint id="footer" />
       </Fragment>
     )
