@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.2.1] - 2018-6-11
+
+### Added
+- Add product prop in _ProductPage_ component.
+- Add `linkText`, `brand`, `referenceId` in product query.
+
 ## [0.2.0] - 2018-6-5
 
 ### Added
