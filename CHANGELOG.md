@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Integrate `vtex.my-orders-app` to store.
+
 ## [0.2.2] - 2018-6-11
 
 ### Added

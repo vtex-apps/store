@@ -9,6 +9,9 @@
     "store/account": {
       "path": "/account"
     },
+    "store/account/orders": {
+      "path": "/account/orders"
+    },
     "store/compare": {
       "path": "/compare"
     },
@@ -40,6 +43,9 @@
     },
     "store/account": {
       "component": "AccountPage"
+    },
+    "store/account/orders": {
+      "component": "vtex.my-orders-app/index"
     },
     "store/compare": {
       "component": "ComparePage"
