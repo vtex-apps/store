@@ -16,6 +16,7 @@
     "postreleasy": "vtex publish -r vtex --verbose"
   },
   "dependencies": {
+    "vtex.my-orders-app": "0.x",
     "vtex.store-graphql": "2.x"
   }
 }
