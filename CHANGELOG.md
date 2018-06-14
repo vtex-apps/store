@@ -10,11 +10,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Integrate `vtex.my-orders-app` to store.
 
+## [0.2.3] - 2018-6-11
+
+### Added
+- Add `categoryId` to product query.
+
 ## [0.2.2] - 2018-6-11
 
 ### Added
 - Add product prop in _ProductPage_ component.
-- Add `linkText`, `brand`, `referenceId` in product query.
+- Add `linkText`, `brand`, `referenceId` to product query.
 
 ## [0.2.0] - 2018-6-5
 

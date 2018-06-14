@@ -4,6 +4,7 @@ query Product($slug: String) {
     productId
     description
     linkText
+    categoryId
     brand
     items {
       itemId
