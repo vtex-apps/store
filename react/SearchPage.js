@@ -9,18 +9,18 @@ export default class SearchPage extends Component {
       term: PropTypes.string.isRequired,
     }),
     query: PropTypes.shape({
-      /** 
+      /**
        * Rest of the search term, e.g: eletronics/smartphones/samsung implies that
        * Q will be equal to "smartphones,samsung".
        * */
-      Q: PropTypes.string,
+      rest: PropTypes.string,
       /** Determines the types of the terms, e.g: "c,c,b" (category, category, brand). */
       map: PropTypes.string,
       /** Search's pagination.  */
       page: PropTypes.string,
       /** Search's ordenation. */
-      O: PropTypes.string,
-    })
+      order: PropTypes.string,
+    }),
   }
 
   render() {
