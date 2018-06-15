@@ -28,7 +28,7 @@
       "path": "/:department/:category/:subcategory"
     },
     "store/search": {
-      "path": "/:term"
+      "path": "/:term/s"
     },
     "store/product": {
       "path": "/:slug/p"
