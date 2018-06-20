@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed 
+- Add `categoriesIds` on productQuery.
+
 ## [0.2.7] - 2018-6-20
 ### Changed 
 - Add `variations` and `properties` on productQuery.
