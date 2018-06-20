@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed 
-- Add more data on productQuery
+- Add `variations` and `properties` on productQuery.
 
 ## [0.2.6] - 2018-6-18
 ### Changed
