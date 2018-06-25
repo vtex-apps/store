@@ -21,7 +21,10 @@ export default class CategoryPage extends Component {
 
   render() {
     return (
-      <ExtensionPoint id="container" />
+      <ExtensionPoint
+        id="container"
+        {...this.props}
+        pagesPath={this.props.treePath} />
     )
   }
 }

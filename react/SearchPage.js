@@ -25,7 +25,7 @@ export default class SearchPage extends Component {
 
   render() {
     return (
-      <ExtensionPoint id="container" {...this.props} />
+      <ExtensionPoint id="container" {...this.props} pagesPath={this.props.treePath}/>
     )
   }
 }
