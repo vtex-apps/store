@@ -9,6 +9,9 @@
     "store/account": {
       "path": "/account"
     },
+    "store/account/orders": {
+      "path": "/account/orders"
+    },
     "store/compare": {
       "path": "/compare"
     },
