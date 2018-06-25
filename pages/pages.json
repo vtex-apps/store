@@ -45,6 +45,9 @@
       "component": "AccountPage"
     },
     "store/account/container": {
+      "component": "vtex.render-runtime/ExtensionContainer"
+    },
+    "store/account/orders": {
       "component": "OrdersPage"
     },
     "store/account/orders/container": {
