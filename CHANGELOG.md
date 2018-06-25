@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.2.9] - 2018-6-25
+
 ### Fixed
 - Add route `account/orders` again. 
 
