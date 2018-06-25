@@ -9,8 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Add `pagesPath` prop to the container of `SearchPage` and `CategoryPage`.
 
-## [0.2.9] - 2018-6-25
+### Fixed
+- Add `Fragment` in `AccountPage`. 
 
+## [0.2.9] - 2018-6-25
 ### Fixed
 - Add route `account/orders` again. 
 
