@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "store",
-  "version": "0.2.6",
+  "version": "0.2.9",
   "builders": {
     "pages": "0.x",
     "react": "2.x"
@@ -16,6 +16,7 @@
     "postreleasy": "vtex publish --verbose"
   },
   "dependencies": {
-    "vtex.store-graphql": "2.x"
+    "vtex.store-graphql": "2.x",
+    "vtex.my-orders-app": "0.x"
   }
 }

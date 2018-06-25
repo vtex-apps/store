@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.2.9] - 2018-6-25
+
+### Fixed
+- Add route `account/orders` again. 
+
+## [0.2.8] - 2018-6-20
+
+### Changed 
+- Add `categoriesIds` on productQuery.
+
+## [0.2.7] - 2018-6-20
+### Changed 
+- Add `variations` and `properties` on productQuery.
+
 ## [0.2.6] - 2018-6-18
 ### Changed
 - Pass props to the extensionPoint of `SearchPage`.

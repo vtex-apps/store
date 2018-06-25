@@ -6,7 +6,12 @@ query Product($slug: String) {
     linkText
     categories
     categoryId
+    categoriesIds
     brand
+    properties {
+      name,
+      values
+    },
     items {
       itemId
       name
@@ -41,6 +46,9 @@ query Product($slug: String) {
           Tax
           CacheVersionUsedToCallCheckout
         }
+      }
+      variations {
+        name
       }
     }
   }
