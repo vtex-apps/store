@@ -19,6 +19,7 @@ class ProductPage extends Component {
 
   pushToDataLayer = product => {
     this.props.pushToDataLayer({
+      event: 'productDetail',
       ecommerce: {
         detail: {
           products: [{
