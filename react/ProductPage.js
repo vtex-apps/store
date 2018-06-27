@@ -25,6 +25,8 @@ class ProductPage extends Component {
           products: [{
             name: product.productName,
             brand: product.brand,
+            category: product.categories.length > 0 ? product.categories[0] : undefined,
+            id: product.productId,
           }],
         },
       },
