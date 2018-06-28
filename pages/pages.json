@@ -18,7 +18,8 @@
       "path": "/compare"
     },
     "store/login": {
-      "path": "/login"
+      "path": "/login",
+      "loginPage": true
     },
     "store/brand": {
       "path": "/:brand/b"
