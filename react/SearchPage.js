@@ -64,7 +64,7 @@ class SearchPage extends Component {
   }
 }
 
-export default compose(
+compose(
   graphql(facetsQuery, {
     name: 'facetsQuery',
     options: props => {
