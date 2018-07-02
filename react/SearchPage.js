@@ -4,11 +4,13 @@ import { compose, graphql } from 'react-apollo'
 import { ExtensionPoint } from 'render'
 
 import { facetsQueryShape, searchQueryShape } from './constants/propTypes'
+import SortOptions from './constants/searchSortOptions'
 import { createMap, joinPathWithRest, reversePagesPath } from './helpers/searchHelpers'
 import facetsQuery from './queries/facetsQuery.gql'
 import searchQuery from './queries/searchQuery.gql'
 
 const DEFAULT_PAGE = 1
+const DEFAULT_MAX_ITEMS = 1
 
 class SearchPage extends Component {
   static propTypes = {
@@ -43,12 +45,44 @@ class SearchPage extends Component {
     searchQuery: searchQueryShape,
   }
 
+  prefetch = ({
+    searchQuery: {
+      variables: { maxItemsPerPage, ...restOfVariables },
+      onUpdateQuery,
+    } = {},
+  }) => {
+    const {
+      query: { page: pageProps },
+    } = this.props
+    const page = pageProps ? parseInt(pageProps) : DEFAULT_PAGE
+    const from = (page - 1) * maxItemsPerPage
+    const to = from + maxItemsPerPage - 1
+
+    this.props.searchQuery.fetchMore({
+      variables: {
+        from,
+        to,
+        ...restOfVariables,
+      },
+      updateQuery: (_, { fetchMoreResult }) => {
+        onUpdateQuery(fetchMoreResult)
+        return fetchMoreResult
+      },
+    })
+  }
+
   render() {
     const {
       treePath,
-      query: { order: orderBy, page: pageProps, map: mapProps, rest },
+      params,
+      query: {
+        order: orderBy = SortOptions[0].value,
+        page: pageProps,
+        map: mapProps,
+        rest = '',
+      },
     } = this.props
-    const pathName = reversePagesPath(treePath, this.props.params)
+    const pathName = reversePagesPath(treePath, params)
     const map = mapProps || createMap(pathName, rest)
     const page = pageProps ? parseInt(pageProps) : DEFAULT_PAGE
     const containerProps = {
@@ -59,16 +93,21 @@ class SearchPage extends Component {
       page,
       orderBy,
       pagesPath: treePath,
+      prefetch: this.prefetch,
     }
     return <ExtensionPoint id="container" {...containerProps} />
   }
 }
 
-compose(
+export default compose(
   graphql(facetsQuery, {
     name: 'facetsQuery',
     options: props => {
-      const { treePath, params, rest, map: mapProps } = props
+      const {
+        treePath,
+        params,
+        query: { map: mapProps, rest },
+      } = props
       const path = reversePagesPath(treePath, params)
       const query = joinPathWithRest(path, rest)
       const facets = `${query}?map=${mapProps || createMap(path, rest)}`
@@ -80,17 +119,18 @@ compose(
   graphql(searchQuery, {
     name: 'searchQuery',
     options: props => {
+      const path = reversePagesPath(props.treePath, props.params)
       const {
-        treePath,
-        rest,
-        map,
-        params,
-        orderBy,
-        page,
-        maxItemsPerPage,
+        query: {
+          order: orderBy = SortOptions[0].value,
+          page: pageProps,
+          map = createMap(path, rest),
+          rest,
+        },
+        maxItemsPerPage = DEFAULT_MAX_ITEMS,
       } = props
-      const path = reversePagesPath(treePath, params)
       const query = joinPathWithRest(path, rest)
+      const page = pageProps ? parseInt(pageProps) : DEFAULT_PAGE
       const from = (page - 1) * maxItemsPerPage
       const to = from + maxItemsPerPage - 1
       return {
