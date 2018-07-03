@@ -88,7 +88,7 @@ export default class SearchPage extends Component {
                 {...containerProps}
                 searchQuery={{ ...searchQueryProps, ...searchQueryProps.data }}
                 facetsQuery={{ ...facetsQueryProps, ...facetsQueryProps.data }}
-                setVariables={variables => this.setState(variables)}
+                setContextVariables={variables => this.setState(variables)}
               />
             )}
           </Query>
