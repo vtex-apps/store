@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { compose, graphql } from 'react-apollo'
+import { Query } from 'react-apollo'
 import { ExtensionPoint } from 'render'
 
 import { facetsQueryShape, searchQueryShape } from './constants/propTypes'
@@ -12,17 +12,11 @@ import searchQuery from './queries/searchQuery.gql'
 const DEFAULT_PAGE = 1
 const DEFAULT_MAX_ITEMS_PER_PAGE = 1
 
-class SearchPage extends Component {
+export default class SearchPage extends Component {
   static propTypes = {
     params: PropTypes.shape({
       /** Search's term, e.g: eletronics. */
       term: PropTypes.string.isRequired,
-      /** Department param. */
-      department: PropTypes.string,
-      /** Category param. */
-      category: PropTypes.string,
-      /** Subcategory param. */
-      subcategory: PropTypes.string,
     }),
     query: PropTypes.shape({
       /**
@@ -45,6 +39,12 @@ class SearchPage extends Component {
     searchQuery: searchQueryShape,
   }
 
+  constructor(props) {
+    super(props)
+
+    this.state = { maxItemsPerPage: DEFAULT_MAX_ITEMS_PER_PAGE }
+  }
+
   render() {
     const {
       treePath,
@@ -60,6 +60,11 @@ class SearchPage extends Component {
     const path = reversePagesPath(treePath, params)
     const map = mapProps || createMap(path, rest)
     const page = pageProps ? parseInt(pageProps) : DEFAULT_PAGE
+    const query = joinPathWithRest(path, rest)
+    const facets = `${query}?map=${mapProps || createMap(path, rest)}`
+    const from = (page - 1) * this.state.maxItemsPerPage
+    const to = from + this.state.maxItemsPerPage - 1
+
     const containerProps = {
       ...this.props,
       path,
@@ -70,48 +75,25 @@ class SearchPage extends Component {
       pagesPath: treePath,
     }
 
-    return <ExtensionPoint id="container" {...containerProps} />
+    return (
+      <Query query={facetsQuery} variables={{ facets }}>
+        {facetsQueryProps => (
+          <Query
+            query={searchQuery}
+            variables={{ query, map, orderBy, from, to }}
+            notifyOnNetworkStatusChange>
+            {searchQueryProps => (
+              <ExtensionPoint
+                id="container"
+                {...containerProps}
+                searchQuery={{ ...searchQueryProps, ...searchQueryProps.data }}
+                facetsQuery={{ ...facetsQueryProps, ...facetsQueryProps.data }}
+                setVariables={variables => this.setState(variables)}
+              />
+            )}
+          </Query>
+        )}
+      </Query>
+    )
   }
 }
-
-export default compose(
-  graphql(facetsQuery, {
-    name: 'facetsQuery',
-    options: props => {
-      const {
-        treePath,
-        params,
-        query: { map: mapProps, rest },
-      } = props
-      const path = reversePagesPath(treePath, params)
-      const query = joinPathWithRest(path, rest)
-      const facets = `${query}?map=${mapProps || createMap(path, rest)}`
-      return {
-        variables: { facets },
-      }
-    },
-  }),
-  graphql(searchQuery, {
-    name: 'searchQuery',
-    options: props => {
-      const path = reversePagesPath(props.treePath, props.params)
-      const {
-        query: {
-          order: orderBy = SortOptions[0].value,
-          page: pageProps,
-          map = createMap(path, rest),
-          rest,
-        },
-        maxItemsPerPage = DEFAULT_MAX_ITEMS_PER_PAGE,
-      } = props
-      const query = joinPathWithRest(path, rest)
-      const page = pageProps ? parseInt(pageProps) : DEFAULT_PAGE
-      const from = (page - 1) * maxItemsPerPage
-      const to = from + maxItemsPerPage - 1
-      return {
-        variables: { query, map, orderBy, from, to },
-        notifyOnNetworkStatusChange: true,
-      }
-    },
-  })
-)(SearchPage)
