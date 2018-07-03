@@ -7,24 +7,28 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.3.1] - 2018-7-03
+### Added
+- Add `MicroData` component do `ProductPage`, so Google can have a detailed info on the Products.
+
 ## [0.3.0] - 2018-6-25
 ### Added
 - Add `pagesPath` prop to the container of `SearchPage` and `CategoryPage`.
 
 ### Fixed
-- Add `Fragment` in `AccountPage`. 
+- Add `Fragment` in `AccountPage`.
 
 ## [0.2.9] - 2018-6-25
 ### Fixed
-- Add route `account/orders` again. 
+- Add route `account/orders` again.
 
 ## [0.2.8] - 2018-6-20
 
-### Changed 
+### Changed
 - Add `categoriesIds` on productQuery.
 
 ## [0.2.7] - 2018-6-20
-### Changed 
+### Changed
 - Add `variations` and `properties` on productQuery.
 
 ## [0.2.6] - 2018-6-18
@@ -37,9 +41,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Update AccountPage to use ExtensionContainer
 
-### Removed 
-- Remove `my-orders-app`. This app will be included in `dreamstore-theme`. 
-- Remove route `account/orders`. 
+### Removed
+- Remove `my-orders-app`. This app will be included in `dreamstore-theme`.
+- Remove route `account/orders`.
 
 
 ## [0.2.4] - 2018-6-14
