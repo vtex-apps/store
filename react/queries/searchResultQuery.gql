@@ -1,3 +1,0 @@
-query searchResult {
-  maxItemsPerPage @client
-}
