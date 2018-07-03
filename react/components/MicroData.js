@@ -50,7 +50,7 @@ export default function MicroData({ product }, { culture: { currency } }) {
       <span property="offers" typeof="Offer">
         <meta property="priceCurrency" content={currency} />
         $<span property="price">{path(['commertialOffer', 'price'], seller)}</span>
-        (Sale ends <time property="priceValidUntil" datetime={path(['commertialOffer', 'priceValidUntil'], seller)}>
+        (Sale ends <time property="priceValidUntil" dateTime={path(['commertialOffer', 'priceValidUntil'], seller)}>
           {path(['commertialOffer', 'priceValidUntil'], seller)}
         </time>)
         Available from: <span property="seller" typeof="Organization"
