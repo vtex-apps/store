@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [0.3.1] - 2018-7-03
+## [0.3.1] - 2018-7-4
 ### Added
 - Add `MicroData` component do `ProductPage`, so Google can have a detailed info on the Products.
 
