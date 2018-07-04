@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Add `MicroData` component do `ProductPage`, so Google can have a detailed info on the Products.
 
 - Add the `SearchPage` GraphQL queries.
+- Data layer intergration in the `ProductPage`.
 
 ## [0.3.0] - 2018-6-25
 ### Added
