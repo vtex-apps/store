@@ -13,6 +13,12 @@ const DEFAULT_PAGE = 1
 const DEFAULT_MAX_ITEMS_PER_PAGE = 1
 
 export default class SearchPage extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = { maxItemsPerPage: DEFAULT_MAX_ITEMS_PER_PAGE }
+  }
+
   static propTypes = {
     params: PropTypes.shape({
       /** Search's term, e.g: eletronics. */
@@ -37,12 +43,6 @@ export default class SearchPage extends Component {
     facetsQuery: facetsQueryShape,
     /** Search graphql query. */
     searchQuery: searchQueryShape,
-  }
-
-  constructor(props) {
-    super(props)
-
-    this.state = { maxItemsPerPage: DEFAULT_MAX_ITEMS_PER_PAGE }
   }
 
   render() {
