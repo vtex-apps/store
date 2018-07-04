@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { pathOr, path, map, sort, compose, head } from 'ramda'
+import { pathOr, path, map, sort, compose, head, split } from 'ramda'
 
 const ITEM_AVAILABLE = 100
 
@@ -38,14 +38,25 @@ const lowestPriceInStock = product => {
   }
 }
 
-export default function MicroData({ product }, { culture: { currency } }) {
+const tryParsingLocale = (description, locale) => {
+  let parsedDescription
+  try {
+    const descriptionObject = JSON.parse(description)
+    parsedDescription = descriptionObject[locale] || descriptionObject[head(split('-', locale))]
+  } catch (e) {
+    console.log('Failed to parse multilanguage product description')
+  }
+  return parsedDescription || description
+}
+
+export default function MicroData({ product }, { culture: { currency, locale } }) {
   const { image, seller } = lowestPriceInStock(product)
   return (
     <div className="dn" vocab="http://schema.org/" typeof="Product">
       <span property="brand">{product.brand}</span>
       <span property="name">{product.productName}</span>
       {image && <img property="image" src={image.imageUrl} alt={image.imageLabel} />}
-      <span property="description">{product.description}</span>
+      <span property="description">{tryParsingLocale(product.description, locale)}</span>
       Product #: <span property="mpn">{product.productId}</span>
       <span property="offers" typeof="Offer">
         <meta property="priceCurrency" content={currency} />

@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Fixed
 - Display none on microdata.
+- Microdata will try to parse multilocale description.
 
 ## [0.4.0] - 2018-7-4
 ### Added
