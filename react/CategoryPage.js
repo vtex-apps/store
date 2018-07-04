@@ -2,6 +2,10 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { ExtensionPoint } from 'render'
 
+import SearchQueryContainer from './components/SearchQueryContainer'
+import { searchQueryPropTypes } from './constants/propTypes'
+import { SearchQueryContext } from './constants/searchContext'
+
 export default class CategoryPage extends Component {
   static contextTypes = {
     prefetchPage: PropTypes.func,
@@ -13,6 +17,7 @@ export default class CategoryPage extends Component {
       category: PropTypes.string,
       subcategory: PropTypes.string,
     }),
+    ...searchQueryPropTypes,
   }
 
   componentDidMount() {
@@ -21,10 +26,11 @@ export default class CategoryPage extends Component {
 
   render() {
     return (
-      <ExtensionPoint
-        id="container"
-        {...this.props}
-        pagesPath={this.props.treePath} />
+      <SearchQueryContainer {...this.props}>
+        <SearchQueryContext.Consumer>
+          {contextProps => <ExtensionPoint id="container" {...contextProps} />}
+        </SearchQueryContext.Consumer>
+      </SearchQueryContainer>
     )
   }
 }
