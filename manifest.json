@@ -6,12 +6,10 @@
     "pages": "0.x",
     "react": "2.x"
   },
-  "mustUpdateAt": "2018-09-05",
   "categories": [],
   "registries": [
     "smartcheckout"
   ],
-  "settingsSchema": {},
   "scripts": {
     "postreleasy": "vtex publish --verbose"
   },
