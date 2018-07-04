@@ -41,7 +41,7 @@ const lowestPriceInStock = product => {
 export default function MicroData({ product }, { culture: { currency } }) {
   const { image, seller } = lowestPriceInStock(product)
   return (
-    <div vocab="http://schema.org/" typeof="Product">
+    <div className="dn" vocab="http://schema.org/" typeof="Product">
       <span property="brand">{product.brand}</span>
       <span property="name">{product.productName}</span>
       {image && <img property="image" src={image.imageUrl} alt={image.imageLabel} />}
