@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { graphql, compose } from 'react-apollo'
 import { ExtensionPoint } from 'render'
+import MicroData from './components/MicroData'
 
 import withDataLayer, { dataLayerProps } from './components/withDataLayer'
 import productQuery from './queries/productQuery.gql'
@@ -54,12 +55,15 @@ class ProductPage extends Component {
     return (
       <div className="vtex-product-details-container">
         {!loading && (
-          <ExtensionPoint
-            id="container"
-            slug={variables.slug}
-            categories={product.categories}
-            product={product}
-          />
+          <Fragment>
+            <MicroData product={product} />
+            <ExtensionPoint
+              id="container"
+              slug={variables.slug}
+              categories={product.categories}
+              product={product}
+            />
+          </Fragment>
         )}
       </div>
     )
