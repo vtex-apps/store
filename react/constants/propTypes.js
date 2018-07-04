@@ -34,6 +34,8 @@ export const productShape = PropTypes.shape({
       /** SKU's referenceId. */
       referenceId: PropTypes.arrayOf(
         PropTypes.shape({
+          /** ReferenceId's key. */
+          Key: PropTypes.string.isRequired,
           /** ReferenceId's value. */
           Value: PropTypes.string.isRequired,
         })
