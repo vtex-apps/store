@@ -1,0 +1,45 @@
+query search($query: String, $map: String, $orderBy: String, $from: Int, $to: Int) {
+  products(query:$query, map: $map, orderBy: $orderBy, from: $from, to: $to) {
+    productId
+    productName
+    linkText
+    description
+    brand
+    link
+    items {
+      itemId
+      name
+      nameComplete
+      complementName
+      ean
+      referenceId {
+        Key
+        Value
+      }
+      measurementUnit
+      unitMultiplier
+      images {
+        imageId
+        imageLabel
+        imageTag
+        imageUrl
+        imageText
+      }
+      sellers {
+        sellerId
+        sellerName
+        commertialOffer {
+          Price
+          ListPrice
+          PriceWithoutDiscount
+          RewardValue
+          PriceValidUntil
+          AvailableQuantity
+        }
+      }
+    }
+    productClusters {
+      name
+    }
+  }
+}
