@@ -123,3 +123,25 @@ export const schemaPropsTypes = {
   /** Product Summary's props */
   summary: PropTypes.any,
 }
+
+export const searchQueryPropTypes = {
+  query: PropTypes.shape({
+    /**
+     * Rest of the search term, e.g: eletronics/smartphones/samsung implies that
+     * rest will be equal to "smartphones,samsung".
+     * */
+    rest: PropTypes.string,
+    /** Determines the types of the terms, e.g: "c,c,b" (category, category, brand). */
+    map: PropTypes.string,
+    /** Search's pagination.  */
+    page: PropTypes.string,
+    /** Search's ordenation. */
+    order: PropTypes.string,
+  }),
+  /** Internal route path. e.g: 'store/search' */
+  treePath: PropTypes.string,
+  /** Facets graphql query. */
+  facetsQuery: facetsQueryShape,
+  /** Search graphql query. */
+  searchQuery: searchQueryShape,
+}

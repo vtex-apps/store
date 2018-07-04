@@ -6,8 +6,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-### Added
-- Add a generic component (`SearchQueryContainer`) to be reused into the different pages that uses search and facets queries.
 
 ## [0.4.1] - 2018-7-4
 ### Fixed
@@ -17,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [0.4.0] - 2018-7-4
 ### Added
 - Add `MicroData` component do `ProductPage`, so Google can have a detailed info on the Products.
+
 - Add the `SearchPage` GraphQL queries.
 - Data layer intergration in the `ProductPage`.
 
