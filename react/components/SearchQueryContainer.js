@@ -13,11 +13,8 @@ const DEFAULT_PAGE = 1
 const DEFAULT_MAX_ITEMS_PER_PAGE = 1
 
 class SearchQueryContainer extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      maxItemsPerPage: DEFAULT_MAX_ITEMS_PER_PAGE,
-    }
+  state = {
+    maxItemsPerPage: DEFAULT_MAX_ITEMS_PER_PAGE,
   }
 
   static propTypes = {
@@ -42,7 +39,7 @@ class SearchQueryContainer extends Component {
     const map = mapProps || createMap(path, rest)
     const page = pageProps ? parseInt(pageProps) : DEFAULT_PAGE
     const query = joinPathWithRest(path, rest)
-    const facets = `${query}?map=${mapProps || createMap(path, rest)}`
+    const facets = `${query}?map=${map}`
     const from = (page - 1) * this.state.maxItemsPerPage
     const to = from + this.state.maxItemsPerPage - 1
 
