@@ -25,10 +25,10 @@
       "path": "/:department/d"
     },
     "store/category": {
-      "path": "/:department/:category"
+      "path": "/:department/:category/c"
     },
     "store/subcategory": {
-      "path": "/:department/:category/:subcategory"
+      "path": "/:department/:category/:subcategory/sc"
     },
     "store/search": {
       "path": "/:term/s"
