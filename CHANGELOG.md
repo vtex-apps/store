@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - Add a generic component (`SearchQueryContainer`) to be reused into the different pages that uses search and facets queries.
+- Add hints to the end of category and subcategory paths
 
 ## [0.4.1] - 2018-7-4
 ### Fixed
