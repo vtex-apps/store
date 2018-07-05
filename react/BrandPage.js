@@ -24,8 +24,15 @@ export default class BrandPage extends Component {
   }
 
   render() {
+    const props = {
+      ...this.props,
+      query: {
+        ...this.props.query,
+        map: this.props.map || 'b',
+      },
+    }
     return (
-      <SearchQueryContainer {...this.props}>
+      <SearchQueryContainer {...props}>
         <SearchQueryContext.Consumer>
           {contextProps => <ExtensionPoint id="container" {...contextProps} />}
         </SearchQueryContext.Consumer>
