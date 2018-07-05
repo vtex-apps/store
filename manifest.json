@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "store",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "builders": {
     "pages": "0.x",
     "react": "2.x"
