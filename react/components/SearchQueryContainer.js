@@ -15,6 +15,8 @@ const DEFAULT_MAX_ITEMS_PER_PAGE = 1
 class SearchQueryContainer extends Component {
   state = {
     maxItemsPerPage: DEFAULT_MAX_ITEMS_PER_PAGE,
+    /* Will be loading by default. The container will wait until the real data arrives */
+    loading: true,
   }
 
   static propTypes = {
@@ -65,7 +67,12 @@ class SearchQueryContainer extends Component {
                 value={{
                   state: {
                     ...this.state,
-                    setContextVariables: variables => this.setState(variables),
+                    setContextVariables: variables =>
+                      this.setState({
+                        ...variables,
+                        /* When the real data arrives, isn't loading anymore */
+                        loading: false,
+                      }),
                   },
                   ...contextProps,
                   searchQuery: {

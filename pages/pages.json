@@ -69,7 +69,7 @@
       "component": "vtex.render-runtime/ExtensionContainer"
     },
     "store/department": {
-      "component": "CategoryPage"
+      "component": "DepartmentPage"
     },
     "store/department/container": {
       "component": "vtex.render-runtime/ExtensionContainer"
