@@ -9,8 +9,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Graphql product query to support benefits retrievement.
 
+## [0.6.1] - 2018-7-6
+### Changed 
+- Add `ExtensionContainer` to `store/login/container`.
+
+## [0.6.0] - 2018-7-6
+### Added
+- Add the `DepartmentPage` component.
+
+### Fixed
+- Fix loading logic inside the `SearchQueryContainer`.
+
+## [0.5.0] - 2018-7-5
 ### Added
 - Add a generic component (`SearchQueryContainer`) to be reused into the different pages that uses search and facets queries.
+- Add hints to the end of category and subcategory paths
 
 ## [0.4.1] - 2018-7-4
 ### Fixed

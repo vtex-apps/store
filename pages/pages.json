@@ -25,10 +25,10 @@
       "path": "/:department/d"
     },
     "store/category": {
-      "path": "/:department/:category"
+      "path": "/:department/:category/c"
     },
     "store/subcategory": {
-      "path": "/:department/:category/:subcategory"
+      "path": "/:department/:category/:subcategory/sc"
     },
     "store/search": {
       "path": "/:term/s"
@@ -59,6 +59,9 @@
     "store/login": {
       "component": "LoginPage"
     },
+    "store/login/container": {
+      "component": "vtex.render-runtime/ExtensionContainer"
+    },
     "store/compare": {
       "component": "ComparePage"
     },
@@ -69,7 +72,7 @@
       "component": "vtex.render-runtime/ExtensionContainer"
     },
     "store/department": {
-      "component": "CategoryPage"
+      "component": "DepartmentPage"
     },
     "store/department/container": {
       "component": "vtex.render-runtime/ExtensionContainer"
