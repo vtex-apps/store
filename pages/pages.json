@@ -59,6 +59,9 @@
     "store/login": {
       "component": "LoginPage"
     },
+    "store/login/container": {
+      "component": "vtex.render-runtime/ExtensionContainer"
+    },
     "store/compare": {
       "component": "ComparePage"
     },
