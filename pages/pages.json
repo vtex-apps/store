@@ -7,10 +7,12 @@
       "path": "/"
     },
     "store/account": {
-      "path": "/account"
+      "path": "/account",
+      "login": true
     },
     "store/account/orders": {
-      "path": "/account/orders"
+      "path": "/account/orders",
+      "login": true
     },
     "store/compare": {
       "path": "/compare"
