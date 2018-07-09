@@ -58,12 +58,15 @@ export function stripPath(pathName) {
 }
 
 function getPathOfPage(pagesPath) {
-  return global.__RUNTIME__.pages[pagesPath].path
+  return (
+    global.__RUNTIME__.pages[pagesPath] &&
+    global.__RUNTIME__.pages[pagesPath].path
+  )
 }
 
 export function reversePagesPath(pagesPath, params) {
   const Parser = RouteParser.default ? RouteParser.default : RouteParser
-  return new Parser(getPathOfPage(pagesPath)).reverse(params)
+  return new Parser(getPathOfPage(pagesPath) || '').reverse(params)
 }
 
 function matchPagesPath(pagesPath, pathName) {
