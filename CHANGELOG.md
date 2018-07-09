@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- Fix path error in non-linked app by adding a default path in case there isn't any.
 
 ## [0.7.0] - 2018-7-6
 ### Changed
