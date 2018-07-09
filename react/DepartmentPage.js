@@ -6,13 +6,22 @@ import SearchQueryContainer from './components/SearchQueryContainer'
 import { searchQueryPropTypes } from './constants/propTypes'
 import { SearchQueryContext } from './constants/searchContext'
 
-export default class SearchPage extends Component {
+export default class DepartmentPage extends Component {
+  static contextTypes = {
+    prefetchPage: PropTypes.func,
+  }
+
   static propTypes = {
+    /** Query params */
     params: PropTypes.shape({
-      /** Search's term, e.g: eletronics. */
-      term: PropTypes.string.isRequired,
+      /** Department param */
+      department: PropTypes.string.isRequired,
     }),
     ...searchQueryPropTypes,
+  }
+
+  componentDidMount() {
+    this.context.prefetchPage('store/home')
   }
 
   render() {

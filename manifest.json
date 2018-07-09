@@ -1,17 +1,15 @@
 {
   "vendor": "vtex",
   "name": "store",
-  "version": "0.4.0-beta",
+  "version": "0.7.1",
   "builders": {
     "pages": "0.x",
     "react": "2.x"
   },
-  "mustUpdateAt": "2018-09-05",
   "categories": [],
   "registries": [
     "smartcheckout"
   ],
-  "settingsSchema": {},
   "scripts": {
     "postreleasy": "vtex publish --verbose"
   },

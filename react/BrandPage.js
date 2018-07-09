@@ -2,7 +2,19 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { ExtensionPoint } from 'render'
 
+import SearchQueryContainer from './components/SearchQueryContainer'
+import { searchQueryPropTypes } from './constants/propTypes'
+import { SearchQueryContext } from './constants/searchContext'
+
 export default class BrandPage extends Component {
+  static propTypes = {
+    params: PropTypes.shape({
+      /** Brand name */
+      brand: PropTypes.string.isRequired,
+    }),
+    ...searchQueryPropTypes,
+  }
+
   static contextTypes = {
     prefetchPage: PropTypes.func,
   }
@@ -12,8 +24,19 @@ export default class BrandPage extends Component {
   }
 
   render() {
+    const props = {
+      ...this.props,
+      query: {
+        ...this.props.query,
+        map: this.props.map || 'b',
+      },
+    }
     return (
-      <ExtensionPoint id="container" />
+      <SearchQueryContainer {...props}>
+        <SearchQueryContext.Consumer>
+          {contextProps => <ExtensionPoint id="container" {...contextProps} />}
+        </SearchQueryContext.Consumer>
+      </SearchQueryContainer>
     )
   }
 }
