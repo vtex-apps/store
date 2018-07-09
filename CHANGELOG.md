@@ -43,6 +43,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Add the `SearchPage` GraphQL queries.
 - Data layer intergration in the `ProductPage`.
 
+## [0.4.0-beta] - 2018-7-3
+### Changed
+- Bump beta version of my-orders.
+
 ## [0.3.0] - 2018-6-25
 ### Added
 - Add `pagesPath` prop to the container of `SearchPage` and `CategoryPage`.
