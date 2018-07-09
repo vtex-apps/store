@@ -49,7 +49,7 @@ export function createMap(pathName, rest, isBrand) {
   return map
 }
 
-export function stripPath(pathName) {
+export function stripPath(pathName = '') {
   return pathName
     .replace(/^\//i, '')
     .replace(/\/s$/i, '')

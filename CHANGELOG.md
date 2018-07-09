@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 - Add auth treament to the route of `/account` and `/account/orders`
 
+## [0.7.2] - 2018-7-9
+### Fixed
+- Fix path value inside the `SearchQueryContainer` component.
+
 ## [0.7.1] - 2018-7-9
 ### Fixed
 - Fix path error in non-linked app by adding a default path in case there isn't any.

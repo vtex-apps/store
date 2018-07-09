@@ -37,7 +37,7 @@ class SearchQueryContainer extends Component {
       },
     } = this.props
 
-    const path = reversePagesPath(treePath, params)
+    const path = reversePagesPath(treePath, params) || ''
     const map = mapProps || createMap(path, rest)
     const page = pageProps ? parseInt(pageProps) : DEFAULT_PAGE
     const query = joinPathWithRest(path, rest)
