@@ -7,10 +7,6 @@ import { searchQueryPropTypes } from './constants/propTypes'
 import { SearchQueryContext } from './constants/searchContext'
 
 export default class SearchPage extends Component {
-  static contextTypes = {
-    prefetchPage: PropTypes.func,
-  }
-
   static propTypes = {
     params: PropTypes.shape({
       /** Brand name */
@@ -27,10 +23,6 @@ export default class SearchPage extends Component {
       term: PropTypes.string,
     }),
     ...searchQueryPropTypes,
-  }
-
-  componentDidMount() {
-    this.context.prefetchPage('store/home')
   }
 
   render() {
