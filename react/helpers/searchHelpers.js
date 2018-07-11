@@ -57,16 +57,13 @@ export function stripPath(pathName) {
     .replace(/\/b$/i, '')
 }
 
-function getPathOfPage(pagesPath) {
-  return (
-    global.__RUNTIME__.pages[pagesPath] &&
-    global.__RUNTIME__.pages[pagesPath].path
-  )
+function getPathOfPage(runtime, pagesPath) {
+  return runtime && runtime.pages[pagesPath] && runtime.pages[pagesPath].path
 }
 
-export function reversePagesPath(pagesPath, params) {
+export function reversePagesPath(runtime, pagesPath, params) {
   const Parser = RouteParser.default ? RouteParser.default : RouteParser
-  return new Parser(getPathOfPage(pagesPath) || '').reverse(params)
+  return new Parser(getPathOfPage(runtime, pagesPath) || '').reverse(params)
 }
 
 function matchPagesPath(pagesPath, pathName) {
