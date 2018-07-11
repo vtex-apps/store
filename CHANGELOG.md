@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.8.1-beta] - 2018-07-11
+### Fixed
+- Fix usage of the runtime elements.
+
 ## [0.8.0] - 2018-07-09
 - Add auth treament to the route of `/account` and `/account/orders`
 
