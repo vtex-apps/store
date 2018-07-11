@@ -1,7 +1,5 @@
 import * as RouteParser from 'route-parser'
 
-import pagesJson from '../../pages/pages.json'
-
 export function joinPathWithRest(path, rest) {
   let pathValues = stripPath(path).split('/')
   pathValues = pathValues.concat((rest && rest.split(',')) || [])
@@ -56,7 +54,68 @@ export function stripPath(pathName) {
     .replace(/\/b$/i, '')
 }
 
-export function reversePagesPath(pagesPath, params) {
+function getPathOfPage(runtime, pagesPath) {
+  return runtime && runtime.pages[pagesPath] && runtime.pages[pagesPath].path
+}
+
+export function reversePagesPath(runtime, pagesPath, params) {
   const Parser = RouteParser.default ? RouteParser.default : RouteParser
-  return new Parser(pagesJson.pages[pagesPath].path || '').reverse(params)
+  return new Parser(getPathOfPage(runtime, pagesPath) || '').reverse(params)
+}
+
+function matchPagesPath(pagesPath, pathName) {
+  const Parser = RouteParser.default ? RouteParser.default : RouteParser
+  return new Parser(pagesPath).match(pathName)
+}
+
+function getSpecificationFilterFromLink(link) {
+  return `specificationFilter_${link.split('specificationFilter_')[1]}`
+}
+
+export function getPagesArgs(
+  { name, type, link },
+  pathName,
+  rest,
+  { map, orderBy, pageNumber = 1 },
+  pagesPath,
+  isUnselectLink
+) {
+  const restValues = (rest && rest.split(',')) || []
+  const mapValues = (map && map.split(',')) || []
+  if (name) {
+    if (isUnselectLink) {
+      const pathValuesLength = stripPath(pathName).split('/').length
+      const index = restValues.findIndex(
+        item => name.toLowerCase() === item.toLowerCase()
+      )
+      if (index !== -1) {
+        restValues.splice(index, 1)
+        mapValues.splice(pathValuesLength + index, 1)
+      }
+    } else {
+      switch (type) {
+        case 'Brands': {
+          mapValues.push('b')
+          break
+        }
+        case 'SpecificationFilters': {
+          mapValues.push(`${getSpecificationFilterFromLink(link)}`)
+          break
+        }
+        default: {
+          mapValues.push('c')
+        }
+      }
+      restValues.push(name)
+    }
+  }
+
+  const queryString = QueryString.stringify({
+    map: mapValues.join(','),
+    page: pageNumber !== 1 ? pageNumber : undefined,
+    order: orderBy === SortOptions[0].value ? undefined : orderBy,
+    rest: restValues.join(',') || undefined,
+  })
+  const params = matchPagesPath(getPathOfPage(pagesPath), pathName)
+  return { page: pagesPath, params, queryString }
 }

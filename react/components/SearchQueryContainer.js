@@ -29,6 +29,7 @@ class SearchQueryContainer extends Component {
     const {
       treePath,
       params,
+      runtime,
       query: {
         order: orderBy = SortOptions[0].value,
         page: pageProps,
@@ -37,7 +38,7 @@ class SearchQueryContainer extends Component {
       },
     } = this.props
 
-    const path = reversePagesPath(treePath, params)
+    const path = reversePagesPath(runtime, treePath, params)
     const map = mapProps || createMap(path, rest)
     const page = pageProps ? parseInt(pageProps) : DEFAULT_PAGE
     const query = joinPathWithRest(path, rest)
