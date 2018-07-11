@@ -107,65 +107,77 @@
     }
   },
   "pages": {
-    "store": {
-      "default": {
+    "store": [
+      {
+        "name": "Default",
         "template": "store"
       }
-    },
-    "store/home": {
-      "default": {
+    ],
+    "store/home": [
+      {
+        "name": "Default",
         "template": "home"
       }
-    },
-    "store/account": {
-      "default": {
+    ],
+    "store/account": [
+      {
+        "name": "Default",
         "template": "account"
       }
-    },
-    "store/account/orders": {
-      "default": {
+    ],
+    "store/account/orders": [
+      {
+        "name": "Default",
         "template": "orders"
       }
-    },
-    "store/compare": {
-      "default": {
+    ],
+    "store/compare": [
+      {
+        "name": "Default",
         "template": "compare"
       }
-    },
-    "store/login": {
-      "default": {
+    ],
+    "store/login": [
+      {
+        "name": "Default",
         "template": "login"
       }
-    },
-    "store/brand": {
-      "default": {
+    ],
+    "store/brand": [
+      {
+        "name": "Default",
         "template": "productSearch"
       }
-    },
-    "store/department": {
-      "default": {
+    ],
+    "store/department": [
+      {
+        "name": "Default",
         "template": "productSearch"
       }
-    },
-    "store/category": {
-      "default": {
+    ],
+    "store/category": [
+      {
+        "name": "Default",
         "template": "productSearch"
       }
-    },
-    "store/subcategory": {
-      "default": {
+    ],
+    "store/subcategory": [
+      {
+        "name": "Default",
         "template": "productSearch"
       }
-    },
-    "store/search": {
-      "default": {
+    ],
+    "store/search": [
+      {
+        "name": "Default",
         "template": "productSearch"
       }
-    },
-    "store/product": {
-      "default": {
+    ],
+    "store/product": [
+      {
+        "name": "Default",
         "template": "product"
       }
-    }
+    ]
   }
 }
