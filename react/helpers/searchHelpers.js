@@ -1,5 +1,7 @@
 import * as RouteParser from 'route-parser'
 
+import pagesJson from '../../pages/pages.json'
+
 export function joinPathWithRest(path, rest) {
   let pathValues = stripPath(path).split('/')
   pathValues = pathValues.concat((rest && rest.split(',')) || [])
@@ -55,8 +57,7 @@ export function stripPath(pathName) {
 }
 
 function getPathOfPage(pagesPath) {
-  const pages = require('../../pages/pages.json')
-  return pages.pages[pagesPath].path
+  return pagesJson.pages[pagesPath].path
 }
 
 export function reversePagesPath(pagesPath, params) {
