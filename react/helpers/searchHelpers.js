@@ -56,11 +56,7 @@ export function stripPath(pathName) {
     .replace(/\/b$/i, '')
 }
 
-function getPathOfPage(pagesPath) {
-  return pagesJson.pages[pagesPath].path
-}
-
 export function reversePagesPath(pagesPath, params) {
   const Parser = RouteParser.default ? RouteParser.default : RouteParser
-  return new Parser(getPathOfPage(pagesPath) || '').reverse(params)
+  return new Parser(pagesJson.pages[pagesPath].path || '').reverse(params)
 }
