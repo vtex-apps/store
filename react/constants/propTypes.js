@@ -140,8 +140,6 @@ export const searchQueryPropTypes = {
   }),
   /** Internal route path. e.g: 'store/search' */
   treePath: PropTypes.string,
-  /** App runtime */
-  runtime: PropTypes.object,
   /** Facets graphql query. */
   facetsQuery: facetsQueryShape,
   /** Search graphql query. */
