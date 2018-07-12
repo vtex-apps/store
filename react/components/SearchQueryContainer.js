@@ -20,6 +20,19 @@ class SearchQueryContainer extends Component {
   }
 
   static propTypes = {
+    /** Query params */
+    params: PropTypes.shape({
+      /** Department param */
+      department: PropTypes.string,
+      /** Brand name */
+      brand: PropTypes.string,
+      /** Search's term, e.g: eletronics. */
+      term: PropTypes.string,
+      /** Category param */
+      category: PropTypes.string,
+      /** Subcategory param */
+      subcategory: PropTypes.string,
+    }),
     ...searchQueryPropTypes,
     /** Children to be rendered */
     children: PropTypes.node.isRequired,
