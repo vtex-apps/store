@@ -1,3 +1,5 @@
+import * as RouteParser from 'route-parser'
+
 export function joinPathWithRest(path, rest) {
   let pathValues = stripPath(path).split('/')
   pathValues = pathValues.concat((rest && rest.split(',')) || [])
@@ -52,17 +54,12 @@ export function stripPath(pathName) {
     .replace(/\/b$/i, '')
 }
 
+function getPathOfPage(pagesPath) {
+  const pages = require('../../pages/pages.json')
+  return pages.pages[pagesPath].path
+}
+
 export function reversePagesPath(pagesPath, params) {
-  switch (pagesPath) {
-    case 'store/search':
-      return `/${params.term}`
-    case 'store/department':
-      return `/${params.department}`
-    case 'store/category':
-      return `/${params.department}/${params.category}`
-    case 'store/subcategory':
-      return `/${params.department}/${params.category}/${params.subcategory}`
-    default:
-      return '/'
-  }
+  const Parser = RouteParser.default ? RouteParser.default : RouteParser
+  return new Parser(getPathOfPage(pagesPath) || '').reverse(params)
 }
