@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Fixed
-- Fix circular product query
+- Circular product query
 
 ## [0.8.1] - 2018-07-12
 ### Changed
