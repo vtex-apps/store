@@ -8,10 +8,6 @@ import withDataLayer, { dataLayerProps } from './components/withDataLayer'
 import productQuery from './queries/productQuery.gql'
 
 class ProductPage extends Component {
-  static contextTypes = {
-    prefetchPage: PropTypes.func,
-  }
-
   static propTypes = {
     params: PropTypes.object,
     data: PropTypes.object,
@@ -40,8 +36,6 @@ class ProductPage extends Component {
   }
 
   componentDidMount() {
-    this.context.prefetchPage('store/home')
-
     if (!this.props.data.loading) {
       this.pushToDataLayer(this.props.data.product)
     }

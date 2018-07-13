@@ -8,9 +8,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ## Changed
 - Change `ProductPage`, passing loading information to the ProductDetails component 
+### Fixed
+- Circular product query
 
 ## [0.8.1] - 2018-07-12
-## Changed
+### Changed
 - Change reverse path evaluation to not use pages.json
 
 ### Fixed
