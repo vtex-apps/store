@@ -56,7 +56,7 @@ query Product($slug: String) {
       id
       name
       items {
-        product {
+        benefitProduct {
 					productName
           productId
           description
