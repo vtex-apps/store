@@ -23,12 +23,17 @@ class ProductPage extends Component {
       event: 'productDetail',
       ecommerce: {
         detail: {
-          products: [{
-            name: product.productName,
-            brand: product.brand,
-            category: product.categories.length > 0 ? product.categories[0] : undefined,
-            id: product.productId,
-          }],
+          products: [
+            {
+              name: product.productName,
+              brand: product.brand,
+              category:
+                product.categories.length > 0
+                  ? product.categories[0]
+                  : undefined,
+              id: product.productId,
+            },
+          ],
         },
       },
     })
@@ -49,22 +54,20 @@ class ProductPage extends Component {
   }
 
   render() {
-    const { data } = this.props
-    const { loading, variables, product } = data
+    const { loading, variables, product } = this.props.data
 
     return (
       <div className="vtex-product-details-container">
-        {!loading && (
-          <Fragment>
-            <MicroData product={product} />
-            <ExtensionPoint
-              id="container"
-              slug={variables.slug}
-              categories={product.categories}
-              product={product}
-            />
-          </Fragment>
-        )}
+        <Fragment>
+          {!loading && <MicroData product={product} />}
+          <ExtensionPoint
+            id="container"
+            slug={variables.slug}
+            categories={loading ? [] : product.categories}
+            product={product}
+            loading={loading}
+          />
+        </Fragment>
       </div>
     )
   }
