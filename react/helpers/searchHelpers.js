@@ -52,7 +52,22 @@ export function stripPath(pathName) {
     .replace(/\/b$/i, '')
 }
 
+function getPathByParams(params) {
+  if (params.term) return `/${params.term}`
+  if (params.department && params.category && params.subcategory) {
+    return `/${params.department}/${params.category}/${params.subcategory}`
+  }
+  if (params.department && params.category) {
+    return `/${params.department}/${params.category}`
+  }
+  if (params.department) return `/${params.department}`
+  return '/'
+}
+
 export function reversePagesPath(pagesPath, params) {
+  if (!pagesPath) {
+    return getPathByParams(params)
+  }
   switch (pagesPath) {
     case 'store/search':
       return `/${params.term}`
