@@ -1,13 +1,12 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { graphql, compose } from 'react-apollo'
-import { ExtensionPoint } from 'render'
 import MicroData from './components/MicroData'
 
 import withDataLayer, { dataLayerProps } from './components/withDataLayer'
 import productQuery from './queries/productQuery.gql'
 
-class ProductPage extends Component {
+class ProductContextProvider extends Component {
   static propTypes = {
     params: PropTypes.object,
     data: PropTypes.object,
@@ -44,19 +43,14 @@ class ProductPage extends Component {
 
   render() {
     const { data } = this.props
-    const { loading, variables, product } = data
+    const { loading, product } = data
 
     return (
       <div className="vtex-product-details-container">
         {!loading && (
           <Fragment>
             <MicroData product={product} />
-            <ExtensionPoint
-              id="container"
-              slug={variables.slug}
-              categories={product.categories}
-              product={product}
-            />
+            {React.cloneElement(this.props.children, { loading, product })}
           </Fragment>
         )}
       </div>
@@ -75,4 +69,4 @@ const options = {
 export default compose(
   graphql(productQuery, options),
   withDataLayer
-)(ProductPage)
+)(ProductContextProvider)
