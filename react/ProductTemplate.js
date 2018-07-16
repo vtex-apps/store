@@ -58,8 +58,7 @@ class ProductPage extends Component {
             id="container"
             slug={variables.slug}
             categories={loading ? [] : product.categories}
-            product={product}
-            loading={loading}
+            productQuery={this.props.data}
           />
         </Fragment>
       </div>
