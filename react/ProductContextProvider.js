@@ -42,15 +42,16 @@ class ProductContextProvider extends Component {
   }
 
   render() {
-    const { data } = this.props
+    const { data, params: {slug} } = this.props
     const { loading, product } = data
+    const { categories } = product || {}
 
     return (
       <div className="vtex-product-details-container">
         {!loading && (
           <Fragment>
             <MicroData product={product} />
-            {React.cloneElement(this.props.children, { loading, product })}
+            {React.cloneElement(this.props.children, { loading, product, categories, slug })}
           </Fragment>
         )}
       </div>
