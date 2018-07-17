@@ -40,7 +40,7 @@ class SearchQueryContainer extends Component {
 
   render() {
     const {
-      treePath,
+      nextTreePath,
       params,
       query: {
         order: orderBy = SortOptions[0].value,
@@ -50,7 +50,7 @@ class SearchQueryContainer extends Component {
       },
     } = this.props
 
-    const path = reversePagesPath(treePath, params)
+    const path = reversePagesPath(params)
     const map = mapProps || createMap(path, rest)
     const page = pageProps ? parseInt(pageProps) : DEFAULT_PAGE
     const query = joinPathWithRest(path, rest)
@@ -65,7 +65,7 @@ class SearchQueryContainer extends Component {
       rest,
       page,
       orderBy,
-      pagesPath: treePath,
+      pagesPath: nextTreePath,
     }
 
     return (

@@ -52,32 +52,20 @@ export function stripPath(pathName) {
     .replace(/\/b$/i, '')
 }
 
-function getPathByParams(params) {
+export function reversePagesPath(params) {
   if (params.term) return `/${params.term}`
+
   if (params.department && params.category && params.subcategory) {
     return `/${params.department}/${params.category}/${params.subcategory}`
   }
+
   if (params.department && params.category) {
     return `/${params.department}/${params.category}`
   }
-  if (params.department) return `/${params.department}`
-  return '/'
-}
 
-export function reversePagesPath(pagesPath, params) {
-  if (!pagesPath) {
-    return getPathByParams(params)
+  if (params.department) {
+    return `/${params.department}`
   }
-  switch (pagesPath) {
-    case 'store/search':
-      return `/${params.term}`
-    case 'store/department':
-      return `/${params.department}`
-    case 'store/category':
-      return `/${params.department}/${params.category}`
-    case 'store/subcategory':
-      return `/${params.department}/${params.category}/${params.subcategory}`
-    default:
-      return '/'
-  }
+
+  return '/'
 }

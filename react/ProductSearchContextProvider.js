@@ -1,12 +1,11 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { ExtensionPoint } from 'render'
 
 import SearchQueryContainer from './components/SearchQueryContainer'
 import { searchQueryPropTypes } from './constants/propTypes'
 import { SearchQueryContext } from './constants/searchContext'
 
-export default class SearchPage extends Component {
+class ProductSearchContextProvider extends Component {
   static propTypes = {
     params: PropTypes.shape({
       /** Brand name */
@@ -40,9 +39,11 @@ export default class SearchPage extends Component {
     return (
       <SearchQueryContainer {...props}>
         <SearchQueryContext.Consumer>
-          {contextProps => <ExtensionPoint id="container" {...contextProps} />}
+          {contextProps => React.cloneElement(this.props.children, contextProps)}
         </SearchQueryContext.Consumer>
       </SearchQueryContainer>
     )
   }
 }
+
+export default ProductSearchContextProvider
