@@ -18,12 +18,17 @@ class ProductContextProvider extends Component {
       event: 'productDetail',
       ecommerce: {
         detail: {
-          products: [{
-            name: product.productName,
-            brand: product.brand,
-            category: product.categories.length > 0 ? product.categories[0] : undefined,
-            id: product.productId,
-          }],
+          products: [
+            {
+              name: product.productName,
+              brand: product.brand,
+              category:
+                product.categories.length > 0
+                  ? product.categories[0]
+                  : undefined,
+              id: product.productId,
+            },
+          ],
         },
       },
     })
@@ -42,18 +47,28 @@ class ProductContextProvider extends Component {
   }
 
   render() {
-    const { data, params: {slug} } = this.props
+    const {
+      data,
+      params: { slug },
+    } = this.props
     const { loading, product } = data
     const { categories } = product || {}
 
+    const productQuery = {
+      product,
+      loading,
+    }
+
     return (
       <div className="vtex-product-details-container">
-        {!loading && (
-          <Fragment>
-            <MicroData product={product} />
-            {React.cloneElement(this.props.children, { loading, product, categories, slug })}
-          </Fragment>
-        )}
+        <Fragment>
+          {!loading && <MicroData product={product} />}
+          {React.cloneElement(this.props.children, {
+            productQuery,
+            categories,
+            slug,
+          })}
+        </Fragment>
       </div>
     )
   }
