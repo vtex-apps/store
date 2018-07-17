@@ -1,7 +1,8 @@
 {
   "routes": {
     "store": {
-      "path": "/"
+      "path": "/",
+      "context": "StoreContextProvider"
     },
     "store/home": {
       "path": "/"
@@ -22,162 +23,27 @@
     },
     "store/brand": {
       "path": "/:brand/b",
-      "context": "ProductSearch"
+      "context": "ProductSearchContextProvider"
     },
     "store/department": {
       "path": "/:department/d",
-      "context": "ProductSearch"
+      "context": "ProductSearchContextProvider"
     },
     "store/category": {
       "path": "/:department/:category/c",
-      "context": "ProductSearch"
+      "context": "ProductSearchContextProvider"
     },
     "store/subcategory": {
       "path": "/:department/:category/:subcategory/sc",
-      "context": "ProductSearch"
+      "context": "ProductSearchContextProvider"
     },
     "store/product": {
       "path": "/:slug/p",
-      "context": "Product"
+      "context": "ProductContextProvider"
     },
     "store/search": {
       "path": "/:term/s",
-      "context": "ProductSearch"
+      "context": "ProductSearchContextProvider"
     }
-  },
-  "templates": {
-    "store": {
-      "component": "StoreTemplate"
-    },
-    "login": {
-      "component": "LoginTemplate",
-      "extensions": {
-        "container": {
-          "component": "vtex.render-runtime/ExtensionContainer"
-        }
-      }
-    },
-    "compare": {
-      "component": "CompareTemplate"
-    },
-    "home": {
-      "component": "HomeTemplate",
-      "extensions": {
-        "container": {
-          "component": "vtex.render-runtime/ExtensionContainer"
-        }
-      }
-    },
-    "account": {
-      "component": "AccountTemplate",
-      "extensions": {
-        "container": {
-          "component": "vtex.render-runtime/ExtensionContainer"
-        }
-      }
-    },
-    "orders": {
-      "component": "OrdersTemplate",
-      "extensions": {
-        "container": {
-          "component": "vtex.render-runtime/ExtensionContainer"
-        },
-        "container/1": {
-          "component": "vtex.my-orders-app/index"
-        }
-      }
-    },
-    "productSearch": {
-      "component": "ProductSearchTemplate",
-      "context": "ProductSearch",
-      "extensions": {
-        "container": {
-          "component": "vtex.render-runtime/ExtensionContainer"
-        }
-      }
-    },
-    "product": {
-      "component": "ProductTemplate",
-      "context": "Product",
-      "extensions": {
-        "container": {
-          "component": "vtex.render-runtime/ExtensionContainer"
-        }
-      }
-    }
-  },
-  "pages": {
-    "store": [
-      {
-        "name": "Default",
-        "template": "store"
-      }
-    ],
-    "store/home": [
-      {
-        "name": "Default",
-        "template": "home"
-      }
-    ],
-    "store/account": [
-      {
-        "name": "Default",
-        "template": "account"
-      }
-    ],
-    "store/account/orders": [
-      {
-        "name": "Default",
-        "template": "orders"
-      }
-    ],
-    "store/compare": [
-      {
-        "name": "Default",
-        "template": "compare"
-      }
-    ],
-    "store/login": [
-      {
-        "name": "Default",
-        "template": "login"
-      }
-    ],
-    "store/brand": [
-      {
-        "name": "Default",
-        "template": "productSearch"
-      }
-    ],
-    "store/department": [
-      {
-        "name": "Default",
-        "template": "productSearch"
-      }
-    ],
-    "store/category": [
-      {
-        "name": "Default",
-        "template": "productSearch"
-      }
-    ],
-    "store/subcategory": [
-      {
-        "name": "Default",
-        "template": "productSearch"
-      }
-    ],
-    "store/search": [
-      {
-        "name": "Default",
-        "template": "productSearch"
-      }
-    ],
-    "store/product": [
-      {
-        "name": "Default",
-        "template": "product"
-      }
-    ]
   }
 }

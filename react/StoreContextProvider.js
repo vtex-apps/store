@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { ExtensionPoint } from 'render'
 
 import { DataLayerProvider } from './components/withDataLayer'
 
-export default class StoreTemplate extends Component {
+class StoreContextProvider extends Component {
   static propTypes = {
     children: PropTypes.element,
   }
@@ -23,11 +22,10 @@ export default class StoreTemplate extends Component {
           pushToDataLayer: this.pushToDataLayer,
         }}
       >
-        <ExtensionPoint id="theme" />
-        <ExtensionPoint id="header" />
         <div className="vtex-store__template">{this.props.children}</div>
-        <ExtensionPoint id="footer" />
       </DataLayerProvider>
     )
   }
 }
+
+export default StoreContextProvider
