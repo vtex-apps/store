@@ -25,13 +25,13 @@ class ProductSearchDataLayer extends Component {
   }
 
   componentDidMount() {
-    if (!this.props.searchQuery.loading) {
+    if (!this.props.loading) {
       this.pushToDataLayer(this.props.searchQuery.products)
     }
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.searchQuery.loading && !this.props.searchQuery.loading) {
+    if (prevProps.loading && !this.props.loading) {
       this.pushToDataLayer(this.props.searchQuery.products)
     }
   }
