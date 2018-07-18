@@ -41,7 +41,11 @@ class ProductSearchContextProvider extends Component {
       <SearchQueryContainer {...props}>
         <SearchQueryContext.Consumer>
           {contextProps => (
-            <ProductSearchDataLayer searchQuery={contextProps.searchQuery}>
+            <ProductSearchDataLayer
+              searchQuery={contextProps.searchQuery}
+              loading={
+                contextProps.state.loading || contextProps.searchQuery.loading
+              }>
               {React.cloneElement(this.props.children, contextProps)}
             </ProductSearchDataLayer>
           )}
