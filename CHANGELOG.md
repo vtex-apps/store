@@ -6,9 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Property name of productQuery benefits.items.product to benefits.items.benefitProduct
 
 ## [0.8.1] - 2018-07-12
-## Changed
+### Changed
 - Change reverse path evaluation to not use pages.json
 
 ### Fixed
