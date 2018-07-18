@@ -56,59 +56,6 @@ query Product($slug: String) {
       id
       name
       items {
-        benefitProduct {
-					productName
-          productId
-          description
-          linkText
-          categories
-          categoryId
-          categoriesIds
-          brand
-          properties {
-            name,
-            values
-          },
-          items {
-            itemId
-            name
-            nameComplete
-            complementName
-            ean
-            referenceId {
-              Key
-              Value
-            }
-            measurementUnit
-            unitMultiplier
-            images {
-              imageId
-              imageLabel
-              imageTag
-              imageUrl
-              imageText
-            }
-            sellers {
-              sellerId
-              sellerName
-              addToCartLink
-              sellerDefault
-              commertialOffer {
-                Price
-                ListPrice
-                PriceWithoutDiscount
-                RewardValue
-                PriceValidUntil
-                AvailableQuantity
-                Tax
-                CacheVersionUsedToCallCheckout
-              }
-            }
-            variations {
-              name
-            }
-          }
-        }
         discount
         minQuantity
       }
