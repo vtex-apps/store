@@ -96,6 +96,10 @@ class SearchQueryContainer extends Component {
                     ...facetsQueryProps,
                     ...facetsQueryProps.data,
                   },
+                  loading:
+                    this.state.loading ||
+                    searchQuery.loading ||
+                    facetsQuery.loading,
                 }}>
                 {this.props.children}
               </SearchQueryContext.Provider>
