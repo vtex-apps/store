@@ -53,18 +53,18 @@ export function stripPath(pathName) {
 }
 
 export function reversePagesPath(params) {
-  if (params.term) return `/${params.term}`
+  if (params.term) return `/${params.term}/s`
 
   if (params.department && params.category && params.subcategory) {
-    return `/${params.department}/${params.category}/${params.subcategory}`
+    return `/${params.department}/${params.category}/${params.subcategory}/sc`
   }
 
   if (params.department && params.category) {
-    return `/${params.department}/${params.category}`
+    return `/${params.department}/${params.category}/c`
   }
 
   if (params.department) {
-    return `/${params.department}`
+    return `/${params.department}/d`
   }
 
   return '/'

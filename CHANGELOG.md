@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - Data layer integration in the `ProductSearchContextProvider`.
+### Fixed
+- Fix the `searchHelpers.reversePagesPath` function to return the full path.
 
 ## [1.1.3] - 2018-07-18
 ### Fixed
