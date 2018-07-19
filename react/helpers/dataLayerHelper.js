@@ -10,3 +10,13 @@ export function getProductImpression(product, customProps = {}) {
     ...customProps,
   }
 }
+
+export function getProductDetail(product, customProps = {}) {
+  return {
+    id: product.productId,
+    name: product.productName,
+    brand: product.brand,
+    category: path(['categories', '0'], product),
+    ...customProps,
+  }
+}
