@@ -22,6 +22,7 @@ query search($query: String, $map: String, $rest: String, $orderBy: String, $fro
       CategoriesTrees {
         Quantity
         Name
+        Link
         Children {
           Quantity
           Name

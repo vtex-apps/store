@@ -1,8 +1,7 @@
-import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Query } from 'react-apollo'
 
-import { searchQueryPropTypes } from '../constants/propTypes'
+import { searchContextPropTypes } from '../constants/propTypes'
 import { SearchQueryContext } from '../constants/searchContext'
 import SortOptions from '../constants/searchSortOptions'
 import { createMap, reversePagesPath, stripPath } from '../helpers/searchHelpers'
@@ -18,24 +17,7 @@ class SearchQueryContainer extends Component {
     loading: true,
   }
 
-  static propTypes = {
-    /** Query params */
-    params: PropTypes.shape({
-      /** Department param */
-      department: PropTypes.string,
-      /** Brand name */
-      brand: PropTypes.string,
-      /** Search's term, e.g: eletronics. */
-      term: PropTypes.string,
-      /** Category param */
-      category: PropTypes.string,
-      /** Subcategory param */
-      subcategory: PropTypes.string,
-    }),
-    ...searchQueryPropTypes,
-    /** Children to be rendered */
-    children: PropTypes.node.isRequired,
-  }
+  static propTypes = searchContextPropTypes
 
   render() {
     const {
