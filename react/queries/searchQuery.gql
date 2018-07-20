@@ -1,45 +1,82 @@
-query search($query: String, $map: String, $orderBy: String, $from: Int, $to: Int) {
-  products(query:$query, map: $map, orderBy: $orderBy, from: $from, to: $to) {
-    productId
-    productName
-    linkText
-    description
-    brand
-    link
-    items {
-      itemId
-      name
-      nameComplete
-      complementName
-      ean
-      referenceId {
-        Key
-        Value
+query search($query: String, $map: String, $rest: String, $orderBy: String, $from: Int, $to: Int) {
+  search(query: $query, map: $map, rest: $rest, orderBy: $orderBy, from: $from, to: $to) {
+    facets {
+      Departments {
+        Quantity
+        Name
+        Link
       }
-      measurementUnit
-      unitMultiplier
-      images {
-        imageId
-        imageLabel
-        imageTag
-        imageUrl
-        imageText
+      Brands {
+        Quantity
+        Name
+        Link
       }
-      sellers {
-        sellerId
-        sellerName
-        commertialOffer {
-          Price
-          ListPrice
-          PriceWithoutDiscount
-          RewardValue
-          PriceValidUntil
-          AvailableQuantity
+      SpecificationFilters {
+        name
+        facets {
+          Quantity
+          Name
+          Link
+        }
+      }
+      CategoriesTrees {
+        Quantity
+        Name
+        Children {
+          Quantity
+          Name
+          Link
+          Children {
+            Quantity
+            Name
+            Link
+          }
         }
       }
     }
-    productClusters {
-      name
+    products {
+      productId
+      productName
+      linkText
+      description
+      brand
+      link
+      items {
+        itemId
+        name
+        nameComplete
+        complementName
+        ean
+        referenceId {
+          Key
+          Value
+        }
+        measurementUnit
+        unitMultiplier
+        images {
+          imageId
+          imageLabel
+          imageTag
+          imageUrl
+          imageText
+        }
+        sellers {
+          sellerId
+          sellerName
+          commertialOffer {
+            Price
+            ListPrice
+            PriceWithoutDiscount
+            RewardValue
+            PriceValidUntil
+            AvailableQuantity
+          }
+        }
+      }
+      productClusters {
+        name
+      }
     }
+    recordsFiltered
   }
 }

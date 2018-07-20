@@ -32,8 +32,8 @@ class ProductSearchContextProvider extends Component {
         query: {
           ...this.props.query,
           map: this.props.map || 'b',
-        }
-      }
+        },
+      },
     }
 
     return (

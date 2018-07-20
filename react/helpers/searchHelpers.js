@@ -1,9 +1,3 @@
-export function joinPathWithRest(path, rest) {
-  let pathValues = stripPath(path).split('/')
-  pathValues = pathValues.concat((rest && rest.split(',')) || [])
-  return pathValues.join('/')
-}
-
 export function getCategoriesFromQuery(query, map) {
   return getValuesByMap(query, map, 'c')
 }
@@ -18,18 +12,6 @@ function getValuesByMap(query, map, mapValue) {
     }
   })
   return brands
-}
-
-export function findInTree(tree, values, index) {
-  for (let i = 0; i < tree.length; i++) {
-    if (tree[i].Name.toUpperCase() === values[index].toUpperCase()) {
-      if (index === values.length - 1) {
-        return tree[i]
-      }
-      return findInTree(tree[i].Children, values, index + 1)
-    }
-  }
-  return tree[0]
 }
 
 export function createMap(pathName, rest, isBrand) {
