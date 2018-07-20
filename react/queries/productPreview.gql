@@ -1,0 +1,40 @@
+fragment product on Product {
+  cacheId
+  productId
+  productName
+  linkText
+  description
+  categories
+  items {
+    itemId
+    name
+    nameComplete
+    complementName
+    ean
+    referenceId {
+      Key
+      Value
+    }
+    measurementUnit
+    unitMultiplier
+    images {
+      imageId
+      imageLabel
+      imageTag
+      imageUrl
+      imageText
+    }
+    sellers {
+      sellerId
+      sellerName
+      commertialOffer {
+        Price
+        ListPrice
+        PriceWithoutDiscount
+        RewardValue
+        PriceValidUntil
+        AvailableQuantity
+      }
+    }
+  }
+}
