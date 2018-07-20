@@ -58,6 +58,7 @@ query Product($slug: String) {
       name
       items {
         benefitProduct {
+          cacheId
 					productName
           productId
           description
