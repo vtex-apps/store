@@ -1,5 +1,6 @@
 query Products($query: String) {
   products(query: $query) {
+    cacheId
     productId
     productName
     linkText

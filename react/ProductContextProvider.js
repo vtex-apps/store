@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types'
 import React, { Component, Fragment } from 'react'
-import { compose, graphql } from 'react-apollo'
+import { withApollo, graphql, compose } from 'react-apollo'
 
 import MicroData from './components/MicroData'
 import ProductDataLayer from './components/ProductDataLayer'
 import productQuery from './queries/productQuery.gql'
+import productPreviewFragment from './queries/productPreview.gql'
+import {cacheLocator} from './cacheLocator'
 
 class ProductContextProvider extends Component {
   static propTypes = {
@@ -14,26 +16,28 @@ class ProductContextProvider extends Component {
   }
 
   render() {
-    const {
-      data,
-      params: { slug },
-    } = this.props
-    const { loading, product } = data
-    const { categories } = product || {}
+    const { data, params: { slug }, client } = this.props
+    const { loading } = data
+    const productPreview = client.readFragment({
+      id: cacheLocator.product(slug),
+      fragment: productPreviewFragment
+    })
+    const product = loading ? productPreview : data.product
+    const categories = product && product.categories
 
     const productQuery = {
-      product,
+      categories,
       loading,
+      product,
     }
 
     return (
       <div className="vtex-product-details-container">
         <Fragment>
-          {!loading && <MicroData product={product} />}
+          {product && <MicroData product={product} />}
           <ProductDataLayer data={this.props.data}>
             {React.cloneElement(this.props.children, {
               productQuery,
-              categories,
               slug,
             })}
           </ProductDataLayer>
@@ -51,4 +55,7 @@ const options = {
   }),
 }
 
-export default compose(graphql(productQuery, options))(ProductContextProvider)
+export default compose(
+  withApollo,
+  graphql(productQuery, options)
+)(ProductContextProvider)
