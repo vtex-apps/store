@@ -6,7 +6,7 @@ import MicroData from './components/MicroData'
 import ProductDataLayer from './components/ProductDataLayer'
 import productQuery from './queries/productQuery.gql'
 import productPreviewFragment from './queries/productPreview.gql'
-import {buildCacheLocator} from 'render'
+import {cacheLocator} from './cacheLocator'
 
 class ProductContextProvider extends Component {
   static propTypes = {
@@ -19,14 +19,16 @@ class ProductContextProvider extends Component {
     const { data, params: { slug }, client } = this.props
     const { loading } = data
     const productPreview = client.readFragment({
-      id: buildCacheLocator('vtex.store-graphql@2.x', 'Product', slug),
+      id: cacheLocator.product(slug),
       fragment: productPreviewFragment
     })
     const product = loading ? productPreview : data.product
+    const categories = product && product.categories
 
     const productQuery = {
+      categories,
+      loading,
       product,
-      loading
     }
 
     return (
@@ -36,7 +38,6 @@ class ProductContextProvider extends Component {
           <ProductDataLayer data={this.props.data}>
             {React.cloneElement(this.props.children, {
               productQuery,
-              categories,
               slug,
             })}
           </ProductDataLayer>
