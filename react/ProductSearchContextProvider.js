@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+import { path } from 'ramda'
 
-import ProductSearchDataLayer from './components/ProductSearchDataLayer'
+import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
 import SearchQueryContainer from './components/SearchQueryContainer'
 import { searchQueryPropTypes } from './constants/propTypes'
 import { SearchQueryContext } from './constants/searchContext'
@@ -25,6 +26,23 @@ class ProductSearchContextProvider extends Component {
     ...searchQueryPropTypes,
   }
 
+  getData = () => {
+    const { searchQuery: { products } } = this.props
+
+    return {
+      ecommerce: {
+        impressions: products.map((product, index) => ({
+          id: product.productId,
+          name: product.productName,
+          list: 'Search Results',
+          brand: product.brand,
+          category: path(['categories', '0'], product),
+          position: index + 1,
+        })),
+      },
+    }
+  }
+
   render() {
     const props = {
       ...this.props,
@@ -41,13 +59,14 @@ class ProductSearchContextProvider extends Component {
       <SearchQueryContainer {...props}>
         <SearchQueryContext.Consumer>
           {contextProps => (
-            <ProductSearchDataLayer
-              searchQuery={contextProps.searchQuery}
+            <DataLayerApolloWrapper
+              getData={this.getData}
               loading={
                 contextProps.state.loading || contextProps.searchQuery.loading
-              }>
+              }
+            >
               {React.cloneElement(this.props.children, contextProps)}
-            </ProductSearchDataLayer>
+            </DataLayerApolloWrapper>
           )}
         </SearchQueryContext.Consumer>
       </SearchQueryContainer>
