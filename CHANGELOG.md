@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 - `facetsQuery`.
 
+## [1.2.2] - 2018-07-24
+### Fixed
+- Data layer component props.
+
 ## [1.2.1] - 2018-07-23
 ### Added
 - Stale cache for product

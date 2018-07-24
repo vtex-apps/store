@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const { Consumer, Provider } = React.createContext({
   dataLayer: [],
-  pushToDataLayer: () => {},
+  set: () => {},
 })
 
 export { Provider as DataLayerProvider }
@@ -27,6 +27,6 @@ export default function withDataLayer(WrappedComponent) {
 
 export const dataLayerProps = {
   dataLayer: PropTypes.array.isRequired,
-  pushToDataLayer: PropTypes.func.isRequired,
+  set: PropTypes.func.isRequired,
 }
 
