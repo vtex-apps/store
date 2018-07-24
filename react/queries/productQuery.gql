@@ -1,5 +1,6 @@
 query Product($slug: String) {
   product(slug: $slug) {
+    cacheId
     productName
     productId
     description
@@ -57,6 +58,7 @@ query Product($slug: String) {
       name
       items {
         benefitProduct {
+          cacheId
 					productName
           productId
           description

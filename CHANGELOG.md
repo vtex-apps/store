@@ -12,6 +12,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 - `facetsQuery`.
 
+## [1.2.1] - 2018-07-23
+### Added
+- Stale cache for product
+
+## [1.2.0] - 2018-07-23
+### Added
+- Data layer integration in the `ProductSearchContextProvider`.
+### Fixed
+- Fix the `searchHelpers.reversePagesPath` function to return the full path.
+
 ## [1.1.3] - 2018-07-18
 ### Fixed
 - Bringing `benefitsProduct` back, after upgrade `app-store` to use `vtex.store@1.x`.
@@ -75,7 +85,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Add `MicroData` component do `ProductPage`, so Google can have a detailed info on the Products.
 - Add the `SearchPage` GraphQL queries.
-- Data layer intergration in the `ProductPage`.
+- Data layer integration in the `ProductPage`.
 
 ## [0.4.0-beta] - 2018-7-3
 ### Changed
