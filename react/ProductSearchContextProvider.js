@@ -1,30 +1,13 @@
-import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { path } from 'ramda'
 
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
 import SearchQueryContainer from './components/SearchQueryContainer'
-import { searchQueryPropTypes } from './constants/propTypes'
+import { searchContextPropTypes } from './constants/propTypes'
 import { SearchQueryContext } from './constants/searchContext'
 
 class ProductSearchContextProvider extends Component {
-  static propTypes = {
-    params: PropTypes.shape({
-      /** Brand name */
-      brand: PropTypes.string,
-
-      /** handles /:department/d
-       *  or /:department/:category
-       *  or /:department/:category/:subcategory */
-      department: PropTypes.string,
-      category: PropTypes.string,
-      subcategory: PropTypes.string,
-
-      /** Search's term, e.g: eletronics. */
-      term: PropTypes.string,
-    }),
-    ...searchQueryPropTypes,
-  }
+  static propTypes = searchContextPropTypes
 
   getData = () => {
     const { searchQuery: { products } } = this.props
