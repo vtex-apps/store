@@ -10,7 +10,13 @@ class ProductSearchContextProvider extends Component {
   static propTypes = searchContextPropTypes
 
   getData = () => {
-    const { searchQuery: { products } } = this.props
+    const { searchQuery } = this.props
+
+    if (!searchQuery) {
+      return null
+    }
+
+    const { products } = searchQuery
 
     return {
       ecommerce: {
