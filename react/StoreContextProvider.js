@@ -19,7 +19,7 @@ class StoreContextProvider extends Component {
       <DataLayerProvider
         value={{
           dataLayer: window.dataLayer,
-          pushToDataLayer: this.pushToDataLayer,
+          set: this.pushToDataLayer,
         }}
       >
         <div className="vtex-store__template">{this.props.children}</div>

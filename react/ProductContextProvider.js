@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types'
 import React, { Component, Fragment } from 'react'
 import { withApollo, graphql, compose } from 'react-apollo'
+import { path } from 'ramda'
 
 import MicroData from './components/MicroData'
-import ProductDataLayer from './components/ProductDataLayer'
+import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
 import productQuery from './queries/productQuery.gql'
 import productPreviewFragment from './queries/productPreview.gql'
-import {cacheLocator} from './cacheLocator'
+import { cacheLocator } from './cacheLocator'
 
 class ProductContextProvider extends Component {
   static propTypes = {
@@ -15,12 +16,35 @@ class ProductContextProvider extends Component {
     children: PropTypes.node,
   }
 
+  getData = () => {
+    const { data: { product } } = this.props
+
+    return {
+      ecommerce: {
+        detail: {
+          products: [
+            {
+              id: product.productId,
+              name: product.productName,
+              brand: product.brand,
+              category: path(['categories', '0'], product),
+            },
+          ],
+        },
+      },
+    }
+  }
+
   render() {
-    const { data, params: { slug }, client } = this.props
+    const {
+      data,
+      params: { slug },
+      client, // eslint-disable-line react/prop-types
+    } = this.props
     const { loading } = data
     const productPreview = client.readFragment({
       id: cacheLocator.product(slug),
-      fragment: productPreviewFragment
+      fragment: productPreviewFragment,
     })
     const product = loading ? productPreview : data.product
     const categories = product && product.categories
@@ -35,12 +59,15 @@ class ProductContextProvider extends Component {
       <div className="vtex-product-details-container">
         <Fragment>
           {product && <MicroData product={product} />}
-          <ProductDataLayer data={this.props.data}>
+          <DataLayerApolloWrapper
+            getData={this.getData}
+            loading={this.props.data.loading}
+          >
             {React.cloneElement(this.props.children, {
               productQuery,
               slug,
             })}
-          </ProductDataLayer>
+          </DataLayerApolloWrapper>
         </Fragment>
       </div>
     )

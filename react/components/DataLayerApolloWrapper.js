@@ -3,32 +3,36 @@ import { Component } from 'react'
 
 import withDataLayer, { dataLayerProps } from './withDataLayer'
 
-class DataLayerWrapper extends Component {
+class DataLayerApolloWrapper extends Component {
   static propTypes = {
-    /** Data to be pushed to the data layer. */
-    data: PropTypes.object.isRequired,
-    /** Loading information */
+    /** Is the query loading */
     loading: PropTypes.bool.isRequired,
     /** Function to format the data according to the data layer */
-    formatToDataLayer: PropTypes.func.isRequired,
+    getData: PropTypes.func.isRequired,
     /** Children nodes */
     children: PropTypes.node.isRequired,
     ...dataLayerProps,
   }
 
-  pushToDataLayer = data => {
-    this.props.pushToDataLayer(this.props.formatToDataLayer(data))
+  updateDataLayer() {
+    const data = this.props.getData()
+
+    if (!data) {
+      return
+    }
+
+    this.props.set(data)
   }
 
   componentDidMount() {
     if (!this.props.loading) {
-      this.pushToDataLayer(this.props.data)
+      this.updateDataLayer()
     }
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.loading && !this.props.loading) {
-      this.pushToDataLayer(this.props.data)
+      this.updateDataLayer()
     }
   }
 
@@ -37,4 +41,4 @@ class DataLayerWrapper extends Component {
   }
 }
 
-export default withDataLayer(DataLayerWrapper)
+export default withDataLayer(DataLayerApolloWrapper)
