@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-const { Consumer, Provider } = React.createContext({
+export const defaultState = {
+  loading: true,
   orderForm: {},
   refetch: () => {},
-})
+}
 
-export default function orderFormConsumer(WrappedComponent) {
+const { Consumer, Provider } = React.createContext(defaultState)
+
+function orderFormConsumer(WrappedComponent) {
   return class OrderFormContext extends Component {
     static displayName = `OrderFormContext(${WrappedComponent.displayName ||
       WrappedComponent.name})`
@@ -27,3 +30,5 @@ export const orderFormProps = {
   orderForm: PropTypes.object.isRequired,
   refetch: PropTypes.func.isRequired,
 }
+
+export default { orderFormConsumer }

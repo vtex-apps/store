@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
-import { OrderFormProvider } from './OrderFormContext'
+import { OrderFormProvider, defaultState } from './OrderFormContext'
 import { DataLayerProvider } from './components/withDataLayer'
 
 import orderFormQuery from './queries/orderFormQuery.gql'
@@ -20,18 +20,12 @@ class StoreContextProvider extends Component {
   static getDerivedStateFromProps(props) {
     if (!props.data.loading && !props.data.error) {
       return {
-        orderFormData: {
-          orderForm: props.data.orderForm,
-          refetch: () => props.data.refetch(),
-        },
+        orderFormData: props.data,
       }
     }
 
     return {
-      orderFormData: {
-        orderForm: {},
-        refetch: () => {},
-      },
+      orderFormData: defaultState,
     }
   }
 
