@@ -47,10 +47,8 @@ class ProductContextProvider extends Component {
       fragment: productPreviewFragment,
     })
     const product = loading ? productPreview : data.product
-    const categories = product && product.categories
 
     const productQuery = {
-      categories,
       loading,
       product,
     }
