@@ -77,7 +77,7 @@ const contextPropTypes = PropTypes.shape({
     /* Items in the mini cart */
     items: PropTypes.arrayOf(PropTypes.object),
   }),
-})
+}).isRequired
 
 export const OrderFormProvider = compose(
   graphql(orderFormQuery, options),
