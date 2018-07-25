@@ -1,12 +1,10 @@
-import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Query } from 'react-apollo'
 
-import { searchQueryPropTypes } from '../constants/propTypes'
+import { searchContextPropTypes } from '../constants/propTypes'
 import { SearchQueryContext } from '../constants/searchContext'
 import SortOptions from '../constants/searchSortOptions'
-import { createMap, joinPathWithRest, reversePagesPath } from '../helpers/searchHelpers'
-import facetsQuery from '../queries/facetsQuery.gql'
+import { createMap } from '../helpers/searchHelpers'
 import searchQuery from '../queries/searchQuery.gql'
 
 const DEFAULT_PAGE = 1
@@ -19,24 +17,7 @@ class SearchQueryContainer extends Component {
     loading: true,
   }
 
-  static propTypes = {
-    /** Query params */
-    params: PropTypes.shape({
-      /** Department param */
-      department: PropTypes.string,
-      /** Brand name */
-      brand: PropTypes.string,
-      /** Search's term, e.g: eletronics. */
-      term: PropTypes.string,
-      /** Category param */
-      category: PropTypes.string,
-      /** Subcategory param */
-      subcategory: PropTypes.string,
-    }),
-    ...searchQueryPropTypes,
-    /** Children to be rendered */
-    children: PropTypes.node.isRequired,
-  }
+  static propTypes = searchContextPropTypes
 
   render() {
     const {
@@ -50,17 +31,13 @@ class SearchQueryContainer extends Component {
       },
     } = this.props
 
-    const path = reversePagesPath(params)
-    const map = mapProps || createMap(path, rest)
+    const map = mapProps || createMap(params, rest)
     const page = pageProps ? parseInt(pageProps) : DEFAULT_PAGE
-    const query = joinPathWithRest(path, rest)
-    const facets = `${query}?map=${map}`
     const from = (page - 1) * this.state.maxItemsPerPage
     const to = from + this.state.maxItemsPerPage - 1
 
     const contextProps = {
       ...this.props,
-      path,
       map,
       rest,
       page,
@@ -69,38 +46,37 @@ class SearchQueryContainer extends Component {
     }
 
     return (
-      <Query query={facetsQuery} variables={{ facets }}>
-        {facetsQueryProps => (
-          <Query
-            query={searchQuery}
-            variables={{ query, map, orderBy, from, to }}
-            notifyOnNetworkStatusChange>
-            {searchQueryProps => (
-              <SearchQueryContext.Provider
-                value={{
-                  state: {
-                    ...this.state,
-                    setContextVariables: variables =>
-                      this.setState({
-                        ...variables,
-                        /* When the real data arrives, isn't loading anymore */
-                        loading: false,
-                      }),
-                  },
-                  ...contextProps,
-                  searchQuery: {
-                    ...searchQueryProps,
-                    ...searchQueryProps.data,
-                  },
-                  facetsQuery: {
-                    ...facetsQueryProps,
-                    ...facetsQueryProps.data,
-                  },
-                }}>
-                {this.props.children}
-              </SearchQueryContext.Provider>
-            )}
-          </Query>
+      <Query
+        query={searchQuery}
+        variables={{
+          query: Object.values(params).join('/'),
+          map,
+          rest,
+          orderBy,
+          from,
+          to,
+        }}
+        notifyOnNetworkStatusChange>
+        {searchQueryProps => (
+          <SearchQueryContext.Provider
+            value={{
+              state: {
+                ...this.state,
+                setContextVariables: variables =>
+                  this.setState({
+                    ...variables,
+                    /* When the real data arrives, isn't loading anymore */
+                    loading: false,
+                  }),
+              },
+              ...contextProps,
+              searchQuery: {
+                ...searchQueryProps,
+                ...searchQueryProps.data.search,
+              },
+            }}>
+            {this.props.children}
+          </SearchQueryContext.Provider>
         )}
       </Query>
     )

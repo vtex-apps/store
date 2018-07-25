@@ -1,102 +1,5 @@
 import PropTypes from 'prop-types'
 
-export const facetOptionShape = PropTypes.shape({
-  /** Quantity of products matched with the facet option. */
-  Quantity: PropTypes.number.isRequired,
-  /** Link of the facets option. */
-  Link: PropTypes.string.isRequired,
-  /** Name of the facet option. */
-  Name: PropTypes.string.isRequired,
-})
-
-export const productShape = PropTypes.shape({
-  /** Product's id. */
-  productId: PropTypes.string.isRequired,
-  /** Product's name. */
-  productName: PropTypes.string.isRequired,
-  /** Product's description. */
-  description: PropTypes.string.isRequired,
-  /** Product's categories. */
-  categories: PropTypes.array,
-  /** Product's link. */
-  link: PropTypes.string,
-  /** Product's link text. */
-  linkText: PropTypes.string.isRequired,
-  /** Product's brand. */
-  brand: PropTypes.string,
-  /** Product's SKU items. */
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      /** SKU's id. */
-      itemId: PropTypes.string.isRequired,
-      /** SKU's name. */
-      name: PropTypes.string.isRequired,
-      /** SKU's referenceId. */
-      referenceId: PropTypes.arrayOf(
-        PropTypes.shape({
-          /** ReferenceId's key. */
-          Key: PropTypes.string.isRequired,
-          /** ReferenceId's value. */
-          Value: PropTypes.string.isRequired,
-        })
-      ),
-      /** SKU's images. */
-      images: PropTypes.arrayOf(
-        PropTypes.shape({
-          /** Images's imageUrl. */
-          imageUrl: PropTypes.string.isRequired,
-          /** Images's imageTag. */
-          imageTag: PropTypes.string.isRequired,
-        })
-      ).isRequired,
-      /** SKU's sellers. */
-      sellers: PropTypes.arrayOf(
-        PropTypes.shape({
-          /** Sellers's commertialOffer. */
-          commertialOffer: PropTypes.shape({
-            /** CommertialOffer's price. */
-            Price: PropTypes.number.isRequired,
-            /** CommertialOffer's list price. */
-            ListPrice: PropTypes.number.isRequired,
-          }).isRequired,
-        })
-      ).isRequired,
-    })
-  ).isRequired,
-})
-
-export const facetsQueryShape = PropTypes.shape({
-  /** Departments matched with the facets. */
-  Departments: PropTypes.arrayOf(facetOptionShape),
-  /** Brands matched with the facets. */
-  Brands: PropTypes.arrayOf(facetOptionShape),
-  /** SpecificationFilters matched with the facets. */
-  SpecificationFilters: PropTypes.arrayOf(
-    PropTypes.shape({
-      /** SpecificationFilter's name. */
-      name: PropTypes.string.isRequired,
-      /** SpecificationFilter's facets. */
-      facets: facetOptionShape,
-    })
-  ),
-  /** Categories matched with the facets. */
-  CategoriesTrees: PropTypes.arrayOf(
-    PropTypes.shape({
-      /** Category's name. */
-      Name: PropTypes.string.isRequired,
-      /** Category's quantity. */
-      Quantity: PropTypes.number.isRequired,
-      /** Array of SubCategories. */
-      Children: PropTypes.arrayOf(facetOptionShape),
-    })
-  ),
-})
-
-export const searchQueryShape = PropTypes.shape({
-  /** Products resulting by the search.  */
-  products: PropTypes.arrayOf(productShape),
-})
-
 export const queryShape = PropTypes.shape({
   /**
    * Rest of the search term, e.g: eletronics/smartphones/samsung implies that
@@ -104,44 +7,33 @@ export const queryShape = PropTypes.shape({
    */
   rest: PropTypes.string,
   /** Determines the types of the terms, e.g: "c,c,b" (category, category, brand). */
-  map: mapType,
+  map: PropTypes.string,
   /** Search's ordenation. */
-  order: orderType,
+  order: PropTypes.string,
   /** Search's pagination. */
   page: PropTypes.string,
 })
 
-export const mapType = PropTypes.string
+export const searchContextPropTypes = {
+  params: PropTypes.shape({
+    /** Brand name */
+    brand: PropTypes.string,
 
-export const orderType = PropTypes.string
+    /** handles /:department/d
+     *  or /:department/:category
+     *  or /:department/:category/:subcategory */
+    department: PropTypes.string,
+    category: PropTypes.string,
+    subcategory: PropTypes.string,
 
-export const schemaPropsTypes = {
-  /** Maximum number of items per line. */
-  maxItemsPerLine: PropTypes.number,
-  /** Maximum number of items per page. */
-  maxItemsPerPage: PropTypes.number,
-  /** Product Summary's props */
-  summary: PropTypes.any,
-}
-
-export const searchQueryPropTypes = {
-  query: PropTypes.shape({
-    /**
-     * Rest of the search term, e.g: eletronics/smartphones/samsung implies that
-     * rest will be equal to "smartphones,samsung".
-     * */
-    rest: PropTypes.string,
-    /** Determines the types of the terms, e.g: "c,c,b" (category, category, brand). */
-    map: PropTypes.string,
-    /** Search's pagination.  */
-    page: PropTypes.string,
-    /** Search's ordenation. */
-    order: PropTypes.string,
+    /** Search's term, e.g: eletronics. */
+    term: PropTypes.string,
   }),
-  /** Internal route path. e.g: 'store/search' */
+  query: queryShape,
+  /** Internal route path. e.g: 'store' */
   treePath: PropTypes.string,
-  /** Facets graphql query. */
-  facetsQuery: facetsQueryShape,
-  /** Search graphql query. */
-  searchQuery: searchQueryShape,
+  /** Next internal route path. e.g: 'store/department' */
+  nextTreePath: PropTypes.string,
+  /** Element children */
+  children: PropTypes.node.isRequired,
 }
