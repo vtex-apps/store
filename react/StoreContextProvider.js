@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import { graphql, compose } from 'react-apollo'
 import PropTypes from 'prop-types'
-import { graphql } from 'react-apollo'
-import { OrderFormProvider, defaultState } from './OrderFormContext'
+import { OrderFormProvider, retrieveStateFromProps } from './OrderFormContext'
 import { DataLayerProvider } from './components/withDataLayer'
 
 import orderFormQuery from './queries/orderFormQuery.gql'
+import addToCartMutation from './mutations/addToCartMutation.gql'
 
 class StoreContextProvider extends Component {
   static propTypes = {
@@ -18,15 +19,7 @@ class StoreContextProvider extends Component {
   }
 
   static getDerivedStateFromProps(props) {
-    if (!props.data.loading && !props.data.error) {
-      return {
-        orderFormData: props.data,
-      }
-    }
-
-    return {
-      orderFormData: defaultState,
-    }
+    return retrieveStateFromProps(props)
   }
 
   render() {
@@ -53,4 +46,7 @@ const options = {
   }),
 }
 
-export default graphql(orderFormQuery, options)(StoreContextProvider)
+export default compose(
+  graphql(orderFormQuery, options),
+  graphql(addToCartMutation, { name: 'updateOrderForm' })
+)(StoreContextProvider)
