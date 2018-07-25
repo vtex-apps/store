@@ -1,10 +1,9 @@
 {
   "vendor": "vtex",
   "name": "store",
-  "version": "1.3.2",
+  "version": "1.4.0",
   "title": "VTEX Store",
-  "description":
-    "The VTEX basic store.",
+  "description": "The VTEX basic store.",
   "builders": {
     "pages": "0.x",
     "react": "2.x"
