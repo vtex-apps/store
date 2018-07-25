@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
-- Delete all unecessary path manipulation to not need pages information.
+- Delete all unnecessary path manipulation to not need pages information.
 
 ## [1.3.1] - 2018-07-24
 ### Fixed
