@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.3.2] - 2018-07-25
+### Changed
+- Delete all unnecessary path manipulation to not need pages information.
+
 ## [1.3.1] - 2018-07-24
 ### Fixed
 - Product search context throwing error on undefined prop.

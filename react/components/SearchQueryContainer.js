@@ -4,7 +4,7 @@ import { Query } from 'react-apollo'
 import { searchContextPropTypes } from '../constants/propTypes'
 import { SearchQueryContext } from '../constants/searchContext'
 import SortOptions from '../constants/searchSortOptions'
-import { createMap, reversePagesPath, stripPath } from '../helpers/searchHelpers'
+import { createMap } from '../helpers/searchHelpers'
 import searchQuery from '../queries/searchQuery.gql'
 
 const DEFAULT_PAGE = 1
@@ -31,15 +31,13 @@ class SearchQueryContainer extends Component {
       },
     } = this.props
 
-    const path = reversePagesPath(params)
-    const map = mapProps || createMap(path, rest)
+    const map = mapProps || createMap(params, rest)
     const page = pageProps ? parseInt(pageProps) : DEFAULT_PAGE
     const from = (page - 1) * this.state.maxItemsPerPage
     const to = from + this.state.maxItemsPerPage - 1
 
     const contextProps = {
       ...this.props,
-      path,
       map,
       rest,
       page,
@@ -50,7 +48,14 @@ class SearchQueryContainer extends Component {
     return (
       <Query
         query={searchQuery}
-        variables={{ query: stripPath(path), map, rest, orderBy, from, to }}
+        variables={{
+          query: Object.values(params).join('/'),
+          map,
+          rest,
+          orderBy,
+          from,
+          to,
+        }}
         notifyOnNetworkStatusChange>
         {searchQueryProps => (
           <SearchQueryContext.Provider
