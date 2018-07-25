@@ -40,6 +40,11 @@ class ContextProvider extends Component {
     if (!props.data.loading && !props.data.error) {
       let orderFormContext = props.data
       orderFormContext.updateOrderForm = props.updateOrderForm
+      orderFormContext.updateNRefetchOrderForm = vars => {
+        props.updateOrderForm(vars).then(() => {
+          props.data.refetch()
+        })
+      }
 
       return {
         orderFormContext,
@@ -68,6 +73,8 @@ const contextPropTypes = PropTypes.shape({
   refetch: PropTypes.func.isRequired,
   /* Function to update the orderForm */
   updateOrderForm: PropTypes.func.isRequired,
+  /* Function to update the orderForm and refetch the data*/
+  updateNRefetchOrderForm: PropTypes.func.isRequired,
   /* Order form */
   orderForm: PropTypes.shape({
     /* Order form id */
