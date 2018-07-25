@@ -28,8 +28,5 @@
         "description": "Enter the ID (GTM-XXXX) from your Google Tag Manager container if you want to automatically use it"
       }
     }
-  },
-  "billingOptions": {
-    "free": true
   }
 }
