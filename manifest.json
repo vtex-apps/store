@@ -1,7 +1,9 @@
 {
   "vendor": "vtex",
   "name": "store",
-  "version": "1.3.2",
+  "version": "1.4.2",
+  "title": "VTEX Store",
+  "description": "The VTEX basic store.",
   "builders": {
     "pages": "0.x",
     "react": "2.x"
@@ -15,5 +17,16 @@
   },
   "dependencies": {
     "vtex.store-graphql": "2.x"
+  },
+  "settingsSchema": {
+    "title": "VTEX Store",
+    "type": "object",
+    "properties": {
+      "gtmId": {
+        "title": "Google Tag Manager",
+        "type": "string",
+        "description": "Enter the ID (GTM-XXXX) from your Google Tag Manager container if you want to automatically use it"
+      }
+    }
   }
 }
