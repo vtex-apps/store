@@ -42,8 +42,8 @@ class ContextProvider extends Component {
       let orderFormContext = props.data
       orderFormContext.updateOrderForm = props.updateOrderForm
       orderFormContext.updateAndRefetchOrderForm = vars => {
-        props.updateOrderForm(vars).then(() => {
-          props.data.refetch()
+        return props.updateOrderForm(vars).then(() => {
+          return props.data.refetch()
         })
       }
 
