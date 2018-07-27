@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { Component, Fragment } from 'react'
 import { withApollo, graphql, compose } from 'react-apollo'
-import { path } from 'ramda'
+import { path, last, head } from 'ramda'
 
 import MicroData from './components/MicroData'
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
@@ -16,9 +16,14 @@ class ProductContextProvider extends Component {
     children: PropTypes.node,
   }
 
+  stripCategory(category) {
+    return category.replace(/^\/|\/$/g, '')
+  }
+
   getData = () => {
     const { data: { product } } = this.props
-
+    console.log(product)
+    console.log(head(product.categories))
     return {
       ecommerce: {
         detail: {
@@ -32,10 +37,37 @@ class ProductContextProvider extends Component {
           ],
         },
       },
+      accountName: global.__RUNTIME__.account,
+      pageCategory: 'Product',
+      pageDepartment: this.stripCategory(last(product.categories)),
+      pageFacets: [],
+      pageTitle: document.title,
+      pageUrl: window.location.href,
+      // productBrandId: 2123,
+      productBrandName: product.brand,
+      productCategoryId: Number(product.categoryId),
+      productCategoryName: last(this.stripCategory(head(product.categories)).split('/')),
+      productDepartmentId: Number(this.stripCategory(last(product.categoriesIds))),
+      productDepartmentName: this.stripCategory(last(product.categories)),
+      productEans: Array[ '7891033117987' ],
+      productId: product.productId,
+      productListPriceFrom: '75.9',
+      productListPriceTo: '75.9',
+      productName: product.productName,
+      productPriceFrom: '45.54',
+      productPriceTo: '45.54',
+      productReferenceId: '11798',
+      sellerId: '1',
+      sellerIds: '1',
+      shelfProductIds: Array[ '2003029', '2002572' ],
+      skuStockOutFromProductDetail: [],
+      skuStockOutFromShelf: [],
+      skuStocks: { 2003960: 108 },
     }
   }
 
   render() {
+    console.log('porps', this.props, this.context)
     const {
       data,
       params: { slug },
