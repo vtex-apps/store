@@ -4,6 +4,7 @@ import { withApollo, graphql, compose } from 'react-apollo'
 import { path } from 'ramda'
 
 import MicroData from './components/MicroData'
+import GraphqlContext from './GraphqlContext'
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
 import productQuery from './queries/productQuery.gql'
 import productPreviewFragment from './queries/productPreview.gql'
@@ -17,7 +18,9 @@ class ProductContextProvider extends Component {
   }
 
   getData = () => {
-    const { data: { product } } = this.props
+    const {
+      data: { product },
+    } = this.props
 
     return {
       ecommerce: {
@@ -61,10 +64,12 @@ class ProductContextProvider extends Component {
             getData={this.getData}
             loading={this.props.data.loading}
           >
-            {React.cloneElement(this.props.children, {
-              productQuery,
-              slug,
-            })}
+            <GraphqlContext>
+              {React.cloneElement(this.props.children, {
+                productQuery,
+                slug,
+              })}
+            </GraphqlContext>
           </DataLayerApolloWrapper>
         </Fragment>
       </div>
