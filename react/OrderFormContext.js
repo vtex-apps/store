@@ -10,7 +10,7 @@ const defaultState = {
   orderForm: {},
   refetch: () => {},
   updateOrderForm: () => {},
-  updateNRefetchOrderForm: () => {},
+  updateAndRefetchOrderForm: () => {},
 }
 
 const { Consumer, Provider } = React.createContext(defaultState)
@@ -41,7 +41,7 @@ class ContextProvider extends Component {
     if (!props.data.loading && !props.data.error) {
       let orderFormContext = props.data
       orderFormContext.updateOrderForm = props.updateOrderForm
-      orderFormContext.updateNRefetchOrderForm = vars => {
+      orderFormContext.updateAndRefetchOrderForm = vars => {
         props.updateOrderForm(vars).then(() => {
           props.data.refetch()
         })
@@ -75,7 +75,7 @@ const contextPropTypes = PropTypes.shape({
   /* Function to update the orderForm */
   updateOrderForm: PropTypes.func.isRequired,
   /* Function to update the orderForm and refetch the data*/
-  updateNRefetchOrderForm: PropTypes.func.isRequired,
+  updateAndRefetchOrderForm: PropTypes.func.isRequired,
   /* Order form */
   orderForm: PropTypes.shape({
     /* Order form id */
