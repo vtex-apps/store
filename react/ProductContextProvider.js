@@ -21,9 +21,31 @@ class ProductContextProvider extends Component {
   }
 
   getData = () => {
-    const { data: { product } } = this.props
+    const {
+      data: { product },
+    } = this.props
     console.log(product)
     console.log(head(product.categories))
+
+    let selectedItem, commertialOffer, sellerId, skuItems, initialItemIndex
+
+    const [{ itemId: initialItem }] = product.items
+
+    skuItems = product.items.slice()
+    skuItems.sort(this.compareSku)
+
+    initialItemIndex = skuItems.findIndex(item => item.itemId === initialItem)
+
+    selectedItem = skuItems[0]
+    if (selectedItem == null) {
+      selectedItem = skuItems[initialItemIndex]
+    }
+
+    ;[{ commertialOffer }] = selectedItem.sellers
+    sellerId = parseInt(selectedItem.sellers[0].sellerId)
+
+    console.log('>> commertialOffer', commertialOffer)
+
     return {
       ecommerce: {
         detail: {
@@ -46,20 +68,24 @@ class ProductContextProvider extends Component {
       // productBrandId: 2123,
       productBrandName: product.brand,
       productCategoryId: Number(product.categoryId),
-      productCategoryName: last(this.stripCategory(head(product.categories)).split('/')),
-      productDepartmentId: Number(this.stripCategory(last(product.categoriesIds))),
+      productCategoryName: last(
+        this.stripCategory(head(product.categories)).split('/')
+      ),
+      productDepartmentId: Number(
+        this.stripCategory(last(product.categoriesIds))
+      ),
       productDepartmentName: this.stripCategory(last(product.categories)),
-      productEans: Array[ '7891033117987' ],
+      productEans: Array['7891033117987'],
       productId: product.productId,
-      productListPriceFrom: '75.9',
-      productListPriceTo: '75.9',
+      productListPriceFrom: commertialOffer.ListPrice,
+      productListPriceTo: commertialOffer.ListPrice,
       productName: product.productName,
-      productPriceFrom: '45.54',
-      productPriceTo: '45.54',
+      productPriceFrom: commertialOffer.Price,
+      productPriceTo: commertialOffer.Price,
       productReferenceId: '11798',
-      sellerId: '1',
-      sellerIds: '1',
-      shelfProductIds: Array[ '2003029', '2002572' ],
+      sellerId: sellerId,
+      sellerIds: sellerId,
+      shelfProductIds: Array[('2003029', '2002572')],
       skuStockOutFromProductDetail: [],
       skuStockOutFromShelf: [],
       skuStocks: { 2003960: 108 },
