@@ -3,8 +3,9 @@
 
 When you install the app, you will have the following features:
 
-- Estructura _dataLayer_ para tu tienda.
-- Todos tus productos con Microdata.
+- _dataLayer_ structure for your store. 
+- All your products with Microdata.
+
 
 To see all the features that we are working on [access the changelog](https://github.com/vtex-apps/carousel/blob/master/CHANGELOG.md)
 
