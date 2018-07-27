@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { Helmet } from 'render'
 import PropTypes from 'prop-types'
+import { OrderFormProvider } from './OrderFormContext'
+import { DataLayerProvider } from './components/withDataLayer'
 
 import { gtmScript, gtmFrame} from './scripts/gtm'
-import { DataLayerProvider } from './components/withDataLayer'
 
 const APP_LOCATOR = 'vtex.store'
 
@@ -32,8 +33,10 @@ class StoreContextProvider extends Component {
           set: this.pushToDataLayer,
         }}
       >
-      <Helmet script={scripts} noscript={noscripts} />
-      <div className="vtex-store__template">{this.props.children}</div>
+        <Helmet script={scripts} noscript={noscripts} />
+        <OrderFormProvider>
+          <div className="vtex-store__template">{this.props.children}</div>
+        </OrderFormProvider>
       </DataLayerProvider>
     )
   }
