@@ -22,7 +22,7 @@ class DataLayerApolloWrapper extends Component {
     }
 
     if (Array.isArray(data)) {
-      data.map(element => this.props.set(element))
+      data.forEach(this.props.set)
     } else {
       this.props.set(data)
     }
