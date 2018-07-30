@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Product dataLayer to getData in `ProductContextProvider`.
+- Product dataLayer to `getData` in `ProductContextProvider`.
 
 ## [1.4.1] - 2018-07-25
 
