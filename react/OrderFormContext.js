@@ -6,11 +6,15 @@ import orderFormQuery from './queries/orderFormQuery.gql'
 import addToCartMutation from './mutations/addToCartMutation.gql'
 
 const defaultState = {
-  loading: true,
-  orderForm: {},
-  refetch: () => {},
-  updateOrderForm: () => {},
-  updateAndRefetchOrderForm: () => {},
+  orderFormContext: {
+    message: { isSuccess: null, text: null },
+    loading: true,
+    orderForm: {},
+    refetch: () => {},
+    updateToastMessage: () => {},
+    updateOrderForm: () => {},
+    updateAndRefetchOrderForm: () => {},
+  },
 }
 
 const { Consumer, Provider } = React.createContext(defaultState)
@@ -35,29 +39,42 @@ class ContextProvider extends Component {
     children: PropTypes.element,
   }
 
-  state = {}
+  state = defaultState
 
-  static getDerivedStateFromProps(props) {
+  static getDerivedStateFromProps(props, state) {
     if (!props.data.loading && !props.data.error) {
       let orderFormContext = props.data
-      orderFormContext.updateOrderForm = props.updateOrderForm
-      orderFormContext.updateAndRefetchOrderForm = vars => {
-        return props.updateOrderForm(vars).then(() => {
-          return props.data.refetch()
-        })
-      }
+
+      orderFormContext.message = state.orderFormContext.message
 
       return {
         orderFormContext,
       }
     }
 
-    return {
-      orderFormContext: defaultState,
-    }
+    return defaultState
+  }
+
+  handleUpdateAndRefetchOrderForm = vars => {
+    return this.props.updateOrderForm(vars).then(() => {
+      return this.props.data.refetch()
+    })
+  }
+
+  handleMessageUpdate = message => {
+    const context = this.state.orderFormContext
+    context.message = message
+
+    this.setState({ orderFormContext: context })
   }
 
   render() {
+    const state = this.state
+
+    state.orderFormContext.updateToastMessage = this.handleMessageUpdate
+    state.orderFormContext.updateAndRefetchOrderForm = this.handleUpdateAndRefetchOrderForm
+    state.orderFormContext.updateOrderForm = this.props.updateOrderForm
+
     return <Provider value={this.state}>{this.props.children}</Provider>
   }
 }
@@ -69,6 +86,12 @@ const options = {
 }
 
 const contextPropTypes = PropTypes.shape({
+  /* Toast message that will be displayed  */
+  message: PropTypes.shape({
+    isSuccess: PropTypes.bool,
+    message: PropTypes.string,
+  }).isRequired,
+  /* Is information still loading*/
   loading: PropTypes.bool.isRequired,
   /* Function to refetch the orderForm query */
   refetch: PropTypes.func.isRequired,
@@ -76,6 +99,8 @@ const contextPropTypes = PropTypes.shape({
   updateOrderForm: PropTypes.func.isRequired,
   /* Function to update the orderForm and refetch the data*/
   updateAndRefetchOrderForm: PropTypes.func.isRequired,
+  /* Function to update the message */
+  updateToastMessage: PropTypes.func.isRequired,
   /* Order form */
   orderForm: PropTypes.shape({
     /* Order form id */
