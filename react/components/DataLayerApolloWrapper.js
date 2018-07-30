@@ -21,7 +21,7 @@ class DataLayerApolloWrapper extends Component {
       return
     }
 
-    if (data.constructor === Array) {
+    if (Array.isArray(data)) {
       data.map(element => this.props.set(element))
     } else {
       this.props.set(data)
