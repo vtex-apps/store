@@ -12,6 +12,9 @@ import { cacheLocator } from './cacheLocator'
 class ProductContextProvider extends Component {
   static propTypes = {
     params: PropTypes.object,
+    query: PropTypes.shape({
+      skuId: PropTypes.string,
+    }),
     data: PropTypes.object,
     children: PropTypes.node,
   }
@@ -24,27 +27,11 @@ class ProductContextProvider extends Component {
     const {
       data: { product },
     } = this.props
-    console.log(product)
-    console.log(head(product.categories))
 
-    let selectedItem, commertialOffer, sellerId, skuItems, initialItemIndex
-
-    const [{ itemId: initialItem }] = product.items
-
-    skuItems = product.items.slice()
-    skuItems.sort(this.compareSku)
-
-    initialItemIndex = skuItems.findIndex(item => item.itemId === initialItem)
-
-    selectedItem = skuItems[0]
-    if (selectedItem == null) {
-      selectedItem = skuItems[initialItemIndex]
-    }
-
-    ;[{ commertialOffer }] = selectedItem.sellers
-    sellerId = parseInt(selectedItem.sellers[0].sellerId)
-
-    console.log('>> commertialOffer', commertialOffer)
+    const skuId = this.props.query.skuId || head(product.items).itemId
+    const [sku] = product.items.filter(product => product.itemId === skuId)
+    const { ean, referenceId: [{ Value: refIdValue }] } = sku
+    const [{ commertialOffer, sellerId }] = sku.sellers
 
     return {
       ecommerce: {
@@ -75,25 +62,24 @@ class ProductContextProvider extends Component {
         this.stripCategory(last(product.categoriesIds))
       ),
       productDepartmentName: this.stripCategory(last(product.categories)),
-      productEans: Array['7891033117987'],
+      productEans: [ean],
       productId: product.productId,
       productListPriceFrom: commertialOffer.ListPrice,
       productListPriceTo: commertialOffer.ListPrice,
       productName: product.productName,
       productPriceFrom: commertialOffer.Price,
       productPriceTo: commertialOffer.Price,
-      productReferenceId: '11798',
+      productReferenceId: refIdValue,
       sellerId: sellerId,
       sellerIds: sellerId,
-      shelfProductIds: Array[('2003029', '2002572')],
+      // shelfProductIds: Array[('2003029', '2002572')],
       skuStockOutFromProductDetail: [],
       skuStockOutFromShelf: [],
-      skuStocks: { 2003960: 108 },
+      // skuStocks: { 2003960: 108 },
     }
   }
 
   render() {
-    console.log('porps', this.props, this.context)
     const {
       data,
       params: { slug },
