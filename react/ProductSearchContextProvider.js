@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { path } from 'ramda'
+import { path, last, head } from 'ramda'
 
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
 import SearchQueryContainer from './components/SearchQueryContainer'
@@ -22,18 +22,26 @@ class ProductSearchContextProvider extends Component {
 
     const { products } = searchQuery
 
-    return {
-      ecommerce: {
-        impressions: products.map((product, index) => ({
-          id: product.productId,
-          name: product.productName,
-          list: 'Search Results',
-          brand: product.brand,
-          category: this.stripCategory(path(['categories', '0'], product)),
-          position: index + 1,
-        })),
+    console.log('get dataLayer')
+    return [
+      {
+        ecommerce: {
+          impressions: products.map((product, index) => ({
+            id: product.productId,
+            name: product.productName,
+            list: 'Search Results',
+            brand: product.brand,
+            category: this.stripCategory(path(['categories', '0'], product)),
+            position: index + 1,
+          })),
+        },
       },
-    }
+      {
+        accountName: global.__RUNTIME__.account,
+        pageCategory: this.props.params.category,
+        pageDepartment: this.props.params.department,
+      },
+    ]
   }
 
   render() {
@@ -54,10 +62,11 @@ class ProductSearchContextProvider extends Component {
           {contextProps => (
             <DataLayerApolloWrapper
               getData={this.getData}
-              loading={
-                contextProps.loading || contextProps.searchQuery.loading
-              }
+              loading={contextProps.loading || contextProps.searchQuery.loading}
             >
+              {console.log(
+                contextProps.loading || contextProps.searchQuery.loading
+              )}
               {React.cloneElement(this.props.children, contextProps)}
             </DataLayerApolloWrapper>
           )}
