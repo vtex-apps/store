@@ -12,7 +12,9 @@ const DEFAULT_MAX_ITEMS_PER_PAGE = 1
 
 class SearchQueryContainer extends Component {
   state = {
-    maxItemsPerPage: DEFAULT_MAX_ITEMS_PER_PAGE,
+    variables: {
+      maxItemsPerPage: DEFAULT_MAX_ITEMS_PER_PAGE,
+    },
     /* Will be loading by default. The container will wait until the real data arrives */
     loading: true,
   }
@@ -30,11 +32,12 @@ class SearchQueryContainer extends Component {
         rest = '',
       },
     } = this.props
+    const { variables: { maxItemsPerPage } } = this.state
 
     const map = mapProps || createMap(params, rest)
     const page = pageProps ? parseInt(pageProps) : DEFAULT_PAGE
-    const from = (page - 1) * this.state.maxItemsPerPage
-    const to = from + this.state.maxItemsPerPage - 1
+    const from = (page - 1) * maxItemsPerPage
+    const to = from + maxItemsPerPage - 1
 
     const contextProps = {
       ...this.props,
@@ -49,25 +52,24 @@ class SearchQueryContainer extends Component {
       <Query
         query={searchQuery}
         variables={{
-          query: Object.values(params).join('/'),
+          query: Object.values(params).filter(s => s.length > 0).join('/'),
           map,
           rest,
           orderBy,
           from,
           to,
         }}
-        notifyOnNetworkStatusChange>
+        notifyOnNetworkStatusChange
+      >
         {searchQueryProps => (
           <SearchQueryContext.Provider
             value={{
-              state: {
-                ...this.state,
-                setContextVariables: variables =>
-                  this.setState({
-                    ...variables,
-                    /* When the real data arrives, isn't loading anymore */
-                    loading: false,
-                  }),
+              loading: this.state.loading,
+              setContextVariables: variables => {
+                this.setState({
+                  variables,
+                  loading: false,
+                })
               },
               ...contextProps,
               searchQuery: {

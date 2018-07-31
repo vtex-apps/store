@@ -9,6 +9,10 @@ import { SearchQueryContext } from './constants/searchContext'
 class ProductSearchContextProvider extends Component {
   static propTypes = searchContextPropTypes
 
+  stripCategory(category) {
+    return category.replace(/^\/|\/$/g, '')
+  }
+
   getData = () => {
     const { searchQuery } = this.props
 
@@ -25,7 +29,7 @@ class ProductSearchContextProvider extends Component {
           name: product.productName,
           list: 'Search Results',
           brand: product.brand,
-          category: path(['categories', '0'], product),
+          category: this.stripCategory(path(['categories', '0'], product)),
           position: index + 1,
         })),
       },
@@ -51,7 +55,7 @@ class ProductSearchContextProvider extends Component {
             <DataLayerApolloWrapper
               getData={this.getData}
               loading={
-                contextProps.state.loading || contextProps.searchQuery.loading
+                contextProps.loading || contextProps.searchQuery.loading
               }
             >
               {React.cloneElement(this.props.children, contextProps)}
