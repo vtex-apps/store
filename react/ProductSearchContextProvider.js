@@ -55,7 +55,7 @@ class ProductSearchContextProvider extends Component {
             <DataLayerApolloWrapper
               getData={this.getData}
               loading={
-                contextProps.state.loading || contextProps.searchQuery.loading
+                contextProps.loading || contextProps.searchQuery.loading
               }
             >
               {React.cloneElement(this.props.children, contextProps)}

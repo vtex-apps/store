@@ -10,9 +10,9 @@ query Product($slug: String) {
     categoriesIds
     brand
     properties {
-      name,
+      name
       values
-    },
+    }
     items {
       itemId
       name
@@ -46,10 +46,66 @@ query Product($slug: String) {
           AvailableQuantity
           Tax
           CacheVersionUsedToCallCheckout
+          Installments {
+              Value
+              InterestRate
+              TotalValuePlusInterestRate
+              NumberOfInstallments
+              Name
+          }
         }
       }
       variations {
         name
+      }
+      kitItems {
+        itemId
+        amount
+        product {
+          productName
+          productId
+    			description
+    			linkText
+    			categories
+    			categoryId
+    			categoriesIds
+    			brand
+    			properties {
+      			name
+      			values
+    			}
+        }
+        sku {
+          itemId
+          name
+          referenceId {
+            Key
+            Value
+          }
+          images {
+            imageId
+            imageLabel
+            imageUrl
+            imageTag
+          }
+          sellers{
+            sellerId
+            sellerName
+            commertialOffer {
+              Price
+              ListPrice
+              PriceWithoutDiscount
+              AvailableQuantity
+              Installments {
+                Value
+                InterestRate
+                TotalValuePlusInterestRate
+                NumberOfInstallments
+                Name
+              }
+            }
+          }
+        }
       }
     }
     benefits {
@@ -104,6 +160,13 @@ query Product($slug: String) {
                 AvailableQuantity
                 Tax
                 CacheVersionUsedToCallCheckout
+                Installments {
+                  Value
+                  InterestRate
+                  TotalValuePlusInterestRate
+                  NumberOfInstallments
+                  Name
+                }
               }
             }
             variations {
