@@ -9,6 +9,9 @@ import { gtmScript, gtmFrame } from './scripts/gtm'
 const APP_LOCATOR = 'vtex.store'
 const CONTENT_TYPE = 'text/html;charset=utf-8'
 const META_ROBOTS = 'index, follow'
+
+let dataLayerInitialState = null
+
 class StoreContextProvider extends Component {
   static propTypes = {
     children: PropTypes.element,
@@ -18,11 +21,21 @@ class StoreContextProvider extends Component {
     window.dataLayer.push(obj)
   }
 
+  /**
+   * Ensure that the Data Layer will be recreated
+   * after each children change (navigation).
+   */
+  initDataLayer = () => {
+    if (!dataLayerInitialState && window.dataLayer) {
+      dataLayerInitialState = [ ...window.dataLayer ]
+    }
+    return dataLayerInitialState ? [ ...dataLayerInitialState ] : []
+  }
+
   render() {
-    window.dataLayer = window.dataLayer || []
     const { country, locale, currency } = global.__RUNTIME__.culture
     const settings = this.context.getSettings(APP_LOCATOR) || {}
-    console.log(settings)
+
     const {
       gtmId,
       titleTag,
@@ -30,6 +43,11 @@ class StoreContextProvider extends Component {
       metaTagKeywords,
       storeName,
     } = settings
+
+    window.dataLayer = this.initDataLayer()
+    
+    const settings = this.context.getSettings(APP_LOCATOR) || {}
+    const { gtmId } = settings
     const scripts = gtmId ? [{
       'type': 'application/javascript',
       'innerHTML': gtmScript(gtmId),
