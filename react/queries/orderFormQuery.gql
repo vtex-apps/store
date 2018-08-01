@@ -10,6 +10,7 @@ query orderForm @context(scope: "private") {
       skuName
       quantity
       sellingPrice
+      listPrice
     }
   }
 }

@@ -1,0 +1,120 @@
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { graphql, compose } from 'react-apollo'
+
+import orderFormQuery from './queries/orderFormQuery.gql'
+import addToCartMutation from './mutations/addToCartMutation.gql'
+
+const defaultState = {
+  orderFormContext: {
+    message: { isSuccess: null, text: null },
+    loading: true,
+    orderForm: {},
+    refetch: () => {},
+    updateToastMessage: () => {},
+    updateOrderForm: () => {},
+    updateAndRefetchOrderForm: () => {},
+  },
+}
+
+const { Consumer, Provider } = React.createContext(defaultState)
+
+function orderFormConsumer(WrappedComponent) {
+  return class OrderFormContext extends Component {
+    static displayName = `OrderFormContext(${WrappedComponent.displayName ||
+      WrappedComponent.name})`
+
+    render() {
+      return (
+        <Consumer>
+          {context => <WrappedComponent {...this.props} {...context} />}
+        </Consumer>
+      )
+    }
+  }
+}
+
+class ContextProvider extends Component {
+  static propTypes = {
+    children: PropTypes.element,
+  }
+
+  state = defaultState
+
+  static getDerivedStateFromProps(props, state) {
+    if (!props.data.loading && !props.data.error) {
+      let orderFormContext = props.data
+
+      orderFormContext.message = state.orderFormContext.message
+
+      return {
+        orderFormContext,
+      }
+    }
+
+    return defaultState
+  }
+
+  handleUpdateAndRefetchOrderForm = vars => {
+    return this.props.updateOrderForm(vars).then(() => {
+      return this.props.data.refetch()
+    })
+  }
+
+  handleMessageUpdate = message => {
+    const context = this.state.orderFormContext
+    context.message = message
+
+    this.setState({ orderFormContext: context })
+  }
+
+  render() {
+    const state = this.state
+
+    state.orderFormContext.updateToastMessage = this.handleMessageUpdate
+    state.orderFormContext.updateAndRefetchOrderForm = this.handleUpdateAndRefetchOrderForm
+    state.orderFormContext.updateOrderForm = this.props.updateOrderForm
+
+    return <Provider value={this.state}>{this.props.children}</Provider>
+  }
+}
+
+const options = {
+  options: () => ({
+    ssr: false,
+  }),
+}
+
+const contextPropTypes = PropTypes.shape({
+  /* Toast message that will be displayed  */
+  message: PropTypes.shape({
+    isSuccess: PropTypes.bool,
+    message: PropTypes.string,
+  }).isRequired,
+  /* Is information still loading*/
+  loading: PropTypes.bool.isRequired,
+  /* Function to refetch the orderForm query */
+  refetch: PropTypes.func.isRequired,
+  /* Function to update the orderForm */
+  updateOrderForm: PropTypes.func.isRequired,
+  /* Function to update the orderForm and refetch the data*/
+  updateAndRefetchOrderForm: PropTypes.func.isRequired,
+  /* Function to update the message */
+  updateToastMessage: PropTypes.func.isRequired,
+  /* Order form */
+  orderForm: PropTypes.shape({
+    /* Order form id */
+    orderFormId: PropTypes.string,
+    /* Total price of the order */
+    value: PropTypes.number,
+    /* Items in the mini cart */
+    items: PropTypes.arrayOf(PropTypes.object),
+  }),
+}).isRequired
+
+export const OrderFormProvider = compose(
+  graphql(orderFormQuery, options),
+  graphql(addToCartMutation, { name: 'updateOrderForm' })
+)(ContextProvider)
+
+export default { orderFormConsumer, contextPropTypes }
