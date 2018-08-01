@@ -28,13 +28,56 @@ class ProductContextProvider extends Component {
       data: { product },
     } = this.props
 
+    const pageInfo = {
+      accountName: global.__RUNTIME__.account,
+      pageCategory: 'Product',
+      pageDepartment: this.stripCategory(last(product.categories)),
+      pageFacets: [],
+      pageTitle: document.title,
+      pageUrl: window.location.href,
+      // productBrandId: 2123,
+      productBrandName: product.brand,
+      productCategoryId: Number(product.categoryId),
+      productCategoryName: last(
+        this.stripCategory(head(product.categories)).split('/')
+      ),
+      productDepartmentId: Number(
+        this.stripCategory(last(product.categoriesIds))
+      ),
+      productDepartmentName: this.stripCategory(last(product.categories)),
+      productId: product.productId,
+      productName: product.productName,
+      // shelfProductIds: Array[('2003029', '2002572')],
+      skuStockOutFromProductDetail: [],
+      skuStockOutFromShelf: [],
+      // skuStocks: { 2003960: 108 },
+    }
+
     const skuId = this.props.query.skuId || head(product.items).itemId
-    const [sku] = product.items.filter(product => product.itemId === skuId)
-    const {
-      ean,
-      referenceId: [{ Value: refIdValue }],
-    } = sku
-    const [{ commertialOffer, sellerId }] = sku.sellers
+
+    const [sku] =
+      product.items.filter(product => product.itemId === skuId) || []
+
+    const { ean, referenceId } = sku
+
+    pageInfo.productEans = [ean]
+
+    if (referenceId && referenceId.length >= 0) {
+      const [{ Value: refIdValue }] = referenceId
+
+      pageInfo.productReferenceId = refIdValue
+    }
+
+    if (sku.sellers && sku.sellers.length >= 0) {
+      const [{ commertialOffer, sellerId }] = sku.sellers
+
+      pageInfo.productListPriceFrom = commertialOffer.ListPrice + ''
+      pageInfo.productListPriceTo = commertialOffer.ListPrice + ''
+      pageInfo.productPriceFrom = commertialOffer.Price + ''
+      pageInfo.productPriceTo = commertialOffer.Price + ''
+      pageInfo.sellerId = sellerId + ''
+      pageInfo.sellerIds = sellerId + ''
+    }
 
     return [
       {
@@ -48,42 +91,13 @@ class ProductContextProvider extends Component {
                 category: this.stripCategory(
                   path(['categories', '0'], product)
                 ),
-                price: commertialOffer.Price + '',
+                price: pageInfo.productPriceTo,
               },
             ],
           },
         },
       },
-      {
-        accountName: global.__RUNTIME__.account,
-        pageCategory: 'Product',
-        pageDepartment: this.stripCategory(last(product.categories)),
-        pageFacets: [],
-        pageTitle: document.title,
-        pageUrl: window.location.href,
-        // productBrandId: 2123,
-        productBrandName: product.brand,
-        productCategoryId: product.categoryId,
-        productCategoryName: last(
-          this.stripCategory(head(product.categories)).split('/')
-        ),
-        productDepartmentId: this.stripCategory(last(product.categoriesIds)),
-        productDepartmentName: this.stripCategory(last(product.categories)),
-        productEans: [ean],
-        productId: product.productId + '',
-        productListPriceFrom: commertialOffer.ListPrice + '',
-        productListPriceTo: commertialOffer.ListPrice + '',
-        productName: product.productName,
-        productPriceFrom: commertialOffer.Price + '',
-        productPriceTo: commertialOffer.Price + '',
-        productReferenceId: refIdValue + '',
-        sellerId: sellerId + '',
-        sellerIds: sellerId + '',
-        // shelfProductIds: Array[('2003029', '2002572')],
-        skuStockOutFromProductDetail: [],
-        skuStockOutFromShelf: [],
-        // skuStocks: { 2003960: 108 },
-      },
+      pageInfo,
     ]
   }
 
