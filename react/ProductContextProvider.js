@@ -57,27 +57,25 @@ class ProductContextProvider extends Component {
 
     const [sku] = product.items.filter(product => product.itemId === skuId) || []
 
-    if (sku) {
-      const { ean, referenceId } = sku
+    const { ean, referenceId } = sku
 
-      pageInfo.productEans = [ean]
+    pageInfo.productEans = [ean]
 
-      if (referenceId && referenceId.length >= 0) {
-        const [{ Value: refIdValue }] = referenceId
+    if (referenceId && referenceId.length >= 0) {
+      const [{ Value: refIdValue }] = referenceId
 
-        pageInfo.productReferenceId = refIdValue
-      }
+      pageInfo.productReferenceId = refIdValue
+    }
 
-      if (sku.sellers && sku.sellers.length >= 0) {
-        const [{ commertialOffer, sellerId }] = sku.sellers
+    if (sku.sellers && sku.sellers.length >= 0) {
+      const [{ commertialOffer, sellerId }] = sku.sellers
 
-        pageInfo.productListPriceFrom = commertialOffer.ListPrice
-        pageInfo.productListPriceTo = commertialOffer.ListPrice
-        pageInfo.productPriceFrom = commertialOffer.Price
-        pageInfo.productPriceTo = commertialOffer.Price
-        pageInfo.sellerId = sellerId
-        pageInfo.sellerIds = sellerId
-      }
+      pageInfo.productListPriceFrom = commertialOffer.ListPrice
+      pageInfo.productListPriceTo = commertialOffer.ListPrice
+      pageInfo.productPriceFrom = commertialOffer.Price
+      pageInfo.productPriceTo = commertialOffer.Price
+      pageInfo.sellerId = sellerId
+      pageInfo.sellerIds = sellerId
     }
 
     return [
