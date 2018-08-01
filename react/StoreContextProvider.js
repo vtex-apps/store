@@ -10,8 +10,6 @@ const APP_LOCATOR = 'vtex.store'
 const CONTENT_TYPE = 'text/html;charset=utf-8'
 const META_ROBOTS = 'index, follow'
 
-let dataLayerInitialState = null
-
 class StoreContextProvider extends Component {
   static propTypes = {
     children: PropTypes.element,
@@ -24,15 +22,20 @@ class StoreContextProvider extends Component {
   /**
    * Ensure that the Data Layer will be recreated
    * after each children change (navigation).
+   * 
+   * Insert to the Data Layer some default information.
    */
-  initDataLayer = () => {
-    if (!dataLayerInitialState && window.dataLayer) {
-      dataLayerInitialState = [ ...window.dataLayer ]
-    }
-    return dataLayerInitialState ? [ ...dataLayerInitialState ] : []
+  initDataLayer = ({ titleTag }) => {
+    const { dataLayer } = window
+    dataLayer.splice(0, dataLayer.length)
+    dataLayer.push({
+      pageTitle: titleTag,
+      pageUrl: location.href
+    })
   }
 
   render() {
+<<<<<<< HEAD
     const { country, locale, currency } = global.__RUNTIME__.culture
     const settings = this.context.getSettings(APP_LOCATOR) || {}
 
@@ -46,7 +49,12 @@ class StoreContextProvider extends Component {
 
     window.dataLayer = this.initDataLayer()
     
+=======
+>>>>>>> Add init data layer function
     const settings = this.context.getSettings(APP_LOCATOR) || {}
+
+    window.dataLayer && this.initDataLayer(settings)
+    
     const { gtmId } = settings
     const scripts = gtmId ? [{
       'type': 'application/javascript',
