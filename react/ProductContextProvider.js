@@ -28,7 +28,7 @@ class ProductContextProvider extends Component {
       data: { product },
     } = this.props
 
-    const detailedProduct = {
+    const pageInfo = {
       accountName: global.__RUNTIME__.account,
       pageCategory: 'Product',
       pageDepartment: this.stripCategory(last(product.categories)),
@@ -60,23 +60,23 @@ class ProductContextProvider extends Component {
     if (sku) {
       const { ean, referenceId } = sku
 
-      detailedProduct.productEans = [ean]
+      pageInfo.productEans = [ean]
 
       if (referenceId && referenceId.length >= 0) {
         const [{ Value: refIdValue }] = referenceId
 
-        detailedProduct.productReferenceId = refIdValue
+        pageInfo.productReferenceId = refIdValue
       }
 
       if (sku.sellers && sku.sellers.length >= 0) {
         const [{ commertialOffer, sellerId }] = sku.sellers
 
-        detailedProduct.productListPriceFrom = commertialOffer.ListPrice
-        detailedProduct.productListPriceTo = commertialOffer.ListPrice
-        detailedProduct.productPriceFrom = commertialOffer.Price
-        detailedProduct.productPriceTo = commertialOffer.Price
-        detailedProduct.sellerId = sellerId
-        detailedProduct.sellerIds = sellerId
+        pageInfo.productListPriceFrom = commertialOffer.ListPrice
+        pageInfo.productListPriceTo = commertialOffer.ListPrice
+        pageInfo.productPriceFrom = commertialOffer.Price
+        pageInfo.productPriceTo = commertialOffer.Price
+        pageInfo.sellerId = sellerId
+        pageInfo.sellerIds = sellerId
       }
     }
 
@@ -97,7 +97,7 @@ class ProductContextProvider extends Component {
           },
         },
       },
-      detailedProduct,
+      pageInfo,
     ]
   }
 
