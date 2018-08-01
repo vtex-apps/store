@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Add `<title>` and `<meta>` in store. This fields are available on admin settings.
 
 ## [1.6.1] - 2018-08-01
 ### Fixed

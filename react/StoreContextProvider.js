@@ -20,18 +20,12 @@ class StoreContextProvider extends Component {
   render() {
     const settings = this.context.getSettings(APP_LOCATOR) || {}
     window.dataLayer = window.dataLayer || []
-    const { gtmId } = settings
-    const scripts = gtmId
-      ? [
-          {
-            type: 'application/javascript',
-            innerHTML: gtmScript(gtmId),
-          },
-        ]
-      : []
-    const noscripts = gtmId
-      ? [{ id: 'gtm_frame', innerHTML: gtmFrame(gtmId) }]
-      : []
+    const { gtmId, titleTag, metaTagDescription } = settings
+    const scripts = gtmId ? [{
+      'type': 'application/javascript',
+      'innerHTML': gtmScript(gtmId),
+    }] : []
+    const noscripts = gtmId ? [{ id: 'gtm_frame', innerHTML: gtmFrame(gtmId) }] : []
     return (
       <DataLayerProvider
         value={{
@@ -39,7 +33,10 @@ class StoreContextProvider extends Component {
           set: this.pushToDataLayer,
         }}
       >
-        <Helmet script={scripts} noscript={noscripts} />
+        <Helmet script={scripts} noscript={noscripts}>
+          <title>{titleTag}</title>
+          <meta name="description" content={metaTagDescription} />
+        </Helmet>
         <OrderFormProvider>
           <div className="vtex-store__template">{this.props.children}</div>
         </OrderFormProvider>
