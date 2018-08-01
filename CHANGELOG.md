@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.5.1] - 2018-08-01
+### Fixed
+- Error destructuring properties of product when before inserting on data layer.
+
 ## [1.5.0] - 2018-07-31
 ### Added
 - Product dataLayer to `getData` in `ProductContextProvider`.
