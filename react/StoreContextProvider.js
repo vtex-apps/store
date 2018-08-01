@@ -7,7 +7,8 @@ import { DataLayerProvider } from './components/withDataLayer'
 import { gtmScript, gtmFrame } from './scripts/gtm'
 
 const APP_LOCATOR = 'vtex.store'
-
+const CONTENT_TYPE = 'text/html;charset=utf-8'
+const META_ROBOTS = 'index, follow'
 class StoreContextProvider extends Component {
   static propTypes = {
     children: PropTypes.element,
@@ -49,7 +50,8 @@ class StoreContextProvider extends Component {
           <meta name="country" content={country} />
           <meta name="language" content={locale} />
           <meta name="currency" content={currency} />
-          <meta httpEquiv="Content-Type" content="text/html;charset=utf-8" />
+          <meta name="robots" content={META_ROBOTS} />
+          <meta httpEquiv="Content-Type" content={CONTENT_TYPE} />
         </Helmet>
         <OrderFormProvider>
           <div className="vtex-store__template">{this.props.children}</div>
