@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Add `<title>` and `<meta>` in store. This fields are available on admin settings.
+- Add `<title>` and `<meta>` in store. These fields are available on admin settings.
 
 ## [1.6.1] - 2018-08-01
 ### Fixed

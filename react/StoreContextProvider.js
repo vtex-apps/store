@@ -18,9 +18,16 @@ class StoreContextProvider extends Component {
   }
 
   render() {
-    const settings = this.context.getSettings(APP_LOCATOR) || {}
     window.dataLayer = window.dataLayer || []
-    const { gtmId, titleTag, metaTagDescription } = settings
+    const { country, locale, currency } = global.__RUNTIME__.culture
+    const settings = this.context.getSettings(APP_LOCATOR) || {}
+    const {
+      gtmId,
+      titleTag,
+      metaTagDescription,
+      metaTagKeywords,
+      storeName,
+    } = settings
     const scripts = gtmId ? [{
       'type': 'application/javascript',
       'innerHTML': gtmScript(gtmId),
@@ -36,6 +43,13 @@ class StoreContextProvider extends Component {
         <Helmet script={scripts} noscript={noscripts}>
           <title>{titleTag}</title>
           <meta name="description" content={metaTagDescription} />
+          <meta name="keywords" content={metaTagKeywords} />
+          <meta name="copyright" content={storeName} />
+          <meta name="author" content={storeName} />
+          <meta name="country" content={country} />
+          <meta name="language" content={locale} />
+          <meta name="currency" content={currency} />
+          <meta httpEquiv="Content-Type" content="text/html;charset=utf-8" />
         </Helmet>
         <OrderFormProvider>
           <div className="vtex-store__template">{this.props.children}</div>
