@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-
-import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
-
-import { processSearchContextProps } from './helpers/searchHelpers'
-import searchQuery from './queries/searchQuery.gql'
 import { Query } from 'react-apollo'
+
+import searchQuery from './queries/searchQuery.gql'
+import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
+import { processSearchContextProps } from './helpers/searchHelpers'
 
 const DEFAULT_PAGE = 1
 const DEFAULT_MAX_ITEMS_PER_PAGE = 1
@@ -38,7 +37,8 @@ class ProductSearchContextProvider extends Component {
             category: searchQuery.facets.CategoriesTrees[index]
               ? searchQuery.facets.CategoriesTrees[index].Name
               : category,
-            position: index + 1,
+            position: index + 1 + '',
+            price: product.items[0].sellers[0].commertialOffer.Price + '',
           })),
         },
       },

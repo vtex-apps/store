@@ -30,7 +30,10 @@ class ProductContextProvider extends Component {
 
     const skuId = this.props.query.skuId || head(product.items).itemId
     const [sku] = product.items.filter(product => product.itemId === skuId)
-    const { ean, referenceId: [{ Value: refIdValue }] } = sku
+    const {
+      ean,
+      referenceId: [{ Value: refIdValue }],
+    } = sku
     const [{ commertialOffer, sellerId }] = sku.sellers
 
     return [
@@ -42,7 +45,10 @@ class ProductContextProvider extends Component {
                 id: product.productId,
                 name: product.productName,
                 brand: product.brand,
-                category: this.stripCategory(path(['categories', '0'], product)),
+                category: this.stripCategory(
+                  path(['categories', '0'], product)
+                ),
+                price: commertialOffer.Price + '',
               },
             ],
           },
@@ -57,24 +63,22 @@ class ProductContextProvider extends Component {
         pageUrl: window.location.href,
         // productBrandId: 2123,
         productBrandName: product.brand,
-        productCategoryId: Number(product.categoryId),
+        productCategoryId: product.categoryId,
         productCategoryName: last(
           this.stripCategory(head(product.categories)).split('/')
         ),
-        productDepartmentId: Number(
-          this.stripCategory(last(product.categoriesIds))
-        ),
+        productDepartmentId: this.stripCategory(last(product.categoriesIds)),
         productDepartmentName: this.stripCategory(last(product.categories)),
         productEans: [ean],
-        productId: product.productId,
-        productListPriceFrom: commertialOffer.ListPrice,
-        productListPriceTo: commertialOffer.ListPrice,
+        productId: product.productId + '',
+        productListPriceFrom: commertialOffer.ListPrice + '',
+        productListPriceTo: commertialOffer.ListPrice + '',
         productName: product.productName,
-        productPriceFrom: commertialOffer.Price,
-        productPriceTo: commertialOffer.Price,
-        productReferenceId: refIdValue,
-        sellerId: sellerId,
-        sellerIds: sellerId,
+        productPriceFrom: commertialOffer.Price + '',
+        productPriceTo: commertialOffer.Price + '',
+        productReferenceId: refIdValue + '',
+        sellerId: sellerId + '',
+        sellerIds: sellerId + '',
         // shelfProductIds: Array[('2003029', '2002572')],
         skuStockOutFromProductDetail: [],
         skuStockOutFromShelf: [],
