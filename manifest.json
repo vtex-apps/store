@@ -22,10 +22,20 @@
     "title": "VTEX Store",
     "type": "object",
     "properties": {
+      "titleTag": {
+        "title": "Store Title (Title Tag)",
+        "type": "string",
+        "description": "Enter with the title of your store, this will be use by SEO"
+      },
+      "metaTagDescription": {
+        "title": "Store Description (Meta Tag Descriptions)",
+        "type": "string",
+        "description": "Enter with a description of your store, this will be use by SEO"
+      },
       "gtmId": {
         "title": "Google Tag Manager",
         "type": "string",
-        "description": "Enter the ID (GTM-XXXX) from your Google Tag Manager container if you want to automatically use it"
+        "description": "Enter with the ID (GTM-XXXX) from your Google Tag Manager container if you want to automatically use it"
       }
     }
   }
