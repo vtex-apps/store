@@ -22,7 +22,6 @@ class StoreContextProvider extends Component {
     window.dataLayer = window.dataLayer || []
     const { country, locale, currency } = global.__RUNTIME__.culture
     const settings = this.context.getSettings(APP_LOCATOR) || {}
-    console.log(settings)
     const {
       gtmId,
       titleTag,
