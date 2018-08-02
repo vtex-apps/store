@@ -9,6 +9,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - Information pushed to the dataLayer on `ProductSearchContextProvider`
 
+## [1.7.0] - 2018-08-01
+### Added
+- Add `<title>` and `<meta>` in store. These fields are available on admin settings.
+
+## [1.6.1] - 2018-08-01
+### Fixed
+- Component `StoreContextProvider` import 
+
+## [1.6.0] - 2018-08-01
+### Added
+- Component `OrderFormContext` 
+
 ## [1.5.1] - 2018-08-01
 ### Fixed
 - Error destructuring properties of product when before inserting on data layer.
