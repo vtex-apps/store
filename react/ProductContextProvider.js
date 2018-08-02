@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { Component, Fragment } from 'react'
 import { withApollo, graphql, compose } from 'react-apollo'
-import { path } from 'ramda'
+import { path, last, head } from 'ramda'
 
 import MicroData from './components/MicroData'
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
@@ -12,27 +12,91 @@ import { cacheLocator } from './cacheLocator'
 class ProductContextProvider extends Component {
   static propTypes = {
     params: PropTypes.object,
+    query: PropTypes.shape({
+      skuId: PropTypes.string,
+    }),
     data: PropTypes.object,
     children: PropTypes.node,
   }
 
-  getData = () => {
-    const { data: { product } } = this.props
+  stripCategory(category) {
+    return category.replace(/^\/|\/$/g, '')
+  }
 
-    return {
-      ecommerce: {
-        detail: {
-          products: [
-            {
-              id: product.productId,
-              name: product.productName,
-              brand: product.brand,
-              category: path(['categories', '0'], product),
-            },
-          ],
+  getData = () => {
+    const {
+      data: { product },
+    } = this.props
+
+    const pageInfo = {
+      accountName: global.__RUNTIME__.account,
+      pageCategory: 'Product',
+      pageDepartment: this.stripCategory(last(product.categories)),
+      pageFacets: [],
+      pageTitle: document.title,
+      pageUrl: window.location.href,
+      // productBrandId: 2123,
+      productBrandName: product.brand,
+      productCategoryId: Number(product.categoryId),
+      productCategoryName: last(
+        this.stripCategory(head(product.categories)).split('/')
+      ),
+      productDepartmentId: Number(
+        this.stripCategory(last(product.categoriesIds))
+      ),
+      productDepartmentName: this.stripCategory(last(product.categories)),
+      productId: product.productId,
+      productName: product.productName,
+      // shelfProductIds: Array[('2003029', '2002572')],
+      skuStockOutFromProductDetail: [],
+      skuStockOutFromShelf: [],
+      // skuStocks: { 2003960: 108 },
+    }
+
+    const skuId = this.props.query.skuId || head(product.items).itemId
+
+    const [sku] = product.items.filter(product => product.itemId === skuId) || []
+
+    const { ean, referenceId } = sku
+
+    pageInfo.productEans = [ean]
+
+    if (referenceId && referenceId.length >= 0) {
+      const [{ Value: refIdValue }] = referenceId
+
+      pageInfo.productReferenceId = refIdValue
+    }
+
+    if (sku.sellers && sku.sellers.length >= 0) {
+      const [{ commertialOffer, sellerId }] = sku.sellers
+
+      pageInfo.productListPriceFrom = commertialOffer.ListPrice
+      pageInfo.productListPriceTo = commertialOffer.ListPrice
+      pageInfo.productPriceFrom = commertialOffer.Price
+      pageInfo.productPriceTo = commertialOffer.Price
+      pageInfo.sellerId = sellerId
+      pageInfo.sellerIds = sellerId
+    }
+
+    return [
+      {
+        ecommerce: {
+          detail: {
+            products: [
+              {
+                id: product.productId,
+                name: product.productName,
+                brand: product.brand,
+                category: this.stripCategory(
+                  path(['categories', '0'], product)
+                ),
+              },
+            ],
+          },
         },
       },
-    }
+      pageInfo,
+    ]
   }
 
   render() {

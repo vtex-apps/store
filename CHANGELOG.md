@@ -12,6 +12,37 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - Search result filters.
 
+## [1.7.0] - 2018-08-01
+### Added
+- Add `<title>` and `<meta>` in store. These fields are available on admin settings.
+
+## [1.6.1] - 2018-08-01
+### Fixed
+- Component `StoreContextProvider` import 
+
+## [1.6.0] - 2018-08-01
+### Added
+- Component `OrderFormContext` 
+
+## [1.5.1] - 2018-08-01
+### Fixed
+- Error destructuring properties of product when before inserting on data layer.
+
+## [1.5.0] - 2018-07-31
+### Added
+- Product dataLayer to `getData` in `ProductContextProvider`.
+
+## [1.4.6] - 2018-07-31
+### Fixed
+- Search result filters.
+
+## [1.4.5] - 2018-07-30
+### Fixed
+- Move `icon.png` to metadata folder.
+## [1.4.4] - 2018-07-30
+### Changed
+- Add more information in product query.
+
 ## [1.4.3] - 2018-07-27
 ### Added
 - Add icon and description for the app.
@@ -19,7 +50,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.4.0] - 2018-07-25
 
 ### Added
--  Provide gtm support
+- Provide gtm support
 
 ## [1.3.2] - 2018-07-25
 ### Changed

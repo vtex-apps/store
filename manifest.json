@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "store",
-  "version": "1.4.3",
+  "version": "1.7.0",
   "title": "VTEX Store",
   "description": "The VTEX basic store.",
   "builders": {
@@ -22,10 +22,30 @@
     "title": "VTEX Store",
     "type": "object",
     "properties": {
+      "storeName": {
+        "title": "Store Name",
+        "type": "string",
+        "description": "Enter with the name of your store"
+      },
+      "titleTag": {
+        "title": "Store Title (Title Tag)",
+        "type": "string",
+        "description": "Enter with the title of your store"
+      },
+      "metaTagDescription": {
+        "title": "Store Description (Meta Tag Descriptions)",
+        "type": "string",
+        "description": "Enter with a description of your store"
+      },
+      "metaTagKeywords": {
+        "title": "Store Keywords (Meta Tag Keywords)",
+        "type": "string",
+        "description": "Enter with keywords of your store"
+      },
       "gtmId": {
         "title": "Google Tag Manager",
         "type": "string",
-        "description": "Enter the ID (GTM-XXXX) from your Google Tag Manager container if you want to automatically use it"
+        "description": "Enter with the ID (GTM-XXXX) from your Google Tag Manager container if you want to automatically use it"
       }
     }
   }
