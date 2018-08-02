@@ -9,9 +9,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Add `PriceRanges` property to `searchQuery`.
 
-### Fixed
-- Search result filters.
-
 ## [1.7.0] - 2018-08-01
 ### Added
 - Add `<title>` and `<meta>` in store. These fields are available on admin settings.
