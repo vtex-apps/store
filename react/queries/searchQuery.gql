@@ -34,6 +34,11 @@ query search($query: String, $map: String, $rest: String, $orderBy: String, $fro
           }
         }
       }
+      PriceRanges {
+        Quantity
+        Name
+        Link
+      }
     }
     products {
       productId
