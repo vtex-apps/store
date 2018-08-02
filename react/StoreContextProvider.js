@@ -23,10 +23,7 @@ class StoreContextProvider extends Component {
    * Ensure that the Data Layer will be recreated
    * after each children change (navigation).
    */
-  initDataLayer = () => {
-    const { dataLayer } = window
-    dataLayer.splice(0, dataLayer.length)
-  }
+  initDataLayer = () => window.dataLayer.splice(0, window.dataLayer.length)
 
   render() {
     const { country, locale, currency } = global.__RUNTIME__.culture

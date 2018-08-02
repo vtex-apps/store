@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
 
-class HomeContextProvider extends Component {
+export default class HomeContextProvider extends Component {
   static propTypes = {
     children: PropTypes.element,
   }
@@ -19,13 +19,9 @@ class HomeContextProvider extends Component {
 
   render() {
     return (
-      <DataLayerApolloWrapper
-        getData={this.getData}
-      >
+      <DataLayerApolloWrapper getData={this.getData}>
         {this.props.children}
       </DataLayerApolloWrapper>
     )
   }
 }
-
-export default HomeContextProvider
