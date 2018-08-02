@@ -8,14 +8,12 @@ export default class HomeContextProvider extends Component {
     children: PropTypes.element,
   }
 
-  getData = () => {  
-    return [{
-      accountName: global.__RUNTIME__.account,
-      pageTitle: document.title,
-      pageUrl: location.href,
-      pageCategory: 'Home'
-    }]
-  }
+  getData = () => ({
+    accountName: global.__RUNTIME__.account,
+    pageTitle: document.title,
+    pageUrl: location.href,
+    pageCategory: 'Home'
+  })
 
   render() {
     return (
