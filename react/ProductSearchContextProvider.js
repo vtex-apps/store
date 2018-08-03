@@ -18,7 +18,7 @@ class ProductSearchContextProvider extends Component {
   }
 
   getBreadcrumbsProps() {
-    const {
+    let {
       params: { category, department, term },
     } = this.props
 
