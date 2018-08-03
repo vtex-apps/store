@@ -25,22 +25,18 @@ class ProductSearchContextProvider extends Component {
     const categories = []
 
     if (department) {
-      department = department.charAt(0).toUpperCase() + department.substr(1)
       categories.push(department)
     }
 
     if (category) {
-      category = `${department}/${category.charAt(0).toUpperCase() +
-        category.substr(1)}/`
+      category = `${department}/${category}/`
       categories.push(category)
     }
 
-    const breadcrumbsProps = {
+    return {
       term,
       categories,
     }
-
-    return breadcrumbsProps
   }
 
   getData = searchQuery => {
