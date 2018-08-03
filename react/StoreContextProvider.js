@@ -20,10 +20,18 @@ class StoreContextProvider extends Component {
   }
 
   /**
-   * Ensure that the Data Layer will be recreated
+   * Ensure that the Data Layer exists and will be recreated
    * after each children change (navigation).
    */
-  initDataLayer = () => window.dataLayer.splice(0, window.dataLayer.length)
+  initDataLayer = () => {
+    const { dataLayer } = window
+    if (dataLayer) {
+      dataLayer.splice(0, dataLayer.length)
+    } else {
+      console.warn("You doesn't define a Google Tag Manager ID.")
+      window.dataLayer = []
+    }
+  }
 
   render() {
     const { country, locale, currency } = global.__RUNTIME__.culture
@@ -36,8 +44,8 @@ class StoreContextProvider extends Component {
       storeName,
     } = settings
 
-    window.dataLayer && this.initDataLayer()
-    
+    this.initDataLayer()
+
     const scripts = gtmId ? [{
       'type': 'application/javascript',
       'innerHTML': gtmScript(gtmId),
