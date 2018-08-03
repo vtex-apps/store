@@ -119,7 +119,7 @@ class ProductContextProvider extends Component {
       product,
     }
 
-    const breadCrumbsProps = {
+    const breadcrumbsProps = {
       term: slug,
       categories: product ? product.categories : null,
     }
@@ -135,7 +135,7 @@ class ProductContextProvider extends Component {
             {React.cloneElement(this.props.children, {
               productQuery,
               slug,
-              ...breadCrumbsProps,
+              ...breadcrumbsProps,
             })}
           </DataLayerApolloWrapper>
         </Fragment>
