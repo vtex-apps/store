@@ -55,7 +55,8 @@ class ProductContextProvider extends Component {
 
     const skuId = this.props.query.skuId || head(product.items).itemId
 
-    const [sku] = product.items.filter(product => product.itemId === skuId) || []
+    const [sku] =
+      product.items.filter(product => product.itemId === skuId) || []
 
     const { ean, referenceId } = sku
 
@@ -70,12 +71,12 @@ class ProductContextProvider extends Component {
     if (sku.sellers && sku.sellers.length >= 0) {
       const [{ commertialOffer, sellerId }] = sku.sellers
 
-      pageInfo.productListPriceFrom = commertialOffer.ListPrice
-      pageInfo.productListPriceTo = commertialOffer.ListPrice
-      pageInfo.productPriceFrom = commertialOffer.Price
-      pageInfo.productPriceTo = commertialOffer.Price
-      pageInfo.sellerId = sellerId
-      pageInfo.sellerIds = sellerId
+      pageInfo.productListPriceFrom = commertialOffer.ListPrice + ''
+      pageInfo.productListPriceTo = commertialOffer.ListPrice + ''
+      pageInfo.productPriceFrom = commertialOffer.Price + ''
+      pageInfo.productPriceTo = commertialOffer.Price + ''
+      pageInfo.sellerId = sellerId + ''
+      pageInfo.sellerIds = sellerId + ''
     }
 
     return [
@@ -90,6 +91,7 @@ class ProductContextProvider extends Component {
                 category: this.stripCategory(
                   path(['categories', '0'], product)
                 ),
+                price: pageInfo.productPriceTo,
               },
             ],
           },
