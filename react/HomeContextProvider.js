@@ -17,7 +17,7 @@ export default class HomeContextProvider extends Component {
 
   render() {
     return (
-      <DataLayerApolloWrapper getData={this.getData}>
+      <DataLayerApolloWrapper loading={false} getData={this.getData}>
         {this.props.children}
       </DataLayerApolloWrapper>
     )
