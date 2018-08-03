@@ -25,9 +25,12 @@ class StoreContextProvider extends Component {
    */
   initDataLayer = () => {
     const { dataLayer } = window
-    dataLayer ?
-      dataLayer.splice(0, dataLayer.length) :
+    if (dataLayer) {
+      dataLayer.splice(0, dataLayer.length)
+    } else {
+      console.warn("You doesn't define a Google Tag Manager ID.")
       window.dataLayer = []
+    }
   }
 
   render() {
@@ -42,7 +45,7 @@ class StoreContextProvider extends Component {
     } = settings
 
     this.initDataLayer()
-    
+
     const scripts = gtmId ? [{
       'type': 'application/javascript',
       'innerHTML': gtmScript(gtmId),
