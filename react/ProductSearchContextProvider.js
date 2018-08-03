@@ -17,6 +17,33 @@ class ProductSearchContextProvider extends Component {
     loading: true,
   }
 
+  getBreadcrumbsProps() {
+    const { params } = this.props
+
+    let category = params.category || ''
+
+    let department = params.department || ''
+    const categories = []
+
+    if (department) {
+      department = department.charAt(0).toUpperCase() + department.substr(1)
+      categories.push(department)
+    }
+
+    if (category) {
+      category = `${department}/${category.charAt(0).toUpperCase() +
+        category.substr(1)}/`
+      categories.push(category)
+    }
+
+    const breadcrumbsProps = {
+      term: params.term,
+      categories,
+    }
+
+    return breadcrumbsProps
+  }
+
   getData = searchQuery => {
     if (!searchQuery) {
       return null
@@ -69,6 +96,8 @@ class ProductSearchContextProvider extends Component {
 
     const { params, map, rest, orderBy, from, to } = props
 
+    const breadcrumbsProps = this.getBreadcrumbsProps()
+
     return (
       <Query
         query={searchQuery}
@@ -101,6 +130,7 @@ class ProductSearchContextProvider extends Component {
                 ...searchQueryProps,
                 ...searchQueryProps.data.search,
               },
+              ...breadcrumbsProps,
             })}
           </DataLayerApolloWrapper>
         )}

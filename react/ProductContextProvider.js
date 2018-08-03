@@ -119,6 +119,11 @@ class ProductContextProvider extends Component {
       product,
     }
 
+    const breadCrumbsProps = {
+      term: slug,
+      categories: product ? product.categories : null,
+    }
+
     return (
       <div className="vtex-product-details-container">
         <Fragment>
@@ -130,6 +135,7 @@ class ProductContextProvider extends Component {
             {React.cloneElement(this.props.children, {
               productQuery,
               slug,
+              ...breadCrumbsProps,
             })}
           </DataLayerApolloWrapper>
         </Fragment>
