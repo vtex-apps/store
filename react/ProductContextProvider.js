@@ -119,6 +119,9 @@ class ProductContextProvider extends Component {
       product,
     }
 
+    /**
+     * The breadcrumbs components is being used in multiple pages, therefore we need to adapt the data to its needs insteadof
+     * making the component do the changes it self.**/
     const breadcrumbsProps = {
       term: slug,
       categories: product ? product.categories : null,
