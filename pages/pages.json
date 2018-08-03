@@ -5,7 +5,8 @@
       "context": "StoreContextProvider"
     },
     "store/home": {
-      "path": "/"
+      "path": "/",
+      "context": "HomeContextProvider"
     },
     "store/account": {
       "path": "/account",
