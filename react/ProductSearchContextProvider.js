@@ -18,11 +18,10 @@ class ProductSearchContextProvider extends Component {
   }
 
   getBreadcrumbsProps() {
-    const { params } = this.props
+    const {
+      params: { category, department, term },
+    } = this.props
 
-    let category = params.category || ''
-
-    let department = params.department || ''
     const categories = []
 
     if (department) {
@@ -37,7 +36,7 @@ class ProductSearchContextProvider extends Component {
     }
 
     const breadcrumbsProps = {
-      term: params.term,
+      term,
       categories,
     }
 
