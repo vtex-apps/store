@@ -28,7 +28,6 @@ class StoreContextProvider extends Component {
   render() {
     const { country, locale, currency } = global.__RUNTIME__.culture
     const settings = this.context.getSettings(APP_LOCATOR) || {}
-
     const {
       gtmId,
       titleTag,
