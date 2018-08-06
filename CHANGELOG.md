@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Removed
+- Search paths(`/d, /c, /sc, /s`) doesn't have sufix anymore. 
 
 ## [1.7.4] - 2018-08-03
 ### Fixed
