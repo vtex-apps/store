@@ -1,4 +1,4 @@
-query orderForm @context(scope: "private") {
+query orderForm {
   orderForm {
     orderFormId
     value

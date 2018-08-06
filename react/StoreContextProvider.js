@@ -38,6 +38,8 @@ class StoreContextProvider extends Component {
     const settings = this.context.getSettings(APP_LOCATOR) || {}
     const {
       gtmId,
+      titleTag,
+      metaTagDescription,
       metaTagKeywords,
       storeName,
     } = settings
@@ -57,6 +59,8 @@ class StoreContextProvider extends Component {
       >
         <Helmet script={scripts} noscript={noscripts} />
         <Helmet>
+          <title>{titleTag}</title>
+          <meta name="description" content={metaTagDescription} />
           <meta name="keywords" content={metaTagKeywords} />
           <meta name="copyright" content={storeName} />
           <meta name="author" content={storeName} />
