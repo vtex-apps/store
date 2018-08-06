@@ -24,7 +24,7 @@ class ProductSearchContextProvider extends Component {
 
     const { products } = searchQuery
 
-    const category = this.props.params.category
+    const { department, category } = this.props.params
 
     return [
       {
@@ -45,7 +45,7 @@ class ProductSearchContextProvider extends Component {
       {
         accountName: global.__RUNTIME__.account,
         pageCategory: category,
-        pageDepartment: this.props.params.department,
+        pageDepartment: department,
         pageFacets: [],
         pageTitle: document.title,
         pageUrl: window.location.href,

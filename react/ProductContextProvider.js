@@ -125,7 +125,8 @@ class ProductContextProvider extends Component {
         <Helmet>
           <title>{product.titleTag}</title>
           <meta name="description" content={product.metaTagDescription} />
-        </Helmet>   <Fragment>
+        </Helmet>
+        <Fragment>
           {product && <MicroData product={product} />}
           <DataLayerApolloWrapper
             getData={this.getData}
