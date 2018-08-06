@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Removed
-- Search paths(`/d, /c, /sc, /s`) doesn't have sufix anymore. 
+- Unambiguous search paths (`/c, /sc, /s`) don't have suffix anymore. 
 
 ## [1.7.4] - 2018-08-03
 ### Fixed

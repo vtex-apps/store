@@ -27,7 +27,7 @@
       "context": "ProductSearchContextProvider"
     },
     "store/department": {
-      "path": "/:department",
+      "path": "/:department/d",
       "context": "ProductSearchContextProvider"
     },
     "store/category": {
