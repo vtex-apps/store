@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import React, { Component, Fragment } from 'react'
 import { withApollo, graphql, compose } from 'react-apollo'
 import { path, last, head } from 'ramda'
+import { Helmet } from 'render'
 
 import MicroData from './components/MicroData'
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
@@ -121,7 +122,10 @@ class ProductContextProvider extends Component {
 
     return (
       <div className="vtex-product-details-container">
-        <Fragment>
+        <Helmet>
+          <title>{product.titleTag}</title>
+          <meta name="description" content={product.metaTagDescription} />
+        </Helmet>   <Fragment>
           {product && <MicroData product={product} />}
           <DataLayerApolloWrapper
             getData={this.getData}

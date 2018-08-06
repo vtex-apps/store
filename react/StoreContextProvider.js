@@ -38,19 +38,16 @@ class StoreContextProvider extends Component {
     const settings = this.context.getSettings(APP_LOCATOR) || {}
     const {
       gtmId,
-      titleTag,
-      metaTagDescription,
       metaTagKeywords,
       storeName,
     } = settings
-
-    this.initDataLayer()
-
     const scripts = gtmId ? [{
       'type': 'application/javascript',
       'innerHTML': gtmScript(gtmId),
     }] : []
     const noscripts = gtmId ? [{ id: 'gtm_frame', innerHTML: gtmFrame(gtmId) }] : []
+
+    this.initDataLayer()
     return (
       <DataLayerProvider
         value={{
@@ -60,8 +57,6 @@ class StoreContextProvider extends Component {
       >
         <Helmet script={scripts} noscript={noscripts} />
         <Helmet>
-          <title>{titleTag}</title>
-          <meta name="description" content={metaTagDescription} />
           <meta name="keywords" content={metaTagKeywords} />
           <meta name="copyright" content={storeName} />
           <meta name="author" content={storeName} />

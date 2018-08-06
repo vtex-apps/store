@@ -3,6 +3,8 @@ fragment product on Product {
   productId
   productName
   linkText
+  titleTag
+  metaTagDescription
   description
   categories
   items {
