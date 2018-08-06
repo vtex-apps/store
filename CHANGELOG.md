@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.8.0] - 2018-08-06
+### Removed
+- Unambiguous search paths (`/c, /sc, /s`) don't have suffix anymore. 
+
 ## [1.7.4] - 2018-08-03
 ### Fixed
 - Init `Data layer` when it doesn't exist.
