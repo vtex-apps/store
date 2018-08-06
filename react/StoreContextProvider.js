@@ -9,6 +9,7 @@ import { gtmScript, gtmFrame } from './scripts/gtm'
 const APP_LOCATOR = 'vtex.store'
 const CONTENT_TYPE = 'text/html;charset=utf-8'
 const META_ROBOTS = 'index, follow'
+
 class StoreContextProvider extends Component {
   static propTypes = {
     children: PropTypes.element,
@@ -18,11 +19,23 @@ class StoreContextProvider extends Component {
     window.dataLayer.push(obj)
   }
 
+  /**
+   * Ensure that the Data Layer exists and will be recreated
+   * after each children change (navigation).
+   */
+  initDataLayer = () => {
+    const { dataLayer } = window
+    if (dataLayer) {
+      dataLayer.splice(0, dataLayer.length)
+    } else {
+      console.warn("You doesn't define a Google Tag Manager ID.")
+      window.dataLayer = []
+    }
+  }
+
   render() {
-    window.dataLayer = window.dataLayer || []
     const { country, locale, currency } = global.__RUNTIME__.culture
     const settings = this.context.getSettings(APP_LOCATOR) || {}
-    console.log(settings)
     const {
       gtmId,
       titleTag,
@@ -30,6 +43,9 @@ class StoreContextProvider extends Component {
       metaTagKeywords,
       storeName,
     } = settings
+
+    this.initDataLayer()
+
     const scripts = gtmId ? [{
       'type': 'application/javascript',
       'innerHTML': gtmScript(gtmId),

@@ -9,6 +9,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Change the props passed to the Breadcrumbs
 
+## [1.8.0] - 2018-08-06
+### Removed
+- Unambiguous search paths (`/c, /sc, /s`) don't have suffix anymore. 
+
+## [1.7.4] - 2018-08-03
+### Fixed
+- Init `Data layer` when it doesn't exist.
+
+## [1.7.3] - 2018-08-03
+### Added
+- Add `PriceRanges` property to `searchQuery`.
+
+## [1.7.2] - 2018-08-03
+### Fixed
+- `Data Layer` to be recreated after each page change.
+
 ## [1.7.1] - 2018-08-02
 ### Fixed
 - Information pushed to the dataLayer on `ProductSearchContextProvider`

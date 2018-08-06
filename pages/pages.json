@@ -5,7 +5,8 @@
       "context": "StoreContextProvider"
     },
     "store/home": {
-      "path": "/"
+      "path": "/",
+      "context": "HomeContextProvider"
     },
     "store/account": {
       "path": "/account",
@@ -30,11 +31,11 @@
       "context": "ProductSearchContextProvider"
     },
     "store/category": {
-      "path": "/:department/:category/c",
+      "path": "/:department/:category",
       "context": "ProductSearchContextProvider"
     },
     "store/subcategory": {
-      "path": "/:department/:category/:subcategory/sc",
+      "path": "/:department/:category/:subcategory",
       "context": "ProductSearchContextProvider"
     },
     "store/product": {
@@ -42,7 +43,7 @@
       "context": "ProductContextProvider"
     },
     "store/search": {
-      "path": "/:term/s",
+      "path": "/:term",
       "context": "ProductSearchContextProvider"
     }
   }
