@@ -4,16 +4,18 @@ import { graphql, compose } from 'react-apollo'
 
 import orderFormQuery from './queries/orderFormQuery.gql'
 import addToCartMutation from './mutations/addToCartMutation.gql'
+import updateItemsMutation from './mutations/updateItemsMutation.gql'
 
 const defaultState = {
   orderFormContext: {
     message: { isSuccess: null, text: null },
     loading: true,
     orderForm: {},
-    refetch: () => {},
-    updateToastMessage: () => {},
-    updateOrderForm: () => {},
-    updateAndRefetchOrderForm: () => {},
+    refetch: () => { },
+    addItem: () => { },
+    updateToastMessage: () => { },
+    updateOrderForm: () => { },
+    updateAndRefetchOrderForm: () => { },
   },
 }
 
@@ -43,7 +45,7 @@ class ContextProvider extends Component {
 
   static getDerivedStateFromProps(props, state) {
     if (!props.data.loading && !props.data.error) {
-      let orderFormContext = props.data
+      const orderFormContext = props.data
 
       orderFormContext.message = state.orderFormContext.message
 
@@ -74,6 +76,7 @@ class ContextProvider extends Component {
     state.orderFormContext.updateToastMessage = this.handleMessageUpdate
     state.orderFormContext.updateAndRefetchOrderForm = this.handleUpdateAndRefetchOrderForm
     state.orderFormContext.updateOrderForm = this.props.updateOrderForm
+    state.orderFormContext.addItem = this.props.addItem
 
     return <Provider value={this.state}>{this.props.children}</Provider>
   }
@@ -95,6 +98,8 @@ const contextPropTypes = PropTypes.shape({
   loading: PropTypes.bool.isRequired,
   /* Function to refetch the orderForm query */
   refetch: PropTypes.func.isRequired,
+  /* Function to add a new item into the orderForm */
+  addItem: PropTypes.func.isRequired,
   /* Function to update the orderForm */
   updateOrderForm: PropTypes.func.isRequired,
   /* Function to update the orderForm and refetch the data*/
@@ -114,7 +119,8 @@ const contextPropTypes = PropTypes.shape({
 
 export const OrderFormProvider = compose(
   graphql(orderFormQuery, options),
-  graphql(addToCartMutation, { name: 'updateOrderForm' })
+  graphql(addToCartMutation, { name: 'addItem' }),
+  graphql(updateItemsMutation, { name: 'updateOrderForm' })
 )(ContextProvider)
 
 export default { orderFormConsumer, contextPropTypes }
