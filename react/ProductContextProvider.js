@@ -32,25 +32,29 @@ class ProductContextProvider extends Component {
     const pageInfo = {
       accountName: global.__RUNTIME__.account,
       pageCategory: 'Product',
-      pageDepartment: this.stripCategory(last(product.categories)),
+      pageDepartment: product.categories
+        ? this.stripCategory(last(product.categories))
+        : '',
       pageFacets: [],
       pageTitle: product.titleTag,
       pageUrl: window.location.href,
-      // productBrandId: 2123,
       productBrandName: product.brand,
       productCategoryId: Number(product.categoryId),
-      productCategoryName: last(
-        this.stripCategory(head(product.categories)).split('/')
-      ),
+      productCategoryName: product.categories
+        ? last(this.stripCategory(head(product.categories)).split('/'))
+        : '',
       productDepartmentId: Number(
         this.stripCategory(last(product.categoriesIds))
       ),
-      productDepartmentName: this.stripCategory(last(product.categories)),
+      productDepartmentName: product.categories
+        ? this.stripCategory(last(product.categories))
+        : '',
       productId: product.productId,
       productName: product.productName,
-      // shelfProductIds: Array[('2003029', '2002572')],
       skuStockOutFromProductDetail: [],
       skuStockOutFromShelf: [],
+      // productBrandId: 2123,
+      // shelfProductIds: Array[('2003029', '2002572')],
       // skuStocks: { 2003960: 108 },
     }
 
