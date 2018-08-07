@@ -91,12 +91,14 @@ class ProductSearchContextProvider extends Component {
             }
             loading={this.state.loading || searchQueryProps.loading}
           >
-            <Helmet>
-              {!searchQueryProps.data.loading && searchQueryProps.data.search.titleTag
-                && <title>{searchQueryProps.data.search.titleTag}</title>}
-              {!searchQueryProps.data.loading && searchQueryProps.data.search.metaTagDescription
-                && <meta name="description" content={searchQueryProps.data.search.metaTagDescription} />}
-            </Helmet>
+            {!searchQueryProps.loading &&
+              <Helmet>
+                {searchQueryProps.data.search.titleTag &&
+                  <title>{searchQueryProps.data.search.titleTag}</title>}
+                {searchQueryProps.data.search.metaTagDescription &&
+                  <meta name="description" content={searchQueryProps.data.search.metaTagDescription} />}
+              </Helmet>
+            }
             {React.cloneElement(this.props.children, {
               loading: this.state.loading,
               setContextVariables: this.handleContextVariables,
