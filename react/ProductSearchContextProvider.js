@@ -35,7 +35,7 @@ class ProductSearchContextProvider extends Component {
               ? searchQuery.facets.CategoriesTrees[index].Name
               : category,
             position: index + 1 + '',
-            price: product.items
+            price: product
               ? product.items[0].sellers[0].commertialOffer.Price + ''
               : '',
           })),

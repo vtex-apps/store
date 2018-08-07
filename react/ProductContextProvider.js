@@ -32,7 +32,7 @@ class ProductContextProvider extends Component {
     const pageInfo = {
       accountName: global.__RUNTIME__.account,
       pageCategory: 'Product',
-      pageDepartment: product.categories
+      pageDepartment: product
         ? this.stripCategory(last(product.categories))
         : '',
       pageFacets: [],
@@ -40,13 +40,13 @@ class ProductContextProvider extends Component {
       pageUrl: window.location.href,
       productBrandName: product.brand,
       productCategoryId: Number(product.categoryId),
-      productCategoryName: product.categories
+      productCategoryName: product
         ? last(this.stripCategory(head(product.categories)).split('/'))
         : '',
       productDepartmentId: Number(
         this.stripCategory(last(product.categoriesIds))
       ),
-      productDepartmentName: product.categories
+      productDepartmentName: product
         ? this.stripCategory(last(product.categories))
         : '',
       productId: product.productId,
