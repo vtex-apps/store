@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import React, { Component, Fragment } from 'react'
 import { withApollo, graphql, compose } from 'react-apollo'
 import { path, last, head } from 'ramda'
+import { Helmet } from 'render'
 
 import MicroData from './components/MicroData'
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
@@ -33,7 +34,7 @@ class ProductContextProvider extends Component {
       pageCategory: 'Product',
       pageDepartment: this.stripCategory(last(product.categories)),
       pageFacets: [],
-      pageTitle: document.title,
+      pageTitle: product.titleTag,
       pageUrl: window.location.href,
       // productBrandId: 2123,
       productBrandName: product.brand,
@@ -105,7 +106,7 @@ class ProductContextProvider extends Component {
     const {
       data,
       params: { slug },
-      client, // eslint-disable-line react/prop-types
+      client,
     } = this.props
     const { loading } = data
     const productPreview = client.readFragment({
@@ -120,12 +121,18 @@ class ProductContextProvider extends Component {
     }
 
     return (
-      <div className="vtex-product-details-container">
+      <div className="vtex-product-context-provider">
+        {product &&
+          <Helmet>
+            <title>{product.titleTag}</title>
+            <meta name="description" content={product.metaTagDescription} />
+          </Helmet>
+        }
         <Fragment>
           {product && <MicroData product={product} />}
           <DataLayerApolloWrapper
             getData={this.getData}
-            loading={this.props.data.loading}
+            loading={loading}
           >
             {React.cloneElement(this.props.children, {
               productQuery,

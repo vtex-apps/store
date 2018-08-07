@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.9.0] - 2018-08-06
+### Added
+- Add meta tags in ProductContext and SearchContext providers.
+
 ## [1.8.0] - 2018-08-06
 ### Removed
 - Unambiguous search paths (`/c, /sc, /s`) don't have suffix anymore. 
@@ -29,7 +33,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.7.0] - 2018-08-01
 ### Added
-- Add `<title>` and `<meta>` in store. These fields are available on admin settings.
+- Add `<title>` and `<meta>` in the store. These fields are available on admin settings.
 
 ## [1.6.1] - 2018-08-01
 ### Fixed

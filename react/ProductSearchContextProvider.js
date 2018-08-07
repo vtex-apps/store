@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Query } from 'react-apollo'
-
+import { Helmet } from 'render'
 import searchQuery from './queries/searchQuery.gql'
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
 import { processSearchContextProps } from './helpers/searchHelpers'
@@ -21,11 +21,8 @@ class ProductSearchContextProvider extends Component {
     if (!searchQuery) {
       return null
     }
-
-    const { products } = searchQuery
-
-    const category = this.props.params.category
-
+    const { products, titleTag } = searchQuery
+    const { department, category } = this.props.params
     return [
       {
         ecommerce: {
@@ -45,9 +42,9 @@ class ProductSearchContextProvider extends Component {
       {
         accountName: global.__RUNTIME__.account,
         pageCategory: category,
-        pageDepartment: this.props.params.department,
+        pageDepartment: department,
         pageFacets: [],
-        pageTitle: document.title,
+        pageTitle: titleTag,
         pageUrl: window.location.href,
       },
     ]
@@ -66,7 +63,6 @@ class ProductSearchContextProvider extends Component {
       this.state,
       DEFAULT_PAGE
     )
-
     const { params, map, rest, orderBy, from, to } = props
 
     return (
@@ -93,6 +89,12 @@ class ProductSearchContextProvider extends Component {
             }
             loading={this.state.loading || searchQueryProps.loading}
           >
+            <Helmet>
+              {searchQueryProps.data.search.titleTag
+                && <title>{searchQueryProps.data.search.titleTag}</title>}
+              {searchQueryProps.data.search.metaTagDescription
+                && <meta name="description" content={searchQueryProps.data.search.metaTagDescription} />}
+            </Helmet>
             {React.cloneElement(this.props.children, {
               loading: this.state.loading,
               setContextVariables: this.handleContextVariables,
