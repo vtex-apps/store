@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.9.1] - 2018-08-07
+### Fixed
+- Fix object undefined error in dataLayer. 
+
 ## [1.9.0] - 2018-08-06
 ### Added
 - Add meta tags in ProductContext and SearchContext providers.

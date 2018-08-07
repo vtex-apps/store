@@ -35,7 +35,9 @@ class ProductSearchContextProvider extends Component {
               ? searchQuery.facets.CategoriesTrees[index].Name
               : category,
             position: index + 1 + '',
-            price: product.items[0].sellers[0].commertialOffer.Price + '',
+            price: product
+              ? product.items[0].sellers[0].commertialOffer.Price + ''
+              : '',
           })),
         },
       },
@@ -90,9 +92,9 @@ class ProductSearchContextProvider extends Component {
             loading={this.state.loading || searchQueryProps.loading}
           >
             <Helmet>
-              {searchQueryProps.data.search.titleTag
+              {!searchQueryProps.data.loading && searchQueryProps.data.search.titleTag
                 && <title>{searchQueryProps.data.search.titleTag}</title>}
-              {searchQueryProps.data.search.metaTagDescription
+              {!searchQueryProps.data.loading && searchQueryProps.data.search.metaTagDescription
                 && <meta name="description" content={searchQueryProps.data.search.metaTagDescription} />}
             </Helmet>
             {React.cloneElement(this.props.children, {
