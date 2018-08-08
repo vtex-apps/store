@@ -24,27 +24,27 @@
     },
     "store/brand": {
       "path": "/:brand/b",
-      "context": "ProductSearchContextProvider"
+      "context": "SearchContextProvider"
     },
     "store/department": {
       "path": "/:department/d",
-      "context": "ProductSearchContextProvider"
+      "context": "SearchContextProvider"
     },
     "store/category": {
       "path": "/:department/:category",
-      "context": "ProductSearchContextProvider"
+      "context": "SearchContextProvider"
     },
     "store/subcategory": {
       "path": "/:department/:category/:subcategory",
-      "context": "ProductSearchContextProvider"
+      "context": "SearchContextProvider"
+    },
+    "store/search": {
+      "path": "/:term",
+      "context": "SearchContextProvider"
     },
     "store/product": {
       "path": "/:slug/p",
       "context": "ProductContextProvider"
-    },
-    "store/search": {
-      "path": "/:term",
-      "context": "ProductSearchContextProvider"
     }
   }
 }
