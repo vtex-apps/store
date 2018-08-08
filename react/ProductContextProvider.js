@@ -116,12 +116,12 @@ class ProductContextProvider extends Component {
       params: { slug },
       client,
     } = this.props
-    const { loading } = data
     const productPreview = client.readFragment({
       id: cacheLocator.product(slug),
       fragment: productPreviewFragment,
     })
     const data = apolloData || {}
+    const { loading } = data
     const product = loading ? productPreview : data.product || {}
 
     const productQuery = {
