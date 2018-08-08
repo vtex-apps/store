@@ -43,14 +43,13 @@ class StoreContextProvider extends Component {
       metaTagKeywords,
       storeName,
     } = settings
-
-    this.initDataLayer()
-
     const scripts = gtmId ? [{
       'type': 'application/javascript',
       'innerHTML': gtmScript(gtmId),
     }] : []
     const noscripts = gtmId ? [{ id: 'gtm_frame', innerHTML: gtmFrame(gtmId) }] : []
+
+    this.initDataLayer()
     return (
       <DataLayerProvider
         value={{

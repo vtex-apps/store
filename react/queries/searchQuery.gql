@@ -1,5 +1,7 @@
 query search($query: String, $map: String, $rest: String, $orderBy: String, $from: Int, $to: Int) {
   search(query: $query, map: $map, rest: $rest, orderBy: $orderBy, from: $from, to: $to) {
+    titleTag
+    metaTagDescription
     facets {
       Departments {
         Quantity
@@ -39,7 +41,7 @@ query search($query: String, $map: String, $rest: String, $orderBy: String, $fro
         Name
         Link
       }
-    }
+    } 
     products {
       productId
       productName

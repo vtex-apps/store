@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Query } from 'react-apollo'
-
+import { Helmet } from 'render'
 import searchQuery from './queries/searchQuery.gql'
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
 import { processSearchContextProps } from './helpers/searchHelpers'
@@ -43,11 +43,8 @@ class ProductSearchContextProvider extends Component {
     if (!searchQuery) {
       return null
     }
-
-    const { products } = searchQuery
-
-    const category = this.props.params.category
-
+    const { products, titleTag } = searchQuery
+    const { department, category } = this.props.params
     return [
       {
         ecommerce: {
@@ -60,16 +57,18 @@ class ProductSearchContextProvider extends Component {
               ? searchQuery.facets.CategoriesTrees[index].Name
               : category,
             position: index + 1 + '',
-            price: product.items[0].sellers[0].commertialOffer.Price + '',
+            price: product
+              ? product.items[0].sellers[0].commertialOffer.Price + ''
+              : '',
           })),
         },
       },
       {
         accountName: global.__RUNTIME__.account,
         pageCategory: category,
-        pageDepartment: this.props.params.department,
+        pageDepartment: department,
         pageFacets: [],
-        pageTitle: document.title,
+        pageTitle: titleTag,
         pageUrl: window.location.href,
       },
     ]
@@ -88,7 +87,6 @@ class ProductSearchContextProvider extends Component {
       this.state,
       DEFAULT_PAGE
     )
-
     const { params, map, rest, orderBy, from, to } = props
 
     const breadcrumbsProps = this.getBreadcrumbsProps()
@@ -108,27 +106,38 @@ class ProductSearchContextProvider extends Component {
         }}
         notifyOnNetworkStatusChange
       >
-        {searchQueryProps => (
-          <DataLayerApolloWrapper
-            getData={() =>
-              this.getData({
-                ...searchQueryProps.data.search,
-              })
-            }
-            loading={this.state.loading || searchQueryProps.loading}
-          >
-            {React.cloneElement(this.props.children, {
-              loading: this.state.loading,
-              setContextVariables: this.handleContextVariables,
-              ...props,
-              searchQuery: {
-                ...searchQueryProps,
-                ...searchQueryProps.data.search,
-              },
-              ...breadcrumbsProps,
-            })}
-          </DataLayerApolloWrapper>
-        )}
+        {(searchQueryProps) => {
+          const data = searchQueryProps.data || {}
+          return (
+            <DataLayerApolloWrapper
+              getData={() =>
+                this.getData({
+                  ...data.search,
+                })
+              }
+              loading={this.state.loading || searchQueryProps.loading}
+            >
+              {!searchQueryProps.loading && data.search &&
+                <Helmet>
+                  {data.search.titleTag &&
+                    <title>{data.search.titleTag}</title>}
+                  {data.search.metaTagDescription &&
+                    <meta name="description" content={data.search.metaTagDescription} />}
+                </Helmet>
+              }
+              {React.cloneElement(this.props.children, {
+                loading: this.state.loading,
+                setContextVariables: this.handleContextVariables,
+                ...props,
+                searchQuery: {
+                  ...searchQueryProps,
+                  ...data.search,
+                },
+                ...breadcrumbsProps
+              })}
+            </DataLayerApolloWrapper>
+          )}
+        }
       </Query>
     )
   }

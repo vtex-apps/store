@@ -9,6 +9,32 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Change the props passed to the Breadcrumbs
 
+## [1.9.5] - 2018-08-08
+### Fixed
+- Add a guard in `createMap` when array was 0.
+
+## [1.9.4] - 2018-08-08
+### Fixed
+- *Hot Fix* Data might be undefined.
+
+## [1.9.3] - 2018-08-08
+### Added
+- Function to add a new item into the orderForm.
+
+### Fixed
+- Mutation of the update orderForm items function.
+
+## [1.9.2] - 2018-08-07
+### Fixed
+- *Hot Fix* Fix error titleTag of undefined.
+## [1.9.1] - 2018-08-07
+### Fixed
+- Fix object undefined error in dataLayer. 
+
+## [1.9.0] - 2018-08-06
+### Added
+- Add meta tags in ProductContext and SearchContext providers.
+
 ## [1.8.0] - 2018-08-06
 ### Removed
 - Unambiguous search paths (`/c, /sc, /s`) don't have suffix anymore. 
@@ -31,7 +57,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.7.0] - 2018-08-01
 ### Added
-- Add `<title>` and `<meta>` in store. These fields are available on admin settings.
+- Add `<title>` and `<meta>` in the store. These fields are available on admin settings.
 
 ## [1.6.1] - 2018-08-01
 ### Fixed

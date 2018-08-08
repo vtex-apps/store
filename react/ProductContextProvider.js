@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import React, { Component, Fragment } from 'react'
 import { withApollo, graphql, compose } from 'react-apollo'
 import { path, last, head } from 'ramda'
+import { Helmet } from 'render'
 
 import MicroData from './components/MicroData'
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
@@ -28,28 +29,36 @@ class ProductContextProvider extends Component {
       data: { product },
     } = this.props
 
+    if (!product) {
+      return []
+    }
+
     const pageInfo = {
       accountName: global.__RUNTIME__.account,
       pageCategory: 'Product',
-      pageDepartment: this.stripCategory(last(product.categories)),
+      pageDepartment: product
+        ? this.stripCategory(last(product.categories))
+        : '',
       pageFacets: [],
-      pageTitle: document.title,
+      pageTitle: product.titleTag,
       pageUrl: window.location.href,
-      // productBrandId: 2123,
       productBrandName: product.brand,
       productCategoryId: Number(product.categoryId),
-      productCategoryName: last(
-        this.stripCategory(head(product.categories)).split('/')
-      ),
+      productCategoryName: product
+        ? last(this.stripCategory(head(product.categories)).split('/'))
+        : '',
       productDepartmentId: Number(
         this.stripCategory(last(product.categoriesIds))
       ),
-      productDepartmentName: this.stripCategory(last(product.categories)),
+      productDepartmentName: product
+        ? this.stripCategory(last(product.categories))
+        : '',
       productId: product.productId,
       productName: product.productName,
-      // shelfProductIds: Array[('2003029', '2002572')],
       skuStockOutFromProductDetail: [],
       skuStockOutFromShelf: [],
+      // productBrandId: 2123,
+      // shelfProductIds: Array[('2003029', '2002572')],
       // skuStocks: { 2003960: 108 },
     }
 
@@ -103,16 +112,17 @@ class ProductContextProvider extends Component {
 
   render() {
     const {
-      data,
+      data: apolloData,
       params: { slug },
-      client, // eslint-disable-line react/prop-types
+      client,
     } = this.props
-    const { loading } = data
     const productPreview = client.readFragment({
       id: cacheLocator.product(slug),
       fragment: productPreviewFragment,
     })
-    const product = loading ? productPreview : data.product
+    const data = apolloData || {}
+    const { loading } = data
+    const product = loading ? productPreview : data.product || {}
 
     const productQuery = {
       loading,
@@ -128,12 +138,18 @@ class ProductContextProvider extends Component {
     }
 
     return (
-      <div className="vtex-product-details-container">
+      <div className="vtex-product-context-provider">
+        {product &&
+          <Helmet>
+            <title>{product.titleTag}</title>
+            <meta name="description" content={product.metaTagDescription} />
+          </Helmet>
+        }
         <Fragment>
           {product && <MicroData product={product} />}
           <DataLayerApolloWrapper
             getData={this.getData}
-            loading={this.props.data.loading}
+            loading={loading}
           >
             {React.cloneElement(this.props.children, {
               productQuery,
