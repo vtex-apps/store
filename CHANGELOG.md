@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.9.4] - 2018-08-08
+
 ## [1.9.3] - 2018-08-08
 ### Added
 - Function to add a new item into the orderForm.
