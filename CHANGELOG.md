@@ -7,7 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.9.5] - 2018-08-08
+### Fixed
+- Add a guard in `createMap` when array was 0.
+
 ## [1.9.4] - 2018-08-08
+### Fixed
+- *Hot Fix* Data might be undefined.
 
 ## [1.9.3] - 2018-08-08
 ### Added
