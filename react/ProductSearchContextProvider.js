@@ -82,34 +82,37 @@ class ProductSearchContextProvider extends Component {
         }}
         notifyOnNetworkStatusChange
       >
-        {searchQueryProps => (
-          <DataLayerApolloWrapper
-            getData={() =>
-              this.getData({
-                ...searchQueryProps.data.search,
-              })
-            }
-            loading={this.state.loading || searchQueryProps.loading}
-          >
-            {!searchQueryProps.loading &&
-              <Helmet>
-                {searchQueryProps.data.search.titleTag &&
-                  <title>{searchQueryProps.data.search.titleTag}</title>}
-                {searchQueryProps.data.search.metaTagDescription &&
-                  <meta name="description" content={searchQueryProps.data.search.metaTagDescription} />}
-              </Helmet>
-            }
-            {React.cloneElement(this.props.children, {
-              loading: this.state.loading,
-              setContextVariables: this.handleContextVariables,
-              ...props,
-              searchQuery: {
-                ...searchQueryProps,
-                ...searchQueryProps.data.search,
-              },
-            })}
-          </DataLayerApolloWrapper>
-        )}
+        {(searchQueryProps) => {
+          const data = searchQueryProps.data || {}
+          return (
+            <DataLayerApolloWrapper
+              getData={() =>
+                this.getData({
+                  ...data.search,
+                })
+              }
+              loading={this.state.loading || searchQueryProps.loading}
+            >
+              {!searchQueryProps.loading && data.search &&
+                <Helmet>
+                  {data.search.titleTag &&
+                    <title>{data.search.titleTag}</title>}
+                  {data.search.metaTagDescription &&
+                    <meta name="description" content={data.search.metaTagDescription} />}
+                </Helmet>
+              }
+              {React.cloneElement(this.props.children, {
+                loading: this.state.loading,
+                setContextVariables: this.handleContextVariables,
+                ...props,
+                searchQuery: {
+                  ...searchQueryProps,
+                  ...data.search,
+                },
+              })}
+            </DataLayerApolloWrapper>
+          )}
+        }
       </Query>
     )
   }

@@ -29,6 +29,10 @@ class ProductContextProvider extends Component {
       data: { product },
     } = this.props
 
+    if (!product) {
+      return []
+    }
+
     const pageInfo = {
       accountName: global.__RUNTIME__.account,
       pageCategory: 'Product',
@@ -108,7 +112,7 @@ class ProductContextProvider extends Component {
 
   render() {
     const {
-      data,
+      data: apolloData,
       params: { slug },
       client,
     } = this.props
@@ -117,7 +121,8 @@ class ProductContextProvider extends Component {
       id: cacheLocator.product(slug),
       fragment: productPreviewFragment,
     })
-    const product = loading ? productPreview : data.product
+    const data = apolloData || {}
+    const product = loading ? productPreview : data.product || {}
 
     const productQuery = {
       loading,
