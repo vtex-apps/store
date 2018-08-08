@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Function to add a new item into the orderForm.
+
+### Fixed
+- Mutation of the update orderForm items function.
 
 ## [1.9.2] - 2018-08-07
 ### Fixed
