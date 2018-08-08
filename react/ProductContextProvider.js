@@ -8,7 +8,7 @@ import MicroData from './components/MicroData'
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
 import productQuery from './queries/productQuery.gql'
 import productPreviewFragment from './queries/productPreview.gql'
-import { cacheLocator } from './cacheLocator'
+import { cacheLocator } from './helpers/cacheLocator'
 
 class ProductContextProvider extends Component {
   static propTypes = {

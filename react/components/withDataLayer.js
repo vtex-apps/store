@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const { Consumer, Provider } = React.createContext({
   dataLayer: [],
-  set: () => {},
+  set: () => { },
 })
 
 export { Provider as DataLayerProvider }
