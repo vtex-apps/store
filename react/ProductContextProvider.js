@@ -107,6 +107,9 @@ class ProductContextProvider extends Component {
         },
       },
       pageInfo,
+      {
+        event: 'productView'
+      }
     ]
   }
 
