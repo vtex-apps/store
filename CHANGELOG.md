@@ -7,9 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.10.1] - 2018-08-10
+
 ## [1.10.0] - 2018-08-10
 ### Added
 - Dispatch `Datalayer` Events (home, category, department, product and search).
+
+### Fixed
+- `Microdata` variables to be typed correctly.
 
 ## [1.9.6] - 2018-08-10
 ### Changed

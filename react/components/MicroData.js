@@ -6,9 +6,9 @@ const ITEM_AVAILABLE = 100
 
 const lowestPriceInStockSeller = item => {
   if (item.sellers.length) {
-    return sort((itemA, itemB) => itemA.commertialOffer && itemA.commertialOffer.availableQuantity > 0
-      ? itemB.commertialOffer && itemB.commertialOffer.availableQuantity > 0
-        ? itemA.commertialOffer.price - itemB.commertialOffer.price
+    return sort((itemA, itemB) => itemA.commertialOffer && itemA.commertialOffer.AvailableQuantity > 0
+      ? itemB.commertialOffer && itemB.commertialOffer.AvailableQuantity > 0
+        ? itemA.commertialOffer.Price - itemB.commertialOffer.Price
         : -1
       : -1,
     item.sellers)[0]
@@ -18,7 +18,7 @@ const lowestPriceInStockSeller = item => {
 
 const lowestPriceItem = compose(
   head,
-  sort((itemA, itemB) => (path(['seller', 'commertialOffer', 'price'], itemA) - path(['seller', 'commertialOffer', 'price'], itemB)))
+  sort((itemA, itemB) => (path(['seller', 'commertialOffer', 'Price'], itemA) - path(['seller', 'commertialOffer', 'Price'], itemB)))
 )
 
 const lowestPriceInStock = product => {
@@ -60,16 +60,16 @@ export default function MicroData({ product }, { culture: { currency, locale } }
       Product #: <span property="mpn">{product.productId}</span>
       <span property="offers" typeof="Offer">
         <meta property="priceCurrency" content={currency} />
-        $<span property="price">{path(['commertialOffer', 'price'], seller)}</span>
-        (Sale ends <time property="priceValidUntil" dateTime={path(['commertialOffer', 'priceValidUntil'], seller)}>
-          {path(['commertialOffer', 'priceValidUntil'], seller)}
+        $<span property="price">{path(['commertialOffer', 'Price'], seller)}</span>
+        (Sale ends <time property="priceValidUntil" dateTime={path(['commertialOffer', 'PriceValidUntil'], seller)}>
+          {path(['commertialOffer', 'PriceValidUntil'], seller)}
         </time>)
         Available from: <span property="seller" typeof="Organization"
         >
           <span property="name">{seller.sellerName}</span>
         </span>
         Condition: <link property="itemCondition" href="http://schema.org/NewCondition" />New
-        { pathOr(ITEM_AVAILABLE, ['commertialOffer', 'availableQuantity'], seller)
+        { pathOr(ITEM_AVAILABLE, ['commertialOffer', 'AvailableQuantity'], seller)
           ? <Fragment><link property="availability" href="http://schema.org/InStock"></link> In stock. Order now.</Fragment>
           : <Fragment><link property="availability" href="http://schema.org/OutOfStock"></link>Out of Stock</Fragment>
         }
