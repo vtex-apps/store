@@ -129,6 +129,14 @@ class ProductContextProvider extends Component {
       product,
     }
 
+    /**
+     * The breadcrumbs components is being used in multiple pages, therefore we need to adapt the data to its needs insteadof
+     * making the component do the changes it self.**/
+    const breadcrumbsProps = {
+      term: slug,
+      categories: product ? product.categories : null,
+    }
+
     return (
       <div className="vtex-product-context-provider">
         {product &&
@@ -146,6 +154,7 @@ class ProductContextProvider extends Component {
             {React.cloneElement(this.props.children, {
               productQuery,
               slug,
+              ...breadcrumbsProps,
             })}
           </DataLayerApolloWrapper>
         </Fragment>
