@@ -12,7 +12,9 @@ export default class HomeContextProvider extends Component {
     accountName: global.__RUNTIME__.account,
     pageTitle: document.title,
     pageUrl: location.href,
-    pageCategory: 'Home'
+    pageCategory: 'Home',
+  }, {
+    event: 'homeView'
   })
 
   render() {

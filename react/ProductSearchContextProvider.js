@@ -38,6 +38,22 @@ class ProductSearchContextProvider extends Component {
       categories,
     }
   }
+  
+  pageCategory = products => {
+    if (products.length == 0) {
+      return 'EmptySearch'
+    }
+    const { category, term } = this.props.params
+    return term ? 'InternalSiteSearch' : category ? 'Category' : 'Department'
+  }
+
+  getPageEventName = products => {
+    if (products.length == 0) {
+      return 'otherView'
+    }
+    const pageCategory = this.pageCategory(products)
+    return `${pageCategory.charAt(0).toLowerCase()}${pageCategory.slice(1)}View`
+  }
 
   getData = searchQuery => {
     if (!searchQuery) {
@@ -65,12 +81,15 @@ class ProductSearchContextProvider extends Component {
       },
       {
         accountName: global.__RUNTIME__.account,
-        pageCategory: category,
+        pageCategory: this.pageCategory(products),
         pageDepartment: department,
         pageFacets: [],
         pageTitle: titleTag,
         pageUrl: window.location.href,
       },
+      {
+        event: this.getPageEventName(products)
+      }
     ]
   }
 

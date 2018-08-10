@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.10.0] - 2018-08-10
+### Added
+- Dispatch `Datalayer` Events (home, category, department, product and search).
+
 ## [1.9.6] - 2018-08-10
 ### Changed
 - Change the props passed to the Breadcrumbs
