@@ -21,13 +21,23 @@ class ProductContextProvider extends Component {
   }
 
   stripCategory(category) {
-    return category.replace(/^\/|\/$/g, '')
+    return category && category.replace(/^\/|\/$/g, '')
   }
 
   getData = () => {
     const {
       data: { product },
     } = this.props
+    const {
+      titleTag,
+      brand,
+      categoryId,
+      categoriesIds,
+      categories,
+      productId,
+      productName,
+      items,
+    } = product || {}
 
     if (!product) {
       return []
@@ -40,34 +50,30 @@ class ProductContextProvider extends Component {
         ? this.stripCategory(last(product.categories))
         : '',
       pageFacets: [],
-      pageTitle: product.titleTag,
+      pageTitle: titleTag,
       pageUrl: window.location.href,
-      productBrandName: product.brand,
-      productCategoryId: Number(product.categoryId),
-      productCategoryName: product
-        ? last(this.stripCategory(head(product.categories)).split('/'))
+      productBrandName: brand,
+      productCategoryId: Number(categoryId),
+      productCategoryName: categories
+        ? last(this.stripCategory(head(categories)).split('/'))
         : '',
-      productDepartmentId: Number(
-        this.stripCategory(last(product.categoriesIds))
-      ),
-      productDepartmentName: product
-        ? this.stripCategory(last(product.categories))
+      productDepartmentId: categoriesIds
+        ? Number(this.stripCategory(last(categoriesIds)))
         : '',
-      productId: product.productId,
-      productName: product.productName,
+      productDepartmentName: categories
+        ? this.stripCategory(last(categories))
+        : '',
+      productId: productId,
+      productName: productName,
       skuStockOutFromProductDetail: [],
       skuStockOutFromShelf: [],
-      // productBrandId: 2123,
-      // shelfProductIds: Array[('2003029', '2002572')],
-      // skuStocks: { 2003960: 108 },
     }
 
-    const skuId = this.props.query.skuId || head(product.items).itemId
+    const skuId = this.props.query.skuId || (items && head(items).itemId)
 
-    const [sku] =
-      product.items.filter(product => product.itemId === skuId) || []
+    const [sku] = items && items.filter(product => product.itemId === skuId) || []
 
-    const { ean, referenceId } = sku
+    const { ean, referenceId, sellers } = sku || {}
 
     pageInfo.productEans = [ean]
 
@@ -77,8 +83,8 @@ class ProductContextProvider extends Component {
       pageInfo.productReferenceId = refIdValue
     }
 
-    if (sku.sellers && sku.sellers.length >= 0) {
-      const [{ commertialOffer, sellerId }] = sku.sellers
+    if (sellers && sellers.length >= 0) {
+      const [{ commertialOffer, sellerId }] = sellers
 
       pageInfo.productListPriceFrom = commertialOffer.ListPrice + ''
       pageInfo.productListPriceTo = commertialOffer.ListPrice + ''
@@ -94,9 +100,9 @@ class ProductContextProvider extends Component {
           detail: {
             products: [
               {
-                id: product.productId,
-                name: product.productName,
-                brand: product.brand,
+                id: productId,
+                name: productName,
+                brand: brand,
                 category: this.stripCategory(
                   path(['categories', '0'], product)
                 ),
@@ -126,6 +132,7 @@ class ProductContextProvider extends Component {
     const data = apolloData || {}
     const { loading } = data
     const product = loading ? productPreview : data.product || {}
+    const {titleTag, metaTagDescription} = product || {}
 
     const productQuery = {
       loading,
@@ -142,12 +149,12 @@ class ProductContextProvider extends Component {
 
     return (
       <div className="vtex-product-context-provider">
-        {product &&
-          <Helmet>
-            <title>{product.titleTag}</title>
-            <meta name="description" content={product.metaTagDescription} />
-          </Helmet>
-        }
+        <Helmet>
+          {titleTag &&
+            <title>{titleTag}</title>}
+          {metaTagDescription &&
+            <meta name="description" content={metaTagDescription} />}
+        </Helmet>
         <Fragment>
           {product && <MicroData product={product} />}
           <DataLayerApolloWrapper

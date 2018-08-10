@@ -28,7 +28,7 @@ class StoreContextProvider extends Component {
     if (dataLayer) {
       dataLayer.splice(0, dataLayer.length)
     } else {
-      console.warn("You doesn't define a Google Tag Manager ID.")
+      console.warn("You don't define a Google Tag Manager ID.")
       window.dataLayer = []
     }
   }
