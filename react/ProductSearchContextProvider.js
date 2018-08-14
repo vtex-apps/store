@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Query } from 'react-apollo'
-import { Helmet } from 'render'
+import { Helmet, withRuntimeContext } from 'render'
+
 import searchQuery from './queries/searchQuery.gql'
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
 import { processSearchContextProps } from './helpers/searchHelpers'
@@ -9,6 +11,18 @@ const DEFAULT_PAGE = 1
 const DEFAULT_MAX_ITEMS_PER_PAGE = 1
 
 class ProductSearchContextProvider extends Component {
+  static propTypes = {
+    params: PropTypes.shape({
+      category: PropTypes.string,
+      department: PropTypes.string,
+      term: PropTypes.string,
+    }),
+    children: PropTypes.node.isRequired,
+    runtime: PropTypes.shape({
+      page: PropTypes.string.isRequired,
+    }),
+  }
+
   state = {
     variables: {
       maxItemsPerPage: DEFAULT_MAX_ITEMS_PER_PAGE,
@@ -17,30 +31,8 @@ class ProductSearchContextProvider extends Component {
     loading: true,
   }
 
-  getBreadcrumbsProps() {
-    let {
-      params: { category, department, term },
-    } = this.props
-
-    const categories = []
-
-    if (department) {
-      categories.push(department)
-    }
-
-    if (category) {
-      category = `${department}/${category}/`
-      categories.push(category)
-    }
-
-    return {
-      term,
-      categories,
-    }
-  }
-  
   pageCategory = products => {
-    if (products.length == 0) {
+    if (products.length === 0) {
       return 'EmptySearch'
     }
     const { category, term } = this.props.params
@@ -48,7 +40,7 @@ class ProductSearchContextProvider extends Component {
   }
 
   getPageEventName = products => {
-    if (products.length == 0) {
+    if (products.length === 0) {
       return 'otherView'
     }
     const pageCategory = this.pageCategory(products)
@@ -59,6 +51,7 @@ class ProductSearchContextProvider extends Component {
     if (!searchQuery) {
       return null
     }
+
     const { products, titleTag } = searchQuery
     const { department, category } = this.props.params
     return [
@@ -72,9 +65,9 @@ class ProductSearchContextProvider extends Component {
             category: searchQuery.facets.CategoriesTrees[index]
               ? searchQuery.facets.CategoriesTrees[index].Name
               : category,
-            position: index + 1 + '',
+            position: `${index + 1}`,
             price: product
-              ? product.items[0].sellers[0].commertialOffer.Price + ''
+              ? `${product.items[0].sellers[0].commertialOffer.Price}`
               : '',
           })),
         },
@@ -88,8 +81,8 @@ class ProductSearchContextProvider extends Component {
         pageUrl: window.location.href,
       },
       {
-        event: this.getPageEventName(products)
-      }
+        event: this.getPageEventName(products),
+      },
     ]
   }
 
@@ -106,9 +99,15 @@ class ProductSearchContextProvider extends Component {
       this.state,
       DEFAULT_PAGE
     )
-    const { params, map, rest, orderBy, from, to } = props
-
-    const breadcrumbsProps = this.getBreadcrumbsProps()
+    const {
+      params,
+      map,
+      rest,
+      orderBy,
+      from,
+      to,
+      runtime: { page },
+    } = props
 
     return (
       <Query
@@ -129,11 +128,7 @@ class ProductSearchContextProvider extends Component {
           const data = searchQueryProps.data || {}
           return (
             <DataLayerApolloWrapper
-              getData={() =>
-                this.getData({
-                  ...data.search,
-                })
-              }
+              getData={() => this.getData(data.search)}
               loading={this.state.loading || searchQueryProps.loading}
             >
               {!searchQueryProps.loading && data.search &&
@@ -145,21 +140,21 @@ class ProductSearchContextProvider extends Component {
                 </Helmet>
               }
               {React.cloneElement(this.props.children, {
+                ...props,
                 loading: this.state.loading,
                 setContextVariables: this.handleContextVariables,
-                ...props,
                 searchQuery: {
                   ...searchQueryProps,
                   ...data.search,
                 },
-                ...breadcrumbsProps
+                page,
               })}
             </DataLayerApolloWrapper>
-          )}
-        }
+          )
+        }}
       </Query>
     )
   }
 }
 
-export default ProductSearchContextProvider
+export default withRuntimeContext(ProductSearchContextProvider)

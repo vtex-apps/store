@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.10.2] - 2018-08-14
+### Added
+- Flag on the component inside `ProductSearchContextProvider` regarding which page it is on.
+
 ## [1.10.1] - 2018-08-10
 
 ## [1.10.0] - 2018-08-10
