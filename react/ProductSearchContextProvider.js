@@ -54,7 +54,6 @@ class ProductSearchContextProvider extends Component {
 
   isPage = path => {
     const { runtime: { page } } = this.props
-
     return `store/${path}` === page
   }
 
@@ -78,6 +77,7 @@ class ProductSearchContextProvider extends Component {
     if (!searchQuery) {
       return null
     }
+
     const { products, titleTag } = searchQuery
     const { department, category } = this.props.params
     return [
@@ -169,7 +169,7 @@ class ProductSearchContextProvider extends Component {
                 departmentPage: this.isPage('department'),
                 categoryPage: this.isPage('category'),
                 subcategoryPage: this.isPage('subcategory'),
-                bandPage: this.isPage('brand'),
+                brandPage: this.isPage('brand'),
                 searchPage: this.isPage('search'),
               })}
             </DataLayerApolloWrapper>
