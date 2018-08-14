@@ -31,32 +31,6 @@ class ProductSearchContextProvider extends Component {
     loading: true,
   }
 
-  get breadcrumbsProps() {
-    const {
-      params: { category, department, term },
-    } = this.props
-
-    const categories = []
-
-    if (department) {
-      categories.push(department)
-    }
-
-    if (category) {
-      categories.push(`${department}/${category}/`)
-    }
-
-    return {
-      term,
-      categories,
-    }
-  }
-
-  isPage = path => {
-    const { runtime: { page } } = this.props
-    return `store/${path}` === page
-  }
-
   pageCategory = products => {
     if (products.length === 0) {
       return 'EmptySearch'
@@ -125,7 +99,15 @@ class ProductSearchContextProvider extends Component {
       this.state,
       DEFAULT_PAGE
     )
-    const { params, map, rest, orderBy, from, to } = props
+    const {
+      params,
+      map,
+      rest,
+      orderBy,
+      from,
+      to,
+      runtime: { page },
+    } = props
 
     return (
       <Query
@@ -165,12 +147,7 @@ class ProductSearchContextProvider extends Component {
                   ...searchQueryProps,
                   ...data.search,
                 },
-                ...this.breadcrumbsProps,
-                departmentPage: this.isPage('department'),
-                categoryPage: this.isPage('category'),
-                subcategoryPage: this.isPage('subcategory'),
-                brandPage: this.isPage('brand'),
-                searchPage: this.isPage('search'),
+                page,
               })}
             </DataLayerApolloWrapper>
           )
