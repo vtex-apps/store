@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Query } from 'react-apollo'
-import { Helmet } from 'render'
+import { Helmet, withRuntimeContext } from 'render'
 
 import searchQuery from './queries/searchQuery.gql'
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
@@ -18,6 +18,9 @@ class ProductSearchContextProvider extends Component {
       term: PropTypes.string,
     }),
     children: PropTypes.node.isRequired,
+    runtime: PropTypes.shape({
+      page: PropTypes.string.isRequired,
+    }),
   }
 
   state = {
@@ -47,6 +50,12 @@ class ProductSearchContextProvider extends Component {
       term,
       categories,
     }
+  }
+
+  isPage = path => {
+    const { runtime: { page } } = this.props
+
+    return `store/${path}` === page
   }
 
   pageCategory = products => {
@@ -157,6 +166,11 @@ class ProductSearchContextProvider extends Component {
                   ...data.search,
                 },
                 ...this.breadcrumbsProps,
+                departmentPage: this.isPage('department'),
+                categoryPage: this.isPage('category'),
+                subcategoryPage: this.isPage('subcategory'),
+                bandPage: this.isPage('brand'),
+                searchPage: this.isPage('search'),
               })}
             </DataLayerApolloWrapper>
           )
@@ -166,4 +180,4 @@ class ProductSearchContextProvider extends Component {
   }
 }
 
-export default ProductSearchContextProvider
+export default withRuntimeContext(ProductSearchContextProvider)
