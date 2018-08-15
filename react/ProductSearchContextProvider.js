@@ -147,7 +147,7 @@ class ProductSearchContextProvider extends Component {
                   ...searchQueryProps,
                   ...data.search,
                 },
-                page,
+                searchContext: page,
               })}
             </DataLayerApolloWrapper>
           )
