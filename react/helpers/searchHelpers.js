@@ -6,8 +6,8 @@ function createMap(params, rest, isBrand) {
     .map(key => params[key])
     .concat(rest ? rest.split(',') : [])
   const map =
-    paramValues.length > 0
-    && Array(paramValues.length - 1)
+    paramValues.length > 0 &&
+    Array(paramValues.length - 1)
       .fill('c')
       .join(',') +
     (paramValues.length > 1 ? ',' : '') +
