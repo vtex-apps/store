@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
-- Product Query.
+- Product Query in order to match with the new Benefits Resolver.
 
 ## [1.10.3] - 2018-08-15
 ### Fixed
