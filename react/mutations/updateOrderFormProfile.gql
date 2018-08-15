@@ -1,0 +1,8 @@
+mutation updateOrderFormProfile(
+  $orderFormId: String
+  $fields: OrderFormProfileInput
+) {
+  updateOrderFormProfile(orderFormId: $orderFormId, fields: $fields) {
+    orderFormId
+  }
+}
