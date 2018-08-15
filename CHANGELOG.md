@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.11.0] - 2018-08-15
+### Added
+- Add the updateProfile mutation to the orderFormContext
+
 ## [1.10.3] - 2018-08-15
 ### Fixed
 - Prop name conflict in the `ProductSearchContextProvider`.
