@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.11.2] - 2018-08-20
+### Changed
+- Update product query to get `productClusters` and `clusterHighlights`
+
 ## [1.11.1] - 2018-08-16
 ### Removed
 - Remove `propTypes.js` file.
