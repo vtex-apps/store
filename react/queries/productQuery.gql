@@ -181,5 +181,13 @@ query Product($slug: String) {
       }
       teaserType
     }
+    productClusters{
+      id
+      name
+    }
+    clusterHighlights{
+      id
+      name
+    }
   }
 }
