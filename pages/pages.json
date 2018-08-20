@@ -24,12 +24,12 @@
     },
     "store/brand": {
       "path": "/:brand/b",
-      "canonicalPaths": ["/:brand"],
+      "canonical": "/:brand",
       "context": "ProductSearchContextProvider"
     },
     "store/department": {
       "path": "/:department/d",
-      "canonicalPaths": ["/:department"],
+      "canonical": "/:department",
       "context": "ProductSearchContextProvider"
     },
     "store/category": {
@@ -46,7 +46,7 @@
     },
     "store/search": {
       "path": "/:term/s",
-      "canonicalPaths": ["/:term"],
+      "canonical": "/:term",
       "context": "ProductSearchContextProvider"
     }
   }
