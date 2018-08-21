@@ -5,7 +5,6 @@ import { graphql, compose } from 'react-apollo'
 import orderFormQuery from './queries/orderFormQuery.gql'
 import addToCartMutation from './mutations/addToCartMutation.gql'
 import updateItemsMutation from './mutations/updateItemsMutation.gql'
-import updateOrderFormProfile from './mutations/updateOrderFormProfile.gql'
 
 const defaultState = {
   orderFormContext: {
@@ -17,7 +16,6 @@ const defaultState = {
     updateToastMessage: () => {},
     updateOrderForm: () => {},
     updateAndRefetchOrderForm: () => {},
-    updateOrderFormProfile: () => {},
   },
 }
 
@@ -77,7 +75,6 @@ class ContextProvider extends Component {
 
     state.orderFormContext.updateToastMessage = this.handleMessageUpdate
     state.orderFormContext.updateAndRefetchOrderForm = this.handleUpdateAndRefetchOrderForm
-    state.orderFormContext.updateOrderFormProfile = this.props.updateOrderFormProfile
     state.orderFormContext.updateOrderForm = this.props.updateOrderForm
     state.orderFormContext.addItem = this.props.addItem
 
@@ -105,8 +102,6 @@ const contextPropTypes = PropTypes.shape({
   addItem: PropTypes.func.isRequired,
   /* Function to update the orderForm */
   updateOrderForm: PropTypes.func.isRequired,
-  /* Function to update the orderForm profile data*/
-  updateOrderFormProfile: PropTypes.func.isRequired,
   /* Function to update the orderForm and refetch the data*/
   updateAndRefetchOrderForm: PropTypes.func.isRequired,
   /* Function to update the message */
@@ -125,8 +120,7 @@ const contextPropTypes = PropTypes.shape({
 export const OrderFormProvider = compose(
   graphql(orderFormQuery, options),
   graphql(addToCartMutation, { name: 'addItem' }),
-  graphql(updateItemsMutation, { name: 'updateOrderForm' }),
-  graphql(updateOrderFormProfile, { name: 'updateOrderFormProfile' })
+  graphql(updateItemsMutation, { name: 'updateOrderForm' })
 )(ContextProvider)
 
 export default { orderFormConsumer, contextPropTypes }

@@ -6,10 +6,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- Changelog added missing:  `-`
+
+### Removed
+- UpdateOrderForm mutation from OrderFormContext
 
 ## [1.12.0] - 2018-08-21
 ### Added
-Canonical url for search context
+- Canonical url for search context
 
 ## [1.11.2] - 2018-08-20
 ### Changed
