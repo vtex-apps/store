@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Changelog added missing:  `-`
 
 ### Removed
-- UpdateOrderForm mutation from OrderFormContext
+- UpdateOrderFormProfile mutation from OrderFormContext
 
 ## [1.12.0] - 2018-08-21
 ### Added
