@@ -10,6 +10,9 @@ const APP_LOCATOR = 'vtex.store'
 const CONTENT_TYPE = 'text/html;charset=utf-8'
 const META_ROBOTS = 'index, follow'
 
+const GTM_UNDEFINED = `No Google Tag Manager ID is defined. Take a look at:\
+https://${global.__RUNTIME__.workspace}--${global.__RUNTIME__.account}.myvtex.com/admin/apps/vtex.store/setup`
+
 class StoreContextProvider extends Component {
   static propTypes = {
     children: PropTypes.element,
@@ -28,7 +31,7 @@ class StoreContextProvider extends Component {
     if (dataLayer) {
       dataLayer.splice(0, dataLayer.length)
     } else {
-      console.warn("You doesn't define a Google Tag Manager ID.")
+      console.warn(GTM_UNDEFINED)
       window.dataLayer = []
     }
   }

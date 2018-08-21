@@ -10,6 +10,11 @@ import { processSearchContextProps } from './helpers/searchHelpers'
 const DEFAULT_PAGE = 1
 const DEFAULT_MAX_ITEMS_PER_PAGE = 1
 
+const canonicalPathFromParams = ({brand, department, category, subcategory}) =>
+  ['', brand || department, category, subcategory].reduce(
+    (acc, curr) => curr ? `${acc}/${curr}` : acc
+  )
+
 class ProductSearchContextProvider extends Component {
   static propTypes = {
     params: PropTypes.shape({
@@ -57,7 +62,7 @@ class ProductSearchContextProvider extends Component {
     return [
       {
         ecommerce: {
-          impressions: products.map((product, index) => ({
+          impressions: Array.isArray(products) && products.map((product, index) => ({
             id: product.productId,
             name: product.productName,
             list: 'Search Results',
@@ -124,34 +129,39 @@ class ProductSearchContextProvider extends Component {
         }}
         notifyOnNetworkStatusChange
       >
-        {(searchQueryProps) => {
-          const data = searchQueryProps.data || {}
+        {searchQueryProps => {
+          const {data, loading} = searchQueryProps
+          const {search} = data || {}
+          const {titleTag, metaTagDescription} = search || {}
           return (
-            <DataLayerApolloWrapper
-              getData={() => this.getData(data.search)}
-              loading={this.state.loading || searchQueryProps.loading}
-            >
-              {!searchQueryProps.loading && data.search &&
-                <Helmet>
-                  {data.search.titleTag &&
-                    <title>{data.search.titleTag}</title>}
-                  {data.search.metaTagDescription &&
-                    <meta name="description" content={data.search.metaTagDescription} />}
-                </Helmet>
-              }
-              {React.cloneElement(this.props.children, {
-                ...props,
-                loading: this.state.loading,
-                setContextVariables: this.handleContextVariables,
-                searchQuery: {
-                  ...searchQueryProps,
-                  ...data.search,
-                },
-                searchContext: page,
-              })}
-            </DataLayerApolloWrapper>
-          )
-        }}
+          <DataLayerApolloWrapper
+            getData={() =>
+              this.getData({
+                ...search,
+              })
+            }
+            loading={this.state.loading || loading}
+          >
+            <Helmet>
+              {params
+                && <link rel='canonical' href={canonicalPathFromParams(params)}></link>}
+              {titleTag
+                && <title>{titleTag}</title>}
+              {metaTagDescription
+                && <meta name="description" content={metaTagDescription} />}
+            </Helmet>
+            {React.cloneElement(this.props.children, {
+              loading: this.state.loading,
+              setContextVariables: this.handleContextVariables,
+              ...props,
+              searchQuery: {
+                ...searchQueryProps,
+                ...search,
+              },
+              searchContext: page,
+            })}
+          </DataLayerApolloWrapper>
+        )}}
       </Query>
     )
   }
