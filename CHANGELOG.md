@@ -9,9 +9,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Product not found validation on ProductContextProvider
 
-### Removed
-- UpdateOrderFormProfile mutation from OrderFormContext
-
 ## [1.12.0] - 2018-08-21
 ### Added
 - Canonical url for search context
