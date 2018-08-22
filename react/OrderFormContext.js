@@ -77,9 +77,9 @@ class ContextProvider extends Component {
 
     state.orderFormContext.updateToastMessage = this.handleMessageUpdate
     state.orderFormContext.updateAndRefetchOrderForm = this.handleUpdateAndRefetchOrderForm
-    state.orderFormContext.updateOrderFormProfile = this.props.updateOrderFormProfile
     state.orderFormContext.updateOrderForm = this.props.updateOrderForm
     state.orderFormContext.addItem = this.props.addItem
+    state.orderFormContext.updateOrderFormProfile = this.props.updateOrderFormProfile
 
     return <Provider value={this.state}>{this.props.children}</Provider>
   }

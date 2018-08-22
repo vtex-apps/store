@@ -71,7 +71,8 @@ class ProductContextProvider extends Component {
 
     const skuId = this.props.query.skuId || (items && head(items).itemId)
 
-    const [sku] = items && items.filter(product => product.itemId === skuId) || []
+    const [sku] =
+      (items && items.filter(product => product.itemId === skuId)) || []
 
     const { ean, referenceId, sellers } = sku || {}
 
@@ -114,8 +115,8 @@ class ProductContextProvider extends Component {
       },
       pageInfo,
       {
-        event: 'productView'
-      }
+        event: 'productView',
+      },
     ]
   }
 
@@ -125,6 +126,7 @@ class ProductContextProvider extends Component {
       params: { slug },
       client,
     } = this.props
+
     const productPreview = client.readFragment({
       id: cacheLocator.product(slug),
       fragment: productPreviewFragment,
@@ -132,12 +134,19 @@ class ProductContextProvider extends Component {
     const data = apolloData || {}
     const { loading } = data
     const product = loading ? productPreview : data.product || {}
-    const {titleTag, metaTagDescription} = product || {}
+    const { titleTag, metaTagDescription } = product || {}
 
     const productQuery = {
       loading,
       product,
     }
+
+    const isNullOrEmpty = !product || !Object.keys(product).length
+
+    if (isNullOrEmpty)
+      productQuery.error = {
+        message: 'Product not found!',
+      }
 
     /**
      * The breadcrumbs components is being used in multiple pages, therefore we need to adapt the data to its needs insteadof
@@ -150,17 +159,14 @@ class ProductContextProvider extends Component {
     return (
       <div className="vtex-product-context-provider">
         <Helmet>
-          {titleTag &&
-            <title>{titleTag}</title>}
-          {metaTagDescription &&
-            <meta name="description" content={metaTagDescription} />}
+          {titleTag && <title>{titleTag}</title>}
+          {metaTagDescription && (
+            <meta name="description" content={metaTagDescription} />
+          )}
         </Helmet>
         <Fragment>
-          {product && <MicroData product={product} />}
-          <DataLayerApolloWrapper
-            getData={this.getData}
-            loading={loading}
-          >
+          {!isNullOrEmpty && <MicroData product={product} />}
+          <DataLayerApolloWrapper getData={this.getData} loading={loading}>
             {React.cloneElement(this.props.children, {
               productQuery,
               slug,
@@ -178,6 +184,7 @@ const options = {
     variables: {
       slug: props.params.slug,
     },
+    errorPolicy: 'all',
   }),
 }
 
