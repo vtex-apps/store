@@ -9,9 +9,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Product not found validation on ProductContextProvider
 
-### Fixed
-- Changelog added missing:  `-`
-
 ### Removed
 - UpdateOrderFormProfile mutation from OrderFormContext
 
