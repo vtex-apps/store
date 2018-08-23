@@ -49,11 +49,11 @@ query Product($slug: String) {
           Tax
           CacheVersionUsedToCallCheckout
           Installments {
-              Value
-              InterestRate
-              TotalValuePlusInterestRate
-              NumberOfInstallments
-              Name
+            Value
+            InterestRate
+            TotalValuePlusInterestRate
+            NumberOfInstallments
+            Name
           }
         }
       }
@@ -66,16 +66,16 @@ query Product($slug: String) {
         product {
           productName
           productId
-    			description
-    			linkText
-    			categories
-    			categoryId
-    			categoriesIds
-    			brand
-    			properties {
-      			name
-      			values
-    			}
+          description
+          linkText
+          categories
+          categoryId
+          categoriesIds
+          brand
+          properties {
+            name
+            values
+          }
         }
         sku {
           itemId
@@ -90,7 +90,7 @@ query Product($slug: String) {
             imageUrl
             imageTag
           }
-          sellers{
+          sellers {
             sellerId
             sellerName
             commertialOffer {
@@ -111,13 +111,13 @@ query Product($slug: String) {
       }
     }
     benefits {
-			featured
+      featured
       id
       name
-      items {
-        benefitProduct {
+      products {
+        product {
           cacheId
-					productName
+          productName
           productId
           description
           linkText
@@ -126,9 +126,9 @@ query Product($slug: String) {
           categoriesIds
           brand
           properties {
-            name,
+            name
             values
-          },
+          }
           items {
             itemId
             name
@@ -177,9 +177,8 @@ query Product($slug: String) {
           }
         }
         discount
-        minQuantity
+        minimumQuantity
       }
-      teaserType
     }
     productClusters{
       id
