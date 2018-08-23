@@ -11,6 +11,42 @@ query Product($slug: String) {
     categoryId
     categoriesIds
     brand
+    recommendations {
+      view {
+        cacheId
+        productId
+        productName
+        description
+        categories
+        link
+        linkText
+        brand
+        items {
+          name
+          itemId
+          referenceId {
+            Value
+          }
+          images {
+            imageUrl
+            imageTag
+          }
+          sellers {
+            commertialOffer {
+              Installments {
+                Value
+                InterestRate
+                TotalValuePlusInterestRate
+                NumberOfInstallments
+                Name
+              }
+              Price
+              ListPrice
+            }
+          }
+        }
+      }
+    }
     properties {
       name
       values
