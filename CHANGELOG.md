@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.12.2] - 2018-08-23
+### Changed
+- Add `recommendations` data in `productQuery`.
+
 ## [1.12.1] - 2018-08-22
 ### Added
 - Product not found validation on ProductContextProvider
