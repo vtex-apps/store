@@ -122,20 +122,33 @@ query Product($slug: String) {
             Value
           }
           images {
-            imageUrl
+            imageId
+            imageLabel
             imageTag
+            imageUrl
+            imageText
           }
           sellers {
+            sellerId
+            sellerName
+            addToCartLink
+            sellerDefault
             commertialOffer {
-              Installments {
-                Value
-                InterestRate
-                TotalValuePlusInterestRate
-                NumberOfInstallments
-                Name
-              }
               Price
               ListPrice
+              PriceWithoutDiscount
+              RewardValue
+              PriceValidUntil
+              AvailableQuantity
+              Tax
+              CacheVersionUsedToCallCheckout
+              Installments {
+                  Value
+                  InterestRate
+                  TotalValuePlusInterestRate
+                  NumberOfInstallments
+                  Name
+              }
             }
           }
         }
