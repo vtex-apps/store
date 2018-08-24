@@ -10,6 +10,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Add more data in `sellers` and `images` in `productQuery`.
 
+## [1.12.4] - 2018-08-23
+### Changed
+- Update search query to include the `Id` and `Slug` fields in the corresponding types.
+
+## [1.12.3] - 2018-08-23
+
+### Changed
+- Add `similars` recommendation data in `productQuery`.
+
 ## [1.12.2] - 2018-08-23
 ### Changed
 - Add `recommendations` data in `productQuery`.
