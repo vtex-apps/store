@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.13.0] - 2018-08-24
+
 ### Changed
 - Add more data in `sellers` and `images` in `productQuery`.
 
