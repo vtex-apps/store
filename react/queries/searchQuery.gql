@@ -22,14 +22,17 @@ query search($query: String, $map: String, $rest: String, $orderBy: String, $fro
         }
       }
       CategoriesTrees {
+        Id
         Quantity
         Name
         Link
         Children {
+          Id
           Quantity
           Name
           Link
           Children {
+            Id
             Quantity
             Name
             Link
@@ -40,8 +43,9 @@ query search($query: String, $map: String, $rest: String, $orderBy: String, $fro
         Quantity
         Name
         Link
+        Slug
       }
-    } 
+    }
     products {
       productId
       productName
