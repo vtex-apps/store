@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import GtmScripts from './components/GtmScripts'
 import { OrderFormProvider } from './OrderFormContext'
 import { DataLayerProvider } from './components/withDataLayer'
+import {withPixel} from './Pixel'
 
 const APP_LOCATOR = 'vtex.store'
 const CONTENT_TYPE = 'text/html;charset=utf-8'
@@ -19,7 +20,7 @@ class StoreContextProvider extends Component {
   }
 
   pushToDataLayer = obj => {
-    window.dataLayer.push(obj)
+    this.props.push(obj)
   }
 
   /**
@@ -70,10 +71,10 @@ class StoreContextProvider extends Component {
     this.initDataLayer()
     return (
       <DataLayerProvider
-        value={{
-          dataLayer: window.dataLayer,
-          set: this.pushToDataLayer,
-        }}
+      value={{
+        dataLayer: window.dataLayer,
+        set: this.pushToDataLayer,
+      }}
       >
         <GtmScripts gtmId={gtmId} />
         <Helmet>
@@ -100,4 +101,4 @@ StoreContextProvider.contextTypes = {
   getSettings: PropTypes.func,
 }
 
-export default withRuntimeContext(StoreContextProvider)
+export default withPixel(withRuntimeContext(StoreContextProvider))
