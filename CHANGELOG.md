@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.13.1] - 2018-08-31
+### Fixed
+- *HotFix* undefined verification in the `ProductSearchContextProvider`.
+
+### Added
+- `benefitSKUIds` property to the benefit data of the `productQuery`.
+
 ## [1.13.0] - 2018-08-24
 
 ### Changed
