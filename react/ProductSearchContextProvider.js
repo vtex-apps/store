@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 import { Query } from 'react-apollo'
 import { Helmet, withRuntimeContext } from 'render'
 
-import searchQuery from './queries/searchQuery.gql'
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
 import { processSearchContextProps } from './helpers/searchHelpers'
+import searchQuery from './queries/searchQuery.gql'
 
 const DEFAULT_PAGE = 1
 const DEFAULT_MAX_ITEMS_PER_PAGE = 1
@@ -37,7 +37,7 @@ class ProductSearchContextProvider extends Component {
   }
 
   pageCategory = products => {
-    if (products.length === 0) {
+    if (!products || products.length === 0) {
       return 'EmptySearch'
     }
     const { category, term } = this.props.params
