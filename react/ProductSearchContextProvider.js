@@ -10,9 +10,14 @@ import searchQuery from './queries/searchQuery.gql'
 const DEFAULT_PAGE = 1
 const DEFAULT_MAX_ITEMS_PER_PAGE = 1
 
-const canonicalPathFromParams = ({brand, department, category, subcategory}) =>
+const canonicalPathFromParams = ({
+  brand,
+  department,
+  category,
+  subcategory,
+}) =>
   ['', brand || department, category, subcategory].reduce(
-    (acc, curr) => curr ? `${acc}/${curr}` : acc
+    (acc, curr) => (curr ? `${acc}/${curr}` : acc)
   )
 
 class ProductSearchContextProvider extends Component {
@@ -45,7 +50,7 @@ class ProductSearchContextProvider extends Component {
   }
 
   getPageEventName = products => {
-    if (products.length === 0) {
+    if (!products || products.length === 0) {
       return 'otherView'
     }
     const pageCategory = this.pageCategory(products)
@@ -62,19 +67,21 @@ class ProductSearchContextProvider extends Component {
     return [
       {
         ecommerce: {
-          impressions: Array.isArray(products) && products.map((product, index) => ({
-            id: product.productId,
-            name: product.productName,
-            list: 'Search Results',
-            brand: product.brand,
-            category: searchQuery.facets.CategoriesTrees[index]
-              ? searchQuery.facets.CategoriesTrees[index].Name
-              : category,
-            position: `${index + 1}`,
-            price: product
-              ? `${product.items[0].sellers[0].commertialOffer.Price}`
-              : '',
-          })),
+          impressions:
+            Array.isArray(products) &&
+            products.map((product, index) => ({
+              id: product.productId,
+              name: product.productName,
+              list: 'Search Results',
+              brand: product.brand,
+              category: searchQuery.facets.CategoriesTrees[index]
+                ? searchQuery.facets.CategoriesTrees[index].Name
+                : category,
+              position: `${index + 1}`,
+              price: product
+                ? `${product.items[0].sellers[0].commertialOffer.Price}`
+                : '',
+            })),
         },
       },
       {
@@ -127,41 +134,44 @@ class ProductSearchContextProvider extends Component {
           from,
           to,
         }}
-        notifyOnNetworkStatusChange
-      >
+        notifyOnNetworkStatusChange>
         {searchQueryProps => {
-          const {data, loading} = searchQueryProps
-          const {search} = data || {}
-          const {titleTag, metaTagDescription} = search || {}
+          const { data, loading } = searchQueryProps
+          const { search } = data || {}
+          const { titleTag, metaTagDescription } = search || {}
           return (
-          <DataLayerApolloWrapper
-            getData={() =>
-              this.getData({
-                ...search,
-              })
-            }
-            loading={this.state.loading || loading}
-          >
-            <Helmet>
-              {params
-                && <link rel='canonical' href={canonicalPathFromParams(params)}></link>}
-              {titleTag
-                && <title>{titleTag}</title>}
-              {metaTagDescription
-                && <meta name="description" content={metaTagDescription} />}
-            </Helmet>
-            {React.cloneElement(this.props.children, {
-              loading: this.state.loading,
-              setContextVariables: this.handleContextVariables,
-              ...props,
-              searchQuery: {
-                ...searchQueryProps,
-                ...search,
-              },
-              searchContext: page,
-            })}
-          </DataLayerApolloWrapper>
-        )}}
+            <DataLayerApolloWrapper
+              getData={() =>
+                this.getData({
+                  ...search,
+                })
+              }
+              loading={this.state.loading || loading}>
+              <Helmet>
+                {params && (
+                  <link
+                    rel="canonical"
+                    href={canonicalPathFromParams(params)}
+                  />
+                )}
+                {titleTag && <title>{titleTag}</title>}
+                {metaTagDescription && (
+                  <meta name="description" content={metaTagDescription} />
+                )}
+              </Helmet>
+              {React.cloneElement(this.props.children, {
+                loading: this.state.loading,
+                setContextVariables: this.handleContextVariables,
+                ...props,
+                searchQuery: {
+                  ...searchQueryProps,
+                  ...search,
+                },
+                searchContext: page,
+              })}
+            </DataLayerApolloWrapper>
+          )
+        }}
       </Query>
     )
   }
