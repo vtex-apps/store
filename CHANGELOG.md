@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Added `priceRange` parameter to search query.
 
 ## [1.13.1] - 2018-08-31
 ### Fixed
@@ -15,7 +17,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `benefitSKUIds` property to the benefit data of the `productQuery`.
 
 ## [1.13.0] - 2018-08-24
-
 ### Changed
 - Add more data in `sellers` and `images` in `productQuery`.
 
