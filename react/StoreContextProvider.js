@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { OrderFormProvider } from './OrderFormContext'
 import { DataLayerProvider } from './components/withDataLayer'
 import { gtmScript, gtmFrame } from './scripts/gtm'
-import {withPixel} from './Pixel'
+import { pixelGlobalContext } from './PixelContext'
 
 const APP_LOCATOR = 'vtex.store'
 const CONTENT_TYPE = 'text/html;charset=utf-8'
@@ -20,6 +20,7 @@ class StoreContextProvider extends Component {
   }
 
   pushToDataLayer = obj => {
+    console.log(">>> Push to datalayer")
     this.props.push(obj)
   }
 
@@ -87,4 +88,4 @@ StoreContextProvider.contextTypes = {
   getSettings: PropTypes.func,
 }
 
-export default withPixel(StoreContextProvider)
+export default pixelGlobalContext(StoreContextProvider)
