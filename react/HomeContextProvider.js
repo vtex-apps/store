@@ -4,8 +4,6 @@ import { withRuntimeContext } from 'render'
 
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
 
-import Pixel from './components/Pixel'
-
 class HomeContextProvider extends Component {
   static propTypes = {
     children: PropTypes.element,
