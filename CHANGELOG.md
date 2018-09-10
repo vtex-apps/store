@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.13.2] - 2018-09-10
+### Changed
+- Hoist non react statics on data layer hoc.
+
 ## [1.13.1] - 2018-08-31
 ### Fixed
 - *HotFix* undefined verification in the `ProductSearchContextProvider`.
