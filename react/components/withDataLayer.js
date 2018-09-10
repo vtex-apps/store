@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import hoistNonReactStatics from 'hoist-non-react-statics'
 
 const { Consumer, Provider } = React.createContext({
   dataLayer: [],
@@ -9,7 +10,7 @@ const { Consumer, Provider } = React.createContext({
 export { Provider as DataLayerProvider }
 
 export default function withDataLayer(WrappedComponent) {
-  return class DataLayer extends Component {
+  class DataLayer extends Component {
     static displayName =
       `DataLayer(${WrappedComponent.displayName || WrappedComponent.name})`
 
@@ -23,6 +24,8 @@ export default function withDataLayer(WrappedComponent) {
       )
     }
   }
+
+  return hoistNonReactStatics(DataLayer, WrappedComponent)
 }
 
 export const dataLayerProps = {
