@@ -1,5 +1,5 @@
-query search($query: String, $map: String, $rest: String, $orderBy: String, $from: Int, $to: Int) {
-  search(query: $query, map: $map, rest: $rest, orderBy: $orderBy, from: $from, to: $to) {
+query search($query: String, $map: String, $rest: String, $orderBy: String, $priceRange: String, $from: Int, $to: Int) {
+  search(query: $query, map: $map, rest: $rest, orderBy: $orderBy, priceRange: $priceRange, from: $from, to: $to) {
     titleTag
     metaTagDescription
     facets {

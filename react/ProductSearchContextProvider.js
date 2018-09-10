@@ -3,34 +3,36 @@ import React, { Component } from 'react'
 import { Query } from 'react-apollo'
 import { Helmet, withRuntimeContext } from 'render'
 
+import { SORT_OPTIONS, createMap, canonicalPathFromParams } from './utils/search'
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
-import { processSearchContextProps } from './helpers/searchHelpers'
 import searchQuery from './queries/searchQuery.gql'
 
 const DEFAULT_PAGE = 1
 const DEFAULT_MAX_ITEMS_PER_PAGE = 1
 
-const canonicalPathFromParams = ({
-  brand,
-  department,
-  category,
-  subcategory,
-}) =>
-  ['', brand || department, category, subcategory].reduce(
-    (acc, curr) => (curr ? `${acc}/${curr}` : acc)
-  )
-
 class ProductSearchContextProvider extends Component {
   static propTypes = {
+    /** Route parameters */
     params: PropTypes.shape({
       category: PropTypes.string,
       department: PropTypes.string,
       term: PropTypes.string,
     }),
-    children: PropTypes.node.isRequired,
+    /** Render runtime context */
     runtime: PropTypes.shape({
       page: PropTypes.string.isRequired,
     }),
+    /** Query params */
+    query: PropTypes.shape({
+      map: PropTypes.string,
+      rest: PropTypes.string,
+      order: PropTypes.oneOf(SORT_OPTIONS.map(o => o.value)),
+      priceRange: PropTypes.string,
+    }),
+    /** Current extension point name */
+    nextTreePath: PropTypes.string,
+    /** Component to be rendered */
+    children: PropTypes.node.isRequired,
   }
 
   state = {
@@ -106,20 +108,25 @@ class ProductSearchContextProvider extends Component {
   }
 
   render() {
-    const props = processSearchContextProps(
-      this.props,
-      this.state,
-      DEFAULT_PAGE
-    )
     const {
+      nextTreePath,
       params,
-      map,
-      rest,
-      orderBy,
-      from,
-      to,
-      runtime: { page },
-    } = props
+      query: {
+        order: orderBy = SORT_OPTIONS[0].value,
+        page: pageProps,
+        map: mapProps,
+        rest = '',
+        priceRange,
+      },
+      runtime: { page: runtimePage },
+    } = this.props
+
+    const { variables: { maxItemsPerPage } } = this.state
+
+    const map = mapProps || createMap(params, rest)
+    const page = pageProps ? parseInt(pageProps) : DEFAULT_PAGE
+    const from = (page - 1) * maxItemsPerPage
+    const to = from + maxItemsPerPage - 1
 
     return (
       <Query
@@ -131,10 +138,12 @@ class ProductSearchContextProvider extends Component {
           map,
           rest,
           orderBy,
+          priceRange,
           from,
           to,
         }}
-        notifyOnNetworkStatusChange>
+        notifyOnNetworkStatusChange
+      >
         {searchQueryProps => {
           const { data, loading } = searchQueryProps
           const { search } = data || {}
@@ -146,7 +155,8 @@ class ProductSearchContextProvider extends Component {
                   ...search,
                 })
               }
-              loading={this.state.loading || loading}>
+              loading={this.state.loading || loading}
+            >
               <Helmet>
                 {params && (
                   <link
@@ -160,14 +170,22 @@ class ProductSearchContextProvider extends Component {
                 )}
               </Helmet>
               {React.cloneElement(this.props.children, {
-                loading: this.state.loading,
-                setContextVariables: this.handleContextVariables,
-                ...props,
+                ...this.props,
                 searchQuery: {
                   ...searchQueryProps,
                   ...search,
                 },
-                searchContext: page,
+                loading: this.state.loading,
+                setContextVariables: this.handleContextVariables,
+                searchContext: runtimePage,
+                pagesPath: nextTreePath,
+                map,
+                rest,
+                orderBy,
+                priceRange,
+                page,
+                from,
+                to,
               })}
             </DataLayerApolloWrapper>
           )
