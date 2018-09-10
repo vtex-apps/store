@@ -12,22 +12,27 @@ const DEFAULT_MAX_ITEMS_PER_PAGE = 1
 
 class ProductSearchContextProvider extends Component {
   static propTypes = {
+    /** Route parameters */
     params: PropTypes.shape({
       category: PropTypes.string,
       department: PropTypes.string,
       term: PropTypes.string,
     }),
-    children: PropTypes.node.isRequired,
+    /** Render runtime context */
     runtime: PropTypes.shape({
       page: PropTypes.string.isRequired,
     }),
+    /** Query params */
     query: PropTypes.shape({
       map: PropTypes.string,
       rest: PropTypes.string,
       order: PropTypes.oneOf(SORT_OPTIONS.map(o => o.value)),
       priceRange: PropTypes.string,
     }),
+    /** Current extension point name */
     nextTreePath: PropTypes.string,
+    /** Component to be rendered */
+    children: PropTypes.node.isRequired,
   }
 
   state = {
