@@ -38,9 +38,9 @@ export const pixelGlobalContext = (WrappedComponent) => {
     notifySubscribers = (data) => {
       console.log(">>> Notify Subscribers")
       this.state.subscribers.forEach(subscriber => {
-        if (subscriber.on) {
+        if (subscriber[data.event]) {
           console.log(">>> Notify ", subscriber)
-          subscriber.on(data)
+          subscriber[data.event](data)
         }
       })
     }
