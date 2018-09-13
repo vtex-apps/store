@@ -46,8 +46,8 @@ class ProductContextProvider extends Component {
     const pageInfo = {
       accountName: global.__RUNTIME__.account,
       pageCategory: 'Product',
-      pageDepartment: product
-        ? this.stripCategory(last(product.categories))
+      pageDepartment: categories
+        ? this.stripCategory(last(categories))
         : '',
       pageFacets: [],
       pageTitle: titleTag,
