@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fix undefined categories prop in `ProductContextProvider`. 
 
 ### Removed
-- Now, `my-orders-app` is embedded in `my-account`, this make the route `account/orders` useless.
+- Now, `my-orders-app` is embedded in `my-account`, this makes the route `account/orders` useless.
 
 ## [1.14.0] - 2018-09-10
 ### Changed

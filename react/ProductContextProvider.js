@@ -27,6 +27,7 @@ class ProductContextProvider extends Component {
   getData = () => {
     const {
       data: { product },
+      query,
     } = this.props
     const {
       titleTag,
@@ -69,7 +70,7 @@ class ProductContextProvider extends Component {
       skuStockOutFromShelf: [],
     }
 
-    const skuId = this.props.query.skuId || (items && head(items).itemId)
+    const skuId = query.skuId || (items && head(items).itemId)
 
     const [sku] =
       (items && items.filter(product => product.itemId === skuId)) || []
