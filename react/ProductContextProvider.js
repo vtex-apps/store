@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React, { Component, Fragment } from 'react'
 import { withApollo, graphql, compose } from 'react-apollo'
 import { path, last, head } from 'ramda'
-import { Helmet } from 'render'
+import { Helmet, withRuntimeContext } from 'render'
 
 import MicroData from './components/MicroData'
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
@@ -18,6 +18,20 @@ class ProductContextProvider extends Component {
     }),
     data: PropTypes.object,
     children: PropTypes.node,
+    runtime: PropTypes.object,
+  }
+
+  componentDidMount() {
+    const {
+      data: { product, loading },
+      params: { slug },
+    } = this.props
+    if (!product && !loading) {
+      this.props.runtime.navigate({
+        page: 'store/search',
+        params: { term: slug },
+      })
+    }
   }
 
   stripCategory(category) {
@@ -87,12 +101,12 @@ class ProductContextProvider extends Component {
     if (sellers && sellers.length >= 0) {
       const [{ commertialOffer, sellerId }] = sellers
 
-      pageInfo.productListPriceFrom = commertialOffer.ListPrice + ''
-      pageInfo.productListPriceTo = commertialOffer.ListPrice + ''
-      pageInfo.productPriceFrom = commertialOffer.Price + ''
-      pageInfo.productPriceTo = commertialOffer.Price + ''
-      pageInfo.sellerId = sellerId + ''
-      pageInfo.sellerIds = sellerId + ''
+      pageInfo.productListPriceFrom = `${commertialOffer.ListPrice}`
+      pageInfo.productListPriceTo = `${commertialOffer.ListPrice}`
+      pageInfo.productPriceFrom = `${commertialOffer.Price}`
+      pageInfo.productPriceTo = `${commertialOffer.Price}`
+      pageInfo.sellerId = `${sellerId}`
+      pageInfo.sellerIds = `${sellerId}`
     }
 
     return [
@@ -127,13 +141,14 @@ class ProductContextProvider extends Component {
       client,
     } = this.props
 
+    if (!apolloData) return null
     const productPreview = client.readFragment({
       id: cacheLocator.product(slug),
       fragment: productPreviewFragment,
     })
     const data = apolloData || {}
     const { loading } = data
-    const product = loading ? productPreview : data.product || {}
+    const product = loading ? productPreview : data.product
     const { titleTag, metaTagDescription } = product || {}
 
     const productQuery = {
@@ -141,12 +156,11 @@ class ProductContextProvider extends Component {
       product,
     }
 
-    const isNullOrEmpty = !product || !Object.keys(product).length
-
-    if (isNullOrEmpty)
+    if (!product && !loading) {
       productQuery.error = {
         message: 'Product not found!',
       }
+    }
 
     /**
      * The breadcrumbs components is being used in multiple pages, therefore we need to adapt the data to its needs insteadof
@@ -164,16 +178,18 @@ class ProductContextProvider extends Component {
             <meta name="description" content={metaTagDescription} />
           )}
         </Helmet>
-        <Fragment>
-          {!isNullOrEmpty && <MicroData product={product} />}
-          <DataLayerApolloWrapper getData={this.getData} loading={loading}>
-            {React.cloneElement(this.props.children, {
-              productQuery,
-              slug,
-              ...breadcrumbsProps,
-            })}
-          </DataLayerApolloWrapper>
-        </Fragment>
+        {
+          <Fragment>
+            {product && <MicroData product={product} />}
+            <DataLayerApolloWrapper getData={this.getData} loading={loading}>
+              {React.cloneElement(this.props.children, {
+                productQuery,
+                slug,
+                ...breadcrumbsProps,
+              })}
+            </DataLayerApolloWrapper>
+          </Fragment>
+        }
       </div>
     )
   }
@@ -190,5 +206,6 @@ const options = {
 
 export default compose(
   withApollo,
+  withRuntimeContext,
   graphql(productQuery, options)
 )(ProductContextProvider)
