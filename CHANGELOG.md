@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.15.0] - 2018-09-14
+### Added
+- `ProductContextProvider` redirect to the searchPage when product not found.
+
 ## [1.14.1] - 2018-09-13
 ### Fixed
 - Fix undefined categories prop in `ProductContextProvider`. 
