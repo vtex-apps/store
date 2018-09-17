@@ -2,14 +2,13 @@ import React, { Component } from 'react'
 
 const PixelContext = React.createContext()
 
-export const PixelAppInterface = (WrappedComponent) => {
+export const Pixel = (WrappedComponent) => {
   return class Pixel extends Component {
     constructor(props) {
       super(props)
     }
 
     renderComponent = (context) => {
-      console.log(">>> Context:", context)
       return (
         <WrappedComponent subscribe={context.subscribe} context={context}/>
       )
@@ -36,10 +35,8 @@ export const pixelGlobalContext = (WrappedComponent) => {
     }
 
     notifySubscribers = (data) => {
-      console.log(">>> Notify Subscribers")
       this.state.subscribers.forEach(subscriber => {
         if (subscriber[data.event]) {
-          console.log(">>> Notify ", subscriber)
           subscriber[data.event](data)
         }
       })
@@ -47,13 +44,12 @@ export const pixelGlobalContext = (WrappedComponent) => {
     
     push = (data) => {
       const notifyAndPush = () => {
-        console.log(">>> Pixel push event: ", this.state, data)
         this.notifySubscribers(data)
         window.dataLayer.push(data)
       }
 
       if (this.state.subscribers.length === 0) {
-        setTimeout(notifyAndPush, 100);
+        setTimeout(notifyAndPush, 100)
       } else {
         notifyAndPush()
       }
@@ -61,7 +57,6 @@ export const pixelGlobalContext = (WrappedComponent) => {
     
     subscribe = (subscriber) => {
       if (subscriber) {
-        console.log(">>> Subscribe: ", subscriber)
         this.setState({
           subscribers: [subscriber, ...this.state.subscribers]
         })
@@ -81,4 +76,4 @@ export const pixelGlobalContext = (WrappedComponent) => {
   }
 }
 
-export default { PixelAppInterface }
+export default { Pixel }
