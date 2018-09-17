@@ -45,10 +45,8 @@ export function pixelProvider(WrappedComponent) {
     }
 
     notifySubscribers = (data) => {
-      console.log(">>> Notify Subscribers")
       this.state.subscribers.forEach(subscriber => {
         if (subscriber[data.event]) {
-          console.log(">>> Notify ", subscriber)
           subscriber[data.event](data)
         }
       })
@@ -56,13 +54,12 @@ export function pixelProvider(WrappedComponent) {
 
     push = data => {
       const notifyAndPush = () => {
-        console.log(">>> Pixel push event: ", this.state, data)
         this.notifySubscribers(data)
         window.dataLayer.push(data)
       }
 
       if (this.state.subscribers.length === 0) {
-        setTimeout(notifyAndPush, 100);
+        setTimeout(notifyAndPush, 100)
       } else {
         notifyAndPush()
       }
