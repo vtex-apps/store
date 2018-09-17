@@ -6,5 +6,7 @@
   "dreamstore.cart": "Cart",
   "dreamstore.buy": "Buy",
   "dreamstore.poweredBy": "POWERED BY",
-  "dreamstore.buy-success": "Your product was add to the cart!"
+  "dreamstore.buy-success": "Your product was add to the cart!",
+  "editor.product-search.title": "Product search context",
+  "editor.product-search.maxItemsPerPage": "Maximum number of items per page"
 }

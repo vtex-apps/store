@@ -6,5 +6,7 @@
   "dreamstore.cart": "Carrito",
   "dreamstore.buy": "Comprar",
   "dreamstore.poweredBy": "IMPULSADO POR VTEX",
-  "dreamstore.buy-success": "Su producto se ha agregado a la cesta!"
+  "dreamstore.buy-success": "Su producto se ha agregado a la cesta!",
+  "editor.product-search.title": "Contexto de búsqueda de productos",
+  "editor.product-search.maxItemsPerPage": "Número máximo de elementos por página"
 }

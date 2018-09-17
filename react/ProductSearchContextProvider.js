@@ -3,12 +3,12 @@ import React, { Component } from 'react'
 import { Query } from 'react-apollo'
 import { Helmet, withRuntimeContext } from 'render'
 
-import { SORT_OPTIONS, createMap, canonicalPathFromParams } from './utils/search'
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
 import searchQuery from './queries/searchQuery.gql'
+import { canonicalPathFromParams, createMap, SORT_OPTIONS } from './utils/search'
 
 const DEFAULT_PAGE = 1
-const DEFAULT_MAX_ITEMS_PER_PAGE = 1
+const DEFAULT_MAX_ITEMS_PER_PAGE = 10
 
 class ProductSearchContextProvider extends Component {
   static propTypes = {
@@ -35,12 +35,19 @@ class ProductSearchContextProvider extends Component {
     children: PropTypes.node.isRequired,
   }
 
-  state = {
-    variables: {
-      maxItemsPerPage: DEFAULT_MAX_ITEMS_PER_PAGE,
+  static defaultProps = {
+    maxItemsPerPage: DEFAULT_MAX_ITEMS_PER_PAGE,
+  }
+
+  static schema = {
+    title: 'editor.product-search.title',
+    type: 'object',
+    properties: {
+      maxItemsPerPage: {
+        title: 'editor.product-search.maxItemsPerPage',
+        type: 'number',
+      },
     },
-    /* Will be loading by default. The container will wait until the real data arrives */
-    loading: true,
   }
 
   pageCategory = products => {
@@ -100,17 +107,11 @@ class ProductSearchContextProvider extends Component {
     ]
   }
 
-  handleContextVariables = variables => {
-    this.setState({
-      variables,
-      loading: false,
-    })
-  }
-
   render() {
     const {
       nextTreePath,
       params,
+      maxItemsPerPage,
       query: {
         order: orderBy = SORT_OPTIONS[0].value,
         page: pageProps,
@@ -120,8 +121,6 @@ class ProductSearchContextProvider extends Component {
       },
       runtime: { page: runtimePage },
     } = this.props
-
-    const { variables: { maxItemsPerPage } } = this.state
 
     const map = mapProps || createMap(params, rest)
     const page = pageProps ? parseInt(pageProps) : DEFAULT_PAGE
@@ -155,7 +154,7 @@ class ProductSearchContextProvider extends Component {
                   ...search,
                 })
               }
-              loading={this.state.loading || loading}
+              loading={loading}
             >
               <Helmet>
                 {params && (
@@ -175,8 +174,6 @@ class ProductSearchContextProvider extends Component {
                   ...searchQueryProps,
                   ...search,
                 },
-                loading: this.state.loading,
-                setContextVariables: this.handleContextVariables,
                 searchContext: runtimePage,
                 pagesPath: nextTreePath,
                 map,
