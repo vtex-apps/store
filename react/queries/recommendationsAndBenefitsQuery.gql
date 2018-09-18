@@ -1,0 +1,220 @@
+query RecommendationsAndBenefits ($slug: String) {
+  product(slug: $slug) {
+    cacheId
+    recommendations {
+      view {
+        cacheId
+        productId
+        productName
+        description
+        categories
+        link
+        linkText
+        brand
+        items {
+          name
+          itemId
+          referenceId {
+            Value
+          }
+          images {
+            imageId
+            imageLabel
+            imageTag
+            imageUrl
+            imageText
+          }
+          sellers {
+            sellerId
+            sellerName
+            addToCartLink
+            sellerDefault
+            commertialOffer {
+              Price
+              ListPrice
+              PriceWithoutDiscount
+              RewardValue
+              PriceValidUntil
+              AvailableQuantity
+              Tax
+              CacheVersionUsedToCallCheckout
+              Installments {
+                  Value
+                  InterestRate
+                  TotalValuePlusInterestRate
+                  NumberOfInstallments
+                  Name
+              }
+            }
+          }
+        }
+      }
+      buy {
+        cacheId
+        productId
+        productName
+        description
+        categories
+        link
+        linkText
+        brand
+        items {
+          name
+          itemId
+          referenceId {
+            Value
+          }
+          images {
+            imageId
+            imageLabel
+            imageTag
+            imageUrl
+            imageText
+          }
+          sellers {
+            sellerId
+            sellerName
+            addToCartLink
+            sellerDefault
+            commertialOffer {
+              Price
+              ListPrice
+              PriceWithoutDiscount
+              RewardValue
+              PriceValidUntil
+              AvailableQuantity
+              Tax
+              CacheVersionUsedToCallCheckout
+              Installments {
+                  Value
+                  InterestRate
+                  TotalValuePlusInterestRate
+                  NumberOfInstallments
+                  Name
+              }
+            }
+          }
+        }
+      }
+      similars {
+        cacheId
+        productId
+        productName
+        description
+        categories
+        link
+        linkText
+        brand
+        items {
+          name
+          itemId
+          referenceId {
+            Value
+          }
+          images {
+            imageId
+            imageLabel
+            imageTag
+            imageUrl
+            imageText
+          }
+          sellers {
+            sellerId
+            sellerName
+            addToCartLink
+            sellerDefault
+            commertialOffer {
+              Price
+              ListPrice
+              PriceWithoutDiscount
+              RewardValue
+              PriceValidUntil
+              AvailableQuantity
+              Tax
+              CacheVersionUsedToCallCheckout
+              Installments {
+                  Value
+                  InterestRate
+                  TotalValuePlusInterestRate
+                  NumberOfInstallments
+                  Name
+              }
+            }
+          }
+        }
+      }
+    }
+    benefits {
+      featured
+      id
+      name
+      items {
+        benefitProduct {
+          cacheId
+          productName
+          productId
+          description
+          linkText
+          categories
+          categoryId
+          categoriesIds
+          brand
+          properties {
+            name,
+            values
+          },
+          items {
+            itemId
+            name
+            nameComplete
+            complementName
+            ean
+            referenceId {
+              Key
+              Value
+            }
+            measurementUnit
+            unitMultiplier
+            images {
+              imageId
+              imageLabel
+              imageTag
+              imageUrl
+              imageText
+            }
+            sellers {
+              sellerId
+              sellerName
+              addToCartLink
+              sellerDefault
+              commertialOffer {
+                Price
+                ListPrice
+                PriceWithoutDiscount
+                RewardValue
+                PriceValidUntil
+                AvailableQuantity
+                Tax
+                CacheVersionUsedToCallCheckout
+                Installments {
+                    Value
+                    InterestRate
+                    TotalValuePlusInterestRate
+                    NumberOfInstallments
+                    Name
+                }
+              }
+            }
+            variations {
+              name
+            }
+          }
+        }
+        discount
+        minQuantity
+        benefitSKUIds
+      }
+      teaserType
+    }
+  }
+}
