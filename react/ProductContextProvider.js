@@ -25,12 +25,12 @@ class ProductContextProvider extends Component {
   product() {
     const {
       catalog,
-      recAndRNB
+      recommendationsAndBenefits
     } = this.props
-    return recAndRNB && recAndRNB.product && catalog && catalog.product
+    return recommendationsAndBenefits && recommendationsAndBenefits.product && catalog && catalog.product
       ? {
         ...catalog.product,
-        ...recAndRNB.product
+        ...recommendationsAndBenefits.product
       }
       : catalog && catalog.product
   }
@@ -38,13 +38,13 @@ class ProductContextProvider extends Component {
   loading() {
     const {
       catalog,
-      recAndRNB
+      recommendationsAndBenefits
     } = this.props
-    return recAndRNB
-      ? recAndRNB.loading || catalog.loading
+    return recommendationsAndBenefits
+      ? recommendationsAndBenefits.loading || catalog.loading
       : catalog
-      ? catalog.loading
-      : true
+        ? catalog.loading
+        : true
   }
 
   componentDidMount() {
@@ -217,7 +217,7 @@ class ProductContextProvider extends Component {
   }
 }
 
-const options = {
+const catalogOptions = {
   name: 'catalog',
   options: props => ({
     variables: {
@@ -227,8 +227,8 @@ const options = {
   }),
 }
 
-const recAndRNBOptions = {
-  name: 'recAndRNB',
+const recommendationsAndBenefitsOptions = {
+  name: 'recommendationsAndBenefits',
   options: props => ({
     variables: {
       slug: props.params.slug,
@@ -241,6 +241,6 @@ const recAndRNBOptions = {
 export default compose(
   withApollo,
   withRuntimeContext,
-  graphql(productQuery, options),
-  graphql(recommendationsAndBenefits, recAndRNBOptions),
+  graphql(productQuery, catalogOptions),
+  graphql(recommendationsAndBenefits, recommendationsAndBenefitsOptions),
 )(ProductContextProvider)
