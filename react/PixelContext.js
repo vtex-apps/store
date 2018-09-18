@@ -1,5 +1,6 @@
 import hoistNonReactStatics from 'hoist-non-react-statics'
 import React, { Component } from 'react'
+import { withRuntimeContext } from 'render'
 
 const PixelContext = React.createContext()
 
@@ -44,7 +45,7 @@ export function pixelProvider(WrappedComponent) {
       }
     }
 
-    notifySubscribers = (data) => {
+    notifySubscribers = data => {
       this.state.subscribers.forEach(subscriber => {
         if (subscriber[data.event]) {
           subscriber[data.event](data)
@@ -55,11 +56,12 @@ export function pixelProvider(WrappedComponent) {
     push = data => {
       const notifyAndPush = () => {
         this.notifySubscribers(data)
+        window.dataLayer = window.dataLayer || []
         window.dataLayer.push(data)
       }
 
       if (this.state.subscribers.length === 0) {
-        setTimeout(notifyAndPush, 100)
+        setTimeout(notifyAndPush, SUBSCRIPTION_TIMEOUT)
       } else {
         notifyAndPush()
       }

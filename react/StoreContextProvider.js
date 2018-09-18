@@ -28,7 +28,6 @@ class StoreContextProvider extends Component {
   }
 
   pushToDataLayer = obj => {
-    console.log(">>> Push to datalayer")
     this.props.push(obj)
   }
 
