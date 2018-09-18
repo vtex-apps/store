@@ -145,13 +145,13 @@ query RecommendationsAndBenefits ($slug: String) {
       }
     }
     benefits {
-			featured
+      featured
       id
       name
       items {
         benefitProduct {
           cacheId
-					productName
+          productName
           productId
           description
           linkText
