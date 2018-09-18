@@ -7,6 +7,7 @@ import { Helmet, withRuntimeContext } from 'render'
 import MicroData from './components/MicroData'
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
 import productQuery from './queries/productQuery.gql'
+import recommendationsAndBenefits from './queries/recommendationsAndBenefitsQuery.gql'
 import productPreviewFragment from './queries/productPreview.gql'
 import { cacheLocator } from './cacheLocator'
 
@@ -21,11 +22,35 @@ class ProductContextProvider extends Component {
     runtime: PropTypes.object,
   }
 
-  componentDidMount() {
+  product() {
     const {
-      data: { product, loading },
-      params: { slug },
+      catalog,
+      recAndRNB
     } = this.props
+    return recAndRNB && recAndRNB.product && catalog && catalog.product
+      ? {
+        ...catalog.product,
+        ...recAndRNB.product
+      }
+      : catalog && catalog.product
+  }
+
+  loading() {
+    const {
+      catalog,
+      recAndRNB
+    } = this.props
+    return recAndRNB
+      ? recAndRNB.loading || catalog.loading
+      : catalog
+      ? catalog.loading
+      : true
+  }
+
+  componentDidMount() {
+    const {params: { slug }} = this.props
+    const loading = this.loading()
+    const product = this.product()
     if (!product && !loading) {
       this.props.runtime.navigate({
         page: 'store/search',
@@ -39,10 +64,8 @@ class ProductContextProvider extends Component {
   }
 
   getData = () => {
-    const {
-      data: { product },
-      query,
-    } = this.props
+    const {query} = this.props
+    const product = this.product()
     const {
       titleTag,
       brand,
@@ -137,19 +160,17 @@ class ProductContextProvider extends Component {
 
   render() {
     const {
-      data: apolloData,
       params: { slug },
       client,
     } = this.props
 
-    if (!apolloData) return null
     const productPreview = client.readFragment({
       id: cacheLocator.product(slug),
       fragment: productPreviewFragment,
     })
-    const data = apolloData || {}
-    const { loading } = data
-    const product = loading ? productPreview : data.product
+    const loadedProduct = this.product()
+    const product = loadedProduct ? loadedProduct : productPreview
+    const loading = this.loading()
     const { titleTag, metaTagDescription } = product || {}
 
     const productQuery = {
@@ -197,6 +218,7 @@ class ProductContextProvider extends Component {
 }
 
 const options = {
+  name: 'catalog',
   options: props => ({
     variables: {
       slug: props.params.slug,
@@ -205,8 +227,20 @@ const options = {
   }),
 }
 
+const recAndRNBOptions = {
+  name: 'recAndRNB',
+  options: props => ({
+    variables: {
+      slug: props.params.slug,
+    },
+    errorPolicy: 'all',
+    ssr: false
+  }),
+}
+
 export default compose(
   withApollo,
   withRuntimeContext,
-  graphql(productQuery, options)
+  graphql(productQuery, options),
+  graphql(recommendationsAndBenefits, recAndRNBOptions),
 )(ProductContextProvider)
