@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.17.0] - 2018-09-20
+### Added
+- `ProductSearchContextProvider` schema to eliminate the `SearchResult` dependency.
+
 ## [1.16.0] - 2018-09-18
 
 ## [1.15.0] - 2018-09-14
