@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.17.1] - 2018-09-21
+### Added
+- Add `metaTagRobots` field in store settings.
+
 ## [1.17.0] - 2018-09-20
 ### Added
 - `ProductSearchContextProvider` schema to eliminate the `SearchResult` dependency.

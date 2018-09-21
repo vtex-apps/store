@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "store",
-  "version": "1.17.0",
+  "version": "1.17.1",
   "title": "VTEX Store",
   "description": "The VTEX basic store.",
   "builders": {
@@ -41,6 +41,11 @@
         "title": "Store Keywords (Meta Tag Keywords)",
         "type": "string",
         "description": "Enter with keywords of your store"
+      },
+      "metaTagRobots": {
+        "title": "Store Robots (Meta Tag robots)",
+        "type": "string",
+        "description": "Default value: index, follow"
       },
       "gtmId": {
         "title": "Google Tag Manager",

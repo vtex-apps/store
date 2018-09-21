@@ -44,6 +44,7 @@ class StoreContextProvider extends Component {
       titleTag,
       metaTagDescription,
       metaTagKeywords,
+      metaTagRobots,
       storeName,
     } = settings
     const scripts = gtmId ? [{
@@ -70,7 +71,7 @@ class StoreContextProvider extends Component {
           <meta name="country" content={country} />
           <meta name="language" content={locale} />
           <meta name="currency" content={currency} />
-          <meta name="robots" content={META_ROBOTS} />
+          <meta name="robots" content={metaTagRobots || META_ROBOTS} />
           <meta httpEquiv="Content-Type" content={CONTENT_TYPE} />
         </Helmet>
         <OrderFormProvider>
