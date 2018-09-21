@@ -29,9 +29,9 @@ class ProductContextProvider extends Component {
       catalog &&
       catalog.product
       ? {
-        ...catalog.product,
-        ...recommendationsAndBenefits.product,
-      }
+          ...catalog.product,
+          ...recommendationsAndBenefits.product,
+        }
       : catalog && catalog.product
   }
 
@@ -45,6 +45,7 @@ class ProductContextProvider extends Component {
   }
 
   componentDidMount() {
+<<<<<<< HEAD
     const { prefetchPage } = this.props.runtime
     const {
       params: { slug },
@@ -59,6 +60,9 @@ class ProductContextProvider extends Component {
         params: { term: slug },
       })
     }
+=======
+    this.checkNotFoundProduct();
+>>>>>>> Fixing ProductNotFound Redirection
   }
 
   stripCategory(category) {
@@ -66,7 +70,11 @@ class ProductContextProvider extends Component {
   }
 
   getData = () => {
+<<<<<<< HEAD
     const { query, runtime: { account } } = this.props
+=======
+    const { query } = this.props
+>>>>>>> Fixing ProductNotFound Redirection
     const product = this.product()
     const {
       titleTag,
@@ -158,11 +166,26 @@ class ProductContextProvider extends Component {
     ]
   }
 
+  checkNotFoundProduct = () => {
+    const loading = this.loading()
+    const product = this.product()
+    const {params: { slug }, runtime} = this.props
+    if (!product && !loading) {
+      runtime.navigate({
+        page: 'store/search',
+        params: { term: slug },
+        query: `productLinkNotFound=${slug}`
+      })
+    }
+  }
+
   render() {
     const {
       params: { slug },
       client,
     } = this.props
+
+    this.checkNotFoundProduct();
 
     const productPreview = client.readFragment({
       id: cacheLocator.product(slug),
