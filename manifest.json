@@ -42,6 +42,11 @@
         "type": "string",
         "description": "Enter with keywords of your store"
       },
+      "metaTagRobots": {
+        "title": "Store Robots (Meta Tag robots)",
+        "type": "string",
+        "description": "Default value: index, follow"
+      },
       "gtmId": {
         "title": "Google Tag Manager",
         "type": "string",
