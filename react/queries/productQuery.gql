@@ -116,6 +116,11 @@ query Product($slug: String) {
           }
         }
       }
+      attachments {
+        id
+        name
+        required
+      }
     }
     productClusters{
       id
