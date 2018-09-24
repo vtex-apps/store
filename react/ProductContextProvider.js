@@ -48,8 +48,8 @@ class ProductContextProvider extends Component {
   }
 
   componentDidMount() {
-    const { prefetchPage } = this.context
-    const {params: { slug }, prefetch} = this.props
+    const { prefetchPage } = this.props.runtime
+    const {params: { slug }} = this.props
     prefetchPage('store/home')
     prefetchPage('store/search')
     const loading = this.loading()

@@ -36,7 +36,7 @@ class ProductSearchContextProvider extends Component {
   }
 
   componentDidMount() {
-    const { prefetchPage } = this.context
+    const { prefetchPage } = this.props.runtime
     prefetchPage('store/product')
   }
 

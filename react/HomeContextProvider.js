@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { withRuntimeContext } from 'render'
 
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
 
@@ -18,7 +19,7 @@ class HomeContextProvider extends Component {
     })
 
   componentDidMount() {
-    const { prefetchPage } = this.context
+    const { prefetchPage } = this.props.runtime
     prefetchPage('store/product')
     prefetchPage('store/search')
   }
@@ -32,4 +33,4 @@ class HomeContextProvider extends Component {
   }
 }
 
-export default HomeContextProvider
+export default withRuntimeContext(HomeContextProvider)
