@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
+import withPrefetch from './components/withPrefetch';
 
-export default class HomeContextProvider extends Component {
+class HomeContextProvider extends Component {
   static propTypes = {
     children: PropTypes.element,
+    prefetch: PropTypes.func,
   }
 
   getData = () => ({
@@ -14,8 +16,13 @@ export default class HomeContextProvider extends Component {
     pageUrl: location.href,
     pageCategory: 'Home',
   }, {
-    event: 'homeView'
-  })
+      event: 'homeView'
+    })
+
+  componentDidMount() {
+    this.props.prefetch('store/product')
+    this.props.prefetch('store/search')
+  }
 
   render() {
     return (
@@ -25,3 +32,5 @@ export default class HomeContextProvider extends Component {
     )
   }
 }
+
+export default withPrefetch(HomeContextProvider)
