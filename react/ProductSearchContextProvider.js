@@ -5,7 +5,11 @@ import { Helmet, withRuntimeContext } from 'render'
 
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
 import searchQuery from './queries/searchQuery.gql'
-import { canonicalPathFromParams, createMap, SORT_OPTIONS } from './utils/search'
+import {
+  canonicalPathFromParams,
+  createMap,
+  SORT_OPTIONS,
+} from './utils/search'
 
 const DEFAULT_PAGE = 1
 const DEFAULT_MAX_ITEMS_PER_PAGE = 10
@@ -32,7 +36,7 @@ class ProductSearchContextProvider extends Component {
     /** Current extension point name */
     nextTreePath: PropTypes.string,
     /** Component to be rendered */
-    children: PropTypes.node.isRequired
+    children: PropTypes.node.isRequired,
   }
 
   componentDidMount() {
