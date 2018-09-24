@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import { Query } from 'react-apollo'
 import { Helmet, withRuntimeContext } from 'render'
 
-import withPrefetch from './components/withPrefetch'
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
 import searchQuery from './queries/searchQuery.gql'
 import { canonicalPathFromParams, createMap, SORT_OPTIONS } from './utils/search'
@@ -37,8 +36,8 @@ class ProductSearchContextProvider extends Component {
   }
 
   componentDidMount() {
-    const { prefetch } = this.props;
-    prefetch('store/product')
+    const { prefetchPage } = this.context
+    prefetchPage('store/product')
   }
 
   static defaultProps = {
@@ -198,4 +197,4 @@ class ProductSearchContextProvider extends Component {
   }
 }
 
-export default withPrefetch()(withRuntimeContext(ProductSearchContextProvider))
+export default withRuntimeContext(ProductSearchContextProvider)

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
-import withPrefetch from './components/withPrefetch';
 
 class HomeContextProvider extends Component {
   static propTypes = {
@@ -19,9 +18,9 @@ class HomeContextProvider extends Component {
     })
 
   componentDidMount() {
-    const { prefetch } = this.props;
-    prefetch('store/product')
-    prefetch('store/search')
+    const { prefetchPage } = this.context
+    prefetchPage('store/product')
+    prefetchPage('store/search')
   }
 
   render() {
@@ -33,4 +32,4 @@ class HomeContextProvider extends Component {
   }
 }
 
-export default withPrefetch()(HomeContextProvider)
+export default HomeContextProvider

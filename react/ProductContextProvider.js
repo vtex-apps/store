@@ -10,7 +10,6 @@ import productQuery from './queries/productQuery.gql'
 import recommendationsAndBenefits from './queries/recommendationsAndBenefitsQuery.gql'
 import productPreviewFragment from './queries/productPreview.gql'
 import { cacheLocator } from './cacheLocator'
-import withPrefetch from './components/withPrefetch';
 
 class ProductContextProvider extends Component {
   static propTypes = {
@@ -49,9 +48,10 @@ class ProductContextProvider extends Component {
   }
 
   componentDidMount() {
+    const { prefetchPage } = this.context
     const {params: { slug }, prefetch} = this.props
-    prefetch('store/home')
-    prefetch('store/search')
+    prefetchPage('store/home')
+    prefetchPage('store/search')
     const loading = this.loading()
     const product = this.product()
     if (!product && !loading) {
@@ -242,7 +242,6 @@ const recommendationsAndBenefitsOptions = {
 }
 
 export default compose(
-  withPrefetch(),
   withApollo,
   withRuntimeContext,
   graphql(productQuery, catalogOptions),
