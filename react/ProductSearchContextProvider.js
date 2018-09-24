@@ -33,8 +33,12 @@ class ProductSearchContextProvider extends Component {
     /** Current extension point name */
     nextTreePath: PropTypes.string,
     /** Component to be rendered */
-    children: PropTypes.node.isRequired,
-    // prefetch: PropTypes.func,
+    children: PropTypes.node.isRequired
+  }
+
+  componentDidMount() {
+    const { prefetch } = this.props;
+    prefetch('store/product')
   }
 
   static defaultProps = {
@@ -194,4 +198,4 @@ class ProductSearchContextProvider extends Component {
   }
 }
 
-export default withRuntimeContext(ProductSearchContextProvider)
+export default withPrefetch()(withRuntimeContext(ProductSearchContextProvider))

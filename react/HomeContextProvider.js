@@ -6,8 +6,7 @@ import withPrefetch from './components/withPrefetch';
 
 class HomeContextProvider extends Component {
   static propTypes = {
-    children: PropTypes.element,
-    prefetch: PropTypes.func,
+    children: PropTypes.element
   }
 
   getData = () => ({
@@ -20,8 +19,9 @@ class HomeContextProvider extends Component {
     })
 
   componentDidMount() {
-    this.props.prefetch('store/product')
-    this.props.prefetch('store/search')
+    const { prefetch } = this.props;
+    prefetch('store/product')
+    prefetch('store/search')
   }
 
   render() {
@@ -33,4 +33,4 @@ class HomeContextProvider extends Component {
   }
 }
 
-export default withPrefetch(HomeContextProvider)
+export default withPrefetch()(HomeContextProvider)
