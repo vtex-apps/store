@@ -1,21 +1,27 @@
 import React, { Component } from 'react'
+import { withRuntimeContext } from 'render'
 
 const PixelContext = React.createContext()
 
 const SUBSCRIPTION_TIMEOUT = 100
 
+const GTM_UNDEFINED = ({ workspace, account }) => (
+  `No Google Tag Manager ID is defined. Take a look at:\
+  https://${workspace}--${account}.myvtex.com/admin/apps/vtex.store/setup`
+)
+
 export function Pixel(WrappedComponent) {
   return class Pixel extends Component {
-
+    
     renderComponent = context => {
       return (
         <WrappedComponent subscribe={context.subscribe} context={context}/>
-      )
-    }
-
-    render() {
-      return (
-        <PixelContext.Consumer>
+        )
+      }
+      
+      render() {
+        return (
+          <PixelContext.Consumer>
           {context => this.renderComponent(context)}
         </PixelContext.Consumer>
       )
@@ -24,12 +30,26 @@ export function Pixel(WrappedComponent) {
 }
 
 export function pixelGlobalContext(WrappedComponent) {
-  return class WithPixel extends Component {
-
+  class WithPixel extends Component {
+    
     constructor(props) {
       super(props)
       this.state = {
         subscribers: []
+      }
+    }
+    
+    /**
+     * Ensure that the Data Layer exists and will be recreated
+     * after each children change (navigation).
+     */
+    initDataLayer = () => {
+      const { dataLayer } = window
+      if (dataLayer) {
+        dataLayer.splice(0, dataLayer.length)
+      } else {
+        console.warn(GTM_UNDEFINED(this.props.runtime))
+        window.dataLayer = []
       }
     }
 
@@ -56,6 +76,7 @@ export function pixelGlobalContext(WrappedComponent) {
     }
     
     subscribe = subscriber => {
+      console.log(">>>>>> subs: ", subscriber)
       if (subscriber) {
         this.setState({
           subscribers: [subscriber, ...this.state.subscribers]
@@ -64,6 +85,7 @@ export function pixelGlobalContext(WrappedComponent) {
     }
 
     render() {
+      this.initDataLayer()
       return (
         <PixelContext.Provider value={{
             subscribe: this.subscribe,
@@ -75,6 +97,7 @@ export function pixelGlobalContext(WrappedComponent) {
       )
     }
   }
+  return withRuntimeContext(WithPixel)
 }
 
 export default { Pixel }
