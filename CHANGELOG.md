@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.18.0] - 2018-09-25
+### Added
+- Add prefetch in context providers.
+
+### Changed
+- Get account name from runtime context.
+
 ## [1.17.2] - 2018-09-24
 ### Changed
 - Add field sku attachments to `productQuery`.

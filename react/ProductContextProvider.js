@@ -23,23 +23,20 @@ class ProductContextProvider extends Component {
   }
 
   product() {
-    const {
-      catalog,
-      recommendationsAndBenefits
-    } = this.props
-    return recommendationsAndBenefits && recommendationsAndBenefits.product && catalog && catalog.product
+    const { catalog, recommendationsAndBenefits } = this.props
+    return recommendationsAndBenefits &&
+      recommendationsAndBenefits.product &&
+      catalog &&
+      catalog.product
       ? {
         ...catalog.product,
-        ...recommendationsAndBenefits.product
+        ...recommendationsAndBenefits.product,
       }
       : catalog && catalog.product
   }
 
   loading() {
-    const {
-      catalog,
-      recommendationsAndBenefits
-    } = this.props
+    const { catalog, recommendationsAndBenefits } = this.props
     return recommendationsAndBenefits
       ? recommendationsAndBenefits.loading || catalog.loading
       : catalog
@@ -48,7 +45,12 @@ class ProductContextProvider extends Component {
   }
 
   componentDidMount() {
-    const {params: { slug }} = this.props
+    const { prefetchPage } = this.props.runtime
+    const {
+      params: { slug },
+    } = this.props
+    prefetchPage('store/home')
+    prefetchPage('store/search')
     const loading = this.loading()
     const product = this.product()
     if (!product && !loading) {
@@ -64,7 +66,7 @@ class ProductContextProvider extends Component {
   }
 
   getData = () => {
-    const {query} = this.props
+    const { query, runtime: { account } } = this.props
     const product = this.product()
     const {
       titleTag,
@@ -82,11 +84,9 @@ class ProductContextProvider extends Component {
     }
 
     const pageInfo = {
-      accountName: global.__RUNTIME__.account,
+      accountName: account,
       pageCategory: 'Product',
-      pageDepartment: categories
-        ? this.stripCategory(last(categories))
-        : '',
+      pageDepartment: categories ? this.stripCategory(last(categories)) : '',
       pageFacets: [],
       pageTitle: titleTag,
       pageUrl: window.location.href,
@@ -234,7 +234,7 @@ const recommendationsAndBenefitsOptions = {
       slug: props.params.slug,
     },
     errorPolicy: 'all',
-    ssr: false
+    ssr: false,
   }),
 }
 
@@ -242,5 +242,5 @@ export default compose(
   withApollo,
   withRuntimeContext,
   graphql(productQuery, catalogOptions),
-  graphql(recommendationsAndBenefits, recommendationsAndBenefitsOptions),
+  graphql(recommendationsAndBenefits, recommendationsAndBenefitsOptions)
 )(ProductContextProvider)

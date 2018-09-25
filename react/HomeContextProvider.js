@@ -1,21 +1,31 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { withRuntimeContext } from 'render'
 
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
 
-export default class HomeContextProvider extends Component {
+class HomeContextProvider extends Component {
   static propTypes = {
     children: PropTypes.element,
   }
 
-  getData = () => ({
-    accountName: global.__RUNTIME__.account,
-    pageTitle: document.title,
-    pageUrl: location.href,
-    pageCategory: 'Home',
-  }, {
-    event: 'homeView'
-  })
+  getData = () => (
+    [{
+      accountName: this.props.runtime.account,
+      pageTitle: document.title,
+      pageUrl: location.href,
+      pageCategory: 'Home',
+    },
+    {
+      event: 'homeView',
+    }]
+  )
+
+  componentDidMount() {
+    const { prefetchPage } = this.props.runtime
+    prefetchPage('store/product')
+    prefetchPage('store/search')
+  }
 
   render() {
     return (
@@ -25,3 +35,5 @@ export default class HomeContextProvider extends Component {
     )
   }
 }
+
+export default withRuntimeContext(HomeContextProvider)

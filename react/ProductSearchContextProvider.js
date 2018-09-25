@@ -5,7 +5,11 @@ import { Helmet, withRuntimeContext } from 'render'
 
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
 import searchQuery from './queries/searchQuery.gql'
-import { canonicalPathFromParams, createMap, SORT_OPTIONS } from './utils/search'
+import {
+  canonicalPathFromParams,
+  createMap,
+  SORT_OPTIONS,
+} from './utils/search'
 
 const DEFAULT_PAGE = 1
 const DEFAULT_MAX_ITEMS_PER_PAGE = 10
@@ -33,6 +37,12 @@ class ProductSearchContextProvider extends Component {
     nextTreePath: PropTypes.string,
     /** Component to be rendered */
     children: PropTypes.node.isRequired,
+  }
+
+  componentDidMount() {
+    const { prefetchPage } = this.props.runtime
+    prefetchPage('store/home')
+    prefetchPage('store/product')
   }
 
   static defaultProps = {
@@ -73,6 +83,7 @@ class ProductSearchContextProvider extends Component {
 
     const { products, titleTag } = searchQuery
     const { department, category } = this.props.params
+    const { account } = this.props.runtime
     return [
       {
         ecommerce: {
@@ -94,7 +105,7 @@ class ProductSearchContextProvider extends Component {
         },
       },
       {
-        accountName: global.__RUNTIME__.account,
+        accountName: account,
         pageCategory: this.pageCategory(products),
         pageDepartment: department,
         pageFacets: [],
