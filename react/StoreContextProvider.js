@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Helmet } from 'render'
+import { withRuntimeContext, Helmet } from 'render'
 import PropTypes from 'prop-types'
 
 import { OrderFormProvider } from './OrderFormContext'
@@ -16,7 +16,7 @@ class StoreContextProvider extends Component {
   }
 
   render() {
-    const { country, locale, currency } = global.__RUNTIME__.culture
+    const { country, locale, currency } = this.props.runtime.culture
     const settings = this.context.getSettings(APP_LOCATOR) || {}
     const {
       titleTag,
@@ -57,4 +57,4 @@ StoreContextProvider.contextTypes = {
   getSettings: PropTypes.func,
 }
 
-export default pixelGlobalContext(StoreContextProvider)
+export default withRuntimeContext(pixelGlobalContext(StoreContextProvider))
