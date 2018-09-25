@@ -41,6 +41,7 @@ class ProductSearchContextProvider extends Component {
 
   componentDidMount() {
     const { prefetchPage } = this.props.runtime
+    prefetchPage('store/home')
     prefetchPage('store/product')
   }
 
@@ -82,6 +83,7 @@ class ProductSearchContextProvider extends Component {
 
     const { products, titleTag } = searchQuery
     const { department, category } = this.props.params
+    const { account } = this.props.runtime
     return [
       {
         ecommerce: {
@@ -103,7 +105,7 @@ class ProductSearchContextProvider extends Component {
         },
       },
       {
-        accountName: global.__RUNTIME__.account,
+        accountName: account,
         pageCategory: this.pageCategory(products),
         pageDepartment: department,
         pageFacets: [],

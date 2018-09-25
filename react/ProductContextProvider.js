@@ -29,9 +29,9 @@ class ProductContextProvider extends Component {
       catalog &&
       catalog.product
       ? {
-          ...catalog.product,
-          ...recommendationsAndBenefits.product,
-        }
+        ...catalog.product,
+        ...recommendationsAndBenefits.product,
+      }
       : catalog && catalog.product
   }
 
@@ -66,7 +66,7 @@ class ProductContextProvider extends Component {
   }
 
   getData = () => {
-    const { query } = this.props
+    const { query, runtime: { account } } = this.props
     const product = this.product()
     const {
       titleTag,
@@ -84,7 +84,7 @@ class ProductContextProvider extends Component {
     }
 
     const pageInfo = {
-      accountName: global.__RUNTIME__.account,
+      accountName: account,
       pageCategory: 'Product',
       pageDepartment: categories ? this.stripCategory(last(categories)) : '',
       pageFacets: [],

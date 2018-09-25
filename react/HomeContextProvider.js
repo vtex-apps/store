@@ -10,15 +10,15 @@ class HomeContextProvider extends Component {
   }
 
   getData = () => (
-    {
-      accountName: global.__RUNTIME__.account,
+    [{
+      accountName: this.props.runtime.account,
       pageTitle: document.title,
       pageUrl: location.href,
       pageCategory: 'Home',
     },
     {
       event: 'homeView',
-    }
+    }]
   )
 
   componentDidMount() {
