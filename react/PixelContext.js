@@ -5,11 +5,6 @@ const PixelContext = React.createContext()
 
 const SUBSCRIPTION_TIMEOUT = 100
 
-const GTM_UNDEFINED = ({ workspace, account }) => (
-  `No Google Tag Manager ID is defined. Take a look at:\
-  https://${workspace}--${account}.myvtex.com/admin/apps/vtex.store/setup`
-)
-
 export function Pixel(WrappedComponent) {
   return class Pixel extends Component {
     
@@ -48,7 +43,6 @@ export function pixelGlobalContext(WrappedComponent) {
       if (dataLayer) {
         dataLayer.splice(0, dataLayer.length)
       } else {
-        console.warn(GTM_UNDEFINED(this.props.runtime))
         window.dataLayer = []
       }
     }
