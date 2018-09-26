@@ -76,11 +76,11 @@ export function pixelGlobalContext(WrappedComponent) {
     }
     
     subscribe = subscriber => {
-      console.log(">>>>>> subs: ", subscriber)
       if (subscriber) {
-        this.setState({
-          subscribers: [subscriber, ...this.state.subscribers]
-        })
+        this.setState(state => ({
+          ...state,
+          subscribers: [subscriber, ...state.subscribers]
+        }))
       }
     }
 
