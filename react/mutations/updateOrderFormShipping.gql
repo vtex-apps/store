@@ -1,0 +1,8 @@
+mutation updateOrderFormShipping(
+  $orderFormId: String
+  $address: OrderFormAddressInput
+) {
+  updateOrderFormShipping(orderFormId: $orderFormId, address: $address) {
+    orderFormId
+  }
+}
