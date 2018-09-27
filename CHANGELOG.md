@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Add field variations values to `productQuery`
+- Add field `values` to the variations property in `productQuery`
 
 ## [1.18.0] - 2018-09-25
 ### Added
