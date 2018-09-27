@@ -6,6 +6,7 @@ import orderFormQuery from './queries/orderFormQuery.gql'
 import addToCartMutation from './mutations/addToCartMutation.gql'
 import updateItemsMutation from './mutations/updateItemsMutation.gql'
 import updateOrderFormProfile from './mutations/updateOrderFormProfile.gql'
+import updateOrderFormShipping from './mutations/updateOrderFormShipping.gql'
 
 const defaultState = {
   orderFormContext: {
@@ -18,6 +19,7 @@ const defaultState = {
     updateOrderForm: () => {},
     updateAndRefetchOrderForm: () => {},
     updateOrderFormProfile: () => {},
+    updateOrderFormShipping: () => {}
   },
 }
 
@@ -80,6 +82,7 @@ class ContextProvider extends Component {
     state.orderFormContext.updateOrderForm = this.props.updateOrderForm
     state.orderFormContext.addItem = this.props.addItem
     state.orderFormContext.updateOrderFormProfile = this.props.updateOrderFormProfile
+    state.orderFormContext.updateOrderFormShipping = this.props.updateOrderFormShipping
 
     return <Provider value={this.state}>{this.props.children}</Provider>
   }
@@ -111,6 +114,8 @@ const contextPropTypes = PropTypes.shape({
   updateAndRefetchOrderForm: PropTypes.func.isRequired,
   /* Function to update the message */
   updateToastMessage: PropTypes.func.isRequired,
+  /* Function to update the shipping data */
+  updateOrderFormShipping: PropTypes.func.isRequired,
   /* Order form */
   orderForm: PropTypes.shape({
     /* Order form id */
@@ -126,7 +131,8 @@ export const OrderFormProvider = compose(
   graphql(orderFormQuery, options),
   graphql(addToCartMutation, { name: 'addItem' }),
   graphql(updateItemsMutation, { name: 'updateOrderForm' }),
-  graphql(updateOrderFormProfile, { name: 'updateOrderFormProfile' })
+  graphql(updateOrderFormProfile, { name: 'updateOrderFormProfile' }),
+  graphql(updateOrderFormShipping, { name: 'updateOrderFormShipping'})
 )(ContextProvider)
 
 export default { orderFormConsumer, contextPropTypes }
