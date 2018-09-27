@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.18.1] - 2018-09-27
+### Fixed
+- Fix query on brand page with wrong arguments.
+
 ## [1.18.0] - 2018-09-25
 ### Added
 - Add prefetch in context providers.

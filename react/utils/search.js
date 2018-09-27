@@ -1,3 +1,5 @@
+import { identity } from 'ramda'
+
 export const SORT_OPTIONS = [
   {
     value: 'OrderByTopSaleDESC',
@@ -29,19 +31,16 @@ export const SORT_OPTIONS = [
   },
 ]
 
-export function createMap(params, rest, isBrand) {
-  const paramValues = Object.keys(params)
-    .filter(param => !param.startsWith('_'))
-    .map(key => params[key])
-    .concat(rest ? rest.split(',') : [])
-  const map =
-    paramValues.length > 0 &&
-    Array(paramValues.length - 1)
-      .fill('c')
-      .join(',') +
-    (paramValues.length > 1 ? ',' : '') +
-    (isBrand ? 'b' : 'c')
-  return map
+export function createInitialMap(params) {
+  const map = [
+    params.term && 'ft',
+    params.brand && 'b',
+    params.department && 'c',
+    params.category && 'c',
+    params.subcategory && 'c',
+  ]
+
+  return map.filter(identity).join(',')
 }
 
 export const canonicalPathFromParams = ({
