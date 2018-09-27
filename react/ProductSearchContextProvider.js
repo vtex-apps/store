@@ -7,7 +7,7 @@ import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
 import searchQuery from './queries/searchQuery.gql'
 import {
   canonicalPathFromParams,
-  createMap,
+  createInitialMap,
   SORT_OPTIONS,
 } from './utils/search'
 
@@ -25,6 +25,8 @@ class ProductSearchContextProvider extends Component {
     /** Render runtime context */
     runtime: PropTypes.shape({
       page: PropTypes.string.isRequired,
+      prefetchPage: PropTypes.func.isRequired,
+      account: PropTypes.any,
     }),
     /** Query params */
     query: PropTypes.shape({
@@ -37,6 +39,8 @@ class ProductSearchContextProvider extends Component {
     nextTreePath: PropTypes.string,
     /** Component to be rendered */
     children: PropTypes.node.isRequired,
+    /** Max items to show per result page */
+    maxItemsPerPage: PropTypes.number.isRequired,
   }
 
   componentDidMount() {
@@ -125,16 +129,16 @@ class ProductSearchContextProvider extends Component {
       maxItemsPerPage,
       query: {
         order: orderBy = SORT_OPTIONS[0].value,
-        page: pageProps,
-        map: mapProps,
+        page: pageQuery,
+        map: mapQuery,
         rest = '',
         priceRange,
       },
       runtime: { page: runtimePage },
     } = this.props
 
-    const map = mapProps || createMap(params, rest)
-    const page = pageProps ? parseInt(pageProps) : DEFAULT_PAGE
+    const map = mapQuery || createInitialMap(params)
+    const page = pageQuery ? parseInt(pageQuery) : DEFAULT_PAGE
     const from = (page - 1) * maxItemsPerPage
     const to = from + maxItemsPerPage - 1
 
