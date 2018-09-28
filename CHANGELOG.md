@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Enables querying of `shippingData` in `orderFormQuery`
 - Adds `updateOrderFormShipping`, a mutation and function on `OrderFormContext`
 
+## [1.19.0] - 2018-09-27
+### Added
+- Add custom paramenters to create custom search.
+
 ## [1.18.1] - 2018-09-27
 ### Fixed
 - Fix query on brand page with wrong arguments.

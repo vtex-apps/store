@@ -61,6 +61,18 @@ class ProductSearchContextProvider extends Component {
         title: 'editor.product-search.maxItemsPerPage',
         type: 'number',
       },
+      queryField: {
+        title: 'Query',
+        type: 'string'
+      },
+      mapField: {
+        title: 'Map',
+        type: 'string'
+      },
+      restField: {
+        title: 'Other Query Strings',
+        type: 'string'
+      }
     },
   }
 
@@ -127,6 +139,9 @@ class ProductSearchContextProvider extends Component {
       nextTreePath,
       params,
       maxItemsPerPage,
+      queryField,
+      mapField,
+      restField,
       query: {
         order: orderBy = SORT_OPTIONS[0].value,
         page: pageQuery,
@@ -142,20 +157,32 @@ class ProductSearchContextProvider extends Component {
     const from = (page - 1) * maxItemsPerPage
     const to = from + maxItemsPerPage - 1
 
+    const defaultSearch = {
+      query: Object.values(params)
+        .filter(s => s.length > 0)
+        .join('/'),
+      map,
+      rest,
+      orderBy,
+      priceRange,
+      from,
+      to,
+    }
+
+    const customSearch = {
+      query: queryField,
+      map: mapField,
+      rest: restField,
+      orderBy,
+      priceRange,
+      from,
+      to,
+    }
+
     return (
       <Query
         query={searchQuery}
-        variables={{
-          query: Object.values(params)
-            .filter(s => s.length > 0)
-            .join('/'),
-          map,
-          rest,
-          orderBy,
-          priceRange,
-          from,
-          to,
-        }}
+        variables={ queryField ? customSearch : defaultSearch }
         notifyOnNetworkStatusChange
       >
         {searchQueryProps => {
