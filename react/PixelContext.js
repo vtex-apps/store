@@ -5,18 +5,20 @@ const PixelContext = React.createContext()
 
 const SUBSCRIPTION_TIMEOUT = 100
 
+/**
+ * Pixel it's the HOC Component that provides an event subscription to the
+ * Wrapped Component. This component will be used by the installed apps.
+ */
 export function Pixel(WrappedComponent) {
   return class Pixel extends Component {
     
-    renderComponent = context => {
+    renderComponent = context => (
+      <WrappedComponent subscribe={context.subscribe} context={context}/>
+    )
+    
+    render() {
       return (
-        <WrappedComponent subscribe={context.subscribe} context={context}/>
-        )
-      }
-      
-      render() {
-        return (
-          <PixelContext.Consumer>
+        <PixelContext.Consumer>
           {context => this.renderComponent(context)}
         </PixelContext.Consumer>
       )
@@ -24,6 +26,10 @@ export function Pixel(WrappedComponent) {
   }
 }
 
+/**
+ * HOC Component that has the Pixel logic, dispatching store events
+ * to the subscribed external components.
+ */
 export function pixelGlobalContext(WrappedComponent) {
   class WithPixel extends Component {
     
