@@ -59,6 +59,7 @@ query Product($slug: String) {
       }
       variations {
         name
+        values
       }
       kitItems {
         itemId
