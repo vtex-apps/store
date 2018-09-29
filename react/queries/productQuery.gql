@@ -27,7 +27,7 @@ query Product($slug: String) {
       }
       measurementUnit
       unitMultiplier
-      images {
+      images (quantity: 10) {
         imageId
         imageLabel
         imageTag
