@@ -47,6 +47,8 @@ query search($query: String, $map: String, $rest: String, $orderBy: String, $pri
       }
     }
     products {
+      cacheId
+      categories
       productId
       productName
       linkText
