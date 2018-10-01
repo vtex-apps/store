@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.19.2] - 2018-09-29
+### Changed
+- Update `productQuery` to get 10 sku images.
+
 ## [1.19.1] - 2018-09-28
 ### Added
 - Add field `values` to the variations property in `productQuery`
