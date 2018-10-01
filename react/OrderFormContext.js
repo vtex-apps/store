@@ -8,22 +8,7 @@ import updateItemsMutation from './mutations/updateItemsMutation.gql'
 import updateOrderFormProfile from './mutations/updateOrderFormProfile.gql'
 import updateOrderFormShipping from './mutations/updateOrderFormShipping.gql'
 
-const defaultState = {
-  orderFormContext: {
-    message: { isSuccess: null, text: null },
-    loading: true,
-    orderForm: {},
-    refetch: () => {},
-    addItem: () => {},
-    updateToastMessage: () => {},
-    updateOrderForm: () => {},
-    updateAndRefetchOrderForm: () => {},
-    updateOrderFormProfile: () => {},
-    updateOrderFormShipping: () => {}
-  },
-}
-
-const { Consumer, Provider } = React.createContext(defaultState)
+const { Consumer, Provider } = React.createContext({})
 
 function orderFormConsumer(WrappedComponent) {
   return class OrderFormContext extends Component {
@@ -45,7 +30,20 @@ class ContextProvider extends Component {
     children: PropTypes.element,
   }
 
-  state = defaultState
+  state = {
+    orderFormContext: {
+      message: { isSuccess: null, text: null },
+      loading: true,
+      orderForm: {},
+      refetch: () => {},
+      addItem: this.props.addItem,
+      updateToastMessage: this.handleMessageUpdate,
+      updateOrderForm: this.props.updateOrderForm,
+      updateAndRefetchOrderForm: this.handleUpdateAndRefetchOrderForm,
+      updateOrderFormProfile: this.props.updateOrderFormProfile,
+      updateOrderFormShipping: this.props.updateOrderFormShipping,
+    },
+  }
 
   static getDerivedStateFromProps(props, state) {
     if (!props.data.loading && !props.data.error) {
@@ -58,7 +56,7 @@ class ContextProvider extends Component {
       }
     }
 
-    return defaultState
+    return state
   }
 
   handleUpdateAndRefetchOrderForm = vars => {
@@ -132,7 +130,7 @@ export const OrderFormProvider = compose(
   graphql(addToCartMutation, { name: 'addItem' }),
   graphql(updateItemsMutation, { name: 'updateOrderForm' }),
   graphql(updateOrderFormProfile, { name: 'updateOrderFormProfile' }),
-  graphql(updateOrderFormShipping, { name: 'updateOrderFormShipping'})
+  graphql(updateOrderFormShipping, { name: 'updateOrderFormShipping' })
 )(ContextProvider)
 
 export default { orderFormConsumer, contextPropTypes }
