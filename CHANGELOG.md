@@ -10,6 +10,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Enables querying of `shippingData` in `orderFormQuery`
 - Adds `updateOrderFormShipping`, a mutation and function on `OrderFormContext`
 
+## [1.19.3] - 2018-9-30
+### Fixed
+- Add `cacheId` and `categories` to `searchQuery` to fix product preview
+
+## [1.19.2] - 2018-09-29
+### Changed
+- Update `productQuery` to get 10 sku images.
+
+## [1.19.1] - 2018-09-28
+### Added
+- Add field `values` to the variations property in `productQuery`
+
 ## [1.19.0] - 2018-09-27
 ### Added
 - Add custom paramenters to create custom search.
@@ -45,7 +57,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.14.1] - 2018-09-13
 ### Fixed
-- Fix undefined categories prop in `ProductContextProvider`. 
+- Fix undefined categories prop in `ProductContextProvider`.
 
 ### Removed
 - Now, `my-orders-app` is embedded in `my-account`, this makes the route `account/orders` useless.
@@ -143,7 +155,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - *Hot Fix* Fix error titleTag of undefined.
 ## [1.9.1] - 2018-08-07
 ### Fixed
-- Fix object undefined error in dataLayer. 
+- Fix object undefined error in dataLayer.
 
 ## [1.9.0] - 2018-08-06
 ### Added
@@ -151,7 +163,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.8.0] - 2018-08-06
 ### Removed
-- Unambiguous search paths (`/c, /sc, /s`) don't have suffix anymore. 
+- Unambiguous search paths (`/c, /sc, /s`) don't have suffix anymore.
 
 ## [1.7.4] - 2018-08-03
 ### Fixed
@@ -175,11 +187,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.6.1] - 2018-08-01
 ### Fixed
-- Component `StoreContextProvider` import 
+- Component `StoreContextProvider` import
 
 ## [1.6.0] - 2018-08-01
 ### Added
-- Component `OrderFormContext` 
+- Component `OrderFormContext`
 
 ## [1.5.1] - 2018-08-01
 ### Fixed
@@ -248,7 +260,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.1.1] - 2018-07-17
 ### Changed
-- Change `ProductPage`, passing loading information to the ProductDetails component 
+- Change `ProductPage`, passing loading information to the ProductDetails component
 
 ## [1.0.2] - 2018-07-16
 ### Fixed
@@ -277,7 +289,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Graphql product query to support benefits retrievement.
 
 ## [0.6.1] - 2018-7-6
-### Changed 
+### Changed
 - Add `ExtensionContainer` to `store/login/container`.
 
 ## [0.6.0] - 2018-7-6
