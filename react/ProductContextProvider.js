@@ -45,24 +45,10 @@ class ProductContextProvider extends Component {
   }
 
   componentDidMount() {
-<<<<<<< HEAD
     const { prefetchPage } = this.props.runtime
-    const {
-      params: { slug },
-    } = this.props
     prefetchPage('store/home')
     prefetchPage('store/search')
-    const loading = this.loading()
-    const product = this.product()
-    if (!product && !loading) {
-      this.props.runtime.navigate({
-        page: 'store/search',
-        params: { term: slug },
-      })
-    }
-=======
     this.checkNotFoundProduct();
->>>>>>> Fixing ProductNotFound Redirection
   }
 
   componentDidUpdate() {
@@ -74,11 +60,7 @@ class ProductContextProvider extends Component {
   }
 
   getData = () => {
-<<<<<<< HEAD
     const { query, runtime: { account } } = this.props
-=======
-    const { query } = this.props
->>>>>>> Fixing ProductNotFound Redirection
     const product = this.product()
     const {
       titleTag,
