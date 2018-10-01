@@ -73,6 +73,12 @@ export function pixelProvider(WrappedComponent) {
           subscribers: [subscriber, ...state.subscribers],
         }))
       }
+
+      return () => {
+        this.setState(state => ({
+          subscribers: state.subscribers.filter(sub => sub === subscriber),
+        }))
+      }
     }
 
     render() {
