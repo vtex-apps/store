@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import { OrderFormProvider } from './OrderFormContext'
 import { DataLayerProvider } from './components/withDataLayer'
-import { pixelGlobalContext } from './PixelContext'
+import { pixelProvider } from './PixelContext'
 
 const APP_LOCATOR = 'vtex.store'
 const CONTENT_TYPE = 'text/html;charset=utf-8'
@@ -12,7 +12,15 @@ const META_ROBOTS = 'index, follow'
 
 class StoreContextProvider extends Component {
   static propTypes = {
+    runtime: PropTypes.shape({
+      culture: PropTypes.shape({
+        country: PropTypes.string,
+        locale: PropTypes.string,
+        currency: PropTypes.string,
+      }),
+    }),
     children: PropTypes.element,
+    push: PropTypes.func,
   }
 
   render() {
@@ -27,12 +35,10 @@ class StoreContextProvider extends Component {
     } = settings
 
     return (
-      <DataLayerProvider
-      value={{
+      <DataLayerProvider value={{
         dataLayer: window.dataLayer,
         set: this.props.push,
-      }}
-      >
+      }}>
         <Helmet>
           <title>{titleTag}</title>
           <meta name="description" content={metaTagDescription} />
@@ -57,4 +63,4 @@ StoreContextProvider.contextTypes = {
   getSettings: PropTypes.func,
 }
 
-export default withRuntimeContext(pixelGlobalContext(StoreContextProvider))
+export default withRuntimeContext(pixelProvider(StoreContextProvider))
