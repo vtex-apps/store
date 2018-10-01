@@ -1,37 +1,46 @@
+import hoistNonReactStatics from 'hoist-non-react-statics'
 import React, { Component } from 'react'
 
 const PixelContext = React.createContext()
 
-export const PixelAppInterface = (WrappedComponent) => {
-  return class Pixel extends Component {
-    constructor(props) {
-      super(props)
-    }
+const SUBSCRIPTION_TIMEOUT = 100
 
-    renderComponent = (context) => {
-      console.log(">>> Context:", context)
-      return (
-        <WrappedComponent subscribe={context.subscribe} context={context}/>
-      )
-    }
+/**
+ * Pixel it's the HOC Component that provides an event subscription to the
+ * Wrapped Component. This component will be used by the installed apps.
+ */
+export function Pixel(WrappedComponent) {
+  const Pixel = () => (
+    <PixelContext.Consumer>
+      {({ subscribe }) => <WrappedComponent {...this.props} subscribe={subscribe} />}
+    </PixelContext.Consumer>
+  )
 
-    render() {
-      return (
-        <PixelContext.Consumer>
-          {(context) => this.renderComponent(context)}
-        </PixelContext.Consumer>
-      )
-    }
-  }
+  Pixel.displayName = 'Pixel'
+
+  return hoistNonReactStatics(Pixel, WrappedComponent)
 }
 
-export const pixelGlobalContext = (WrappedComponent) => {
-  return class WithPixel extends Component {
+/**
+ * HOC Component that has the Pixel logic, dispatching store events
+ * to the subscribed external components.
+ */
+export function pixelProvider(WrappedComponent) {
+  class PixelProvider extends Component {
+    state = {
+      subscribers: [],
+    }
 
-    constructor(props) {
-      super(props)
-      this.state = {
-        subscribers: []
+    /**
+     * Ensure that the Data Layer exists and will be recreated
+     * after each children change (navigation).
+     */
+    initDataLayer = () => {
+      const { dataLayer } = window
+      if (dataLayer) {
+        dataLayer.splice(0, dataLayer.length)
+      } else {
+        window.dataLayer = []
       }
     }
 
@@ -44,8 +53,8 @@ export const pixelGlobalContext = (WrappedComponent) => {
         }
       })
     }
-    
-    push = (data) => {
+
+    push = data => {
       const notifyAndPush = () => {
         console.log(">>> Pixel push event: ", this.state, data)
         this.notifySubscribers(data)
@@ -58,27 +67,32 @@ export const pixelGlobalContext = (WrappedComponent) => {
         notifyAndPush()
       }
     }
-    
-    subscribe = (subscriber) => {
+
+    subscribe = subscriber => {
       if (subscriber) {
-        console.log(">>> Subscribe: ", subscriber)
-        this.setState({
-          subscribers: [subscriber, ...this.state.subscribers]
-        })
+        this.setState(state => ({
+          subscribers: [subscriber, ...state.subscribers],
+        }))
       }
     }
 
     render() {
+      this.initDataLayer()
+
       return (
         <PixelContext.Provider value={{
           subscribe: this.subscribe,
-          ...this.state
         }}>
           <WrappedComponent {...this.props} push={this.push} />
         </PixelContext.Provider>
       )
     }
   }
+
+  return hoistNonReactStatics(
+    withRuntimeContext(PixelProvider),
+    WrappedComponent
+  )
 }
 
-export default { PixelAppInterface }
+export default { Pixel }

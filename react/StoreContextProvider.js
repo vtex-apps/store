@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import GtmScripts from './components/GtmScripts'
 import { OrderFormProvider } from './OrderFormContext'
 import { DataLayerProvider } from './components/withDataLayer'
-import { pixelGlobalContext } from './PixelContext'
+import { pixelProvider } from './PixelContext'
 
 const APP_LOCATOR = 'vtex.store'
 const CONTENT_TYPE = 'text/html;charset=utf-8'
@@ -16,7 +16,15 @@ https://${global.__RUNTIME__.workspace}--${global.__RUNTIME__.account}.myvtex.co
 
 class StoreContextProvider extends Component {
   static propTypes = {
+    runtime: PropTypes.shape({
+      culture: PropTypes.shape({
+        country: PropTypes.string,
+        locale: PropTypes.string,
+        currency: PropTypes.string,
+      }),
+    }),
     children: PropTypes.element,
+    push: PropTypes.func,
   }
 
   pushToDataLayer = obj => {
@@ -71,12 +79,10 @@ class StoreContextProvider extends Component {
 
     this.initDataLayer()
     return (
-      <DataLayerProvider
-      value={{
+      <DataLayerProvider value={{
         dataLayer: window.dataLayer,
-        set: this.pushToDataLayer,
-      }}
-      >
+        set: this.props.push,
+      }}>
         <GtmScripts gtmId={gtmId} />
         <Helmet>
           <title>{titleTag}</title>
@@ -102,4 +108,4 @@ StoreContextProvider.contextTypes = {
   getSettings: PropTypes.func,
 }
 
-export default pixelGlobalContext(withRuntimeContext(StoreContextProvider))
+export default withRuntimeContext(pixelProvider(StoreContextProvider))
