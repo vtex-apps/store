@@ -12,5 +12,19 @@ query orderForm {
       sellingPrice
       listPrice
     }
+    shippingData {
+      address {
+        id
+        neighborhood
+        complement
+        number
+        street
+        postalCode
+        city
+        reference
+        addressName
+        addressType
+      }
+    }
   }
 }
