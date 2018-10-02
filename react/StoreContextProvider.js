@@ -36,10 +36,12 @@ class StoreContextProvider extends Component {
 
     return (
       <PixelProvider>
-        <DataLayerProvider value={{
-          dataLayer: window.dataLayer,
-          set: this.props.push,
-        }}>
+        <DataLayerProvider
+          value={{
+            dataLayer: window.dataLayer,
+            set: this.props.push,
+          }}
+        >
           <Helmet>
             <title>{titleTag}</title>
             <meta name="description" content={metaTagDescription} />
