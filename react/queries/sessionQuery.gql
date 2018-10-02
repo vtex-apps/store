@@ -1,0 +1,23 @@
+query Session {
+  getSession {
+    id
+    adminUserId
+    impersonable
+    adminUserEmail
+    profile {
+      id
+      firstName
+      lastName
+      email
+    }
+    impersonate {
+      profile {
+        phone
+        email
+        lastName
+        document
+        firstName
+      }
+    }
+  }
+}
