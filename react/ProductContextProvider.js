@@ -148,17 +148,13 @@ class ProductContextProvider extends Component {
       pageInfo,
       {
         event: 'productView',
-        products: [
-          {
-            id: productId,
-            name: productName,
-            brand: brand,
-            category: this.stripCategory(
-            path(['categories', '0'], product)
-            ),
-            price: pageInfo.productPriceTo,
-          },
-        ],
+        product: {
+          id: productId,
+          name: productName,
+          brand: brand,
+          category: this.stripCategory(path(['categories', '0'], product)),
+          price: pageInfo.productPriceTo,
+        },
       },
     ]
   }
