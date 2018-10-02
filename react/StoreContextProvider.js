@@ -37,10 +37,12 @@ class StoreContextProvider extends Component {
 
     return (
       <PixelProvider>
-        <DataLayerProvider value={{
-          dataLayer: window.dataLayer,
-          set: this.props.push,
-        }}>
+        <DataLayerProvider
+          value={{
+            dataLayer: window.dataLayer,
+            set: this.props.push,
+          }}
+        >
           <GtmScripts gtmId={gtmId} />
           <Helmet>
             <title>{titleTag}</title>

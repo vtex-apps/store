@@ -21,9 +21,11 @@ interface Subscriber {
 
 interface ContextType {
   subscribe: (s: Subscriber) => () => void
+  push: (data: PixelData) => void
 }
 
 const PixelContext = React.createContext<ContextType>({
+  push: () => undefined,
   subscribe: () => () => undefined,
 })
 
@@ -34,11 +36,17 @@ const PixelContext = React.createContext<ContextType>({
 export function Pixel(WrappedComponent: React.ComponentType<{} & ContextType>) {
   const PixelComponent: React.StatelessComponent<{}> = props => (
     <PixelContext.Consumer>
-      {({ subscribe }) => <WrappedComponent {...props} subscribe={subscribe} />}
+      {({ subscribe, push }) =>
+        <WrappedComponent
+          {...props}
+          push={push}
+          subscribe={subscribe}
+        />
+      }
     </PixelContext.Consumer>
   )
 
-  PixelComponent.displayName = 'Pixel'
+  PixelComponent.displayName = `withPixel(${WrappedComponent.displayName})`
 
   return hoistNonReactStatics(PixelComponent, WrappedComponent)
 }
@@ -93,9 +101,12 @@ export class PixelProvider extends Component<{}, ProviderState> {
 
   public render() {
     return (
-      <PixelContext.Provider value={{
-        subscribe: this.subscribe,
-      }}>
+      <PixelContext.Provider
+        value={{
+          push: this.push,
+          subscribe: this.subscribe,
+        }}
+      >
         {this.props.children}
       </PixelContext.Provider>
     )
