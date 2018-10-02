@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import { OrderFormProvider } from './OrderFormContext'
 import { DataLayerProvider } from './components/withDataLayer'
-import { pixelProvider } from './PixelContext'
+import { PixelProvider } from './PixelContext'
 
 const APP_LOCATOR = 'vtex.store'
 const CONTENT_TYPE = 'text/html;charset=utf-8'
@@ -35,26 +35,28 @@ class StoreContextProvider extends Component {
     } = settings
 
     return (
-      <DataLayerProvider value={{
-        dataLayer: window.dataLayer,
-        set: this.props.push,
-      }}>
-        <Helmet>
-          <title>{titleTag}</title>
-          <meta name="description" content={metaTagDescription} />
-          <meta name="keywords" content={metaTagKeywords} />
-          <meta name="copyright" content={storeName} />
-          <meta name="author" content={storeName} />
-          <meta name="country" content={country} />
-          <meta name="language" content={locale} />
-          <meta name="currency" content={currency} />
-          <meta name="robots" content={metaTagRobots || META_ROBOTS} />
-          <meta httpEquiv="Content-Type" content={CONTENT_TYPE} />
-        </Helmet>
-        <OrderFormProvider>
-          <div className="vtex-store__template">{this.props.children}</div>
-        </OrderFormProvider>
-      </DataLayerProvider>
+      <PixelProvider>
+        <DataLayerProvider value={{
+          dataLayer: window.dataLayer,
+          set: this.props.push,
+        }}>
+          <Helmet>
+            <title>{titleTag}</title>
+            <meta name="description" content={metaTagDescription} />
+            <meta name="keywords" content={metaTagKeywords} />
+            <meta name="copyright" content={storeName} />
+            <meta name="author" content={storeName} />
+            <meta name="country" content={country} />
+            <meta name="language" content={locale} />
+            <meta name="currency" content={currency} />
+            <meta name="robots" content={metaTagRobots || META_ROBOTS} />
+            <meta httpEquiv="Content-Type" content={CONTENT_TYPE} />
+          </Helmet>
+          <OrderFormProvider>
+            <div className="vtex-store__template">{this.props.children}</div>
+          </OrderFormProvider>
+        </DataLayerProvider>
+      </PixelProvider>
     )
   }
 }
@@ -63,4 +65,4 @@ StoreContextProvider.contextTypes = {
   getSettings: PropTypes.func,
 }
 
-export default withRuntimeContext(pixelProvider(StoreContextProvider))
+export default withRuntimeContext(StoreContextProvider)
