@@ -114,6 +114,13 @@ class ProductSearchContextProvider extends Component {
         price: product
           ? `${product.items[0].sellers[0].commertialOffer.Price}`
           : '',
+        quantity: `${
+          product.items.reduce((acc, sku) =>
+            acc + sku.sellers.reduce((sellerAcc, seller) =>
+              sellerAcc + seller.commertialOffer.AvailableQuantity, 0
+            )
+          , 0)
+        }`,
       }))
       : []
 
