@@ -1,7 +1,13 @@
 query orderForm {
   orderForm {
+    cacheId
     orderFormId
     value
+    totalizers {
+      id
+      name
+      value
+    }
     items {
       id
       name
