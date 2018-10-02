@@ -4,7 +4,11 @@ import { withRuntimeContext } from 'render'
 
 const SUBSCRIPTION_TIMEOUT = 100
 
-type EventType = 'productView' | 'addToCart' | 'removeFromCart'
+type EventType = 'productView'
+  | 'otherView'
+  | 'categoryView'
+  | 'departmentView'
+  | 'internalSiteSearchView'
 
 interface PixelData {
   event?: EventType

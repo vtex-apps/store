@@ -158,9 +158,7 @@ class ProductContextProvider extends Component {
           id: productId,
           name: productName,
           brand: brand,
-          category: this.stripCategory(
-          path(['categories', '0'], product)
-          ),
+          category: this.stripCategory(path(['categories', '0'], product)),
           price: pageInfo.productPriceTo,
         },
       },
