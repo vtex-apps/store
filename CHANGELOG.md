@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- `Pixel` context with store dispatch events.
+
+### Removed
+- `Google Tag Manager` script and its logic.
 
 ## [1.23.0] - 2018-10-15
 ### Changed
