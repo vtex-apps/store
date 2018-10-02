@@ -24,7 +24,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Pixel` context with store dispatch events.
 
 ### Removed
-- `Google Tag Manager` script and it's logic.
+- `Google Tag Manager` script and its logic.
 
 ## [1.19.3] - 2018-9-30
 ### Fixed

@@ -30,7 +30,7 @@ const PixelContext = React.createContext<ContextType>({
 })
 
 /**
- * Pixel it's the HOC Component that provides an event subscription to the
+ * Pixel is the HOC Component that provides an event subscription to the
  * Wrapped Component. This component will be used by the installed apps.
  */
 export function Pixel(WrappedComponent: React.ComponentType<{} & ContextType>) {
