@@ -169,7 +169,12 @@ class ProductContextProvider extends Component {
       fragment: productPreviewFragment,
     })
     const loadedProduct = this.product()
-    const product = loadedProduct ? loadedProduct : productPreview
+    const product = loadedProduct
+      ? loadedProduct
+      : productPreview && productPreview.items
+        ? productPreview
+        : null
+
     const loading = this.loading()
     const { titleTag, metaTagDescription } = product || {}
 
