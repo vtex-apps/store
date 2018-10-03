@@ -98,7 +98,7 @@ export class PixelProvider extends Component<{}, ProviderState> {
 
     return () => {
       this.setState(state => ({
-        subscribers: state.subscribers.filter(sub => sub === subscriber),
+        subscribers: state.subscribers.filter(sub => sub !== subscriber),
       }))
     }
   }
