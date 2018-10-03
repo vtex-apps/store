@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- `Pixel` context with store dispatch events.
+
+### Removed
+- `Google Tag Manager` script and its logic.
 
 ## [1.21.0] - 2018-10-02
 ### Added
@@ -21,10 +26,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Enables querying of `shippingData` in `orderFormQuery`
 - Adds `updateOrderFormShipping`, a mutation and function on `OrderFormContext`
-- `Pixel` context with store dispatch events.
-
-### Removed
-- `Google Tag Manager` script and its logic.
 
 ## [1.19.3] - 2018-9-30
 ### Fixed
