@@ -9,6 +9,7 @@ type EventType = 'productView'
   | 'categoryView'
   | 'departmentView'
   | 'internalSiteSearchView'
+  | 'pageInfo'
 
 interface PixelData {
   event?: EventType
@@ -18,9 +19,12 @@ interface PixelData {
 type PixelEventHandler = (data: PixelData) => void
 
 interface Subscriber {
-  productView: PixelEventHandler
-  addToCart: PixelEventHandler
-  removeFromCart: PixelEventHandler
+  productView?: PixelEventHandler
+  categoryView?: PixelEventHandler
+  departmentView?: PixelEventHandler
+  internalSiteSearchView?: PixelEventHandler
+  otherView?: PixelEventHandler
+  pageInfo?: PixelEventHandler
 }
 
 interface ContextType {

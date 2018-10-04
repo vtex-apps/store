@@ -78,6 +78,8 @@ class ProductContextProvider extends Component {
     }
 
     const pageInfo = {
+      event: 'pageInfo',
+      eventType: 'productView',
       accountName: account,
       pageCategory: 'Product',
       pageDepartment: categories ? this.stripCategory(last(categories)) : '',
@@ -128,33 +130,10 @@ class ProductContextProvider extends Component {
     }
 
     return [
-      {
-        ecommerce: {
-          detail: {
-            products: [
-              {
-                id: productId,
-                name: productName,
-                brand: brand,
-                category: this.stripCategory(
-                  path(['categories', '0'], product)
-                ),
-                price: pageInfo.productPriceTo,
-              },
-            ],
-          },
-        },
-      },
       pageInfo,
       {
         event: 'productView',
-        product: {
-          id: productId,
-          name: productName,
-          brand: brand,
-          category: this.stripCategory(path(['categories', '0'], product)),
-          price: pageInfo.productPriceTo,
-        },
+        product,
       },
     ]
   }
