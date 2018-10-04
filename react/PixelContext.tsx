@@ -69,9 +69,8 @@ export class PixelProvider extends Component<{}, ProviderState> {
   }
 
   /**
-   * Conditionally notify each subscriber if the instance
-   * has a valid event handler defined for the corresponding
-   * data
+   * Notify all subscribers that have a valid event handler
+   * defined for the corresponding data
    */
   public notifySubscribers = (data: PixelData) => {
     this.state.subscribers.forEach(subscriber => {
@@ -83,7 +82,7 @@ export class PixelProvider extends Component<{}, ProviderState> {
   }
 
   /**
-   * Notify all subscribers of the event
+   * Notify all subscribers of a event data
    */
   public push = (data: PixelData) => {
     const notifyAndPush = () => {
