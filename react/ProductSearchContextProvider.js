@@ -98,39 +98,15 @@ class ProductSearchContextProvider extends Component {
     }
 
     const { products, titleTag } = searchQuery
-    const { department, category } = this.props.params
+    const { department } = this.props.params
     const { account } = this.props.runtime
 
-    const simplifiedProducts = Array.isArray(products)
-      ? products.map((product, index) => ({
-        id: product.productId,
-        name: product.productName,
-        list: 'Search Results',
-        brand: product.brand,
-        category: searchQuery.facets.CategoriesTrees[index]
-          ? searchQuery.facets.CategoriesTrees[index].Name
-          : category,
-        position: `${index + 1}`,
-        price: product
-          ? `${product.items[0].sellers[0].commertialOffer.Price}`
-          : '',
-        quantity: `${
-          product.items.reduce((acc, sku) =>
-            acc + sku.sellers.reduce((sellerAcc, seller) =>
-              sellerAcc + seller.commertialOffer.AvailableQuantity, 0
-            )
-          , 0)
-        }`,
-      }))
-      : []
+    const event = this.getPageEventName(products)
 
     return [
       {
-        ecommerce: {
-          impressions: simplifiedProducts,
-        },
-      },
-      {
+        event: 'pageInfo',
+        eventType: event,
         accountName: account,
         pageCategory: this.pageCategory(products),
         pageDepartment: department,
@@ -139,8 +115,8 @@ class ProductSearchContextProvider extends Component {
         pageUrl: window.location.href,
       },
       {
-        event: this.getPageEventName(products),
-        products: simplifiedProducts,
+        event,
+        products,
       },
     ]
   }
