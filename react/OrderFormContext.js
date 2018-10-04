@@ -140,6 +140,7 @@ const contextPropTypes = PropTypes.shape({
         street: PropTypes.string,
         userId: PropTypes.string,
       }),
+      availableAddresses: PropTypes.arrayOf(PropTypes.object),
     }),
   }),
 }).isRequired
