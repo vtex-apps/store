@@ -7,19 +7,20 @@ import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
 class HomeContextProvider extends Component {
   static propTypes = {
     children: PropTypes.element,
+    runtime: PropTypes.shape({
+      account: PropTypes.string,
+      prefetchPage: PropTypes.func,
+    }),
   }
 
-  getData = () => (
-    [{
-      accountName: this.props.runtime.account,
-      pageTitle: document.title,
-      pageUrl: location.href,
-      pageCategory: 'Home',
-    },
-    {
-      event: 'homeView',
-    }]
-  )
+  getData = () => ({
+    event: 'pageInfo',
+    eventType: 'homeView',
+    accountName: this.props.runtime.account,
+    pageTitle: document.title,
+    pageUrl: location.href,
+    pageCategory: 'Home',
+  })
 
   componentDidMount() {
     const { prefetchPage } = this.props.runtime
