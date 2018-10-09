@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Enables querying of `availableAddresses` in `orderFormQuery`
 
+## [1.21.1] - 2018-10-02
+### Added
+- `ProductContextProvider`'s query param to the searchPage when product not found.
+
 ## [1.21.0] - 2018-10-02
 ### Added
 - Export queries by using an entrypoint

@@ -29,9 +29,9 @@ class ProductContextProvider extends Component {
       catalog &&
       catalog.product
       ? {
-        ...catalog.product,
-        ...recommendationsAndBenefits.product,
-      }
+          ...catalog.product,
+          ...recommendationsAndBenefits.product,
+        }
       : catalog && catalog.product
   }
 
@@ -46,19 +46,13 @@ class ProductContextProvider extends Component {
 
   componentDidMount() {
     const { prefetchPage } = this.props.runtime
-    const {
-      params: { slug },
-    } = this.props
     prefetchPage('store/home')
     prefetchPage('store/search')
-    const loading = this.loading()
-    const product = this.product()
-    if (!product && !loading) {
-      this.props.runtime.navigate({
-        page: 'store/search',
-        params: { term: slug },
-      })
-    }
+    this.checkNotFoundProduct();
+  }
+
+  componentDidUpdate() {
+    this.checkNotFoundProduct();
   }
 
   stripCategory(category) {
@@ -156,6 +150,19 @@ class ProductContextProvider extends Component {
         event: 'productView',
       },
     ]
+  }
+
+  checkNotFoundProduct = () => {
+    const loading = this.loading()
+    const product = this.product()
+    const {params: { slug }, runtime} = this.props
+    if (!product && !loading) {
+      runtime.navigate({
+        page: 'store/search',
+        params: { term: slug },
+        query: `productLinkNotFound=${slug}`
+      })
+    }
   }
 
   render() {
