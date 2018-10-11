@@ -31,6 +31,18 @@ query orderForm {
         addressName
         addressType
       }
+      availableAddresses {
+        id
+        neighborhood
+        complement
+        number
+        street
+        postalCode
+        city
+        reference
+        addressName
+        addressType
+      }
     }
   }
 }
