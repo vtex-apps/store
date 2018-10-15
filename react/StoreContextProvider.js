@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Helmet } from 'render'
+import { Helmet, withRuntimeContext } from 'render'
 import PropTypes from 'prop-types'
 
 import { OrderFormProvider } from './OrderFormContext'
@@ -33,6 +33,25 @@ class StoreContextProvider extends Component {
     } else {
       console.warn(GTM_UNDEFINED)
       window.dataLayer = []
+    }
+  }
+
+  sendPageViewEvent = () => {
+    this.pushToDataLayer({
+      event: 'pageView',
+      pageTitle: document.title,
+      pageUrl: location.href,
+      accountName: this.props.runtime.account,
+    })
+  }
+
+  componentDidMount() {
+    this.sendPageViewEvent()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.runtime.route.path !== this.props.runtime.route.path) {
+      this.sendPageViewEvent()
     }
   }
 
@@ -86,4 +105,4 @@ StoreContextProvider.contextTypes = {
   getSettings: PropTypes.func,
 }
 
-export default StoreContextProvider
+export default withRuntimeContext(StoreContextProvider)
