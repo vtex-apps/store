@@ -91,6 +91,9 @@ export class PixelProvider extends Component<{}, ProviderState> {
   public push = (data: PixelData) => {
     const notifyAndPush = () => {
       this.notifySubscribers(data)
+      if (window.dataLayer) {
+        window.dataLayer.push(data)
+      }
     }
 
     if (this.state.subscribers.length === 0) {

@@ -28,12 +28,15 @@ class StoreContextProvider extends Component {
     const { country, locale, currency } = this.props.runtime.culture
     const settings = this.context.getSettings(APP_LOCATOR) || {}
     const {
+      gtmId,
       titleTag,
       metaTagDescription,
       metaTagKeywords,
       metaTagRobots,
       storeName,
     } = settings
+
+    window.dataLayer = window.dataLayer || []
 
     return (
       <PixelProvider>
