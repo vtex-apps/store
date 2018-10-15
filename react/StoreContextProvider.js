@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { Helmet, withRuntimeContext } from 'render'
 import PropTypes from 'prop-types'
 
+import GtmScripts from './components/GtmScripts'
 import { OrderFormProvider } from './OrderFormContext'
 import { DataLayerProvider } from './components/withDataLayer'
-import { gtmScript, gtmFrame } from './scripts/gtm'
 
 const APP_LOCATOR = 'vtex.store'
 const CONTENT_TYPE = 'text/html;charset=utf-8'
@@ -66,11 +66,6 @@ class StoreContextProvider extends Component {
       metaTagRobots,
       storeName,
     } = settings
-    const scripts = gtmId ? [{
-      'type': 'application/javascript',
-      'innerHTML': gtmScript(gtmId),
-    }] : []
-    const noscripts = gtmId ? [{ id: 'gtm_frame', innerHTML: gtmFrame(gtmId) }] : []
 
     this.initDataLayer()
     return (
@@ -80,7 +75,7 @@ class StoreContextProvider extends Component {
           set: this.pushToDataLayer,
         }}
       >
-        <Helmet script={scripts} noscript={noscripts} />
+        <GtmScripts gtmId={gtmId} />
         <Helmet>
           <title>{titleTag}</title>
           <meta name="description" content={metaTagDescription} />
