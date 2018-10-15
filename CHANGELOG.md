@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.23.0] - 2018-10-15
+### Changed
+- Emit `pageView` event every page change.
+
 ## [1.22.0] - 2018-10-11
 ### Added
 - Enables querying of `availableAddresses` in `orderFormQuery`
