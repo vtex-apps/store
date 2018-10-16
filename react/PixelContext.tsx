@@ -10,6 +10,7 @@ type EventType = 'productView'
   | 'departmentView'
   | 'internalSiteSearchView'
   | 'pageInfo'
+  | 'pageView'
 
 interface PixelData {
   event?: EventType
@@ -25,6 +26,7 @@ interface Subscriber {
   internalSiteSearchView?: PixelEventHandler
   otherView?: PixelEventHandler
   pageInfo?: PixelEventHandler
+  pageView?: PixelEventHandler
 }
 
 interface ContextType {
