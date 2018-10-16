@@ -9,9 +9,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - `Pixel` context with store dispatch events.
 
-### Removed
-- `Google Tag Manager` script and its logic.
-
 ## [1.23.0] - 2018-10-15
 ### Changed
 - Emit `pageView` event every page change.
