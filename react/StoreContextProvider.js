@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Helmet, withRuntimeContext } from 'render'
+import { Helmet, withRuntimeContext, ExtensionPoint } from 'render'
 import PropTypes from 'prop-types'
 
 import GtmScripts from './components/GtmScripts'
@@ -43,6 +43,7 @@ class StoreContextProvider extends Component {
       <PixelProvider>
         <DataLayerProvider value={{ dataLayer: window.dataLayer }}>
           <GtmScripts gtmId={gtmId} />
+          <ExtensionPoint id="store/pixel" />
           <PageViewPixel />
           <Helmet>
             <title>{titleTag}</title>

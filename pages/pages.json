@@ -45,5 +45,10 @@
       "canonical": "/:term",
       "context": "ProductSearchContextProvider"
     }
+  },
+  "extensions": {
+    "store/pixel": {
+      "component": "vtex.render-runtime/ExtensionContainer"
+    }
   }
 }
