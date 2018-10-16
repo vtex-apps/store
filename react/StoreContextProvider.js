@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Helmet, withRuntimeContext } from 'render'
 import PropTypes from 'prop-types'
 
-import GtmScripts from './components/GtmScripts'
 import PageViewPixel from './components/PageViewPixel'
 import { OrderFormProvider } from './OrderFormContext'
 import { DataLayerProvider } from './components/withDataLayer'
@@ -29,7 +28,6 @@ class StoreContextProvider extends Component {
     const { country, locale, currency } = this.props.runtime.culture
     const settings = this.context.getSettings(APP_LOCATOR) || {}
     const {
-      gtmId,
       titleTag,
       metaTagDescription,
       metaTagKeywords,
@@ -42,7 +40,6 @@ class StoreContextProvider extends Component {
     return (
       <PixelProvider>
         <DataLayerProvider value={{ dataLayer: window.dataLayer }}>
-          <GtmScripts gtmId={gtmId} />
           <PageViewPixel />
           <Helmet>
             <title>{titleTag}</title>

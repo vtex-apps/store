@@ -46,11 +46,6 @@
         "title": "Store Robots (Meta Tag robots)",
         "type": "string",
         "description": "Default value: index, follow"
-      },
-      "gtmId": {
-        "title": "Google Tag Manager",
-        "type": "string",
-        "description": "Enter with the ID (GTM-XXXX) from your Google Tag Manager container if you want to automatically use it"
       }
     }
   }
