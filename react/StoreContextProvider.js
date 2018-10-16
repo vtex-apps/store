@@ -3,60 +3,30 @@ import { Helmet, withRuntimeContext } from 'render'
 import PropTypes from 'prop-types'
 
 import GtmScripts from './components/GtmScripts'
+import PageViewPixel from './components/PageViewPixel'
 import { OrderFormProvider } from './OrderFormContext'
 import { DataLayerProvider } from './components/withDataLayer'
+import { PixelProvider } from './PixelContext'
 
 const APP_LOCATOR = 'vtex.store'
 const CONTENT_TYPE = 'text/html;charset=utf-8'
 const META_ROBOTS = 'index, follow'
 
-const GTM_UNDEFINED = `No Google Tag Manager ID is defined. Take a look at:\
-https://${global.__RUNTIME__.workspace}--${global.__RUNTIME__.account}.myvtex.com/admin/apps/vtex.store/setup`
-
 class StoreContextProvider extends Component {
   static propTypes = {
+    runtime: PropTypes.shape({
+      culture: PropTypes.shape({
+        country: PropTypes.string,
+        locale: PropTypes.string,
+        currency: PropTypes.string,
+      }),
+    }),
     children: PropTypes.element,
-  }
-
-  pushToDataLayer = obj => {
-    window.dataLayer.push(obj)
-  }
-
-  /**
-   * Ensure that the Data Layer exists and will be recreated
-   * after each children change (navigation).
-   */
-  initDataLayer = () => {
-    const { dataLayer } = window
-    if (dataLayer) {
-      dataLayer.splice(0, dataLayer.length)
-    } else {
-      console.warn(GTM_UNDEFINED)
-      window.dataLayer = []
-    }
-  }
-
-  sendPageViewEvent = () => {
-    this.pushToDataLayer({
-      event: 'pageView',
-      pageTitle: document.title,
-      pageUrl: location.href,
-      accountName: this.props.runtime.account,
-    })
-  }
-
-  componentDidMount() {
-    this.sendPageViewEvent()
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.runtime.route.path !== this.props.runtime.route.path) {
-      this.sendPageViewEvent()
-    }
+    push: PropTypes.func,
   }
 
   render() {
-    const { country, locale, currency } = global.__RUNTIME__.culture
+    const { country, locale, currency } = this.props.runtime.culture
     const settings = this.context.getSettings(APP_LOCATOR) || {}
     const {
       gtmId,
@@ -67,31 +37,30 @@ class StoreContextProvider extends Component {
       storeName,
     } = settings
 
-    this.initDataLayer()
+    window.dataLayer = window.dataLayer || []
+
     return (
-      <DataLayerProvider
-        value={{
-          dataLayer: window.dataLayer,
-          set: this.pushToDataLayer,
-        }}
-      >
-        <GtmScripts gtmId={gtmId} />
-        <Helmet>
-          <title>{titleTag}</title>
-          <meta name="description" content={metaTagDescription} />
-          <meta name="keywords" content={metaTagKeywords} />
-          <meta name="copyright" content={storeName} />
-          <meta name="author" content={storeName} />
-          <meta name="country" content={country} />
-          <meta name="language" content={locale} />
-          <meta name="currency" content={currency} />
-          <meta name="robots" content={metaTagRobots || META_ROBOTS} />
-          <meta httpEquiv="Content-Type" content={CONTENT_TYPE} />
-        </Helmet>
-        <OrderFormProvider>
-          <div className="vtex-store__template">{this.props.children}</div>
-        </OrderFormProvider>
-      </DataLayerProvider>
+      <PixelProvider>
+        <DataLayerProvider value={{ dataLayer: window.dataLayer }}>
+          <GtmScripts gtmId={gtmId} />
+          <PageViewPixel />
+          <Helmet>
+            <title>{titleTag}</title>
+            <meta name="description" content={metaTagDescription} />
+            <meta name="keywords" content={metaTagKeywords} />
+            <meta name="copyright" content={storeName} />
+            <meta name="author" content={storeName} />
+            <meta name="country" content={country} />
+            <meta name="language" content={locale} />
+            <meta name="currency" content={currency} />
+            <meta name="robots" content={metaTagRobots || META_ROBOTS} />
+            <meta httpEquiv="Content-Type" content={CONTENT_TYPE} />
+          </Helmet>
+          <OrderFormProvider>
+            <div className="vtex-store__template">{this.props.children}</div>
+          </OrderFormProvider>
+        </DataLayerProvider>
+      </PixelProvider>
     )
   }
 }

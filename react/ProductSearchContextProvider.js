@@ -63,16 +63,16 @@ class ProductSearchContextProvider extends Component {
       },
       queryField: {
         title: 'Query',
-        type: 'string'
+        type: 'string',
       },
       mapField: {
         title: 'Map',
-        type: 'string'
+        type: 'string',
       },
       restField: {
         title: 'Other Query Strings',
-        type: 'string'
-      }
+        type: 'string',
+      },
     },
   }
 
@@ -98,29 +98,15 @@ class ProductSearchContextProvider extends Component {
     }
 
     const { products, titleTag } = searchQuery
-    const { department, category } = this.props.params
+    const { department } = this.props.params
     const { account } = this.props.runtime
+
+    const event = this.getPageEventName(products)
+
     return [
       {
-        ecommerce: {
-          impressions:
-            Array.isArray(products) &&
-            products.map((product, index) => ({
-              id: product.productId,
-              name: product.productName,
-              list: 'Search Results',
-              brand: product.brand,
-              category: searchQuery.facets.CategoriesTrees[index]
-                ? searchQuery.facets.CategoriesTrees[index].Name
-                : category,
-              position: `${index + 1}`,
-              price: product
-                ? `${product.items[0].sellers[0].commertialOffer.Price}`
-                : '',
-            })),
-        },
-      },
-      {
+        event: 'pageInfo',
+        eventType: event,
         accountName: account,
         pageCategory: this.pageCategory(products),
         pageDepartment: department,
@@ -129,7 +115,8 @@ class ProductSearchContextProvider extends Component {
         pageUrl: window.location.href,
       },
       {
-        event: this.getPageEventName(products),
+        event,
+        products,
       },
     ]
   }
@@ -182,7 +169,7 @@ class ProductSearchContextProvider extends Component {
     return (
       <Query
         query={searchQuery}
-        variables={ queryField ? customSearch : defaultSearch }
+        variables={queryField ? customSearch : defaultSearch}
         notifyOnNetworkStatusChange
       >
         {searchQueryProps => {
