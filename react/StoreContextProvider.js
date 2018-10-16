@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 
 import canonicalPathFromParams from './utils/canonical'
-import GtmScripts from './components/GtmScripts'
 import PageViewPixel from './components/PageViewPixel'
 import { OrderFormProvider } from './OrderFormContext'
 import { DataLayerProvider } from './components/withDataLayer'
@@ -69,7 +68,6 @@ class StoreContextProvider extends Component {
     } = this.props
     const settings = this.context.getSettings(APP_LOCATOR) || {}
     const {
-      gtmId,
       titleTag,
       metaTagDescription,
       metaTagKeywords,
@@ -95,7 +93,6 @@ class StoreContextProvider extends Component {
         <ExtensionPoint id="store/__icons" />
         <PixelProvider>
           <DataLayerProvider value={{ dataLayer: window.dataLayer }}>
-            <GtmScripts gtmId={gtmId} />
             <ExtensionPoint id="store/pixel" />
             <ExtensionPoint id="store/rc" />
             <PageViewPixel />
