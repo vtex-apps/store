@@ -3,6 +3,7 @@ import { Helmet, withRuntimeContext } from 'render'
 import PropTypes from 'prop-types'
 
 import GtmScripts from './components/GtmScripts'
+import PageViewPixel from './components/PageViewPixel'
 import { OrderFormProvider } from './OrderFormContext'
 import { DataLayerProvider } from './components/withDataLayer'
 import { PixelProvider } from './PixelContext'
@@ -42,6 +43,7 @@ class StoreContextProvider extends Component {
       <PixelProvider>
         <DataLayerProvider value={{ dataLayer: window.dataLayer }}>
           <GtmScripts gtmId={gtmId} />
+          <PageViewPixel />
           <Helmet>
             <title>{titleTag}</title>
             <meta name="description" content={metaTagDescription} />
