@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Set absolute url in canonical pages link
+
 ## [1.25.0] - 2018-10-16
 ### Added
 - `ExtensionPoint` with an extension container for pixel apps.
