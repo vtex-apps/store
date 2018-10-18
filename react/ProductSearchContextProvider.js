@@ -189,7 +189,7 @@ class ProductSearchContextProvider extends Component {
                 {params && (
                   <link
                     rel="canonical"
-                    href={canonicalPathFromParams(params)}
+                    href={`https://${window.__hostname__}${canonicalPathFromParams(params)}`}
                   />
                 )}
                 {titleTag && <title>{titleTag}</title>}
