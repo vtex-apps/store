@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { Component, Fragment } from 'react'
 import { withApollo, graphql, compose } from 'react-apollo'
-import { path, last, head } from 'ramda'
+import { path, last, head, isEmpty } from 'ramda'
 import { Helmet, withRuntimeContext } from 'render'
 
 import MicroData from './components/MicroData'
@@ -23,31 +23,42 @@ class ProductContextProvider extends Component {
   }
 
   product() {
-    const { catalog, recommendationsAndBenefits } = this.props
-    return recommendationsAndBenefits &&
-      recommendationsAndBenefits.product &&
-      catalog &&
-      catalog.product
-      ? {
-          ...catalog.product,
-          ...recommendationsAndBenefits.product,
-        }
-      : catalog && catalog.product
+    const {
+      catalog: {
+        product: catalogProduct,
+        loading: catalogLoading = true
+      } = {},
+      recommendationsAndBenefits: {
+        product: recAndBenefitsProduct,
+        loading: recAndBenefitsLoading = true
+      } = {}
+    } = this.props
+
+    const catalogInfo = !catalogLoading && catalogProduct
+    const recAndBenefitsInfo = catalogInfo && !recAndBenefitsLoading && recAndBenefitsProduct
+    const product = {
+      ...catalogInfo,
+      ...recAndBenefitsInfo
+    }
+    return isEmpty(product)
+      ? null
+      : product
   }
 
   loading() {
-    const { catalog, recommendationsAndBenefits } = this.props
-    return recommendationsAndBenefits
-      ? recommendationsAndBenefits.loading || catalog.loading
-      : catalog
-        ? catalog.loading
-        : true
+    const {
+      catalog: {
+        loading: catalogLoading = true
+      } = {},
+      recommendationsAndBenefits: {
+        loading: recAndBenefitsLoading = true
+      } = {}
+    } = this.props
+
+    return catalogLoading || recAndBenefitsLoading
   }
 
   componentDidMount() {
-    const { prefetchPage } = this.props.runtime
-    prefetchPage('store/home')
-    prefetchPage('store/search')
     this.checkNotFoundProduct();
   }
 

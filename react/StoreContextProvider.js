@@ -18,6 +18,7 @@ const MOBILE_SCALE_OFF = 'width=device-width, initial-scale=1, maximum-scale=1, 
 class StoreContextProvider extends Component {
   static propTypes = {
     runtime: PropTypes.shape({
+      prefetchDefaultPages: PropTypes.func,
       culture: PropTypes.shape({
         country: PropTypes.string,
         locale: PropTypes.string,
@@ -26,6 +27,13 @@ class StoreContextProvider extends Component {
     }),
     children: PropTypes.element,
     push: PropTypes.func,
+  }
+
+  componentDidMount () {
+    const {runtime: {prefetchDefaultPages}} = this.props
+    prefetchDefaultPages([
+      'store/product',
+    ])
   }
 
   render() {

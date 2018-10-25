@@ -9,7 +9,6 @@ class HomeContextProvider extends Component {
     children: PropTypes.element,
     runtime: PropTypes.shape({
       account: PropTypes.string,
-      prefetchPage: PropTypes.func,
     }),
   }
 
@@ -21,12 +20,6 @@ class HomeContextProvider extends Component {
     pageUrl: location.href,
     pageCategory: 'Home',
   })
-
-  componentDidMount() {
-    const { prefetchPage } = this.props.runtime
-    prefetchPage('store/product')
-    prefetchPage('store/search')
-  }
 
   render() {
     return (
