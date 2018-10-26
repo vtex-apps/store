@@ -30,7 +30,11 @@ class StoreContextProvider extends Component {
   }
 
   componentDidMount () {
-    const {runtime: {prefetchDefaultPages}} = this.props
+    const {
+      runtime: {
+        prefetchDefaultPages
+      }
+    } = this.props
     prefetchDefaultPages([
       'store/product',
     ])
