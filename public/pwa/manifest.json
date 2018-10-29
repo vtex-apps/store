@@ -1,6 +1,6 @@
 {
-  "short_name": "AirHorner",
-  "name": "Kinlan's AirHorner of Infamy",
+  "short_name": "Dreamstore",
+  "name": "VTEX Dreamstore",
   "icons": [
     {
       "src": "launcher-icon-1x.png",
@@ -18,5 +18,6 @@
       "sizes": "192x192"
     }
   ],
-  "start_url": "index.html?launcher=true"
+  "start_url": "/",
+  "theme_color": "#F71963"
 }

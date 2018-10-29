@@ -9,11 +9,14 @@ import PageViewPixel from './components/PageViewPixel'
 import { OrderFormProvider } from './OrderFormContext'
 import { DataLayerProvider } from './components/withDataLayer'
 import { PixelProvider } from './PixelContext'
+import appMetadata from '../manifest.json'
 
 const APP_LOCATOR = 'vtex.store'
 const CONTENT_TYPE = 'text/html;charset=utf-8'
 const META_ROBOTS = 'index, follow'
 const MOBILE_SCALING = 'width=device-width, initial-scale=1'
+
+const PWA_DEBUG = true
 
 class StoreContextProvider extends Component {
   static propTypes = {
