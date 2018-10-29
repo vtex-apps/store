@@ -3,21 +3,24 @@
   "name": "VTEX Dreamstore",
   "icons": [
     {
-      "src": "launcher-icon-1x.png",
+      "src": "icons/pink/icon-128x128.png",
       "type": "image/png",
-      "sizes": "48x48"
+      "sizes": "128x128"
     },
     {
-      "src": "launcher-icon-2x.png",
+      "src": "icons/pink/apple-touch-icon.png",
       "type": "image/png",
-      "sizes": "96x96"
+      "sizes": "152x152"
     },
     {
-      "src": "launcher-icon-4x.png",
+      "src": "icons/pink/full-size-icon.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "48x48 96x96 192x192 512x512"
     }
   ],
   "start_url": "/",
-  "theme_color": "#F71963"
+  "theme_color": "#F71963",
+  "background_color": "#F71963",
+  "display": "standalone",
+  "orientation": "portrait"
 }
