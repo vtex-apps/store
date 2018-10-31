@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Move pixel apps to inside an iframe.
 
 ## [2.0.0-beta.4] - 2019-01-18
 ### Changed
@@ -84,7 +86,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Support to PWA. 
 
 ## [1.31.2] - 2018-12-02
-
 ### Changed
 - Allow user scaling as recommended by [accessibility guidelines](https://dequeuniversity.com/rules/axe/2.2/meta-viewport)
 
