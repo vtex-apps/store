@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Helmet, withRuntimeContext, ExtensionPoint, ExtensionContainer } from 'render'
+import { Helmet, withRuntimeContext, ExtensionPoint } from 'render'
 import PropTypes from 'prop-types'
 
 import GtmScripts from './components/GtmScripts'
@@ -42,7 +42,7 @@ class StoreContextProvider extends Component {
 
     return (
       <Fragment>
-        <ExtensionContainer id="store/__icons" />
+        <ExtensionPoint id="store/__icons" />
         <PixelProvider>
           <DataLayerProvider value={{ dataLayer: window.dataLayer }}>
             <GtmScripts gtmId={gtmId} />
