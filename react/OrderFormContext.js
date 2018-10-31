@@ -144,7 +144,7 @@ const contextPropTypes = PropTypes.shape({
       availableAddresses: PropTypes.arrayOf(PropTypes.object),
     }),
   }),
-}).isRequired
+})
 
 export const OrderFormProvider = compose(
   graphql(orderFormQuery, options),
