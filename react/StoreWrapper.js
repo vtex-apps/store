@@ -3,6 +3,8 @@ import React, { Component, Fragment } from 'react'
 import { Helmet, withRuntimeContext, ExtensionPoint } from 'render'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
+import { PixelProvider } from 'vtex.pixel-manager/PixelContext'
+import PixelManager from 'vtex.pixel-manager/PixelManager'
 import { ToastProvider } from 'vtex.styleguide'
 
 import canonicalPathFromParams from './utils/canonical'
@@ -10,7 +12,6 @@ import IconPack from './components/IconPack'
 import PageViewPixel from './components/PageViewPixel'
 import OrderFormProvider from './components/OrderFormProvider'
 import { DataLayerProvider } from './components/withDataLayer'
-import { PixelProvider } from './PixelContext'
 
 import pwaDataQuery from './queries/pwaDataQuery.gql'
 
@@ -102,7 +103,7 @@ class StoreWrapper extends Component {
         <IconPack />
         <PixelProvider>
           <DataLayerProvider value={{ dataLayer: window.dataLayer }}>
-            <ExtensionPoint id="store/pixel" />
+            <PixelManager />
             <ExtensionPoint id="store/rc" />
             <PageViewPixel />
             <Helmet>
