@@ -3,7 +3,7 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
     navigator.serviceWorker
       .register(
-        '/_v/private/assets/v1/linked/vtex.store@1.26.0/public/pwa/workers/register.js'
+        '/_v/private/assets/v1/linked/vtex.store@1.26.0/public/pwa/workers/sw.js'
       )
       .then(function(registration) {
         // Registration was successful

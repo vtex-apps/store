@@ -10,6 +10,7 @@ import { OrderFormProvider } from './OrderFormContext'
 import { DataLayerProvider } from './components/withDataLayer'
 import { PixelProvider } from './PixelContext'
 import appMetadata from '../manifest.json'
+import pwaManifest from '../public/pwa/manifest.json'
 
 const APP_LOCATOR = 'vtex.store'
 const CONTENT_TYPE = 'text/html;charset=utf-8'
