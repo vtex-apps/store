@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Helmet, withRuntimeContext, ExtensionPoint } from 'render'
+import React, { Component, Fragment } from 'react'
+import { Helmet, withRuntimeContext, ExtensionPoint, ExtensionContainer } from 'render'
 import PropTypes from 'prop-types'
 
 import GtmScripts from './components/GtmScripts'
@@ -41,29 +41,32 @@ class StoreContextProvider extends Component {
     window.dataLayer = window.dataLayer || []
 
     return (
-      <PixelProvider>
-        <DataLayerProvider value={{ dataLayer: window.dataLayer }}>
-          <GtmScripts gtmId={gtmId} />
-          <ExtensionPoint id="store/pixel" />
-          <PageViewPixel />
-          <Helmet>
-            <title>{titleTag}</title>
-            <meta name="viewport" content={MOBILE_SCALE_OFF} />
-            <meta name="description" content={metaTagDescription} />
-            <meta name="keywords" content={metaTagKeywords} />
-            <meta name="copyright" content={storeName} />
-            <meta name="author" content={storeName} />
-            <meta name="country" content={country} />
-            <meta name="language" content={locale} />
-            <meta name="currency" content={currency} />
-            <meta name="robots" content={metaTagRobots || META_ROBOTS} />
-            <meta httpEquiv="Content-Type" content={CONTENT_TYPE} />
-          </Helmet>
-          <OrderFormProvider>
-            <div className="vtex-store__template">{this.props.children}</div>
-          </OrderFormProvider>
-        </DataLayerProvider>
-      </PixelProvider>
+      <Fragment>
+        <ExtensionContainer id="store/__icons" />
+        <PixelProvider>
+          <DataLayerProvider value={{ dataLayer: window.dataLayer }}>
+            <GtmScripts gtmId={gtmId} />
+            <ExtensionPoint id="store/pixel" />
+            <PageViewPixel />
+            <Helmet>
+              <title>{titleTag}</title>
+              <meta name="viewport" content={MOBILE_SCALE_OFF} />
+              <meta name="description" content={metaTagDescription} />
+              <meta name="keywords" content={metaTagKeywords} />
+              <meta name="copyright" content={storeName} />
+              <meta name="author" content={storeName} />
+              <meta name="country" content={country} />
+              <meta name="language" content={locale} />
+              <meta name="currency" content={currency} />
+              <meta name="robots" content={metaTagRobots || META_ROBOTS} />
+              <meta httpEquiv="Content-Type" content={CONTENT_TYPE} />
+            </Helmet>
+            <OrderFormProvider>
+              <div className="vtex-store__template">{this.props.children}</div>
+            </OrderFormProvider>
+          </DataLayerProvider>
+        </PixelProvider>
+      </Fragment>
     )
   }
 }
