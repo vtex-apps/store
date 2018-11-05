@@ -16,7 +16,8 @@
     "postreleasy": "vtex publish --verbose"
   },
   "dependencies": {
-    "vtex.store-graphql": "2.x"
+    "vtex.store-graphql": "2.x",
+    "vtex.pwa-graphql": "0.x"
   },
   "settingsSchema": {
     "title": "VTEX Store",

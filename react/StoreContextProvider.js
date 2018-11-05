@@ -2,6 +2,7 @@ import { isEmpty } from 'ramda'
 import React, { Component, Fragment } from 'react'
 import { Helmet, withRuntimeContext, ExtensionPoint } from 'render'
 import PropTypes from 'prop-types'
+import { Query } from 'react-apollo'
 
 import canonicalPathFromParams from './utils/canonical'
 import GtmScripts from './components/GtmScripts'
@@ -9,15 +10,13 @@ import PageViewPixel from './components/PageViewPixel'
 import { OrderFormProvider } from './OrderFormContext'
 import { DataLayerProvider } from './components/withDataLayer'
 import { PixelProvider } from './PixelContext'
-import appMetadata from '../manifest.json'
-import pwaManifest from '../public/pwa/manifest.json'
+
+import pwaManifestQuery from './queries/pwaManifestQuery.gql'
 
 const APP_LOCATOR = 'vtex.store'
 const CONTENT_TYPE = 'text/html;charset=utf-8'
 const META_ROBOTS = 'index, follow'
 const MOBILE_SCALING = 'width=device-width, initial-scale=1'
-
-const PWA_DEBUG = true
 
 class StoreContextProvider extends Component {
   static propTypes = {

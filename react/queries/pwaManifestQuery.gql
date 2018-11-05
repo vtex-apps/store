@@ -1,0 +1,5 @@
+query pwaManifest {
+  manifest {
+    theme_color
+  }
+}
