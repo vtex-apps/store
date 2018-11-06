@@ -46,6 +46,7 @@ query orderForm {
     }
     clientProfileData {
       email
+      firstName
     }
   }
 }
