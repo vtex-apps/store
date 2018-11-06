@@ -73,6 +73,13 @@ class ProductSearchContextProvider extends Component {
         title: 'Other Query Strings',
         type: 'string',
       },
+      orderByField: {
+        title: 'Order by field',
+        type: 'string',
+        default: SORT_OPTIONS[0].value,
+        enum: SORT_OPTIONS.map(opt => opt.value),
+        enumNames: SORT_OPTIONS.map(opt => opt.label),
+      },
     },
   }
 
@@ -129,8 +136,9 @@ class ProductSearchContextProvider extends Component {
       queryField,
       mapField,
       restField,
+      orderByField,
       query: {
-        order: orderBy = SORT_OPTIONS[0].value,
+        order: orderBy = orderByField || SORT_OPTIONS[0].value,
         page: pageQuery,
         map: mapQuery,
         rest = '',
