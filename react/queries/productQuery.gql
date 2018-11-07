@@ -122,7 +122,6 @@ query Product($slug: String) {
         name
         required
       }
-      calculatedAttachments
     }
     productClusters{
       id
