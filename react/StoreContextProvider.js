@@ -2,7 +2,7 @@ import { isEmpty } from 'ramda'
 import React, { Component, Fragment } from 'react'
 import { Helmet, withRuntimeContext, ExtensionPoint } from 'render'
 import PropTypes from 'prop-types'
-import { Query } from 'react-apollo'
+import { graphql } from 'react-apollo'
 
 import canonicalPathFromParams from './utils/canonical'
 import GtmScripts from './components/GtmScripts'
@@ -30,6 +30,12 @@ class StoreContextProvider extends Component {
     }),
     children: PropTypes.element,
     push: PropTypes.func,
+    data: PropTypes.shape({
+      loading: PropTypes.bool,
+      manifest: PropTypes.shape({
+        theme_color: PropTypes.string,
+      }),
+    }),
   }
 
   componentDidMount () {
@@ -61,6 +67,7 @@ class StoreContextProvider extends Component {
       metaTagRobots,
       storeName,
     } = settings
+    const { data: { manifest, loading } = {} } = this.props
 
     window.dataLayer = window.dataLayer || []
 
@@ -115,4 +122,6 @@ StoreContextProvider.contextTypes = {
   getSettings: PropTypes.func,
 }
 
-export default withRuntimeContext(StoreContextProvider)
+export default graphql(pwaManifestQuery)(
+  withRuntimeContext(StoreContextProvider)
+)
