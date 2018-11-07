@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Removed `isRequired` from `orderFormContext` propTypes
+
 ## [1.26.0] - 2018-10-24
 
 ## [1.25.1] - 2018-10-18
