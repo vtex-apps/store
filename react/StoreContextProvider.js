@@ -11,6 +11,7 @@ import { PixelProvider } from './PixelContext'
 const APP_LOCATOR = 'vtex.store'
 const CONTENT_TYPE = 'text/html;charset=utf-8'
 const META_ROBOTS = 'index, follow'
+const MOBILE_SCALE_OFF = 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0'
 
 class StoreContextProvider extends Component {
   static propTypes = {
@@ -47,6 +48,7 @@ class StoreContextProvider extends Component {
           <PageViewPixel />
           <Helmet>
             <title>{titleTag}</title>
+            <meta name="viewport" content={MOBILE_SCALE_OFF} />
             <meta name="description" content={metaTagDescription} />
             <meta name="keywords" content={metaTagKeywords} />
             <meta name="copyright" content={storeName} />
