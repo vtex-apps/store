@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.27.1] - 2018-11-07
+### Added
+- Meta tag that disables zoom in mobile mode.
+
 ## [1.27.0] - 2018-11-06
 ### Added
 - Add field `orderBy` to schema.
