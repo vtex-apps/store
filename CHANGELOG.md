@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Extension container for icon packs.
+- Extension point for icon packs.
 
 ## [1.27.1] - 2018-11-07
 ### Added
