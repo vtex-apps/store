@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.28.0] - 2018-11-08
+### Added
+- Extension point for icon packs.
+
 ## [1.27.1] - 2018-11-07
 ### Added
 - Meta tag that disables zoom in mobile mode.
