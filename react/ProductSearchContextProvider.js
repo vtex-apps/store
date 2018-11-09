@@ -15,6 +15,8 @@ import {
 const DEFAULT_PAGE = 1
 const DEFAULT_MAX_ITEMS_PER_PAGE = 10
 
+const MAX_QUERY_RETRIES = 3
+
 class ProductSearchContextProvider extends Component {
   static propTypes = {
     /** Route parameters */
@@ -42,6 +44,10 @@ class ProductSearchContextProvider extends Component {
     children: PropTypes.node.isRequired,
     /** Max items to show per result page */
     maxItemsPerPage: PropTypes.number.isRequired,
+  }
+
+  state = {
+    retries: 0,
   }
 
   componentDidMount() {
@@ -187,8 +193,12 @@ class ProductSearchContextProvider extends Component {
           const { titleTag, metaTagDescription } = search || {}
 
           // quick fix, needs further investigation
-          if (!loading && isEmpty(data)) {
+          if (!loading && isEmpty(data) && this.state.retries < MAX_QUERY_RETRIES) {
             searchQuery.refetch()
+
+            this.setState(state => ({
+              retries: state.retries + 1,
+            }))
           }
 
           return (
