@@ -37,6 +37,11 @@ query Products($query: String) {
           AvailableQuantity
         }
       }
+      attachments {
+        id
+        name
+        required
+      }
     }
   }
 }

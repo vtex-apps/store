@@ -94,6 +94,11 @@ query RecommendationsAndBenefits ($slug: String) {
               }
             }
           }
+          attachments {
+            id
+            name
+            required
+          }
         }
       }
       similars {

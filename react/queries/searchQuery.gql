@@ -86,6 +86,11 @@ query search($query: String, $map: String, $rest: String, $orderBy: String, $pri
             AvailableQuantity
           }
         }
+        attachments {
+          id
+          name
+          required
+        }
       }
       productClusters {
         name
