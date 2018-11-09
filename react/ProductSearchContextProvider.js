@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Query } from 'react-apollo'
 import { Helmet, withRuntimeContext } from 'render'
+import { isEmpty } from 'ramda'
 
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
 import searchQuery from './queries/searchQuery.gql'
@@ -180,10 +181,16 @@ class ProductSearchContextProvider extends Component {
         variables={queryField ? customSearch : defaultSearch}
         notifyOnNetworkStatusChange
       >
-        {searchQueryProps => {
-          const { data, loading } = searchQueryProps
+        {searchQuery => {
+          const { data, loading } = searchQuery
           const { search } = data || {}
           const { titleTag, metaTagDescription } = search || {}
+
+          // quick fix, needs further investigation
+          if (!loading && isEmpty(data)) {
+            searchQuery.refetch()
+          }
+
           return (
             <DataLayerApolloWrapper
               getData={() =>
@@ -208,7 +215,7 @@ class ProductSearchContextProvider extends Component {
               {React.cloneElement(this.props.children, {
                 ...this.props,
                 searchQuery: {
-                  ...searchQueryProps,
+                  ...searchQuery,
                   ...search,
                 },
                 searchContext: runtimePage,
