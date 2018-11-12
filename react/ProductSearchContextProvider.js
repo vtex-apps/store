@@ -179,6 +179,7 @@ class ProductSearchContextProvider extends Component {
         query={searchQuery}
         variables={queryField ? customSearch : defaultSearch}
         notifyOnNetworkStatusChange
+        partialRefetch
       >
         {searchQuery => {
           const { data, loading } = searchQuery
