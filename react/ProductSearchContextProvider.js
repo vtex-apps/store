@@ -2,7 +2,6 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Query } from 'react-apollo'
 import { Helmet, withRuntimeContext } from 'render'
-import { isEmpty } from 'ramda'
 
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
 import searchQuery from './queries/searchQuery.gql'
@@ -14,8 +13,6 @@ import {
 
 const DEFAULT_PAGE = 1
 const DEFAULT_MAX_ITEMS_PER_PAGE = 10
-
-const MAX_QUERY_RETRIES = 3
 
 class ProductSearchContextProvider extends Component {
   static propTypes = {
@@ -185,21 +182,11 @@ class ProductSearchContextProvider extends Component {
       <Query
         query={searchQuery}
         variables={queryField ? customSearch : defaultSearch}
-        notifyOnNetworkStatusChange
       >
         {searchQuery => {
           const { data, loading } = searchQuery
           const { search } = data || {}
           const { titleTag, metaTagDescription } = search || {}
-
-          // quick fix, needs further investigation
-          if (!loading && isEmpty(data) && this.state.retries < MAX_QUERY_RETRIES) {
-            searchQuery.refetch()
-
-            this.setState(state => ({
-              retries: state.retries + 1,
-            }))
-          }
 
           return (
             <DataLayerApolloWrapper
