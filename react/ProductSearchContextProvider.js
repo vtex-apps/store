@@ -43,10 +43,6 @@ class ProductSearchContextProvider extends Component {
     maxItemsPerPage: PropTypes.number.isRequired,
   }
 
-  state = {
-    retries: 0,
-  }
-
   componentDidMount() {
     const { prefetchPage } = this.props.runtime
     prefetchPage('store/home')
@@ -182,6 +178,7 @@ class ProductSearchContextProvider extends Component {
       <Query
         query={searchQuery}
         variables={queryField ? customSearch : defaultSearch}
+        notifyOnNetworkStatusChange
       >
         {searchQuery => {
           const { data, loading } = searchQuery
