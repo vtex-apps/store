@@ -179,11 +179,13 @@ class ProductSearchContextProvider extends Component {
         query={searchQuery}
         variables={queryField ? customSearch : defaultSearch}
         notifyOnNetworkStatusChange
+        partialRefetch
       >
-        {searchQueryProps => {
-          const { data, loading } = searchQueryProps
+        {searchQuery => {
+          const { data, loading } = searchQuery
           const { search } = data || {}
           const { titleTag, metaTagDescription } = search || {}
+
           return (
             <DataLayerApolloWrapper
               getData={() =>
@@ -208,7 +210,7 @@ class ProductSearchContextProvider extends Component {
               {React.cloneElement(this.props.children, {
                 ...this.props,
                 searchQuery: {
-                  ...searchQueryProps,
+                  ...searchQuery,
                   ...search,
                 },
                 searchContext: runtimePage,

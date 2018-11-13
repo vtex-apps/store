@@ -68,6 +68,7 @@ query search($query: String, $map: String, $rest: String, $orderBy: String, $pri
         measurementUnit
         unitMultiplier
         images {
+          cacheId
           imageId
           imageLabel
           imageTag
