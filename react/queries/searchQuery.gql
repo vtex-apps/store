@@ -1,8 +1,8 @@
-query search($query: String, $map: String, $rest: String, $orderBy: String, $priceRange: String, $from: Int, $to: Int) {
+query search($query: String, $map: String, $rest: String, $orderBy: String, $priceRange: String, $from: Int, $to: Int, $withFacets: Boolean = true) {
   search(query: $query, map: $map, rest: $rest, orderBy: $orderBy, priceRange: $priceRange, from: $from, to: $to) {
     titleTag
     metaTagDescription
-    facets {
+    facets @include (if: $withFacets) {
       Departments {
         Quantity
         Name
