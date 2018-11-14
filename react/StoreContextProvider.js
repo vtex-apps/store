@@ -78,7 +78,12 @@ class StoreContextProvider extends Component {
               <meta name="currency" content={currency} />
               <meta name="robots" content={metaTagRobots || META_ROBOTS} />
               <meta httpEquiv="Content-Type" content={CONTENT_TYPE} />
-              {canonicalPath && <link rel="canonical" href={canonicalPath} />}
+              {canonicalPath && (
+                <link
+                  rel="canonical"
+                  href={`https://${window.__hostname__}${canonicalPathFromParams(params)}`}
+                />
+              )}
             </Helmet>
             <OrderFormProvider>
               <div className="vtex-store__template">{this.props.children}</div>
