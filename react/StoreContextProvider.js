@@ -81,7 +81,7 @@ class StoreContextProvider extends Component {
               {canonicalPath && (
                 <link
                   rel="canonical"
-                  href={`https://${window.__hostname__}${canonicalPathFromParams(params)}`}
+                  href={`https://${window.__hostname__}${canonicalPath}`}
                 />
               )}
             </Helmet>
