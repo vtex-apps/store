@@ -1,7 +1,9 @@
+import { isEmpty } from 'ramda'
 import React, { Component, Fragment } from 'react'
 import { Helmet, withRuntimeContext, ExtensionPoint } from 'render'
 import PropTypes from 'prop-types'
 
+import canonicalPathFromParams from './utils/canonical'
 import GtmScripts from './components/GtmScripts'
 import PageViewPixel from './components/PageViewPixel'
 import { OrderFormProvider } from './OrderFormContext'
@@ -27,7 +29,14 @@ class StoreContextProvider extends Component {
   }
 
   render() {
-    const { country, locale, currency } = this.props.runtime.culture
+    const {
+      runtime: {
+        culture: { country, locale, currency },
+        pages,
+        page,
+        route,
+      },
+    } = this.props
     const settings = this.context.getSettings(APP_LOCATOR) || {}
     const {
       gtmId,
@@ -39,6 +48,15 @@ class StoreContextProvider extends Component {
     } = settings
 
     window.dataLayer = window.dataLayer || []
+
+    let canonicalPath = route.canonical
+
+    const params = route.params
+    const canonicalTemplate = pages[page].canonical
+
+    if (!canonicalPath && !isEmpty(params) && canonicalTemplate) {
+      canonicalPath = canonicalPathFromParams(canonicalTemplate, params)
+    }
 
     return (
       <Fragment>
@@ -60,6 +78,7 @@ class StoreContextProvider extends Component {
               <meta name="currency" content={currency} />
               <meta name="robots" content={metaTagRobots || META_ROBOTS} />
               <meta httpEquiv="Content-Type" content={CONTENT_TYPE} />
+              {canonicalPath && <link rel="canonical" href={canonicalPath} />}
             </Helmet>
             <OrderFormProvider>
               <div className="vtex-store__template">{this.props.children}</div>
