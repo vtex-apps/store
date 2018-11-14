@@ -1,9 +1,7 @@
-import { keys } from 'ramda'
+import RouteParser from 'route-parser'
 
 const canonicalPathFromParams = (canonicalTemplate, params) => {
-  const regex = new RegExp(`:(${keys(params).join('|')})`, 'g')
-
-  return canonicalTemplate.replace(regex, (_, p) => params[p])
+  return new RouteParser(canonicalTemplate).reverse(params)
 }
 
 export default canonicalPathFromParams
