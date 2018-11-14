@@ -42,13 +42,3 @@ export function createInitialMap(params) {
 
   return map.filter(identity).join(',')
 }
-
-export const canonicalPathFromParams = ({
-  brand,
-  department,
-  category,
-  subcategory,
-}) =>
-  ['', brand || department, category, subcategory].reduce(
-    (acc, curr) => (curr ? `${acc}/${curr}` : acc)
-  )

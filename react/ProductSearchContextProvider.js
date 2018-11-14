@@ -6,7 +6,6 @@ import { Helmet, withRuntimeContext } from 'render'
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
 import searchQuery from './queries/searchQuery.gql'
 import {
-  canonicalPathFromParams,
   createInitialMap,
   SORT_OPTIONS,
 } from './utils/search'
@@ -196,12 +195,6 @@ class ProductSearchContextProvider extends Component {
               loading={loading}
             >
               <Helmet>
-                {params && (
-                  <link
-                    rel="canonical"
-                    href={`https://${window.__hostname__}${canonicalPathFromParams(params)}`}
-                  />
-                )}
                 {titleTag && <title>{titleTag}</title>}
                 {metaTagDescription && (
                   <meta name="description" content={metaTagDescription} />
