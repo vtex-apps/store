@@ -159,19 +159,21 @@ class ProductSearchContextProvider extends Component {
     const from = (page - 1) * maxItemsPerPage
     const to = from + maxItemsPerPage - 1
 
-    const includeFacets = map => !!(map && map.length > 0)
+    const includeFacets = (map, query) => !!(map && map.length > 0 && query && query.length > 0)
+
+    const query = Object.values(params)
+      .filter(s => s.length > 0)
+      .join('/')
 
     const defaultSearch = {
-      query: Object.values(params)
-        .filter(s => s.length > 0)
-        .join('/'),
+      query,
       map,
       rest,
       orderBy,
       priceRange,
       from,
       to,
-      withFacets: includeFacets(map),
+      withFacets: includeFacets(map, query),
     }
 
     const customSearch = {
@@ -182,7 +184,7 @@ class ProductSearchContextProvider extends Component {
       priceRange,
       from,
       to,
-      withFacets: includeFacets(mapField),
+      withFacets: includeFacets(mapField, queryField),
     }
 
     return (
