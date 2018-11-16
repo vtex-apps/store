@@ -34,6 +34,14 @@ class ProductSearchContextProvider extends Component {
       order: PropTypes.oneOf(SORT_OPTIONS.map(o => o.value)),
       priceRange: PropTypes.string,
     }),
+    /** Custom query `query` param */
+    queryField: PropTypes.string,
+    /** Custom query `map` param */
+    mapField: PropTypes.string,
+    /** Custom query `rest` param */
+    restField: PropTypes.string,
+    /** Custom query `orderBy` param */
+    orderByField: PropTypes.string,
     /** Current extension point name */
     nextTreePath: PropTypes.string,
     /** Component to be rendered */
@@ -151,16 +159,21 @@ class ProductSearchContextProvider extends Component {
     const from = (page - 1) * maxItemsPerPage
     const to = from + maxItemsPerPage - 1
 
+    const includeFacets = (map, query) => !!(map && map.length > 0 && query && query.length > 0)
+
+    const query = Object.values(params)
+      .filter(s => s.length > 0)
+      .join('/')
+
     const defaultSearch = {
-      query: Object.values(params)
-        .filter(s => s.length > 0)
-        .join('/'),
+      query,
       map,
       rest,
       orderBy,
       priceRange,
       from,
       to,
+      withFacets: includeFacets(map, query),
     }
 
     const customSearch = {
@@ -171,6 +184,7 @@ class ProductSearchContextProvider extends Component {
       priceRange,
       from,
       to,
+      withFacets: includeFacets(mapField, queryField),
     }
 
     return (
