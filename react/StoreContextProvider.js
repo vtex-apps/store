@@ -3,6 +3,7 @@ import React, { Component, Fragment } from 'react'
 import { Helmet, withRuntimeContext, ExtensionPoint } from 'render'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
+import { isEmpty } from 'ramda'
 
 import canonicalPathFromParams from './utils/canonical'
 import GtmScripts from './components/GtmScripts'
@@ -67,7 +68,8 @@ class StoreContextProvider extends Component {
       metaTagRobots,
       storeName,
     } = settings
-    const { data: { manifest, loading } = {} } = this.props
+    const { data: { manifest, loading, error } = {} } = this.props
+    const hasManifest = !isEmpty(manifest) && !error
 
     window.dataLayer = window.dataLayer || []
 
@@ -108,6 +110,14 @@ class StoreContextProvider extends Component {
                 />
               )}
             </Helmet>
+            {/* PWA */}
+            {!loading && hasManifest && (
+              <Helmet>
+                <meta name="theme-color" content={manifest.theme_color} />
+                <link rel="manifest" href="/pwa/manifest.json" />
+                <script type="text/javascript" src="/pwa/workers/register.js" />
+              </Helmet>
+            )}
             <OrderFormProvider>
               <div className="vtex-store__template">{this.props.children}</div>
             </OrderFormProvider>
