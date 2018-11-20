@@ -3,7 +3,6 @@ import React, { Component, Fragment } from 'react'
 import { Helmet, withRuntimeContext, ExtensionPoint } from 'render'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
-import { isEmpty } from 'ramda'
 
 import canonicalPathFromParams from './utils/canonical'
 import GtmScripts from './components/GtmScripts'
@@ -39,7 +38,7 @@ class StoreContextProvider extends Component {
     }),
   }
 
-  componentDidMount () {
+  componentDidMount() {
     const {
       runtime: {
         prefetchDefaultPages
@@ -69,7 +68,7 @@ class StoreContextProvider extends Component {
       storeName,
     } = settings
     const { data: { manifest, loading, error } = {} } = this.props
-    const hasManifest = !isEmpty(manifest) && !error
+    const hasManifest = manifest && !error
 
     window.dataLayer = window.dataLayer || []
 
@@ -106,7 +105,9 @@ class StoreContextProvider extends Component {
               {canonicalPath && (
                 <link
                   rel="canonical"
-                  href={`https://${window.__hostname__ || window.location && window.location.hostname}${canonicalPath}`}
+                  href={`https://${window.__hostname__ ||
+                    (window.location &&
+                      window.location.hostname)}${canonicalPath}`}
                 />
               )}
             </Helmet>
