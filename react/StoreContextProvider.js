@@ -18,6 +18,8 @@ const CONTENT_TYPE = 'text/html;charset=utf-8'
 const META_ROBOTS = 'index, follow'
 const MOBILE_SCALING = 'width=device-width, initial-scale=1'
 
+const iOSIconSizes = ['80x80', '152x152', '167x167', '180x180']
+
 class StoreContextProvider extends Component {
   static propTypes = {
     runtime: PropTypes.shape({
@@ -34,6 +36,13 @@ class StoreContextProvider extends Component {
       loading: PropTypes.bool,
       manifest: PropTypes.shape({
         theme_color: PropTypes.string,
+        icons: PropTypes.arrayOf(
+          PropTypes.shape({
+            src: PropTypes.string,
+            type: PropTypes.string,
+            sizes: PropTypes.string,
+          })
+        ),
       }),
     }),
   }
@@ -68,7 +77,7 @@ class StoreContextProvider extends Component {
       storeName,
     } = settings
     const { data: { manifest, loading, error } = {} } = this.props
-    const hasManifest = manifest && !error
+    const hasManifest = !loading && manifest && !error
 
     window.dataLayer = window.dataLayer || []
 
@@ -112,11 +121,23 @@ class StoreContextProvider extends Component {
               )}
             </Helmet>
             {/* PWA */}
-            {!loading && hasManifest && (
+            {hasManifest && (
               <Helmet>
                 <meta name="theme-color" content={manifest.theme_color} />
                 <link rel="manifest" href="/pwa/manifest.json" />
                 <script type="text/javascript" src="/pwa/workers/register.js" />
+                {hasManifest &&
+                  manifest.icons &&
+                  manifest.icons
+                    .filter(({ sizes }) => iOSIconSizes.includes(sizes))
+                    .map(icon => (
+                      <link
+                        key={icon.src}
+                        rel="apple-touch-icon"
+                        sizes={icon.sizes}
+                        href={icon.src}
+                      />
+                    ))}
               </Helmet>
             )}
             <OrderFormProvider>
