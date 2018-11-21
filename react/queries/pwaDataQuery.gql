@@ -1,4 +1,4 @@
-query pwaManifest {
+query pwaData {
   manifest {
     theme_color
     icons {
@@ -6,5 +6,10 @@ query pwaManifest {
       type
       sizes
     }
+  }
+  splashes {
+    src
+    type
+    sizes
   }
 }

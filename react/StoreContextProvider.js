@@ -11,7 +11,7 @@ import { OrderFormProvider } from './OrderFormContext'
 import { DataLayerProvider } from './components/withDataLayer'
 import { PixelProvider } from './PixelContext'
 
-import pwaManifestQuery from './queries/pwaManifestQuery.gql'
+import pwaDataQuery from './queries/pwaDataQuery.gql'
 
 const APP_LOCATOR = 'vtex.store'
 const CONTENT_TYPE = 'text/html;charset=utf-8'
@@ -76,7 +76,7 @@ class StoreContextProvider extends Component {
       metaTagRobots,
       storeName,
     } = settings
-    const { data: { manifest, loading, error } = {} } = this.props
+    const { data: { manifest, splashes, loading, error } = {} } = this.props
     const hasManifest = !loading && manifest && !error
 
     window.dataLayer = window.dataLayer || []
@@ -138,6 +138,16 @@ class StoreContextProvider extends Component {
                         href={icon.src}
                       />
                     ))}
+                <meta name="apple-mobile-web-app-capable" content="yes" />
+                {splashes &&
+                  splashes.map(splash => (
+                    <link
+                      key={splash.src}
+                      href={splash.src}
+                      sizes={splash.sizes}
+                      rel="apple-touch-startup-image"
+                    />
+                  ))}
               </Helmet>
             )}
             <OrderFormProvider>
@@ -154,6 +164,4 @@ StoreContextProvider.contextTypes = {
   getSettings: PropTypes.func,
 }
 
-export default graphql(pwaManifestQuery)(
-  withRuntimeContext(StoreContextProvider)
-)
+export default graphql(pwaDataQuery)(withRuntimeContext(StoreContextProvider))
