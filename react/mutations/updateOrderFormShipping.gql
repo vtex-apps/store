@@ -5,7 +5,7 @@ mutation updateOrderFormShipping(
   updateOrderFormShipping(orderFormId: $orderFormId, address: $address) {
     orderFormId
     shippingData {
-      address {
+      selectedAddresses {
         id
         street
         number

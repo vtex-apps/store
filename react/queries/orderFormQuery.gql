@@ -48,5 +48,10 @@ query orderForm {
       email
       firstName
     }
+    storePreferencesData {
+      countryCode
+      currencyCode
+      timeZone
+    }
   }
 }
