@@ -14,7 +14,7 @@ mutation updateOrderFormShipping(
         neighborhood
         country
         state
-        geoCoordinate
+        geoCoordinates
         postalCode
         city
         reference
