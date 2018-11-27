@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.30.0] - 2018-11-27
+
 ## [1.29.0] - 2018-11-16
 ### Added
 - Add optional param to search query to determine if the `facets` should be included.
