@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.29.0] - 2018-11-16
+### Added
+- Add optional param to search query to determine if the `facets` should be included.
+
+## [1.28.2] - 2018-11-14
+### Changed
+- Move the canonical link to the store context, so it's applied to all pages.
+
 ## [1.28.1] - 2018-11-13
 ### Added
 - Add the `cacheId` in the search query for the images.
