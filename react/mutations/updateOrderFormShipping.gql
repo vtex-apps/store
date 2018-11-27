@@ -5,7 +5,7 @@ mutation updateOrderFormShipping(
   updateOrderFormShipping(orderFormId: $orderFormId, address: $address) {
     orderFormId
     shippingData {
-      address {
+      selectedAddresses {
         id
         street
         number
@@ -14,7 +14,7 @@ mutation updateOrderFormShipping(
         neighborhood
         country
         state
-        geoCoordinate
+        geoCoordinates
         postalCode
         city
         reference
