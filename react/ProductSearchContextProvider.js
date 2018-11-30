@@ -24,7 +24,6 @@ class ProductSearchContextProvider extends Component {
     /** Render runtime context */
     runtime: PropTypes.shape({
       page: PropTypes.string.isRequired,
-      prefetchPage: PropTypes.func.isRequired,
       account: PropTypes.any,
     }),
     /** Query params */
@@ -48,12 +47,6 @@ class ProductSearchContextProvider extends Component {
     children: PropTypes.node.isRequired,
     /** Max items to show per result page */
     maxItemsPerPage: PropTypes.number.isRequired,
-  }
-
-  componentDidMount() {
-    const { prefetchPage } = this.props.runtime
-    prefetchPage('store/home')
-    prefetchPage('store/product')
   }
 
   static defaultProps = {

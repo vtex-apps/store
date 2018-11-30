@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.31.0] - 2018-11-30
+### Changed
+- Uses new runtime feature for prefetching routeIds
+
 ## [1.30.0] - 2018-11-27
 ### Added
 - Update updateOrderFormShipping mutation response
