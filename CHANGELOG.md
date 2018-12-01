@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.31.1] - 2018-12-01
+### Added
+- Separate extension point for the `request-capture-app`.
+
 ## [1.31.0] - 2018-11-30
 ### Changed
 - Uses new runtime feature for prefetching routeIds

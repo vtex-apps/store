@@ -77,6 +77,7 @@ class StoreContextProvider extends Component {
           <DataLayerProvider value={{ dataLayer: window.dataLayer }}>
             <GtmScripts gtmId={gtmId} />
             <ExtensionPoint id="store/pixel" />
+            <ExtensionPoint id="store/rc" />
             <PageViewPixel />
             <Helmet>
               <title>{titleTag}</title>
