@@ -4,11 +4,11 @@
     "test": "jest"
   },
   "dependencies": {
-    "@vtex/styleguide": "^3.0.2",
     "hoist-non-react-statics": "^3.0.1",
     "prop-types": "^15.5.10",
     "react-slick": "^0.16.0",
-    "route-parser": "^0.0.5"
+    "route-parser": "^0.0.5",
+    "ramda": "^0.26.1"
   },
   "devDependencies": {
     "@types/graphql": "^14.0.1",
