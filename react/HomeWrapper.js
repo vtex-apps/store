@@ -4,7 +4,7 @@ import { withRuntimeContext } from 'render'
 
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
 
-class HomeContextProvider extends Component {
+class HomeWrapper extends Component {
   static propTypes = {
     children: PropTypes.element,
     runtime: PropTypes.shape({
@@ -30,4 +30,4 @@ class HomeContextProvider extends Component {
   }
 }
 
-export default withRuntimeContext(HomeContextProvider)
+export default withRuntimeContext(HomeWrapper)

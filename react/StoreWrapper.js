@@ -20,7 +20,7 @@ const MOBILE_SCALING = 'width=device-width, initial-scale=1'
 
 const iOSIconSizes = ['80x80', '152x152', '167x167', '180x180']
 
-class StoreContextProvider extends Component {
+class StoreWrapper extends Component {
   static propTypes = {
     runtime: PropTypes.shape({
       prefetchDefaultPages: PropTypes.func,
@@ -170,8 +170,8 @@ class StoreContextProvider extends Component {
   }
 }
 
-StoreContextProvider.contextTypes = {
+StoreWrapper.contextTypes = {
   getSettings: PropTypes.func,
 }
 
-export default graphql(pwaDataQuery)(withRuntimeContext(StoreContextProvider))
+export default graphql(pwaDataQuery)(withRuntimeContext(StoreWrapper))
