@@ -11,7 +11,7 @@ import recommendationsAndBenefits from './queries/recommendationsAndBenefitsQuer
 import productPreviewFragment from './queries/productPreview.gql'
 import { cacheLocator } from './cacheLocator'
 
-class ProductContextProvider extends Component {
+class ProductWrapper extends Component {
   static propTypes = {
     params: PropTypes.object,
     query: PropTypes.shape({
@@ -152,7 +152,7 @@ class ProductContextProvider extends Component {
   checkNotFoundProduct = () => {
     const loading = this.loading()
     const product = this.product()
-    const {params: { slug }, runtime} = this.props
+    const { params: { slug }, runtime } = this.props
     if (!product && !loading) {
       runtime.navigate({
         page: 'store/search',
@@ -252,4 +252,4 @@ export default compose(
   withRuntimeContext,
   graphql(productQuery, catalogOptions),
   graphql(recommendationsAndBenefits, recommendationsAndBenefitsOptions)
-)(ProductContextProvider)
+)(ProductWrapper)
