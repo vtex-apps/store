@@ -2,6 +2,7 @@ import { isEmpty } from 'ramda'
 import React, { Component, Fragment } from 'react'
 import { Helmet, withRuntimeContext, ExtensionPoint } from 'render'
 import PropTypes from 'prop-types'
+import { graphql } from 'react-apollo'
 
 import canonicalPathFromParams from './utils/canonical'
 import GtmScripts from './components/GtmScripts'
@@ -10,10 +11,14 @@ import { OrderFormProvider } from './OrderFormContext'
 import { DataLayerProvider } from './components/withDataLayer'
 import { PixelProvider } from './PixelContext'
 
+import pwaDataQuery from './queries/pwaDataQuery.gql'
+
 const APP_LOCATOR = 'vtex.store'
 const CONTENT_TYPE = 'text/html;charset=utf-8'
 const META_ROBOTS = 'index, follow'
 const MOBILE_SCALING = 'width=device-width, initial-scale=1'
+
+const iOSIconSizes = ['80x80', '152x152', '167x167', '180x180']
 
 class StoreContextProvider extends Component {
   static propTypes = {
@@ -27,9 +32,22 @@ class StoreContextProvider extends Component {
     }),
     children: PropTypes.element,
     push: PropTypes.func,
+    data: PropTypes.shape({
+      loading: PropTypes.bool,
+      manifest: PropTypes.shape({
+        theme_color: PropTypes.string,
+        icons: PropTypes.arrayOf(
+          PropTypes.shape({
+            src: PropTypes.string,
+            type: PropTypes.string,
+            sizes: PropTypes.string,
+          })
+        ),
+      }),
+    }),
   }
 
-  componentDidMount () {
+  componentDidMount() {
     const {
       runtime: {
         prefetchDefaultPages
@@ -58,6 +76,8 @@ class StoreContextProvider extends Component {
       metaTagRobots,
       storeName,
     } = settings
+    const { data: { manifest, splashes, loading, error } = {} } = this.props
+    const hasManifest = !loading && manifest && !error
 
     window.dataLayer = window.dataLayer || []
 
@@ -94,10 +114,42 @@ class StoreContextProvider extends Component {
               {canonicalPath && (
                 <link
                   rel="canonical"
-                  href={`https://${window.__hostname__ || window.location && window.location.hostname}${canonicalPath}`}
+                  href={`https://${window.__hostname__ ||
+                    (window.location &&
+                      window.location.hostname)}${canonicalPath}`}
                 />
               )}
             </Helmet>
+            {/* PWA */}
+            {hasManifest && (
+              <Helmet>
+                <meta name="theme-color" content={manifest.theme_color} />
+                <link rel="manifest" href="/pwa/manifest.json" />
+                <script type="text/javascript" src="/pwa/workers/register.js" />
+                {hasManifest &&
+                  manifest.icons &&
+                  manifest.icons
+                    .filter(({ sizes }) => iOSIconSizes.includes(sizes))
+                    .map(icon => (
+                      <link
+                        key={icon.src}
+                        rel="apple-touch-icon"
+                        sizes={icon.sizes}
+                        href={icon.src}
+                      />
+                    ))}
+                <meta name="apple-mobile-web-app-capable" content="yes" />
+                {splashes &&
+                  splashes.map(splash => (
+                    <link
+                      key={splash.src}
+                      href={splash.src}
+                      sizes={splash.sizes}
+                      rel="apple-touch-startup-image"
+                    />
+                  ))}
+              </Helmet>
+            )}
             <OrderFormProvider>
               <div className="vtex-store__template">{this.props.children}</div>
             </OrderFormProvider>
@@ -112,4 +164,4 @@ StoreContextProvider.contextTypes = {
   getSettings: PropTypes.func,
 }
 
-export default withRuntimeContext(StoreContextProvider)
+export default graphql(pwaDataQuery)(withRuntimeContext(StoreContextProvider))

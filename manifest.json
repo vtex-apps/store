@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "store",
-  "version": "1.31.2",
+  "version": "1.32.0",
   "title": "VTEX Store",
   "description": "The VTEX basic store.",
   "builders": {
@@ -16,7 +16,8 @@
     "postreleasy": "vtex publish --verbose"
   },
   "dependencies": {
-    "vtex.store-graphql": "2.x"
+    "vtex.store-graphql": "2.x",
+    "vtex.pwa-graphql": "0.x"
   },
   "settingsSchema": {
     "title": "VTEX Store",
