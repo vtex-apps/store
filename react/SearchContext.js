@@ -13,7 +13,7 @@ import {
 const DEFAULT_PAGE = 1
 const DEFAULT_MAX_ITEMS_PER_PAGE = 10
 
-class ProductSearchContextProvider extends Component {
+class SearchContext extends Component {
   static propTypes = {
     /** Route parameters */
     params: PropTypes.shape({
@@ -231,4 +231,4 @@ class ProductSearchContextProvider extends Component {
   }
 }
 
-export default withRuntimeContext(ProductSearchContextProvider)
+export default withRuntimeContext(SearchContext)

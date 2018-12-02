@@ -1,0 +1,33 @@
+{
+  "store/home": {
+    "path": "/"
+  },
+  "store/account": {
+    "auth": true,
+    "path": "/account"
+  },
+  "store/login": {
+    "path": "/login"
+  },
+  "store/search": {
+    "path": "/:term/s",
+    "canonical": "/:term"
+  },
+  "store/search#brand": {
+    "path": "/:brand/b",
+    "canonical": "/:brand"
+  },
+  "store/search#department": {
+    "path": "/:department/d",
+    "canonical": "/:department"
+  },
+  "store/search#category": {
+    "path": "/:department/:category"
+  },
+  "store/search#subcategory": {
+    "path": "/:department/:category/:subcategory"
+  },
+  "store/product": {
+    "path": "/:slug/p"
+  }
+}
