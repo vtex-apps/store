@@ -16,6 +16,10 @@ class ProductWrapper extends Component {
     query: PropTypes.object,
   }
 
+  stripCategory(category) {
+    return category && category.replace(/^\/|\/$/g, '')
+  }
+
   getData = () => {
     const {
       productQuery: { product },
@@ -127,7 +131,7 @@ class ProductWrapper extends Component {
             })}
           </DataLayerApolloWrapper>
         </Fragment>
-      </div>
+      </div >
     )
   }
 }
