@@ -13,7 +13,7 @@ import { PixelProvider } from './PixelContext'
 const APP_LOCATOR = 'vtex.store'
 const CONTENT_TYPE = 'text/html;charset=utf-8'
 const META_ROBOTS = 'index, follow'
-const MOBILE_SCALE_OFF = 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0'
+const MOBILE_SCALE_OFF = 'width=device-width, initial-scale=1, maximum-scale=5'
 
 class StoreContextProvider extends Component {
   static propTypes = {
