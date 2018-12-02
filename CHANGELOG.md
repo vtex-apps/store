@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Changed
-- Allow user scaling as recommended by (accessibility guidelines)[https://dequeuniversity.com/rules/axe/2.2/meta-viewport]
+- Allow user scaling as recommended by [accessibility guidelines](https://dequeuniversity.com/rules/axe/2.2/meta-viewport)
 
 ## [1.31.1] - 2018-12-01
 ### Added
