@@ -1,59 +1,59 @@
 {
-    "store": {
-        "required": [
-            "header",
-            "footer"
-        ],
-        "allowed": [
-            "carousel",
-            "shelf"
-        ],
-        "wrapper": [
-            "StoreWrapper"
-        ],
-        "component": "LayoutContainer"
-    },
-    "store/home": {
-        "required": [
-            "header/full"
-        ],
-        "allowed": [
-            "search-result"
-        ],
-        "wrapper": [
-            "HomeWrapper"
-        ]
-    },
-    "store/product": {
-        "required": [
-            "header/full",
-            "product-details"
-        ],
-        "allowed": [
-            "product-kit"
-        ],
-        "wrapper": [
-            "ProductWrapper"
-        ],
-        "context": "ProductContext"
-    },
-    "store/search": {
-        "required": [
-            "search-result"
-        ],
-        "wrapper": [
-            "SearchWrapper"
-        ],
-        "context": "SearchContext"
-    },
-    "store/account": {
-        "required": [
-            "my-account"
-        ]
-    },
-    "store/login": {
-        "required": [
-            "login"
-        ]
-    }
+  "store": {
+    "required": [
+      "header",
+      "footer"
+    ],
+    "allowed": [
+      "carousel",
+      "shelf"
+    ],
+    "wrapper": [
+      "StoreWrapper"
+    ],
+    "component": "LayoutContainer"
+  },
+  "store/home": {
+    "required": [
+      "header/full"
+    ],
+    "allowed": [
+      "search-result"
+    ],
+    "wrapper": [
+      "HomeWrapper"
+    ]
+  },
+  "store/product": {
+    "required": [
+      "header/full",
+      "product-details"
+    ],
+    "allowed": [
+      "product-kit"
+    ],
+    "wrapper": [
+      "ProductWrapper"
+    ],
+    "context": "ProductContext"
+  },
+  "store/search": {
+    "required": [
+      "search-result"
+    ],
+    "wrapper": [
+      "SearchWrapper"
+    ],
+    "context": "SearchContext"
+  },
+  "store/account": {
+    "required": [
+      "my-account"
+    ]
+  },
+  "store/login": {
+    "required": [
+      "login"
+    ]
+  }
 }
