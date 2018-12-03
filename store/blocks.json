@@ -1,36 +1,36 @@
 {
-    "store/home": {
-        "blocks": [
-            "header",
-            "footer"
-        ]
-    },
-    "store/product": {
-        "blocks": [
-            "header",
-            "product-details",
-            "footer"
-        ]
-    },
-    "store/search": {
-        "blocks": [
-            "header",
-            "search-result",
-            "footer"
-        ]
-    },
-    "store/account": {
-        "blocks": [
-            "header",
-            "my-account",
-            "footer"
-        ]
-    },
-    "store/login": {
-        "blocks": [
-            "header",
-            "login",
-            "footer"
-        ]
-    }
+  "store/home": {
+    "blocks": [
+      "header",
+      "footer"
+    ]
+  },
+  "store/product": {
+    "blocks": [
+      "header",
+      "product-details",
+      "footer"
+    ]
+  },
+  "store/search": {
+    "blocks": [
+      "header",
+      "search-result",
+      "footer"
+    ]
+  },
+  "store/account": {
+    "blocks": [
+      "header",
+      "my-account",
+      "footer"
+    ]
+  },
+  "store/login": {
+    "blocks": [
+      "header",
+      "login",
+      "footer"
+    ]
+  }
 }
