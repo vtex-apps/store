@@ -1,4 +1,4 @@
-import { isEmpty } from 'ramda'
+import { isEmpty, path } from 'ramda'
 import React, { Component, Fragment } from 'react'
 import { Helmet, withRuntimeContext, ExtensionPoint } from 'render'
 import PropTypes from 'prop-types'
@@ -62,6 +62,7 @@ class StoreContextProvider extends Component {
     const {
       runtime: {
         culture: { country, locale, currency },
+        history,
         pages,
         page,
         route,
@@ -88,6 +89,10 @@ class StoreContextProvider extends Component {
 
     if (!canonicalPath && !isEmpty(params) && canonicalTemplate) {
       canonicalPath = canonicalPathFromParams(canonicalTemplate, params)
+      const pathname = path(['location', 'pathname'], history)
+      if (pathname && canonicalPath && canonicalPath !== pathname) {
+        history.replace(canonicalPath, { ...history.location, renderRouting: true, route })
+      }
     }
 
     return (
