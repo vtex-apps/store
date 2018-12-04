@@ -12,12 +12,15 @@ class ProductWrapper extends Component {
     productQuery: PropTypes.object,
     children: PropTypes.node,
     runtime: PropTypes.object,
+    /* URL query params */
+    query: PropTypes.object,
   }
 
   getData = () => {
     const {
       productQuery: { product },
       runtime: { account },
+      query,
     } = this.props
 
     const {
@@ -61,7 +64,7 @@ class ProductWrapper extends Component {
       skuStockOutFromShelf: [],
     }
 
-    const skuId = items && head(items).itemId
+    const skuId = query.skuId || (items && head(items).itemId)
 
     const [sku] =
       (items && items.filter(product => product.itemId === skuId)) || []
