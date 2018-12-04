@@ -86,8 +86,10 @@ class ProductContext extends Component {
 
   render() {
     const {
+      params,
       params: { slug },
       client,
+      ...props
     } = this.props
 
     const productPreview = client.readFragment({
@@ -126,11 +128,16 @@ class ProductContext extends Component {
     }
 
     return (
-      React.cloneElement(this.props.children, {
-        productQuery,
-        slug,
-        ...breadcrumbsProps,
-      })
+      React.cloneElement(this.props.children, Object.assign(
+        {},
+        {
+          productQuery,
+          slug,
+          params,
+        },
+        breadcrumbsProps,
+        props
+      ))
     )
   }
 }
