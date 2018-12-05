@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.33.2] - 2018-12-05
+
 ## [1.33.1] - 2018-12-05
 ### Fixed
 - Fix canonical path replace to include query parameters.
