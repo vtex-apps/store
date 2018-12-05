@@ -50,8 +50,8 @@ class StoreContextProvider extends Component {
   componentDidMount() {
     const {
       runtime: {
-        prefetchDefaultPages
-      }
+        prefetchDefaultPages,
+      },
     } = this.props
     prefetchDefaultPages([
       'store/product',
@@ -91,7 +91,10 @@ class StoreContextProvider extends Component {
       canonicalPath = canonicalPathFromParams(canonicalTemplate, params)
       const pathname = path(['location', 'pathname'], history)
       if (pathname && canonicalPath && canonicalPath !== pathname) {
-        history.replace(canonicalPath, { ...history.location, renderRouting: true, route })
+        history.replace(`${canonicalPath}${history.location.search}`, {
+          renderRouting: true,
+          route,
+        })
       }
     }
 
