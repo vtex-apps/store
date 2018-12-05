@@ -3,6 +3,8 @@ query orderForm {
     cacheId
     orderFormId
     value
+    isCheckedIn
+    checkedInPickupPointId
     totalizers {
       id
       name

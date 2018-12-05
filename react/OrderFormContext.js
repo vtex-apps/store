@@ -7,6 +7,7 @@ import addToCartMutation from './mutations/addToCartMutation.gql'
 import updateItemsMutation from './mutations/updateItemsMutation.gql'
 import updateOrderFormProfile from './mutations/updateOrderFormProfile.gql'
 import updateOrderFormShipping from './mutations/updateOrderFormShipping.gql'
+import updateOrderFormCheckin from './mutations/updateOrderFormCheckin.gql'
 
 const { Consumer, Provider } = React.createContext({})
 
@@ -42,6 +43,7 @@ class ContextProvider extends Component {
       updateAndRefetchOrderForm: this.handleUpdateAndRefetchOrderForm,
       updateOrderFormProfile: this.props.updateOrderFormProfile,
       updateOrderFormShipping: this.props.updateOrderFormShipping,
+      updateOrderFormCheckin: this.props.updateOrderFormCheckin,
     },
   }
 
@@ -81,6 +83,7 @@ class ContextProvider extends Component {
     state.orderFormContext.addItem = this.props.addItem
     state.orderFormContext.updateOrderFormProfile = this.props.updateOrderFormProfile
     state.orderFormContext.updateOrderFormShipping = this.props.updateOrderFormShipping
+    state.orderFormContext.updateOrderFormCheckin = this.props.updateOrderFormCheckin
 
     return <Provider value={this.state}>{this.props.children}</Provider>
   }
@@ -114,6 +117,8 @@ const contextPropTypes = PropTypes.shape({
   updateToastMessage: PropTypes.func.isRequired,
   /* Function to update the shipping data */
   updateOrderFormShipping: PropTypes.func.isRequired,
+
+  updateOrderFormCheckin: PropTypes.func.isRequired,
   /* Order form */
   orderForm: PropTypes.shape({
     /* Order form id */
@@ -151,7 +156,8 @@ export const OrderFormProvider = compose(
   graphql(addToCartMutation, { name: 'addItem' }),
   graphql(updateItemsMutation, { name: 'updateOrderForm' }),
   graphql(updateOrderFormProfile, { name: 'updateOrderFormProfile' }),
-  graphql(updateOrderFormShipping, { name: 'updateOrderFormShipping' })
+  graphql(updateOrderFormShipping, { name: 'updateOrderFormShipping' }),
+  graphql(updateOrderFormCheckin, { name: 'updateOrderFormCheckin' }),
 )(ContextProvider)
 
 export default { orderFormConsumer, contextPropTypes }
