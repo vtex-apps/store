@@ -90,7 +90,8 @@ class StoreContextProvider extends Component {
     if (!canonicalPath && !isEmpty(params) && canonicalTemplate) {
       canonicalPath = canonicalPathFromParams(canonicalTemplate, params)
       const pathname = path(['location', 'pathname'], history)
-      if (pathname && canonicalPath && canonicalPath !== pathname) {
+      const decodedCanonicalPath = decodeURIComponent(canonicalPath)
+      if (pathname && canonicalPath && decodedCanonicalPath !== pathname) {
         history.replace(`${canonicalPath}${history.location.search}`, {
           renderRouting: true,
           route,
