@@ -55,5 +55,8 @@ query orderForm {
       currencyCode
       timeZone
     }
+    pickupPoint {
+      friendlyName
+    }
   }
 }
