@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.33.3] - 2018-12-11
+### Fixed
+- Content of `meta http-equiv` tag (missing space).
+
 ## [1.33.2] - 2018-12-05
 
 ## [1.33.1] - 2018-12-05
