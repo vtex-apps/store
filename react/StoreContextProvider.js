@@ -3,6 +3,7 @@ import React, { Component, Fragment } from 'react'
 import { Helmet, withRuntimeContext, ExtensionPoint } from 'render'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
+import { ToastProvider } from 'vtex.styleguide'
 
 import canonicalPathFromParams from './utils/canonical'
 import GtmScripts from './components/GtmScripts'
@@ -102,68 +103,70 @@ class StoreContextProvider extends Component {
     return (
       <Fragment>
         <ExtensionPoint id="store/__icons" />
-        <PixelProvider>
-          <DataLayerProvider value={{ dataLayer: window.dataLayer }}>
-            <GtmScripts gtmId={gtmId} />
-            <ExtensionPoint id="store/pixel" />
-            <ExtensionPoint id="store/rc" />
-            <PageViewPixel />
-            <Helmet>
-              <title>{titleTag}</title>
-              <meta name="viewport" content={MOBILE_SCALING} />
-              <meta name="description" content={metaTagDescription} />
-              <meta name="keywords" content={metaTagKeywords} />
-              <meta name="copyright" content={storeName} />
-              <meta name="author" content={storeName} />
-              <meta name="country" content={country} />
-              <meta name="language" content={locale} />
-              <meta name="currency" content={currency} />
-              <meta name="robots" content={metaTagRobots || META_ROBOTS} />
-              <meta httpEquiv="Content-Type" content={CONTENT_TYPE} />
-              {canonicalPath && (
-                <link
-                  rel="canonical"
-                  href={`https://${window.__hostname__ ||
-                    (window.location &&
-                      window.location.hostname)}${canonicalPath}`}
-                />
-              )}
-            </Helmet>
-            {/* PWA */}
-            {hasManifest && (
+        <ToastProvider positioning="window">
+          <PixelProvider>
+            <DataLayerProvider value={{ dataLayer: window.dataLayer }}>
+              <GtmScripts gtmId={gtmId} />
+              <ExtensionPoint id="store/pixel" />
+              <ExtensionPoint id="store/rc" />
+              <PageViewPixel />
               <Helmet>
-                <meta name="theme-color" content={manifest.theme_color} />
-                <link rel="manifest" href="/pwa/manifest.json" />
-                <script type="text/javascript" src="/pwa/workers/register.js" />
-                {hasManifest &&
-                  manifest.icons &&
-                  manifest.icons
-                    .filter(({ sizes }) => iOSIconSizes.includes(sizes))
-                    .map(icon => (
+                <title>{titleTag}</title>
+                <meta name="viewport" content={MOBILE_SCALING} />
+                <meta name="description" content={metaTagDescription} />
+                <meta name="keywords" content={metaTagKeywords} />
+                <meta name="copyright" content={storeName} />
+                <meta name="author" content={storeName} />
+                <meta name="country" content={country} />
+                <meta name="language" content={locale} />
+                <meta name="currency" content={currency} />
+                <meta name="robots" content={metaTagRobots || META_ROBOTS} />
+                <meta httpEquiv="Content-Type" content={CONTENT_TYPE} />
+                {canonicalPath && (
+                  <link
+                    rel="canonical"
+                    href={`https://${window.__hostname__ ||
+                      (window.location &&
+                        window.location.hostname)}${canonicalPath}`}
+                  />
+                )}
+              </Helmet>
+              {/* PWA */}
+              {hasManifest && (
+                <Helmet>
+                  <meta name="theme-color" content={manifest.theme_color} />
+                  <link rel="manifest" href="/pwa/manifest.json" />
+                  <script type="text/javascript" src="/pwa/workers/register.js" />
+                  {hasManifest &&
+                    manifest.icons &&
+                    manifest.icons
+                      .filter(({ sizes }) => iOSIconSizes.includes(sizes))
+                      .map(icon => (
+                        <link
+                          key={icon.src}
+                          rel="apple-touch-icon"
+                          sizes={icon.sizes}
+                          href={icon.src}
+                        />
+                      ))}
+                  <meta name="apple-mobile-web-app-capable" content="yes" />
+                  {splashes &&
+                    splashes.map(splash => (
                       <link
-                        key={icon.src}
-                        rel="apple-touch-icon"
-                        sizes={icon.sizes}
-                        href={icon.src}
+                        key={splash.src}
+                        href={splash.src}
+                        sizes={splash.sizes}
+                        rel="apple-touch-startup-image"
                       />
                     ))}
-                <meta name="apple-mobile-web-app-capable" content="yes" />
-                {splashes &&
-                  splashes.map(splash => (
-                    <link
-                      key={splash.src}
-                      href={splash.src}
-                      sizes={splash.sizes}
-                      rel="apple-touch-startup-image"
-                    />
-                  ))}
-              </Helmet>
-            )}
-            <OrderFormProvider>
-              <div className="vtex-store__template">{this.props.children}</div>
-            </OrderFormProvider>
-          </DataLayerProvider>
-        </PixelProvider>
+                </Helmet>
+              )}
+              <OrderFormProvider>
+                <div className="vtex-store__template">{this.props.children}</div>
+              </OrderFormProvider>
+            </DataLayerProvider>
+          </PixelProvider>
+        </ToastProvider>
       </Fragment>
     )
   }

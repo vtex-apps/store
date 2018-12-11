@@ -17,7 +17,8 @@
   },
   "dependencies": {
     "vtex.store-graphql": "2.x",
-    "vtex.pwa-graphql": "0.x"
+    "vtex.pwa-graphql": "0.x",
+    "vtex.styleguide": "8.x"
   },
   "settingsSchema": {
     "title": "VTEX Store",
