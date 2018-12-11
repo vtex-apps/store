@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Adding ToastPovider to Store Context.
+- Adding ToastProvider to Store Context.
 
 ## [1.33.3] - 2018-12-11
 ### Fixed
