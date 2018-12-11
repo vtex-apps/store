@@ -14,7 +14,7 @@ import { PixelProvider } from './PixelContext'
 import pwaDataQuery from './queries/pwaDataQuery.gql'
 
 const APP_LOCATOR = 'vtex.store'
-const CONTENT_TYPE = 'text/html;charset=utf-8'
+const CONTENT_TYPE = 'text/html; charset=utf-8'
 const META_ROBOTS = 'index, follow'
 const MOBILE_SCALING = 'width=device-width, initial-scale=1'
 
