@@ -57,6 +57,31 @@ query orderForm {
     }
     pickupPoint {
       friendlyName
+      id
+      seller
+      distance
+      businessHours {
+        openingTime
+        closingTime
+        dayOfWeek
+      }
+      address {
+        id
+        addressId
+        street
+        number
+        receiverName
+        complement
+        neighborhood
+        country
+        state
+        geoCoordinates
+        postalCode
+        city
+        reference
+        addressName
+        addressType
+      }
     }
   }
 }
