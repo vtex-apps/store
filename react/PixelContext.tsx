@@ -1,6 +1,5 @@
 import hoistNonReactStatics from 'hoist-non-react-statics'
 import React, { Component } from 'react'
-import { withRuntimeContext } from 'render'
 
 const SUBSCRIPTION_TIMEOUT = 100
 

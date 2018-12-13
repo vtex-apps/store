@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { Query } from 'react-apollo'
 import { withRuntimeContext } from 'render'
 
-import searchQuery from './queries/searchQuery.gql'
+import {search} from 'vtex.store-resources/Queries'
 import { createInitialMap, SORT_OPTIONS } from './utils/search'
 
 const DEFAULT_PAGE = 1
@@ -133,16 +133,22 @@ class SearchContext extends Component {
 
     return (
       <Query
-        query={searchQuery}
+        query={search}
         variables={queryField ? customSearch : defaultSearch}
         notifyOnNetworkStatusChange
         partialRefetch
       >
         {searchQuery => {
+          const { data } = searchQuery
+          const { search } = data || {}
+
           return (
             React.cloneElement(this.props.children, {
               ...props,
-              searchQuery,
+              searchQuery: {
+                ...searchQuery,
+                ...search,
+              },
               searchContext: runtimePage,
               pagesPath: nextTreePath,
               map,
