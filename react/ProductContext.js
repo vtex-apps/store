@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { graphql, compose } from 'react-apollo'
+import { withApollo, graphql, compose } from 'react-apollo'
 import { isEmpty } from 'ramda'
 import { withRuntimeContext } from 'render'
 
-import productQuery from './queries/productQuery.gql'
-import recommendationsAndBenefits from './queries/recommendationsAndBenefitsQuery.gql'
+import {Queries} from 'vtex.store-resources'
 import productPreviewFragment from './queries/productPreview.gql'
 import { cacheLocator } from './cacheLocator'
 
@@ -164,7 +163,8 @@ const recommendationsAndBenefitsOptions = {
 }
 
 export default compose(
+  withApollo,
   withRuntimeContext,
-  graphql(productQuery, catalogOptions),
-  graphql(recommendationsAndBenefits, recommendationsAndBenefitsOptions)
+  graphql(Queries.product, catalogOptions),
+  graphql(Queries.recommendationsAndBenefits, recommendationsAndBenefitsOptions)
 )(ProductContext)

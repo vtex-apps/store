@@ -7,7 +7,7 @@ import { ToastProvider } from 'vtex.styleguide'
 
 import canonicalPathFromParams from './utils/canonical'
 import PageViewPixel from './components/PageViewPixel'
-import { OrderFormProvider } from './OrderFormContext'
+import OrderFormProvider from './components/OrderFormProvider'
 import { DataLayerProvider } from './components/withDataLayer'
 import { PixelProvider } from './PixelContext'
 
