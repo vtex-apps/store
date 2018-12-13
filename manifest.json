@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "store",
-  "version": "1.33.3",
+  "version": "1.34.0",
   "title": "VTEX Store",
   "description": "The VTEX basic store.",
   "builders": {
@@ -17,7 +17,8 @@
   },
   "dependencies": {
     "vtex.store-graphql": "2.x",
-    "vtex.pwa-graphql": "0.x"
+    "vtex.pwa-graphql": "0.x",
+    "vtex.styleguide": "8.x"
   },
   "settingsSchema": {
     "title": "VTEX Store",

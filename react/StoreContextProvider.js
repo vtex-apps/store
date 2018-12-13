@@ -3,6 +3,7 @@ import React, { Component, Fragment } from 'react'
 import { Helmet, withRuntimeContext, ExtensionPoint } from 'render'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
+import { ToastProvider } from 'vtex.styleguide'
 
 import canonicalPathFromParams from './utils/canonical'
 import GtmScripts from './components/GtmScripts'
@@ -159,9 +160,11 @@ class StoreContextProvider extends Component {
                   ))}
               </Helmet>
             )}
-            <OrderFormProvider>
-              <div className="vtex-store__template">{this.props.children}</div>
-            </OrderFormProvider>
+            <ToastProvider positioning="window">
+              <OrderFormProvider>
+                <div className="vtex-store__template">{this.props.children}</div>
+              </OrderFormProvider>
+            </ToastProvider>
           </DataLayerProvider>
         </PixelProvider>
       </Fragment>
