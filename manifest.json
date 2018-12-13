@@ -5,7 +5,7 @@
   "title": "VTEX Store",
   "description": "The VTEX basic store.",
   "builders": {
-    "pages": "1.x",
+    "store": "0.x",
     "react": "2.x"
   },
   "categories": [],
@@ -26,7 +26,8 @@
     "vtex.product-details": "1.x",
     "vtex.search-result": "3.x",
     "vtex.my-account": "0.x",
-    "vtex.login": "2.x"
+    "vtex.login": "2.x",
+    "vtex.store-resources": "0.x"
   },
   "settingsSchema": {
     "title": "VTEX Store",

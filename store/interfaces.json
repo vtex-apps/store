@@ -8,10 +8,9 @@
       "carousel",
       "shelf"
     ],
-    "wrapper": [
+    "wrappers": [
       "StoreWrapper"
-    ],
-    "component": "LayoutContainer"
+    ]
   },
   "store/home": {
     "required": [
@@ -20,7 +19,7 @@
     "allowed": [
       "search-result"
     ],
-    "wrapper": [
+    "wrappers": [
       "HomeWrapper"
     ]
   },
@@ -30,30 +29,35 @@
       "product-details"
     ],
     "allowed": [
-      "product-kit"
+      "breadcrumb",
+      "product-kit",
+      "related-products"
     ],
-    "wrapper": [
+    "wrappers": [
       "ProductWrapper"
     ],
     "context": "ProductContext"
   },
   "store/search": {
     "required": [
+      "header/full",
       "search-result"
     ],
-    "wrapper": [
+    "wrappers": [
       "SearchWrapper"
     ],
     "context": "SearchContext"
   },
   "store/account": {
     "required": [
+      "header/full",
       "my-account"
     ]
   },
   "store/login": {
     "required": [
-      "login"
+      "header/full",
+      "loginContent"
     ]
   }
 }

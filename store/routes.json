@@ -9,6 +9,10 @@
   "store/login": {
     "path": "/login"
   },
+  "store/product": {
+    "path": "/:slug/p",
+    "context": "ProductContext"
+  },
   "store/search": {
     "path": "/:term/s",
     "canonical": "/:term"
@@ -19,15 +23,12 @@
   },
   "store/search#department": {
     "path": "/:department/d",
-    "canonical": "/:department"
+    "canonical": "/:brand"
   },
   "store/search#category": {
     "path": "/:department/:category"
   },
   "store/search#subcategory": {
     "path": "/:department/:category/:subcategory"
-  },
-  "store/product": {
-    "path": "/:slug/p"
   }
 }

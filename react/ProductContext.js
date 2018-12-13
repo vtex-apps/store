@@ -1,13 +1,10 @@
 import PropTypes from 'prop-types'
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { withApollo, graphql, compose } from 'react-apollo'
-import { path, last, head, isEmpty } from 'ramda'
-import { Helmet, withRuntimeContext } from 'render'
+import { isEmpty } from 'ramda'
+import { withRuntimeContext } from 'render'
 
-import MicroData from './components/MicroData'
-import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
-import productQuery from './queries/productQuery.gql'
-import recommendationsAndBenefits from './queries/recommendationsAndBenefitsQuery.gql'
+import { Queries } from 'vtex.store-resources'
 import productPreviewFragment from './queries/productPreview.gql'
 import { cacheLocator } from './cacheLocator'
 
@@ -250,6 +247,6 @@ const recommendationsAndBenefitsOptions = {
 export default compose(
   withApollo,
   withRuntimeContext,
-  graphql(productQuery, catalogOptions),
-  graphql(recommendationsAndBenefits, recommendationsAndBenefitsOptions)
+  graphql(Queries.product, catalogOptions),
+  graphql(Queries.recommendationsAndBenefits, recommendationsAndBenefitsOptions)
 )(ProductContext)
