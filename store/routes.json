@@ -1,34 +1,34 @@
 {
-  "store/home": {
+  "store.home": {
     "path": "/"
   },
-  "store/account": {
+  "store.account": {
     "auth": true,
     "path": "/account"
   },
-  "store/login": {
+  "store.login": {
     "path": "/login"
   },
-  "store/product": {
+  "store.product": {
     "path": "/:slug/p",
     "context": "ProductContext"
   },
-  "store/search": {
+  "store.search": {
     "path": "/:term/s",
     "canonical": "/:term"
   },
-  "store/search#brand": {
+  "store.search#brand": {
     "path": "/:brand/b",
     "canonical": "/:brand"
   },
-  "store/search#department": {
+  "store.search#department": {
     "path": "/:department/d",
     "canonical": "/:brand"
   },
-  "store/search#category": {
+  "store.search#category": {
     "path": "/:department/:category"
   },
-  "store/search#subcategory": {
+  "store.search#subcategory": {
     "path": "/:department/:category/:subcategory"
   }
 }

@@ -12,9 +12,9 @@
       "StoreWrapper"
     ]
   },
-  "store/home": {
+  "store.home": {
     "required": [
-      "header/full"
+      "header.full"
     ],
     "allowed": [
       "search-result"
@@ -23,9 +23,9 @@
       "HomeWrapper"
     ]
   },
-  "store/product": {
+  "store.product": {
     "required": [
-      "header/full",
+      "header.full",
       "product-details"
     ],
     "allowed": [
@@ -38,9 +38,9 @@
     ],
     "context": "ProductContext"
   },
-  "store/search": {
+  "store.search": {
     "required": [
-      "header/full",
+      "header.full",
       "search-result"
     ],
     "wrappers": [
@@ -48,15 +48,15 @@
     ],
     "context": "SearchContext"
   },
-  "store/account": {
+  "store.account": {
     "required": [
-      "header/full",
+      "header.full",
       "my-account"
     ]
   },
-  "store/login": {
+  "store.login": {
     "required": [
-      "header/full",
+      "header.full",
       "loginContent"
     ]
   }

@@ -152,7 +152,7 @@ class ProductContext extends Component {
     const { params: { slug }, runtime } = this.props
     if (!product && !loading) {
       runtime.navigate({
-        page: 'store/search',
+        page: 'store.search',
         params: { term: slug },
         query: `productLinkNotFound=${slug}`
       })
