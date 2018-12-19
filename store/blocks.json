@@ -1,64 +1,63 @@
 {
-  "store/home": {
+  "store.home": {
     "blocks": [
-      "header/full",
+      "header.full",
       "footer"
     ]
   },
-  "store/product": {
+  "store.product": {
     "blocks": [
-      "header/full",
+      "header.full",
       "product-details",
       "footer"
-    ],
-    "context": "ProductContext"
+    ]
   },
-  "store/search": {
+  "store.search": {
     "blocks": [
-      "header/full",
+      "header.full",
       "search-result",
       "footer"
     ]
   },
-  "store/search#brand": {
+  "store.search#brand": {
     "blocks": [
-      "header/full",
+      "header.full",
       "search-result",
       "footer"
     ],
     "context": "SearchContext"
   },
-  "store/search#department": {
+  "store.search#department": {
     "blocks": [
-      "header/full",
+      "header.full",
       "search-result",
       "footer"
     ]
   },
-  "store/search#category": {
+  "store.search#category": {
     "blocks": [
-      "header/full",
+      "header.full",
       "search-result",
       "footer"
     ]
   },
-  "store/search#subcategory": {
+  "store.search#subcategory": {
     "blocks": [
-      "header/full",
+      "header.full",
       "search-result",
       "footer"
     ]
   },
-  "store/account": {
+  "store.account": {
     "blocks": [
-      "header/full",
+      "header.full",
 
       "footer"
     ]
   },
-  "store/login": {
+  "store.login": {
     "blocks": [
-      "header/full",
+      "header.full",
 
       "footer"
     ]
