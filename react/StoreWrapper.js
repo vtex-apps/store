@@ -51,7 +51,9 @@ class StoreWrapper extends Component {
     const {
       runtime: { prefetchDefaultPages },
     } = this.props
-    prefetchDefaultPages(['store/product'])
+    prefetchDefaultPages([
+      'store.product',
+    ])
   }
 
   render() {
