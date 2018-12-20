@@ -133,7 +133,7 @@ class StoreContextProvider extends Component {
                 <link rel="manifest" href="/pwa/manifest.json" />
                 <script
                   type="text/javascript"
-                  src={`/pwa/workers/register.js${route.path.match(/\?.*/)}`}
+                  src={`/pwa/workers/register.js${route.path.match(/\?.*/) || ''}`}
                 />
                 {hasManifest &&
                   manifest.icons &&
