@@ -135,7 +135,7 @@ class StoreContextProvider extends Component {
               <Helmet>
                 <meta name="theme-color" content={manifest.theme_color} />
                 <link rel="manifest" href="/pwa/manifest.json" />
-                <script type="text/javascript" src="/pwa/workers/register.js" />
+                <script type="text/javascript" src={`/pwa/workers/register.js${location.search}`} />
                 {hasManifest &&
                   manifest.icons &&
                   manifest.icons

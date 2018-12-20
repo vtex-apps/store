@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.34.1] - 2018-12-20
+### Added
+- Query params to service workers register file request.
+
 ## [1.34.0] - 2018-12-13
 ### Added
 - Adding ToastProvider to Store Context.
