@@ -50,13 +50,9 @@ class StoreContextProvider extends Component {
 
   componentDidMount() {
     const {
-      runtime: {
-        prefetchDefaultPages,
-      },
+      runtime: { prefetchDefaultPages },
     } = this.props
-    prefetchDefaultPages([
-      'store/product',
-    ])
+    prefetchDefaultPages(['store/product'])
   }
 
   render() {
@@ -135,7 +131,11 @@ class StoreContextProvider extends Component {
               <Helmet>
                 <meta name="theme-color" content={manifest.theme_color} />
                 <link rel="manifest" href="/pwa/manifest.json" />
-                <script type="text/javascript" src={`/pwa/workers/register.js${location.search}`} />
+                <script
+                  type="text/javascript"
+                  src={`/pwa/workers/register.js${window.location &&
+                    window.location.search}`}
+                />
                 {hasManifest &&
                   manifest.icons &&
                   manifest.icons
@@ -162,7 +162,9 @@ class StoreContextProvider extends Component {
             )}
             <ToastProvider positioning="window">
               <OrderFormProvider>
-                <div className="vtex-store__template">{this.props.children}</div>
+                <div className="vtex-store__template">
+                  {this.props.children}
+                </div>
               </OrderFormProvider>
             </ToastProvider>
           </DataLayerProvider>
