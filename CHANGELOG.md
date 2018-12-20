@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `vtex.admin-pages` as a peer dependency.
 
 ## [1.34.2] - 2018-12-20
-### Fix
+### Fixed
 - Fix location usage (considering SSR).
 
 ## [1.34.1] - 2018-12-20
