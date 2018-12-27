@@ -50,14 +50,17 @@
   },
   "store.account": {
     "required": [
-      "header.full",
-      "my-account"
+      "header.full"
     ]
   },
   "store.login": {
     "required": [
       "header.full",
-      "loginContent"
+      "login-content"
     ]
+  },
+  "product-kit": {
+    "required": [],
+    "allowed": []
   }
 }
