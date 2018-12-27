@@ -6,8 +6,8 @@ import addToCartMutation from '../mutations/addToCartMutation.gql'
 import updateItemsMutation from '../mutations/updateItemsMutation.gql'
 import updateOrderFormProfile from '../mutations/updateOrderFormProfile.gql'
 import updateOrderFormShipping from '../mutations/updateOrderFormShipping.gql'
-import {Provider} from 'vtex.store-resources/OrderFormContext'
-import {orderForm} from 'vtex.store-resources/Queries'
+import { Provider } from 'vtex.store-resources/OrderFormContext'
+import { orderForm } from 'vtex.store-resources/Queries'
 
 class OrderFormProvider extends Component {
   static propTypes = {
@@ -19,7 +19,7 @@ class OrderFormProvider extends Component {
       message: { isSuccess: null, text: null },
       loading: true,
       orderForm: {},
-      refetch: () => {},
+      refetch: () => { },
       addItem: this.props.addItem,
       updateToastMessage: this.handleMessageUpdate,
       updateOrderForm: this.props.updateOrderForm,

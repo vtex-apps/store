@@ -57,6 +57,7 @@
   "store.login": {
     "blocks": [
       "header.full",
+      "login-content",
       "footer"
     ]
   }
