@@ -7,6 +7,7 @@ import { ToastProvider } from 'vtex.styleguide'
 
 import canonicalPathFromParams from './utils/canonical'
 import PageViewPixel from './components/PageViewPixel'
+import IconPack from './components/IconPack'
 import OrderFormProvider from './components/OrderFormProvider'
 import { DataLayerProvider } from './components/withDataLayer'
 import { PixelProvider } from './PixelContext'
@@ -96,7 +97,7 @@ class StoreWrapper extends Component {
 
     return (
       <Fragment>
-        <ExtensionPoint id="store/__icons" />
+        <IconPack />
         <PixelProvider>
           <DataLayerProvider value={{ dataLayer: window.dataLayer }}>
             <ExtensionPoint id="store/pixel" />
@@ -158,7 +159,7 @@ class StoreWrapper extends Component {
             )}
             <ToastProvider positioning="window">
               <OrderFormProvider>
-                <div className="vtex-store__template">
+                <div className="vtex-store__template ph6-xl, ph7-m, ph3-s, w-90-l">
                   {this.props.children}
                 </div>
               </OrderFormProvider>
