@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
-- Bye pages.json! Welcome `pages-builder@3.x`.
+- Bye `pages.json`! Welcome `store-builder`.
 
 ### Removed
 - GTM script and manifest configuration.
