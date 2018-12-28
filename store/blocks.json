@@ -51,14 +51,14 @@
   "store.account": {
     "blocks": [
       "header.full",
-
+      "my-account",
       "footer"
     ]
   },
   "store.login": {
     "blocks": [
       "header.full",
-
+      "login-content",
       "footer"
     ]
   }
