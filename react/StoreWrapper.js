@@ -6,6 +6,7 @@ import { graphql } from 'react-apollo'
 import { ToastProvider } from 'vtex.styleguide'
 
 import canonicalPathFromParams from './utils/canonical'
+import IconPack from './components/IconPack'
 import PageViewPixel from './components/PageViewPixel'
 import OrderFormProvider from './components/OrderFormProvider'
 import { DataLayerProvider } from './components/withDataLayer'
@@ -98,7 +99,7 @@ class StoreWrapper extends Component {
 
     return (
       <Fragment>
-        <ExtensionPoint id="store/__icons" />
+        <IconPack />
         <PixelProvider>
           <DataLayerProvider value={{ dataLayer: window.dataLayer }}>
             <ExtensionPoint id="store/pixel" />
