@@ -29,7 +29,7 @@
     "vtex.product-kit": "1.x",
     "vtex.search-result": "3.x",
     "vtex.login": "2.x",
-    "vtex.my-account": "0.x"
+    "vtex.my-account": "1.x"
   },
   "settingsSchema": {
     "title": "VTEX Store",
