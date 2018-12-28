@@ -57,10 +57,9 @@
   "store.login": {
     "required": [
       "header.full",
-      "loginContent"
+      "login-content"
     ]
   },
-  "my-account": {},
   "carousel": {},
   "related-products": {},
   "product-kit": {}
