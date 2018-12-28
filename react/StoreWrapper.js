@@ -161,7 +161,7 @@ class StoreWrapper extends Component {
             )}
             <ToastProvider positioning="window">
               <OrderFormProvider>
-                <div className="vtex-store__template">
+                <div className="vtex-store__template ph6-xl ph7-m ph3 w-90-l">
                   {this.props.children}
                 </div>
               </OrderFormProvider>
