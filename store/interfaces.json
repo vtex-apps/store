@@ -50,7 +50,8 @@
   },
   "store.account": {
     "required": [
-      "header.full"
+      "header.full",
+      "my-account"
     ]
   },
   "store.login": {
@@ -58,9 +59,5 @@
       "header.full",
       "login-content"
     ]
-  },
-  "product-kit": {
-    "required": [],
-    "allowed": []
   }
 }
