@@ -29,9 +29,9 @@
     "vtex.product-kit": "1.1.1-beta",
     "vtex.search-result": "3.5.1-beta",
     "vtex.login": "2.2.1-beta",
-    "vtex.address-locator": "0.x",
-    "vtex.rebuy": "0.x",
-    "vtex.my-account": "1.x"
+    "vtex.my-account": "1.x",
+    "vtex.address-locator": "0.6.4-beta",
+    "vtex.rebuy": "0.2.1-beta"
   },
   "settingsSchema": {
     "title": "VTEX Store",
