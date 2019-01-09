@@ -31,7 +31,6 @@
       "product-details"
     ],
     "allowed": [
-      "breadcrumb",
       "product-kit",
       "related-products"
     ],
