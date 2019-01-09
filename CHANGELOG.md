@@ -8,9 +8,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Changed
 - Add `rebuy` and `address-locator` on interfaces. 
-
-## [1.35.2-beta] - 2019-01-04
-### Changed
 - Bye `pages.json`! Welcome `store-builder`.
 
 ### Removed
