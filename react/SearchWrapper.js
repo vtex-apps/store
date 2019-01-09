@@ -75,7 +75,7 @@ class SearchWrapper extends Component {
         data: {
           titleTag,
           metaTagDescription,
-        },
+        } = {},
         loading,
       },
     } = this.props
