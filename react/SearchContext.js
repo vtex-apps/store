@@ -1,19 +1,15 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Query } from 'react-apollo'
-import { Helmet, withRuntimeContext } from 'render'
+import { withRuntimeContext } from 'render'
 
-import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
-import searchQuery from './queries/searchQuery.gql'
-import {
-  createInitialMap,
-  SORT_OPTIONS,
-} from './utils/search'
+import {search} from 'vtex.store-resources/Queries'
+import { createInitialMap, SORT_OPTIONS } from './utils/search'
 
 const DEFAULT_PAGE = 1
 const DEFAULT_MAX_ITEMS_PER_PAGE = 10
 
-class ProductSearchContextProvider extends Component {
+class SearchContext extends Component {
   static propTypes = {
     /** Route parameters */
     params: PropTypes.shape({
@@ -24,7 +20,6 @@ class ProductSearchContextProvider extends Component {
     /** Render runtime context */
     runtime: PropTypes.shape({
       page: PropTypes.string.isRequired,
-      account: PropTypes.any,
     }),
     /** Query params */
     query: PropTypes.shape({
@@ -83,51 +78,6 @@ class ProductSearchContextProvider extends Component {
     },
   }
 
-  pageCategory = products => {
-    if (!products || products.length === 0) {
-      return 'EmptySearch'
-    }
-    const { category, term } = this.props.params
-    return term ? 'InternalSiteSearch' : category ? 'Category' : 'Department'
-  }
-
-  getPageEventName = products => {
-    if (!products || products.length === 0) {
-      return 'otherView'
-    }
-    const pageCategory = this.pageCategory(products)
-    return `${pageCategory.charAt(0).toLowerCase()}${pageCategory.slice(1)}View`
-  }
-
-  getData = searchQuery => {
-    if (!searchQuery) {
-      return null
-    }
-
-    const { products, titleTag } = searchQuery
-    const { department } = this.props.params
-    const { account } = this.props.runtime
-
-    const event = this.getPageEventName(products)
-
-    return [
-      {
-        event: 'pageInfo',
-        eventType: event,
-        accountName: account,
-        pageCategory: this.pageCategory(products),
-        pageDepartment: department,
-        pageFacets: [],
-        pageTitle: titleTag,
-        pageUrl: window.location.href,
-      },
-      {
-        event,
-        products,
-      },
-    ]
-  }
-
   render() {
     const {
       nextTreePath,
@@ -145,6 +95,7 @@ class ProductSearchContextProvider extends Component {
         priceRange,
       },
       runtime: { page: runtimePage },
+      ...props
     } = this.props
 
     const map = mapQuery || createInitialMap(params)
@@ -182,48 +133,32 @@ class ProductSearchContextProvider extends Component {
 
     return (
       <Query
-        query={searchQuery}
+        query={search}
         variables={queryField ? customSearch : defaultSearch}
         notifyOnNetworkStatusChange
         partialRefetch
       >
         {searchQuery => {
-          const { data, loading } = searchQuery
+          const { data } = searchQuery
           const { search } = data || {}
-          const { titleTag, metaTagDescription } = search || {}
 
           return (
-            <DataLayerApolloWrapper
-              getData={() =>
-                this.getData({
-                  ...search,
-                })
-              }
-              loading={loading}
-            >
-              <Helmet>
-                {titleTag && <title>{titleTag}</title>}
-                {metaTagDescription && (
-                  <meta name="description" content={metaTagDescription} />
-                )}
-              </Helmet>
-              {React.cloneElement(this.props.children, {
-                ...this.props,
-                searchQuery: {
-                  ...searchQuery,
-                  ...search,
-                },
-                searchContext: runtimePage,
-                pagesPath: nextTreePath,
-                map,
-                rest,
-                orderBy,
-                priceRange,
-                page,
-                from,
-                to,
-              })}
-            </DataLayerApolloWrapper>
+            React.cloneElement(this.props.children, {
+              ...props,
+              searchQuery: {
+                ...searchQuery,
+                ...search,
+              },
+              searchContext: runtimePage,
+              pagesPath: nextTreePath,
+              map,
+              rest,
+              orderBy,
+              priceRange,
+              page,
+              from,
+              to,
+            })
           )
         }}
       </Query>
@@ -231,4 +166,4 @@ class ProductSearchContextProvider extends Component {
   }
 }
 
-export default withRuntimeContext(ProductSearchContextProvider)
+export default withRuntimeContext(SearchContext)

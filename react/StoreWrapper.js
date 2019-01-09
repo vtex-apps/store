@@ -6,9 +6,9 @@ import { graphql } from 'react-apollo'
 import { ToastProvider } from 'vtex.styleguide'
 
 import canonicalPathFromParams from './utils/canonical'
-import GtmScripts from './components/GtmScripts'
+import IconPack from './components/IconPack'
 import PageViewPixel from './components/PageViewPixel'
-import { OrderFormProvider } from './OrderFormContext'
+import OrderFormProvider from './components/OrderFormProvider'
 import { DataLayerProvider } from './components/withDataLayer'
 import { PixelProvider } from './PixelContext'
 
@@ -21,7 +21,7 @@ const MOBILE_SCALING = 'width=device-width, initial-scale=1'
 
 const iOSIconSizes = ['80x80', '152x152', '167x167', '180x180']
 
-class StoreContextProvider extends Component {
+class StoreWrapper extends Component {
   static propTypes = {
     runtime: PropTypes.shape({
       prefetchDefaultPages: PropTypes.func,
@@ -52,7 +52,9 @@ class StoreContextProvider extends Component {
     const {
       runtime: { prefetchDefaultPages },
     } = this.props
-    prefetchDefaultPages(['store/product'])
+    prefetchDefaultPages([
+      'store.product',
+    ])
   }
 
   render() {
@@ -67,7 +69,6 @@ class StoreContextProvider extends Component {
     } = this.props
     const settings = this.context.getSettings(APP_LOCATOR) || {}
     const {
-      gtmId,
       titleTag,
       metaTagDescription,
       metaTagKeywords,
@@ -98,10 +99,9 @@ class StoreContextProvider extends Component {
 
     return (
       <Fragment>
-        <ExtensionPoint id="store/__icons" />
+        <IconPack />
         <PixelProvider>
           <DataLayerProvider value={{ dataLayer: window.dataLayer }}>
-            <GtmScripts gtmId={gtmId} />
             <ExtensionPoint id="store/pixel" />
             <ExtensionPoint id="store/rc" />
             <PageViewPixel />
@@ -161,7 +161,7 @@ class StoreContextProvider extends Component {
             )}
             <ToastProvider positioning="window">
               <OrderFormProvider>
-                <div className="vtex-store__template">
+                <div className="vtex-store__template bg-base">
                   {this.props.children}
                 </div>
               </OrderFormProvider>
@@ -173,8 +173,8 @@ class StoreContextProvider extends Component {
   }
 }
 
-StoreContextProvider.contextTypes = {
+StoreWrapper.contextTypes = {
   getSettings: PropTypes.func,
 }
 
-export default graphql(pwaDataQuery)(withRuntimeContext(StoreContextProvider))
+export default graphql(pwaDataQuery)(withRuntimeContext(StoreWrapper))
