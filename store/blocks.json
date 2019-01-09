@@ -24,8 +24,7 @@
       "header.full",
       "search-result",
       "footer"
-    ],
-    "context": "SearchContext"
+    ]
   },
   "store.search#department": {
     "blocks": [
