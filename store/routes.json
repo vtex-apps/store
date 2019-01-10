@@ -23,7 +23,7 @@
   },
   "store.search#department": {
     "path": "/:department/d",
-    "canonical": "/:brand"
+    "canonical": "/:department"
   },
   "store.search#category": {
     "path": "/:department/:category"

@@ -30,8 +30,8 @@
     "vtex.search-result": "3.x",
     "vtex.login": "2.x",
     "vtex.my-account": "1.x",
-    "vtex.address-locator": "0.6.4-beta",
-    "vtex.rebuy": "0.2.1-beta"
+    "vtex.address-locator": "1.x",
+    "vtex.rebuy": "1.x"
   },
   "settingsSchema": {
     "title": "VTEX Store",

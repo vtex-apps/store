@@ -6,7 +6,9 @@
     ],
     "allowed": [
       "carousel",
-      "shelf"
+      "shelf",
+      "rebuy",
+      "address-manager"
     ],
     "wrappers": [
       "StoreWrapper"
@@ -17,9 +19,7 @@
       "header.full"
     ],
     "allowed": [
-      "search-result",
-      "rebuy",
-      "address-manager"
+      "search-result"
     ],
     "wrappers": [
       "HomeWrapper"
