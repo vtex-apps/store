@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.0-beta.0] - 2019-01-09
+### Fixed
+- Change department route to remove typo issue.
+
+### Changed
+- Bump delivery dependencies. 
+
 ## [2.0.0-beta] - 2019-01-09
 ### Changed
 - Add `rebuy` and `address-locator` on interfaces. 
