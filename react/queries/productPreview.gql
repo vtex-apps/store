@@ -5,7 +5,6 @@ fragment product on Product {
   linkText
   titleTag
   metaTagDescription
-  description
   categories
   items {
     itemId
