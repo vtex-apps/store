@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Missing `productReference` field for the ProductContext
+
 ## [1.35.2] - 2019-01-14
 
 ### Changed

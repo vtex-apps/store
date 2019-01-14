@@ -11,6 +11,7 @@ query Product($slug: String) {
     categoryId
     categoriesIds
     brand
+    productReference
     properties {
       name
       values
