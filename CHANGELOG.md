@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.35.2] - 2019-01-14
+
 ### Changed
 - Remove `description` of the product to search query.
 
