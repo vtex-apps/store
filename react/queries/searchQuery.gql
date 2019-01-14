@@ -52,7 +52,6 @@ query search($query: String, $map: String, $rest: String, $orderBy: String, $pri
       productId
       productName
       linkText
-      description
       brand
       link
       items {
