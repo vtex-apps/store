@@ -104,7 +104,6 @@ class StoreWrapper extends Component {
         <PixelProvider>
           <DataLayerProvider value={{ dataLayer: window.dataLayer }}>
             <PixelManager />
-            <ExtensionPoint id="store/rc" />
             <PageViewPixel />
             <Helmet>
               <title>{titleTag}</title>
