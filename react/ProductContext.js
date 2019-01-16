@@ -4,8 +4,12 @@ import { withApollo, graphql, compose } from 'react-apollo'
 import { isEmpty } from 'ramda'
 import { withRuntimeContext } from 'render'
 
-import {Queries} from 'vtex.store-resources'
-import productPreviewFragment from './queries/productPreview.gql'
+import {
+  product,
+  productPreviewFragment,
+  recommendationsAndBenefits,
+} from 'vtex.store-resources/Queries'
+
 import { cacheLocator } from './cacheLocator'
 
 class ProductContext extends Component {
@@ -165,6 +169,6 @@ const recommendationsAndBenefitsOptions = {
 export default compose(
   withApollo,
   withRuntimeContext,
-  graphql(Queries.product, catalogOptions),
-  graphql(Queries.recommendationsAndBenefits, recommendationsAndBenefitsOptions)
+  graphql(product, catalogOptions),
+  graphql(recommendationsAndBenefits, recommendationsAndBenefitsOptions)
 )(ProductContext)
