@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { graphql, compose } from 'react-apollo'
 
-import addToCartMutation from '../mutations/addToCartMutation.gql'
-import updateItemsMutation from '../mutations/updateItemsMutation.gql'
-import updateOrderFormProfile from '../mutations/updateOrderFormProfile.gql'
-import updateOrderFormShipping from '../mutations/updateOrderFormShipping.gql'
-import {Provider} from 'vtex.store-resources/OrderFormContext'
-import {orderForm} from 'vtex.store-resources/Queries'
+import {
+  addToCart,
+  updateItems,
+  updateOrderFormProfile,
+  updateOrderFormShipping,
+} from 'vtex.store-resources/Mutations'
+import { Provider } from 'vtex.store-resources/OrderFormContext'
+import { orderForm } from 'vtex.store-resources/Queries'
 
 class OrderFormProvider extends Component {
   static propTypes = {
@@ -19,7 +21,7 @@ class OrderFormProvider extends Component {
       message: { isSuccess: null, text: null },
       loading: true,
       orderForm: {},
-      refetch: () => {},
+      refetch: () => { },
       addItem: this.props.addItem,
       updateToastMessage: this.handleMessageUpdate,
       updateOrderForm: this.props.updateOrderForm,
@@ -78,8 +80,8 @@ const options = {
 
 export default compose(
   graphql(orderForm, options),
-  graphql(addToCartMutation, { name: 'addItem' }),
-  graphql(updateItemsMutation, { name: 'updateOrderForm' }),
+  graphql(addToCart, { name: 'addItem' }),
+  graphql(updateItems, { name: 'updateOrderForm' }),
   graphql(updateOrderFormProfile, { name: 'updateOrderFormProfile' }),
   graphql(updateOrderFormShipping, { name: 'updateOrderFormShipping' })
 )(OrderFormProvider)

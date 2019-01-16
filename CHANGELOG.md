@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Changed
 - Move `productPreviewFragment` to `vtex.store-resources`.
+- Move all OrderForm mutations to `vtex.store-resources`.
 
 ## [2.0.0-beta.0] - 2019-01-09
 ### Fixed
