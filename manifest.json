@@ -7,7 +7,7 @@
   "builders": {
     "store": "0.x",
     "messages": "0.x",
-    "react": "2.x"
+    "react": "3.x"
   },
   "categories": [],
   "registries": [
