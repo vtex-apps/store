@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { Component } from 'react'
-import { withRuntimeContext } from 'render'
+import { withRuntimeContext } from 'vtex.render-runtime'
 
 import { Pixel } from '../PixelContext'
 

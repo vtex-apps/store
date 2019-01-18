@@ -1,6 +1,6 @@
 import { isEmpty, path } from 'ramda'
 import React, { Component, Fragment } from 'react'
-import { Helmet, withRuntimeContext, ExtensionPoint } from 'render'
+import { Helmet, withRuntimeContext, ExtensionPoint } from 'vtex.render-runtime'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { ToastProvider } from 'vtex.styleguide'

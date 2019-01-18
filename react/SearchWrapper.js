@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { Helmet, withRuntimeContext } from 'render'
+import { Helmet, withRuntimeContext } from 'vtex.render-runtime'
 
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
 

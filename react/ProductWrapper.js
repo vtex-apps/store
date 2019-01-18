@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { Component, Fragment } from 'react'
 import { last, head } from 'ramda'
-import { Helmet, withRuntimeContext } from 'render'
+import { Helmet, withRuntimeContext } from 'vtex.render-runtime'
 
 import MicroData from './components/MicroData'
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'

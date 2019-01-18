@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Query } from 'react-apollo'
-import { withRuntimeContext } from 'render'
+import { withRuntimeContext } from 'vtex.render-runtime'
 
 import {search} from 'vtex.store-resources/Queries'
 import { createInitialMap, SORT_OPTIONS } from './utils/search'

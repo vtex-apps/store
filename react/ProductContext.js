@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { withApollo, graphql, compose } from 'react-apollo'
 import { isEmpty } from 'ramda'
-import { withRuntimeContext } from 'render'
+import { withRuntimeContext } from 'vtex.render-runtime'
 
 import {
   product,

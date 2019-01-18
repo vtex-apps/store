@@ -1,4 +1,4 @@
-import { buildCacheLocator } from 'render'
+import { buildCacheLocator } from 'vtex.render-runtime'
 
 const STORE_GRAPHQL = 'vtex.store-graphql@2.x'
 
