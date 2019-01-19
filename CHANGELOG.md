@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.0-beta.5] - 2019-01-19
+
+## [2.0.0-beta.2] - 2019-01-16
+### Changed
+- Move pixel apps to inside an iframe.
+
 ## [2.0.0-beta.4] - 2019-01-18
 ### Changed
 - Adjust the way to import render components.
@@ -84,7 +90,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Support to PWA. 
 
 ## [1.31.2] - 2018-12-02
-
 ### Changed
 - Allow user scaling as recommended by [accessibility guidelines](https://dequeuniversity.com/rules/axe/2.2/meta-viewport)
 

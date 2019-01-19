@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types'
 import { Component } from 'react'
-import { withRuntimeContext } from 'vtex.render-runtime'
 
-import { Pixel } from '../PixelContext'
+import { withRuntimeContext } from 'vtex.render-runtime'
+import { Pixel } from 'vtex.pixel-manager/PixelContext'
 
 class PageViewPixel extends Component {
   static propTypes = {
     push: PropTypes.func.isRequired,
+    runtime: PropTypes.object.isRequired,
   }
 
   sendPageViewEvent() {

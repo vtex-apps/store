@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "store",
-  "version": "2.0.0-beta.4",
+  "version": "2.0.0-beta.5",
   "title": "VTEX Store",
   "description": "The VTEX basic store.",
   "builders": {
@@ -31,7 +31,8 @@
     "vtex.login": "2.x",
     "vtex.my-account": "1.x",
     "vtex.address-locator": "1.x",
-    "vtex.rebuy": "1.x"
+    "vtex.rebuy": "1.x",
+    "vtex.pixel-manager": "0.x"
   },
   "settingsSchema": {
     "title": "VTEX Store",

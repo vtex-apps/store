@@ -1,8 +1,7 @@
+import hoistNonReactStatics from 'hoist-non-react-statics'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import hoistNonReactStatics from 'hoist-non-react-statics'
-
-import { Pixel } from '../PixelContext'
+import { Pixel } from 'vtex.pixel-manager/PixelContext'
 
 const { Consumer, Provider } = React.createContext({
   dataLayer: [],
