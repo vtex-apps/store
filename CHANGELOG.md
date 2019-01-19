@@ -8,10 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ## [2.0.0-beta.5] - 2019-01-19
-
-## [2.0.0-beta.2] - 2019-01-16
 ### Changed
-- Move pixel apps to inside an iframe.
+- Bump again to fix overlapped patchs. 
 
 ## [2.0.0-beta.4] - 2019-01-18
 ### Changed
@@ -21,6 +19,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Update React builder to 3.x.
 - Bump vtex.styleguide to 9.x.
+
+## [2.0.0-beta.2] - 2019-01-16
+### Changed
+- Move pixel apps to inside an iframe.
 
 ## [2.0.0-beta.1] - 2019-01-16
 ### Changed
