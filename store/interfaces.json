@@ -1,7 +1,12 @@
 {
   "store": {
-    "required": [
-      "header",
+    "before": [
+      "header.full"
+    ],
+    "arround": [
+      "store-wrapper"
+    ],
+    "after": [
       "footer"
     ],
     "allowed": [
@@ -9,56 +14,58 @@
       "shelf",
       "rebuy",
       "address-manager"
-    ],
-    "wrappers": [
-      "StoreWrapper"
     ]
   },
   "store.home": {
-    "required": [
-      "header.full"
+    "arround": [
+      "home-wrapper"
     ],
     "allowed": [
       "search-result"
-    ],
-    "wrappers": [
-      "HomeWrapper"
     ]
   },
   "store.product": {
+    "around": [
+      "product-wrapper"
+    ],
     "required": [
-      "header.full",
       "product-details"
     ],
     "allowed": [
       "product-kit",
       "related-products"
     ],
-    "wrappers": [
-      "ProductWrapper"
-    ],
     "context": "ProductContext"
   },
   "store.search": {
-    "required": [
-      "header.full",
-      "search-result"
+    "around": [
+      "search-wrapper"
     ],
-    "wrappers": [
-      "SearchWrapper"
+    "required": [
+      "search-result"
     ],
     "context": "SearchContext"
   },
   "store.account": {
     "required": [
-      "header.full",
       "my-account"
     ]
   },
   "store.login": {
     "required": [
-      "header.full",
       "login-content"
     ]
+  },
+  "store-wrapper": {
+    "component": "StoreWrapper"
+  },
+  "home-wrapper": {
+    "component": "HomeWrapper"
+  },
+  "product-wrapper": {
+    "component": "ProductWrapper"
+  },
+  "search-wrapper": {
+    "component": "SearchWrapper"
   }
 }
