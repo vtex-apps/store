@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.0-beta.5] - 2019-01-19
+
 ## [2.0.0-beta.2] - 2019-01-16
 ### Changed
 - Move pixel apps to inside an iframe.
