@@ -3,7 +3,7 @@
     "before": [
       "header.full"
     ],
-    "arround": [
+    "around": [
       "store-wrapper"
     ],
     "after": [
@@ -17,7 +17,7 @@
     ]
   },
   "store.home": {
-    "arround": [
+    "around": [
       "home-wrapper"
     ],
     "allowed": [
