@@ -1,6 +1,6 @@
-import { isEmpty, path } from 'ramda'
+import { path } from 'ramda'
 import React, { Component, Fragment } from 'react'
-import { Helmet, withRuntimeContext, ExtensionPoint } from 'vtex.render-runtime'
+import { Helmet, withRuntimeContext } from 'vtex.render-runtime'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { PixelProvider } from 'vtex.pixel-manager/PixelContext'
@@ -21,6 +21,35 @@ const META_ROBOTS = 'index, follow'
 const MOBILE_SCALING = 'width=device-width, initial-scale=1'
 
 const iOSIconSizes = ['80x80', '152x152', '167x167', '180x180']
+
+const systemToCanonical = ({page, pages, route, history}) => {
+  const {params} = route
+  const canonicalRouteTemplate = pages[page].canonical
+  const canonicalPath = canonicalPathFromParams(canonicalRouteTemplate, params)
+  const canonicalHost = window.__hostname__ || (window.location && window.location.hostname)
+  return {
+    canonicalPath,
+    canonicalHost
+  }
+}
+
+const replaceHistoryToCanonical = ({route, history}, canonicalPath) => {
+  const pathname = path(['location', 'pathname'], history)
+  const search = path(['location', 'search'], history)
+
+  if (!canonicalPath || !pathname) {
+    return
+  }
+
+  const decodedCanonicalPath = decodeURIComponent(canonicalPath)
+
+  if (decodedCanonicalPath !== pathname) {
+    history.replace(`${canonicalPath}${search}`, {
+      renderRouting: true,
+      route,
+    })
+  }
+}
 
 class StoreWrapper extends Component {
   static propTypes = {
@@ -78,25 +107,10 @@ class StoreWrapper extends Component {
     } = settings
     const { data: { manifest, splashes, loading, error } = {} } = this.props
     const hasManifest = !loading && manifest && !error
+    const {canonicalHost, canonicalPath} = systemToCanonical({pages, page, route, history})
+    replaceHistoryToCanonical({route, history}, canonicalPath)
 
     window.dataLayer = window.dataLayer || []
-
-    let canonicalPath = route.canonical
-
-    const params = route.params
-    const canonicalTemplate = pages[page].canonical
-
-    if (!canonicalPath && !isEmpty(params) && canonicalTemplate) {
-      canonicalPath = canonicalPathFromParams(canonicalTemplate, params)
-      const pathname = path(['location', 'pathname'], history)
-      const decodedCanonicalPath = decodeURIComponent(canonicalPath)
-      if (pathname && canonicalPath && decodedCanonicalPath !== pathname) {
-        history.replace(`${canonicalPath}${history.location.search}`, {
-          renderRouting: true,
-          route,
-        })
-      }
-    }
 
     return (
       <Fragment>
@@ -117,14 +131,7 @@ class StoreWrapper extends Component {
               <meta name="currency" content={currency} />
               <meta name="robots" content={metaTagRobots || META_ROBOTS} />
               <meta httpEquiv="Content-Type" content={CONTENT_TYPE} />
-              {canonicalPath && (
-                <link
-                  rel="canonical"
-                  href={`https://${window.__hostname__ ||
-                    (window.location &&
-                      window.location.hostname)}${canonicalPath}`}
-                />
-              )}
+              {canonicalPath && canonicalHost && (<link rel="canonical" href={`https://${canonicalHost}${canonicalPath}`}/>)}
             </Helmet>
             {/* PWA */}
             {hasManifest && (

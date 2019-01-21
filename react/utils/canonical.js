@@ -1,7 +1,8 @@
+import { isEmpty } from 'ramda'
 import RouteParser from 'route-parser'
 
-const canonicalPathFromParams = (canonicalTemplate, params) => {
-  return new RouteParser(canonicalTemplate).reverse(params)
-}
+const canonicalPathFromParams = (canonicalRouteTemplate, params) => !isEmpty(params) && canonicalRouteTemplate
+  ? new RouteParser(canonicalRouteTemplate).reverse(params)
+  : null
 
 export default canonicalPathFromParams
