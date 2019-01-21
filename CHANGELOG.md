@@ -6,10 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Use outer blocks (before, around, after).
 
 ## [2.0.0-beta.5] - 2019-01-19
 ### Changed
-- Bump again to fix overlapped patchs. 
+- Bump again to fix overlapped patchs.
 
 ## [2.0.0-beta.4] - 2019-01-18
 ### Changed
@@ -34,11 +36,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Change department route to remove typo issue.
 
 ### Changed
-- Bump delivery dependencies. 
+- Bump delivery dependencies.
 
 ## [2.0.0-beta] - 2019-01-09
 ### Changed
-- Add `rebuy` and `address-locator` on interfaces. 
+- Add `rebuy` and `address-locator` on interfaces.
 - Bye `pages.json`! Welcome `store-builder`.
 
 ### Removed
@@ -89,7 +91,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.32.0] - 2018-12-02
 ### Added
-- Support to PWA. 
+- Support to PWA.
 
 ## [1.31.2] - 2018-12-02
 ### Changed
