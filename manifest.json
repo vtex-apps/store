@@ -6,7 +6,7 @@
   "description": "The VTEX basic store.",
   "builders": {
     "pages": "0.x",
-    "messages": "0.x",
+    "messages": "1.x",
     "react": "2.x"
   },
   "categories": [],
