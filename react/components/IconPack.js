@@ -44,7 +44,6 @@ const IconPack = () => {
             fill="currentColor"
           />
         </g>
-
         <g id="inline-grid">
           <rect y="14" width="5" height="5" fill="currentColor" />
           <rect y="7" width="5" height="5" fill="currentColor" />
@@ -459,7 +458,7 @@ const IconPack = () => {
           <path fill="currentColor" d="M15,13H1c-0.6,0-1,0.4-1,1s0.4,1,1,1h14c0.6,0,1-0.4,1-1S15.6,13,15,13z" />
         </g>
 
-        {/** ====== Mild Priority Actions ====== */}
+        {/** ====== Middle Priority Actions ====== */}
         <g id="mpa-angle--down">
           <path
             d="M4 6L8.5 10.5L13 6"
@@ -993,6 +992,22 @@ const IconPack = () => {
         </g>
 
         {/** ====== Status Indicators ====== */}
+        <g id="sti-loading" className="c-action-primary db">
+          <circle
+            cx="50"
+            cy="50"
+            fill="none"
+            r="40"
+            stroke="currentColor"
+            strokeWidth="10"
+            strokeDasharray={`0 0 ${80 * Math.PI * 0.75} ${80 * Math.PI}`}
+            strokeLinecap="round"
+            strokeDashoffset="1"
+          >
+            <animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 50;360 50 50" keyTimes="0;1" dur="0.7s" begin="0s" repeatCount="indefinite"></animateTransform>
+          </circle>
+        </g>
+
         <g id="sti-l-check">
           <path
             d="M5.6 10L3.10711 7.50711C2.71658 7.11658 2.08342 7.11658 1.69289 7.50711L0.707107 8.49289C0.316583 8.88342 0.316583 9.51658 0.707107 9.90711L4.89289 14.0929C5.28342 14.4834 5.91658 14.4834 6.30711 14.0929L15.2929 5.10711C15.6834 4.71658 15.6834 4.08342 15.2929 3.69289L14.3071 2.70711C13.9166 2.31658 13.2834 2.31658 12.8929 2.70711L5.6 10Z"
