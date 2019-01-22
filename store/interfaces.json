@@ -14,7 +14,10 @@
       "shelf",
       "rebuy",
       "address-manager"
-    ]
+    ],
+    "preview": {
+      "type": "block"
+    }
   },
   "store.home": {
     "around": [
