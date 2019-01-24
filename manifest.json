@@ -5,15 +5,9 @@
   "title": "VTEX Store",
   "description": "The VTEX basic store.",
   "builders": {
-<<<<<<< HEAD
     "store": "0.x",
-    "messages": "0.x",
-    "react": "3.x"
-=======
-    "pages": "0.x",
     "messages": "1.x",
-    "react": "2.x"
->>>>>>> 02b001e... Bumps messages builder major
+    "react": "3.x"
   },
   "scripts": {
     "postreleasy": "vtex publish --verbose"
