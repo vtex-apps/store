@@ -8,58 +8,25 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ## [2.0.0-beta.11] - 2019-01-24
-
-## [2.0.0-beta.10] - 2019-01-24
-### Changed
-- Minor changes on interfaces and routes.
-
-## [2.0.0-beta.9] - 2019-01-23
-### Changed
-- Add loading svg on icon pack. 
-
-## [2.0.0-beta.8] - 2019-1-22
 ### Added
 - Interface preview
-
-## [2.0.0-beta.7] - 2019-01-22
-
-## [2.0.0-beta.6] - 2019-1-21
-### Added
 - Use outer blocks (before, around, after).
-
-## [2.0.0-beta.5] - 2019-01-19
-### Changed
-- Bump again to fix overlapped patchs.
-
-## [2.0.0-beta.4] - 2019-01-18
-### Changed
-- Adjust the way to import render components.
-
-## [2.0.0-beta.3] - 2019-01-18
-### Changed
-- Update React builder to 3.x.
-- Bump vtex.styleguide to 9.x.
-
-## [2.0.0-beta.2] - 2019-01-16
-### Changed
 - Move pixel apps to inside an iframe.
-
-## [2.0.0-beta.1] - 2019-01-16
-### Changed
-- Move `productPreviewFragment` to `vtex.store-resources`.
-- Move all OrderForm mutations to `vtex.store-resources`.
-
-## [2.0.0-beta.0] - 2019-01-09
-### Fixed
-- Change department route to remove typo issue.
-
-### Changed
-- Bump delivery dependencies.
-
-## [2.0.0-beta] - 2019-01-09
-### Changed
 - Add `rebuy` and `address-locator` on interfaces.
 - Bye `pages.json`! Welcome `store-builder`.
+
+### Changed
+- Minor changes on interfaces and routes.
+- Add loading svg on icon pack. 
+- Adjust the way to import render components.
+- Update React builder to 3.x.
+- Bump vtex.styleguide to 9.x.
+- Move `productPreviewFragment` to `vtex.store-resources`.
+- Move all OrderForm mutations to `vtex.store-resources`.
+- Bump delivery dependencies.
+
+### Fixed
+- Change department route to remove typo issue.
 
 ### Removed
 - GTM script and manifest configuration.
