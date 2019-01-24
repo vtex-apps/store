@@ -10,8 +10,7 @@
     "path": "/login"
   },
   "store.product": {
-    "path": "/:slug/p",
-    "context": "ProductContext"
+    "path": "/:slug/p"
   },
   "store.search": {
     "path": "/:term/s",

@@ -1,13 +1,13 @@
 {
   "store": {
-    "after": [
-      "footer"
-    ],
     "around": [
       "storeWrapper"
     ],
     "before": [
       "header"
+    ],
+    "after": [
+      "footer"
     ],
     "allowed": [
       "carousel",
