@@ -35,6 +35,9 @@
   "store.account": {
     "blocks": [
       "my-account"
+    ],
+    "parent": [
+      "challenge.profile"
     ]
   },
   "store.login": {

@@ -3,7 +3,6 @@
     "path": "/"
   },
   "store.account": {
-    "auth": true,
     "path": "/account"
   },
   "store.login": {
