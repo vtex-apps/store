@@ -6,14 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Update messages builder to `1.x`. 
 
 ## [1.35.3] - 2019-01-14
-
 ### Added
 - Missing `productReference` field for the ProductContext
 
 ## [1.35.2] - 2019-01-14
-
 ### Changed
 - Remove `description` of the product to search query.
 
