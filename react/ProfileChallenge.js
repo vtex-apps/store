@@ -27,7 +27,9 @@ class ProfileChallenge extends PureComponent {
   }
 
   componentDidUpdate() {
-    this.onUpdate()
+    if (this.state.loggedIn && !this.state.loading) {
+      this.onUpdate()
+    }
   }
 
   redirectToLogin() {
