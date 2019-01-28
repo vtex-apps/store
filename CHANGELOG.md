@@ -6,18 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [2.0.0-rc] - 2019-01-28
 ### Added
-- Basic challenge components.
-
-### Changed
-- Update messages builder to `1.x`. 
-- Add challenge block on the `store` interface.
-
-### Removed
-- Auth in the account route.
-
-## [2.0.0-beta.11] - 2019-01-24
-### Added
+- Basic challenge blocks.
 - Interface preview
 - Use outer blocks (before, around, after).
 - Move pixel apps to inside an iframe.
@@ -25,6 +17,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Bye `pages.json`! Welcome `store-builder`.
 
 ### Changed
+- Update messages builder to `1.x`. 
+- Add challenge block on the `store` interface.
 - Minor changes on interfaces and routes.
 - Add loading svg on icon pack. 
 - Adjust the way to import render components.
@@ -34,11 +28,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Move all OrderForm mutations to `vtex.store-resources`.
 - Bump delivery dependencies.
 
-### Fixed
-- Change department route to remove typo issue.
-
 ### Removed
 - GTM script and manifest configuration.
+- Auth in the account route.
 
 ## [1.35.3] - 2019-01-14
 ### Added
