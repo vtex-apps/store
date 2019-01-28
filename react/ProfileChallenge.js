@@ -19,7 +19,7 @@ class ProfileChallenge extends PureComponent {
 
   state = {
     loading: true,
-    logged: false,
+    loggedIn: false,
   }
 
   componentDidMount() {
@@ -52,8 +52,7 @@ class ProfileChallenge extends PureComponent {
         ) {
           this.setState({ loading: false, logged: true })
         } else {
-          this.setState({ loading: false, logged: false })
-          this.redirectToLogin()
+          return Promise.reject()
         }
       })
       .catch(() => {
@@ -64,7 +63,7 @@ class ProfileChallenge extends PureComponent {
 
   render() {
     const { children } = this.props
-    const { logged, loading } = this.state
+    const { loggedIn, loading } = this.state
 
     if (loading) {
       return (
@@ -74,7 +73,7 @@ class ProfileChallenge extends PureComponent {
       )
     }
 
-    if (logged) {
+    if (loggedIn) {
       return children
     }
 
