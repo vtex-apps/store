@@ -6,8 +6,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Basic challenge components.
+
 ### Changed
 - Update messages builder to `1.x`. 
+- Add challenge block on the `store` interface.
+
+### Removed
+- Auth in the account route.
 
 ## [2.0.0-beta.11] - 2019-01-24
 ### Added
