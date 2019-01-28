@@ -1,7 +1,8 @@
 {
   "store": {
     "around": [
-      "storeWrapper"
+      "storeWrapper",
+      "challenge"
     ],
     "before": [
       "header"
@@ -85,5 +86,12 @@
   },
   "searchWrapper": {
     "component": "SearchWrapper"
+  },
+  "challenge": {
+    "component": "DefaultChallenge",
+    "extensible": "public"
+  },
+  "challenge.profile": {
+    "component": "ProfileChallenge"
   }
 }

@@ -35,7 +35,10 @@
   "store.account": {
     "blocks": [
       "my-account"
-    ]
+    ],
+    "parent": {
+      "challenge": "challenge.profile"
+    }
   },
   "store.login": {
     "blocks": [
@@ -52,6 +55,12 @@
     "inheritComponent": true
   },
   "searchWrapper": {
+    "inheritComponent": true
+  },
+  "challenge": {
+    "inheritComponent": true
+  },
+  "challenge.profile": {
     "inheritComponent": true
   }
 }
