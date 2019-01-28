@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 
-import { withRuntimeContext } from 'vtex.render-runtime'
+import { withRuntimeContext, Loading } from 'vtex.render-runtime'
 
 const LOGIN_PATH = '/login'
 const API_SESSION_URL = '/api/sessions?items=*'
@@ -35,7 +35,7 @@ class ProfileChallenge extends PureComponent {
     if (this.props.page !== 'store.login' && pathName !== LOGIN_PATH) {
       this.props.runtime.navigate({
         fallbackToWindowLocation: false,
-        query: `returnUrl=${pathName}`,
+        query: `returnUrl=${encodeURIComponent(pathName)}`,
         to: LOGIN_PATH,
       })
     }
@@ -67,7 +67,11 @@ class ProfileChallenge extends PureComponent {
     const { logged, loading } = this.state
 
     if (loading) {
-      return <div className="flex justify-center ma4"></div>
+      return (
+        <div className="flex justify-center ma4">
+          <Loading />
+        </div>
+      )
     }
 
     if (logged) {
