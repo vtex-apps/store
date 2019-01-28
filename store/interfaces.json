@@ -91,7 +91,7 @@
     "component": "DefaultChallenge",
     "extensible": "public"
   },
-  "challenge.profile": { 
+  "challenge.profile": {
     "component": "ProfileChallenge"
   }
 }
