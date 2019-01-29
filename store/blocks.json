@@ -1,17 +1,4 @@
 {
-  "store.home": {
-    "blocks": []
-  },
-  "store.product": {
-    "blocks": [
-      "product-details"
-    ]
-  },
-  "store.search": {
-    "blocks": [
-      "search-result"
-    ]
-  },
   "store.search#brand": {
     "blocks": [
       "search-result"
@@ -39,28 +26,5 @@
     "parent": {
       "challenge": "challenge.profile"
     }
-  },
-  "store.login": {
-    "blocks": [
-      "login-content"
-    ]
-  },
-  "storeWrapper": {
-    "inheritComponent": true
-  },
-  "homeWrapper": {
-    "inheritComponent": true
-  },
-  "productWrapper": {
-    "inheritComponent": true
-  },
-  "searchWrapper": {
-    "inheritComponent": true
-  },
-  "challenge": {
-    "inheritComponent": true
-  },
-  "challenge.profile": {
-    "inheritComponent": true
   }
 }
