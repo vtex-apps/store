@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.0-rc.0] - 2019-1-29
+### Changed
+- Release with new store builder
+
 ## [2.0.0-rc] - 2019-01-28
 ### Added
 - Basic challenge blocks.
@@ -17,10 +21,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Bye `pages.json`! Welcome `store-builder`.
 
 ### Changed
-- Update messages builder to `1.x`. 
+- Update messages builder to `1.x`.
 - Add challenge block on the `store` interface.
 - Minor changes on interfaces and routes.
-- Add loading svg on icon pack. 
+- Add loading svg on icon pack.
 - Adjust the way to import render components.
 - Update React builder to 3.x.
 - Bump vtex.styleguide to 9.x.
