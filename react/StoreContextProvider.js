@@ -19,8 +19,6 @@ const CONTENT_TYPE = 'text/html; charset=utf-8'
 const META_ROBOTS = 'index, follow'
 const MOBILE_SCALING = 'width=device-width, initial-scale=1'
 
-const iOSIconSizes = ['80x80', '152x152', '167x167', '180x180']
-
 class StoreContextProvider extends Component {
   static propTypes = {
     runtime: PropTypes.shape({
@@ -74,7 +72,7 @@ class StoreContextProvider extends Component {
       metaTagRobots,
       storeName,
     } = settings
-    const { data: { manifest, splashes, loading, error } = {} } = this.props
+    const { data: { manifest, iOSIcons, splashes, loading, error } = {} } = this.props
     const hasManifest = !loading && manifest && !error
 
     window.dataLayer = window.dataLayer || []
@@ -136,10 +134,7 @@ class StoreContextProvider extends Component {
                   src={`/pwa/workers/register.js${route.path.match(/\?.*/) || ''}`}
                 />
                 {hasManifest &&
-                  manifest.icons &&
-                  manifest.icons
-                    .filter(({ sizes }) => iOSIconSizes.includes(sizes))
-                    .map(icon => (
+                    iOSIcons.map(icon => (
                       <link
                         key={icon.src}
                         rel="apple-touch-icon"
