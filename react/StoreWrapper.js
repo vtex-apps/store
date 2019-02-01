@@ -19,8 +19,6 @@ const CONTENT_TYPE = 'text/html; charset=utf-8'
 const META_ROBOTS = 'index, follow'
 const MOBILE_SCALING = 'width=device-width, initial-scale=1'
 
-const iOSIconSizes = ['80x80', '152x152', '167x167', '180x180']
-
 const systemToCanonical = ({page, pages, route, history}) => {
   const {params} = route
   const canonicalRouteTemplate = pages[page].canonical
@@ -104,7 +102,7 @@ class StoreWrapper extends Component {
       metaTagRobots,
       storeName,
     } = settings
-    const { data: { manifest, splashes, loading, error } = {} } = this.props
+    const { data: { manifest, iOSIcons, splashes, loading, error } = {} } = this.props
     const hasManifest = !loading && manifest && !error
     const {canonicalHost, canonicalPath} = systemToCanonical({pages, page, route, history})
     replaceHistoryToCanonical({route, history}, canonicalPath)
@@ -141,10 +139,7 @@ class StoreWrapper extends Component {
                   src={`/pwa/workers/register.js${route.path.match(/\?.*/) || ''}`}
                 />
                 {hasManifest &&
-                  manifest.icons &&
-                  manifest.icons
-                    .filter(({ sizes }) => iOSIconSizes.includes(sizes))
-                    .map(icon => (
+                    iOSIcons.map(icon => (
                       <link
                         key={icon.src}
                         rel="apple-touch-icon"
