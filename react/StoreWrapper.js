@@ -8,7 +8,6 @@ import PixelManager from 'vtex.pixel-manager/PixelManager'
 import { ToastProvider } from 'vtex.styleguide'
 
 import canonicalPathFromParams from './utils/canonical'
-import IconPack from './components/IconPack'
 import PageViewPixel from './components/PageViewPixel'
 import OrderFormProvider from './components/OrderFormProvider'
 import { DataLayerProvider } from './components/withDataLayer'
@@ -114,7 +113,6 @@ class StoreWrapper extends Component {
 
     return (
       <Fragment>
-        <IconPack />
         <PixelProvider>
           <DataLayerProvider value={{ dataLayer: window.dataLayer }}>
             <PixelManager />

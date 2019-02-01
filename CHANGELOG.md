@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.0] - 2019-02-01
+### Removed
+- Remove default `IconPack`. Now, it's served by render.
+
 ## [2.0.0-rc.3] - 2019-02-01
 ### Changed
 - Remove unused icons and rename icons without pattern.
