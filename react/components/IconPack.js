@@ -7,351 +7,6 @@ const IconPack = () => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="0" width="0" className="dn">
       <defs>
-        {/** ====== OLD ====== */}
-        <g id="grid">
-          <rect width="6.73684" height="7" fill="currentColor" />
-          <rect x="9.2627" width="6.73684" height="7" fill="currentColor" />
-          <rect
-            width="6.73684"
-            height="1"
-            transform="matrix(1 0 0 -1 9.2627 9)"
-            fill="currentColor"
-          />
-          <rect
-            width="6.73684"
-            height="1"
-            transform="matrix(1 0 0 -1 0 9)"
-            fill="currentColor"
-          />
-          <rect y="10" width="6.73684" height="7" fill="currentColor" />
-          <rect
-            x="9.2627"
-            y="10"
-            width="6.73684"
-            height="7"
-            fill="currentColor"
-          />
-          <rect
-            width="6.73684"
-            height="1"
-            transform="matrix(1 0 0 -1 9.2627 19)"
-            fill="currentColor"
-          />
-          <rect
-            width="6.73684"
-            height="1"
-            transform="matrix(1 0 0 -1 0 19)"
-            fill="currentColor"
-          />
-        </g>
-
-        <g id="inline-grid">
-          <rect y="14" width="5" height="5" fill="currentColor" />
-          <rect y="7" width="5" height="5" fill="currentColor" />
-          <rect width="5" height="5" fill="currentColor" />
-          <rect x="7" width="12" height="2" fill="currentColor" />
-          <rect x="7" y="3" width="12" height="2" fill="currentColor" />
-          <rect x="7" y="7" width="12" height="2" fill="currentColor" />
-          <rect x="7" y="10" width="12" height="2" fill="currentColor" />
-          <rect x="7" y="14" width="12" height="2" fill="currentColor" />
-          <rect x="7" y="17" width="12" height="2" fill="currentColor" />
-        </g>
-
-        <g id="single-item-grid">
-          <rect width="10" height="14" fill="currentColor" />
-          <rect y="16" width="10" height="3" fill="currentColor" />
-        </g>
-
-        <g id="search-result-filter">
-          <path d="M4 5V1" stroke="#4F4F4F" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M4 16V14" stroke="#4F4F4F" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M13 12V16" stroke="#4F4F4F" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M13 1V3" stroke="#4F4F4F" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M4 14C5.65685 14 7 12.6569 7 11C7 9.34315 5.65685 8 4 8C2.34315 8 1 9.34315 1 11C1 12.6569 2.34315 14 4 14Z" stroke="#4F4F4F" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M13 9C14.6569 9 16 7.65685 16 6C16 4.34315 14.6569 3 13 3C11.3431 3 10 4.34315 10 6C10 7.65685 11.3431 9 13 9Z" stroke="#4F4F4F" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
-        </g>
-
-        <g id="check">
-          <rect width="9" height="9" rx="2" fill="#368DF7" />
-          <path
-            d="M4.95 0.7875L4.1625 -5.36442e-08L1.9125 2.25L0.7875 1.125L-5.36442e-08 1.9125L1.9125 3.825L4.95 0.7875Z"
-            transform="translate(2.25 2.8125)"
-            fill="white"
-          />
-        </g>
-
-        <path
-          id="check-tick"
-          d="M11 1.85294L9.25 0L4.25 5.29412L1.75 2.64706L0 4.5L4.25 9L11 1.85294Z"
-          fill="#4F4F4F"
-        />
-
-        <path
-          id="arrow-up"
-          transform="translate(14 9.23999) rotate(180)"
-          d="M7.72356 8.48154C7.32958 8.89452 6.67042 8.89452 6.27644 8.48154L0 1.90235L1.81481 0L7 5.43529L12.1852 0L14 1.90235L7.72356 8.48154Z"
-          fill="#BDBDBD"
-        />
-
-        <path
-          id="arrow-up-search-result"
-          d="M1 1L5.5 5.5L10 1"
-          stroke="#4F4F4F"
-          strokeMiterlimit="10"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-
-        <path
-          id="arrow-down"
-          d="M7.72356 8.48154C7.32958 8.89452 6.67042 8.89452 6.27644 8.48154L0 1.90235L1.81481 0L7 5.43529L12.1852 0L14 1.90235L7.72356 8.48154Z"
-          fill="#BDBDBD"
-        />
-
-        <path
-          id="arrow-right"
-          d="M4.70449 4.30069C4.31457 4.68774 3.68543 4.68774 3.29551 4.30069L0 1.02941L1.03704 0L4 2.94118L6.96296 0L8 1.02941L4.70449 4.30069Z"
-          transform="translate(0 8) rotate(-90)"
-          fill="#979899"
-        />
-
-        <path
-          id="home"
-          fill="currentColor"
-          d="M557.1 240.7L512 203.8V104c0-4.4-3.6-8-8-8h-32c-4.4 0-8 3.6-8 8v60.5L313.4 41.1c-14.7-12.1-36-12.1-50.7 0L18.9 240.7c-3.4 2.8-3.9 7.8-1.1 11.3l20.3 24.8c2.8 3.4 7.8 3.9 11.3 1.1l14.7-12V464c0 8.8 7.2 16 16 16h168c4.4 0 8-3.6 8-8V344h64v128c0 4.4 3.6 8 8 8h168c8.8 0 16-7.2 16-16V265.8l14.7 12c3.4 2.8 8.5 2.3 11.3-1.1l20.3-24.8c2.6-3.4 2.1-8.4-1.3-11.2zM464 432h-96V304c0-4.4-3.6-8-8-8H216c-4.4 0-8 3.6-8 8v128h-96V226.5l170.9-140c2.9-2.4 7.2-2.4 10.1 0l170.9 140V432z"
-        />
-
-        <g id="profile">
-          <path
-            d="M11 0C4.93442 0 0 4.93442 0 11C0 17.0656 4.93442 22 11 22C17.0656 22 22 17.0656 22 11C22 4.93442 17.0656 0 11 0ZM17.1398 17.787C16.5312 15.9784 14.8482 14.6667 12.8333 14.6667H9.16667C7.15183 14.6667 5.47067 15.9793 4.862 17.7879C3.00758 16.1095 1.83333 13.6923 1.83333 11C1.83333 5.9455 5.9455 1.83333 11 1.83333C16.0545 1.83333 20.1667 5.9455 20.1667 11C20.1667 13.6913 18.9933 16.1086 17.1398 17.787Z"
-            fill="#979899"
-          />
-          <path
-            d="M11 4.58301C8.97512 4.58301 7.33337 6.22476 7.33337 8.24967V9.16634C7.33337 11.1913 8.97512 12.833 11 12.833C13.025 12.833 14.6667 11.1913 14.6667 9.16634V8.24967C14.6667 6.22476 13.025 4.58301 11 4.58301Z"
-            fill="#979899"
-          />
-        </g>
-
-        <g id="eyesight-disable" transform="translate(0, 0)">
-          <path
-            fill="currentColor"
-            d="M14.6,5.6l-8.2,8.2C6.9,13.9,7.5,14,8,14c3.6,0,6.4-3.1,7.6-4.9c0.5-0.7,0.5-1.6,0-2.3C15.4,6.5,15,6.1,14.6,5.6z"
-          />
-          <path
-            fill="currentColor"
-            d="M14.3,0.3L11.6,3C10.5,2.4,9.3,2,8,2C4.4,2,1.6,5.1,0.4,6.9c-0.5,0.7-0.5,1.6,0,2.2c0.5,0.8,1.4,1.8,2.4,2.7l-2.5,2.5c-0.4,0.4-0.4,1,0,1.4C0.5,15.9,0.7,16,1,16s0.5-0.1,0.7-0.3l14-14c0.4-0.4,0.4-1,0-1.4S14.7-0.1,14.3,0.3z M5.3,9.3C5.1,8.9,5,8.5,5,8c0-1.7,1.3-3,3-3c0.5,0,0.9,0.1,1.3,0.3L5.3,9.3z"
-          />
-        </g>
-
-        <g id="eyesight-enable" transform="translate(0, 0)">
-          <path
-            fill="currentColor"
-            d="M8,14c3.6,0,6.4-3.1,7.6-4.9c0.5-0.7,0.5-1.6,0-2.3C14.4,5.1,11.6,2,8,2C4.4,2,1.6,5.1,0.4,6.9c-0.5,0.7-0.5,1.6,0,2.2C1.6,10.9,4.4,14,8,14z M8,5c1.7,0,3,1.3,3,3s-1.3,3-3,3S5,9.7,5,8S6.3,5,8,5z"
-          />
-        </g>
-
-        <g id="telemarketing">
-          <rect
-            width="19"
-            height="19"
-            fill="black"
-            fillOpacity="0"
-            transform="translate(1 1)"
-          />
-          <path
-            d="M10.5 20C15.7467 20 20 15.7467 20 10.5C20 5.25329 15.7467 1 10.5 1C5.25329 1 1 5.25329 1 10.5C1 15.7467 5.25329 20 10.5 20Z"
-            stroke="white"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <rect
-            width="10.5556"
-            height="7.74074"
-            fill="black"
-            fillOpacity="0"
-            transform="translate(5.22217 3.81482)"
-          />
-          <path
-            d="M10.4997 11.5556C12.2486 11.5556 13.6663 10.1378 13.6663 8.3889C13.6663 6.63999 12.2486 5.22223 10.4997 5.22223C8.75077 5.22223 7.33301 6.63999 7.33301 8.3889C7.33301 10.1378 8.75077 11.5556 10.4997 11.5556Z"
-            stroke="white"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M15.0739 8.38889C15.0739 5.8627 13.026 3.81482 10.4999 3.81482C7.97366 3.81482 5.92578 5.8627 5.92578 8.38889"
-            stroke="white"
-            strokeWidth="0.75"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M15 8C15 9.10457 12.7614 10 10 10"
-            stroke="white"
-            strokeWidth="0.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <rect
-            x="5.22217"
-            y="7.33334"
-            width="1.40741"
-            height="2.81481"
-            rx="0.703704"
-            fill="white"
-          />
-          <rect
-            x="14.3701"
-            y="7.33334"
-            width="1.40741"
-            height="2.81481"
-            rx="0.703704"
-            fill="white"
-          />
-          <rect
-            width="12.0829"
-            height="3.80634"
-            fill="black"
-            fillOpacity="0"
-            transform="translate(4.51855 13.9017)"
-          />
-          <path
-            d="M16.6014 17.7081C16.056 16.5684 15.1993 15.6062 14.1303 14.9327C13.0612 14.2591 11.8235 13.9017 10.56 13.9017C9.29649 13.9017 8.05875 14.2591 6.98973 14.9327C5.9207 15.6062 5.064 16.5684 4.51855 17.7081"
-            stroke="white"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </g>
-
-        <g id="search-result-filter">
-          <path
-            d="M4 5V1"
-            stroke="#4F4F4F"
-            strokeMiterlimit="10"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M4 16V14"
-            stroke="#4F4F4F"
-            strokeMiterlimit="10"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M13 12V16"
-            stroke="#4F4F4F"
-            strokeMiterlimit="10"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M13 1V3"
-            stroke="#4F4F4F"
-            strokeMiterlimit="10"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M4 14C5.65685 14 7 12.6569 7 11C7 9.34315 5.65685 8 4 8C2.34315 8 1 9.34315 1 11C1 12.6569 2.34315 14 4 14Z"
-            stroke="#4F4F4F"
-            strokeMiterlimit="10"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M13 9C14.6569 9 16 7.65685 16 6C16 4.34315 14.6569 3 13 3C11.3431 3 10 4.34315 10 6C10 7.65685 11.3431 9 13 9Z"
-            stroke="#4F4F4F"
-            strokeMiterlimit="10"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </g>
-
-        <g id="single-item-grid-search-result">
-          <path
-            d="M10.2857 0H1.71429C0.685714 0 0 0.685714 0 1.71429V10.2857C0 11.3143 0.685714 12 1.71429 12H10.2857C11.3143 12 12 11.3143 12 10.2857V1.71429C12 0.685714 11.3143 0 10.2857 0Z"
-            fill="currentColor"
-          />
-          <rect y="14" width="12" height="2" rx="1" fill="currentColor" />
-        </g>
-
-        <g id="grid-search-result">
-          <path
-            d="M6 0H1C0.4 0 0 0.4 0 1V6C0 6.6 0.4 7 1 7H6C6.6 7 7 6.6 7 6V1C7 0.4 6.6 0 6 0Z"
-            fill="currentColor"
-          />
-          <path
-            d="M15 0H10C9.4 0 9 0.4 9 1V6C9 6.6 9.4 7 10 7H15C15.6 7 16 6.6 16 6V1C16 0.4 15.6 0 15 0Z"
-            fill="currentColor"
-          />
-          <path
-            d="M6 9H1C0.4 9 0 9.4 0 10V15C0 15.6 0.4 16 1 16H6C6.6 16 7 15.6 7 15V10C7 9.4 6.6 9 6 9Z"
-            fill="currentColor"
-          />
-          <path
-            d="M15 9H10C9.4 9 9 9.4 9 10V15C9 15.6 9.4 16 10 16H15C15.6 16 16 15.6 16 15V10C16 9.4 15.6 9 15 9Z"
-            fill="currentColor"
-          />
-        </g>
-
-        <g id="list-grid-search-result">
-          <path
-            d="M6 0H1C0.4 0 0 0.4 0 1V6C0 6.6 0.4 7 1 7H6C6.6 7 7 6.6 7 6V1C7 0.4 6.6 0 6 0Z"
-            fill="currentColor"
-          />
-          <rect x="9" width="7" height="3" rx="1" fill="currentColor" />
-          <rect x="9" y="4" width="4" height="3" rx="1" fill="currentColor" />
-          <rect x="9" y="9" width="7" height="3" rx="1" fill="currentColor" />
-          <rect x="9" y="13" width="4" height="3" rx="1" fill="currentColor" />
-          <path
-            d="M6 9H1C0.4 9 0 9.4 0 10V15C0 15.6 0.4 16 1 16H6C6.6 16 7 15.6 7 15V10C7 9.4 6.6 9 6 9Z"
-            fill="currentColor"
-          />
-        </g>
-
-        <g id="customer">
-          <rect
-            width="19"
-            height="19"
-            fill="black"
-            fillOpacity="0"
-            transform="translate(1 1)"
-          />
-          <path
-            d="M10.5002 11.1333C12.2491 11.1333 13.6668 9.71556 13.6668 7.96665C13.6668 6.21775 12.2491 4.79999 10.5002 4.79999C8.75126 4.79999 7.3335 6.21775 7.3335 7.96665C7.3335 9.71556 8.75126 11.1333 10.5002 11.1333Z"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M16.7732 17.6199C16.2068 16.4364 15.3171 15.4372 14.207 14.7378C13.0968 14.0384 11.8115 13.6672 10.4994 13.6672C9.18728 13.6672 7.90194 14.0384 6.7918 14.7378C5.68166 15.4372 4.79201 16.4364 4.22559 17.6199"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M10.5 20C15.7467 20 20 15.7467 20 10.5C20 5.25329 15.7467 1 10.5 1C5.25329 1 1 5.25329 1 10.5C1 15.7467 5.25329 20 10.5 20Z"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </g>
-
-        <g id="minicart">
-          <path
-            d="M5.75003 22.0007C6.94091 22.0007 7.90631 21.0157 7.90631 19.8006C7.90631 18.5856 6.94091 17.6006 5.75003 17.6006C4.55915 17.6006 3.59375 18.5856 3.59375 19.8006C3.59375 21.0157 4.55915 22.0007 5.75003 22.0007Z"
-            fill="#979899"
-          />
-          <path
-            d="M18.1563 22.0007C19.3472 22.0007 20.3126 21.0157 20.3126 19.8006C20.3126 18.5856 19.3472 17.6006 18.1563 17.6006C16.9654 17.6006 16 18.5856 16 19.8006C16 21.0157 16.9654 22.0007 18.1563 22.0007Z"
-            fill="#979899"
-          />
-          <path
-            d="M19.2503 16H4.81257C4.47225 16 4.18281 15.7367 4.13262 15.3804L2.15809 1.45455H0.727272C0.325611 1.45455 0 1.12893 0 0.727273V0.727273C0 0.325611 0.325611 0 0.727272 0H2.75004C3.09035 0 3.3798 0.263273 3.42998 0.619636L3.85761 3.63636H21.3128C21.519 3.63636 21.7136 3.73382 21.8442 3.90255C21.9749 4.07055 22.0271 4.29236 21.9865 4.50618L19.924 15.4153C19.8601 15.7556 19.5782 16 19.2503 16Z"
-            fill="#979899"
-          />
-        </g>
-
         {/** ====== Brand ====== */}
         <g id="bnd-logo">
           <path
@@ -466,7 +121,94 @@ const IconPack = () => {
           <path fill="currentColor" d="M15,13H1c-0.6,0-1,0.4-1,1s0.4,1,1,1h14c0.6,0,1-0.4,1-1S15.6,13,15,13z" />
         </g>
 
-        {/** ====== Mild Priority Actions ====== */}
+        {/** ====== Middle Priority Actions ====== */}
+        <g id="mpa-filter-settings">
+          <path
+            d="M4 5V1"
+            stroke="#4F4F4F"
+            strokeMiterlimit="10"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M4 16V14"
+            stroke="#4F4F4F"
+            strokeMiterlimit="10"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M13 12V16"
+            stroke="#4F4F4F"
+            strokeMiterlimit="10"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M13 1V3"
+            stroke="#4F4F4F"
+            strokeMiterlimit="10"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M4 14C5.65685 14 7 12.6569 7 11C7 9.34315 5.65685 8 4 8C2.34315 8 1 9.34315 1 11C1 12.6569 2.34315 14 4 14Z"
+            stroke="#4F4F4F"
+            strokeMiterlimit="10"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M13 9C14.6569 9 16 7.65685 16 6C16 4.34315 14.6569 3 13 3C11.3431 3 10 4.34315 10 6C10 7.65685 11.3431 9 13 9Z"
+            stroke="#4F4F4F"
+            strokeMiterlimit="10"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </g>
+
+        <g id="mpa-single-item">
+          <path
+            d="M10.2857 0H1.71429C0.685714 0 0 0.685714 0 1.71429V10.2857C0 11.3143 0.685714 12 1.71429 12H10.2857C11.3143 12 12 11.3143 12 10.2857V1.71429C12 0.685714 11.3143 0 10.2857 0Z"
+            fill="currentColor"
+          />
+          <rect y="14" width="12" height="2" rx="1" fill="currentColor" />
+        </g>
+
+        <g id="mpa-gallery">
+          <path
+            d="M6 0H1C0.4 0 0 0.4 0 1V6C0 6.6 0.4 7 1 7H6C6.6 7 7 6.6 7 6V1C7 0.4 6.6 0 6 0Z"
+            fill="currentColor"
+          />
+          <path
+            d="M15 0H10C9.4 0 9 0.4 9 1V6C9 6.6 9.4 7 10 7H15C15.6 7 16 6.6 16 6V1C16 0.4 15.6 0 15 0Z"
+            fill="currentColor"
+          />
+          <path
+            d="M6 9H1C0.4 9 0 9.4 0 10V15C0 15.6 0.4 16 1 16H6C6.6 16 7 15.6 7 15V10C7 9.4 6.6 9 6 9Z"
+            fill="currentColor"
+          />
+          <path
+            d="M15 9H10C9.4 9 9 9.4 9 10V15C9 15.6 9.4 16 10 16H15C15.6 16 16 15.6 16 15V10C16 9.4 15.6 9 15 9Z"
+            fill="currentColor"
+          />
+        </g>
+
+        <g id="mpa-list-items">
+          <path
+            d="M6 0H1C0.4 0 0 0.4 0 1V6C0 6.6 0.4 7 1 7H6C6.6 7 7 6.6 7 6V1C7 0.4 6.6 0 6 0Z"
+            fill="currentColor"
+          />
+          <rect x="9" width="7" height="3" rx="1" fill="currentColor" />
+          <rect x="9" y="4" width="4" height="3" rx="1" fill="currentColor" />
+          <rect x="9" y="9" width="7" height="3" rx="1" fill="currentColor" />
+          <rect x="9" y="13" width="4" height="3" rx="1" fill="currentColor" />
+          <path
+            d="M6 9H1C0.4 9 0 9.4 0 10V15C0 15.6 0.4 16 1 16H6C6.6 16 7 15.6 7 15V10C7 9.4 6.6 9 6 9Z"
+            fill="currentColor"
+          />
+        </g>
+
         <g id="mpa-heart">
           <path
             d="M14.682 2.31811C14.2647 1.89959 13.7687 1.56769 13.2226 1.3415C12.6765 1.11531 12.0911 0.99929 11.5 1.00011C10.8245 0.995238 10.157 1.14681 9.54975 1.44295C8.94255 1.73909 8.41213 2.17178 8.00004 2.70711C7.58764 2.17212 7.05716 1.73969 6.45002 1.44358C5.84289 1.14747 5.17552 0.995697 4.50004 1.00011C3.61002 1.00011 2.73998 1.26402 1.99995 1.75849C1.25993 2.25295 0.683144 2.95576 0.342546 3.77803C0.00194874 4.60031 -0.0871663 5.50511 0.0864704 6.37803C0.260107 7.25095 0.688697 8.05278 1.31804 8.68211L8.00004 15.0001L14.682 8.68211C15.0999 8.26425 15.4314 7.76817 15.6575 7.2222C15.8837 6.67623 16.0001 6.09107 16.0001 5.50011C16.0001 4.90916 15.8837 4.32399 15.6575 3.77803C15.4314 3.23206 15.0999 2.73598 14.682 2.31811V2.31811ZM13.282 7.25111L8.00004 12.2471L2.71504 7.24711C2.37145 6.8954 2.1392 6.45018 2.04734 5.96715C1.95549 5.48412 2.00811 4.98473 2.19862 4.53145C2.38913 4.07817 2.70908 3.69113 3.11843 3.41876C3.52778 3.14638 4.00835 3.00076 4.50004 3.00011C5.93704 3.00011 6.81204 3.68111 8.00004 5.62511C9.18704 3.68111 10.062 3.00011 11.5 3.00011C11.9925 2.99999 12.4741 3.14534 12.8843 3.41791C13.2945 3.69048 13.615 4.07814 13.8057 4.53223C13.9964 4.98632 14.0487 5.48661 13.956 5.97031C13.8634 6.45402 13.63 6.89959 13.285 7.25111H13.282Z"
@@ -474,27 +216,7 @@ const IconPack = () => {
           />
         </g>
 
-        <g id="mpa-angle--down">
-          <path
-            d="M4 6L8.5 10.5L13 6"
-            stroke="currentColor"
-            strokeMiterlimit="10"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </g>
-
-        <g id="mpa-angle--up">
-          <path
-            d="M13 10L8.5 5.5L4 10"
-            stroke="currentColor"
-            strokeMiterlimit="10"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </g>
-
-        <g id="mpa-o-clone">
+        <g id="mpa-clone--outline">
           <path
             d="M5.20004 5.2L5.20004 3C5.20004 1.89543 6.09547 0.999997 7.20004 0.999997H13C14.1046 0.999997 15 1.89543 15 3V8.80001C15 9.90457 14.1046 10.8 13 10.8H10.8"
             stroke="currentColor"
@@ -511,7 +233,7 @@ const IconPack = () => {
           />
         </g>
 
-        <g id="mpa-s-clone">
+        <g id="mpa-clone--filled">
           <path
             d="M6.07501 4.925L6.07501 2.175C6.07501 1.62271 6.52273 1.175 7.07501 1.175H13.825C14.3773 1.175 14.825 1.62271 14.825 2.175V8.925C14.825 9.47729 14.3773 9.925 13.825 9.925H11.075"
             fill="currentColor"
@@ -533,14 +255,14 @@ const IconPack = () => {
           />
         </g>
 
-        <g id="mpa-o-edit">
+        <g id="mpa-edit--outline">
           <path
             d="M11.7 0.3C11.3 -0.1 10.7 -0.1 10.3 0.3L0.3 10.3C0.1 10.5 0 10.7 0 11V15C0 15.6 0.4 16 1 16H5C5.3 16 5.5 15.9 5.7 15.7L15.7 5.7C16.1 5.3 16.1 4.7 15.7 4.3L11.7 0.3ZM4.6 14H2V11.4L8 5.4L10.6 8L4.6 14ZM12 6.6L9.4 4L11 2.4L13.6 5L12 6.6Z"
             fill="currentColor"
           />
         </g>
 
-        <g id="mpa-s-edit">
+        <g id="mpa-edit--filled">
           <path
             d="M8.1 3.5L0.3 11.3C0.1 11.5 0 11.7 0 12V15C0 15.6 0.4 16 1 16H4C4.3 16 4.5 15.9 4.7 15.7L12.5 7.9L8.1 3.5Z"
             fill="currentColor"
@@ -551,14 +273,14 @@ const IconPack = () => {
           />
         </g>
 
-        <g id="mpa-l-external-link">
+        <g id="mpa-external-link--line">
           <path
             d="M14.3505 0H2.80412V3.29897H10.3918L0 13.6907L2.30928 16L12.701 5.60825V13.1959H16V1.64948C16 0.659794 15.3402 0 14.3505 0Z"
             fill="currentColor"
           />
         </g>
 
-        <g id="mpa-o-external-link">
+        <g id="mpa-external-link--outline">
           <path
             d="M15 0H8V2H12.6L6.3 8.3L7.7 9.7L14 3.4V8H16V1C16 0.4 15.6 0 15 0Z"
             fill="currentColor"
@@ -569,7 +291,7 @@ const IconPack = () => {
           />
         </g>
 
-        <g id="mpa-o-eyesight--off">
+        <g id="mpa-eyesight--outline--off">
           <path
             d="M14.5744 5.66925L13.1504 7.09325C13.4284 7.44025 13.6564 7.75725 13.8194 8.00025C13.0594 9.13025 10.9694 11.8203 8.25838 11.9852L6.44337 13.8003C6.93937 13.9243 7.45737 14.0002 8.00037 14.0002C12.7074 14.0002 15.7444 8.71625 15.8714 8.49225C16.0424 8.18825 16.0434 7.81625 15.8724 7.51225C15.8254 7.42725 15.3724 6.63125 14.5744 5.66925Z"
             fill="currentColor"
@@ -580,7 +302,7 @@ const IconPack = () => {
           />
         </g>
 
-        <g id="mpa-s-eyesight--off">
+        <g id="mpa-eyesight--filled--off">
           <path
             d="M14.6 5.60001L6.39999 13.8C6.89999 13.9 7.49999 14 7.99999 14C11.6 14 14.4 10.9 15.6 9.10001C16.1 8.40001 16.1 7.50001 15.6 6.80001C15.4 6.50001 15 6.10001 14.6 5.60001Z"
             fill="currentColor"
@@ -591,7 +313,7 @@ const IconPack = () => {
           />
         </g>
 
-        <g id="mpa-o-eyesight--on">
+        <g id="mpa-eyesight--outline--on">
           <path
             d="M8.00013 14C12.7071 14 15.7441 8.716 15.8711 8.492C16.0421 8.188 16.0431 7.816 15.8721 7.512C15.7461 7.287 12.7311 2 8.00013 2C3.24513 2 0.251127 7.289 0.126127 7.514C-0.0428725 7.817 -0.0418725 8.186 0.128127 8.489C0.254128 8.713 3.26913 14 8.00013 14ZM8.00013 4C10.8391 4 13.0361 6.835 13.8181 8C13.0341 9.166 10.8371 12 8.00013 12C5.15913 12 2.96213 9.162 2.18113 7.999C2.95813 6.835 5.14613 4 8.00013 4Z"
             fill="currentColor"
@@ -602,14 +324,14 @@ const IconPack = () => {
           />
         </g>
 
-        <g id="mpa-s-eyesight--on">
+        <g id="mpa-eyesight--filled--on">
           <path
             d="M7.975 14C11.575 14 14.375 10.9 15.575 9.1C16.075 8.4 16.075 7.5 15.575 6.8C14.375 5.1 11.575 2 7.975 2C4.375 2 1.575 5.1 0.375 6.9C-0.125 7.6 -0.125 8.5 0.375 9.1C1.575 10.9 4.375 14 7.975 14ZM7.975 5C9.675 5 10.975 6.3 10.975 8C10.975 9.7 9.675 11 7.975 11C6.275 11 4.975 9.7 4.975 8C4.975 6.3 6.275 5 7.975 5Z"
             fill="currentColor"
           />
         </g>
 
-        <g id="mpa-o-filter">
+        <g id="mpa-filter--outline">
           <path
             d="M15 3.16048C15 3.47872 14.8485 3.77795 14.5921 3.96637L9.96348 7.36697C9.70702 7.55539 9.55556 7.85462 9.55556 8.17285V13.0073C9.55556 13.4073 9.31716 13.7688 8.94947 13.9264L7.83836 14.4026C7.1785 14.6854 6.44444 14.2014 6.44444 13.4835V8.17285C6.44444 7.85462 6.29298 7.55539 6.03652 7.36697L1.40792 3.96637C1.15147 3.77795 1 3.47872 1 3.16048V2C1 1.44772 1.44772 1 2 1H14C14.5523 1 15 1.44772 15 2V3.16048Z"
             stroke="currentColor"
@@ -619,21 +341,21 @@ const IconPack = () => {
           />
         </g>
 
-        <g id="mpa-s-filter">
+        <g id="mpa-filter--filled">
           <path
             d="M15 0H1C0.4 0 0 0.4 0 1V3C0 3.3 0.1 3.6 0.4 3.8L6 8.5V15C6 15.4 6.2 15.8 6.6 15.9C6.7 16 6.9 16 7 16C7.3 16 7.5 15.9 7.7 15.7L9.7 13.7C9.9 13.5 10 13.3 10 13V8.5L15.6 3.8C15.9 3.6 16 3.3 16 3V1C16 0.4 15.6 0 15 0Z"
             fill="currentColor"
           />
         </g>
 
-        <g id="mpa-l-minus">
+        <g id="mpa-minus--line">
           <path
             d="M0 7.85715V8.14286C0 8.69515 0.447715 9.14286 1 9.14286H15C15.5523 9.14286 16 8.69515 16 8.14286V7.85715C16 7.30486 15.5523 6.85715 15 6.85715H1C0.447715 6.85715 0 7.30486 0 7.85715Z"
             fill="currentColor"
           />
         </g>
 
-        <g id="mpa-o-minus">
+        <g id="mpa-minus--outline">
           <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="2" />
           <path
             d="M4 8.5V7.5C4 7.22386 4.22386 7 4.5 7H11.5C11.7761 7 12 7.22386 12 7.5V8.5C12 8.77614 11.7761 9 11.5 9H4.5C4.22386 9 4 8.77614 4 8.5Z"
@@ -641,7 +363,7 @@ const IconPack = () => {
           />
         </g>
 
-        <g id="mpa-s-minus">
+        <g id="mpa-minus--filled">
           <path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -650,14 +372,14 @@ const IconPack = () => {
           />
         </g>
 
-        <g id="mpa-l-plus">
+        <g id="mpa-plus--line">
           <path
             d="M16 8.14286C16 8.69514 15.5523 9.14286 15 9.14286H9.14286V15C9.14286 15.5523 8.69514 16 8.14286 16H7.85714C7.30486 16 6.85714 15.5523 6.85714 15V9.14286H1C0.447715 9.14286 0 8.69514 0 8.14286V7.85714C0 7.30486 0.447715 6.85714 1 6.85714H6.85714V1C6.85714 0.447715 7.30486 0 7.85714 0H8.14286C8.69514 0 9.14286 0.447715 9.14286 1V6.85714H15C15.5523 6.85714 16 7.30486 16 7.85714V8.14286Z"
             fill="currentColor"
           />
         </g>
 
-        <g id="mpa-o-plus">
+        <g id="mpa-plus--outline">
           <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="2" />
           <path
             d="M4.5 7H7V4.5C7 4.22386 7.22386 4 7.5 4H8.5C8.77614 4 9 4.22386 9 4.5V7H11.5C11.7761 7 12 7.22386 12 7.5V8.5C12 8.77614 11.7761 9 11.5 9H9V11.5C9 11.7761 8.77614 12 8.5 12H7.5C7.22386 12 7 11.7761 7 11.5V9H4.5C4.22386 9 4 8.77614 4 8.5V7.5C4 7.22386 4.22386 7 4.5 7Z"
@@ -665,7 +387,7 @@ const IconPack = () => {
           />
         </g>
 
-        <g id="mpa-s-plus">
+        <g id="mpa-plus--filled">
           <path
             fillRule="evenodd"
             d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16ZM7 7H4.5C4.22386 7 4 7.22386 4 7.5V8.5C4 8.77614 4.22386 9 4.5 9H7V11.5C7 11.7761 7.22386 12 7.5 12H8.5C8.77614 12 9 11.7761 9 11.5V9H11.5C11.7761 9 12 8.77614 12 8.5V7.5C12 7.22386 11.7761 7 11.5 7H9V4.5C9 4.22386 8.77614 4 8.5 4L7.5 4C7.22386 4 7 4.22386 7 4.5V7Z"
@@ -774,25 +496,6 @@ const IconPack = () => {
           />
         </g>
 
-        <g id="mpa-gallery">
-          <path
-            d="M6 0H1C0.4 0 0 0.4 0 1V6C0 6.6 0.4 7 1 7H6C6.6 7 7 6.6 7 6V1C7 0.4 6.6 0 6 0Z"
-            fill="currentColor"
-          />
-          <path
-            d="M15 0H10C9.4 0 9 0.4 9 1V6C9 6.6 9.4 7 10 7H15C15.6 7 16 6.6 16 6V1C16 0.4 15.6 0 15 0Z"
-            fill="currentColor"
-          />
-          <path
-            d="M6 9H1C0.4 9 0 9.4 0 10V15C0 15.6 0.4 16 1 16H6C6.6 16 7 15.6 7 15V10C7 9.4 6.6 9 6 9Z"
-            fill="currentColor"
-          />
-          <path
-            d="M15 9H10C9.4 9 9 9.4 9 10V15C9 15.6 9.4 16 10 16H15C15.6 16 16 15.6 16 15V10C16 9.4 15.6 9 15 9Z"
-            fill="currentColor"
-          />
-        </g>
-
         <g id="mpa-link">
           <path
             d="M11 0C9.7 0 8.4 0.5 7.5 1.5L6.3 2.6C5.9 3 5.9 3.6 6.3 4C6.7 4.4 7.3 4.4 7.7 4L8.9 2.8C10 1.7 12 1.7 13.1 2.8C13.7 3.4 14 4.2 14 5C14 5.8 13.7 6.6 13.1 7.1L12 8.3C11.6 8.7 11.6 9.3 12 9.7C12.2 9.9 12.5 10 12.7 10C12.9 10 13.2 9.9 13.4 9.7L14.6 8.5C15.5 7.6 16 6.3 16 5C16 3.7 15.5 2.4 14.5 1.5C13.6 0.5 12.3 0 11 0Z"
@@ -804,21 +507,6 @@ const IconPack = () => {
           />
           <path
             d="M9.39999 5.19999L5.19999 9.39999C4.79999 9.79999 4.79999 10.4 5.19999 10.8C5.39999 11 5.69999 11.1 5.89999 11.1C6.09999 11.1 6.39999 11 6.59999 10.8L10.8 6.59999C11.2 6.19999 11.2 5.59999 10.8 5.19999C10.4 4.79999 9.79999 4.79999 9.39999 5.19999Z"
-            fill="currentColor"
-          />
-        </g>
-
-        <g id="mpa-list">
-          <path
-            d="M6 0H1C0.4 0 0 0.4 0 1V6C0 6.6 0.4 7 1 7H6C6.6 7 7 6.6 7 6V1C7 0.4 6.6 0 6 0Z"
-            fill="currentColor"
-          />
-          <rect x="9" width="7" height="3" rx="1" fill="currentColor" />
-          <rect x="9" y="4" width="4" height="3" rx="1" fill="currentColor" />
-          <rect x="9" y="9" width="7" height="3" rx="1" fill="currentColor" />
-          <rect x="9" y="13" width="4" height="3" rx="1" fill="currentColor" />
-          <path
-            d="M6 9H1C0.4 9 0 9.4 0 10V15C0 15.6 0.4 16 1 16H6C6.6 16 7 15.6 7 15V10C7 9.4 6.6 9 6 9Z"
             fill="currentColor"
           />
         </g>
@@ -868,14 +556,6 @@ const IconPack = () => {
           />
         </g>
 
-        <g id="mpa-single-item">
-          <path
-            d="M12.2857 0H3.71429C2.68571 0 2 0.685714 2 1.71429V10.2857C2 11.3143 2.68571 12 3.71429 12H12.2857C13.3143 12 14 11.3143 14 10.2857V1.71429C14 0.685714 13.3143 0 12.2857 0Z"
-            fill="currentColor"
-          />
-          <rect x="2" y="14" width="12" height="2" rx="1" fill="currentColor" />
-        </g>
-
         <g id="mpa-store">
           <path
             d="M12.6667 1H3.33333L1 5.2C1 6.48893 2.0444 7.53333 3.33333 7.53333C4.62227 7.53333 5.66667 6.48893 5.66667 5.2C5.66667 6.48893 6.71107 7.53333 8 7.53333C9.28893 7.53333 10.3333 6.48893 10.3333 5.2C10.3333 6.48893 11.3777 7.53333 12.6667 7.53333C13.9556 7.53333 15 6.48893 15 5.2L12.6667 1Z"
@@ -903,8 +583,28 @@ const IconPack = () => {
           />
         </g>
 
+        <g id="mpa-angle--down">
+          <path
+            d="M4 6L8.5 10.5L13 6"
+            stroke="currentColor"
+            strokeMiterlimit="10"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </g>
+
+        <g id="mpa-angle--up">
+          <path
+            d="M13 10L8.5 5.5L4 10"
+            stroke="currentColor"
+            strokeMiterlimit="10"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </g>
+
         {/** ====== Informational ====== */}
-        <g id="inf-o-help">
+        <g id="inf-help--outline">
           <path
             d="M8 0C3.6 0 0 3.6 0 8C0 12.4 3.6 16 8 16C12.4 16 16 12.4 16 8C16 3.6 12.4 0 8 0ZM8 14C4.7 14 2 11.3 2 8C2 4.7 4.7 2 8 2C11.3 2 14 4.7 14 8C14 11.3 11.3 14 8 14Z"
             fill="currentColor"
@@ -919,14 +619,14 @@ const IconPack = () => {
           />
         </g>
 
-        <g id="inf-s-help">
+        <g id="inf-help--filled">
           <path
             d="M8 0C3.6 0 0 3.6 0 8C0 12.4 3.6 16 8 16C12.4 16 16 12.4 16 8C16 3.6 12.4 0 8 0ZM8 13C7.4 13 7 12.6 7 12C7 11.4 7.4 11 8 11C8.6 11 9 11.4 9 12C9 12.6 8.6 13 8 13ZM9.5 8.4C9 8.7 9 8.8 9 9V10H7V9C7 7.7 7.8 7.1 8.4 6.7C8.9 6.4 9 6.3 9 6C9 5.4 8.6 5 8 5C7.6 5 7.3 5.2 7.1 5.5L6.6 6.4L4.9 5.4L5.4 4.5C5.9 3.6 6.9 3 8 3C9.7 3 11 4.3 11 6C11 7.4 10.1 8 9.5 8.4Z"
             fill="currentColor"
           />
         </g>
 
-        <g id="inf-o-tooltip">
+        <g id="inf-tooltip--outline">
           <path
             d="M8 16C12.4 16 16 12.4 16 8C16 3.6 12.4 0 8 0C3.6 0 0 3.6 0 8C0 12.4 3.6 16 8 16ZM8 2C11.3 2 14 4.7 14 8C14 11.3 11.3 14 8 14C4.7 14 2 11.3 2 8C2 4.7 4.7 2 8 2Z"
             fill="currentColor"
@@ -938,14 +638,14 @@ const IconPack = () => {
           />
         </g>
 
-        <g id="inf-s-tooltip">
+        <g id="inf-tooltip--filled">
           <path
             d="M8 0C3.6 0 0 3.6 0 8C0 12.4 3.6 16 8 16C12.4 16 16 12.4 16 8C16 3.6 12.4 0 8 0ZM9 12H7V7H9V12ZM8 6C7.4 6 7 5.6 7 5C7 4.4 7.4 4 8 4C8.6 4 9 4.4 9 5C9 5.6 8.6 6 8 6Z"
             fill="currentColor"
           />
         </g>
 
-        <g id="inf-o-warning">
+        <g id="inf-warning--outline">
           <path
             d="M8 0C3.6 0 0 3.6 0 8C0 12.4 3.6 16 8 16C12.4 16 16 12.4 16 8C16 3.6 12.4 0 8 0ZM8 14C4.7 14 2 11.3 2 8C2 4.7 4.7 2 8 2C11.3 2 14 4.7 14 8C14 11.3 11.3 14 8 14Z"
             fill="currentColor"
@@ -957,7 +657,7 @@ const IconPack = () => {
           />
         </g>
 
-        <g id="inf-s-warning">
+        <g id="inf-warning--filled">
           <path
             d="M8 0C3.6 0 0 3.6 0 8C0 12.4 3.6 16 8 16C12.4 16 16 12.4 16 8C16 3.6 12.4 0 8 0ZM8 12C7.4 12 7 11.6 7 11C7 10.4 7.4 10 8 10C8.6 10 9 10.4 9 11C9 11.6 8.6 12 8 12ZM9 9H7V4H9V9Z"
             fill="currentColor"
@@ -965,28 +665,28 @@ const IconPack = () => {
         </g>
 
         {/** ====== Navigation ====== */}
-        <g id="nav-angle--down">
+        <g id="nav-caret--down">
           <path
             d="M8.73746 13.1948C8.34108 13.6276 7.65892 13.6276 7.26254 13.1948L0 5.26471L2.07407 3L8 9.47059L13.9259 3L16 5.26471L8.73746 13.1948Z"
             fill="currentColor"
           />
         </g>
 
-        <g id="nav-angle--left">
+        <g id="nav-caret--left">
           <path
             d="M2.80524 8.73746C2.37243 8.34108 2.37243 7.65892 2.80525 7.26254L10.7353 0L13 2.07407L6.52941 8L13 13.9259L10.7353 16L2.80524 8.73746Z"
             fill="currentColor"
           />
         </g>
 
-        <g id="nav-angle--right">
+        <g id="nav-caret--right">
           <path
             d="M12.1948 7.26254C12.6276 7.65892 12.6276 8.34108 12.1948 8.73746L4.26471 16L2 13.9259L8.47059 8L2 2.07407L4.26471 0L12.1948 7.26254Z"
             fill="currentColor"
           />
         </g>
 
-        <g id="nav-angle--up">
+        <g id="nav-caret--up">
           <path
             d="M7.26254 2.80524C7.65892 2.37243 8.34108 2.37243 8.73746 2.80525L16 10.7353L13.9259 13L8 6.52941L2.07407 13L0 10.7353L7.26254 2.80524Z"
             fill="currentColor"
@@ -1038,14 +738,14 @@ const IconPack = () => {
           </circle>
         </g>
 
-        <g id="sti-l-check">
+        <g id="sti-check--line">
           <path
             d="M5.6 10L3.10711 7.50711C2.71658 7.11658 2.08342 7.11658 1.69289 7.50711L0.707107 8.49289C0.316583 8.88342 0.316583 9.51658 0.707107 9.90711L4.89289 14.0929C5.28342 14.4834 5.91658 14.4834 6.30711 14.0929L15.2929 5.10711C15.6834 4.71658 15.6834 4.08342 15.2929 3.69289L14.3071 2.70711C13.9166 2.31658 13.2834 2.31658 12.8929 2.70711L5.6 10Z"
             fill="currentColor"
           />
         </g>
 
-        <g id="sti-o-check">
+        <g id="sti-check--outline">
           <path
             d="M8 0C3.589 0 0 3.589 0 8C0 12.411 3.589 16 8 16C12.411 16 16 12.411 16 8C16 3.589 12.411 0 8 0ZM8 14C4.691 14 2 11.309 2 8C2 4.691 4.691 2 8 2C11.309 2 14 4.691 14 8C14 11.309 11.309 14 8 14Z"
             fill="currentColor"
@@ -1056,14 +756,14 @@ const IconPack = () => {
           />
         </g>
 
-        <g id="sti-s-check">
+        <g id="sti-check--filled">
           <path
             d="M8 0C3.6 0 0 3.6 0 8C0 12.4 3.6 16 8 16C12.4 16 16 12.4 16 8C16 3.6 12.4 0 8 0ZM7.35355 11.0464C7.15829 11.2417 6.84171 11.2417 6.64645 11.0464L3.95355 8.35355C3.75829 8.15829 3.75829 7.84171 3.95355 7.64645L4.64645 6.95355C4.84171 6.75829 5.15829 6.75829 5.35355 6.95355L7 8.6L10.6464 4.95355C10.8417 4.75829 11.1583 4.75829 11.3536 4.95355L12.0464 5.64645C12.2417 5.84171 12.2417 6.15829 12.0464 6.35355L7.35355 11.0464Z"
             fill="currentColor"
           />
         </g>
 
-        <g id="sti-o-close">
+        <g id="sti-close--outline">
           <path
             d="M10.4536 4.85355C10.2583 4.65829 9.94171 4.65829 9.74645 4.85355L8 6.6L6.25355 4.85355C6.05829 4.65829 5.74171 4.65829 5.54645 4.85355L4.85355 5.54645C4.65829 5.74171 4.65829 6.05829 4.85355 6.25355L6.6 8L4.85355 9.74645C4.65829 9.94171 4.65829 10.2583 4.85355 10.4536L5.54645 11.1464C5.74171 11.3417 6.05829 11.3417 6.25355 11.1464L8 9.4L9.74645 11.1464C9.94171 11.3417 10.2583 11.3417 10.4536 11.1464L11.1464 10.4536C11.3417 10.2583 11.3417 9.94171 11.1464 9.74645L9.4 8L11.1464 6.25355C11.3417 6.05829 11.3417 5.74171 11.1464 5.54645L10.4536 4.85355Z"
             fill="currentColor"
@@ -1074,7 +774,7 @@ const IconPack = () => {
           />
         </g>
 
-        <g id="sti-s-close">
+        <g id="sti-close--filled">
           <path
             d="M8 0C3.6 0 0 3.6 0 8C0 12.4 3.6 16 8 16C12.4 16 16 12.4 16 8C16 3.6 12.4 0 8 0ZM11.1464 9.74645C11.3417 9.94171 11.3417 10.2583 11.1464 10.4536L10.4536 11.1464C10.2583 11.3417 9.94171 11.3417 9.74645 11.1464L8 9.4L6.25355 11.1464C6.05829 11.3417 5.74171 11.3417 5.54645 11.1464L4.85355 10.4536C4.65829 10.2583 4.65829 9.94171 4.85355 9.74645L6.6 8L4.85355 6.25355C4.65829 6.05829 4.65829 5.74171 4.85355 5.54645L5.54645 4.85355C5.74171 4.65829 6.05829 4.65829 6.25355 4.85355L8 6.6L9.74645 4.85355C9.94171 4.65829 10.2583 4.65829 10.4536 4.85355L11.1464 5.54645C11.3417 5.74171 11.3417 6.05829 11.1464 6.25355L9.4 8L11.1464 9.74645Z"
             fill="currentColor"
