@@ -52,13 +52,13 @@ class ProfileChallenge extends PureComponent {
           (response.namespaces.authentication.storeUserId ||
             response.namespaces.impersonate.storeUserId)
         ) {
-          this.setState({ loading: false, logged: true })
+          this.setState({ loading: false, loggedIn: true })
         } else {
           return Promise.reject()
         }
       })
       .catch(() => {
-        this.setState({ loading: false, logged: false })
+        this.setState({ loading: false, loggedIn: false })
         this.redirectToLogin()
       })
   }
