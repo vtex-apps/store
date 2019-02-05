@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.2] - 2019-02-05
+### Added
+- Export default iconpack using styles builder
+
 ## [2.0.1] - 2019-02-05
 ### Fixed
 - Fix typo on `ProfileChallenge` state, making impossible to render anything.
