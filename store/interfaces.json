@@ -21,6 +21,9 @@
       "type": "block"
     }
   },
+  "highlight-overlay": {
+    "component": "*"
+  },
   "store.home": {
     "around": [
       "homeWrapper"
@@ -77,6 +80,7 @@
     ]
   },
   "storeWrapper": {
+    "allowed": ["highlight-overlay"],
     "component": "StoreWrapper"
   },
   "homeWrapper": {
