@@ -55,7 +55,6 @@ const tryParsingLocale = (description, locale) => {
 
 export default function MicroData({ product, query }, { culture: { currency, locale } }) {
   const skuId = query.skuId ? query.skuId : product.items[0].itemId
-  console.log('skuId', skuId)
   const { image, seller } = lowestPriceInStock(product, skuId)
 
   return (
