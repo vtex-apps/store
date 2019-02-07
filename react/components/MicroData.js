@@ -23,14 +23,14 @@ const lowestPriceItem = compose(
 
 const lowestPriceInStock = (product, skuId) => {
   const skuItemFilter = item => item.item.itemId === skuId
-  let items = map(item => ({
+  const items = map(item => ({
     item,
     seller: lowestPriceInStockSeller(item),
   }), product.items)
 
-  items = filter(skuItemFilter, items)
+  const filteredItems = filter(skuItemFilter, items)
 
-  const { item, seller } = lowestPriceItem(items)
+  const { item, seller } = lowestPriceItem(filteredItems)
 
   const image = head(item.images)
 
@@ -54,7 +54,7 @@ const tryParsingLocale = (description, locale) => {
 
 
 export default function MicroData({ product, query }, { culture: { currency, locale } }) {
-  const skuId = query.skuId ? query.skuId : product.items[0].itemId
+  const skuId = query.skuId || path(['items', '0', 'itemId'], product)
   const { image, seller } = lowestPriceInStock(product, skuId)
 
   return (
