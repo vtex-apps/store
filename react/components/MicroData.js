@@ -56,7 +56,6 @@ const tryParsingLocale = (description, locale) => {
 export default function MicroData({ product, query }, { culture: { currency, locale } }) {
   const skuId = query.skuId || path(['items', '0', 'itemId'], product)
   const { image, seller } = lowestPriceInStock(product, skuId)
-
   return (
     <div className="dn" vocab="http://schema.org/" typeof="Product">
       <span property="brand">{product.brand}</span>
