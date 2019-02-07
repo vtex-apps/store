@@ -44,25 +44,34 @@ const tryParsingLocale = (description, locale) => {
     const descriptionObject = JSON.parse(description)
     parsedDescription = descriptionObject[locale] || descriptionObject[head(split('-', locale))]
   } catch (e) {
-    console.log('Failed to parse multilanguage product description')
+    console.warn('Failed to parse multilanguage product description')
   }
   return parsedDescription || description
 }
 
+const chooseCorrectSku = (product, query) => {
+
+  const skuId = path('skuId', query)
+  return skuId ? skuId : product.items[0].itemId
+ 
+}
+
+
 export default function MicroData({ product, query }, { culture: { currency, locale } }) {
   const { image, seller } = lowestPriceInStock(product)
+  const skuId = chooseCorrectSku(product, query)
   return (
     <div className="dn" vocab="http://schema.org/" typeof="Product">
       <span property="brand">{product.brand}</span>
       <span property="name">{product.productName}</span>
-      $<span property="sku">{query.skuId}</span>
+      $<span property="sku">{skuId}</span>
 
       {image && <img property="image" src={image.imageUrl} alt={image.imageLabel} />}
       <span property="description">{tryParsingLocale(product.description, locale)}</span>
       Product #: <span property="mpn">{product.productId}</span>
       <span property="offers" typeof="Offer">
         <meta property="priceCurrency" content={currency} />
-        $<span property="sku">{query.skuId}</span>
+        $<span property="sku">{skuId}</span>
 
         $<span property="price">{path(['commertialOffer', 'Price'], seller)}</span>
         (Sale ends <time property="priceValidUntil" dateTime={path(['commertialOffer', 'PriceValidUntil'], seller)}>
