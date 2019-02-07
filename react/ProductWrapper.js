@@ -108,6 +108,7 @@ class ProductWrapper extends Component {
       params: { slug },
       productQuery,
       productQuery: { product, loading },
+      query,
       ...props
     } = this.props
 
@@ -122,7 +123,7 @@ class ProductWrapper extends Component {
           )}
         </Helmet>
         <Fragment>
-          {product && <MicroData product={product} />}
+          {product && <MicroData product={product} query={query} />}
           <DataLayerApolloWrapper getData={this.getData} loading={loading}>
             {React.cloneElement(this.props.children, {
               productQuery,
