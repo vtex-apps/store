@@ -1,11 +1,11 @@
 query pwaData {
   manifest {
     theme_color
-    icons {
-      src
-      type
-      sizes
-    }
+  }
+  iOSIcons {
+    src
+    type
+    sizes
   }
   splashes {
     src

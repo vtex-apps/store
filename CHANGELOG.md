@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.3] - 2019-02-07
+### Fixed
+- Updated iOS icons query.
+
 ## [2.0.2] - 2019-02-05
 ### Added
 - Export default iconpack using styles builder
