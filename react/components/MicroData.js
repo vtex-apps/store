@@ -55,6 +55,8 @@ export default function MicroData({ product, query }, { culture: { currency, loc
     <div className="dn" vocab="http://schema.org/" typeof="Product">
       <span property="brand">{product.brand}</span>
       <span property="name">{product.productName}</span>
+      $<span property="sku">{query.skuId}</span>
+
       {image && <img property="image" src={image.imageUrl} alt={image.imageLabel} />}
       <span property="description">{tryParsingLocale(product.description, locale)}</span>
       Product #: <span property="mpn">{product.productId}</span>
