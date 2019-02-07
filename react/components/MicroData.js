@@ -62,14 +62,12 @@ export default function MicroData({ product, query }, { culture: { currency, loc
       <span property="brand">{product.brand}</span>
       <span property="name">{product.productName}</span>
       $<span property="sku">{skuId}</span>
-
       {image && <img property="image" src={image.imageUrl} alt={image.imageLabel} />}
       <span property="description">{tryParsingLocale(product.description, locale)}</span>
       Product #: <span property="mpn">{product.productId}</span>
       <span property="offers" typeof="Offer">
         <meta property="priceCurrency" content={currency} />
         $<span property="sku">{skuId}</span>
-
         $<span property="price">{path(['commertialOffer', 'Price'], seller)}</span>
         (Sale ends <time property="priceValidUntil" dateTime={path(['commertialOffer', 'PriceValidUntil'], seller)}>
           {path(['commertialOffer', 'PriceValidUntil'], seller)}
