@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { pathOr, path, map, sort, compose, head, split } from 'ramda'
+import { pathOr, path, map, sort, compose, head, split, filter } from 'ramda'
 
 const ITEM_AVAILABLE = 100
 
@@ -21,11 +21,14 @@ const lowestPriceItem = compose(
   sort((itemA, itemB) => (path(['seller', 'commertialOffer', 'Price'], itemA) - path(['seller', 'commertialOffer', 'Price'], itemB)))
 )
 
-const lowestPriceInStock = product => {
-  const items = map(item => ({
+const lowestPriceInStock = (product, skuId) => {
+  const skuItemFilter = item => item.item.itemId === skuId
+  let items = map(item => ({
     item,
     seller: lowestPriceInStockSeller(item),
   }), product.items)
+
+  items = filter(skuItemFilter, items)
 
   const { item, seller } = lowestPriceItem(items)
 
@@ -44,22 +47,17 @@ const tryParsingLocale = (description, locale) => {
     const descriptionObject = JSON.parse(description)
     parsedDescription = descriptionObject[locale] || descriptionObject[head(split('-', locale))]
   } catch (e) {
-    console.warn('Failed to parse multilanguage product description')
+    console.log('Failed to parse multilanguage product description')
   }
   return parsedDescription || description
 }
 
-const chooseCorrectSku = (product, query) => {
-
-  const skuId = path('skuId', query)
-  return skuId ? skuId : product.items[0].itemId
- 
-}
-
 
 export default function MicroData({ product, query }, { culture: { currency, locale } }) {
-  const { image, seller } = lowestPriceInStock(product)
-  const skuId = chooseCorrectSku(product, query)
+  const skuId = query.skuId ? query.skuId : product.items[0].itemId
+  console.log('skuId', skuId)
+  const { image, seller } = lowestPriceInStock(product, skuId)
+
   return (
     <div className="dn" vocab="http://schema.org/" typeof="Product">
       <span property="brand">{product.brand}</span>
@@ -93,6 +91,7 @@ export default function MicroData({ product, query }, { culture: { currency, loc
 
 MicroData.propTypes = {
   product: PropTypes.object,
+  query: PropTypes.object
 }
 
 MicroData.contextTypes = {

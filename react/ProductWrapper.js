@@ -111,7 +111,6 @@ class ProductWrapper extends Component {
       query,
       ...props
     } = this.props
-
     const { titleTag, metaTagDescription } = product || {}
 
     return (
