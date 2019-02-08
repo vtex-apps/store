@@ -92,9 +92,10 @@ class StoreWrapper extends Component {
         pages,
         page,
         route,
+        getSettings,
       },
     } = this.props
-    const settings = this.context.getSettings(APP_LOCATOR) || {}
+    const settings = getSettings(APP_LOCATOR) || {}
     const {
       titleTag,
       metaTagDescription,
@@ -171,10 +172,6 @@ class StoreWrapper extends Component {
       </Fragment>
     )
   }
-}
-
-StoreWrapper.contextTypes = {
-  getSettings: PropTypes.func,
 }
 
 export default graphql(pwaDataQuery)(withRuntimeContext(StoreWrapper))
