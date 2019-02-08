@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.4] - 2019-02-08
+### Added
+- Added `nav-home` to iconpack.
+
 ## [2.0.3] - 2019-02-07
 ### Fixed
 - Updated iOS icons query.
