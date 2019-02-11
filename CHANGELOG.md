@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.6] - 2019-02-11
+
 ## [2.0.5] - 2019-02-08
 ### Changed
 - Removed usage of old context api.
