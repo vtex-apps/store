@@ -26,7 +26,6 @@ const lowestPriceInStockSKU = sku => {
     sku,
     seller: lowestPriceInStockSeller(sku)
   }]
-
   const { item, seller } = lowestPriceItem(itemSeller)
 
   return {
@@ -47,7 +46,6 @@ const tryParsingLocale = (description, locale) => {
 }
 
 const renderOffer = (item, currency) => {
-
 
   const { seller } = lowestPriceInStockSKU(item)
 
