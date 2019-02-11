@@ -21,27 +21,6 @@ const lowestPriceItem = compose(
   sort((itemA, itemB) => (path(['seller', 'commertialOffer', 'Price'], itemA) - path(['seller', 'commertialOffer', 'Price'], itemB)))
 )
 
-const lowestPriceInStock = (product, skuId) => {
-  const skuItemFilter = item => path(['item', 'itemId'], item) === skuId
-  const items = map(item => ({
-    item,
-    seller: lowestPriceInStockSeller(item),
-  }), product.items)
-
-
-  const filteredItems = filter(skuItemFilter, items)
-
-  const { item, seller } = lowestPriceItem(filteredItems)
-
-  const image = head(item.images)
-
-  return {
-    item,
-    image,
-    seller,
-  }
-}
-
 const lowestPriceInStockSKU = sku => {
   const itemSeller = [{
     sku,
@@ -62,14 +41,13 @@ const tryParsingLocale = (description, locale) => {
     const descriptionObject = JSON.parse(description)
     parsedDescription = descriptionObject[locale] || descriptionObject[head(split('-', locale))]
   } catch (e) {
-    console.log('Failed to parse multilanguage product description')
+    console.warn('Failed to parse multilanguage product description')
   }
   return parsedDescription || description
 }
 
 const renderOffer = (item, currency) => {
 
-  console.log(lowestPriceInStockSKU(item))
 
   const { seller } = lowestPriceInStockSKU(item)
 
@@ -97,7 +75,6 @@ const renderOffer = (item, currency) => {
 export default function MicroData({ product, query }, { culture: { currency, locale } }) {
   const skuId = query.skuId || path(['items', '0', 'itemId'], product)
   const image = head(path(['items', '0', 'images'], product))
-  const { seller } = lowestPriceInStock(product, skuId)
   return (
     <div className="dn" vocab="http://schema.org/" typeof="Product">
       <span property="brand">{product.brand}</span>
@@ -111,23 +88,6 @@ export default function MicroData({ product, query }, { culture: { currency, loc
           {renderOffer(item, currency)}
         </Fragment>
       ))}
-      {/* <span property="offers" typeof="Offer">
-        <meta property="priceCurrency" content={currency} />
-        <span property="sku">{skuId}</span>
-        $<span property="price">{path(['commertialOffer', 'Price'], seller)}</span>
-        (Sale ends <time property="priceValidUntil" dateTime={path(['commertialOffer', 'PriceValidUntil'], seller)}>
-          {path(['commertialOffer', 'PriceValidUntil'], seller)}
-        </time>)
-        Available from: <span property="seller" typeof="Organization"
-        >
-          <span property="name">{seller.sellerName}</span>
-        </span>
-        Condition: <link property="itemCondition" href="http://schema.org/NewCondition" />New
-        {pathOr(ITEM_AVAILABLE, ['commertialOffer', 'AvailableQuantity'], seller)
-          ? <Fragment><link property="availability" href="http://schema.org/InStock"></link> In stock. Order now.</Fragment>
-          : <Fragment><link property="availability" href="http://schema.org/OutOfStock"></link>Out of Stock</Fragment>
-        }
-      </span> */}
     </div>
   )
 }
