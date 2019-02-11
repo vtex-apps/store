@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { pathOr, path, map, sort, compose, head, split } from 'ramda'
+import { pathOr, path, map, sort, compose, head, split, filter } from 'ramda'
 
 const ITEM_AVAILABLE = 100
 
@@ -21,13 +21,16 @@ const lowestPriceItem = compose(
   sort((itemA, itemB) => (path(['seller', 'commertialOffer', 'Price'], itemA) - path(['seller', 'commertialOffer', 'Price'], itemB)))
 )
 
-const lowestPriceInStock = product => {
+const lowestPriceInStock = (product, skuId) => {
+  const skuItemFilter = item => path(['item', 'itemId'], item) === skuId
   const items = map(item => ({
     item,
     seller: lowestPriceInStockSeller(item),
   }), product.items)
 
-  const { item, seller } = lowestPriceItem(items)
+  const filteredItems = filter(skuItemFilter, items)
+
+  const { item, seller } = lowestPriceItem(filteredItems)
 
   const image = head(item.images)
 
@@ -49,17 +52,21 @@ const tryParsingLocale = (description, locale) => {
   return parsedDescription || description
 }
 
-export default function MicroData({ product }, { culture: { currency, locale } }) {
-  const { image, seller } = lowestPriceInStock(product)
+
+export default function MicroData({ product, query }, { culture: { currency, locale } }) {
+  const skuId = query.skuId || path(['items', '0', 'itemId'], product)
+  const { image, seller } = lowestPriceInStock(product, skuId)
   return (
     <div className="dn" vocab="http://schema.org/" typeof="Product">
       <span property="brand">{product.brand}</span>
       <span property="name">{product.productName}</span>
+      <span property="sku">{skuId}</span>
       {image && <img property="image" src={image.imageUrl} alt={image.imageLabel} />}
       <span property="description">{tryParsingLocale(product.description, locale)}</span>
       Product #: <span property="mpn">{product.productId}</span>
       <span property="offers" typeof="Offer">
         <meta property="priceCurrency" content={currency} />
+        <span property="sku">{skuId}</span>
         $<span property="price">{path(['commertialOffer', 'Price'], seller)}</span>
         (Sale ends <time property="priceValidUntil" dateTime={path(['commertialOffer', 'PriceValidUntil'], seller)}>
           {path(['commertialOffer', 'PriceValidUntil'], seller)}
@@ -80,6 +87,7 @@ export default function MicroData({ product }, { culture: { currency, locale } }
 
 MicroData.propTypes = {
   product: PropTypes.object,
+  query: PropTypes.object
 }
 
 MicroData.contextTypes = {
