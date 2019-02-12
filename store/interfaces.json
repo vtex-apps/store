@@ -21,9 +21,6 @@
       "type": "block"
     }
   },
-  "highlight-overlay": {
-    "component": "*"
-  },
   "store.home": {
     "around": [
       "homeWrapper"
@@ -95,6 +92,10 @@
   "challenge": {
     "component": "DefaultChallenge",
     "extensible": "public"
+  },
+  "highlight-overlay": {
+    "component": "*",
+    "extensible": "vtex"
   },
   "challenge.profile": {
     "component": "ProfileChallenge"
