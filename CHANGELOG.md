@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Fixed 
-- All sku presents in a product now is rendered as offer in `MicroData`.
+- Now, SKU list is rendered as an offer in `MicroData`.
 
 ### Added
 - Add SKU id in Product's microdata. 
