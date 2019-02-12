@@ -1,7 +1,6 @@
-import { canUseDOM } from 'exenv'
 import { path } from 'ramda'
 import React, { Component, Fragment } from 'react'
-import { Helmet, withRuntimeContext } from 'vtex.render-runtime'
+import { canUseDOM, Helmet, withRuntimeContext } from 'vtex.render-runtime'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { PixelProvider } from 'vtex.pixel-manager/PixelContext'
