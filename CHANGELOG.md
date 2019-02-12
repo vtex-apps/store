@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [2.1.0] - 2019-02-12
+### Fixed 
+- Now, SKU list is rendered as an offer in `MicroData`.
+
 ### Added
 - Add SKU id in Product's microdata. 
 
