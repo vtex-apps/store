@@ -77,15 +77,15 @@ const parseSKUToOffer = (item, currency) => {
 
   const offer = `{
     "@type": "Offer", 
-    "price": ${path(['commertialOffer', 'Price'], seller)},
-    "priceCurrency": ${currency},
-    "availability": ${calculateAvailability(seller)}
-    "sku": ${item.itemId},
+    "price": "${path(['commertialOffer', 'Price'], seller)}",
+    "priceCurrency": "${currency}",
+    "availability": "${calculateAvailability(seller)}",
+    "sku": "${item.itemId}",
     "itemCondition": "http://schema.org/NewCondition",
-    "priceValidUntil": ${path(['commertialOffer', 'PriceValidUntil'], seller)}
+    "priceValidUntil": "${path(['commertialOffer', 'PriceValidUntil'], seller)}",
     "seller": {
       "@type": "Organization", 
-      "name": ${seller.sellerName}
+      "name": "${seller.sellerName}"
     }
   }`
 
@@ -106,16 +106,38 @@ const composeAggregateOffer = (product, currency) => {
 
   const aggregateOffer = `{
     "@type": "AggregateOffer", 
-    "lowPrice": ${path(['seller', 'commertialOffer', 'Price'], lowPrice)},
-    "highPrice": ${path(['seller', 'commertialOffer', 'Price'], highPrice)},
-    "priceCurrency": ${currency},
-    "offers": ${offersList}
-
+    "lowPrice": "${path(['seller', 'commertialOffer', 'Price'], lowPrice)}",
+    "highPrice": "${path(['seller', 'commertialOffer', 'Price'], highPrice)}",
+    "priceCurrency": "${currency}",
+    "offers": [${offersList}],
+    "offerCount": "${length(items)}"
   }`
 
   return aggregateOffer
 
+}
 
+const parseToJsonLD = (product, query, currency, locale) => {
+  const skuId = query.skuId || path(['items', '0', 'itemId'], product)
+  const image = head(path(['items', '0', 'images'], product))
+  const brand = product.brand
+  console.log('brand', brand)
+  const name = product.productName
+  const description = tryParsingLocale(product.description, locale)
+
+  const productLD = `{
+    "@context": "https://schema.org/",
+    "@type" : "Product",
+    "name": "${name}", 
+    "image": "${image.imageUrl}",
+    "description": "${description}",
+    "mpn": "${product.productId}",
+    "sku": "${skuId}",
+    "offers": ${composeAggregateOffer(product, currency)}
+    
+  }`
+
+  return productLD
 }
 
 
@@ -124,7 +146,7 @@ const composeAggregateOffer = (product, currency) => {
 export default function StructuredData({ product, query }, { culture: { currency, locale } }) {
   const skuId = query.skuId || path(['items', '0', 'itemId'], product)
   const image = head(path(['items', '0', 'images'], product))
-  console.log(composeAggregateOffer(product, currency))
+  console.log(parseToJsonLD(product, query, currency, locale))
   return (
     <div className="dn" vocab="http://schema.org/" typeof="Product">
 
