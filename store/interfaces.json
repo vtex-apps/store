@@ -105,5 +105,7 @@
   },
   "promo-bar": {
     "component": "*"
+  },
+  "store.custom": {
   }
 }
