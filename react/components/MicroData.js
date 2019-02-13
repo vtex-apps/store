@@ -73,6 +73,7 @@ const renderOffer = (item, currency) => {
 export default function MicroData({ product, query }, { culture: { currency, locale } }) {
   const skuId = query.skuId || path(['items', '0', 'itemId'], product)
   const image = head(path(['items', '0', 'images'], product))
+  console.log('product', product)
   return (
     <div className="dn" vocab="http://schema.org/" typeof="Product">
       <span property="brand">{product.brand}</span>

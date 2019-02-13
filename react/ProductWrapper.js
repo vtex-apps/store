@@ -4,6 +4,8 @@ import { last, head } from 'ramda'
 import { Helmet, withRuntimeContext } from 'vtex.render-runtime'
 
 import MicroData from './components/MicroData'
+import StructuredData from './components/StructuredData'
+
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
 
 class ProductWrapper extends Component {
@@ -122,7 +124,7 @@ class ProductWrapper extends Component {
           )}
         </Helmet>
         <Fragment>
-          {product && <MicroData product={product} query={query} />}
+          {product && <MicroData product={product} query={query} /> && <StructuredData product={product} query={query} />}
           <DataLayerApolloWrapper getData={this.getData} loading={loading}>
             {React.cloneElement(this.props.children, {
               productQuery,
