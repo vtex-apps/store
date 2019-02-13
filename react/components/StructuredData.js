@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { useRuntime } from "vtex.render-runtime";
 import PropTypes from "prop-types";
 import {
   pathOr,
@@ -164,11 +165,12 @@ const parseToJsonLD = (product, query, currency, locale) => {
   return productLD;
 };
 
-export default function StructuredData(
-  { product, query },
-  { culture: { currency, locale } }
-) {
+function StructuredData({ product, query }) {
+  const {
+    culture: { currency, locale }
+  } = useRuntime();
   const productLD = parseToJsonLD(product, query, currency, locale);
+
   return (
     <script
       type="application/ld+json"
@@ -185,3 +187,5 @@ StructuredData.propTypes = {
 StructuredData.contextTypes = {
   culture: PropTypes.object
 };
+
+export default StructuredData;
