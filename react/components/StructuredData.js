@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { pathOr, path, map, sort, compose, head, split, filter, last } from 'ramda'
+import { pathOr, path, map, sort, compose, head, split, length, last } from 'ramda'
 
 const ITEM_AVAILABLE = 100
 
@@ -129,6 +129,7 @@ const parseToJsonLD = (product, query, currency, locale) => {
     "@context": "https://schema.org/",
     "@type" : "Product",
     "name": "${name}", 
+    "brand": "${brand}",
     "image": "${image.imageUrl}",
     "description": "${description}",
     "mpn": "${product.productId}",
@@ -147,10 +148,12 @@ export default function StructuredData({ product, query }, { culture: { currency
   const skuId = query.skuId || path(['items', '0', 'itemId'], product)
   const image = head(path(['items', '0', 'images'], product))
   console.log(parseToJsonLD(product, query, currency, locale))
+  const productLD = parseToJsonLD(product, query, currency, locale)
   return (
-    <div className="dn" vocab="http://schema.org/" typeof="Product">
-
-    </div>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: (productLD) }}
+    />
   )
 }
 

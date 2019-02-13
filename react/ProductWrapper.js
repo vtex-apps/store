@@ -124,7 +124,7 @@ class ProductWrapper extends Component {
           )}
         </Helmet>
         <Fragment>
-          {product && <MicroData product={product} query={query} /> && <StructuredData product={product} query={query} />}
+          {product && <StructuredData product={product} query={query} />}
           <DataLayerApolloWrapper getData={this.getData} loading={loading}>
             {React.cloneElement(this.props.children, {
               productQuery,
