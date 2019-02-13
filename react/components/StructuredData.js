@@ -184,8 +184,4 @@ StructuredData.propTypes = {
   query: PropTypes.object
 };
 
-StructuredData.contextTypes = {
-  culture: PropTypes.object
-};
-
 export default StructuredData;
