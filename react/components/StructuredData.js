@@ -1,119 +1,152 @@
-import React, { Fragment } from 'react'
-import PropTypes from 'prop-types'
-import { pathOr, path, map, sort, compose, head, split, length, last } from 'ramda'
+import React, { Fragment } from "react";
+import PropTypes from "prop-types";
+import {
+  pathOr,
+  path,
+  map,
+  sort,
+  compose,
+  head,
+  split,
+  length,
+  last
+} from "ramda";
 
-const ITEM_AVAILABLE = 100
+const ITEM_AVAILABLE = 100;
 
 const lowestPriceInStockSeller = item => {
   if (item.sellers.length) {
-    return sort((itemA, itemB) => itemA.commertialOffer && itemA.commertialOffer.AvailableQuantity > 0
-      ? itemB.commertialOffer && itemB.commertialOffer.AvailableQuantity > 0
-        ? itemA.commertialOffer.Price - itemB.commertialOffer.Price
-        : -1
-      : -1,
-      item.sellers)[0]
+    return sort(
+      (itemA, itemB) =>
+        itemA.commertialOffer && itemA.commertialOffer.AvailableQuantity > 0
+          ? itemB.commertialOffer && itemB.commertialOffer.AvailableQuantity > 0
+            ? itemA.commertialOffer.Price - itemB.commertialOffer.Price
+            : -1
+          : -1,
+      item.sellers
+    )[0];
   }
-  return null
-}
+  return null;
+};
 
 const lowestPriceInStockSKU = sku => {
-  const itemSeller = [{
-    sku,
-    seller: lowestPriceInStockSeller(sku)
-  }]
-  const { item, seller } = lowestPriceItem(itemSeller)
+  const itemSeller = [
+    {
+      sku,
+      seller: lowestPriceInStockSeller(sku)
+    }
+  ];
+  const { item, seller } = lowestPriceItem(itemSeller);
 
   return {
     item,
-    seller,
-  }
-}
+    seller
+  };
+};
 
 const tryParsingLocale = (description, locale) => {
-  let parsedDescription
+  let parsedDescription;
   try {
-    const descriptionObject = JSON.parse(description)
-    parsedDescription = descriptionObject[locale] || descriptionObject[head(split('-', locale))]
+    const descriptionObject = JSON.parse(description);
+    parsedDescription =
+      descriptionObject[locale] || descriptionObject[head(split("-", locale))];
   } catch (e) {
-    console.warn('Failed to parse multilanguage product description')
+    console.warn("Failed to parse multilanguage product description");
   }
-  return parsedDescription || description
-}
+  return parsedDescription || description;
+};
 
 const lowestPriceItem = compose(
   head,
-  sort((itemA, itemB) => (path(['seller', 'commertialOffer', 'Price'], itemA) - path(['seller', 'commertialOffer', 'Price'], itemB)))
-)
+  sort(
+    (itemA, itemB) =>
+      path(["seller", "commertialOffer", "Price"], itemA) -
+      path(["seller", "commertialOffer", "Price"], itemB)
+  )
+);
 
 const highestPriceItem = compose(
   last,
-  sort((itemA, itemB) => (path(['seller', 'commertialOffer', 'Price'], itemA) - path(['seller', 'commertialOffer', 'Price'], itemB)))
-)
+  sort(
+    (itemA, itemB) =>
+      path(["seller", "commertialOffer", "Price"], itemA) -
+      path(["seller", "commertialOffer", "Price"], itemB)
+  )
+);
 
 const priceItems = items => {
-  const lowPrice = lowestPriceItem(items)
-  const highPrice = highestPriceItem(items)
+  const lowPrice = lowestPriceItem(items);
+  const highPrice = highestPriceItem(items);
   return {
     lowPrice,
-    highPrice,
-  }
-}
+    highPrice
+  };
+};
 
 const parseSKUToOffer = (item, currency) => {
-
-  const { seller } = lowestPriceInStockSKU(item)
+  const { seller } = lowestPriceInStockSKU(item);
   const calculateAvailability = seller => {
-    return (
-      pathOr(ITEM_AVAILABLE, ['commertialOfferlowestPriceInStock', 'AvailableQuantity'], seller)
-        ? "http://schema.org/InStock" : "http://schema.org/OutOfStock")
-  }
+    return pathOr(
+      ITEM_AVAILABLE,
+      ["commertialOfferlowestPriceInStock", "AvailableQuantity"],
+      seller
+    )
+      ? "http://schema.org/InStock"
+      : "http://schema.org/OutOfStock";
+  };
 
   const offer = `{
     "@type": "Offer", 
-    "price": "${path(['commertialOffer', 'Price'], seller)}",
+    "price": "${path(["commertialOffer", "Price"], seller)}",
     "priceCurrency": "${currency}",
     "availability": "${calculateAvailability(seller)}",
     "sku": "${item.itemId}",
     "itemCondition": "http://schema.org/NewCondition",
-    "priceValidUntil": "${path(['commertialOffer', 'PriceValidUntil'], seller)}",
+    "priceValidUntil": "${path(
+      ["commertialOffer", "PriceValidUntil"],
+      seller
+    )}",
     "seller": {
       "@type": "Organization", 
       "name": "${seller.sellerName}"
     }
-  }`
+  }`;
 
-  return offer
-}
+  return offer;
+};
 
 const composeAggregateOffer = (product, currency) => {
-  const items = map(item => ({
-    item,
-    seller: lowestPriceInStockSeller(item)
-  }), product.items)
+  const items = map(
+    item => ({
+      item,
+      seller: lowestPriceInStockSeller(item)
+    }),
+    product.items
+  );
 
-  const { lowPrice, highPrice } = priceItems(items)
+  const { lowPrice, highPrice } = priceItems(items);
   const offersList = map((element, index) => {
-    return parseSKUToOffer(element, currency)
-  }, product.items)
+    return parseSKUToOffer(element, currency);
+  }, product.items);
 
   const aggregateOffer = `{
     "@type": "AggregateOffer", 
-    "lowPrice": "${path(['seller', 'commertialOffer', 'Price'], lowPrice)}",
-    "highPrice": "${path(['seller', 'commertialOffer', 'Price'], highPrice)}",
+    "lowPrice": "${path(["seller", "commertialOffer", "Price"], lowPrice)}",
+    "highPrice": "${path(["seller", "commertialOffer", "Price"], highPrice)}",
     "priceCurrency": "${currency}",
     "offers": [${offersList}],
     "offerCount": "${length(items)}"
-  }`
+  }`;
 
-  return aggregateOffer
-}
+  return aggregateOffer;
+};
 
 const parseToJsonLD = (product, query, currency, locale) => {
-  const skuId = query.skuId || path(['items', '0', 'itemId'], product)
-  const image = head(path(['items', '0', 'images'], product))
-  const brand = product.brand
-  const name = product.productName
-  const description = tryParsingLocale(product.description, locale)
+  const skuId = query.skuId || path(["items", "0", "itemId"], product);
+  const image = head(path(["items", "0", "images"], product));
+  const brand = product.brand;
+  const name = product.productName;
+  const description = tryParsingLocale(product.description, locale);
 
   const productLD = `{
     "@context": "https://schema.org/",
@@ -126,26 +159,29 @@ const parseToJsonLD = (product, query, currency, locale) => {
     "sku": "${skuId}",
     "offers": ${composeAggregateOffer(product, currency)}
     
-  }`
+  }`;
 
-  return productLD
-}
+  return productLD;
+};
 
-export default function StructuredData({ product, query }, { culture: { currency, locale } }) {
-  const productLD = parseToJsonLD(product, query, currency, locale)
+export default function StructuredData(
+  { product, query },
+  { culture: { currency, locale } }
+) {
+  const productLD = parseToJsonLD(product, query, currency, locale);
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: (productLD) }}
+      dangerouslySetInnerHTML={{ __html: productLD }}
     />
-  )
+  );
 }
 
 StructuredData.propTypes = {
   product: PropTypes.object,
   query: PropTypes.object
-}
+};
 
 StructuredData.contextTypes = {
-  culture: PropTypes.object,
-}
+  culture: PropTypes.object
+};
