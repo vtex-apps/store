@@ -119,9 +119,6 @@ class ProductWrapper extends Component {
       <div className="vtex-product-context-provider">
         <Helmet>
           {titleTag && <title>{titleTag}</title>}
-          {metaTagDescription && (
-            <meta name="description" content={metaTagDescription} />
-          )}
         </Helmet>
         <Fragment>
           {product && <StructuredData product={product} query={query} />}
