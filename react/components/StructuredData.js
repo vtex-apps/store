@@ -40,7 +40,6 @@ const tryParsingLocale = (description, locale) => {
   return parsedDescription || description
 }
 
-
 const lowestPriceItem = compose(
   head,
   sort((itemA, itemB) => (path(['seller', 'commertialOffer', 'Price'], itemA) - path(['seller', 'commertialOffer', 'Price'], itemB)))
@@ -58,9 +57,7 @@ const priceItems = items => {
     lowPrice,
     highPrice,
   }
-
 }
-
 
 const parseSKUToOffer = (item, currency) => {
 
@@ -99,7 +96,6 @@ const composeAggregateOffer = (product, currency) => {
     return parseSKUToOffer(element, currency)
   }, product.items)
 
-
   const aggregateOffer = `{
     "@type": "AggregateOffer", 
     "lowPrice": "${path(['seller', 'commertialOffer', 'Price'], lowPrice)}",
@@ -110,7 +106,6 @@ const composeAggregateOffer = (product, currency) => {
   }`
 
   return aggregateOffer
-
 }
 
 const parseToJsonLD = (product, query, currency, locale) => {
@@ -135,9 +130,6 @@ const parseToJsonLD = (product, query, currency, locale) => {
 
   return productLD
 }
-
-
-
 
 export default function StructuredData({ product, query }, { culture: { currency, locale } }) {
   const productLD = parseToJsonLD(product, query, currency, locale)
