@@ -16,8 +16,6 @@ const lowestPriceInStockSeller = item => {
   return null
 }
 
-
-
 const lowestPriceInStockSKU = sku => {
   const itemSeller = [{
     sku,
@@ -30,8 +28,6 @@ const lowestPriceInStockSKU = sku => {
     seller,
   }
 }
-
-
 
 const tryParsingLocale = (description, locale) => {
   let parsedDescription
@@ -121,7 +117,6 @@ const parseToJsonLD = (product, query, currency, locale) => {
   const skuId = query.skuId || path(['items', '0', 'itemId'], product)
   const image = head(path(['items', '0', 'images'], product))
   const brand = product.brand
-  console.log('brand', brand)
   const name = product.productName
   const description = tryParsingLocale(product.description, locale)
 
@@ -145,9 +140,6 @@ const parseToJsonLD = (product, query, currency, locale) => {
 
 
 export default function StructuredData({ product, query }, { culture: { currency, locale } }) {
-  const skuId = query.skuId || path(['items', '0', 'itemId'], product)
-  const image = head(path(['items', '0', 'images'], product))
-  console.log(parseToJsonLD(product, query, currency, locale))
   const productLD = parseToJsonLD(product, query, currency, locale)
   return (
     <script
