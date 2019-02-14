@@ -1,6 +1,6 @@
 # VTEX Store
 
-The VTEX Store Render app
+VTEX IO Store Framework
 
 ## Events dispatched to the Pixel Component
 
