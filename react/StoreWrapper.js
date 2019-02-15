@@ -1,11 +1,10 @@
 import { path } from 'ramda'
 import React, { Component, Fragment } from 'react'
-import { canUseDOM, Helmet, withRuntimeContext } from 'vtex.render-runtime'
+import { canUseDOM, ExtensionPoint, Helmet, NoSSR, withRuntimeContext  } from 'vtex.render-runtime'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { PixelProvider } from 'vtex.pixel-manager/PixelContext'
 import PixelManager from 'vtex.pixel-manager/PixelManager'
-import { NoSSR, ExtensionPoint } from 'vtex.render-runtime'
 import { ToastProvider } from 'vtex.styleguide'
 
 import canonicalPathFromParams from './utils/canonical'
