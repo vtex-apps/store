@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.2.1] - 2019-02-15
+### Added
+- Create `promo-bar` to allowed interfaces and declare as extensible
+
 ## [2.2.0] - 2019-02-15
 ### Added
 - `highlight-overlay` to `storeWrapper` allowed interfaces and corresponding `ExtensionPoint` to `StoreWrapper` implementation.

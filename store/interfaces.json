@@ -15,7 +15,8 @@
       "carousel",
       "shelf",
       "rebuy",
-      "address-manager"
+      "address-manager",
+      "promo-bar"
     ],
     "preview": {
       "type": "block"
@@ -99,5 +100,9 @@
   },
   "challenge.profile": {
     "component": "ProfileChallenge"
+  },
+  "promo-bar": {
+    "component": "*",
+    "extensible": "public"
   }
 }
