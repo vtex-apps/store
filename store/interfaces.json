@@ -103,8 +103,7 @@
     "component": "ProfileChallenge"
   },
   "promo-bar": {
-    "component": "*",
-    "extensible": "public"
+    "component": "*"
   },
   "info-card": {
     "component": "*"
