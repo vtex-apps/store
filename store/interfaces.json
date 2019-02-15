@@ -17,7 +17,7 @@
       "rebuy",
       "address-manager",
       "promo-bar",
-      "hero-header"
+      "info-card"
     ],
     "preview": {
       "type": "block"
@@ -103,11 +103,9 @@
     "component": "ProfileChallenge"
   },
   "promo-bar": {
-    "component": "*",
-    "extensible": "public"
+    "component": "*"
   },
-  "hero-header": {
-    "component": "*",
-    "extensible": "public"
+  "info-card": {
+    "component": "*"
   }
 }

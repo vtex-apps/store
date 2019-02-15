@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.2.3] - 2019-02-15
+### Changed
+- rename `hero-header` to `info-card`
+
 ## [2.2.2] - 2019-02-15
 ### Added
 - Add `hero-header` to allowed interfaces and declare as extensible
