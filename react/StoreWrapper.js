@@ -1,6 +1,12 @@
 import { path } from 'ramda'
 import React, { Component, Fragment } from 'react'
-import { canUseDOM, ExtensionPoint, Helmet, NoSSR, withRuntimeContext } from 'vtex.render-runtime'
+import {
+  canUseDOM,
+  ExtensionPoint,
+  Helmet,
+  NoSSR,
+  withRuntimeContext,
+} from 'vtex.render-runtime'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { PixelProvider } from 'vtex.pixel-manager/PixelContext'
@@ -9,7 +15,6 @@ import { ToastProvider } from 'vtex.styleguide'
 
 import canonicalPathFromParams from './utils/canonical'
 import PageViewPixel from './components/PageViewPixel'
-import OrderFormProvider from './components/OrderFormProvider'
 import { DataLayerProvider } from './components/withDataLayer'
 import NetworkStatusToast from './components/NetworkStatusToast'
 
@@ -24,7 +29,8 @@ const systemToCanonical = ({ page, pages, route, history }) => {
   const { params } = route
   const canonicalRouteTemplate = pages[page].canonical
   const canonicalPath = canonicalPathFromParams(canonicalRouteTemplate, params)
-  const canonicalHost = window.__hostname__ || (window.location && window.location.hostname)
+  const canonicalHost =
+    window.__hostname__ || (window.location && window.location.hostname)
   return {
     canonicalPath,
     canonicalHost,
@@ -76,15 +82,14 @@ class StoreWrapper extends Component {
     }),
   }
 
-  isStorefrontIframe = canUseDOM && window.top !== window.self && window.top.__provideRuntime
+  isStorefrontIframe =
+    canUseDOM && window.top !== window.self && window.top.__provideRuntime
 
   componentDidMount() {
     const {
       runtime: { prefetchDefaultPages },
     } = this.props
-    prefetchDefaultPages([
-      'store.product',
-    ])
+    prefetchDefaultPages(['store.product'])
   }
 
   render() {
@@ -107,9 +112,16 @@ class StoreWrapper extends Component {
       storeName,
       faviconLinks,
     } = settings
-    const { data: { manifest, iOSIcons, splashes, loading, error } = {} } = this.props
+    const {
+      data: { manifest, iOSIcons, splashes, loading, error } = {},
+    } = this.props
     const hasManifest = !loading && manifest && !error
-    const { canonicalHost, canonicalPath } = systemToCanonical({ pages, page, route, history })
+    const { canonicalHost, canonicalPath } = systemToCanonical({
+      pages,
+      page,
+      route,
+      history,
+    })
     replaceHistoryToCanonical({ route, history }, canonicalPath)
 
     window.dataLayer = window.dataLayer || []
@@ -133,7 +145,12 @@ class StoreWrapper extends Component {
               <meta name="robots" content={metaTagRobots || META_ROBOTS} />
               <meta httpEquiv="Content-Type" content={CONTENT_TYPE} />
               {faviconLinks && faviconLinks.map(props => <link {...props} />)}
-              {canonicalPath && canonicalHost && (<link rel="canonical" href={`https://${canonicalHost}${canonicalPath}`} />)}
+              {canonicalPath && canonicalHost && (
+                <link
+                  rel="canonical"
+                  href={`https://${canonicalHost}${canonicalPath}`}
+                />
+              )}
             </Helmet>
             {/* PWA */}
             {hasManifest && (
@@ -142,17 +159,18 @@ class StoreWrapper extends Component {
                 <link rel="manifest" href="/pwa/manifest.json" />
                 <script
                   type="text/javascript"
-                  src={`/pwa/workers/register.js${route.path.match(/\?.*/) || ''}`}
+                  src={`/pwa/workers/register.js${route.path.match(/\?.*/) ||
+                    ''}`}
                 />
                 {hasManifest &&
-                    iOSIcons.map(icon => (
-                      <link
-                        key={icon.src}
-                        rel="apple-touch-icon"
-                        sizes={icon.sizes}
-                        href={icon.src}
-                      />
-                    ))}
+                  iOSIcons.map(icon => (
+                    <link
+                      key={icon.src}
+                      rel="apple-touch-icon"
+                      sizes={icon.sizes}
+                      href={icon.src}
+                    />
+                  ))}
                 <meta name="apple-mobile-web-app-capable" content="yes" />
                 {splashes &&
                   splashes.map(splash => (
@@ -167,11 +185,9 @@ class StoreWrapper extends Component {
             )}
             <ToastProvider positioning="window">
               <NetworkStatusToast />
-              <OrderFormProvider>
-                <div className="vtex-store__template bg-base">
-                  {this.props.children}
-                </div>
-              </OrderFormProvider>
+              <div className="vtex-store__template bg-base">
+                {this.props.children}
+              </div>
             </ToastProvider>
           </DataLayerProvider>
         </PixelProvider>
