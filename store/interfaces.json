@@ -16,7 +16,8 @@
       "shelf",
       "rebuy",
       "address-manager",
-      "promo-bar"
+      "promo-bar",
+      "hero-header"
     ],
     "preview": {
       "type": "block"
@@ -102,6 +103,10 @@
     "component": "ProfileChallenge"
   },
   "promo-bar": {
+    "component": "*",
+    "extensible": "public"
+  },
+  "hero-header": {
     "component": "*",
     "extensible": "public"
   }
