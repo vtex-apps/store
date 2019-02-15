@@ -9,7 +9,6 @@ import { ToastProvider } from 'vtex.styleguide'
 
 import canonicalPathFromParams from './utils/canonical'
 import PageViewPixel from './components/PageViewPixel'
-import OrderFormProvider from './components/OrderFormProvider'
 import { DataLayerProvider } from './components/withDataLayer'
 
 import pwaDataQuery from './queries/pwaDataQuery.gql'
@@ -165,11 +164,9 @@ class StoreWrapper extends Component {
               </Helmet>
             )}
             <ToastProvider positioning="window">
-              <OrderFormProvider>
-                <div className="vtex-store__template bg-base">
-                  {this.props.children}
-                </div>
-              </OrderFormProvider>
+              <div className="vtex-store__template bg-base">
+                {this.props.children}
+              </div>
             </ToastProvider>
           </DataLayerProvider>
         </PixelProvider>
