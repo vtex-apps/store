@@ -29,7 +29,8 @@
     "vtex.my-account": "1.x",
     "vtex.address-locator": "1.x",
     "vtex.rebuy": "1.x",
-    "vtex.pixel-manager": "0.x"
+    "vtex.pixel-manager": "0.x",
+    "humanelement.promo-banner": "0.x"
   },
   "settingsSchema": {
     "title": "VTEX Store",

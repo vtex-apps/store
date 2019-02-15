@@ -15,7 +15,8 @@
       "carousel",
       "shelf",
       "rebuy",
-      "address-manager"
+      "address-manager",
+      "promo-banner"
     ],
     "preview": {
       "type": "block"
