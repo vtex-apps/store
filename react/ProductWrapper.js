@@ -1,11 +1,11 @@
-import PropTypes from "prop-types";
-import React, { Component, Fragment } from "react";
-import { last, head } from "ramda";
-import { Helmet, withRuntimeContext } from "vtex.render-runtime";
+import PropTypes from "prop-types"
+import React, { Component, Fragment } from "react"
+import { last, head } from "ramda"
+import { Helmet, withRuntimeContext } from "vtex.render-runtime"
 
-import StructuredData from "./components/StructuredData";
+import StructuredData from "./components/StructuredData"
 
-import DataLayerApolloWrapper from "./components/DataLayerApolloWrapper";
+import DataLayerApolloWrapper from "./components/DataLayerApolloWrapper"
 
 class ProductWrapper extends Component {
   static propTypes = {

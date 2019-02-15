@@ -1,6 +1,6 @@
-import React, { Fragment } from "react";
-import { useRuntime } from "vtex.render-runtime";
-import PropTypes from "prop-types";
+import React, { Fragment } from "react"
+import { useRuntime } from "vtex.render-runtime"
+import PropTypes from "prop-types"
 import {
   pathOr,
   path,
