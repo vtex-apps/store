@@ -17,7 +17,7 @@
       "rebuy",
       "address-manager",
       "promo-bar",
-      "hero-header"
+      "info-card"
     ],
     "preview": {
       "type": "block"
@@ -106,8 +106,7 @@
     "component": "*",
     "extensible": "public"
   },
-  "hero-header": {
-    "component": "*",
-    "extensible": "public"
+  "info-card": {
+    "component": "*"
   }
 }
