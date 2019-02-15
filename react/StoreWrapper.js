@@ -1,6 +1,6 @@
 import { path } from 'ramda'
 import React, { Component, Fragment } from 'react'
-import { Helmet, withRuntimeContext } from 'vtex.render-runtime'
+import { canUseDOM, ExtensionPoint, Helmet, NoSSR, withRuntimeContext  } from 'vtex.render-runtime'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { PixelProvider } from 'vtex.pixel-manager/PixelContext'
@@ -74,6 +74,8 @@ class StoreWrapper extends Component {
       }),
     }),
   }
+
+  isStorefrontIframe = canUseDOM && window.top !== window.self && window.top.__provideRuntime
 
   componentDidMount() {
     const {
@@ -169,6 +171,11 @@ class StoreWrapper extends Component {
             </ToastProvider>
           </DataLayerProvider>
         </PixelProvider>
+        {this.isStorefrontIframe && (
+          <NoSSR>
+            <ExtensionPoint id="highlight-overlay" />
+          </NoSSR>
+        )}
       </Fragment>
     )
   }
