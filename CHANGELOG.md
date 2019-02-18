@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.2.4] - 2019-02-18
+### Fixed
+- Remove `related-products` block from `store.product`.
+
 ## [2.2.3] - 2019-02-15
 ### Changed
 - rename `hero-header` to `info-card`

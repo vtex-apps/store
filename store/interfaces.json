@@ -45,8 +45,7 @@
       "product-details"
     ],
     "allowed": [
-      "product-kit",
-      "related-products"
+      "product-kit"
     ],
     "context": "ProductContext"
   },
@@ -79,7 +78,9 @@
     ]
   },
   "storeWrapper": {
-    "allowed": ["highlight-overlay"],
+    "allowed": [
+      "highlight-overlay"
+    ],
     "component": "StoreWrapper"
   },
   "homeWrapper": {
