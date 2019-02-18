@@ -17,7 +17,8 @@
       "rebuy",
       "address-manager",
       "promo-bar",
-      "info-card"
+      "info-card",
+      "tabbed-shelf"
     ],
     "preview": {
       "type": "block"
@@ -106,6 +107,9 @@
     "component": "*"
   },
   "info-card": {
+    "component": "*"
+  },
+  "tabbed-shelf": {
     "component": "*"
   }
 }
