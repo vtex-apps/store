@@ -107,6 +107,6 @@
     "component": "*"
   },
   "info-card": {
-    "component": "*"
+    "component": "vtex.store-components/InfoCard"
   }
 }
