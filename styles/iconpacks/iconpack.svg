@@ -263,8 +263,9 @@
       <path d="M15,7H1C0.4,7,0,7.4,0,8s0.4,1,1,1h14c0.6,0,1-0.4,1-1S15.6,7,15,7z" fill="currentColor"/>
     </g>
     <g id="sti-loading" className="c-action-primary db">
-      <circle 0="" cx="50" cy="50" fill="none" r="40" stroke="currentColor" strokeWidth="10" strokeDasharray="{`0" ${80="" *="" Math.PI="" 0.75}="" Math.PI}`}="" strokeLinecap="round" strokeDashoffset="1">
-        <animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 50;360 50 50" keyTimes="0;1" dur="0.7s" begin="0s" repeatCount="indefinite"/>
+      <circle cx="50" opacity="0.4" cy="50" fill="none" stroke="currentColor" r="40" class="c-muted-1" stroke-width="14"></circle>
+      <circle cx="50" cy="50" fill="none" stroke="currentColor" r="40" transform="rotate(322.24 50 50)" stroke-dasharray="60 900" stroke-width="12" stroke-linecap="round">
+        <animateTransform type="rotate" values="0 50 50;360 50 50" dur="0.7s" begin="0s" calcMode="linear" repeatCount="indefinite" keyTimes="0;1" attributeName="transform"></animateTransform>
       </circle>
     </g>
     <g id="sti-check--line">
