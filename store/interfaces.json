@@ -105,8 +105,5 @@
   },
   "promo-bar": {
     "component": "*"
-  },
-  "info-card": {
-    "component": "*"
   }
 }
