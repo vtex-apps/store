@@ -4,12 +4,14 @@ import { Query } from 'react-apollo'
 import { Helmet, withRuntimeContext } from 'render'
 
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
+import { capitalize } from './utils/capitalize'
 import searchQuery from './queries/searchQuery.gql'
 import {
   createInitialMap,
   SORT_OPTIONS,
 } from './utils/search'
 
+const APP_LOCATOR = 'vtex.store'
 const DEFAULT_PAGE = 1
 const DEFAULT_MAX_ITEMS_PER_PAGE = 10
 
@@ -25,6 +27,7 @@ class ProductSearchContextProvider extends Component {
     runtime: PropTypes.shape({
       page: PropTypes.string.isRequired,
       account: PropTypes.any,
+      getSettings: PropTypes.func,
     }),
     /** Query params */
     query: PropTypes.shape({
@@ -144,14 +147,22 @@ class ProductSearchContextProvider extends Component {
         rest = '',
         priceRange,
       },
-      runtime: { page: runtimePage },
+      runtime: {
+        page: runtimePage,
+        getSettings,
+      },
     } = this.props
+
+    const settings = getSettings(APP_LOCATOR) || {}
+    const {
+      titleTag: storeTitle,
+      metaTagKeywords,
+    } = settings
 
     const map = mapQuery || createInitialMap(params)
     const page = pageQuery ? parseInt(pageQuery) : DEFAULT_PAGE
     const from = (page - 1) * maxItemsPerPage
     const to = from + maxItemsPerPage - 1
-
     const includeFacets = (map, query) => !!(map && map.length > 0 && query && query.length > 0)
 
     const query = Object.values(params)
@@ -191,7 +202,6 @@ class ProductSearchContextProvider extends Component {
           const { data, loading } = searchQuery
           const { search } = data || {}
           const { titleTag, metaTagDescription } = search || {}
-
           return (
             <DataLayerApolloWrapper
               getData={() =>
@@ -202,10 +212,13 @@ class ProductSearchContextProvider extends Component {
               loading={loading}
             >
               <Helmet>
-                {titleTag && <title>{titleTag}</title>}
+                {titleTag
+                  ? <title>{titleTag}</title>
+                  : params.term && <title>{`${capitalize(params.term)} - ${storeTitle}`}</title>}
                 {metaTagDescription && (
                   <meta name="description" content={metaTagDescription} />
                 )}
+                {params.term && <meta name="keywords" content={`${params.term}, ${metaTagKeywords}`} />}
               </Helmet>
               {React.cloneElement(this.props.children, {
                 ...this.props,

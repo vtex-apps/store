@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.36.2] - 2019-02-22
+### Fixed
+- Add search term in title tag and keywords on search pages.
+
 ## [1.36.1] - 2019-02-07
 ### Fixed
 - Updated iOS icons query.
