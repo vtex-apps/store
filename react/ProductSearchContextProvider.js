@@ -151,8 +151,13 @@ class ProductSearchContextProvider extends Component {
       },
       runtime: { page: runtimePage },
     } = this.props
+
     const settings = this.context.getSettings(APP_LOCATOR) || {}
-    const { titleTag: storeTitle } = settings
+    const {
+      titleTag: storeTitle,
+      metaTagKeywords,
+    } = settings
+
     const map = mapQuery || createInitialMap(params)
     const page = pageQuery ? parseInt(pageQuery) : DEFAULT_PAGE
     const from = (page - 1) * maxItemsPerPage
@@ -184,7 +189,7 @@ class ProductSearchContextProvider extends Component {
       to,
       withFacets: includeFacets(mapField, queryField),
     }
-    console.log("params", params)
+
     return (
       <Query
         query={searchQuery}
@@ -212,6 +217,7 @@ class ProductSearchContextProvider extends Component {
                 {metaTagDescription && (
                   <meta name="description" content={metaTagDescription} />
                 )}
+                {params.term && <meta name="keywords" content={`${params.term} ${metaTagKeywords}`} />}
               </Helmet>
               {React.cloneElement(this.props.children, {
                 ...this.props,

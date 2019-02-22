@@ -134,14 +134,14 @@ class StoreContextProvider extends Component {
                   src={`/pwa/workers/register.js${route.path.match(/\?.*/) || ''}`}
                 />
                 {hasManifest &&
-                    iOSIcons.map(icon => (
-                      <link
-                        key={icon.src}
-                        rel="apple-touch-icon"
-                        sizes={icon.sizes}
-                        href={icon.src}
-                      />
-                    ))}
+                  iOSIcons.map(icon => (
+                    <link
+                      key={icon.src}
+                      rel="apple-touch-icon"
+                      sizes={icon.sizes}
+                      href={icon.src}
+                    />
+                  ))}
                 <meta name="apple-mobile-web-app-capable" content="yes" />
                 {splashes &&
                   splashes.map(splash => (
