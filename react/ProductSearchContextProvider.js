@@ -217,7 +217,7 @@ class ProductSearchContextProvider extends Component {
                 {metaTagDescription && (
                   <meta name="description" content={metaTagDescription} />
                 )}
-                {params.term && <meta name="keywords" content={`${params.term} ${metaTagKeywords}`} />}
+                {params.term && <meta name="keywords" content={`${params.term}, ${metaTagKeywords}`} />}
               </Helmet>
               {React.cloneElement(this.props.children, {
                 ...this.props,
