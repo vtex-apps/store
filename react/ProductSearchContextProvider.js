@@ -27,6 +27,7 @@ class ProductSearchContextProvider extends Component {
     runtime: PropTypes.shape({
       page: PropTypes.string.isRequired,
       account: PropTypes.any,
+      getSettings: PropTypes.func,
     }),
     /** Query params */
     query: PropTypes.shape({
@@ -53,9 +54,6 @@ class ProductSearchContextProvider extends Component {
 
   static defaultProps = {
     maxItemsPerPage: DEFAULT_MAX_ITEMS_PER_PAGE,
-  }
-  static contextTypes = {
-    getSettings: PropTypes.func,
   }
 
   static schema = {
@@ -149,10 +147,13 @@ class ProductSearchContextProvider extends Component {
         rest = '',
         priceRange,
       },
-      runtime: { page: runtimePage },
+      runtime: {
+        page: runtimePage,
+        getSettings,
+      },
     } = this.props
 
-    const settings = this.context.getSettings(APP_LOCATOR) || {}
+    const settings = getSettings(APP_LOCATOR) || {}
     const {
       titleTag: storeTitle,
       metaTagKeywords,

@@ -23,6 +23,7 @@ class StoreContextProvider extends Component {
   static propTypes = {
     runtime: PropTypes.shape({
       prefetchDefaultPages: PropTypes.func,
+      getSettings: PropTypes.func,
       culture: PropTypes.shape({
         country: PropTypes.string,
         locale: PropTypes.string,
@@ -61,9 +62,10 @@ class StoreContextProvider extends Component {
         pages,
         page,
         route,
+        getSettings
       },
     } = this.props
-    const settings = this.context.getSettings(APP_LOCATOR) || {}
+    const settings = getSettings(APP_LOCATOR) || {}
     const {
       gtmId,
       titleTag,
@@ -166,10 +168,6 @@ class StoreContextProvider extends Component {
       </Fragment>
     )
   }
-}
-
-StoreContextProvider.contextTypes = {
-  getSettings: PropTypes.func,
 }
 
 export default graphql(pwaDataQuery)(withRuntimeContext(StoreContextProvider))
