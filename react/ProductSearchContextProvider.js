@@ -184,7 +184,7 @@ class ProductSearchContextProvider extends Component {
       to,
       withFacets: includeFacets(mapField, queryField),
     }
-
+    console.log("params", params)
     return (
       <Query
         query={searchQuery}
@@ -208,7 +208,7 @@ class ProductSearchContextProvider extends Component {
               <Helmet>
                 {titleTag
                   ? <title>{titleTag}</title>
-                  : <title>{`${capitalize(params.term)} - ${storeTitle}`}</title>}
+                  : params.term && <title>{`${capitalize(params.term)} - ${storeTitle}`}</title>}
                 {metaTagDescription && (
                   <meta name="description" content={metaTagDescription} />
                 )}
