@@ -26,5 +26,10 @@
     "parent": {
       "challenge": "challenge.profile"
     }
+  },
+  "store.custom": {
+    "parent": {
+      "header": "header.full"
+    }
   }
 }
