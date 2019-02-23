@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import { Helmet, withRuntimeContext } from 'vtex.render-runtime'
 
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
+import { capitalize } from './utils/capitalize'
+const APP_LOCATOR = 'vtex.store'
 
 class SearchWrapper extends Component {
   static propTypes = {
@@ -16,6 +18,7 @@ class SearchWrapper extends Component {
     runtime: PropTypes.shape({
       page: PropTypes.string.isRequired,
       account: PropTypes.any,
+      getSettings: PropTypes.func,
     }),
     /** Search query result */
     searchQuery: PropTypes.object.isRequired,
@@ -70,6 +73,7 @@ class SearchWrapper extends Component {
 
   render() {
     const {
+      params,
       searchQuery: {
         data: search,
         data: {
@@ -78,7 +82,15 @@ class SearchWrapper extends Component {
         } = {},
         loading,
       },
+      runtime: {
+        getSettings,
+      },
     } = this.props
+    const settings = getSettings(APP_LOCATOR) || {}
+    const {
+      titleTag: storeTitle,
+      metaTagKeywords,
+    } = settings
 
     return (
       <DataLayerApolloWrapper
@@ -86,7 +98,11 @@ class SearchWrapper extends Component {
         loading={loading}
       >
         <Helmet>
-          {titleTag && <title>{titleTag}</title>}
+          {titleTag
+            ? <title>{titleTag}</title>
+            : params.term && <title>{`${capitalize(params.term)} - ${storeTitle}`}</title>}
+          {params.term &&
+            <meta name="keywords" content={`${params.term}, ${metaTagKeywords}`} />}
           {metaTagDescription && (
             <meta name="description" content={metaTagDescription} />
           )}
