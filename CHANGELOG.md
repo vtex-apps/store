@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.5.4] - 2019-02-25
+### Fixed
+- OrderBy using none instead of invalid value
+
 ## [2.5.3] - 2019-02-25
 
 ## [2.5.2] - 2019-02-25
