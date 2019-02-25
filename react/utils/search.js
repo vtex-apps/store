@@ -2,6 +2,10 @@ import { identity } from 'ramda'
 
 export const SORT_OPTIONS = [
   {
+    value: 'OrderBy',
+    label: 'ordenation.choose',
+  },
+  {
     value: 'OrderByTopSaleDESC',
     label: 'ordenation.sales',
   },
