@@ -3,7 +3,7 @@ import { identity } from 'ramda'
 export const SORT_OPTIONS = [
   {
     value: 'OrderBy',
-    label: 'ordenation.choose',
+    label: 'ordenation.sort-by',
   },
   {
     value: 'OrderByTopSaleDESC',
