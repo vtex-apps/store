@@ -27,7 +27,6 @@
     "vtex.search-result": "3.x",
     "vtex.login": "2.x",
     "vtex.my-account": "1.x",
-    "vtex.address-locator": "1.x",
     "vtex.rebuy": "1.x",
     "vtex.pixel-manager": "0.x"
   },
