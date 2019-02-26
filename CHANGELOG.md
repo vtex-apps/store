@@ -6,13 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Add `OrderPlaced` scaffolding.
 
 ## [2.5.7] - 2019-02-28
 ### Added
 - Add updateOrderFormCheckin mutation to OrderFormProvider
 
 ## [2.5.6] - 2019-02-26
-
 ### Removed
 - Removed address-locator dependency.
 

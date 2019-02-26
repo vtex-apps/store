@@ -76,6 +76,18 @@
       "login-content"
     ]
   },
+  "store.orderPlaced": {
+    "before": [
+      "header.lean"
+    ],
+    "around": [
+      "orderPlacedWrapper"
+    ],
+    "required": [
+      "orderPlaced"
+    ],
+    "context": "OrderPlacedContext"
+  },
   "storeWrapper": {
     "allowed": [
       "highlight-overlay"
@@ -91,6 +103,9 @@
   "searchWrapper": {
     "component": "SearchWrapper"
   },
+  "orderPlacedWrapper": {
+    "component": "OrderPlacedWrapper"
+  },
   "challenge": {
     "component": "DefaultChallenge",
     "extensible": "public"
@@ -105,6 +120,5 @@
   "promo-bar": {
     "component": "*"
   },
-  "store.custom": {
-  }
+  "store.custom": {}
 }
