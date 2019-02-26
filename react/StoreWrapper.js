@@ -104,6 +104,7 @@ class StoreWrapper extends Component {
       metaTagKeywords,
       metaTagRobots,
       storeName,
+      faviconLinks
     } = settings
     const { data: { manifest, iOSIcons, splashes, loading, error } = {} } = this.props
     const hasManifest = !loading && manifest && !error
@@ -130,6 +131,7 @@ class StoreWrapper extends Component {
               <meta name="currency" content={currency} />
               <meta name="robots" content={metaTagRobots || META_ROBOTS} />
               <meta httpEquiv="Content-Type" content={CONTENT_TYPE} />
+              {faviconLinks && faviconLinks.map(props => <link {...props}/>)}
               {canonicalPath && canonicalHost && (<link rel="canonical" href={`https://${canonicalHost}${canonicalPath}`}/>)}
             </Helmet>
             {/* PWA */}

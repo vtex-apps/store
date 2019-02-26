@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "store",
-  "version": "2.5.4",
+  "version": "2.5.5",
   "title": "VTEX Store",
   "description": "The VTEX basic store.",
   "builders": {
@@ -59,6 +59,41 @@
         "title": "Store Robots (Meta Tag robots)",
         "type": "string",
         "description": "Default value: index, follow"
+      },
+      "faviconLinks": {
+        "title": "Store Favicons (Link Tag)",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "rel": {
+              "title": "Favicon Relationship",
+              "type": "string",
+              "description": "This favicon relationship, e.g: 'icon', 'shortcut icon', 'apple-touch-icon'"
+            },
+            "type": {
+              "title": "Favicon Media Type",
+              "type": "string",
+              "description": "(Optional) Favicon type, e.g: image/png"
+            },
+            "sizes": {
+              "title": "Favicon Size",
+              "type": "string",
+              "pattern": "^[0-9]+x[0-9]+$",
+              "description": "(Optional) Favicon size, format: {width}x{height} e.g: 180x180"
+            },
+            "href": {
+              "title": "Favicon href",
+              "type": "string",
+              "description": "This favicon href."
+            }
+          },
+          "required": [
+            "rel",
+            "href"
+          ]
+        },
+        "description": "Configure your store's favicons"
       }
     }
   }

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.5.5] - 2019-02-26
+### Added
+- Add favicon's <link> to the store. Configurable through the admin settings.
+
 ## [2.5.4] - 2019-02-25
 ### Fixed
 - OrderBy using none instead of invalid value
