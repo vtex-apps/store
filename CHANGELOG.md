@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Removed
+- Removed address-locator dependency.
+
 ## [2.5.5] - 2019-02-26
 ### Added
 - Add favicon's <link> to the store. Configurable through the admin settings.
