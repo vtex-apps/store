@@ -7,8 +7,7 @@
   "builders": {
     "store": "0.x",
     "messages": "1.x",
-    "react": "3.x",
-    "styles": "1.x"
+    "react": "3.x"
   },
   "scripts": {
     "postreleasy": "vtex publish --verbose"
@@ -93,10 +92,7 @@
               "description": "This favicon href."
             }
           },
-          "required": [
-            "rel",
-            "href"
-          ]
+          "required": ["rel", "href"]
         },
         "description": "Configure your store's favicons"
       }
