@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.5.6] - 2019-02-26
+
 ### Removed
 - Removed address-locator dependency.
 
