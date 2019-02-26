@@ -29,7 +29,7 @@
   "store.search#subcategory": {
     "path": "/:department/:category/:subcategory"
   },
-  "store.orderplaced": {
+  "store.order-placed": {
     "path": "/checkout/orderPlaced"
   }
 }
