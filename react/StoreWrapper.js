@@ -1,6 +1,6 @@
 import { path } from 'ramda'
 import React, { Component, Fragment } from 'react'
-import { canUseDOM, ExtensionPoint, Helmet, NoSSR, withRuntimeContext  } from 'vtex.render-runtime'
+import { canUseDOM, ExtensionPoint, Helmet, NoSSR, withRuntimeContext } from 'vtex.render-runtime'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { PixelProvider } from 'vtex.pixel-manager/PixelContext'
@@ -11,6 +11,7 @@ import canonicalPathFromParams from './utils/canonical'
 import PageViewPixel from './components/PageViewPixel'
 import OrderFormProvider from './components/OrderFormProvider'
 import { DataLayerProvider } from './components/withDataLayer'
+import NetworkStatusToast from './components/NetworkStatusToast'
 
 import pwaDataQuery from './queries/pwaDataQuery.gql'
 
@@ -19,18 +20,18 @@ const CONTENT_TYPE = 'text/html; charset=utf-8'
 const META_ROBOTS = 'index, follow'
 const MOBILE_SCALING = 'width=device-width, initial-scale=1'
 
-const systemToCanonical = ({page, pages, route, history}) => {
-  const {params} = route
+const systemToCanonical = ({ page, pages, route, history }) => {
+  const { params } = route
   const canonicalRouteTemplate = pages[page].canonical
   const canonicalPath = canonicalPathFromParams(canonicalRouteTemplate, params)
   const canonicalHost = window.__hostname__ || (window.location && window.location.hostname)
   return {
     canonicalPath,
-    canonicalHost
+    canonicalHost,
   }
 }
 
-const replaceHistoryToCanonical = ({route, history}, canonicalPath) => {
+const replaceHistoryToCanonical = ({ route, history }, canonicalPath) => {
   const pathname = path(['location', 'pathname'], history)
   const search = path(['location', 'search'], history)
 
@@ -104,12 +105,12 @@ class StoreWrapper extends Component {
       metaTagKeywords,
       metaTagRobots,
       storeName,
-      faviconLinks
+      faviconLinks,
     } = settings
     const { data: { manifest, iOSIcons, splashes, loading, error } = {} } = this.props
     const hasManifest = !loading && manifest && !error
-    const {canonicalHost, canonicalPath} = systemToCanonical({pages, page, route, history})
-    replaceHistoryToCanonical({route, history}, canonicalPath)
+    const { canonicalHost, canonicalPath } = systemToCanonical({ pages, page, route, history })
+    replaceHistoryToCanonical({ route, history }, canonicalPath)
 
     window.dataLayer = window.dataLayer || []
 
@@ -131,8 +132,8 @@ class StoreWrapper extends Component {
               <meta name="currency" content={currency} />
               <meta name="robots" content={metaTagRobots || META_ROBOTS} />
               <meta httpEquiv="Content-Type" content={CONTENT_TYPE} />
-              {faviconLinks && faviconLinks.map(props => <link {...props}/>)}
-              {canonicalPath && canonicalHost && (<link rel="canonical" href={`https://${canonicalHost}${canonicalPath}`}/>)}
+              {faviconLinks && faviconLinks.map(props => <link {...props} />)}
+              {canonicalPath && canonicalHost && (<link rel="canonical" href={`https://${canonicalHost}${canonicalPath}`} />)}
             </Helmet>
             {/* PWA */}
             {hasManifest && (
@@ -165,6 +166,7 @@ class StoreWrapper extends Component {
               </Helmet>
             )}
             <ToastProvider positioning="window">
+              <NetworkStatusToast />
               <OrderFormProvider>
                 <div className="vtex-store__template bg-base">
                   {this.props.children}
