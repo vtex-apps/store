@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types'
-import { pathOr } from 'ramda'
+import { compose, pathOr } from 'ramda'
 import React from 'react'
+import { injectIntl, intlShape } from 'react-intl'
 import { withToast } from 'vtex.styleguide'
 
 class NetworkStatusToast extends React.Component {
   static propTypes = {
-    children: PropTypes.node,
     hideToast: PropTypes.func.isRequired,
+    intl: intlShape.isRequired,
     showToast: PropTypes.func.isRequired,
   }
 
@@ -15,7 +16,7 @@ class NetworkStatusToast extends React.Component {
       const offline = !pathOr(true, ['onLine'], navigator)
       if (offline) {
         this.props.showToast({
-          message: 'Offline',
+          message: this.props.intl.formatMessage({ id: 'store.network-status.offline' }),
           dismissable: false,
           duration: Infinity,
         })
@@ -41,9 +42,8 @@ class NetworkStatusToast extends React.Component {
   }
 
   render() {
-    console.log('wot', this.props)
     return null
   }
 }
 
-export default withToast(NetworkStatusToast)
+export default compose(withToast, injectIntl)(NetworkStatusToast)
