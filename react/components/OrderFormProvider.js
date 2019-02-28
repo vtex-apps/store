@@ -7,6 +7,7 @@ import {
   updateItems,
   updateOrderFormProfile,
   updateOrderFormShipping,
+  updateOrderFormCheckin,
 } from 'vtex.store-resources/Mutations'
 import { Provider } from 'vtex.store-resources/OrderFormContext'
 import { orderForm } from 'vtex.store-resources/Queries'
@@ -28,6 +29,7 @@ class OrderFormProvider extends Component {
       updateAndRefetchOrderForm: this.handleUpdateAndRefetchOrderForm,
       updateOrderFormProfile: this.props.updateOrderFormProfile,
       updateOrderFormShipping: this.props.updateOrderFormShipping,
+      updateOrderFormCheckin: this.props.updateOrderFormCheckin,
     },
   }
 
@@ -67,6 +69,7 @@ class OrderFormProvider extends Component {
     state.orderFormContext.addItem = this.props.addItem
     state.orderFormContext.updateOrderFormProfile = this.props.updateOrderFormProfile
     state.orderFormContext.updateOrderFormShipping = this.props.updateOrderFormShipping
+    state.orderFormContext.updateOrderFormCheckin = this.props.updateOrderFormCheckin
 
     return <Provider value={this.state}>{this.props.children}</Provider>
   }
@@ -83,5 +86,6 @@ export default compose(
   graphql(addToCart, { name: 'addItem' }),
   graphql(updateItems, { name: 'updateOrderForm' }),
   graphql(updateOrderFormProfile, { name: 'updateOrderFormProfile' }),
-  graphql(updateOrderFormShipping, { name: 'updateOrderFormShipping' })
+  graphql(updateOrderFormShipping, { name: 'updateOrderFormShipping' }),
+  graphql(updateOrderFormCheckin, { name: 'updateOrderFormCheckin' }),
 )(OrderFormProvider)

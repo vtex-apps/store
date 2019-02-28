@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.5.7] - 2019-02-28
+### Added
+- Add updateOrderFormCheckin mutation to OrderFormProvider
+
 ## [2.5.6] - 2019-02-26
 
 ### Removed
