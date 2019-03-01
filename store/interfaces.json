@@ -37,9 +37,7 @@
   },
   "store.order-placed": {
     "before": ["header"],
-    "around": ["orderPlacedWrapper"],
-    "required": ["order-placed"],
-    "context": "OrderPlacedContext"
+    "required": ["order-placed"]
   },
   "storeWrapper": {
     "allowed": ["highlight-overlay"],
@@ -53,9 +51,6 @@
   },
   "searchWrapper": {
     "component": "SearchWrapper"
-  },
-  "orderPlacedWrapper": {
-    "component": "OrderPlacedWrapper"
   },
   "challenge": {
     "component": "DefaultChallenge",
