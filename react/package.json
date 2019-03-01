@@ -4,7 +4,6 @@
     "test": "jest"
   },
   "dependencies": {
-    "axios": "^0.18.0",
     "hoist-non-react-statics": "^3.0.1",
     "prop-types": "^15.5.10",
     "ramda": "^0.26.1",
