@@ -36,7 +36,6 @@
     "required": ["login-content"]
   },
   "store.order-placed": {
-    "before": ["header"],
     "required": ["order-placed"]
   },
   "storeWrapper": {
