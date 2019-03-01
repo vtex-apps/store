@@ -1,85 +1,45 @@
 {
   "store": {
     "component": "*",
-    "around": [
-      "storeWrapper",
-      "challenge"
-    ],
-    "before": [
-      "header"
-    ],
-    "after": [
-      "footer"
-    ],
-    "allowed": [
-      "carousel",
-      "shelf",
-      "rebuy",
-      "promo-bar",
-      "info-card"
-    ],
+    "around": ["storeWrapper", "challenge"],
+    "before": ["header"],
+    "after": ["footer"],
+    "allowed": ["carousel", "shelf", "rebuy", "promo-bar", "info-card"],
     "preview": {
       "type": "block"
     }
   },
   "store.home": {
-    "around": [
-      "homeWrapper"
-    ],
-    "before": [
-      "header.full"
-    ],
-    "allowed": [
-      "search-result"
-    ]
+    "around": ["homeWrapper"],
+    "before": ["header.full"],
+    "allowed": ["search-result"]
   },
   "store.product": {
-    "around": [
-      "productWrapper"
-    ],
-    "before": [
-      "header.full"
-    ],
-    "required": [
-      "product-details"
-    ],
-    "allowed": [
-      "product-kit"
-    ],
+    "around": ["productWrapper"],
+    "before": ["header.full"],
+    "required": ["product-details"],
+    "allowed": ["product-kit"],
     "context": "ProductContext"
   },
   "store.search": {
-    "around": [
-      "searchWrapper"
-    ],
-    "before": [
-      "header.full"
-    ],
-    "required": [
-      "search-result"
-    ],
+    "around": ["searchWrapper"],
+    "before": ["header.full"],
+    "required": ["search-result"],
     "context": "SearchContext"
   },
   "store.account": {
-    "before": [
-      "header.full"
-    ],
-    "required": [
-      "my-account"
-    ]
+    "before": ["header.full"],
+    "required": ["my-account"]
   },
   "store.login": {
-    "before": [
-      "header.full"
-    ],
-    "required": [
-      "login-content"
-    ]
+    "before": ["header.full"],
+    "required": ["login-content"]
+  },
+  "store.order-placed": {
+    "required": ["order-placed"]
   },
   "storeWrapper": {
-    "allowed": [
-      "highlight-overlay"
-    ],
+    "allowed": ["highlight-overlay"],
     "component": "StoreWrapper"
   },
   "homeWrapper": {
@@ -105,6 +65,5 @@
   "promo-bar": {
     "component": "*"
   },
-  "store.custom": {
-  }
+  "store.custom": {}
 }
