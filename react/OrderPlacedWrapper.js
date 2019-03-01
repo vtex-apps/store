@@ -93,13 +93,13 @@ class OrderPlacedWrapper extends Component {
     })
   }
 
-  getData = (orderGroupId) => {
+  async getData (orderGroupId) {
     if (!orderGroupId) {
       return null
     }
 
     const { account } = this.props.runtime
-    const orderGroupData = this.getOrderGroupFromCheckout(orderGroupId, account)
+    const orderGroupData = await this.getOrderGroupFromCheckout(orderGroupId, account)
 
     let events = []
 
@@ -172,6 +172,8 @@ class OrderPlacedWrapper extends Component {
       }
       events.push(currEvent, {event: "orderPlaced"})
     }
+
+    debugger
 
     return events
   }
