@@ -9,17 +9,26 @@ class NetworkStatusToast extends React.Component {
     hideToast: PropTypes.func.isRequired,
     intl: intlShape.isRequired,
     showToast: PropTypes.func.isRequired,
+    toastState: PropTypes.object.isRequired,
+  }
+
+  state = {
+    offline: false,
+  }
+
+  toastConfig = {
+    message: this.props.intl.formatMessage({
+      id: 'store.network-status.offline',
+    }),
+    dismissable: false,
+    duration: Infinity,
   }
 
   updateStatus = () => {
     if (navigator) {
       const offline = !pathOr(true, ['onLine'], navigator)
       if (offline) {
-        this.props.showToast({
-          message: this.props.intl.formatMessage({ id: 'store.network-status.offline' }),
-          dismissable: false,
-          duration: Infinity,
-        })
+        this.setState({ offline })
       } else {
         this.props.hideToast()
       }
@@ -41,9 +50,30 @@ class NetworkStatusToast extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    /* const { toastState } = this.props
+    if (this.state.offline && !toastState.isToastVisible) {
+      this.props.showToast(this.toastConfig)
+    } else if (
+      !this.state.offline &&
+      toastState.isToastVisible &&
+      toastState.currentToast.message === this.toastConfig.message
+    ) {
+      this.props.hideToast()
+    }*/
+    if (this.state.offline) {
+      this.props.showToast(this.toastConfig)
+    } else if (prevState.offline && !this.state.offline) {
+      this.props.hideToast()
+    }
+  }
+
   render() {
     return null
   }
 }
 
-export default compose(withToast, injectIntl)(NetworkStatusToast)
+export default compose(
+  withToast,
+  injectIntl
+)(NetworkStatusToast)
