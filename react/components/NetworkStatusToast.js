@@ -51,6 +51,9 @@ class NetworkStatusToast extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    // TODO: This logic will be possible when the ToastProvider provide the `toastState`
+    // prop to it's Consumers. This way, the toast can be shown when no other toast is visible.
+    
     /* const { toastState } = this.props
     if (this.state.offline && !toastState.isToastVisible) {
       this.props.showToast(this.toastConfig)
@@ -61,6 +64,7 @@ class NetworkStatusToast extends React.Component {
     ) {
       this.props.hideToast()
     }*/
+
     if (this.state.offline) {
       this.props.showToast(this.toastConfig)
     } else if (prevState.offline && !this.state.offline) {
