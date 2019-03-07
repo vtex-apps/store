@@ -1,80 +1,70 @@
 import PropTypes from 'prop-types'
 import { compose, pathOr } from 'ramda'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { injectIntl, intlShape } from 'react-intl'
 import { withToast } from 'vtex.styleguide'
 
-class NetworkStatusToast extends React.Component {
-  static propTypes = {
-    hideToast: PropTypes.func.isRequired,
-    intl: intlShape.isRequired,
-    showToast: PropTypes.func.isRequired,
-    toastState: PropTypes.object.isRequired,
-  }
-
-  state = {
-    offline: false,
-  }
-
-  toastConfig = {
-    message: this.props.intl.formatMessage({
+function NetworkStatusToast(props) {
+  const toastConfig = {
+    message: props.intl.formatMessage({
       id: 'store.network-status.offline',
     }),
     dismissable: false,
     duration: Infinity,
   }
 
-  updateStatus = () => {
+  const [offline, setOffline] = useState(false)
+  const updateStatus = () => {
     if (navigator) {
-      const offline = !pathOr(true, ['onLine'], navigator)
-      if (offline) {
-        this.setState({ offline })
-      } else {
-        this.props.hideToast()
+      setOffline(!pathOr(true, ['onLine'], navigator))
+    }
+  }
+
+  useEffect(() => {
+    if (window) {
+      window.addEventListener('online', updateStatus)
+      window.addEventListener('offline', updateStatus)
+    }
+    updateStatus()
+    return function cleanUp() {
+      if (window) {
+        window.removeEventListener('online', updateStatus)
+        window.removeEventListener('offline', updateStatus)
       }
     }
-  }
+  }, [])
 
-  componentDidMount() {
-    if (window) {
-      window.addEventListener('online', this.updateStatus)
-      window.addEventListener('offline', this.updateStatus)
-    }
-    this.updateStatus()
-  }
-
-  componentWillUnmount() {
-    if (window) {
-      window.removeEventListener('online', this.updateStatus)
-      window.removeEventListener('offline', this.updateStatus)
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
+  useEffect(() => {
     // TODO: This logic will be possible when the ToastProvider provide the `toastState`
     // prop to it's Consumers. This way, the toast can be shown when no other toast is visible.
-    
-    /* const { toastState } = this.props
-    if (this.state.offline && !toastState.isToastVisible) {
-      this.props.showToast(this.toastConfig)
+
+    /* const { toastState } = props
+    if (offline && !toastState.isToastVisible) {
+      props.showToast(toastConfig)
     } else if (
-      !this.state.offline &&
+      !offline &&
       toastState.isToastVisible &&
       toastState.currentToast.message === this.toastConfig.message
     ) {
-      this.props.hideToast()
+      props.hideToast()
     }*/
 
-    if (this.state.offline) {
-      this.props.showToast(this.toastConfig)
-    } else if (prevState.offline && !this.state.offline) {
-      this.props.hideToast()
+    if (offline) {
+      props.showToast(toastConfig)
+    } else {
+      props.hideToast()
     }
-  }
+  }, [offline])
 
-  render() {
-    return null
-  }
+  return null
+}
+
+NetworkStatusToast.propTypes = {
+  hideToast: PropTypes.func.isRequired,
+  intl: intlShape.isRequired,
+  showToast: PropTypes.func.isRequired,
+  // TODO: Same about toastState
+  // toastState: PropTypes.object.isRequired,
 }
 
 export default compose(
