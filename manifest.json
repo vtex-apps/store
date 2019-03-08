@@ -14,7 +14,8 @@
     "postreleasy": "vtex publish --verbose"
   },
   "peerDependencies": {
-    "vtex.store-sitemap": "1.x"
+    "vtex.store-sitemap": "1.x",
+    "vtex.request-capture": "1.x"
   },
   "dependencies": {
     "vtex.store-graphql": "2.x",
