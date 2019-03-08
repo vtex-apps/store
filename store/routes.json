@@ -28,8 +28,5 @@
   },
   "store.search#subcategory": {
     "path": "/:department/:category/:subcategory"
-  },
-  "store.order-placed": {
-    "path": "/checkout/orderPlaced"
   }
 }

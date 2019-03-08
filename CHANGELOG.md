@@ -7,7 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.7.1] - 2019-03-08
+### Removed
+- Remove `order-placed` app because isn't work properly with pixel archtecture.
+
 ## [2.7.0] - 2019-03-08
+### Added
+- Add `vtex.request-capture` and `vtex.store-sitemap` as a peer dependency. 
 
 ## [2.6.0] - 2019-03-01
 

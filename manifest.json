@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "store",
-  "version": "2.7.0",
+  "version": "2.7.1",
   "title": "VTEX Store",
   "description": "The VTEX basic store.",
   "builders": {
@@ -32,7 +32,6 @@
     "vtex.login": "2.x",
     "vtex.my-account": "1.x",
     "vtex.rebuy": "1.x",
-    "vtex.order-placed": "1.x",
     "vtex.pixel-manager": "0.x"
   },
   "settingsSchema": {
