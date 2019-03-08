@@ -1,6 +1,6 @@
 # VTEX Store
 
-VTEX IO Store Framework
+Framework that is used by all ecommerce stores build on VTEX IO.
 
 ## Description
 
