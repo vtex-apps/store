@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "store",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "title": "VTEX Store",
   "description": "The VTEX basic store.",
   "builders": {
@@ -12,6 +12,10 @@
   },
   "scripts": {
     "postreleasy": "vtex publish --verbose"
+  },
+  "peerDependencies": {
+    "vtex.store-sitemap": "1.x",
+    "vtex.request-capture": "1.x"
   },
   "dependencies": {
     "vtex.store-graphql": "2.x",
