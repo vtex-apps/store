@@ -1,4 +1,5 @@
 {
   "editor.product-search.title": "Contexto de búsqueda de productos",
-  "editor.product-search.maxItemsPerPage": "Número máximo de elementos por página"
+  "editor.product-search.maxItemsPerPage": "Número máximo de elementos por página",
+  "store.network-status.offline": "Sin conexión a internet."
 }

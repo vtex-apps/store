@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.7.2] - 2019-03-11
+### Added
+- Added the `NetworkStatusToast` component to the store.
+
 ## [2.7.1] - 2019-03-08
 ### Removed
 - Remove `order-placed` app because isn't work properly with pixel archtecture.
@@ -29,7 +33,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Add updateOrderFormCheckin mutation to OrderFormProvider
 
 ## [2.5.6] - 2019-02-26
-
 ### Removed
 
 - Removed address-locator dependency.
