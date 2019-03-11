@@ -6,7 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-
+### Fixed
+- Add `vtex.store-components` as a dependency. 
+  
 ## [2.7.2] - 2019-03-11
 ### Added
 - Added the `NetworkStatusToast` component to the store.

@@ -22,6 +22,7 @@
     "vtex.store-resources": "0.x",
     "vtex.store-header": "2.x",
     "vtex.store-footer": "2.x",
+    "vtex.store-components": "3.x",
     "vtex.pwa-graphql": "0.x",
     "vtex.styleguide": "9.x",
     "vtex.carousel": "2.x",
