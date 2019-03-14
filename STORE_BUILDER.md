@@ -2,7 +2,7 @@
 
 VTEX IO created a powerful way to configure the behavior [React](https://reactjs.org/) components yielding the basic building *blocks* for a web app.
 IO **store builder** is a opinionated way to use IO capabilities to quickly build store components that can be reused
-across VTEX stores and interact seamlessly with it's APIs and existing components.
+across VTEX stores and interact seamlessly with its APIs and existing components.
 
 **Blocks** are instances of configured React components that follow a defined contract - or VTEX IO *interface*.
 Blocks can be shared between apps and can contain other blocks. They can be used to create simple widgets 
@@ -11,7 +11,7 @@ like buttons and forms, ready to use features like a review system or whole web 
 To create web pages, a block must be acessible via a **route**. Routes associate blocks with paths that 
 can be used to match URLS. Blocks that are bound to routes create **templates** in VTEX IO Content Management System (CMS).
 
-Apps can also insert it's blocks on specific page components as soon as the app is installed, via **plugins**.
+Apps can also insert its blocks on specific page components as soon as the app is installed, via **plugins**.
 Plugins provide an easy way to add specific functionality in a plug and play fashion to any store - 
 e.g. Visa Checkout button on the shopping cart, 360º image on the product galery.
 
@@ -20,12 +20,12 @@ which blocks must implement. **Interfaces** are contracts that define the block 
 it may contain, among other constraints.
 
 The store builder validates and exports blocks, routes, interfaces and plugins defined in the app.
-This allows the admin CMS and the store to use them. The configuration files which declare those
+This allows the admin CMS and the store to use them. The configuration files which declares those
 components must be in the `store/` folder on the root of the app.
 
 ## Store Interface Structure
 [TODO]
-Explain Store interface structure, how it make stores "compatible" and it's components reusable.
+Explain Store interface structure, how it make stores "compatible" and its components reusable.
 
 ## Recipes
 [TODO]
@@ -57,9 +57,27 @@ Blocks are be declared in the `blocks.json` configuration file. The file has the
 
 #### `block_identifier`
 
-A block identifier should be the identifier of the interfaces it implements optionaly followed by a `#` and a label.
-If the block identifier doesn't contain the `#label` it will be the default block.
-Block identifiers must be unique inside an app.
+The block identifier is a string that uniquely identifies the declared block within the app.
+It is composed by the identifier of the interface it extends, optionally followed by `#` and
+a label that only contain letters, digits and underscores.
+
+**Default blocks** are the ones whose identifiers don't contain the `#label` as suffix.
+
+`block_identifier = extended_interface_identifier[#block_label]`
+
+For instance, if a block with label `details` extends the interface `store.product`, then its 
+identifier will be `store.product#details`. The default block for any interface always have 
+the same name of the implemented interface.
+
+##### Ambiguity
+
+Since block and interface identifiers are unique only inside their app, there could be ambiguity
+when referencing identifiers declared on dependencies. If that's the case and the ambiguous block/interface 
+app was published by `vendor` with name `app_name`, then its name must be prefixed with `vendor.app_name:`
+to remove any ambiguity.
+
+**Warning**: the prefix does not alter the block/interface identifier, it is just a hint for the builder 
+to determine the source of the extended interface.
 
 #### `blocks`
 
@@ -96,7 +114,7 @@ Interfaces are be declared in the `interfaces.json` configuration file. The file
 
 ```
 {
-    interface_name : {
+    interface_identifier : {
         component: string | null
         context: string | null
         allowed: string[]
@@ -113,17 +131,26 @@ Interfaces are be declared in the `interfaces.json` configuration file. The file
 }
 ```
 
-#### `interface_name`
-The interface name (`interface_name`) is a string that uniquely identifies the declared interface within the app.
+#### `interface_identifier`
 
-If the interface app was published by `vendor` with name `app_name`, then the interface indentifier is `vendor.app_name:interface_name`.
-When there is no ambiguity, the interface may be only by its name. 
+The interface identifier is a string that uniquely identifies the declared interface within the app.
+It is composed by a name which only contain letters, digits and underscores. If the interface extends 
+another one, its name must contain the identifier of the extended interface plus a dot (`.`) as prefix.
 
-If the interface is not extending any existing interface, then its name must only contain letters, digits and underscores.
+`interface_identifier = [extended_interface_name.]interface_name`
 
-If the interface extends another interface, then its name should be the extended interface identifier 
-followed by a dot (`.`) followed by name that only contain letters, digits and underscores.
+For instance, if a interface with label `details` extends `store.product`, then its identifier
+will be `store.product.details`.
 
+##### Ambiguity
+
+Since block and interface identifiers are unique only inside their app, there could be ambiguity
+when referencing identifiers declared on dependencies. If that's the case and the ambiguous block/interface 
+app was published by `vendor` with name `app_name`, then its name must be prefixed with `vendor.app_name:`
+to remove any ambiguity.
+
+**Warning**: the prefix does not alter the block/interface identifier, it is just a hint for the builder 
+to determine the source of the extended interface.
 
 #### `component`
 
@@ -228,7 +255,7 @@ An identifier of a declared block.
 
 #### `path`
 String with the relative path to access the template.
-A route will be accessed if it's path matches the current URL.
+A route will be accessed if its path matches the current URL.
 
 To get values from the URL, one may insert parameters on the path.
 Parameters can have different behaviors dependeing on their prefix:
@@ -257,7 +284,7 @@ Routes are be declared in the `plugins.json` configuration file. The file has th
 #### `selector`
 A selector is a string that has a list of interface identifiers separated by spaces and `>`.
 
-For instance, a plugin with `"int_1 > int_2 > int_3"` as selector will be insert it's block anywhere in the interface tree 
+For instance, a plugin with `"int_1 > int_2 > int_3"` as selector will be insert its block anywhere in the interface tree 
 where `int_3` is direct child of `int_2` and `int_2` is direct child of `int_1`.
 
 #### `block_identifier`
