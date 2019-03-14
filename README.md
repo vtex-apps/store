@@ -15,3 +15,6 @@ VTEX IO Store Framework
 - Internal Site Search: `internalSiteSearchView` event.
 
 - Other: `otherView` event.
+
+## Store builder
+Please refer to [Store builder](./STORE_BUILDER.md)
