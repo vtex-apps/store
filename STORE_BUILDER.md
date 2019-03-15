@@ -1,15 +1,22 @@
 # Store Builder
 
 VTEX IO created a powerful way to configure the behavior [React](https://reactjs.org/) components yielding the basic building *blocks* for a web app.
-IO **store builder** is a opinionated way to use IO capabilities to quickly build store components that can be reused
-across VTEX stores and interact seamlessly with its APIs and existing components.
 
-**Blocks** are instances of configured React components that follow a defined contract - or VTEX IO *interface*.
+IO **store builder** is a opinionated way to use IO capabilities to quickly build store components that can be reused
+across ecommerce stores and interact seamlessly with its APIs and existing components.
+
+## Overview 
+
+The Store builder allows you to extend existing blocks, like the ones provided by the Store Framework, allowing them to replace the blocks they extend via the VTEX IO Content Management System (CMS). They also allow you to build new blocks that provide functionality specific to your business needs and, then, create templates to insert those new blocks in your clients' ecommerce store while still benefiting from the continuous progress made by the native store components and it's extensions on the other parts of your store.
+
+## Blocks Language
+
+Blocks are instances of configured React components that follow a defined contract - or *interface*.
 Blocks can be shared between apps and can contain other blocks. They can be used to create simple widgets 
 like buttons and forms, ready to use features like a review system or whole web pages.
 
-To create web pages, a block must be acessible via a **route**. Routes associate blocks with paths that 
-can be used to match URLS. Blocks that are bound to routes create **templates** in VTEX IO Content Management System (CMS).
+To create web pages - or *templates*, a block must be acessible by a **route**. Routes associate blocks with paths that 
+can be used to match URLS. These **templates** are configurable in VTEX IO CMS.
 
 Apps can also insert its blocks on specific page components as soon as the app is installed, via **plugins**.
 Plugins provide an easy way to add specific functionality in a plug and play fashion to any store - 
@@ -21,7 +28,8 @@ it may contain, among other constraints.
 
 The store builder validates and exports blocks, routes, interfaces and plugins defined in the app.
 This allows the admin CMS and the store to use them. The configuration files which declares those
-components must be in the `store/` folder on the root of the app.
+components must be in the `store/` folder on the root of the app. 
+The following sections we detail more about this concepts. 
 
 ## Store Interface Structure
 [TODO]
