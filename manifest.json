@@ -33,6 +33,7 @@
     "vtex.login": "2.x",
     "vtex.my-account": "1.x",
     "vtex.rebuy": "1.x",
+    "vtex.order-placed": "1.x",
     "vtex.pixel-manager": "0.x"
   },
   "settingsSchema": {
