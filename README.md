@@ -2,6 +2,20 @@
 
 Framework that is used by all ecommerce stores build on VTEX IO.
 
+## Table of Contents
+
+- [VTEX Store Framework](#vtex-store-framework)
+  - [Table of Contents](#table-of-contents)
+  - [Description](#description)
+  - [Release schedule](#release-schedule)
+  - [Store Builder](#store-builder)
+    - [Overview](#overview)
+    - [Blocks Language](#blocks-language)
+    - [Interface Structure](#interface-structure)
+    - [Recipes](#recipes)
+  - [Blocks Reference](#blocks-reference)
+  - [Pixel Architecture](#pixel-architecture)
+
 ## Description
 
 Store Framework is responsible for defining the basic structure of any ecommerce store of the platform. With this app, we want to provide an abstraction for our clients and partners not worry about SEO and fetch basic data from VTEX. Any account has this app installed.
@@ -12,20 +26,6 @@ This project has the following capabilities:
 - Fetch product and products search data from VTEX APIs 
 - Dispatch view events to analytics tools. 
 - Define the necessary interfaces and routes of the store.
-
-## Table of Contents
-
-- [VTEX Store Framework](#vtex-store-framework)
-  - [Description](#description)
-  - [Table of Contents](#table-of-contents)
-  - [Release schedule](#release-schedule)
-  - [Store Builder](#store-builder)
-    - [Overview](#overview)
-    - [Blocks Language](#blocks-language)
-    - [Interface Structure](#interface-structure)
-    - [Recipes](#recipes)
-  - [Blocks Reference](#blocks-reference)
-  - [Pixel Architecture](#pixel-architecture)
 
 ## Release schedule
 
