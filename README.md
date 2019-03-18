@@ -13,6 +13,20 @@ This project has the following capabilities:
 - Dispatch view events to analytics tools. 
 - Define the necessary interfaces and routes of the store.
 
+## Table of Contents
+
+- [VTEX Store Framework](#vtex-store-framework)
+  - [Description](#description)
+  - [Table of Contents](#table-of-contents)
+  - [Release schedule](#release-schedule)
+  - [Store Builder](#store-builder)
+    - [Overview](#overview)
+    - [Blocks Language](#blocks-language)
+    - [Interface Structure](#interface-structure)
+    - [Recipes](#recipes)
+  - [Blocks Reference](#blocks-reference)
+  - [Pixel Architecture](#pixel-architecture)
+
 ## Release schedule
 
 | Release |       Status        | Initial Release | Maintenance LTS Start | End-of-life | Store Compatibility |
@@ -22,7 +36,57 @@ This project has the following capabilities:
 
 See our [LTS policy](https://github.com/vtex-apps/awesome-io#lts-policy) for more information.
 
-## Events dispatched to the Pixel Component
+## Store Builder
+
+VTEX IO created a powerful way to configure the behavior [React](https://reactjs.org/) components yielding the basic building *blocks* for a web app.
+
+IO **store builder** is a opinionated way to use IO capabilities to quickly build store components that can be reused
+across ecommerce stores and interact seamlessly with its APIs and existing components.
+
+### Overview 
+
+The Store builder allows you to extend existing blocks, like the ones provided by the Store Framework, allowing them to replace the blocks they extend via the VTEX IO Content Management System (CMS). They also allow you to build new blocks that provide functionality specific to your business needs and, then, create templates to insert those new blocks in your clients' ecommerce store while still benefiting from the continuous progress made by the native store components and it's extensions on the other parts of your store.
+
+### Blocks Language
+
+Blocks are instances of configured React components that follow a defined contract - or *interface*.
+Blocks can be shared between apps and can contain other blocks. They can be used to create simple widgets 
+like buttons and forms, ready to use features like a review system or whole web pages.
+
+To create web pages - or *templates*, a block must be acessible by a **route**. Routes associate blocks with paths that 
+can be used to match URLS. These **templates** are configurable in VTEX IO CMS.
+
+Apps can also insert its blocks on specific page components as soon as the app is installed, via **plugins**.
+Plugins provide an easy way to add specific functionality in a plug and play fashion to any store - 
+e.g. Visa Checkout button on the shopping cart, 360º image on the product galery.
+
+To ensure that blocks would be reusable across stores, any VTEX IO store contain a set of *interfaces* 
+which blocks must implement. **Interfaces** are contracts that define the block component and which interfaces 
+it may contain, among other constraints.
+
+The store builder validates and exports blocks, routes, interfaces and plugins defined in the app.
+This allows the admin CMS and the store to use them. The configuration files which declares those
+components must be in the `store/` folder on the root of the app. 
+The following sections we detail more about this concepts. 
+
+### Interface Structure
+[TODO]
+Explain interface structure, how it make stores "compatible" and its components reusable.
+
+### Recipes
+[TODO]
+
+How to extend VTEX Store interfaces?
+
+How to create a block / interface / route / plugin?
+
+Examples, examples, examples...
+
+## Blocks Reference
+
+Please refer to [Blocks](./BLOCKS.md)
+
+## Pixel Architecture
 
 - Home: `homeView` event.
 
@@ -36,5 +100,3 @@ See our [LTS policy](https://github.com/vtex-apps/awesome-io#lts-policy) for mor
 
 - Other: `otherView` event.
 
-## Store builder
-Please refer to [Store builder](./STORE_BUILDER.md)

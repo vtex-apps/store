@@ -1,53 +1,17 @@
-# Store Builder
+# Reference
 
-VTEX IO created a powerful way to configure the behavior [React](https://reactjs.org/) components yielding the basic building *blocks* for a web app.
+Here we give move details about how the language is structured.
 
-IO **store builder** is a opinionated way to use IO capabilities to quickly build store components that can be reused
-across ecommerce stores and interact seamlessly with its APIs and existing components.
+## Table of Contents
 
-## Overview 
-
-The Store builder allows you to extend existing blocks, like the ones provided by the Store Framework, allowing them to replace the blocks they extend via the VTEX IO Content Management System (CMS). They also allow you to build new blocks that provide functionality specific to your business needs and, then, create templates to insert those new blocks in your clients' ecommerce store while still benefiting from the continuous progress made by the native store components and it's extensions on the other parts of your store.
-
-## Blocks Language
-
-Blocks are instances of configured React components that follow a defined contract - or *interface*.
-Blocks can be shared between apps and can contain other blocks. They can be used to create simple widgets 
-like buttons and forms, ready to use features like a review system or whole web pages.
-
-To create web pages - or *templates*, a block must be acessible by a **route**. Routes associate blocks with paths that 
-can be used to match URLS. These **templates** are configurable in VTEX IO CMS.
-
-Apps can also insert its blocks on specific page components as soon as the app is installed, via **plugins**.
-Plugins provide an easy way to add specific functionality in a plug and play fashion to any store - 
-e.g. Visa Checkout button on the shopping cart, 360º image on the product galery.
-
-To ensure that blocks would be reusable across stores, any VTEX IO store contain a set of *interfaces* 
-which blocks must implement. **Interfaces** are contracts that define the block component and which interfaces 
-it may contain, among other constraints.
-
-The store builder validates and exports blocks, routes, interfaces and plugins defined in the app.
-This allows the admin CMS and the store to use them. The configuration files which declares those
-components must be in the `store/` folder on the root of the app. 
-The following sections we detail more about this concepts. 
-
-## Store Interface Structure
-[TODO]
-Explain Store interface structure, how it make stores "compatible" and its components reusable.
-
-## Recipes
-[TODO]
-
-How to extend VTEX Store interfaces?
-
-How to create a block / interface / route / plugin?
-
-Examples, examples, examples...
+- [Blocks](#blocks)
+  - [`block_identifier`](#block_identifier)
+    - [Ambiguity](#ambiguity)
+  - [`blocks`](#`blocks`)
 
 
-## Reference
+## Blocks
 
-### Blocks
 Blocks must always implement one interface by providing props to it and declaring its outer blocks.
 
 Blocks are be declared in the `blocks.json` configuration file. The file has the following structure:
@@ -63,7 +27,7 @@ Blocks are be declared in the `blocks.json` configuration file. The file has the
 }
 ```
 
-#### `block_identifier`
+### `block_identifier`
 
 The block identifier is a string that uniquely identifies the declared block within the app.
 It is composed by the identifier of the interface it extends, optionally followed by `#` and
@@ -77,7 +41,7 @@ For instance, if a block with label `details` extends the interface `store.produ
 identifier will be `store.product#details`. The default block for any interface always have 
 the same name of the implemented interface.
 
-##### Ambiguity
+#### Ambiguity
 
 Since block and interface identifiers are unique only inside their app, there could be ambiguity
 when referencing identifiers declared on dependencies. If that's the case and the ambiguous block/interface 
@@ -87,20 +51,20 @@ to remove any ambiguity.
 **Warning**: the prefix does not alter the block/interface identifier, it is just a hint for the builder 
 to determine the source of the extended interface.
 
-#### `blocks`
+### `blocks`
 
 List of blocks that implements the `allowed` or `required` interfaces.
 If the implemented interface is a `LayoutContainer` the order of the blocks will determine the rendering order.
 
-#### `props`
+### `props`
 
 Configuration of the block. `props` should only contain layout configurations, must not contain content.
 
-#### `parent`
+### `parent`
+
 Declares which blocks will configure the outer interfces (`before`, `after` & `around`)
 
-
-### Interfaces
+## Interfaces
 
 Interfaces can extend behavior from a single existing interface, through a inheritance-like process.
 
@@ -114,9 +78,7 @@ If the builder cannot find a default block, it will try to generate it.
 If the interface does not reference any abstract interfaces in its outer interfaces, the builder will be able to generate a default block.
 If the builder cannot find a default block or generate it, it will throw an error.
 
-
 Routes bind paths to blocks, creating templates. Templates are top level blocks that can be used as web pages for the store.
-
 
 Interfaces are be declared in the `interfaces.json` configuration file. The file has the following structure:
 
@@ -139,7 +101,7 @@ Interfaces are be declared in the `interfaces.json` configuration file. The file
 }
 ```
 
-#### `interface_identifier`
+### `interface_identifier`
 
 The interface identifier is a string that uniquely identifies the declared interface within the app.
 It is composed by a name which only contain letters, digits and underscores. If the interface extends 
@@ -150,7 +112,7 @@ another one, its name must contain the identifier of the extended interface plus
 For instance, if a interface with label `details` extends `store.product`, then its identifier
 will be `store.product.details`.
 
-##### Ambiguity
+#### Ambiguity
 
 Since block and interface identifiers are unique only inside their app, there could be ambiguity
 when referencing identifiers declared on dependencies. If that's the case and the ambiguous block/interface 
@@ -160,34 +122,34 @@ to remove any ambiguity.
 **Warning**: the prefix does not alter the block/interface identifier, it is just a hint for the builder 
 to determine the source of the extended interface.
 
-#### `component`
+### `component`
 
 Interfaces must always declare a component. As a syntax sugar if you omit the `component` 
 property - or if you set it as `null` - in interface definition, the component will be `LayoutContainer`. 
 
 If the interface is abstract, it must declare `'*'` as its component:.
 
-#### `context`
+### `context`
 
 Component that should provide a [React Context](https://reactjs.org/docs/context.html) to the Block.
 Mostly used by templates to get specific data for the route (e.g. product or category data).
 
-#### `required`
+### `required`
 
 Array of interface names that specifies which interfaces are **required** to be included 
 inside the `blocks` field of any implementing block.
 
-#### `allowed`
+### `allowed`
 
 Array of interface names that specifies which interfaces are **allowed** to be included 
 inside the `blocks` field of any implementing block.
 
-#### `ssr`
+### `ssr`
 
 Boolean that determines if any implementing block should be rendered on the server side or not.
 Defaults to `true`.
 
-#### `extensible`
+### `extensible`
 
 Enum that specifies who can extend the interface. 
 The allowed values are `"vtex"`, `"gocommerce"`, `"enterprise"` or `"public"`.
@@ -198,7 +160,7 @@ The allowed values are `"vtex"`, `"gocommerce"`, `"enterprise"` or `"public"`.
 
 Value defaults to `"enterprise"`.
 
-#### `preview`
+### `preview`
 
 Interfaces with `preview` property set have reserved screen space before completely loaded.
 This avoids elements popping and changing places while the screen is not completely rendered.
@@ -216,11 +178,13 @@ interface Preview {
 `height` and `width` properties represents the dimensions in pixels and 
 `type` enum determines the preview component that will be used.
 
-#### `allowConditions`
+### `allowConditions`
+
 If a template implements the interface, this boolean defines if the route can have conditions or not.
 Defaults to `true`.
 
-#### `before`, `after` and `around`  (Outer Interfaces)
+### `before`, `after` and `around`  (Outer Interfaces)
+
 List of interfaces that should come `before`, `after` and `around` the defined interface.
 
 **Warning**: this is a advanced feature and should not be regularly used.
@@ -244,7 +208,8 @@ If the interface declares `k` elements around it, `n` before and `m` after, they
 </Around_1>
 ```
 
-### Route
+## Route
+
 Routes are be declared in the `interfaces.json` configuration file. The file has the following structure:
 
 routes.json
@@ -258,10 +223,12 @@ routes.json
 }
 ```
 
-#### `block_identifier`
+### `block_identifier`
+
 An identifier of a declared block.
 
-#### `path`
+### `path`
+
 String with the relative path to access the template.
 A route will be accessed if its path matches the current URL.
 
@@ -276,7 +243,8 @@ Parameters can have different behaviors dependeing on their prefix:
 Friendlier path to access same resources.
 Perguntar Gimenes como funciona melhor.
 
-### Plugins
+## Plugins
+
 Plugins are mappings between a selector and a block.
 
 Selectors are strings that specify positions in the interface tree, allowing the store builder to determine where to insert the plugin block.
@@ -289,11 +257,13 @@ Routes are be declared in the `plugins.json` configuration file. The file has th
 }
 ```
 
-#### `selector`
+### `selector`
+
 A selector is a string that has a list of interface identifiers separated by spaces and `>`.
 
 For instance, a plugin with `"int_1 > int_2 > int_3"` as selector will be insert its block anywhere in the interface tree 
 where `int_3` is direct child of `int_2` and `int_2` is direct child of `int_1`.
 
-#### `block_identifier`
+### `block_identifier`
+
 An identifier of a declared block.
