@@ -76,6 +76,11 @@
       "login-content"
     ]
   },
+  "store.orderplaced": {
+    "required": [
+      "order-placed"
+    ]
+  },
   "storeWrapper": {
     "allowed": [
       "highlight-overlay"

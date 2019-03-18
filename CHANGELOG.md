@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.8.0] - 2019-03-18
+### Changed
+- `vtex.orderplaced` is back!
+
 ## [2.7.3] - 2019-03-11
 ### Fixed
 - Add `vtex.store-components` as a dependency. 
