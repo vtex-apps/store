@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.9.1] - 2019-03-22
+### Changed
+- Remove iconpack.
+
 ## [2.9.0] - 2019-03-22
 ### Added
 - Add the toast persistence logic as we know if there is a toast visible.

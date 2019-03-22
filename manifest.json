@@ -1,14 +1,13 @@
 {
   "vendor": "vtex",
   "name": "store",
-  "version": "2.9.0",
+  "version": "2.9.1",
   "title": "VTEX Store",
   "description": "The VTEX basic store.",
   "builders": {
     "store": "0.x",
     "messages": "1.x",
-    "react": "3.x",
-    "styles": "1.x"
+    "react": "3.x"
   },
   "scripts": {
     "postreleasy": "vtex publish --verbose"
