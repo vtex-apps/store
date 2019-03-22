@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types'
-import { compose, pathOr } from 'ramda'
-import React, { useState, useEffect } from 'react'
+import { path, pathOr } from 'ramda'
+import { useContext, useEffect, useState } from 'react'
 import { injectIntl, intlShape } from 'react-intl'
-import { withToast } from 'vtex.styleguide'
+import { ToastContext } from 'vtex.styleguide'
 
 function NetworkStatusToast(props) {
   const toastConfig = {
@@ -14,6 +14,8 @@ function NetworkStatusToast(props) {
   }
 
   const [offline, setOffline] = useState(false)
+  const { showToast, hideToast, toastState } = useContext(ToastContext)
+
   const updateStatus = () => {
     if (navigator) {
       setOffline(!pathOr(true, ['onLine'], navigator))
@@ -35,26 +37,16 @@ function NetworkStatusToast(props) {
   }, [])
 
   useEffect(() => {
-    // TODO: This logic will be possible when the ToastProvider provide the `toastState`
-    // prop to it's Consumers. This way, the toast can be shown when no other toast is visible.
-
-    /* const { toastState } = props
-    if (offline && !toastState.isToastVisible) {
-      props.showToast(toastConfig)
+    if (offline && !toastState.currentToast) {
+      showToast(toastConfig)
     } else if (
       !offline &&
       toastState.isToastVisible &&
-      toastState.currentToast.message === this.toastConfig.message
+      path(['currentToast', 'message'], toastState) === toastConfig.message
     ) {
-      props.hideToast()
-    }*/
-
-    if (offline) {
-      props.showToast(toastConfig)
-    } else {
-      props.hideToast()
+      hideToast()
     }
-  }, [offline])
+  }, [offline, toastState])
 
   return null
 }
@@ -63,11 +55,7 @@ NetworkStatusToast.propTypes = {
   hideToast: PropTypes.func.isRequired,
   intl: intlShape.isRequired,
   showToast: PropTypes.func.isRequired,
-  // TODO: Same about toastState
-  // toastState: PropTypes.object.isRequired,
+  toastState: PropTypes.object.isRequired,
 }
 
-export default compose(
-  withToast,
-  injectIntl
-)(NetworkStatusToast)
+export default injectIntl(NetworkStatusToast)
