@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Fixed
-- Proptypes errors.
+- Toast proptypes warnings.
 
 ## [2.9.3] - 2019-03-26
 ### Fixed
