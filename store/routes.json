@@ -29,6 +29,9 @@
   "store.search#subcategory": {
     "path": "/:department/:category/:subcategory"
   },
+  "store.search#custom": {
+    "path": "/*searchParams"
+  },
   "store.orderplaced": {
     "path": "/checkout/orderPlaced"
   }
