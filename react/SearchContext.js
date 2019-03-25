@@ -32,8 +32,6 @@ class SearchContext extends Component {
     queryField: PropTypes.string,
     /** Custom query `map` param */
     mapField: PropTypes.string,
-    /** Custom query `rest` param */
-    restField: PropTypes.string,
     /** Custom query `orderBy` param */
     orderByField: PropTypes.string,
     /** Current extension point name */
@@ -85,13 +83,11 @@ class SearchContext extends Component {
       maxItemsPerPage,
       queryField,
       mapField,
-      restField,
       orderByField,
       query: {
         order: orderBy = orderByField || SORT_OPTIONS[0].value,
         page: pageQuery,
         map: mapQuery,
-        rest = '',
         priceRange,
       },
       runtime: { page: runtimePage },
@@ -113,7 +109,6 @@ class SearchContext extends Component {
     const defaultSearch = {
       query,
       map,
-      rest,
       orderBy,
       priceRange,
       from,
@@ -124,7 +119,6 @@ class SearchContext extends Component {
     const customSearch = {
       query: queryField,
       map: mapField,
-      rest: restField,
       orderBy,
       priceRange,
       from,
@@ -152,7 +146,6 @@ class SearchContext extends Component {
             searchContext: runtimePage,
             pagesPath: nextTreePath,
             map,
-            rest,
             orderBy,
             priceRange,
             page,
