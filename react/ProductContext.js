@@ -28,10 +28,7 @@ class ProductContext extends Component {
 
   get product() {
     const {
-      catalog: {
-        product: catalogProduct,
-        loading: catalogLoading = true,
-      } = {},
+      catalog: { product: catalogProduct, loading: catalogLoading = true } = {},
       recommendationsAndBenefits: {
         product: recAndBenefitsProduct,
         loading: recAndBenefitsLoading = true,
@@ -39,21 +36,18 @@ class ProductContext extends Component {
     } = this.props
 
     const catalogInfo = !catalogLoading && catalogProduct
-    const recAndBenefitsInfo = catalogInfo && !recAndBenefitsLoading && recAndBenefitsProduct
+    const recAndBenefitsInfo =
+      catalogInfo && !recAndBenefitsLoading && recAndBenefitsProduct
     const product = {
       ...catalogInfo,
       ...recAndBenefitsInfo,
     }
-    return isEmpty(product)
-      ? null
-      : product
+    return isEmpty(product) ? null : product
   }
 
   get loading() {
     const {
-      catalog: {
-        loading: catalogLoading = true,
-      } = {},
+      catalog: { loading: catalogLoading = true } = {},
       recommendationsAndBenefits: {
         loading: recAndBenefitsLoading = true,
       } = {},
@@ -77,7 +71,10 @@ class ProductContext extends Component {
   checkNotFoundProduct = () => {
     const loading = this.loading
     const product = this.product
-    const { params: { slug }, runtime } = this.props
+    const {
+      params: { slug },
+      runtime,
+    } = this.props
     if (!product && !loading) {
       runtime.navigate({
         page: 'store.search',
@@ -100,11 +97,9 @@ class ProductContext extends Component {
       fragment: productPreviewFragment,
     })
     const loadedProduct = this.product
-    const product = loadedProduct || (
-      productPreview && productPreview.items
-        ? productPreview
-        : null
-    )
+    const product =
+      loadedProduct ||
+      (productPreview && productPreview.items ? productPreview : null)
 
     const loading = this.loading
 
@@ -124,14 +119,15 @@ class ProductContext extends Component {
      * The breadcrumb component is being used in multiple pages,
      * therefore we need to adapt the data to its needs instead of
      * making the component do the changes itself.
-    **/
+     **/
     const breadcrumbsProps = {
       term: slug,
       categories: product ? product.categories : null,
     }
 
-    return (
-      React.cloneElement(this.props.children, Object.assign(
+    return React.cloneElement(
+      this.props.children,
+      Object.assign(
         {},
         {
           productQuery,
@@ -140,7 +136,7 @@ class ProductContext extends Component {
         },
         breadcrumbsProps,
         props
-      ))
+      )
     )
   }
 }

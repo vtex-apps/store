@@ -1,11 +1,11 @@
-import PropTypes from "prop-types"
-import React, { Component, Fragment } from "react"
-import { last, head } from "ramda"
-import { Helmet, withRuntimeContext } from "vtex.render-runtime"
+import PropTypes from 'prop-types'
+import React, { Component, Fragment } from 'react'
+import { last, head } from 'ramda'
+import { Helmet, withRuntimeContext } from 'vtex.render-runtime'
 
-import StructuredData from "./components/StructuredData"
+import StructuredData from './components/StructuredData'
 
-import DataLayerApolloWrapper from "./components/DataLayerApolloWrapper"
+import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
 
 class ProductWrapper extends Component {
   static propTypes = {
@@ -14,19 +14,19 @@ class ProductWrapper extends Component {
     children: PropTypes.node,
     runtime: PropTypes.object,
     /* URL query params */
-    query: PropTypes.object
-  };
+    query: PropTypes.object,
+  }
 
   stripCategory(category) {
-    return category && category.replace(/^\/|\/$/g, "");
+    return category && category.replace(/^\/|\/$/g, '')
   }
 
   getData = () => {
     const {
       productQuery: { product },
       runtime: { account },
-      query
-    } = this.props;
+      query,
+    } = this.props
 
     const {
       titleTag,
@@ -36,73 +36,73 @@ class ProductWrapper extends Component {
       categories,
       productId,
       productName,
-      items
-    } = product || {};
+      items,
+    } = product || {}
 
     if (!product) {
-      return [];
+      return []
     }
 
     const pageInfo = {
-      event: "pageInfo",
-      eventType: "productView",
+      event: 'pageInfo',
+      eventType: 'productView',
       accountName: account,
-      pageCategory: "Product",
-      pageDepartment: categories ? this.stripCategory(last(categories)) : "",
+      pageCategory: 'Product',
+      pageDepartment: categories ? this.stripCategory(last(categories)) : '',
       pageFacets: [],
       pageTitle: titleTag,
       pageUrl: window.location.href,
       productBrandName: brand,
       productCategoryId: Number(categoryId),
       productCategoryName: categories
-        ? last(this.stripCategory(head(categories)).split("/"))
-        : "",
+        ? last(this.stripCategory(head(categories)).split('/'))
+        : '',
       productDepartmentId: categoriesIds
         ? Number(this.stripCategory(last(categoriesIds)))
-        : "",
+        : '',
       productDepartmentName: categories
         ? this.stripCategory(last(categories))
-        : "",
+        : '',
       productId: productId,
       productName: productName,
       skuStockOutFromProductDetail: [],
-      skuStockOutFromShelf: []
-    };
+      skuStockOutFromShelf: [],
+    }
 
-    const skuId = query.skuId || (items && head(items).itemId);
+    const skuId = query.skuId || (items && head(items).itemId)
 
     const [sku] =
-      (items && items.filter(product => product.itemId === skuId)) || [];
+      (items && items.filter(product => product.itemId === skuId)) || []
 
-    const { ean, referenceId, sellers } = sku || {};
+    const { ean, referenceId, sellers } = sku || {}
 
-    pageInfo.productEans = [ean];
+    pageInfo.productEans = [ean]
 
     if (referenceId && referenceId.length >= 0) {
-      const [{ Value: refIdValue }] = referenceId;
+      const [{ Value: refIdValue }] = referenceId
 
-      pageInfo.productReferenceId = refIdValue;
+      pageInfo.productReferenceId = refIdValue
     }
 
     if (sellers && sellers.length >= 0) {
-      const [{ commertialOffer, sellerId }] = sellers;
+      const [{ commertialOffer, sellerId }] = sellers
 
-      pageInfo.productListPriceFrom = `${commertialOffer.ListPrice}`;
-      pageInfo.productListPriceTo = `${commertialOffer.ListPrice}`;
-      pageInfo.productPriceFrom = `${commertialOffer.Price}`;
-      pageInfo.productPriceTo = `${commertialOffer.Price}`;
-      pageInfo.sellerId = `${sellerId}`;
-      pageInfo.sellerIds = `${sellerId}`;
+      pageInfo.productListPriceFrom = `${commertialOffer.ListPrice}`
+      pageInfo.productListPriceTo = `${commertialOffer.ListPrice}`
+      pageInfo.productPriceFrom = `${commertialOffer.Price}`
+      pageInfo.productPriceTo = `${commertialOffer.Price}`
+      pageInfo.sellerId = `${sellerId}`
+      pageInfo.sellerIds = `${sellerId}`
     }
 
     return [
       pageInfo,
       {
-        event: "productView",
-        product
-      }
-    ];
-  };
+        event: 'productView',
+        product,
+      },
+    ]
+  }
 
   render() {
     const {
@@ -111,8 +111,8 @@ class ProductWrapper extends Component {
       productQuery: { product, loading },
       query,
       ...props
-    } = this.props;
-    const { titleTag, metaTagDescription } = product || {};
+    } = this.props
+    const { titleTag, metaTagDescription } = product || {}
 
     return (
       <div className="vtex-product-context-provider">
@@ -123,13 +123,13 @@ class ProductWrapper extends Component {
             {React.cloneElement(this.props.children, {
               productQuery,
               slug,
-              ...props
+              ...props,
             })}
           </DataLayerApolloWrapper>
         </Fragment>
       </div>
-    );
+    )
   }
 }
 
-export default withRuntimeContext(ProductWrapper);
+export default withRuntimeContext(ProductWrapper)

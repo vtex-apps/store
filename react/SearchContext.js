@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { Query } from 'react-apollo'
 import { withRuntimeContext } from 'vtex.render-runtime'
 
-import {search} from 'vtex.store-resources/Queries'
+import { search } from 'vtex.store-resources/Queries'
 import { createInitialMap, SORT_OPTIONS } from './utils/search'
 
 const DEFAULT_PAGE = 1
@@ -103,7 +103,8 @@ class SearchContext extends Component {
     const from = (page - 1) * maxItemsPerPage
     const to = from + maxItemsPerPage - 1
 
-    const includeFacets = (map, query) => !!(map && map.length > 0 && query && query.length > 0)
+    const includeFacets = (map, query) =>
+      !!(map && map.length > 0 && query && query.length > 0)
 
     const query = Object.values(params)
       .filter(s => s.length > 0)
@@ -142,24 +143,22 @@ class SearchContext extends Component {
           const { data } = searchQuery
           const { search } = data || {}
 
-          return (
-            React.cloneElement(this.props.children, {
-              ...props,
-              searchQuery: {
-                ...searchQuery,
-                ...search,
-              },
-              searchContext: runtimePage,
-              pagesPath: nextTreePath,
-              map,
-              rest,
-              orderBy,
-              priceRange,
-              page,
-              from,
-              to,
-            })
-          )
+          return React.cloneElement(this.props.children, {
+            ...props,
+            searchQuery: {
+              ...searchQuery,
+              ...search,
+            },
+            searchContext: runtimePage,
+            pagesPath: nextTreePath,
+            map,
+            rest,
+            orderBy,
+            priceRange,
+            page,
+            from,
+            to,
+          })
         }}
       </Query>
     )
