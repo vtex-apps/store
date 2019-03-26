@@ -1,6 +1,12 @@
 import { path } from 'ramda'
 import React, { Component, Fragment } from 'react'
-import { canUseDOM, ExtensionPoint, Helmet, NoSSR, withRuntimeContext } from 'vtex.render-runtime'
+import {
+  canUseDOM,
+  ExtensionPoint,
+  Helmet,
+  NoSSR,
+  withRuntimeContext,
+} from 'vtex.render-runtime'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { PixelProvider } from 'vtex.pixel-manager/PixelContext'
@@ -24,7 +30,8 @@ const systemToCanonical = ({ page, pages, route, history }) => {
   const { params } = route
   const canonicalRouteTemplate = pages[page].canonical
   const canonicalPath = canonicalPathFromParams(canonicalRouteTemplate, params)
-  const canonicalHost = window.__hostname__ || (window.location && window.location.hostname)
+  const canonicalHost =
+    window.__hostname__ || (window.location && window.location.hostname)
   return {
     canonicalPath,
     canonicalHost,
@@ -76,15 +83,14 @@ class StoreWrapper extends Component {
     }),
   }
 
-  isStorefrontIframe = canUseDOM && window.top !== window.self && window.top.__provideRuntime
+  isStorefrontIframe =
+    canUseDOM && window.top !== window.self && window.top.__provideRuntime
 
   componentDidMount() {
     const {
       runtime: { prefetchDefaultPages },
     } = this.props
-    prefetchDefaultPages([
-      'store.product',
-    ])
+    prefetchDefaultPages(['store.product'])
   }
 
   render() {
@@ -107,9 +113,16 @@ class StoreWrapper extends Component {
       storeName,
       faviconLinks,
     } = settings
-    const { data: { manifest, iOSIcons, splashes, loading, error } = {} } = this.props
+    const {
+      data: { manifest, iOSIcons, splashes, loading, error } = {},
+    } = this.props
     const hasManifest = !loading && manifest && !error
-    const { canonicalHost, canonicalPath } = systemToCanonical({ pages, page, route, history })
+    const { canonicalHost, canonicalPath } = systemToCanonical({
+      pages,
+      page,
+      route,
+      history,
+    })
     replaceHistoryToCanonical({ route, history }, canonicalPath)
 
     window.dataLayer = window.dataLayer || []
@@ -120,50 +133,59 @@ class StoreWrapper extends Component {
           <DataLayerProvider value={{ dataLayer: window.dataLayer }}>
             <PixelManager />
             <PageViewPixel />
-            <Helmet>
-              <title>{titleTag}</title>
-              <meta name="viewport" content={MOBILE_SCALING} />
-              <meta name="description" content={metaTagDescription} />
-              <meta name="keywords" content={metaTagKeywords} />
-              <meta name="copyright" content={storeName} />
-              <meta name="author" content={storeName} />
-              <meta name="country" content={country} />
-              <meta name="language" content={locale} />
-              <meta name="currency" content={currency} />
-              <meta name="robots" content={metaTagRobots || META_ROBOTS} />
-              <meta httpEquiv="Content-Type" content={CONTENT_TYPE} />
-              {faviconLinks && faviconLinks.map(props => <link {...props} />)}
-              {canonicalPath && canonicalHost && (<link rel="canonical" href={`https://${canonicalHost}${canonicalPath}`} />)}
-            </Helmet>
+            <Helmet
+              title={titleTag}
+              meta={[
+                { name: 'viewport', content: MOBILE_SCALING },
+                { name: 'description', content: metaTagDescription },
+                { name: 'keywords', content: metaTagKeywords },
+                { name: 'copyright', content: storeName },
+                { name: 'author', content: storeName },
+                { name: 'country', content: country },
+                { name: 'language', content: locale },
+                { name: 'currency', content: currency },
+                { name: 'robots', content: metaTagRobots || META_ROBOTS },
+                { httpEquiv: 'Content-Type', content: CONTENT_TYPE },
+              ]}
+              link={[
+                ...(faviconLinks || []),
+                canonicalPath &&
+                  canonicalHost && {
+                    rel: 'canonical',
+                    href: `https://${canonicalHost}${canonicalPath}`,
+                  },
+              ].filter(Boolean)}
+            />
             {/* PWA */}
             {hasManifest && (
-              <Helmet>
-                <meta name="theme-color" content={manifest.theme_color} />
-                <link rel="manifest" href="/pwa/manifest.json" />
-                <script
-                  type="text/javascript"
-                  src={`/pwa/workers/register.js${route.path.match(/\?.*/) || ''}`}
-                />
-                {hasManifest &&
-                    iOSIcons.map(icon => (
-                      <link
-                        key={icon.src}
-                        rel="apple-touch-icon"
-                        sizes={icon.sizes}
-                        href={icon.src}
-                      />
-                    ))}
-                <meta name="apple-mobile-web-app-capable" content="yes" />
-                {splashes &&
-                  splashes.map(splash => (
-                    <link
-                      key={splash.src}
-                      href={splash.src}
-                      sizes={splash.sizes}
-                      rel="apple-touch-startup-image"
-                    />
-                  ))}
-              </Helmet>
+              <Helmet
+                meta={[
+                  { name: 'theme-color', content: manifest.theme_color },
+                  { name: 'apple-mobile-web-app-capable', content: 'yes' },
+                ]}
+                script={[
+                  {
+                    type: 'text/javascript',
+                    src: `/pwa/workers/register.js${route.path.match(/\?.*/) ||
+                      ''}`,
+                  },
+                ]}
+                link={[
+                  { rel: 'manifest', href: '/pwa/manifest.json' },
+                  ...(hasManifest
+                    ? iOSIcons.map(icon => ({
+                        rel: 'apple-touch-icon',
+                        sizes: icon.sizes,
+                        href: icon.src,
+                      }))
+                    : []),
+                  ...splashes.map(splash => ({
+                    href: splash.src,
+                    sizes: splash.sizes,
+                    rel: 'apple-touch-startup-image',
+                  })),
+                ].filter(Boolean)}
+              />
             )}
             <ToastProvider positioning="window">
               <NetworkStatusToast />
