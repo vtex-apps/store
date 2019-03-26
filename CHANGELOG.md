@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.9.3] - 2019-03-26
+### Fixed
+- Fix maximum call stack size exceeded error in helmet.
+
 ## [2.9.2] - 2019-03-26
 ### Changed
 - Explicitly allow conditions on `store` interface
