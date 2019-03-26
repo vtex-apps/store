@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.9.2] - 2019-03-26
+### Changed
+- Explicitly allow conditions on `store` interface
+
 ## [2.9.1] - 2019-03-22
 ### Changed
 - Remove iconpack.
@@ -21,8 +25,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [2.7.3] - 2019-03-11
 ### Fixed
-- Add `vtex.store-components` as a dependency. 
-  
+- Add `vtex.store-components` as a dependency.
+
 ## [2.7.2] - 2019-03-11
 ### Added
 - Added the `NetworkStatusToast` component to the store.
@@ -33,7 +37,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [2.7.0] - 2019-03-08
 ### Added
-- Add `vtex.request-capture` and `vtex.store-sitemap` as a peer dependency. 
+- Add `vtex.request-capture` and `vtex.store-sitemap` as a peer dependency.
 
 ## [2.6.0] - 2019-03-01
 
