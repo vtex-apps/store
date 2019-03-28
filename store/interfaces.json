@@ -13,6 +13,7 @@
       "footer"
     ],
     "allowed": [
+      "notification-bar",
       "carousel",
       "shelf",
       "rebuy",
