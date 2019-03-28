@@ -103,7 +103,7 @@ class SearchContext extends Component {
       !!(map && map.length > 0 && query && query.length > 0)
 
     const query = Object.values(params)
-      .filter(s => s.length > 0)
+      .filter(term => term && term.length > 0)
       .join('/')
 
     const defaultSearch = {
@@ -134,15 +134,9 @@ class SearchContext extends Component {
         partialRefetch
       >
         {searchQuery => {
-          const { data } = searchQuery
-          const { search } = data || {}
-
           return React.cloneElement(this.props.children, {
             ...props,
-            searchQuery: {
-              ...searchQuery,
-              ...search,
-            },
+            searchQuery,
             searchContext: runtimePage,
             pagesPath: nextTreePath,
             map,

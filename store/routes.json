@@ -23,14 +23,8 @@
     "path": "/:department/d",
     "canonical": "/:department"
   },
-  "store.search#category": {
-    "path": "/:department/:category"
-  },
-  "store.search#subcategory": {
-    "path": "/:department/:category/:subcategory"
-  },
   "store.search#custom": {
-    "path": "/*searchParams"
+    "path": "/:term/*terms"
   },
   "store.orderplaced": {
     "path": "/checkout/orderPlaced"

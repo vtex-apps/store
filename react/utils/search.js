@@ -1,5 +1,3 @@
-import { identity } from 'ramda'
-
 export const SORT_OPTIONS = [
   {
     value: '',
@@ -36,13 +34,13 @@ export const SORT_OPTIONS = [
 ]
 
 export function createInitialMap(params) {
-  const map = [
-    params.term && 'ft',
-    params.brand && 'b',
-    params.department && 'c',
-    params.category && 'c',
-    params.subcategory && 'c',
-  ]
+  if (params.department) {
+    return 'c'
+  } else if (params.brand) {
+    return 'b'
+  }
 
-  return map.filter(identity).join(',')
+  return ['ft']
+    .concat(params.terms ? params.terms.split('/').map(() => 'ft') : [])
+    .join(',')
 }
