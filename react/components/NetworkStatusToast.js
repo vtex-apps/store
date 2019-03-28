@@ -52,10 +52,7 @@ function NetworkStatusToast(props) {
 }
 
 NetworkStatusToast.propTypes = {
-  hideToast: PropTypes.func.isRequired,
   intl: intlShape.isRequired,
-  showToast: PropTypes.func.isRequired,
-  toastState: PropTypes.object.isRequired,
 }
 
 export default injectIntl(NetworkStatusToast)

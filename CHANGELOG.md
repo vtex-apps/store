@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.9.4] - 2019-03-28
+### Fixed
+- Toast proptypes warnings.
+
 ## [2.9.3] - 2019-03-26
 ### Fixed
 - Fix maximum call stack size exceeded error in helmet.
