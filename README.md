@@ -2,19 +2,19 @@
 
 Framework that is used by all ecommerce stores build on VTEX IO.
 
+⚠️⚠️ **All stores MUST use this app. Using a forked version WILL break your store.** ⚠️⚠️
+
 ## Table of Contents
 
-- [VTEX Store Framework](#vtex-store-framework)
-  - [Table of Contents](#table-of-contents)
-  - [Description](#description)
-  - [Release schedule](#release-schedule)
-  - [Store Builder](#store-builder)
-    - [Overview](#overview)
-    - [Blocks Language](#blocks-language)
-    - [Interface Structure](#interface-structure)
-    - [Recipes](#recipes)
-  - [Blocks Reference](#blocks-reference)
-  - [Pixel Architecture](#pixel-architecture)
+- [Description](#description)
+- [Release schedule](#release-schedule)
+- [Store Builder](#store-builder)
+  - [Overview](#overview)
+  - [Blocks Language](#blocks-language)
+  - [Interface Structure](#interface-structure)
+  - [Recipes](#recipes)
+- [Blocks Reference](#blocks-reference)
+- [Pixel Architecture](#pixel-architecture)
 
 ## Description
 
