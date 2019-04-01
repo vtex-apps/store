@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.37.0] - 2019-04-01
+### Added 
+- Add `discountHighlights` field in search and product queries.
+  
 ## [1.36.2] - 2019-02-22
 ### Fixed
 - Add search term in title tag and keywords on search pages.
