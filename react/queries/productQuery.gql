@@ -41,6 +41,9 @@ query Product($slug: String) {
         addToCartLink
         sellerDefault
         commertialOffer {
+          discountHighlights {
+            name
+          }
           Price
           ListPrice
           PriceWithoutDiscount
