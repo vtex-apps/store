@@ -78,6 +78,9 @@ query search($query: String, $map: String, $rest: String, $orderBy: String, $pri
           sellerId
           sellerName
           commertialOffer {
+            discountHighlights {
+              name
+            }
             Price
             ListPrice
             PriceWithoutDiscount
