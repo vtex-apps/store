@@ -42,9 +42,12 @@ export function createInitialMap(params) {
     return 'c'
   } else if (params.brand) {
     return 'b'
+  } else if (params.term) {
+    return 'ft'
   }
 
-  return ['ft']
-    .concat(params.terms ? params.terms.split('/').map(() => 'ft') : [])
+  return params.terms
+    .split('/')
+    .map(() => 'ft')
     .join(',')
 }
