@@ -18,7 +18,8 @@
       "shelf",
       "rebuy",
       "promo-bar",
-      "info-card"
+      "info-card",
+      "newsletter"
     ],
     "preview": {
       "type": "block"
