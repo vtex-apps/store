@@ -32,6 +32,9 @@
   "store.search#custom": {
     "path": "/*terms"
   },
+  "store.search#configurable": {
+    "path": "/s/*terms"
+  },
   "store.orderplaced": {
     "path": "/checkout/orderPlaced"
   }
