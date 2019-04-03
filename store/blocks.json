@@ -9,6 +9,16 @@
       "search-result"
     ]
   },
+  "store.search#category": {
+    "blocks": [
+      "search-result"
+    ]
+  },
+  "store.search#subcategory": {
+    "blocks": [
+      "search-result"
+    ]
+  },
   "store.search#custom": {
     "blocks": [
       "search-result"

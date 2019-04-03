@@ -34,7 +34,11 @@ export const SORT_OPTIONS = [
 ]
 
 export function createInitialMap(params) {
-  if (params.department) {
+  if (params.subcategory) {
+    return 'c,c,c'
+  } else if (params.category) {
+    return 'c,c'
+  } else if (params.department) {
     return 'c'
   } else if (params.brand) {
     return 'b'
