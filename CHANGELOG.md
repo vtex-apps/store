@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.11.0] - 2019-04-04
+### Added
+- Add `rich-text` as allowed store block.
+
 ## [2.10.0] - 2019-04-03
 
 ### Added
