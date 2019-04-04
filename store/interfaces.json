@@ -19,7 +19,8 @@
       "rebuy",
       "promo-bar",
       "info-card",
-      "newsletter"
+      "newsletter",
+      "rich-text"
     ],
     "preview": {
       "type": "block"
