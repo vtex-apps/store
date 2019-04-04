@@ -112,7 +112,7 @@ SearchContext.propTypes = {
   /** Component to be rendered */
   children: PropTypes.node.isRequired,
   /** Max items to show per result page */
-  maxItemsPerPage: PropTypes.number.isRequired,
+  maxItemsPerPage: PropTypes.number,
 }
 
 SearchContext.schema = {
