@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import { path } from 'ramda'
 import React from 'react'
 import { Query } from 'react-apollo'
 import { useRuntime } from 'vtex.render-runtime'
@@ -21,9 +22,10 @@ const SearchContext = ({
     page: pageQuery,
     map: mapQuery,
     priceRange,
+    // backwards-compatibility
+    rest,
   },
   children,
-  ...props
 }) => {
   const { page: runtimePage } = useRuntime()
   const map = mapQuery || createInitialMap(params)
@@ -39,12 +41,14 @@ const SearchContext = ({
     .join('/')
 
   const defaultSearch = {
-    query,
+    query:
+      rest && rest.length > 0 ? `${query}/${rest.replace(',', '/')}` : query,
     map,
     orderBy,
     priceRange,
     from,
     to,
+    rest,
     withFacets: includeFacets(map, query),
   }
 
@@ -67,8 +71,16 @@ const SearchContext = ({
     >
       {searchQuery => {
         return React.cloneElement(children, {
-          ...props,
-          searchQuery,
+          searchQuery: {
+            ...searchQuery,
+            // backwards-compatilibity with search-result <= 3.x
+            facets: path(['data', 'facets'], searchQuery),
+            products: path(['data', 'products'], searchQuery),
+            recordsFiltered: path(
+              ['data', 'facets', 'recordsFiltered'],
+              searchQuery
+            ),
+          },
           searchContext: runtimePage,
           pagesPath: nextTreePath,
           map,
@@ -77,6 +89,8 @@ const SearchContext = ({
           page,
           from,
           to,
+          // backwards-compatibility
+          rest,
         })
       }}
     </Query>
@@ -90,14 +104,9 @@ SearchContext.propTypes = {
     department: PropTypes.string,
     term: PropTypes.string,
   }),
-  /** Render runtime context */
-  runtime: PropTypes.shape({
-    page: PropTypes.string.isRequired,
-  }),
   /** Query params */
   query: PropTypes.shape({
     map: PropTypes.string,
-    rest: PropTypes.string,
     order: PropTypes.oneOf(SORT_OPTIONS.map(o => o.value)),
     priceRange: PropTypes.string,
   }),
@@ -129,10 +138,6 @@ SearchContext.schema = {
     },
     mapField: {
       title: 'Map',
-      type: 'string',
-    },
-    restField: {
-      title: 'Other Query Strings',
       type: 'string',
     },
     orderByField: {
