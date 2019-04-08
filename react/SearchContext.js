@@ -73,7 +73,7 @@ const SearchContext = ({
         return React.cloneElement(children, {
           searchQuery: {
             ...searchQuery,
-            // backwards-compatilibity with search-result <= 3.x
+            // backwards-compatibility with search-result <= 3.x
             facets: path(['data', 'facets'], searchQuery),
             products: path(['data', 'products'], searchQuery),
             recordsFiltered: path(
