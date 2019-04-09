@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Add support for `flex-layout` app, and its `flex-row` and `flex-col` blocks.
+- Add support for `flex-layout`.
 
 ## [2.11.0] - 2019-04-04
 ### Added
