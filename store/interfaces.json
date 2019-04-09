@@ -21,8 +21,7 @@
       "info-card",
       "newsletter",
       "rich-text",
-      "flex-row",
-      "flex-col"
+      "flex-layout"
     ],
     "preview": {
       "type": "block"
