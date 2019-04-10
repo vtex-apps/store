@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.12.0] - 2019-04-10
+### Added
+- Add support for `flex-layout`.
+
 ## [2.11.0] - 2019-04-04
 ### Added
 - Add `rich-text` as allowed store block.

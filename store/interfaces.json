@@ -20,7 +20,8 @@
       "promo-bar",
       "info-card",
       "newsletter",
-      "rich-text"
+      "rich-text",
+      "flex-layout"
     ],
     "preview": {
       "type": "block"
