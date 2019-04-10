@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Deprecated
+- `rest` parameter in search routes.
+
+### Added
+- Add generic route for search.
 
 ## [2.12.4] - 2019-04-25
 ### Fixed
