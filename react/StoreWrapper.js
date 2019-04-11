@@ -41,6 +41,10 @@ const systemToCanonical = ({ page, pages, route, history }) => {
 const replaceHistoryToCanonical = ({ route, history }, canonicalPath) => {
   const pathname = path(['location', 'pathname'], history)
   const search = path(['location', 'search'], history)
+  const navigationRoute = path(
+    ['location', 'state', 'navigationRoute'],
+    history
+  )
 
   if (!canonicalPath || !pathname) {
     return
@@ -50,6 +54,8 @@ const replaceHistoryToCanonical = ({ route, history }, canonicalPath) => {
 
   if (decodedCanonicalPath !== pathname) {
     history.replace(`${canonicalPath}${search}`, {
+      fetchPage: false,
+      navigationRoute,
       renderRouting: true,
       route,
     })
