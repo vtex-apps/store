@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "store",
-  "version": "2.12.1",
+  "version": "2.12.2",
   "title": "VTEX Store",
   "description": "The VTEX basic store.",
   "builders": {
@@ -22,7 +22,7 @@
     "vtex.store-header": "2.x",
     "vtex.store-footer": "2.x",
     "vtex.store-components": "3.x",
-    "vtex.pwa-graphql": "0.x",
+    "vtex.pwa-graphql": "1.x",
     "vtex.styleguide": "9.x",
     "vtex.carousel": "2.x",
     "vtex.shelf": "1.x",

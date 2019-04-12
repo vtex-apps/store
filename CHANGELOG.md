@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.12.2] - 2019-04-12
+### Changed
+- Update `pwa-graphql` to 1.x. 
+
 ## [2.12.1] - 2019-04-12
 ### Changed
 - Pass `navigationRoute` to history's replace in `StoreWrapper`.
