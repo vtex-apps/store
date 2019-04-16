@@ -19,14 +19,6 @@
       "search-result"
     ]
   },
-  "store.account": {
-    "blocks": [
-      "my-account"
-    ],
-    "parent": {
-      "challenge": "challenge.profile"
-    }
-  },
   "store.custom": {
     "parent": {
       "header": "header.full"

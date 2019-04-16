@@ -71,6 +71,9 @@
     ],
     "required": [
       "my-account"
+    ],
+    "around": [
+      "challenge.profile"
     ]
   },
   "store.login": {
