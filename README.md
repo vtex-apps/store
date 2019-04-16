@@ -100,3 +100,9 @@ Please refer to [Blocks](./BLOCKS.md)
 
 - Other: `otherView` event.
 
+### Enhanced Ecommerce
+
+- Measuring Additions to a Shopping Cart: `addTocart` event.
+
+- Measuring Removals from a Shopping Cart: `removeFromCart` event.
+
