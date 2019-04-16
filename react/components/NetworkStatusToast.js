@@ -1,13 +1,20 @@
 import PropTypes from 'prop-types'
 import { path, pathOr } from 'ramda'
 import { useContext, useEffect, useState } from 'react'
-import { injectIntl, intlShape } from 'react-intl'
+import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import { ToastContext } from 'vtex.styleguide'
+
+const messages = defineMessages({
+  StoreNetworkStatusOffline: {
+    id: 'store.network-status.offline',
+    defaultMessage: ''
+  },
+})
 
 function NetworkStatusToast(props) {
   const toastConfig = {
     message: props.intl.formatMessage({
-      id: 'store.network-status.offline',
+      id: messages.StoreNetworkStatusOffline.id,
     }),
     dismissable: false,
     duration: Infinity,

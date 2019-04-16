@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Query } from 'react-apollo'
+import { defineMessages } from 'react-intl'
 import { withRuntimeContext } from 'vtex.render-runtime'
 
 import {search} from 'vtex.store-resources/Queries'
@@ -8,6 +9,17 @@ import { createInitialMap, SORT_OPTIONS } from './utils/search'
 
 const DEFAULT_PAGE = 1
 const DEFAULT_MAX_ITEMS_PER_PAGE = 10
+
+const editorMessages = defineMessages({
+  ProductSearchMaxItemsPerPage: {
+    id: 'editor.product-search.maxItemsPerPage',
+    defaultMessage: ''
+  },
+  ProductSearchTitle: {
+    id: 'editor.product-search.title',
+    defaultMessage: ''
+  },
+})
 
 class SearchContext extends Component {
   static propTypes = {
@@ -49,11 +61,11 @@ class SearchContext extends Component {
   }
 
   static schema = {
-    title: 'editor.product-search.title',
+    title: editorMessages.ProductSearchTitle.id,
     type: 'object',
     properties: {
       maxItemsPerPage: {
-        title: 'editor.product-search.maxItemsPerPage',
+        title: editorMessages.ProductSearchMaxItemsPerPage.id,
         type: 'number',
       },
       queryField: {
