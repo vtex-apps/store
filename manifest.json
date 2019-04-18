@@ -9,10 +9,6 @@
     "messages": "1.x",
     "react": "2.x"
   },
-  "categories": [],
-  "registries": [
-    "smartcheckout"
-  ],
   "scripts": {
     "postreleasy": "vtex publish --verbose"
   },
