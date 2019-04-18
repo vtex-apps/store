@@ -64,6 +64,10 @@ query search($query: String, $map: String, $rest: String, $orderBy: String, $pri
           Key
           Value
         }
+        variation {
+          name
+          value
+        }
         measurementUnit
         unitMultiplier
         images {
