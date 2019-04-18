@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.37.2] - 2019-04-18
+
 ### Fixed
 
 - Fix `variations` typo on `searchQuery`.
