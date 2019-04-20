@@ -12,12 +12,12 @@ const DEFAULT_MAX_ITEMS_PER_PAGE = 10
 
 const editorMessages = defineMessages({
   ProductSearchMaxItemsPerPage: {
-    id: 'editor.product-search.maxItemsPerPage',
-    defaultMessage: ''
+    id: 'admin/editor.product-search.maxItemsPerPage',
+    defaultMessage: 'Maximum number of items per page'
   },
   ProductSearchTitle: {
-    id: 'editor.product-search.title',
-    defaultMessage: ''
+    id: 'admin/editor.product-search.title',
+    defaultMessage: 'Product search context'
   },
 })
 

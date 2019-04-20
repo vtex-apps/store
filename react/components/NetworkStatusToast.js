@@ -6,8 +6,8 @@ import { ToastContext } from 'vtex.styleguide'
 
 const messages = defineMessages({
   StoreNetworkStatusOffline: {
-    id: 'store.network-status.offline',
-    defaultMessage: ''
+    id: 'store/store.network-status.offline',
+    defaultMessage: 'No internet connection.'
   },
 })
 
