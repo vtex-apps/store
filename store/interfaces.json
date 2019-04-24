@@ -49,7 +49,11 @@
       "product-details"
     ],
     "allowed": [
-      "product-kit"
+      "product-kit",
+      "product-reviews",
+      "product-questions-and-answers",
+      "product-rating-summary",
+      "product-rating-inline"
     ],
     "context": "ProductContext"
   },
@@ -87,6 +91,14 @@
   "store.orderplaced": {
     "required": [
       "order-placed"
+    ]
+  },
+  "store.product-review-form": {
+    "before": [
+      "header.full"
+    ],
+    "allowed": [
+      "product-review-form"
     ]
   },
   "storeWrapper": {
