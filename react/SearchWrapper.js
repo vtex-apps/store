@@ -75,38 +75,36 @@ class SearchWrapper extends Component {
     const {
       params,
       searchQuery: {
-        data: search,
-        data: {
-          titleTag,
-          metaTagDescription,
-        } = {},
+        data: { search, search: { titleTag, metaTagDescription } = {} } = {},
         loading,
       },
-      runtime: {
-        getSettings,
-      },
+      runtime: { getSettings },
     } = this.props
     const settings = getSettings(APP_LOCATOR) || {}
-    const {
-      titleTag: storeTitle,
-      metaTagKeywords,
-    } = settings
+    const { titleTag: storeTitle, metaTagKeywords } = settings
 
     return (
       <DataLayerApolloWrapper
         getData={() => this.getData(search)}
         loading={loading}
       >
-        <Helmet>
-          {titleTag
-            ? <title>{titleTag}</title>
-            : params.term && <title>{`${capitalize(params.term)} - ${storeTitle}`}</title>}
-          {params.term &&
-            <meta name="keywords" content={`${params.term}, ${metaTagKeywords}`} />}
-          {metaTagDescription && (
-            <meta name="description" content={metaTagDescription} />
-          )}
-        </Helmet>
+        <Helmet
+          title={
+            titleTag
+              ? titleTag
+              : params.term && `${capitalize(params.term)} - ${storeTitle}`
+          }
+          meta={[
+            params.term && {
+              name: 'keywords',
+              content: `${params.term}, ${metaTagKeywords}`,
+            },
+            metaTagDescription && {
+              name: 'description',
+              content: metaTagDescription,
+            },
+          ].filter(Boolean)}
+        />
         {React.cloneElement(this.props.children, this.props)}
       </DataLayerApolloWrapper>
     )
