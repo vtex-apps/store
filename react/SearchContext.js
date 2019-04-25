@@ -4,7 +4,7 @@ import React from 'react'
 import { Query } from 'react-apollo'
 import { useRuntime } from 'vtex.render-runtime'
 
-import { search } from 'vtex.store-resources/Queries'
+import { productSearch } from 'vtex.store-resources/Queries'
 import { createInitialMap, SORT_OPTIONS } from './utils/search'
 
 const DEFAULT_PAGE = 1
@@ -64,7 +64,7 @@ const SearchContext = ({
 
   return (
     <Query
-      query={search}
+      query={productSearch}
       variables={queryField ? customSearch : defaultSearch}
       notifyOnNetworkStatusChange
       partialRefetch
