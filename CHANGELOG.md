@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.14.1] - 2019-04-25
+### Fixed
+- Error when splashes are null.
+
 ## [2.14.0] - 2019-04-25
 
 ### Added
