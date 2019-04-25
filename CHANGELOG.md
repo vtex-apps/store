@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.14.0] - 2019-04-25
+
+### Added
+- Support for product review interfaces.
+
 ## [2.13.0] - 2019-04-25
 ### Deprecated
 - `rest` parameter in search routes.
@@ -17,7 +22,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [2.12.4] - 2019-04-25
 ### Fixed
 - Search title and meta description not reflecting API result.
-
 ## [2.12.3] - 2019-04-16
 ### Fixed
 - Fix access `/account` route without any challenge.

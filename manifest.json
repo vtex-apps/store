@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "store",
-  "version": "2.13.0",
+  "version": "2.14.0",
   "title": "VTEX Store",
   "description": "The VTEX basic store.",
   "builders": {
@@ -28,6 +28,7 @@
     "vtex.shelf": "1.x",
     "vtex.product-details": "1.x",
     "vtex.product-kit": "1.x",
+    "vtex.product-review-interfaces": "1.x",
     "vtex.search-result": "3.x",
     "vtex.login": "2.x",
     "vtex.my-account": "1.x",
