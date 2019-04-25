@@ -19,6 +19,16 @@
       "search-result"
     ]
   },
+  "store.search#custom": {
+    "blocks": [
+      "search-result"
+    ]
+  },
+  "store.search#configurable": {
+    "blocks": [
+      "search-result"
+    ]
+  },
   "store.custom": {
     "parent": {
       "header": "header.full"

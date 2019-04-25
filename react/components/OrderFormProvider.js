@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { graphql, compose } from 'react-apollo'
 
 import {
@@ -13,16 +12,12 @@ import { Provider } from 'vtex.store-resources/OrderFormContext'
 import { orderForm } from 'vtex.store-resources/Queries'
 
 class OrderFormProvider extends Component {
-  static propTypes = {
-    children: PropTypes.element,
-  }
-
   state = {
     orderFormContext: {
       message: { isSuccess: null, text: null },
       loading: true,
       orderForm: {},
-      refetch: () => { },
+      refetch: () => {},
       addItem: this.props.addItem,
       updateToastMessage: this.handleMessageUpdate,
       updateOrderForm: this.props.updateOrderForm,
@@ -87,5 +82,5 @@ export default compose(
   graphql(updateItems, { name: 'updateOrderForm' }),
   graphql(updateOrderFormProfile, { name: 'updateOrderFormProfile' }),
   graphql(updateOrderFormShipping, { name: 'updateOrderFormShipping' }),
-  graphql(updateOrderFormCheckin, { name: 'updateOrderFormCheckin' }),
+  graphql(updateOrderFormCheckin, { name: 'updateOrderFormCheckin' })
 )(OrderFormProvider)

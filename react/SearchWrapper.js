@@ -77,7 +77,7 @@ class SearchWrapper extends Component {
       searchQuery: {
         data: { search, search: { titleTag, metaTagDescription } = {} } = {},
         loading,
-      },
+      } = {},
       runtime: { getSettings },
     } = this.props
     const settings = getSettings(APP_LOCATOR) || {}

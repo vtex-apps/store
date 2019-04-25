@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.13.0] - 2019-04-25
+### Deprecated
+- `rest` parameter in search routes.
+
+### Added
+- Add generic route for search.
+
 ## [2.12.4] - 2019-04-25
 ### Fixed
 - Search title and meta description not reflecting API result.

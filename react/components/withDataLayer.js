@@ -16,8 +16,8 @@ export { Provider as DataLayerProvider }
  */
 export default function withDataLayer(WrappedComponent) {
   class DataLayer extends Component {
-    static displayName =
-      `DataLayer(${WrappedComponent.displayName || WrappedComponent.name})`
+    static displayName = `DataLayer(${WrappedComponent.displayName ||
+      WrappedComponent.name})`
 
     static propTypes = {
       push: PropTypes.func.isRequired,
@@ -34,13 +34,7 @@ export default function withDataLayer(WrappedComponent) {
       // Use the push function from the pixel for backward-compatibility
       return (
         <Consumer>
-          {context => (
-            <WrappedComponent
-              {...props}
-              {...context}
-              set={push}
-            />
-          )}
+          {context => <WrappedComponent {...props} {...context} set={push} />}
         </Consumer>
       )
     }
@@ -53,4 +47,3 @@ export const dataLayerProps = {
   dataLayer: PropTypes.array.isRequired,
   set: PropTypes.func.isRequired,
 }
-
