@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { path } from 'ramda'
+import { path, zip } from 'ramda'
 import React from 'react'
 import { Query } from 'react-apollo'
 import { useRuntime } from 'vtex.render-runtime'
@@ -62,10 +62,30 @@ const SearchContext = ({
     withFacets: includeFacets(mapField, queryField),
   }
 
+  const queryVariables = queryField ? customSearch : defaultSearch
+
+  const [facetQuery, facetMap] = zip(
+    queryVariables.query.split('/'),
+    queryVariables.map.split(',')
+  )
+    .filter(([_, map]) => map === 'c' || map === 'ft')
+    .reduce(
+      ([queryAcc, mapAcc], [query, map]) => [
+        [...queryAcc, query],
+        [...mapAcc, map],
+      ],
+      // first empty array is for query and the second
+      // for map
+      [[], []]
+    )
+
+  queryVariables.facetQuery = facetQuery.join('/')
+  queryVariables.facetMap = facetMap.join(',')
+
   return (
     <Query
       query={productSearch}
-      variables={queryField ? customSearch : defaultSearch}
+      variables={queryVariables}
       notifyOnNetworkStatusChange
       partialRefetch
     >
