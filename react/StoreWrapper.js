@@ -178,19 +178,20 @@ class StoreWrapper extends Component {
                 ]}
                 link={[
                   { rel: 'manifest', href: '/pwa/manifest.json' },
-                  ...(hasManifest
+                  ...(iOSIcons
                     ? iOSIcons.map(icon => ({
                         rel: 'apple-touch-icon',
                         sizes: icon.sizes,
                         href: icon.src,
                       }))
                     : []),
-                  ...(splashes &&
-                    splashes.map(splash => ({
-                      href: splash.src,
-                      sizes: splash.sizes,
-                      rel: 'apple-touch-startup-image',
-                    }))),
+                  ...(splashes
+                    ? splashes.map(splash => ({
+                        href: splash.src,
+                        sizes: splash.sizes,
+                        rel: 'apple-touch-startup-image',
+                      }))
+                    : []),
                 ].filter(Boolean)}
               />
             )}
