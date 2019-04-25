@@ -185,11 +185,12 @@ class StoreWrapper extends Component {
                         href: icon.src,
                       }))
                     : []),
-                  ...splashes.map(splash => ({
-                    href: splash.src,
-                    sizes: splash.sizes,
-                    rel: 'apple-touch-startup-image',
-                  })),
+                  ...(splashes &&
+                    splashes.map(splash => ({
+                      href: splash.src,
+                      sizes: splash.sizes,
+                      rel: 'apple-touch-startup-image',
+                    }))),
                 ].filter(Boolean)}
               />
             )}
