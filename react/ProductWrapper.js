@@ -1,13 +1,18 @@
 import PropTypes from 'prop-types'
 import React, { Component, Fragment } from 'react'
-import { last, head } from 'ramda'
+import { last, head, path } from 'ramda'
 import { Helmet, withRuntimeContext } from 'vtex.render-runtime'
+import { ProductContext as ProductContextApp } from 'vtex.product-context'
 
 import StructuredData from './components/StructuredData'
 
 import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
 
 class ProductWrapper extends Component {
+  state = {
+    selectedQuantity: 1,
+  }
+
   static propTypes = {
     params: PropTypes.object,
     productQuery: PropTypes.object,
@@ -104,6 +109,8 @@ class ProductWrapper extends Component {
     ]
   }
 
+  setSelectedQuantity = value => this.setState({ selectedQuantity: value })
+
   render() {
     const {
       params: { slug },
@@ -114,10 +121,21 @@ class ProductWrapper extends Component {
     } = this.props
     const { titleTag, metaTagDescription } = product || {}
 
+    const items = path(['items'], product) || []
+    const selectedItem = query.skuId
+      ? items.find(sku => sku.itemId === query.skuId)
+      : items[0]
+
     return (
       <div className="vtex-product-context-provider">
         <Helmet>{titleTag && <title>{titleTag}</title>}</Helmet>
-        <Fragment>
+        <ProductContextApp.Provider value={{
+          product,
+          categories: path(['categories'], product),
+          selectedItem,
+          onChangeQuantity: this.setSelectedQuantity,
+          selectedQuantity: this.state.selectedQuantity,
+        }}>
           {product && <StructuredData product={product} query={query} />}
           <DataLayerApolloWrapper getData={this.getData} loading={loading}>
             {React.cloneElement(this.props.children, {
@@ -126,7 +144,7 @@ class ProductWrapper extends Component {
               ...props,
             })}
           </DataLayerApolloWrapper>
-        </Fragment>
+        </ProductContextApp.Provider>
       </div>
     )
   }
