@@ -64,19 +64,17 @@ const SearchContext = ({
 
   const queryVariables = queryField ? customSearch : defaultSearch
 
-  const [facetQuery, facetMap] = zip(
+  const { map: facetMap, query: facetQuery } = zip(
     queryVariables.query.split('/'),
     queryVariables.map.split(',')
   )
     .filter(([_, map]) => map === 'c' || map === 'ft')
     .reduce(
-      ([queryAcc, mapAcc], [query, map]) => [
-        [...queryAcc, query],
-        [...mapAcc, map],
-      ],
-      // first empty array is for query and the second
-      // for map
-      [[], []]
+      ({ query: queryArr, map: mapArr }, [query, map]) => ({
+        query: [...queryArr, query],
+        map: [...mapArr, map],
+      }),
+      { map: [], query: [] }
     )
 
   queryVariables.facetQuery = facetQuery.join('/')
