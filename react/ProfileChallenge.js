@@ -1,86 +1,81 @@
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import React, { PureComponent } from 'react'
 
-import { withRuntimeContext, Loading } from 'vtex.render-runtime'
+import { useRuntime, Loading } from 'vtex.render-runtime'
 
 const LOGIN_PATH = '/login'
 const API_SESSION_URL = '/api/sessions?items=*'
 
-class ProfileChallenge extends PureComponent {
-  static propTypes = {
-    page: PropTypes.string,
-    pages: PropTypes.object,
-    runtime: PropTypes.shape({
-      navigate: PropTypes.func,
-    }),
-    children: PropTypes.node,
-    loader: PropTypes.element,
+const ProfileChallenge = ({ children, page }) => {
+  const [loading, setLoading] = useState(true)
+  const [loggedIn, setLoggedIn] = useState(false)
+  const { navigate } = useRuntime()
+
+  useEffect(
+    () => {
+      fetch(API_SESSION_URL, { credentials: 'same-origin' })
+        .then(response => response.json())
+        .then(response => {
+          if (
+            response.namespaces &&
+            (response.namespaces.authentication.storeUserId ||
+              response.namespaces.impersonate.storeUserId)
+          ) {
+            setLoading(false)
+            setLoggedIn(true)
+          } else {
+            return Promise.reject()
+          }
+        })
+        .catch(() => {
+          setLoading(false)
+          setLoggedIn(false)
+          redirectToLogin()
+        })
+    },
+    [loggedIn]
+  )
+
+  const getLocation = () => {
+    const { pathname, hash } = window.location
+    const pathName = pathname.replace(/\/$/, '')
+    return { url: pathName + hash, pathName }
   }
 
-  state = {
-    loading: true,
-    loggedIn: false,
-  }
-
-  componentDidMount() {
-    this.onUpdate()
-  }
-
-  componentDidUpdate() {
-    if (this.state.loggedIn && !this.state.loading) {
-      this.onUpdate()
-    }
-  }
-
-  redirectToLogin() {
-    const pathName = window.location.pathname.replace(/\/$/, '')
-    if (this.props.page !== 'store.login' && pathName !== LOGIN_PATH) {
-      this.props.runtime.navigate({
+  const redirectToLogin = () => {
+    const { url, pathName } = getLocation()
+    if (page !== 'store.login' && pathName !== LOGIN_PATH) {
+      navigate({
         fallbackToWindowLocation: false,
-        query: `returnUrl=${encodeURIComponent(pathName)}`,
+        query: `returnUrl=${encodeURIComponent(url)}`,
         to: LOGIN_PATH,
       })
     }
   }
 
-  onUpdate() {
-    fetch(API_SESSION_URL, { credentials: 'same-origin' })
-      .then(response => response.json())
-      .then(response => {
-        if (
-          response.namespaces &&
-          (response.namespaces.authentication.storeUserId ||
-            response.namespaces.impersonate.storeUserId)
-        ) {
-          this.setState({ loading: false, loggedIn: true })
-        } else {
-          return Promise.reject()
-        }
-      })
-      .catch(() => {
-        this.setState({ loading: false, loggedIn: false })
-        this.redirectToLogin()
-      })
+  if (loading) {
+    return (
+      <div className="flex justify-center ma4">
+        <Loading />
+      </div>
+    )
   }
 
-  render() {
-    const { children } = this.props
-    const { loggedIn, loading } = this.state
-
-    if (loading) {
-      return (
-        <div className="flex justify-center ma4">
-          <Loading />
-        </div>
-      )
-    }
-
-    if (loggedIn) {
-      return children
-    }
-
-    return null
+  if (loggedIn) {
+    return children
   }
+
+  return null
 }
 
-export default withRuntimeContext(ProfileChallenge)
+ProfileChallenge.propTypes = {
+  page: PropTypes.string,
+  pages: PropTypes.object,
+  runtime: PropTypes.shape({
+    navigate: PropTypes.func,
+  }),
+  children: PropTypes.node,
+  loader: PropTypes.element,
+}
+
+export default ProfileChallenge
