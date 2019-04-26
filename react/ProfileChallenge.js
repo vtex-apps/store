@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 
 import { useRuntime, Loading } from 'vtex.render-runtime'
@@ -6,9 +6,22 @@ import { useRuntime, Loading } from 'vtex.render-runtime'
 const LOGIN_PATH = '/login'
 const API_SESSION_URL = '/api/sessions?items=*'
 
+function useSafeState(initialState) {
+  const [state, setState] = useState(initialState)
+
+  const mountedRef = useRef(false)
+  useEffect(() => {
+    mountedRef.current = true
+    return () => (mountedRef.current = false)
+  }, [])
+  const safeSetState = (...args) => mountedRef.current && setState(...args)
+
+  return [state, safeSetState]
+}
+
 const ProfileChallenge = ({ children, page }) => {
-  const [loading, setLoading] = useState(true)
-  const [loggedIn, setLoggedIn] = useState(false)
+  const [loading, setLoading] = useSafeState(true)
+  const [loggedIn, setLoggedIn] = useSafeState(false)
   const { navigate } = useRuntime()
 
   useEffect(
