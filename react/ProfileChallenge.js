@@ -13,7 +13,6 @@ const ProfileChallenge = ({ children, page }) => {
 
   useEffect(
     () => {
-      if (!loggedIn && loading) return
       fetch(API_SESSION_URL, { credentials: 'same-origin' })
         .then(response => response.json())
         .then(response => {
@@ -34,7 +33,7 @@ const ProfileChallenge = ({ children, page }) => {
           redirectToLogin()
         })
     },
-    [loggedIn, loading]
+    [page]
   )
 
   const getLocation = () => {
