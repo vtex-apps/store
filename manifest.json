@@ -36,7 +36,9 @@
     "vtex.order-placed": "1.x",
     "vtex.pixel-manager": "0.x",
     "vtex.rich-text": "0.x",
-    "vtex.flex-layout": "0.x"
+    "vtex.flex-layout": "0.x",
+    "vtex.product-context": "0.x",
+    "vtex.breadcrumb": "1.x"
   },
   "settingsSchema": {
     "title": "VTEX Store",

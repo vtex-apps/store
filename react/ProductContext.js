@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { withApollo, graphql, compose } from 'react-apollo'
-import { isEmpty } from 'ramda'
+import { isEmpty, path } from 'ramda'
 import { withRuntimeContext } from 'vtex.render-runtime'
+import { ProductContext as ProductContextApp } from 'vtex.product-context'
 
 import {
   product,
@@ -13,6 +14,10 @@ import {
 import { cacheLocator } from './cacheLocator'
 
 class ProductContext extends Component {
+  state = {
+    selectedQuantity: 1,
+  }
+
   static propTypes = {
     params: PropTypes.object,
     query: PropTypes.shape({
@@ -84,6 +89,8 @@ class ProductContext extends Component {
     }
   }
 
+  setSelectedQuantity = value => this.setState({ selectedQuantity: value })
+
   render() {
     const {
       params,
@@ -100,6 +107,11 @@ class ProductContext extends Component {
     const product =
       loadedProduct ||
       (productPreview && productPreview.items ? productPreview : null)
+
+    const items = path(['items'], product) || []
+    const selectedItem = props.query.skuId
+      ? items.find(sku => sku.itemId === props.query.skuId)
+      : items[0]
 
     const loading = this.loading
 
@@ -125,7 +137,7 @@ class ProductContext extends Component {
       categories: product ? product.categories : null,
     }
 
-    return React.cloneElement(
+    const children = React.cloneElement(
       this.props.children,
       Object.assign(
         {},
@@ -137,6 +149,18 @@ class ProductContext extends Component {
         breadcrumbsProps,
         props
       )
+    )
+
+    return (
+      <ProductContextApp.Provider value={{
+        product,
+        categories: path(['categories'], product),
+        selectedItem,
+        onChangeQuantity: this.setSelectedQuantity,
+        selectedQuantity: this.state.selectedQuantity,
+      }}>
+        { children }
+      </ProductContextApp.Provider>
     )
   }
 }

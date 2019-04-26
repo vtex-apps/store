@@ -45,15 +45,25 @@
     "before": [
       "header.full"
     ],
-    "required": [
-      "product-details"
-    ],
     "allowed": [
+      "product-details",
       "product-kit",
       "product-reviews",
       "product-questions-and-answers",
       "product-rating-summary",
-      "product-rating-inline"
+      "product-rating-inline",
+      "product-images",
+      "product-name",
+      "product-price",
+      "sku-selector",
+      "buy-button",
+      "product-description",
+      "product-specifications",
+      "breadcrumb",
+      "shipping-simulator",
+      "availability-subscriber",
+      "share",
+      "product-highlights"
     ],
     "context": "ProductContext"
   },
