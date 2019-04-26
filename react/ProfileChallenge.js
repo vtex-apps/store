@@ -13,6 +13,7 @@ const ProfileChallenge = ({ children, page }) => {
 
   useEffect(
     () => {
+      if (!loggedIn && loading) return
       fetch(API_SESSION_URL, { credentials: 'same-origin' })
         .then(response => response.json())
         .then(response => {
@@ -33,7 +34,7 @@ const ProfileChallenge = ({ children, page }) => {
           redirectToLogin()
         })
     },
-    [loggedIn]
+    [loggedIn, loading]
   )
 
   const getLocation = () => {
@@ -70,12 +71,7 @@ const ProfileChallenge = ({ children, page }) => {
 
 ProfileChallenge.propTypes = {
   page: PropTypes.string,
-  pages: PropTypes.object,
-  runtime: PropTypes.shape({
-    navigate: PropTypes.func,
-  }),
   children: PropTypes.node,
-  loader: PropTypes.element,
 }
 
 export default ProfileChallenge
