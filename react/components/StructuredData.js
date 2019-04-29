@@ -151,7 +151,7 @@ const parseToJsonLD = (product, query, currency, locale) => {
     '@type': 'Product',
     name: name,
     brand: brand,
-    image: image.imageUrl,
+    image: image && image.imageUrl,
     description: description,
     mpn: product.productId,
     sku: skuId,

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.15.1] - 2019-04-29
+### Fixed
+- Prevent infinite error loop if image is undefined.
+
 ## [2.15.0] - 2019-04-26
 ### Changed
 - Split query and map used in facets from search.
