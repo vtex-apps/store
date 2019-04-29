@@ -4,7 +4,7 @@ import React from 'react'
 import { Query } from 'react-apollo'
 import { useRuntime } from 'vtex.render-runtime'
 
-import { productSearch } from 'vtex.store-resources/Queries'
+import { productSearchV2 } from 'vtex.store-resources/Queries'
 import { createInitialMap, SORT_OPTIONS } from './utils/search'
 
 const DEFAULT_PAGE = 1
@@ -82,7 +82,7 @@ const SearchContext = ({
 
   return (
     <Query
-      query={productSearch}
+      query={productSearchV2}
       variables={queryVariables}
       notifyOnNetworkStatusChange
       partialRefetch
@@ -91,11 +91,15 @@ const SearchContext = ({
         return React.cloneElement(children, {
           searchQuery: {
             ...searchQuery,
-            // backwards-compatibility with search-result <= 3.x
+            // backwards-compatibility
+            data: {
+              ...(searchQuery.data || {}),
+              products: path(['data', 'productSearch', 'products'], searchQuery),
+            },
             facets: path(['data', 'facets'], searchQuery),
-            products: path(['data', 'products'], searchQuery),
+            products: path(['data', 'productSearch', 'products'], searchQuery),
             recordsFiltered: path(
-              ['data', 'facets', 'recordsFiltered'],
+              ['data', 'productSearch', 'recordsFiltered'],
               searchQuery
             ),
           },
