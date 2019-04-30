@@ -89,6 +89,7 @@ class ProductContext extends Component {
       params,
       params: { slug },
       client,
+      catalog: { refetch },
       ...props
     } = this.props
 
@@ -106,6 +107,7 @@ class ProductContext extends Component {
     const productQuery = {
       loading,
       product,
+      refetch,
     }
 
     // why do we still have this?
