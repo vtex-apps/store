@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.16.1] - 2019-04-30
+### Fixed
+- `SearchWrapper`: Decode URI when getting page title.
+
 ## [2.16.0] - 2019-04-29
 ### Added
 - Add `refetch` parameter to `ProductContext`
