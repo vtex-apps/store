@@ -92,7 +92,7 @@ class SearchWrapper extends Component {
           title={
             titleTag
               ? titleTag
-              : params.term && `${capitalize(params.term)} - ${storeTitle}`
+              : params.term && `${capitalize(decodeURI(params.term))} - ${storeTitle}`
           }
           meta={[
             params.term && {
