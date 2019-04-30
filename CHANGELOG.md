@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+ - Order By Score (ASC and DESC)
+### Changed
+ - Rename messages files
+
 ## [1.37.2] - 2019-04-18
 
 ### Fixed
