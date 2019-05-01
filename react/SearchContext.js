@@ -94,7 +94,10 @@ const SearchContext = ({
             // backwards-compatibility
             data: {
               ...(searchQuery.data || {}),
-              products: path(['data', 'productSearch', 'products'], searchQuery),
+              products: path(
+                ['data', 'productSearch', 'products'],
+                searchQuery
+              ),
             },
             facets: path(['data', 'facets'], searchQuery),
             products: path(['data', 'productSearch', 'products'], searchQuery),
