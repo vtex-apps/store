@@ -46,7 +46,6 @@ class SearchWrapper extends Component {
     if (!searchQuery) {
       return null
     }
-
     const { products, titleTag } = searchQuery
     const { department } = this.props.params
     const { account } = this.props.runtime
@@ -75,7 +74,10 @@ class SearchWrapper extends Component {
     const {
       params,
       searchQuery: {
-        data: { search, search: { titleTag, metaTagDescription } = {} } = {},
+        data: {
+          productSearch,
+          productSearch: { titleTag, metaTagDescription } = {},
+        } = {},
         loading,
       } = {},
       runtime: { getSettings },
@@ -85,14 +87,14 @@ class SearchWrapper extends Component {
 
     return (
       <DataLayerApolloWrapper
-        getData={() => this.getData(search)}
+        getData={() => this.getData(productSearch)}
         loading={loading}
       >
         <Helmet
           title={
             titleTag
-              ? titleTag
-              : params.term && `${capitalize(decodeURI(params.term))} - ${storeTitle}`
+              ? `${titleTag} - ${storeTitle}`
+              : params.term && `${capitalize(params.term)} - ${storeTitle}`
           }
           meta={[
             params.term && {

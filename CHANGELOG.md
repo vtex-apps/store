@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.17.0] - 2019-05-01
+### Changed
+- Use `productSearchV2` query.
+
 ## [2.16.1] - 2019-04-30
 ### Fixed
 - `SearchWrapper`: Decode URI when getting page title.
