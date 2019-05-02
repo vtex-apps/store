@@ -1,5 +1,5 @@
 {
-  "editor.product-search.title": "editor.product-search.title",
-  "editor.product-search.maxItemsPerPage": "editor.product-search.maxItemsPerPage",
-  "store.network-status.offline": "store.network-status.offline"
+  "admin/editor.product-search.title": "admin/editor.product-search.title",
+  "admin/editor.product-search.maxItemsPerPage": "admin/editor.product-search.maxItemsPerPage",
+  "store/store.network-status.offline": "store/store.network-status.offline"
 }

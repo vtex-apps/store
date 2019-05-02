@@ -7,7 +7,7 @@ import { ToastContext } from 'vtex.styleguide'
 function NetworkStatusToast(props) {
   const toastConfig = {
     message: props.intl.formatMessage({
-      id: 'store.network-status.offline',
+      id: 'store/store.network-status.offline',
     }),
     dismissable: false,
     duration: Infinity,
