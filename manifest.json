@@ -45,27 +45,27 @@
       "storeName": {
         "title": "Store Name",
         "type": "string",
-        "description": "Enter with the name of your store"
+        "description": "The name of your store."
       },
       "titleTag": {
         "title": "Store Title (Title Tag)",
         "type": "string",
-        "description": "Enter with the title of your store"
+        "description": "The default title of your store as seen on the browser tab."
       },
       "metaTagDescription": {
         "title": "Store Description (Meta Tag Descriptions)",
         "type": "string",
-        "description": "Enter with a description of your store"
+        "description": "A description of your store."
       },
       "metaTagKeywords": {
         "title": "Store Keywords (Meta Tag Keywords)",
         "type": "string",
-        "description": "Enter with keywords of your store"
+        "description": "Relevant keywords of your store."
       },
       "metaTagRobots": {
         "title": "Store Robots (Meta Tag robots)",
         "type": "string",
-        "description": "Default value: index, follow"
+        "description": "Default value: index, follow."
       },
       "faviconLinks": {
         "title": "Store Favicons (Link Tag)",
@@ -76,12 +76,12 @@
             "rel": {
               "title": "Favicon Relationship",
               "type": "string",
-              "description": "This favicon relationship, e.g: 'icon', 'shortcut icon', 'apple-touch-icon'"
+              "description": "This favicon relationship, e.g: 'icon', 'shortcut icon', 'apple-touch-icon'."
             },
             "type": {
               "title": "Favicon Media Type",
               "type": "string",
-              "description": "(Optional) Favicon type, e.g: image/png"
+              "description": "(Optional) Favicon type, e.g: image/png."
             },
             "sizes": {
               "title": "Favicon Size",
@@ -100,7 +100,12 @@
             "href"
           ]
         },
-        "description": "Configure your store's favicons"
+        "description": "Configure your store's favicons."
+      },
+      "rootPath": {
+        "title": "(Advanced) CDN Rewritten Root Path",
+        "type": "string",
+        "description": "A prefix to every path in your store, e.g. `/store/`. IMPORTANT: this is an advanced feature and must be accompanied by a path rewrite at the CDN level."
       }
     }
   }
