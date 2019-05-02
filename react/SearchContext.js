@@ -150,11 +150,11 @@ SearchContext.propTypes = {
 }
 
 SearchContext.schema = {
-  title: 'editor.product-search.title',
+  title: 'admin/editor.product-search.title',
   type: 'object',
   properties: {
     maxItemsPerPage: {
-      title: 'editor.product-search.maxItemsPerPage',
+      title: 'admin/editor.product-search.maxItemsPerPage',
       type: 'number',
     },
     queryField: {
