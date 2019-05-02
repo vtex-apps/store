@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.17.2] - 2019-05-02
+### Fixed
+- `SearchWrapper`: Fix bad rebase and decode URI when getting page title again.
+
 ## [2.17.1] - 2019-05-02
 
 ## [2.17.0] - 2019-05-01
