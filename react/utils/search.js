@@ -29,6 +29,14 @@ export const SORT_OPTIONS = [
     value: 'OrderByNameDESC',
     label: 'ordenation.name.descending',
   },
+  {
+    value: 'OrderByScoreASC',
+    label: 'ordenation.score.ascending',
+  },
+  {
+    value: 'OrderByScoreDESC',
+    label: 'ordenation.score.descending',
+  },
 ]
 
 export function createInitialMap(params) {
