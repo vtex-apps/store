@@ -15,6 +15,7 @@ Framework that is used by all ecommerce stores build on VTEX IO.
   - [Recipes](#recipes)
 - [Blocks Reference](#blocks-reference)
 - [Pixel Architecture](#pixel-architecture)
+- [Contributing](#contributing)
 
 ## Description
 
@@ -106,3 +107,6 @@ Please refer to [Blocks](./BLOCKS.md)
 
 - Measuring Removals from a Shopping Cart: `removeFromCart` event.
 
+## Contributing
+
+Check it out [how to contribute](https://github.com/vtex-apps/awesome-io#contributing) with this project. 
