@@ -17,6 +17,7 @@ const SearchContext = ({
   queryField,
   mapField,
   orderByField,
+  showUnavailable = true,
   query: {
     order: orderBy = orderByField || SORT_OPTIONS[0].value,
     page: pageQuery,
@@ -50,6 +51,7 @@ const SearchContext = ({
     to,
     rest,
     withFacets: includeFacets(map, query),
+    filterUnavailableBySegment: !showUnavailable,
   }
 
   const customSearch = {
@@ -60,6 +62,7 @@ const SearchContext = ({
     from,
     to,
     withFacets: includeFacets(mapField, queryField),
+    filterUnavailableBySegment: !showUnavailable,
   }
 
   const queryVariables = queryField ? customSearch : defaultSearch
@@ -172,6 +175,11 @@ SearchContext.schema = {
       enum: SORT_OPTIONS.map(opt => opt.value),
       enumNames: SORT_OPTIONS.map(opt => opt.label),
     },
+    showUnavailable: {
+      title: 'admin/editor.product-search.showUnavailable',
+      type: 'boolean',
+      default: true,
+    }
   },
 }
 
