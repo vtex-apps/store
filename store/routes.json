@@ -34,8 +34,5 @@
   },
   "store.search#configurable": {
     "path": "/s/*terms"
-  },
-  "store.orderplaced": {
-    "path": "/checkout/orderPlaced"
   }
 }
