@@ -124,7 +124,8 @@ class ProductContext extends Component {
      **/
     const breadcrumbsProps = {
       term: slug,
-      categories: product ? product.categoryTree : null,
+      categories: product ? product.categories : null,
+      categoryTree: product ? product.categoryTree : null,
     }
 
     return React.cloneElement(
