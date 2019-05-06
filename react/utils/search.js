@@ -1,9 +1,5 @@
 export const SORT_OPTIONS = [
   {
-    value: '',
-    label: 'ordenation.sort-by',
-  },
-  {
     value: 'OrderByTopSaleDESC',
     label: 'ordenation.sales',
   },
