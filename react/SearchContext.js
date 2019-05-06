@@ -17,7 +17,7 @@ const SearchContext = ({
   queryField,
   mapField,
   orderByField,
-  hideUnavailableItems = false,
+  hideUnavailableItems,
   query: {
     order: orderBy = orderByField || SORT_OPTIONS[0].value,
     page: pageQuery,
