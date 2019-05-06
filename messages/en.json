@@ -1,5 +1,6 @@
 {
   "admin/editor.product-search.title": "Product search context",
   "admin/editor.product-search.maxItemsPerPage": "Maximum number of items per page",
+  "admin/editor.product-search.hideUnavailableItems": "Hide unavailable items",
   "store/store.network-status.offline": "No internet connection."
 }
