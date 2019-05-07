@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Added transparent content placeholder on top level store blocks.
+- Added content placeholder on top level store blocks.
 
 ## [2.18.1] - 2019-05-08
 ### Fixed
