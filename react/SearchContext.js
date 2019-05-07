@@ -51,7 +51,7 @@ const SearchContext = ({
     to,
     rest,
     withFacets: includeFacets(map, query),
-    hideUnavailableItems,
+    // hideUnavailableItems,
   }
 
   const customSearch = {
@@ -62,7 +62,7 @@ const SearchContext = ({
     from,
     to,
     withFacets: includeFacets(mapField, queryField),
-    hideUnavailableItems,
+    // hideUnavailableItems,
   }
 
   const queryVariables = queryField ? customSearch : defaultSearch
