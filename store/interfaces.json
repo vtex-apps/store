@@ -24,7 +24,8 @@
       "flex-layout"
     ],
     "preview": {
-      "type": "block"
+      "type": "transparent",
+      "height": 1400
     }
   },
   "store.home": {
@@ -36,7 +37,11 @@
     ],
     "allowed": [
       "search-result"
-    ]
+    ],
+    "preview": {
+      "type": "transparent",
+      "height": 1400
+    }
   },
   "store.product": {
     "around": [
@@ -55,7 +60,11 @@
       "product-rating-summary",
       "product-rating-inline"
     ],
-    "context": "ProductContext"
+    "context": "ProductContext",
+    "preview": {
+      "type": "transparent",
+      "height": 1400
+    }
   },
   "store.search": {
     "around": [
@@ -67,7 +76,11 @@
     "required": [
       "search-result"
     ],
-    "context": "SearchContext"
+    "context": "SearchContext",
+    "preview": {
+      "type": "transparent",
+      "height": 1400
+    }
   },
   "store.account": {
     "before": [
@@ -78,7 +91,11 @@
     ],
     "around": [
       "challenge.profile"
-    ]
+    ],
+    "preview": {
+      "type": "transparent",
+      "height": 1400
+    }
   },
   "store.login": {
     "before": [
@@ -86,12 +103,20 @@
     ],
     "required": [
       "login-content"
-    ]
+    ],
+    "preview": {
+      "type": "transparent",
+      "height": 1400
+    }
   },
   "store.orderplaced": {
     "required": [
       "order-placed"
-    ]
+    ],
+    "preview": {
+      "type": "transparent",
+      "height": 1400
+    }
   },
   "store.product-review-form": {
     "before": [
@@ -99,7 +124,11 @@
     ],
     "allowed": [
       "product-review-form"
-    ]
+    ],
+    "preview": {
+      "type": "transparent",
+      "height": 1400
+    }
   },
   "storeWrapper": {
     "allowed": [
