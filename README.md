@@ -99,6 +99,8 @@ Please refer to [Blocks](./BLOCKS.md)
 
 - Internal Site Search: `internalSiteSearchView` event.
 
+- OrderPlaced Page: `orderPlaced` event.
+
 - Other: `otherView` event.
 
 ### Enhanced Ecommerce
