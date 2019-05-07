@@ -32,8 +32,7 @@ class ProductWrapper extends Component {
       titleTag,
       brand,
       categoryId,
-      categoriesIds,
-      categories,
+      categoryTree,
       productId,
       productName,
       items,
@@ -48,20 +47,20 @@ class ProductWrapper extends Component {
       eventType: 'productView',
       accountName: account,
       pageCategory: 'Product',
-      pageDepartment: categories ? this.stripCategory(last(categories)) : '',
+      pageDepartment: categoryTree ? head(categoryTree).name : '',
       pageFacets: [],
       pageTitle: titleTag,
       pageUrl: window.location.href,
       productBrandName: brand,
       productCategoryId: Number(categoryId),
-      productCategoryName: categories
-        ? last(this.stripCategory(head(categories)).split('/'))
+      productCategoryName: categoryTree
+        ? last(categoryTree).name
         : '',
-      productDepartmentId: categoriesIds
-        ? Number(this.stripCategory(last(categoriesIds)))
+      productDepartmentId: categoryTree
+        ? head(categoryTree).id
         : '',
-      productDepartmentName: categories
-        ? this.stripCategory(last(categories))
+      productDepartmentName: categoryTree
+        ? head(categoryTree).name
         : '',
       productId: productId,
       productName: productName,
