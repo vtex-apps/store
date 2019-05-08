@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.19.0] - 2019-05-08
+### Added
+- Added content placeholder on top level store blocks.
+
 ## [2.18.1] - 2019-05-08
 ### Fixed
 - Correctly pass withFacets parameter on productSearch query.
