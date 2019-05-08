@@ -29,7 +29,26 @@ export const SORT_OPTIONS = [
   },
 ]
 
+// Quick function to get querystring
+// https://stackoverflow.com/a/901144/5313009
+// TODO: Replace this with a better function
+const getParameterByName = (name, url) => {
+  if (!url) url = window && window.location && window.location.href;
+  name = name.replace(/[\[\]]/g, '\\$&');
+  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+      results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return window && decodeURIComponent && window.decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
 export function createInitialMap(params) {
+  const mapFromUrl = getParameterByName('map')
+
+  if (mapFromUrl) {
+    return mapFromUrl
+  }
+
   if (params.subcategory) {
     return 'c,c,c'
   } else if (params.category) {
