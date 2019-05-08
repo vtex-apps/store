@@ -29,6 +29,9 @@
   "store.search#subcategory": {
     "path": "/:department/:category/:subcategory"
   },
+  "store.search#subcategory-terms": {
+    "path": "/:department/:category/:subcategory/*terms"
+  },
   "store.search#custom": {
     "path": "/*terms"
   },
