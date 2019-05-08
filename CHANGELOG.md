@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
-- On SearchContext, get map from URL query string if available on `createInitialMap`.
+- **SearchContext**: Get `map` from URL query string, if available on `createInitialMap`.
 
 ## [2.20.0] - 2019-05-10
 
