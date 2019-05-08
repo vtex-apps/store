@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- On SearchContext, get map from URL query string if available on `createInitialMap`.
 
 ## [2.20.0] - 2019-05-10
 
