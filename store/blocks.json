@@ -19,6 +19,46 @@
       "search-result"
     ]
   },
+  "store.search#subcategory2": {
+    "blocks": [
+      "search-result"
+    ]
+  },
+  "store.search#subcategory3": {
+    "blocks": [
+      "search-result"
+    ]
+  },
+  "store.search#subcategory4": {
+    "blocks": [
+      "search-result"
+    ]
+  },
+  "store.search#subcategory5": {
+    "blocks": [
+      "search-result"
+    ]
+  },
+  "store.search#subcategory6": {
+    "blocks": [
+      "search-result"
+    ]
+  },
+  "store.search#subcategory7": {
+    "blocks": [
+      "search-result"
+    ]
+  },
+  "store.search#subcategory8": {
+    "blocks": [
+      "search-result"
+    ]
+  },
+  "store.search#subcategory9": {
+    "blocks": [
+      "search-result"
+    ]
+  },
   "store.search#custom": {
     "blocks": [
       "search-result"
