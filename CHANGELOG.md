@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.18.1] - 2019-05-08
+### Fixed
+- Correctly pass withFacets parameter on productSearch query.
+
 ## [2.18.0] - 2019-05-07
 ### Changed
 - Uses categoryTree property from store-resources instead of categories for breadcrumb props

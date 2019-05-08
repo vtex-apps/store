@@ -50,7 +50,6 @@ const SearchContext = ({
     from,
     to,
     rest,
-    withFacets: includeFacets(map, query),
     // hideUnavailableItems,
   }
 
@@ -61,7 +60,6 @@ const SearchContext = ({
     priceRange,
     from,
     to,
-    withFacets: includeFacets(mapField, queryField),
     // hideUnavailableItems,
   }
 
@@ -82,6 +80,7 @@ const SearchContext = ({
 
   queryVariables.facetQuery = facetQuery.join('/')
   queryVariables.facetMap = facetMap.join(',')
+  queryVariables.withFacets = includeFacets(facetMap, facetQuery)
 
   return (
     <Query
