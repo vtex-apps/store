@@ -42,7 +42,7 @@ const getParameterByName = (name, url) => {
   if (!results) return null
   if (!results[2]) return ''
 
-  return window && decodeURIComponent && window.decodeURIComponent(results[2].replace(/\+/g, ' '))
+  return window && window.decodeURIComponent && window.decodeURIComponent(results[2].replace(/\+/g, ' '))
 }
 
 export function createInitialMap(params) {
