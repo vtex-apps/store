@@ -29,29 +29,8 @@
   "store.search#subcategory": {
     "path": "/:department/:category/:subcategory"
   },
-  "store.search#subcategory2": {
-    "path": "/:department/:category/:subcategory/:subcategory2"
-  },
-  "store.search#subcategory3": {
-    "path": "/:department/:category/:subcategory/:subcategory2/:subcategory3"
-  },
-  "store.search#subcategory4": {
-    "path": "/:department/:category/:subcategory/:subcategory2/:subcategory3/:subcategory4"
-  },
-  "store.search#subcategory5": {
-    "path": "/:department/:category/:subcategory/:subcategory2/:subcategory3/:subcategory4/:subcategory5"
-  },
-  "store.search#subcategory6": {
-    "path": "/:department/:category/:subcategory/:subcategory2/:subcategory3/:subcategory4/:subcategory5/:subcategory6"
-  },
-  "store.search#subcategory7": {
-    "path": "/:department/:category/:subcategory/:subcategory2/:subcategory3/:subcategory4/:subcategory5/:subcategory6/:subcategory7"
-  },
-  "store.search#subcategory8": {
-    "path": "/:department/:category/:subcategory/:subcategory2/:subcategory3/:subcategory4/:subcategory5/:subcategory6/:subcategory7/:subcategory8"
-  },
-  "store.search#subcategory9": {
-    "path": "/:department/:category/:subcategory/:subcategory2/:subcategory3/:subcategory4/:subcategory5/:subcategory6/:subcategory7/:subcategory8/:subcategory9"
+  "store.search#subcategory-terms": {
+    "path": "/:department/:category/:subcategory/*terms"
   },
   "store.search#custom": {
     "path": "/*terms"
