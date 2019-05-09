@@ -1,4 +1,4 @@
-import { path, pathOr } from 'ramda'
+import { path } from 'ramda'
 import React, { Component, Fragment } from 'react'
 import {
   canUseDOM,
@@ -17,7 +17,6 @@ import { PWAProvider } from 'vtex.store-resources/PWAContext'
 import canonicalPathFromParams from './utils/canonical'
 import PageViewPixel from './components/PageViewPixel'
 import OrderFormProvider from './components/OrderFormProvider'
-import { DataLayerProvider } from './components/withDataLayer'
 import NetworkStatusToast from './components/NetworkStatusToast'
 
 import pwaDataQuery from './queries/pwaDataQuery.gql'
@@ -132,85 +131,80 @@ class StoreWrapper extends Component {
     })
     replaceHistoryToCanonical({ route, history }, canonicalPath)
 
-    window.dataLayer = window.dataLayer || []
-
     return (
       <Fragment>
         <PixelProvider>
-          <DataLayerProvider value={{ dataLayer: window.dataLayer }}>
-            <PWAProvider settings={pwaSettings}>
-              <PixelManager />
-              <PageViewPixel />
+          <PWAProvider settings={pwaSettings}>
+            <PixelManager />
+            <PageViewPixel />
+            <Helmet
+              title={titleTag}
+              meta={[
+                { name: 'viewport', content: MOBILE_SCALING },
+                { name: 'description', content: metaTagDescription },
+                { name: 'keywords', content: metaTagKeywords },
+                { name: 'copyright', content: storeName },
+                { name: 'author', content: storeName },
+                { name: 'country', content: country },
+                { name: 'language', content: locale },
+                { name: 'currency', content: currency },
+                { name: 'robots', content: metaTagRobots || META_ROBOTS },
+                { httpEquiv: 'Content-Type', content: CONTENT_TYPE },
+              ]}
+              link={[
+                ...(faviconLinks || []),
+                canonicalPath &&
+                  canonicalHost && {
+                    rel: 'canonical',
+                    href: `https://${canonicalHost}${canonicalPath}`,
+                  },
+              ].filter(Boolean)}
+            />
+            {/* PWA */}
+            {hasManifest && (
               <Helmet
-                title={titleTag}
                 meta={[
-                  { name: 'viewport', content: MOBILE_SCALING },
-                  { name: 'description', content: metaTagDescription },
-                  { name: 'keywords', content: metaTagKeywords },
-                  { name: 'copyright', content: storeName },
-                  { name: 'author', content: storeName },
-                  { name: 'country', content: country },
-                  { name: 'language', content: locale },
-                  { name: 'currency', content: currency },
-                  { name: 'robots', content: metaTagRobots || META_ROBOTS },
-                  { httpEquiv: 'Content-Type', content: CONTENT_TYPE },
+                  { name: 'theme-color', content: manifest.theme_color },
+                  { name: 'apple-mobile-web-app-capable', content: 'yes' },
+                ]}
+                script={[
+                  {
+                    type: 'text/javascript',
+                    src: `/pwa/workers/register.js${route.path.match(/\?.*/) ||
+                      ''}`,
+                  },
                 ]}
                 link={[
-                  ...(faviconLinks || []),
-                  canonicalPath &&
-                    canonicalHost && {
-                      rel: 'canonical',
-                      href: `https://${canonicalHost}${canonicalPath}`,
-                    },
+                  {
+                    rel: 'manifest',
+                    href: `/pwa/manifest.json?v=${Date.now()}`,
+                  },
+                  ...(iOSIcons
+                    ? iOSIcons.map(icon => ({
+                        rel: 'apple-touch-icon',
+                        sizes: icon.sizes,
+                        href: icon.src,
+                      }))
+                    : []),
+                  ...(splashes
+                    ? splashes.map(splash => ({
+                        href: splash.src,
+                        sizes: splash.sizes,
+                        rel: 'apple-touch-startup-image',
+                      }))
+                    : []),
                 ].filter(Boolean)}
               />
-              {/* PWA */}
-              {hasManifest && (
-                <Helmet
-                  meta={[
-                    { name: 'theme-color', content: manifest.theme_color },
-                    { name: 'apple-mobile-web-app-capable', content: 'yes' },
-                  ]}
-                  script={[
-                    {
-                      type: 'text/javascript',
-                      src: `/pwa/workers/register.js${route.path.match(
-                        /\?.*/
-                      ) || ''}`,
-                    },
-                  ]}
-                  link={[
-                    {
-                      rel: 'manifest',
-                      href: `/pwa/manifest.json?v=${Date.now()}`,
-                    },
-                    ...(iOSIcons
-                      ? iOSIcons.map(icon => ({
-                          rel: 'apple-touch-icon',
-                          sizes: icon.sizes,
-                          href: icon.src,
-                        }))
-                      : []),
-                    ...(splashes
-                      ? splashes.map(splash => ({
-                          href: splash.src,
-                          sizes: splash.sizes,
-                          rel: 'apple-touch-startup-image',
-                        }))
-                      : []),
-                  ].filter(Boolean)}
-                />
-              )}
-              <ToastProvider positioning="window">
-                <NetworkStatusToast />
-                <OrderFormProvider>
-                  <div className="vtex-store__template bg-base">
-                    {this.props.children}
-                  </div>
-                </OrderFormProvider>
-              </ToastProvider>
-            </PWAProvider>
-          </DataLayerProvider>
+            )}
+            <ToastProvider positioning="window">
+              <NetworkStatusToast />
+              <OrderFormProvider>
+                <div className="vtex-store__template bg-base">
+                  {this.props.children}
+                </div>
+              </OrderFormProvider>
+            </ToastProvider>
+          </PWAProvider>
         </PixelProvider>
         {this.isStorefrontIframe && (
           <NoSSR>

@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- New `useDataPixel` hook to replace `DataLayerApolloWrapper`.
+
+### Changed
+- Remove deprecated `DataLayerApolloWrapper` and move wrappers to function components.
+
+### Fixed
+- Meta description in product wrapper not placed in page.
 
 ## [2.21.0] - 2019-05-10
 ### Added

@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Helmet, useRuntime } from 'vtex.render-runtime'
 
-import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
+import useDataPixel from './hooks/useDataPixel'
 
 const CustomWrapper = ({
   children,
@@ -12,17 +12,22 @@ const CustomWrapper = ({
 }) => {
   const { account } = useRuntime()
 
-  const getData = () => ({
-    event: 'pageInfo',
-    eventType: 'customView',
-    accountName: account,
-    pageTitle: document.title,
-    pageUrl: location.href,
-    pageCategory: 'Custom',
-  })
+  const pixelEvents = useMemo(
+    () => ({
+      event: 'pageInfo',
+      eventType: 'customView',
+      accountName: account,
+      pageTitle: document.title,
+      pageUrl: location.href,
+      pageCategory: 'Custom',
+    }),
+    []
+  )
+
+  useDataPixel(pixelEvents)
 
   return (
-    <DataLayerApolloWrapper loading={false} getData={getData}>
+    <Fragment>
       <Helmet
         title={metaTitle}
         meta={[
@@ -31,7 +36,7 @@ const CustomWrapper = ({
         ]}
       />
       {children}
-    </DataLayerApolloWrapper>
+    </Fragment>
   )
 }
 
