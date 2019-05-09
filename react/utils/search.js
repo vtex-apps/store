@@ -45,10 +45,13 @@ const getParameterByName = (name, url) => {
   return window && window.decodeURIComponent && window.decodeURIComponent(results[2].replace(/\+/g, ' '))
 }
 
-export const initalizeMap = (params, url) => {
+export function initializeMap(params, url) {
   return getMapFromURL(url) || createInitialMap(params)
 }
-export const getMapFromURL = url => getParameterByName('map', url)
+
+export function getMapFromURL(url) {
+  getParameterByName('map', url)
+}
 
 export function createInitialMap(params) {
   const mapFromUrl = getParameterByName('map')
