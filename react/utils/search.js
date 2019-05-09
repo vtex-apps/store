@@ -54,12 +54,6 @@ export function getMapFromURL(url) {
 }
 
 export function createInitialMap(params) {
-  const mapFromUrl = getParameterByName('map')
-
-  if (mapFromUrl) {
-    return mapFromUrl
-  }
-
   if (params.subcategory) {
     return 'c,c,c'
   } else if (params.category) {
