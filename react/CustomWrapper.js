@@ -13,14 +13,14 @@ const CustomWrapper = ({
   const { account } = useRuntime()
 
   const pixelEvents = useMemo(
-    () => ({
+    () => typeof document !== 'undefined' && {
       event: 'pageInfo',
       eventType: 'customView',
       accountName: account,
       pageTitle: document.title,
       pageUrl: location.href,
       pageCategory: 'Custom',
-    }),
+    },
     []
   )
 

@@ -27,7 +27,7 @@ const ProductWrapper = ({
       items,
     } = product || {}
 
-    if (!product) {
+    if (!product || typeof document === 'undefined') {
       return []
     }
 

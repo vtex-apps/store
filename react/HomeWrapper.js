@@ -8,14 +8,15 @@ const HomeWrapper = ({ children }) => {
   const { account } = useRuntime()
 
   const pixelEvents = useMemo(
-    () => ({
-      event: 'pageInfo',
-      eventType: 'homeView',
-      accountName: account,
-      pageTitle: document.title,
-      pageUrl: location.href,
-      pageCategory: 'Home',
-    }),
+    () =>
+      typeof document !== 'undefined' && {
+        event: 'pageInfo',
+        eventType: 'homeView',
+        accountName: account,
+        pageTitle: document.title,
+        pageUrl: location.href,
+        pageCategory: 'Home',
+      },
     [account]
   )
 

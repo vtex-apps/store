@@ -7,6 +7,10 @@ const useDataPixel = (data, isLoading = false) => {
 
   useEffect(() => {
     if (prevLoadingRef.current && !isLoading) {
+      if (!data) {
+        return
+      }
+
       if (Array.isArray(data)) {
         data.forEach(event => push(event))
       } else {

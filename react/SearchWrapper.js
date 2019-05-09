@@ -44,7 +44,7 @@ const SearchWrapper = props => {
   const { account, getSettings } = useRuntime()
 
   const pixelEvents = useMemo(() => {
-    if (!searchQuery) {
+    if (!searchQuery || typeof document === 'undefined') {
       return null
     }
 
