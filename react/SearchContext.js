@@ -115,9 +115,9 @@ const SearchContext = ({
           page,
           from,
           to,
+          maxItemsPerPage,
           // backwards-compatibility
           rest,
-          maxItemsPerPage,
         })
       }}
     </Query>
