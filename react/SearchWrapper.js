@@ -69,6 +69,14 @@ class SearchWrapper extends Component {
       },
     ]
   }
+  //prettier-ignore
+  setTitleTag = (titleTag, storeTitle, term) => {
+    return titleTag
+      ? `${capitalize(decodeURI(titleTag))} - ${storeTitle}`
+      : term
+        ? `${capitalize(decodeURI(term))} - ${storeTitle}`
+        : `${storeTitle}`
+  }
 
   render() {
     const {
@@ -91,11 +99,7 @@ class SearchWrapper extends Component {
         loading={loading}
       >
         <Helmet
-          title={
-            titleTag
-              ? `${titleTag} - ${storeTitle}`
-              : params.term && `${capitalize(decodeURI(params.term))} - ${storeTitle}`
-          }
+          title={this.setTitleTag(titleTag, storeTitle, params.term)}
           meta={[
             params.term && {
               name: 'keywords',

@@ -7,150 +7,226 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [2.19.1] - 2019-05-08
+## [2.19.2] - 2019-05-09
+
 ### Fixed
+
+- Add default `storeTitle` in title when `titleTag` and `params.term` is null.
+
+## [2.19.1] - 2019-05-08
+
+### Fixed
+
 - Added more levels of search subcategories to prevent old Portal from opening with more complex searches.
 
 ## [2.19.0] - 2019-05-08
+
 ### Added
+
 - Added content placeholder on top level store blocks.
 
 ## [2.18.1] - 2019-05-08
+
 ### Fixed
+
 - Correctly pass withFacets parameter on productSearch query.
 
 ## [2.18.0] - 2019-05-07
+
 ### Changed
+
 - Uses categoryTree property from store-resources instead of categories for breadcrumb props
 
 ## [2.17.5] - 2019-05-07
+
 ### Removed
+
 - Temporarily stop using `hideUnavailableItems` prop on `SearchContext` to make search filters work again.
 
 ## [2.17.4] - 2019-05-06
+
 ### Fixed
+
 - Remove the default 'Sort By' option on `OrderBy` component.
 
 ## [2.17.3] - 2019-05-06
+
 ### Added
+
 - Prop `hideUnavailableItems` on `SearchContext`.
 
 ## [2.17.2] - 2019-05-02
+
 ### Fixed
+
 - `SearchWrapper`: Fix bad rebase and decode URI when getting page title again.
 
 ## [2.17.1] - 2019-05-02
 
 ## [2.17.0] - 2019-05-01
+
 ### Changed
+
 - Use `productSearchV2` query.
 
 ## [2.16.1] - 2019-04-30
+
 ### Fixed
+
 - `SearchWrapper`: Decode URI when getting page title.
 
 ## [2.16.0] - 2019-04-29
+
 ### Added
+
 - Add `refetch` parameter to `ProductContext`
 
 ## [2.15.1] - 2019-04-29
+
 ### Fixed
+
 - Prevent infinite error loop if image is undefined.
 
 ## [2.15.0] - 2019-04-26
+
 ### Changed
+
 - Split query and map used in facets from search.
 
 ## [2.14.2] - 2019-04-26
+
 ### Fixed
+
 - Append the URL hash to the `returnUrl` param to login.
 
 ## [2.14.1] - 2019-04-25
+
 ### Fixed
+
 - Error when splashes are null.
 
 ## [2.14.0] - 2019-04-25
 
 ### Added
+
 - Support for product review interfaces.
 
 ## [2.13.0] - 2019-04-25
+
 ### Deprecated
+
 - `rest` parameter in search routes.
 
 ### Added
+
 - Add generic route for search.
 
 ## [2.12.4] - 2019-04-25
+
 ### Fixed
+
 - Search title and meta description not reflecting API result.
+
 ## [2.12.3] - 2019-04-16
+
 ### Fixed
+
 - Fix access `/account` route without any challenge.
 
 ## [2.12.2] - 2019-04-12
+
 ### Changed
-- Update `pwa-graphql` to 1.x. 
+
+- Update `pwa-graphql` to 1.x.
 
 ## [2.12.1] - 2019-04-12
+
 ### Changed
+
 - Pass `navigationRoute` to history's replace in `StoreWrapper`.
 
 ## [2.12.0] - 2019-04-10
+
 ### Added
+
 - Add support for `flex-layout`.
 
 ## [2.11.0] - 2019-04-04
+
 ### Added
+
 - Add `rich-text` as allowed store block.
 
 ## [2.10.0] - 2019-04-03
 
 ### Added
+
 - Add `newsletter` as allowed store block.
 
 ## [2.9.5] - 2019-04-01
+
 ### Added
+
 - Add new allowed `notification.bar`.
 
 ## [2.9.4] - 2019-03-28
+
 ### Fixed
+
 - Toast proptypes warnings.
 
 ## [2.9.3] - 2019-03-26
+
 ### Fixed
+
 - Fix maximum call stack size exceeded error in helmet.
 
 ## [2.9.2] - 2019-03-26
+
 ### Changed
+
 - Explicitly allow conditions on `store` interface
 
 ## [2.9.1] - 2019-03-22
+
 ### Changed
+
 - Remove iconpack.
 
 ## [2.9.0] - 2019-03-22
+
 ### Added
+
 - Add the toast persistence logic as we know if there is a toast visible.
 
 ## [2.8.0] - 2019-03-18
+
 ### Changed
+
 - `vtex.orderplaced` is back!
 
 ## [2.7.3] - 2019-03-11
+
 ### Fixed
+
 - Add `vtex.store-components` as a dependency.
 
 ## [2.7.2] - 2019-03-11
+
 ### Added
+
 - Added the `NetworkStatusToast` component to the store.
 
 ## [2.7.1] - 2019-03-08
+
 ### Removed
+
 - Remove `order-placed` app because isn't work properly with pixel archtecture.
 
 ## [2.7.0] - 2019-03-08
+
 ### Added
+
 - Add `vtex.request-capture` and `vtex.store-sitemap` as a peer dependency.
 
 ## [2.6.0] - 2019-03-01
@@ -167,6 +243,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Add updateOrderFormCheckin mutation to OrderFormProvider
 
 ## [2.5.6] - 2019-02-26
+
 ### Removed
 
 - Removed address-locator dependency.
