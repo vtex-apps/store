@@ -12,6 +12,7 @@ const ProductWrapper = ({
   productQuery,
   productQuery: { product, loading },
   query,
+  children,
   ...props
 }) => {
   const { account } = useRuntime()
@@ -102,7 +103,7 @@ const ProductWrapper = ({
         ].filter(Boolean)}
       />
       {product && <StructuredData product={product} query={query} />}
-      {React.cloneElement(this.props.children, {
+      {React.cloneElement(children, {
         productQuery,
         slug,
         ...props,
