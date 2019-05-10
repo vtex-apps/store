@@ -5,7 +5,7 @@ import { Query } from 'react-apollo'
 import { useRuntime } from 'vtex.render-runtime'
 
 import { productSearchV2 } from 'vtex.store-resources/Queries'
-import { createInitialMap, SORT_OPTIONS } from './utils/search'
+import { initializeMap, SORT_OPTIONS } from './utils/search'
 
 const DEFAULT_PAGE = 1
 const DEFAULT_MAX_ITEMS_PER_PAGE = 10
@@ -17,7 +17,6 @@ const SearchContext = ({
   queryField,
   mapField,
   orderByField,
-  hideUnavailableItems,
   query: {
     order: orderBy = orderByField || SORT_OPTIONS[0].value,
     page: pageQuery,
@@ -29,7 +28,7 @@ const SearchContext = ({
   children,
 }) => {
   const { page: runtimePage } = useRuntime()
-  const map = mapQuery || createInitialMap(params)
+  const map = mapQuery || initializeMap(params)
   const page = pageQuery ? parseInt(pageQuery) : DEFAULT_PAGE
   const from = (page - 1) * maxItemsPerPage
   const to = from + maxItemsPerPage - 1
