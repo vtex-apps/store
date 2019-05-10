@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { Helmet, useRuntime } from 'vtex.render-runtime'
 
@@ -13,15 +13,16 @@ const CustomWrapper = ({
   const { account } = useRuntime()
 
   const pixelEvents = useMemo(
-    () => typeof document !== 'undefined' && {
-      event: 'pageInfo',
-      eventType: 'customView',
-      accountName: account,
-      pageTitle: document.title,
-      pageUrl: location.href,
-      pageCategory: 'Custom',
-    },
-    []
+    () =>
+      typeof document !== 'undefined' && {
+        event: 'pageInfo',
+        eventType: 'customView',
+        accountName: account,
+        pageTitle: document.title,
+        pageUrl: location.href,
+        pageCategory: 'Custom',
+      },
+    [account]
   )
 
   useDataPixel(pixelEvents)
