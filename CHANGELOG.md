@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.20.2] - 2019-05-10
+### Fixed
+- Fetch more on search-result was always fetching 10 more items, and not fetching maxItemsPerPage prop set.
+
 ## [2.20.1] - 2019-05-10
 ### Changed
 - **SearchContext**: Get `map` from URL query string, if available on `createInitialMap`.
