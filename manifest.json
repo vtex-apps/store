@@ -47,24 +47,24 @@
         "type": "string"
       },
       "titleTag": {
-        "title": "Store Title (Title Tag)",
+        "title": "Default title tag",
         "type": "string"
       },
       "metaTagDescription": {
-        "title": "Store Description (Meta Tag Descriptions)",
+        "title": "Meta description tag",
         "type": "string"
       },
       "metaTagKeywords": {
-        "title": "Store Keywords (Meta Tag Keywords)",
+        "title": "Meta keywords tag",
         "type": "string"
       },
       "metaTagRobots": {
-        "title": "Store Robots (Meta Tag robots)",
+        "title": "Meta robots tag",
         "type": "string",
         "description": "Default value: index, follow"
       },
       "faviconLinks": {
-        "title": "Store Favicons (Link Tag)",
+        "title": "Favicons",
         "type": "array",
         "items": {
           "type": "object",
