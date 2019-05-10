@@ -42,11 +42,11 @@ const getParameterByName = (name, url) => {
   if (!results) return null
   if (!results[2]) return ''
 
-  return window && window.decodeURIComponent && window.decodeURIComponent(results[2].replace(/\+/g, ' '))
-}
-
-export function initializeMap(params, url) {
-  return getMapFromURL(url) || createInitialMap(params)
+  return (
+    window &&
+    window.decodeURIComponent &&
+    window.decodeURIComponent(results[2].replace(/\+/g, ' '))
+  )
 }
 
 export function getMapFromURL(url) {
@@ -70,4 +70,8 @@ export function createInitialMap(params) {
     .split('/')
     .map(() => 'ft')
     .join(',')
+}
+
+export function initializeMap(params, url) {
+  return getMapFromURL(url) || createInitialMap(params)
 }
