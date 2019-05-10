@@ -1,8 +1,11 @@
 {
-  "extends": "eslint-config-vtex",
+  "extends": "vtex-react",
   "env": {
     "browser": true,
     "es6": true,
     "jest": true
+  },
+  "rules": {
+    "@typescript-eslint/camelcase": "off"
   }
 }

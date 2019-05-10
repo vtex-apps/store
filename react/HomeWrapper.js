@@ -1,33 +1,32 @@
-import React, { Component } from 'react'
+import { useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { withRuntimeContext } from 'vtex.render-runtime'
+import { useRuntime } from 'vtex.render-runtime'
 
-import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
+import useDataPixel from './hooks/useDataPixel'
 
-class HomeWrapper extends Component {
-  static propTypes = {
-    children: PropTypes.element,
-    runtime: PropTypes.shape({
-      account: PropTypes.string,
-    }),
-  }
+const HomeWrapper = ({ children }) => {
+  const { account } = useRuntime()
 
-  getData = () => ({
-    event: 'pageInfo',
-    eventType: 'homeView',
-    accountName: this.props.runtime.account,
-    pageTitle: document.title,
-    pageUrl: location.href,
-    pageCategory: 'Home',
-  })
+  const pixelEvents = useMemo(
+    () =>
+      typeof document !== 'undefined' && {
+        event: 'pageInfo',
+        eventType: 'homeView',
+        accountName: account,
+        pageTitle: document.title,
+        pageUrl: location.href,
+        pageCategory: 'Home',
+      },
+    [account]
+  )
 
-  render() {
-    return (
-      <DataLayerApolloWrapper loading={false} getData={this.getData}>
-        {this.props.children}
-      </DataLayerApolloWrapper>
-    )
-  }
+  useDataPixel(pixelEvents)
+
+  return children
 }
 
-export default withRuntimeContext(HomeWrapper)
+HomeWrapper.propTypes = {
+  children: PropTypes.element,
+}
+
+export default HomeWrapper

@@ -1,33 +1,23 @@
 import PropTypes from 'prop-types'
-import React, { Component, Fragment } from 'react'
+import React, { useMemo } from 'react'
 import { last, head } from 'ramda'
-import { Helmet, withRuntimeContext } from 'vtex.render-runtime'
+import { Helmet, useRuntime } from 'vtex.render-runtime'
 
 import StructuredData from './components/StructuredData'
 
-import DataLayerApolloWrapper from './components/DataLayerApolloWrapper'
+import useDataPixel from './hooks/useDataPixel'
 
-class ProductWrapper extends Component {
-  static propTypes = {
-    params: PropTypes.object,
-    productQuery: PropTypes.object,
-    children: PropTypes.node,
-    runtime: PropTypes.object,
-    /* URL query params */
-    query: PropTypes.object,
-  }
+const ProductWrapper = ({
+  params: { slug },
+  productQuery,
+  productQuery: { product, loading } = {},
+  query,
+  children,
+  ...props
+}) => {
+  const { account } = useRuntime()
 
-  stripCategory(category) {
-    return category && category.replace(/^\/|\/$/g, '')
-  }
-
-  getData = () => {
-    const {
-      productQuery: { product },
-      runtime: { account },
-      query,
-    } = this.props
-
+  const pixelEvents = useMemo(() => {
     const {
       titleTag,
       brand,
@@ -38,7 +28,7 @@ class ProductWrapper extends Component {
       items,
     } = product || {}
 
-    if (!product) {
+    if (!product || typeof document === 'undefined') {
       return []
     }
 
@@ -53,15 +43,9 @@ class ProductWrapper extends Component {
       pageUrl: window.location.href,
       productBrandName: brand,
       productCategoryId: Number(categoryId),
-      productCategoryName: categoryTree
-        ? last(categoryTree).name
-        : '',
-      productDepartmentId: categoryTree
-        ? head(categoryTree).id
-        : '',
-      productDepartmentName: categoryTree
-        ? head(categoryTree).name
-        : '',
+      productCategoryName: categoryTree ? last(categoryTree).name : '',
+      productDepartmentId: categoryTree ? head(categoryTree).id : '',
+      productDepartmentName: categoryTree ? head(categoryTree).name : '',
       productId: productId,
       productName: productName,
       skuStockOutFromProductDetail: [],
@@ -101,34 +85,39 @@ class ProductWrapper extends Component {
         product,
       },
     ]
-  }
+  }, [account, product, query.skuId])
 
-  render() {
-    const {
-      params: { slug },
-      productQuery,
-      productQuery: { product, loading },
-      query,
-      ...props
-    } = this.props
-    const { titleTag, metaTagDescription } = product || {}
+  useDataPixel(pixelEvents, loading)
 
-    return (
-      <div className="vtex-product-context-provider">
-        <Helmet>{titleTag && <title>{titleTag}</title>}</Helmet>
-        <Fragment>
-          {product && <StructuredData product={product} query={query} />}
-          <DataLayerApolloWrapper getData={this.getData} loading={loading}>
-            {React.cloneElement(this.props.children, {
-              productQuery,
-              slug,
-              ...props,
-            })}
-          </DataLayerApolloWrapper>
-        </Fragment>
-      </div>
-    )
-  }
+  const { titleTag, metaTagDescription } = product || {}
+
+  return (
+    <div className="vtex-product-context-provider">
+      <Helmet
+        title={titleTag}
+        meta={[
+          metaTagDescription && {
+            name: 'description',
+            content: metaTagDescription,
+          },
+        ].filter(Boolean)}
+      />
+      {product && <StructuredData product={product} query={query} />}
+      {React.cloneElement(children, {
+        productQuery,
+        slug,
+        ...props,
+      })}
+    </div>
+  )
 }
 
-export default withRuntimeContext(ProductWrapper)
+ProductWrapper.propTypes = {
+  params: PropTypes.object,
+  productQuery: PropTypes.object,
+  children: PropTypes.node,
+  /* URL query params */
+  query: PropTypes.object,
+}
+
+export default ProductWrapper

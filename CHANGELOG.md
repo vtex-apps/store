@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.21.1] - 2019-05-10
+### Added
+- New `useDataPixel` hook to replace `DataLayerApolloWrapper`.
+
+### Changed
+- Remove deprecated `DataLayerApolloWrapper` and move wrappers to function components.
+
+### Fixed
+- Meta description in product wrapper not placed in page.
+
 ## [2.21.0] - 2019-05-10
 ### Added
 - `PWAProvider` inside `StoreWrapper` to allow `PWAContext` to work properly.
