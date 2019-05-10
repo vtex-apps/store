@@ -10,7 +10,7 @@ import useDataPixel from './hooks/useDataPixel'
 const ProductWrapper = ({
   params: { slug },
   productQuery,
-  productQuery: { product, loading },
+  productQuery: { product, loading } = {},
   query,
   children,
   ...props
