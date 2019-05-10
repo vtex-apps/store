@@ -63,8 +63,6 @@ const replaceHistoryToCanonical = ({ route, history }, canonicalPath) => {
   }
 }
 
-let deferredPrompt = null
-
 class StoreWrapper extends Component {
   static propTypes = {
     runtime: PropTypes.shape({
