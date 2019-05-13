@@ -78,6 +78,9 @@ const ProductWrapper = ({
       pageInfo.sellerIds = `${sellerId}`
     }
 
+    // Add selected SKU property to the product object
+    product.selectedSku = query.skuId ? query.skuId : product.items[0].itemId
+
     return [
       pageInfo,
       {
