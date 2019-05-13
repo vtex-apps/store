@@ -44,23 +44,19 @@
     "properties": {
       "storeName": {
         "title": "Store Name",
-        "type": "string",
-        "description": "Enter with the name of your store"
+        "type": "string"
       },
       "titleTag": {
         "title": "Store Title (Title Tag)",
-        "type": "string",
-        "description": "Enter with the title of your store"
+        "type": "string"
       },
       "metaTagDescription": {
         "title": "Store Description (Meta Tag Descriptions)",
-        "type": "string",
-        "description": "Enter with a description of your store"
+        "type": "string"
       },
       "metaTagKeywords": {
         "title": "Store Keywords (Meta Tag Keywords)",
-        "type": "string",
-        "description": "Enter with keywords of your store"
+        "type": "string"
       },
       "metaTagRobots": {
         "title": "Store Robots (Meta Tag robots)",
@@ -91,8 +87,7 @@
             },
             "href": {
               "title": "Favicon href",
-              "type": "string",
-              "description": "This favicon href."
+              "type": "string"
             }
           },
           "required": [
