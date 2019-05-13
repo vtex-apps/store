@@ -7,7 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.22.1] - 2019-05-13
+
+### Changed
+- General settings labels and descriptions.
+
+### Removed
+- Redundant descriptions from general settings.
+
 ## [2.22.0] - 2019-05-13
+
+### Added
+- `disableSSR` setting to test CSR stores.
 
 ## [2.21.1] - 2019-05-10
 ### Added
