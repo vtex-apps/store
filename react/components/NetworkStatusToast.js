@@ -1,26 +1,32 @@
-import PropTypes from 'prop-types'
 import { path, pathOr } from 'ramda'
-import { useContext, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { injectIntl, intlShape } from 'react-intl'
 import { ToastContext } from 'vtex.styleguide'
+import { useRuntime } from 'vtex.render-runtime'
 
-function NetworkStatusToast(props) {
-  const toastConfig = {
-    message: props.intl.formatMessage({
-      id: 'store/store.network-status.offline',
-    }),
-    dismissable: false,
-    duration: Infinity,
-  }
-
+function NetworkStatusToast({ intl }) {
+  const runtime = useRuntime()
   const [offline, setOffline] = useState(false)
+  // Useful to dismissable toast flow.
+  const [showingOffline, setShowingOffline] = useState(false)
   const { showToast, hideToast, toastState } = useContext(ToastContext)
 
-  const updateStatus = () => {
+  const toastConfig = useMemo(
+    () => ({
+      message: intl.formatMessage({
+        id: 'store/store.network-status.offline',
+      }),
+      dismissable: pathOr(false, ['hints', 'mobile'], runtime),
+      duration: Infinity,
+    }),
+    [intl, runtime]
+  )
+
+  const updateStatus = useCallback(() => {
     if (navigator) {
       setOffline(!pathOr(true, ['onLine'], navigator))
     }
-  }
+  }, [])
 
   useEffect(() => {
     if (window) {
@@ -34,19 +40,23 @@ function NetworkStatusToast(props) {
         window.removeEventListener('offline', updateStatus)
       }
     }
-  }, [])
+  }, [updateStatus])
 
   useEffect(() => {
     if (offline && !toastState.currentToast) {
-      showToast(toastConfig)
+      if (!showingOffline) {
+        showToast(toastConfig)
+      }
+      setShowingOffline(!showingOffline)
     } else if (
       !offline &&
       toastState.isToastVisible &&
       path(['currentToast', 'message'], toastState) === toastConfig.message
     ) {
       hideToast()
+      setShowingOffline(false)
     }
-  }, [offline, toastState])
+  }, [offline, toastState, toastConfig])
 
   return null
 }
