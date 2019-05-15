@@ -17,17 +17,21 @@
   },
   "store.search#brand": {
     "path": "/:brand/b",
-    "canonical": "/:brand"
+    "canonical": "/:brand",
+    "map": ["b"]
   },
   "store.search#department": {
     "path": "/:department/d",
-    "canonical": "/:department"
+    "canonical": "/:department",
+    "map": ["c"]
   },
   "store.search#category": {
-    "path": "/:department/:category"
+    "path": "/:department/:category",
+    "map": ["c", "c"]
   },
   "store.search#subcategory": {
-    "path": "/:department/:category/:subcategory"
+    "path": "/:department/:category/:subcategory",
+    "map": ["c", "c", "c"]
   },
   "store.search#subcategory-terms": {
     "path": "/:department/:category/:subcategory/*terms"

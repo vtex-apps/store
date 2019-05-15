@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.22.3] - 2019-05-15
+### Added
+
+- New `map` field on routes to better support legacy URLs.
+
 ## [2.22.2] - 2019-05-13
 
 ### Changed
