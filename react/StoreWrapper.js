@@ -1,4 +1,3 @@
-import { path } from 'ramda'
 import React, { Component, Fragment } from 'react'
 import {
   canUseDOM,
@@ -14,7 +13,6 @@ import PixelManager from 'vtex.pixel-manager/PixelManager'
 import { ToastProvider } from 'vtex.styleguide'
 import { PWAProvider } from 'vtex.store-resources/PWAContext'
 
-import canonicalPathFromParams from './utils/canonical'
 import PageViewPixel from './components/PageViewPixel'
 import OrderFormProvider from './components/OrderFormProvider'
 import NetworkStatusToast from './components/NetworkStatusToast'
@@ -26,39 +24,12 @@ const CONTENT_TYPE = 'text/html; charset=utf-8'
 const META_ROBOTS = 'index, follow'
 const MOBILE_SCALING = 'width=device-width, initial-scale=1'
 
-const systemToCanonical = ({ page, pages, route, history }) => {
-  const { params } = route
-  const canonicalRouteTemplate = pages[page].canonical
-  const canonicalPath = canonicalPathFromParams(canonicalRouteTemplate, params)
+const systemToCanonical = ({ canonicalPath }) => {
   const canonicalHost =
     window.__hostname__ || (window.location && window.location.hostname)
   return {
     canonicalPath,
     canonicalHost,
-  }
-}
-
-const replaceHistoryToCanonical = ({ route, history }, canonicalPath) => {
-  const pathname = path(['location', 'pathname'], history)
-  const search = path(['location', 'search'], history)
-  const navigationRoute = path(
-    ['location', 'state', 'navigationRoute'],
-    history
-  )
-
-  if (!canonicalPath || !pathname) {
-    return
-  }
-
-  const decodedCanonicalPath = decodeURIComponent(canonicalPath)
-
-  if (decodedCanonicalPath !== pathname) {
-    history.replace(`${canonicalPath}${search}`, {
-      fetchPage: false,
-      navigationRoute,
-      renderRouting: true,
-      route,
-    })
   }
 }
 
@@ -123,13 +94,7 @@ class StoreWrapper extends Component {
       data: { manifest, pwaSettings, iOSIcons, splashes, loading, error } = {},
     } = this.props
     const hasManifest = !loading && manifest && !error
-    const { canonicalHost, canonicalPath } = systemToCanonical({
-      pages,
-      page,
-      route,
-      history,
-    })
-    replaceHistoryToCanonical({ route, history }, canonicalPath)
+    const { canonicalHost, canonicalPath } = systemToCanonical(route)
 
     return (
       <Fragment>

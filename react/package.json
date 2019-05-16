@@ -8,8 +8,7 @@
     "hoist-non-react-statics": "^3.0.1",
     "prop-types": "^15.5.10",
     "ramda": "^0.26.1",
-    "react-slick": "^0.16.0",
-    "route-parser": "^0.0.5"
+    "react-slick": "^0.16.0"
   },
   "devDependencies": {
     "apollo-client-preset": "^1.0.8",

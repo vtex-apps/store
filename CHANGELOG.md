@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.22.5] - 2019-05-16
+### Changed
+- Remove canonical discovery and history replacement code.
+
 ## [2.22.4] - 2019-05-15
 ### Fixed
 - `NetworkStatusToast` need to be dismissable on mobile devices.
