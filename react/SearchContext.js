@@ -40,6 +40,7 @@ const SearchContext = ({
   const query = Object.values(params)
     .filter(term => term && term.length > 0)
     .join('/')
+    .replace(/\/\//g, '/') //This cleans some bad cases of two // on some terms.
 
   const defaultSearch = {
     query:
