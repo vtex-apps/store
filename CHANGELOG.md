@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.22.7] - 2019-05-20
+### Fixed
+- Add logic to clean dirty params passed to SearchContext.
+
 ## [2.22.6] - 2019-05-20
 ### Fixed
 
