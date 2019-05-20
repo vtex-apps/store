@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.22.6] - 2019-05-20
+### Fixed
+
+- Reactivate `hideUnavailableItems`prop os SearchContext.
+
 ## [2.22.5] - 2019-05-16
 ### Changed
 - Remove canonical discovery and history replacement code.

@@ -17,6 +17,7 @@ const SearchContext = ({
   queryField,
   mapField,
   orderByField,
+  hideUnavailableItems,
   query: {
     order: orderBy = orderByField || SORT_OPTIONS[0].value,
     page: pageQuery,
@@ -49,7 +50,7 @@ const SearchContext = ({
     from,
     to,
     rest,
-    // hideUnavailableItems,
+    hideUnavailableItems,
   }
 
   const customSearch = {
@@ -59,7 +60,7 @@ const SearchContext = ({
     priceRange,
     from,
     to,
-    // hideUnavailableItems,
+    hideUnavailableItems,
   }
 
   const queryVariables = queryField ? customSearch : defaultSearch
