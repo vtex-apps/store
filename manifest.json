@@ -103,5 +103,6 @@
         "description": "Deliver store as a client-side single-page application."
       }
     }
-  }
+  },
+  "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }

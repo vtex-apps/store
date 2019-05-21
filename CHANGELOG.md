@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- `referrer` to `pageView` event.
+
 ## [2.22.7] - 2019-05-20
 ### Fixed
 - Add logic to clean dirty params passed to SearchContext.
