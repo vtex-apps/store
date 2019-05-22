@@ -97,6 +97,7 @@
   },
   "store.orderplaced": {
     "required": ["order-placed"],
+    "allowed":["shop-review-form"],
     "preview": {
       "type": "spinner",
       "height": 600
