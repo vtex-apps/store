@@ -96,6 +96,8 @@ class StoreContextProvider extends Component {
       }
     }
 
+    const queryParams = route.path.match(/\?.*/)
+
     return (
       <Fragment>
         <ExtensionPoint id="store/__icons" />
@@ -133,7 +135,8 @@ class StoreContextProvider extends Component {
                 <link rel="manifest" href="/pwa/manifest.json" />
                 <script
                   type="text/javascript"
-                  src={`/pwa/workers/register.js${route.path.match(/\?.*/) || ''}`}
+                  src={`/pwa/workers/register.js?t=${Date.now()}${queryParams ? queryParams[0].replace('?', '&') : ''}`}
+                  defer
                 />
                 {hasManifest &&
                   iOSIcons.map(icon => (
