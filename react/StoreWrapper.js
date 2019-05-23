@@ -33,6 +33,10 @@ const systemToCanonical = ({ canonicalPath }) => {
   }
 }
 
+const joinKeywords = keywords => {
+  return keywords && keywords.length > 0 ? keywords.join(', ') : ''
+}
+
 class StoreWrapper extends Component {
   static propTypes = {
     runtime: PropTypes.shape({
@@ -41,6 +45,13 @@ class StoreWrapper extends Component {
         country: PropTypes.string,
         locale: PropTypes.string,
         currency: PropTypes.string,
+      }),
+      route: PropTypes.shape({
+        metaTags: PropTypes.shape({
+          description: PropTypes.string,
+          keywords: PropTypes.arrayOf(PropTypes.string),
+        }),
+        title: PropTypes.string,
       }),
     }),
     children: PropTypes.element,
@@ -74,10 +85,8 @@ class StoreWrapper extends Component {
     const {
       runtime: {
         culture: { country, locale, currency },
-        history,
-        pages,
-        page,
         route,
+        route: { metaTags, title: pageTitle },
         getSettings,
       },
     } = this.props
@@ -95,6 +104,10 @@ class StoreWrapper extends Component {
     } = this.props
     const hasManifest = !loading && manifest && !error
     const { canonicalHost, canonicalPath } = systemToCanonical(route)
+    const description = (metaTags && metaTags.description) || metaTagDescription
+    const keywords =
+      joinKeywords(metaTags && metaTags.keywords) || metaTagKeywords
+    const title = pageTitle || titleTag
 
     return (
       <Fragment>
@@ -103,11 +116,11 @@ class StoreWrapper extends Component {
             <PixelManager />
             <PageViewPixel />
             <Helmet
-              title={titleTag}
+              title={title}
               meta={[
                 { name: 'viewport', content: MOBILE_SCALING },
-                { name: 'description', content: metaTagDescription },
-                { name: 'keywords', content: metaTagKeywords },
+                { name: 'description', content: description },
+                { name: 'keywords', content: keywords },
                 { name: 'copyright', content: storeName },
                 { name: 'author', content: storeName },
                 { name: 'country', content: country },
