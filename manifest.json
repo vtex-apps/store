@@ -34,7 +34,7 @@
     "vtex.my-account": "1.x",
     "vtex.rebuy": "1.x",
     "vtex.order-placed": "1.x",
-    "vtex.pixel-manager": "1.x",
+    "vtex.pixel-manager": "1.0.0-beta.1",
     "vtex.rich-text": "0.x",
     "vtex.flex-layout": "0.x",
     "vtex.sandbox": "0.x"
