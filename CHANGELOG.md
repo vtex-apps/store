@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.23.2] - 2019-05-23
+
+### Fixed
+
+- Referrer when is the same origin.
+
 ## [2.23.1] - 2019-05-23
 ### Added
 - Add support for `sandbox`.
