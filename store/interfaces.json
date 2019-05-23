@@ -14,7 +14,8 @@
       "info-card",
       "newsletter",
       "rich-text",
-      "flex-layout"
+      "flex-layout",
+      "sandbox"
     ],
     "preview": {
       "type": "transparent",

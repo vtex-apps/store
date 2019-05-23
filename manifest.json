@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "store",
-  "version": "2.23.0",
+  "version": "2.23.1",
   "title": "VTEX Store",
   "description": "The VTEX basic store.",
   "builders": {
@@ -36,7 +36,8 @@
     "vtex.order-placed": "1.x",
     "vtex.pixel-manager": "0.x",
     "vtex.rich-text": "0.x",
-    "vtex.flex-layout": "0.x"
+    "vtex.flex-layout": "0.x",
+    "vtex.sandbox": "0.x"
   },
   "settingsSchema": {
     "title": "VTEX Store",
