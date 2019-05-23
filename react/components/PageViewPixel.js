@@ -15,9 +15,10 @@ class PageViewPixel extends Component {
       event: 'pageView',
       pageTitle: document.title,
       pageUrl: location.href,
-      referrer: location.origin === document.referrer
-        ? undefined
-        : document.referrer,
+      referrer:
+        document.referrer.indexOf(location.origin) === 0
+          ? undefined
+          : document.referrer,
       accountName: this.props.runtime.account,
     })
   }
