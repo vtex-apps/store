@@ -91,6 +91,10 @@
       "height": 800
     }
   },
+  "pixel": {
+    "component": "*",
+    "extensibility": "vtex"
+  },
   "pixels": {
     "component": "vtex.render-runtime/ExtensionContainer",
     "allowed": ["pixel"]
