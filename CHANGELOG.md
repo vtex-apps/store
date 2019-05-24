@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.24.1] - 2019-05-24
+### Changed
+
+- Stop doing the recAndBenefits query at ProductContext. Only fetch benefits now.
+
 ## [2.24.0] - 2019-05-24
 ### Added
 - Add custom title and metatags for routes declaring it.

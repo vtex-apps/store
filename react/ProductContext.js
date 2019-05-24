@@ -7,7 +7,7 @@ import { withRuntimeContext } from 'vtex.render-runtime'
 import {
   product,
   productPreviewFragment,
-  recommendationsAndBenefits,
+  productBenefits,
 } from 'vtex.store-resources/Queries'
 
 import { cacheLocator } from './cacheLocator'
@@ -23,24 +23,24 @@ class ProductContext extends Component {
     runtime: PropTypes.object,
     client: PropTypes.object,
     catalog: PropTypes.object,
-    recommendationsAndBenefits: PropTypes.object,
+    productBenefits: PropTypes.object,
   }
 
   get product() {
     const {
       catalog: { product: catalogProduct, loading: catalogLoading = true } = {},
-      recommendationsAndBenefits: {
-        product: recAndBenefitsProduct,
-        loading: recAndBenefitsLoading = true,
+      productBenefits: {
+        product: benefitsProduct,
+        loading: benefitsLoading = true,
       } = {},
     } = this.props
 
     const catalogInfo = !catalogLoading && catalogProduct
-    const recAndBenefitsInfo =
-      catalogInfo && !recAndBenefitsLoading && recAndBenefitsProduct
+    const benefitsInfo =
+      catalogInfo && !benefitsLoading && benefitsProduct
     const product = {
       ...catalogInfo,
-      ...recAndBenefitsInfo,
+      ...benefitsInfo,
     }
     return isEmpty(product) ? null : product
   }
@@ -48,12 +48,12 @@ class ProductContext extends Component {
   get loading() {
     const {
       catalog: { loading: catalogLoading = true } = {},
-      recommendationsAndBenefits: {
-        loading: recAndBenefitsLoading = true,
+      productBenefits: {
+        loading: benefitsLoading = true,
       } = {},
     } = this.props
 
-    return catalogLoading || recAndBenefitsLoading
+    return catalogLoading || benefitsLoading
   }
 
   componentDidMount() {
@@ -154,8 +154,8 @@ const catalogOptions = {
   }),
 }
 
-const recommendationsAndBenefitsOptions = {
-  name: 'recommendationsAndBenefits',
+const productBenefitsOptions = {
+  name: 'productBenefits',
   options: props => ({
     variables: {
       slug: props.params.slug,
@@ -169,5 +169,5 @@ export default compose(
   withApollo,
   withRuntimeContext,
   graphql(product, catalogOptions),
-  graphql(recommendationsAndBenefits, recommendationsAndBenefitsOptions)
+  graphql(productBenefits, productBenefitsOptions)
 )(ProductContext)
