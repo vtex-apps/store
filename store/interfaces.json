@@ -4,7 +4,7 @@
     "component": "*",
     "around": ["storeWrapper", "challenge"],
     "before": ["header"],
-    "after": ["footer"],
+    "after": ["footer", "pixels"],
     "allowed": [
       "notification.bar",
       "carousel",
@@ -90,6 +90,10 @@
       "type": "spinner",
       "height": 800
     }
+  },
+  "pixels": {
+    "component": "vtex.render-runtime/ExtensionContainer",
+    "allowed": ["pixel"]
   },
   "storeWrapper": {
     "allowed": ["highlight-overlay"],
