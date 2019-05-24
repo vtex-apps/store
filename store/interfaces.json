@@ -121,6 +121,5 @@
     "component": "*"
   },
   "store.custom": {
-    "around": ["customWrapper"]
   }
 }
