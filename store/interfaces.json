@@ -93,11 +93,13 @@
   },
   "pixel": {
     "component": "*",
-    "extensibility": "vtex"
+    "extensibility": "vtex",
+    "render": "client"
   },
   "pixels": {
     "component": "vtex.render-runtime/ExtensionContainer",
-    "allowed": ["pixel"]
+    "allowed": ["pixel"],
+    "render": "client"
   },
   "storeWrapper": {
     "allowed": ["highlight-overlay"],
