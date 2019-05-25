@@ -15,7 +15,8 @@
       "newsletter",
       "rich-text",
       "flex-layout",
-      "sandbox"
+      "sandbox",
+      "image"
     ],
     "preview": {
       "type": "transparent",
