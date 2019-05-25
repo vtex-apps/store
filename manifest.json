@@ -25,6 +25,7 @@
     "vtex.styleguide": "9.x",
     "vtex.carousel": "2.x",
     "vtex.shelf": "1.x",
+    "vtex.pixel-interfaces": "1.x",
     "vtex.product-details": "1.x",
     "vtex.product-kit": "1.x",
     "vtex.product-review-interfaces": "1.x",
