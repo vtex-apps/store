@@ -91,16 +91,6 @@
       "height": 800
     }
   },
-  "pixel": {
-    "component": "*",
-    "extensibility": "vtex",
-    "render": "client"
-  },
-  "pixels": {
-    "component": "vtex.render-runtime/ExtensionContainer",
-    "allowed": ["pixel"],
-    "render": "client"
-  },
   "storeWrapper": {
     "allowed": ["highlight-overlay"],
     "component": "StoreWrapper"
