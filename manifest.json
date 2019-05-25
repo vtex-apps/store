@@ -39,7 +39,8 @@
     "vtex.flex-layout": "0.x",
     "vtex.sandbox": "0.x",
     "vtex.product-context": "0.x",
-    "vtex.breadcrumb": "1.x"
+    "vtex.breadcrumb": "1.x",
+    "vtex.product-availability": "0.x"
   },
   "settingsSchema": {
     "title": "VTEX Store",
