@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.26.0-beta] - 2019-05-26
+
 ## [2.25.0] - 2019-05-25
 ### Added
 - Add "image" block to store.
