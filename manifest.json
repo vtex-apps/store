@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "store",
-  "version": "2.25.1",
+  "version": "2.26.0",
   "title": "VTEX Store",
   "description": "The VTEX basic store.",
   "builders": {
@@ -13,8 +13,7 @@
     "postreleasy": "vtex publish --verbose"
   },
   "peerDependencies": {
-    "vtex.store-sitemap": "1.x",
-    "vtex.request-capture": "1.x"
+    "vtex.store-sitemap": "1.x"
   },
   "dependencies": {
     "vtex.store-graphql": "2.x",
@@ -26,6 +25,7 @@
     "vtex.styleguide": "9.x",
     "vtex.carousel": "2.x",
     "vtex.shelf": "1.x",
+    "vtex.pixel-interfaces": "1.x",
     "vtex.product-details": "1.x",
     "vtex.product-kit": "1.x",
     "vtex.product-review-interfaces": "1.x",
@@ -34,7 +34,7 @@
     "vtex.my-account": "1.x",
     "vtex.rebuy": "1.x",
     "vtex.order-placed": "1.x",
-    "vtex.pixel-manager": "0.x",
+    "vtex.pixel-manager": "1.x",
     "vtex.rich-text": "0.x",
     "vtex.flex-layout": "0.x",
     "vtex.sandbox": "0.x"

@@ -4,7 +4,7 @@
     "component": "*",
     "around": ["storeWrapper", "challenge"],
     "before": ["header"],
-    "after": ["footer"],
+    "after": ["footer", "pixels"],
     "allowed": [
       "notification.bar",
       "carousel",

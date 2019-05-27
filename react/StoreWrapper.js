@@ -9,7 +9,6 @@ import {
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { PixelProvider } from 'vtex.pixel-manager/PixelContext'
-import PixelManager from 'vtex.pixel-manager/PixelManager'
 import { ToastProvider } from 'vtex.styleguide'
 import { PWAProvider } from 'vtex.store-resources/PWAContext'
 
@@ -111,9 +110,8 @@ class StoreWrapper extends Component {
 
     return (
       <Fragment>
-        <PixelProvider>
+        <PixelProvider currency={currency}>
           <PWAProvider settings={pwaSettings}>
-            <PixelManager />
             <PageViewPixel />
             <Helmet
               title={title}
