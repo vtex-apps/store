@@ -41,8 +41,7 @@ class ProductContext extends Component {
     } = this.props
 
     const catalogInfo = !catalogLoading && catalogProduct
-    const benefitsInfo =
-      catalogInfo && !benefitsLoading && benefitsProduct
+    const benefitsInfo = catalogInfo && !benefitsLoading && benefitsProduct
     const product = {
       ...catalogInfo,
       ...benefitsInfo,
@@ -53,9 +52,7 @@ class ProductContext extends Component {
   get loading() {
     const {
       catalog: { loading: catalogLoading = true } = {},
-      productBenefits: {
-        loading: benefitsLoading = true,
-      } = {},
+      productBenefits: { loading: benefitsLoading = true } = {},
     } = this.props
 
     return catalogLoading || benefitsLoading
@@ -155,14 +152,16 @@ class ProductContext extends Component {
     )
 
     return (
-      <ProductContextApp.Provider value={{
-        product,
-        categories: path(['categories'], product),
-        selectedItem,
-        onChangeQuantity: this.setSelectedQuantity,
-        selectedQuantity: this.state.selectedQuantity,
-      }}>
-        { children }
+      <ProductContextApp.Provider
+        value={{
+          product,
+          categories: path(['categories'], product),
+          selectedItem,
+          onChangeQuantity: this.setSelectedQuantity,
+          selectedQuantity: this.state.selectedQuantity,
+        }}
+      >
+        {children}
       </ProductContextApp.Provider>
     )
   }
