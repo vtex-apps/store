@@ -103,6 +103,17 @@ const ProductWrapper = ({
     ? items.find(sku => sku.itemId === query.skuId)
     : items[0]
 
+  const value = useMemo(
+    () => ({
+      product,
+      categories: path(['categories'], product),
+      selectedItem,
+      onChangeQuantity: setSelectedQuantity,
+      selectedQuantity,
+    }),
+    [product, selectedItem, setSelectedQuantity, selectedQuantity]
+  )
+
   return (
     <div className="vtex-product-context-provider">
       <Helmet
@@ -114,15 +125,7 @@ const ProductWrapper = ({
           },
         ].filter(Boolean)}
       />
-      <ProductContextApp.Provider
-        value={{
-          product,
-          categories: path(['categories'], product),
-          selectedItem,
-          onChangeQuantity: setSelectedQuantity,
-          selectedQuantity,
-        }}
-      >
+      <ProductContextApp.Provider value={value}>
         {product && <StructuredData product={product} query={query} />}
         {React.cloneElement(children, {
           productQuery,
