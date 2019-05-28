@@ -108,34 +108,10 @@ class StoreWrapper extends Component {
       <Fragment>
         <Query query={pwaDataQuery} ssr={false}>
           {({ data, loading, error }) => {
-            console.log(loading, error, data)
             const { manifest, pwaSettings, iOSIcons, splashes } = data
             const hasManifest = !loading && manifest && !error
             return (
               <PWAProvider settings={pwaSettings}>
-                <Helmet
-                  title={title}
-                  meta={[
-                    { name: 'viewport', content: MOBILE_SCALING },
-                    { name: 'description', content: description },
-                    { name: 'keywords', content: keywords },
-                    { name: 'copyright', content: storeName },
-                    { name: 'author', content: storeName },
-                    { name: 'country', content: country },
-                    { name: 'language', content: locale },
-                    { name: 'currency', content: currency },
-                    { name: 'robots', content: metaTagRobots || META_ROBOTS },
-                    { httpEquiv: 'Content-Type', content: CONTENT_TYPE },
-                  ]}
-                  link={[
-                    ...(faviconLinks || []),
-                    canonicalPath &&
-                      canonicalHost && {
-                        rel: 'canonical',
-                        href: `https://${canonicalHost}${canonicalPath}`,
-                      },
-                  ].filter(Boolean)}
-                />
                 {/* PWA */}
                 {hasManifest && (
                   <Helmet
@@ -146,8 +122,9 @@ class StoreWrapper extends Component {
                     script={[
                       {
                         type: 'text/javascript',
-                        src: `/pwa/workers/register.js${route.path.match(/\?.*/) ||
-                          ''}`,
+                        src: `/pwa/workers/register.js${route.path.match(
+                          /\?.*/
+                        ) || ''}`,
                         defer: true,
                       },
                     ]}
@@ -177,6 +154,29 @@ class StoreWrapper extends Component {
             )
           }}
         </Query>
+        <Helmet
+          title={title}
+          meta={[
+            { name: 'viewport', content: MOBILE_SCALING },
+            { name: 'description', content: description },
+            { name: 'keywords', content: keywords },
+            { name: 'copyright', content: storeName },
+            { name: 'author', content: storeName },
+            { name: 'country', content: country },
+            { name: 'language', content: locale },
+            { name: 'currency', content: currency },
+            { name: 'robots', content: metaTagRobots || META_ROBOTS },
+            { httpEquiv: 'Content-Type', content: CONTENT_TYPE },
+          ]}
+          link={[
+            ...(faviconLinks || []),
+            canonicalPath &&
+              canonicalHost && {
+                rel: 'canonical',
+                href: `https://${canonicalHost}${canonicalPath}`,
+              },
+          ].filter(Boolean)}
+        />
         <PixelProvider currency={currency}>
           <PageViewPixel />
           <ToastProvider positioning="window">
