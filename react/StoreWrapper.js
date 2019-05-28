@@ -7,7 +7,7 @@ import {
   withRuntimeContext,
 } from 'vtex.render-runtime'
 import PropTypes from 'prop-types'
-import { graphql } from 'react-apollo'
+import { Query } from 'react-apollo'
 import { PixelProvider } from 'vtex.pixel-manager/PixelContext'
 import { ToastProvider } from 'vtex.styleguide'
 import { PWAProvider } from 'vtex.store-resources/PWAContext'
@@ -98,10 +98,6 @@ class StoreWrapper extends Component {
       storeName,
       faviconLinks,
     } = settings
-    const {
-      data: { manifest, pwaSettings, iOSIcons, splashes, loading, error } = {},
-    } = this.props
-    const hasManifest = !loading && manifest && !error
     const { canonicalHost, canonicalPath } = systemToCanonical(route)
     const description = (metaTags && metaTags.description) || metaTagDescription
     const keywords =
@@ -110,78 +106,87 @@ class StoreWrapper extends Component {
 
     return (
       <Fragment>
+        <Query query={pwaDataQuery} ssr={false}>
+          {({ data, loading, error }) => {
+            const { manifest, pwaSettings, iOSIcons, splashes } = data
+            const hasManifest = !loading && manifest && !error
+            return (
+              <PWAProvider settings={pwaSettings}>
+                {/* PWA */}
+                {hasManifest && (
+                  <Helmet
+                    meta={[
+                      { name: 'theme-color', content: manifest.theme_color },
+                      { name: 'apple-mobile-web-app-capable', content: 'yes' },
+                    ]}
+                    script={[
+                      {
+                        type: 'text/javascript',
+                        src: `/pwa/workers/register.js${route.path.match(
+                          /\?.*/
+                        ) || ''}`,
+                        defer: true,
+                      },
+                    ]}
+                    link={[
+                      {
+                        rel: 'manifest',
+                        href: `/pwa/manifest.json?v=${Date.now()}`,
+                      },
+                      ...(iOSIcons
+                        ? iOSIcons.map(icon => ({
+                            rel: 'apple-touch-icon',
+                            sizes: icon.sizes,
+                            href: icon.src,
+                          }))
+                        : []),
+                      ...(splashes
+                        ? splashes.map(splash => ({
+                            href: splash.src,
+                            sizes: splash.sizes,
+                            rel: 'apple-touch-startup-image',
+                          }))
+                        : []),
+                    ].filter(Boolean)}
+                  />
+                )}
+              </PWAProvider>
+            )
+          }}
+        </Query>
+        <Helmet
+          title={title}
+          meta={[
+            { name: 'viewport', content: MOBILE_SCALING },
+            { name: 'description', content: description },
+            { name: 'keywords', content: keywords },
+            { name: 'copyright', content: storeName },
+            { name: 'author', content: storeName },
+            { name: 'country', content: country },
+            { name: 'language', content: locale },
+            { name: 'currency', content: currency },
+            { name: 'robots', content: metaTagRobots || META_ROBOTS },
+            { httpEquiv: 'Content-Type', content: CONTENT_TYPE },
+          ]}
+          link={[
+            ...(faviconLinks || []),
+            canonicalPath &&
+              canonicalHost && {
+                rel: 'canonical',
+                href: `https://${canonicalHost}${canonicalPath}`,
+              },
+          ].filter(Boolean)}
+        />
         <PixelProvider currency={currency}>
-          <PWAProvider settings={pwaSettings}>
-            <PageViewPixel />
-            <Helmet
-              title={title}
-              meta={[
-                { name: 'viewport', content: MOBILE_SCALING },
-                { name: 'description', content: description },
-                { name: 'keywords', content: keywords },
-                { name: 'copyright', content: storeName },
-                { name: 'author', content: storeName },
-                { name: 'country', content: country },
-                { name: 'language', content: locale },
-                { name: 'currency', content: currency },
-                { name: 'robots', content: metaTagRobots || META_ROBOTS },
-                { httpEquiv: 'Content-Type', content: CONTENT_TYPE },
-              ]}
-              link={[
-                ...(faviconLinks || []),
-                canonicalPath &&
-                  canonicalHost && {
-                    rel: 'canonical',
-                    href: `https://${canonicalHost}${canonicalPath}`,
-                  },
-              ].filter(Boolean)}
-            />
-            {/* PWA */}
-            {hasManifest && (
-              <Helmet
-                meta={[
-                  { name: 'theme-color', content: manifest.theme_color },
-                  { name: 'apple-mobile-web-app-capable', content: 'yes' },
-                ]}
-                script={[
-                  {
-                    type: 'text/javascript',
-                    src: `/pwa/workers/register.js${route.path.match(/\?.*/) ||
-                      ''}`,
-                    defer: true,
-                  },
-                ]}
-                link={[
-                  {
-                    rel: 'manifest',
-                    href: `/pwa/manifest.json?v=${Date.now()}`,
-                  },
-                  ...(iOSIcons
-                    ? iOSIcons.map(icon => ({
-                        rel: 'apple-touch-icon',
-                        sizes: icon.sizes,
-                        href: icon.src,
-                      }))
-                    : []),
-                  ...(splashes
-                    ? splashes.map(splash => ({
-                        href: splash.src,
-                        sizes: splash.sizes,
-                        rel: 'apple-touch-startup-image',
-                      }))
-                    : []),
-                ].filter(Boolean)}
-              />
-            )}
-            <ToastProvider positioning="window">
-              <NetworkStatusToast />
-              <OrderFormProvider>
-                <div className="vtex-store__template bg-base">
-                  {this.props.children}
-                </div>
-              </OrderFormProvider>
-            </ToastProvider>
-          </PWAProvider>
+          <PageViewPixel />
+          <ToastProvider positioning="window">
+            <NetworkStatusToast />
+            <OrderFormProvider>
+              <div className="vtex-store__template bg-base">
+                {this.props.children}
+              </div>
+            </OrderFormProvider>
+          </ToastProvider>
         </PixelProvider>
         {this.isStorefrontIframe && (
           <NoSSR>
@@ -193,4 +198,4 @@ class StoreWrapper extends Component {
   }
 }
 
-export default graphql(pwaDataQuery)(withRuntimeContext(StoreWrapper))
+export default withRuntimeContext(StoreWrapper)

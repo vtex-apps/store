@@ -7,26 +7,40 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.27.0] - 2019-05-28
+
+### Changed
+
+- Move PWA query to be execute on CSR.
+
 ## [2.26.0] - 2019-05-27
 
 ### Changed
+
 - Pixel architecture.
 
 ## [2.25.1] - 2019-05-27
+
 ### Fixed
+
 - Add `defer` attribute to the `/pwa/workers/register.js` script tag.
 
 ## [2.25.0] - 2019-05-25
+
 ### Added
+
 - Add "image" block to store.
 
 ## [2.24.1] - 2019-05-24
+
 ### Changed
 
 - Stop doing the recAndBenefits query at ProductContext. Only fetch benefits now.
 
 ## [2.24.0] - 2019-05-24
+
 ### Added
+
 - Add custom title and metatags for routes declaring it.
 
 ## [2.23.2] - 2019-05-23
@@ -36,31 +50,43 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Referrer when is the same origin.
 
 ## [2.23.1] - 2019-05-23
+
 ### Added
+
 - Add support for `sandbox`.
 
 ## [2.23.0] - 2019-05-22
+
 ### Added
+
 - `referrer` to `pageView` event.
 
 ## [2.22.7] - 2019-05-20
+
 ### Fixed
+
 - Add logic to clean dirty params passed to SearchContext.
 
 ## [2.22.6] - 2019-05-20
+
 ### Fixed
 
 - Reactivate `hideUnavailableItems`prop os SearchContext.
 
 ## [2.22.5] - 2019-05-16
+
 ### Changed
+
 - Remove canonical discovery and history replacement code.
 
 ## [2.22.4] - 2019-05-15
+
 ### Fixed
+
 - `NetworkStatusToast` need to be dismissable on mobile devices.
 
 ## [2.22.3] - 2019-05-15
+
 ### Added
 
 - New `map` field on routes to better support legacy URLs.
