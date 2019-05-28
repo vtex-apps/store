@@ -9,7 +9,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Add `product-context` dependency
 - Allow blocks in `product-details` to be applied directly to `store.product`
-- Add "image" block to store.
 
 ## [2.27.0] - 2019-05-28
 
