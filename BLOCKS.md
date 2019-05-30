@@ -21,6 +21,7 @@ Here we give move details about how the language is structured.
   - [`preview`](#preview)
   - [`allowConditions`](#allowConditions)
   - [`before`, `after` and `around`  (Outer Interfaces)](#before-after-and-around-outer-interfaces-)
+  - [`composition`](#composition)
 - [Route](#route)
   - [`block_identifier`](#route-block_identifier)
   - [`path`](#path)
@@ -240,6 +241,15 @@ If the interface declares `k` elements around it, `n` before and `m` after, they
     ...
 </Around_1>
 ```
+
+### `composition`
+
+Enum which specifies how the block composes other blocks.
+
+- `children`: component will receive as children prop all `blocks` it should render.
+- `blocks`: component must declare `ExtensionPoints` with `id`s matching the interfaces received on `blocks`.
+
+Defaults to `blocks`.
 
 ## Route
 
