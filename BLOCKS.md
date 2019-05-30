@@ -87,9 +87,9 @@ Declares which blocks will configure the outer interfaces (`before`, `after` & `
 
 Enum that specifies the render strategy for the block. Allowed values are:
 
-- `server`: component will be rendered on server-side. Blocks can only 
+- `server`: component will be rendered on server-side.
 - `client`: component will be rendered on client-side but the component assets can be included in HTML template to increase rendering speed. Cannot be overridden by `server` value in any extending interface.
-- `lazy`: the component will be rendered on client-side and the component assets must not be included in HTML template - runtime will fetch those assets when necessary. Cannot be overridden in any extending interface.
+- `lazy`: component will be rendered on client-side and the component assets must not be included in HTML template - runtime will fetch those assets when necessary. Cannot be overridden in any extending interface.
 
 Defaults to `server`.
 
@@ -177,11 +177,11 @@ inside the `blocks` field of any implementing block.
 
 Enum that specifies the render strategy for the interface. Allowed values are:
 
-- `server`: component will be rendered on server-side. Can be overridden by any value in any extending interface.
-- `client`: component will be rendered on client-side but the component assets can be included in HTML template to increase rendering speed. Cannot be overridden by `server` value in any extending interface.
-- `lazy`: the component will be rendered on client-side and the component assets must not be included in HTML template - runtime will fetch those assets when necessary. Cannot be overridden in any extending interface.
+- `server`: component will be rendered on server-side. Can have this value if implemented interface also has.
+- `client`: component will be rendered on client-side but the component assets can be included in HTML template to increase rendering speed. Can have this value if implemented interface has render equals `server` or `client`.
+- `lazy`: the component will be rendered on client-side and the component assets must not be included in HTML template - runtime will fetch those assets when necessary. 
 
-Defaults to `server`.
+Defaults to implemented interface `render` value.
 
 ### `extensible`
 
