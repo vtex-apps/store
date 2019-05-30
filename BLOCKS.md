@@ -4,13 +4,31 @@ Here we give move details about how the language is structured.
 
 ## Table of Contents
 
-- [Blocks](#blocks)
+- [Block](#block)
   - [`block_identifier`](#block_identifier)
-    - [Ambiguity](#ambiguity)
-  - [`blocks`](#`blocks`)
+  - [`blocks`](#blocks)
+  - [`props`](#props)
+  - [`parent`](#parent)
+  - [`render`](#render)
+- [Interface](#interface)
+  - [`interface_identifier`](#interface_identifier)
+  - [`component`](#component)
+  - [`context`](#context)
+  - [`required`](#required)
+  - [`allowed`](#allowed)
+  - [`render`](#render)
+  - [`extensible`](#extensible)
+  - [`preview`](#preview)
+  - [`allowConditions`](#allowConditions)
+  - [`before`, `after` and `around`  (Outer Interfaces)](#before-after-and-around-outer-interfaces-)
+- [Route](#route)
+  - [`block_identifier`](#route-block_identifier)
+  - [`path`](#path)
+- [Plugin](#plugin)
+  - [`selector`](#selector)
+  - [`block_identifier`](#plugin-block_identifier)
 
-
-## Blocks
+## Block
 
 Blocks must always implement one interface by providing props to it and declaring its outer blocks.
 
@@ -62,9 +80,19 @@ Configuration of the block. `props` should only contain layout configurations, m
 
 ### `parent`
 
-Declares which blocks will configure the outer interfces (`before`, `after` & `around`)
+Declares which blocks will configure the outer interfaces (`before`, `after` & `around`)
 
-## Interfaces
+### `render`
+
+Enum that specifies the render strategy for the block. Allowed values are:
+
+- `server`: component will be rendered on server-side. Blocks can only 
+- `client`: component will be rendered on client-side but the component assets can be included in HTML template to increase rendering speed. Cannot be overridden by `server` value in any extending interface.
+- `lazy`: the component will be rendered on client-side and the component assets must not be included in HTML template - runtime will fetch those assets when necessary. Cannot be overridden in any extending interface.
+
+Defaults to `server`.
+
+## Interface
 
 Interfaces can extend behavior from a single existing interface, through a inheritance-like process.
 
@@ -89,7 +117,7 @@ Interfaces are be declared in the `interfaces.json` configuration file. The file
         context: string | null
         allowed: string[]
         required: string[]
-        ssr: boolean
+        render: RenderStrategy
         allowConditions?: boolean
         extensible?: ExtensibilityLevel
         preview?: Preview
@@ -144,10 +172,15 @@ inside the `blocks` field of any implementing block.
 Array of interface names that specifies which interfaces are **allowed** to be included 
 inside the `blocks` field of any implementing block.
 
-### `ssr`
+### `render`
 
-Boolean that determines if any implementing block should be rendered on the server side or not.
-Defaults to `true`.
+Enum that specifies the render strategy for the interface. Allowed values are:
+
+- `server`: component will be rendered on server-side. Can be overridden by any value in any extending interface.
+- `client`: component will be rendered on client-side but the component assets can be included in HTML template to increase rendering speed. Cannot be overridden by `server` value in any extending interface.
+- `lazy`: the component will be rendered on client-side and the component assets must not be included in HTML template - runtime will fetch those assets when necessary. Cannot be overridden in any extending interface.
+
+Defaults to `server`.
 
 ### `extensible`
 
@@ -212,7 +245,6 @@ If the interface declares `k` elements around it, `n` before and `m` after, they
 
 Routes are be declared in the `interfaces.json` configuration file. The file has the following structure:
 
-routes.json
 ```
 {
     block_identifier : {
@@ -223,7 +255,7 @@ routes.json
 }
 ```
 
-### `block_identifier`
+### Route `block_identifier`
 
 An identifier of a declared block.
 
@@ -233,7 +265,7 @@ String with the relative path to access the template.
 A route will be accessed if its path matches the current URL.
 
 To get values from the URL, one may insert parameters on the path.
-Parameters can have different behaviors dependeing on their prefix:
+Parameters can have different behaviors depending on their prefix:
 
 - `:identifier` will capture the string between two `/`.
 - `*identifier` will capture the biggest string possible that produces a valid match between the URL and the path.
@@ -241,9 +273,8 @@ Parameters can have different behaviors dependeing on their prefix:
 #### `canonical`
 
 Friendlier path to access same resources.
-Perguntar Gimenes como funciona melhor.
 
-## Plugins
+## Plugin
 
 Plugins are mappings between a selector and a block.
 
@@ -264,6 +295,6 @@ A selector is a string that has a list of interface identifiers separated by spa
 For instance, a plugin with `"int_1 > int_2 > int_3"` as selector will be insert its block anywhere in the interface tree 
 where `int_3` is direct child of `int_2` and `int_2` is direct child of `int_1`.
 
-### `block_identifier`
+### Plugin `block_identifier`
 
 An identifier of a declared block.
