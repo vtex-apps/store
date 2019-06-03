@@ -114,6 +114,15 @@ const ProductWrapper = ({
     [product, selectedItem, setSelectedQuantity, selectedQuantity]
   )
 
+  const childrenProps = useMemo(
+    () => ({
+      productQuery,
+      slug,
+      ...props,
+    }),
+    [productQuery, slug, props]
+  )
+
   return (
     <div className="vtex-product-context-provider">
       <Helmet
@@ -127,11 +136,7 @@ const ProductWrapper = ({
       />
       <ProductContextApp.Provider value={value}>
         {product && <StructuredData product={product} query={query} />}
-        {React.cloneElement(children, {
-          productQuery,
-          slug,
-          ...props,
-        })}
+        {React.cloneElement(children, childrenProps)}
       </ProductContextApp.Provider>
     </div>
   )
