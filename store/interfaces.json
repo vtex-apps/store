@@ -33,15 +33,34 @@
     }
   },
   "store.product": {
-    "around": ["productWrapper"],
-    "before": ["header.full"],
-    "required": ["product-details"],
+    "around": [
+      "productWrapper"
+    ],
+    "before": [
+      "header.full"
+    ],
     "allowed": [
+      "product-details",
       "product-kit",
       "product-reviews",
       "product-questions-and-answers",
       "product-rating-summary",
-      "product-rating-inline"
+      "product-rating-inline",
+      "product-images",
+      "product-name",
+      "product-price",
+      "sku-selector",
+      "buy-button",
+      "product-separator",
+      "product-description",
+      "product-specifications",
+      "product-quantity",
+      "breadcrumb",
+      "shipping-simulator",
+      "availability-subscriber",
+      "share",
+      "product-highlights",
+      "product-availability"
     ],
     "context": "ProductContext",
     "preview": {

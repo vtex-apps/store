@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types'
-import React, { useMemo } from 'react'
-import { last, head } from 'ramda'
+import React, { useMemo, useState } from 'react'
+import { last, head, path } from 'ramda'
 import { Helmet, useRuntime } from 'vtex.render-runtime'
+import { ProductContext as ProductContextApp } from 'vtex.product-context'
 
 import StructuredData from './components/StructuredData'
 
@@ -16,6 +17,8 @@ const ProductWrapper = ({
   ...props
 }) => {
   const { account } = useRuntime()
+
+  const [selectedQuantity, setSelectedQuantity] = useState(1)
 
   const pixelEvents = useMemo(() => {
     const {
@@ -94,6 +97,32 @@ const ProductWrapper = ({
 
   const { titleTag, metaTagDescription } = product || {}
 
+  const items = path(['items'], product) || []
+
+  const selectedItem = query.skuId
+    ? items.find(sku => sku.itemId === query.skuId)
+    : items[0]
+
+  const value = useMemo(
+    () => ({
+      product,
+      categories: path(['categories'], product),
+      selectedItem,
+      onChangeQuantity: setSelectedQuantity,
+      selectedQuantity,
+    }),
+    [product, selectedItem, setSelectedQuantity, selectedQuantity]
+  )
+
+  const childrenProps = useMemo(
+    () => ({
+      productQuery,
+      slug,
+      ...props,
+    }),
+    [productQuery, slug, props]
+  )
+
   return (
     <div className="vtex-product-context-provider">
       <Helmet
@@ -105,12 +134,10 @@ const ProductWrapper = ({
           },
         ].filter(Boolean)}
       />
-      {product && <StructuredData product={product} query={query} />}
-      {React.cloneElement(children, {
-        productQuery,
-        slug,
-        ...props,
-      })}
+      <ProductContextApp.Provider value={value}>
+        {product && <StructuredData product={product} query={query} />}
+        {React.cloneElement(children, childrenProps)}
+      </ProductContextApp.Provider>
     </div>
   )
 }

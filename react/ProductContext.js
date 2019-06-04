@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import { withApollo, graphql, compose } from 'react-apollo'
-import { isEmpty } from 'ramda'
-import { withRuntimeContext } from 'vtex.render-runtime'
+import { isEmpty, path } from 'ramda'
+import { useRuntime } from 'vtex.render-runtime'
+import { ProductContext as ProductContextApp } from 'vtex.product-context'
 
 import {
   product,
@@ -12,136 +13,145 @@ import {
 
 import { cacheLocator } from './cacheLocator'
 
-class ProductContext extends Component {
-  static propTypes = {
-    params: PropTypes.object,
-    query: PropTypes.shape({
-      skuId: PropTypes.string,
-    }),
-    data: PropTypes.object,
-    children: PropTypes.node,
-    runtime: PropTypes.object,
-    client: PropTypes.object,
-    catalog: PropTypes.object,
-    productBenefits: PropTypes.object,
+function getProduct(props) {
+  const {
+    catalog: { product: catalogProduct, loading: catalogLoading = true } = {},
+    productBenefits: {
+      product: benefitsProduct,
+      loading: benefitsLoading = true,
+    } = {},
+  } = props
+
+  const catalogInfo = !catalogLoading && catalogProduct
+  const benefitsInfo = catalogInfo && !benefitsLoading && benefitsProduct
+  const product = {
+    ...catalogInfo,
+    ...benefitsInfo,
   }
+  return isEmpty(product) ? null : product
+}
 
-  get product() {
-    const {
-      catalog: { product: catalogProduct, loading: catalogLoading = true } = {},
-      productBenefits: {
-        product: benefitsProduct,
-        loading: benefitsLoading = true,
-      } = {},
-    } = this.props
+function getLoading(props) {
+  const {
+    catalog: { loading: catalogLoading = true } = {},
+    productBenefits: { loading: benefitsLoading = true } = {},
+  } = props
 
-    const catalogInfo = !catalogLoading && catalogProduct
-    const benefitsInfo =
-      catalogInfo && !benefitsLoading && benefitsProduct
-    const product = {
-      ...catalogInfo,
-      ...benefitsInfo,
-    }
-    return isEmpty(product) ? null : product
-  }
+  return catalogLoading || benefitsLoading
+}
 
-  get loading() {
-    const {
-      catalog: { loading: catalogLoading = true } = {},
-      productBenefits: {
-        loading: benefitsLoading = true,
-      } = {},
-    } = this.props
+function findAvailableProduct(item) {
+  return item.sellers.find(
+    ({ commertialOffer = {} }) => commertialOffer.AvailableQuantity > 0
+  )
+}
 
-    return catalogLoading || benefitsLoading
-  }
+function useNotFound(loading, propsProduct, slug) {
+  const { navigate } = useRuntime()
 
-  componentDidMount() {
-    this.checkNotFoundProduct()
-  }
-
-  componentDidUpdate() {
-    this.checkNotFoundProduct()
-  }
-
-  stripCategory(category) {
-    return category && category.replace(/^\/|\/$/g, '')
-  }
-
-  checkNotFoundProduct = () => {
-    const loading = this.loading
-    const product = this.product
-    const {
-      params: { slug },
-      runtime,
-    } = this.props
-    if (!product && !loading) {
-      runtime.navigate({
+  useEffect(() => {
+    if (!propsProduct && !loading) {
+      navigate({
         page: 'store.search',
         params: { term: slug },
         query: `productLinkNotFound=${slug}`,
       })
     }
-  }
+  }, [loading, propsProduct, navigate, slug])
+}
+const ProductContext = _props => {
+  const {
+    params,
+    params: { slug },
+    client,
+    catalog: { refetch },
+    ...props
+  } = _props
 
-  render() {
-    const {
-      params,
-      params: { slug },
-      client,
-      catalog: { refetch },
-      ...props
-    } = this.props
+  const [selectedQuantity, setSelectedQuantity] = useState(1)
 
-    const productPreview = client.readFragment({
-      id: cacheLocator.product(slug),
-      fragment: productPreviewFragment,
-    })
-    const loadedProduct = this.product
-    const product =
-      loadedProduct ||
-      (productPreview && productPreview.items ? productPreview : null)
+  const loading = getLoading(_props)
+  const propsProduct = getProduct(_props)
 
-    const loading = this.loading
+  useNotFound(loading, propsProduct, slug)
 
-    const productQuery = {
-      loading,
-      product,
-      refetch,
-    }
+  const productPreview = client.readFragment({
+    id: cacheLocator.product(slug),
+    fragment: productPreviewFragment,
+  })
 
-    // why do we still have this?
-    if (!product && !loading) {
-      productQuery.error = {
-        message: 'Product not found!',
-      }
-    }
+  const product =
+    propsProduct ||
+    (productPreview && productPreview.items ? productPreview : null)
 
-    /**
-     * The breadcrumb component is being used in multiple pages,
-     * therefore we need to adapt the data to its needs instead of
-     * making the component do the changes itself.
-     **/
-    const breadcrumbsProps = {
+  const items = path(['items'], product) || []
+  const selectedItem = props.query.skuId
+    ? items.find(sku => sku.itemId === props.query.skuId)
+    : items.find(findAvailableProduct) || items[0]
+
+  /**
+   * The breadcrumb component is being used in multiple pages,
+   * therefore we need to adapt the data to its needs instead of
+   * making the component do the changes itself.
+   **/
+  const breadcrumbsProps = useMemo(
+    () => ({
       term: slug,
       categories: product ? product.categories : null,
       categoryTree: product ? product.categoryTree : null,
-    }
+    }),
+    [product, slug]
+  )
 
-    return React.cloneElement(
-      this.props.children,
-      Object.assign(
-        {},
-        {
-          productQuery,
-          slug,
-          params,
-        },
-        breadcrumbsProps,
-        props
-      )
-    )
-  }
+  const childrenProps = useMemo(
+    () => ({
+      productQuery: {
+        loading,
+        product,
+        refetch,
+        error:
+          !product && !loading
+            ? {
+                message: 'Product not found!',
+              }
+            : null,
+      },
+      slug,
+      params,
+      breadcrumbsProps,
+      props,
+    }),
+    [props, breadcrumbsProps, loading, product, refetch, slug, params]
+  )
+
+  const value = useMemo(
+    () => ({
+      product,
+      categories: path(['categories'], product),
+      selectedItem,
+      onChangeQuantity: setSelectedQuantity,
+      selectedQuantity: selectedQuantity,
+    }),
+    [product, selectedItem, setSelectedQuantity, selectedQuantity]
+  )
+
+  return (
+    <ProductContextApp.Provider value={value}>
+      {React.cloneElement(props.children, childrenProps)}
+    </ProductContextApp.Provider>
+  )
+}
+
+ProductContext.propTypes = {
+  params: PropTypes.object,
+  query: PropTypes.shape({
+    skuId: PropTypes.string,
+  }),
+  data: PropTypes.object,
+  children: PropTypes.node,
+  client: PropTypes.object,
+  catalog: PropTypes.object,
+  productBenefits: PropTypes.object,
 }
 
 const catalogOptions = {
@@ -167,7 +177,6 @@ const productBenefitsOptions = {
 
 export default compose(
   withApollo,
-  withRuntimeContext,
   graphql(product, catalogOptions),
   graphql(productBenefits, productBenefitsOptions)
 )(ProductContext)
