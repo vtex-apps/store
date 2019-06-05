@@ -131,7 +131,7 @@ class StoreWrapper extends Component {
                     link={[
                       {
                         rel: 'manifest',
-                        href: `/pwa/manifest.json?v=${Date.now()}`,
+                        href: '/pwa/manifest.json',
                       },
                       ...(iOSIcons
                         ? iOSIcons.map(icon => ({
