@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.28.1] - 2019-06-05
+### Fixed
+- Multiple manifest being added to the page `head`.
+
 ## [2.28.0] - 2019-06-04
 ### Added
 - Add `product-context` dependency
