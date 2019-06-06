@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.29.0] - 2019-06-06
+
+## [2.29.0-beta] - 2019-06-06
+### Added
+
+- Service worker as default in the store.
+
 ## [2.28.1] - 2019-06-05
 ### Fixed
 - Multiple manifest being added to the page `head`.

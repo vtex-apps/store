@@ -119,15 +119,6 @@ class StoreWrapper extends Component {
                       { name: 'theme-color', content: manifest.theme_color },
                       { name: 'apple-mobile-web-app-capable', content: 'yes' },
                     ]}
-                    script={[
-                      {
-                        type: 'text/javascript',
-                        src: `/pwa/workers/register.js${route.path.match(
-                          /\?.*/
-                        ) || ''}`,
-                        defer: true,
-                      },
-                    ]}
                     link={[
                       {
                         rel: 'manifest',
@@ -167,6 +158,15 @@ class StoreWrapper extends Component {
             { name: 'currency', content: currency },
             { name: 'robots', content: metaTagRobots || META_ROBOTS },
             { httpEquiv: 'Content-Type', content: CONTENT_TYPE },
+          ]}
+          script={[
+            {
+              type: 'text/javascript',
+              src: `/pwa/workers/register.js${route.path.match(
+                /\?.*/
+              ) || ''}`,
+              defer: true,
+            },
           ]}
           link={[
             ...(faviconLinks || []),
