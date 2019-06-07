@@ -165,7 +165,7 @@ class StoreWrapper extends Component {
               type: 'text/javascript',
               src: `${rootPath}/pwa/workers/register.js${route.path.match(
                 /\?.*/
-              ) || ''}`,
+              ) || '?'}&scope=${encodeURIComponent(rootPath)}`,
               defer: true,
             },
           ]}
