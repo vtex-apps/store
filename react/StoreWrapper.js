@@ -105,6 +105,8 @@ class StoreWrapper extends Component {
       joinKeywords(metaTags && metaTags.keywords) || metaTagKeywords
     const title = pageTitle || titleTag
 
+    const [queryMatch] = route.path.match(/\?.*/) || '?'
+
     return (
       <Fragment>
         <Query query={pwaDataQuery} ssr={false}>
@@ -163,9 +165,9 @@ class StoreWrapper extends Component {
           script={[
             {
               type: 'text/javascript',
-              src: `${rootPath}/pwa/workers/register.js${route.path.match(
-                /\?.*/
-              ) || ''}`,
+              src: `${rootPath}/pwa/workers/register.js${queryMatch}&scope=${encodeURIComponent(
+                rootPath
+              )}`,
               defer: true,
             },
           ]}
