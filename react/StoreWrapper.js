@@ -87,6 +87,7 @@ class StoreWrapper extends Component {
         route,
         route: { metaTags, title: pageTitle },
         getSettings,
+        rootPath = '',
       },
     } = this.props
     const settings = getSettings(APP_LOCATOR) || {}
@@ -122,18 +123,18 @@ class StoreWrapper extends Component {
                     link={[
                       {
                         rel: 'manifest',
-                        href: '/pwa/manifest.json',
+                        href: `${rootPath}/pwa/manifest.json`,
                       },
                       ...(iOSIcons
                         ? iOSIcons.map(icon => ({
                             rel: 'apple-touch-icon',
                             sizes: icon.sizes,
-                            href: icon.src,
+                            href: `${rootPath}${icon.src}`,
                           }))
                         : []),
                       ...(splashes
                         ? splashes.map(splash => ({
-                            href: splash.src,
+                            href: `${rootPath}${splash.src}`,
                             sizes: splash.sizes,
                             rel: 'apple-touch-startup-image',
                           }))
@@ -162,7 +163,7 @@ class StoreWrapper extends Component {
           script={[
             {
               type: 'text/javascript',
-              src: `/pwa/workers/register.js${route.path.match(
+              src: `${rootPath}/pwa/workers/register.js${route.path.match(
                 /\?.*/
               ) || ''}`,
               defer: true,
