@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.30.0] - 2019-06-10
+
 ### Added
 - Support for shop-review-interfaces block in store.orderplaced (block also needed to be allowed in order-placed app)
 
