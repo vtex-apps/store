@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.29.1] - 2019-06-10
+
 ## [2.29.1-beta] - 2019-06-10
 ### Fixed
 - Root path not prepended to PWA-related routes.
