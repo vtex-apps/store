@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { useRuntime } from 'vtex.render-runtime'
 import PropTypes from 'prop-types'
 import {
@@ -123,7 +123,7 @@ const composeAggregateOffer = (product, currency) => {
   )
 
   const { lowPrice, highPrice } = priceItems(items)
-  const offersList = map((element, index) => {
+  const offersList = map(element => {
     return parseSKUToOffer(element, currency)
   }, product.items)
 

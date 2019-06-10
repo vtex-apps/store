@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import PropTypes from 'prop-types'
 
 import { useRuntime, Loading } from 'vtex.render-runtime'
@@ -19,52 +19,49 @@ function useSafeState(initialState) {
   return [state, safeSetState]
 }
 
+const getLocation = () => {
+  const { pathname, hash } = window.location
+  const pathName = pathname.replace(/\/$/, '')
+  return { url: pathName + hash, pathName }
+}
+
 const ProfileChallenge = ({ children, page }) => {
   const [loading, setLoading] = useSafeState(true)
   const [loggedIn, setLoggedIn] = useSafeState(false)
   const { navigate } = useRuntime()
 
-  useEffect(
-    () => {
-      fetch(API_SESSION_URL, { credentials: 'same-origin' })
-        .then(response => response.json())
-        .then(response => {
-          if (
-            response.namespaces &&
-            (response.namespaces.authentication.storeUserId ||
-              response.namespaces.impersonate.storeUserId)
-          ) {
-            setLoading(false)
-            setLoggedIn(true)
-          } else {
-            return Promise.reject()
-          }
-        })
-        .catch(() => {
-          setLoading(false)
-          setLoggedIn(false)
-          redirectToLogin()
-        })
-    },
-    [page]
-  )
+  const { url, pathName } = getLocation()
 
-  const getLocation = () => {
-    const { pathname, hash } = window.location
-    const pathName = pathname.replace(/\/$/, '')
-    return { url: pathName + hash, pathName }
-  }
-
-  const redirectToLogin = () => {
-    const { url, pathName } = getLocation()
+  const redirectToLogin = useCallback(() => {
     if (page !== 'store.login' && pathName !== LOGIN_PATH) {
       navigate({
         fallbackToWindowLocation: false,
-        query: `returnUrl=${encodeURIComponent(url)}`,
-        to: LOGIN_PATH,
+        to: `${LOGIN_PATH}?returnUrl=${encodeURIComponent(url)}`,
       })
     }
-  }
+  }, [page, navigate, url, pathName])
+
+  useEffect(() => {
+    fetch(API_SESSION_URL, { credentials: 'same-origin' })
+      .then(response => response.json())
+      .then(response => {
+        if (
+          response.namespaces &&
+          (response.namespaces.authentication.storeUserId ||
+            response.namespaces.impersonate.storeUserId)
+        ) {
+          setLoading(false)
+          setLoggedIn(true)
+        } else {
+          return Promise.reject()
+        }
+      })
+      .catch(() => {
+        setLoading(false)
+        setLoggedIn(false)
+        redirectToLogin()
+      })
+  }, [page, redirectToLogin, setLoading, setLoggedIn])
 
   if (loading) {
     return (

@@ -56,7 +56,7 @@ function NetworkStatusToast({ intl }) {
       hideToast()
       setShowingOffline(false)
     }
-  }, [offline, toastState, toastConfig])
+  }, [offline, toastState, toastConfig, showingOffline, showToast, hideToast])
 
   return null
 }

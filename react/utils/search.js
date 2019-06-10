@@ -34,7 +34,7 @@ export const SORT_OPTIONS = [
 // TODO: Replace this with a better function
 const getParameterByName = (name, url) => {
   if (!url) url = window && window.location && window.location.href
-  name = name.replace(/[\[\]]/g, '\\$&')
+  name = name.replace(/[[\]]/g, '\\$&')
 
   const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)')
   const results = regex.exec(url)
