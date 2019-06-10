@@ -151,6 +151,7 @@ SearchContext.propTypes = {
   children: PropTypes.node.isRequired,
   /** Max items to show per result page */
   maxItemsPerPage: PropTypes.number,
+  hideUnavailableItems: PropTypes.boolean,
 }
 
 SearchContext.schema = {
@@ -180,7 +181,7 @@ SearchContext.schema = {
       title: 'admin/editor.product-search.hideUnavailableItems',
       type: 'boolean',
       default: false,
-    }
+    },
   },
 }
 

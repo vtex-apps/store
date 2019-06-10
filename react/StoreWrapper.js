@@ -58,6 +58,7 @@ class StoreWrapper extends Component {
     data: PropTypes.shape({
       loading: PropTypes.bool,
       manifest: PropTypes.shape({
+        // eslint-disable-next-line @typescript-eslint/camelcase
         theme_color: PropTypes.string,
         icons: PropTypes.arrayOf(
           PropTypes.shape({
