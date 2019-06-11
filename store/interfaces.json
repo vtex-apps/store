@@ -40,7 +40,7 @@
       "header.full"
     ],
     "allowed": [
-      "product-addon-wrapper",
+      "product-add-to-list-button",
       "product-details",
       "product-kit",
       "product-reviews",
