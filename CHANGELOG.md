@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.30.2] - 2019-06-12
+
 ### Fixed
 
 - Add robots meta tag with "noindex,follow" when it's a search result.
