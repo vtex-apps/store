@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Add robots meta tag with "noindex,follow" when it's a search result.
+
 ## [2.30.1] - 2019-06-12
 ### Fixed
 - Show the heart icon of wish list in product details.

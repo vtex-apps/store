@@ -85,6 +85,10 @@ const SearchWrapper = props => {
             name: 'keywords',
             content: `${params.term}, ${metaTagKeywords}`,
           },
+          params.term && {
+            name: 'robots',
+            content: 'noindex,follow',
+          },
           metaTagDescription && {
             name: 'description',
             content: metaTagDescription,
