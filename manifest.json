@@ -52,6 +52,10 @@
         "title": "Store Name",
         "type": "string"
       },
+      "requiresAuthorization": {
+        "title": "Enables B2B behavior",
+        "type": "boolean"
+      },
       "titleTag": {
         "title": "Default title tag",
         "type": "string"
