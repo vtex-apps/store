@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "store",
-  "version": "2.30.2",
+  "version": "2.31.0",
   "title": "VTEX Store",
   "description": "The VTEX basic store.",
   "builders": {
@@ -51,6 +51,10 @@
       "storeName": {
         "title": "Store Name",
         "type": "string"
+      },
+      "requiresAuthorization": {
+        "title": "Enables B2B behavior",
+        "type": "boolean"
       },
       "titleTag": {
         "title": "Default title tag",

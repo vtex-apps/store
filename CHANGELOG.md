@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.31.0] - 2019-06-13
+### Added
+- `requiresAuthorization` setting, in order to support B2B stores behaviour.
+
 ## [2.30.2] - 2019-06-12
 
 ### Fixed
