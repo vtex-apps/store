@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import React, { useMemo, useState } from 'react'
 import { last, head, path } from 'ramda'
 import { Helmet, useRuntime } from 'vtex.render-runtime'
+import { ProductOpenGraph } from 'vtex.open-graph'
 import { ProductContext as ProductContextApp } from 'vtex.product-context'
 
 import StructuredData from './components/StructuredData'
@@ -135,6 +136,7 @@ const ProductWrapper = ({
         ].filter(Boolean)}
       />
       <ProductContextApp.Provider value={value}>
+        {product && <ProductOpenGraph />}
         {product && <StructuredData product={product} query={query} />}
         {React.cloneElement(children, childrenProps)}
       </ProductContextApp.Provider>
