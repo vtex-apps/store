@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import PropTypes from 'prop-types'
 
-import { useRuntime, Loading } from 'vtex.render-runtime'
+import { useRuntime, canUseDOM, Loading } from 'vtex.render-runtime'
 
 const LOGIN_PATH = '/login'
 const API_SESSION_URL = '/api/sessions?items=*'
@@ -19,17 +19,18 @@ function useSafeState(initialState) {
   return [state, safeSetState]
 }
 
-const getLocation = () => {
-  const { pathname, hash } = window.location
-  const pathName = pathname.replace(/\/$/, '')
-  return { url: pathName + hash, pathName }
-}
+const getLocation = () =>
+  canUseDOM
+    ? {
+        url: window.location.pathname + window.location.hash,
+        pathName: window.location.pathname,
+      }
+    : { url: global.__pathname__, pathName: global.__pathname__ }
 
 const ProfileChallenge = ({ children, page }) => {
   const [loading, setLoading] = useSafeState(true)
   const [loggedIn, setLoggedIn] = useSafeState(false)
   const { navigate } = useRuntime()
-
   const { url, pathName } = getLocation()
 
   const redirectToLogin = useCallback(() => {
@@ -39,7 +40,7 @@ const ProfileChallenge = ({ children, page }) => {
         to: `${LOGIN_PATH}?returnUrl=${encodeURIComponent(url)}`,
       })
     }
-  }, [page, navigate, url, pathName])
+  }, [page, pathName, navigate, url])
 
   useEffect(() => {
     fetch(API_SESSION_URL, { credentials: 'same-origin' })

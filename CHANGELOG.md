@@ -7,8 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Make `getLocation()` of `ProfileChallenge` works on SSR.
+
 ## [2.31.0] - 2019-06-13
+
 ### Added
+
 - `requiresAuthorization` setting, in order to support B2B stores behaviour.
 
 ## [2.30.2] - 2019-06-12
@@ -18,33 +24,43 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Add robots meta tag with "noindex,follow" when it's a search result.
 
 ## [2.30.1] - 2019-06-12
+
 ### Fixed
+
 - Show the heart icon of wish list in product details.
 
 ## [2.30.0] - 2019-06-10
 
 ### Added
+
 - Support for shop-review-interfaces block in store.orderplaced (block also needed to be allowed in order-placed app)
 
 ## [2.29.1] - 2019-06-10
 
 ## [2.29.1-beta] - 2019-06-10
+
 ### Fixed
+
 - Root path not prepended to PWA-related routes.
 
 ## [2.29.0] - 2019-06-06
 
 ## [2.29.0-beta] - 2019-06-06
+
 ### Added
 
 - Service worker as default in the store.
 
 ## [2.28.1] - 2019-06-05
+
 ### Fixed
+
 - Multiple manifest being added to the page `head`.
 
 ## [2.28.0] - 2019-06-04
+
 ### Added
+
 - Add `product-context` dependency
 - Allow blocks in `product-details` to be applied directly to `store.product`
 
