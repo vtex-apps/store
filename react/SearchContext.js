@@ -151,7 +151,7 @@ SearchContext.propTypes = {
   children: PropTypes.node.isRequired,
   /** Max items to show per result page */
   maxItemsPerPage: PropTypes.number,
-  hideUnavailableItems: PropTypes.boolean,
+  hideUnavailableItems: PropTypes.bool,
 }
 
 SearchContext.schema = {
