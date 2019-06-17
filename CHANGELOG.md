@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- PropType of `hideUnavailableItems` in `SearchContext`.
+
 ## [2.32.0] - 2019-06-17
 
 ### Added
