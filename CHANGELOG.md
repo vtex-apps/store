@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.32.0] - 2019-06-17
+
+### Added
+
+- Open Graph protocol to product page.
+
 ## [2.31.1] - 2019-06-14
 
 ### Fixed

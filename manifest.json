@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "store",
-  "version": "2.31.1",
+  "version": "2.32.0",
   "title": "VTEX Store",
   "description": "The VTEX basic store.",
   "builders": {
@@ -42,7 +42,8 @@
     "vtex.breadcrumb": "1.x",
     "vtex.product-availability": "0.x",
     "vtex.product-quantity": "1.x",
-    "vtex.shop-review-interfaces": "0.x"
+    "vtex.shop-review-interfaces": "0.x",
+    "vtex.open-graph": "1.x"
   },
   "settingsSchema": {
     "title": "VTEX Store",
