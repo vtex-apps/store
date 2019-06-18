@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.32.2] - 2019-06-18
+
 ### Fixed
 
 - Show `filter-navigator` on brand/product cluster pages.
