@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
-import { path, zip } from 'ramda'
-import React from 'react'
+import { path, zip, split, head, join, tail } from 'ramda'
+import React, { useMemo } from 'react'
 import { Query } from 'react-apollo'
 import { useRuntime } from 'vtex.render-runtime'
 
@@ -9,6 +9,46 @@ import { initializeMap, SORT_OPTIONS } from './utils/search'
 
 const DEFAULT_PAGE = 1
 const DEFAULT_MAX_ITEMS_PER_PAGE = 10
+
+const QUERY_SEPARATOR = '/'
+const MAP_SEPARATOR = ','
+
+const splitQuery = split(QUERY_SEPARATOR)
+const splitMap = split(MAP_SEPARATOR)
+const joinQuery = join(QUERY_SEPARATOR)
+const joinMap = join(MAP_SEPARATOR)
+
+const includeFacets = (map, query) =>
+  !!(map && map.length > 0 && query && query.length > 0)
+
+const useFacetsArgs = (query, map) => {
+  return useMemo(() => {
+    const queryArray = splitQuery(query)
+    const mapArray = splitMap(map)
+    const queryAndMap = zip(queryArray, mapArray)
+    const relevantArgs = [
+      head(queryAndMap),
+      ...tail(queryAndMap).filter(
+        ([_, tupleMap]) => tupleMap === 'c' || tupleMap === 'ft'
+      ),
+    ]
+    const { finalMap, finalQuery } = relevantArgs.reduce(
+      (accumulator, [tupleQuery, tupleMap]) => {
+        accumulator.finalQuery.push(tupleQuery)
+        accumulator.finalMap.push(tupleMap)
+        return accumulator
+      },
+      { finalQuery: [], finalMap: [] }
+    )
+    const facetQuery = joinQuery(finalQuery)
+    const facetMap = joinMap(finalMap)
+    return {
+      facetQuery,
+      facetMap,
+      withFacets: includeFacets(facetMap, facetQuery),
+    }
+  }, [map, query])
+}
 
 const SearchContext = ({
   nextTreePath,
@@ -33,9 +73,6 @@ const SearchContext = ({
   const page = pageQuery ? parseInt(pageQuery) : DEFAULT_PAGE
   const from = (page - 1) * maxItemsPerPage
   const to = from + maxItemsPerPage - 1
-
-  const includeFacets = (map, query) =>
-    !!(map && map.length > 0 && query && query.length > 0)
 
   const query = Object.values(params)
     .filter(term => term && term.length > 0)
@@ -65,28 +102,15 @@ const SearchContext = ({
   }
 
   const queryVariables = queryField ? customSearch : defaultSearch
-
-  const { map: facetMap, query: facetQuery } = zip(
-    queryVariables.query.split('/'),
-    queryVariables.map.split(',')
-  )
-    .filter(([_, map]) => map === 'c' || map === 'ft')
-    .reduce(
-      ({ query: queryArr, map: mapArr }, [query, map]) => ({
-        query: [...queryArr, query],
-        map: [...mapArr, map],
-      }),
-      { map: [], query: [] }
-    )
-
-  queryVariables.facetQuery = facetQuery.join('/')
-  queryVariables.facetMap = facetMap.join(',')
-  queryVariables.withFacets = includeFacets(facetMap, facetQuery)
-
+  const facetsArgs = useFacetsArgs(queryVariables.query, queryVariables.map)
+  const variablesWithFacets = {
+    ...queryVariables,
+    ...facetsArgs,
+  }
   return (
     <Query
       query={productSearchV2}
-      variables={queryVariables}
+      variables={variablesWithFacets}
       notifyOnNetworkStatusChange
       partialRefetch
     >
