@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Block `product-brand` allowed on `store.product` page.
+- Allow `product-brand` block on `store.product` page.
 
 ## [2.32.3] - 2019-06-21
 
