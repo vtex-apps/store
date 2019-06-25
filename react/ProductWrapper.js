@@ -4,6 +4,7 @@ import { last, head, path } from 'ramda'
 import { Helmet, useRuntime } from 'vtex.render-runtime'
 import { ProductOpenGraph } from 'vtex.open-graph'
 import { ProductContext as ProductContextApp } from 'vtex.product-context'
+import { ProductDispatchContext } from 'vtex.product-context/ProductDispatchContext'
 
 import StructuredData from './components/StructuredData'
 
@@ -149,11 +150,12 @@ const ProductWrapper = ({
       product,
       categories: path(['categories'], product),
       selectedItem,
-      dispatch,
       state,
     }),
-    [product, selectedItem, state, dispatch]
+    [product, selectedItem, state]
   )
+
+  const dispatchValue = useMemo(() => ({ dispatch }), [dispatch])
 
   const childrenProps = useMemo(
     () => ({
@@ -176,9 +178,11 @@ const ProductWrapper = ({
         ].filter(Boolean)}
       />
       <ProductContextApp.Provider value={value}>
-        {product && <ProductOpenGraph />}
-        {product && <StructuredData product={product} query={query} />}
-        {React.cloneElement(children, childrenProps)}
+        <ProductDispatchContext.Provider value={dispatchValue}>
+          {product && <ProductOpenGraph />}
+          {product && <StructuredData product={product} query={query} />}
+          {React.cloneElement(children, childrenProps)}
+        </ProductDispatchContext.Provider>
       </ProductContextApp.Provider>
     </div>
   )
