@@ -7,8 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [2.33.0] - 2019-06-24
+### Changed
+
+- Removed ProductContextProvider and left only on ProductWrapper.
+
 ### Added
+
+- Reducer and state to be changed by children components of product page.
+
+## [2.33.0] - 2019-06-24
+
+### Added
+
 - Allow `product-brand` block on `store.product` page.
 
 ## [2.32.3] - 2019-06-21
