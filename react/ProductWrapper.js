@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React, { useMemo, useState } from 'react'
+import React, { useMemo, useReducer } from 'react'
 import { last, head, path } from 'ramda'
 import { Helmet, useRuntime } from 'vtex.render-runtime'
 import { ProductOpenGraph } from 'vtex.open-graph'
@@ -8,6 +8,47 @@ import { ProductContext as ProductContextApp } from 'vtex.product-context'
 import StructuredData from './components/StructuredData'
 
 import useDataPixel from './hooks/useDataPixel'
+
+function reducer(state, action) {
+  const args = action.args || {}
+  switch (action.type) {
+    case 'SET_QUANTITY':
+      return {
+        ...state,
+        selectedQuantity: args.quantity,
+      }
+    case 'SKU_SELECTOR_SEE_MORE': {
+      return {
+        ...state,
+        skuSelector: {
+          ...state.skuSelector,
+          [args.name]: {
+            ...state.skuSelector[args.name],
+            seeMore: true,
+          },
+        },
+      }
+    }
+    case 'SKU_SELECTOR_SET_VARIATIONS_SELECTED': {
+      return {
+        ...state,
+        skuSelector: {
+          ...state.skuSelector,
+          areAllVariationsSelected: args.allSelected,
+        },
+      }
+    }
+    default:
+      return state
+  }
+}
+
+const initialState = {
+  selectedQuantity: 1,
+  skuSelector: {
+    areAllVariationsSelected: false,
+  },
+}
 
 const ProductWrapper = ({
   params: { slug },
@@ -18,8 +59,13 @@ const ProductWrapper = ({
   ...props
 }) => {
   const { account } = useRuntime()
+  const items = path(['items'], product) || []
 
-  const [selectedQuantity, setSelectedQuantity] = useState(1)
+  const selectedItem = query.skuId
+    ? items.find(sku => sku.itemId === query.skuId)
+    : items[0]
+
+  const [state, dispatch] = useReducer(reducer, initialState)
 
   const pixelEvents = useMemo(() => {
     const {
@@ -98,21 +144,15 @@ const ProductWrapper = ({
 
   const { titleTag, metaTagDescription } = product || {}
 
-  const items = path(['items'], product) || []
-
-  const selectedItem = query.skuId
-    ? items.find(sku => sku.itemId === query.skuId)
-    : items[0]
-
   const value = useMemo(
     () => ({
       product,
       categories: path(['categories'], product),
       selectedItem,
-      onChangeQuantity: setSelectedQuantity,
-      selectedQuantity,
+      dispatch,
+      state,
     }),
-    [product, selectedItem, setSelectedQuantity, selectedQuantity]
+    [product, selectedItem, state, dispatch]
   )
 
   const childrenProps = useMemo(
