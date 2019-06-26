@@ -27,10 +27,22 @@ function reducer(state, action) {
         },
       }
     }
-    case 'SET_SELECTED_ITEM': {
+    case 'SET_SELECTED_ITEM_BY_ID': {
       return {
         ...state,
         selectedItem: findItemById(args.id)(state.product.items),
+      }
+    }
+    case 'SET_SELECTED_ITEM': {
+      return {
+        ...state,
+        selectedItem: args.item,
+      }
+    }
+    case 'SET_PRODUCT': {
+      return {
+        ...state,
+        product: args.product,
       }
     }
     default:
@@ -45,21 +57,42 @@ function findAvailableProduct(item) {
   )
 }
 
-function getSelectedItem(query, items) {
-  return query.skuId
-    ? findItemById(query.skuId)(items)
+function getSelectedItem(skuId, items) {
+  return skuId
+    ? findItemById(skuId)(items)
     : items.find(findAvailableProduct) || items[0]
 }
 
-function useSelectedItemFromId(skuId, dispatch, selectedItem) {
+function useProductInState(product, dispatch) {
   useEffect(() => {
-    if (skuId && selectedItem && selectedItem.itemId !== skuId) {
+    if (product) {
       dispatch({
-        type: 'SET_SELECTED_ITEM',
-        args: { id: skuId },
+        type: 'SET_PRODUCT',
+        args: { product },
       })
     }
-  }, [dispatch, selectedItem, skuId])
+  }, [product, dispatch])
+}
+
+function useSelectedItemFromId(skuId, dispatch, selectedItem, product) {
+  useEffect(() => {
+    if (selectedItem && product && selectedItem.itemId !== skuId) {
+      const item = getSelectedItem(skuId, product.items)
+      dispatch({
+        type: 'SET_SELECTED_ITEM',
+        args: { item },
+      })
+    }
+  }, [dispatch, selectedItem, skuId, product])
+}
+
+function useSelectedQuantityInState(dispatch, slug) {
+  useEffect(() => {
+    dispatch({
+      type: 'SET_QUANTITY',
+      args: { quantity: 1 },
+    })
+  }, [dispatch, slug])
 }
 
 const ProductWrapper = ({
@@ -74,15 +107,17 @@ const ProductWrapper = ({
   const items = path(['items'], product) || []
 
   const [state, dispatch] = useReducer(reducer, {
-    selectedItem: getSelectedItem(query, items),
+    selectedItem: getSelectedItem(query.skuId, items),
     product,
-    categories: path(['categories'], product),
     selectedQuantity: 1,
     skuSelector: {
       areAllVariationsSelected: false,
     },
   })
-  useSelectedItemFromId(query.skuId, dispatch, state.selectedItem)
+  // This hooks are used to keep the state in sync with API data, specially when switching between products wihtout exiting the product page
+  useSelectedQuantityInState(dispatch, slug)
+  useSelectedItemFromId(query.skuId, dispatch, state.selectedItem, product)
+  useProductInState(product, dispatch)
 
   const pixelEvents = useMemo(() => {
     const {
