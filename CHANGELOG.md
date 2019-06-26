@@ -7,54 +7,664 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.39.1] - 2019-06-26
+
+## [2.33.0] - 2019-06-24
 ### Added
- - Product properties on SearchQuery
+- Allow `product-brand` block on `store.product` page.
 
+## [2.32.3] - 2019-06-21
 
-## [1.39.0] - 2019-05-23
-### Added
-- Force `register.js` to be fetched when `StoreContextProvider` is rendered to allow service workers to be disabled properly.
-
-## [1.38.0] - 2019-05-03
-
-### Added
- - Order By Score (ASC and DESC)
 ### Changed
- - Rename messages files
 
-## [1.37.2] - 2019-04-18
+- `SearchContext` use `SearchQuery` component from `search-result`.
+
+## [2.32.2] - 2019-06-18
 
 ### Fixed
 
-- Fix `variations` typo on `searchQuery`.
+- Show `filter-navigator` on brand/product cluster pages.
 
-## [1.37.1] - 2019-04-18
+## [2.32.1] - 2019-06-17
+
+### Fixed
+
+- PropType of `hideUnavailableItems` in `SearchContext`.
+
+## [2.32.0] - 2019-06-17
 
 ### Added
 
-- Add variation to search query
+- Open Graph protocol to product page.
 
-## [1.37.0] - 2019-04-01
+## [2.31.1] - 2019-06-14
+
+### Fixed
+
+- Make `getLocation()` of `ProfileChallenge` works on SSR.
+
+## [2.31.0] - 2019-06-13
 
 ### Added
 
-- Add `discountHighlights` field in search and product queries.
+- `requiresAuthorization` setting, in order to support B2B stores behaviour.
 
-## [1.36.2] - 2019-02-22
+## [2.30.2] - 2019-06-12
+
+### Fixed
+
+- Add robots meta tag with "noindex,follow" when it's a search result.
+
+## [2.30.1] - 2019-06-12
+
+### Fixed
+
+- Show the heart icon of wish list in product details.
+
+## [2.30.0] - 2019-06-10
+
+### Added
+
+- Support for shop-review-interfaces block in store.orderplaced (block also needed to be allowed in order-placed app)
+
+## [2.29.1] - 2019-06-10
+
+## [2.29.1-beta] - 2019-06-10
+
+### Fixed
+
+- Root path not prepended to PWA-related routes.
+
+## [2.29.0] - 2019-06-06
+
+## [2.29.0-beta] - 2019-06-06
+
+### Added
+
+- Service worker as default in the store.
+
+## [2.28.1] - 2019-06-05
+
+### Fixed
+
+- Multiple manifest being added to the page `head`.
+
+## [2.28.0] - 2019-06-04
+
+### Added
+
+- Add `product-context` dependency
+- Allow blocks in `product-details` to be applied directly to `store.product`
+
+## [2.27.0] - 2019-05-28
+
+### Changed
+
+- Move PWA query to be execute on CSR.
+
+## [2.26.0] - 2019-05-27
+
+### Changed
+
+- Pixel architecture.
+
+## [2.25.1] - 2019-05-27
+
+### Fixed
+
+- Add `defer` attribute to the `/pwa/workers/register.js` script tag.
+
+## [2.25.0] - 2019-05-25
+
+### Added
+
+- Add "image" block to store.
+
+## [2.24.1] - 2019-05-24
+
+### Changed
+
+- Stop doing the recAndBenefits query at ProductContext. Only fetch benefits now.
+
+## [2.24.0] - 2019-05-24
+
+### Added
+
+- Add custom title and metatags for routes declaring it.
+
+## [2.23.2] - 2019-05-23
+
+### Fixed
+
+- Referrer when is the same origin.
+
+## [2.23.1] - 2019-05-23
+
+### Added
+
+- Add support for `sandbox`.
+
+## [2.23.0] - 2019-05-22
+
+### Added
+
+- `referrer` to `pageView` event.
+
+## [2.22.7] - 2019-05-20
+
+### Fixed
+
+- Add logic to clean dirty params passed to SearchContext.
+
+## [2.22.6] - 2019-05-20
+
+### Fixed
+
+- Reactivate `hideUnavailableItems`prop os SearchContext.
+
+## [2.22.5] - 2019-05-16
+
+### Changed
+
+- Remove canonical discovery and history replacement code.
+
+## [2.22.4] - 2019-05-15
+
+### Fixed
+
+- `NetworkStatusToast` need to be dismissable on mobile devices.
+
+## [2.22.3] - 2019-05-15
+
+### Added
+
+- New `map` field on routes to better support legacy URLs.
+
+## [2.22.2] - 2019-05-13
+
+### Changed
+
+- Add `selectedSku` in productView event.
+
+## [2.22.1] - 2019-05-13
+
+### Changed
+
+- General settings labels and descriptions.
+
+### Removed
+
+- Redundant descriptions from general settings.
+
+## [2.22.0] - 2019-05-13
+
+### Added
+
+- `disableSSR` setting to test CSR stores.
+
+## [2.21.1] - 2019-05-10
+
+### Added
+
+- New `useDataPixel` hook to replace `DataLayerApolloWrapper`.
+
+### Changed
+
+- Remove deprecated `DataLayerApolloWrapper` and move wrappers to function components.
+
+### Fixed
+
+- Meta description in product wrapper not placed in page.
+
+## [2.21.0] - 2019-05-10
+
+### Added
+
+- `PWAProvider` inside `StoreWrapper` to allow `PWAContext` to work properly.
+
+## [2.20.2] - 2019-05-10
+
+### Fixed
+
+- Fetch more on search-result was always fetching 10 more items, and not fetching maxItemsPerPage prop set.
+
+## [2.20.1] - 2019-05-10
+
+### Changed
+
+- **SearchContext**: Get `map` from URL query string, if available on `createInitialMap`.
+
+## [2.20.0] - 2019-05-10
+
+### Added
+
+- Create `CustomWrapper` that will add meta-tags on landing pages.
+
+## [2.19.2] - 2019-05-09
+
+### Fixed
+
+- Add default `storeTitle` in title when `titleTag` and `params.term` is null.
+
+## [2.19.1] - 2019-05-08
+
+### Fixed
+
+- Added more levels of search subcategories to prevent old Portal from opening with more complex searches.
+
+## [2.19.0] - 2019-05-08
+
+### Added
+
+- Added content placeholder on top level store blocks.
+
+## [2.18.1] - 2019-05-08
+
+### Fixed
+
+- Correctly pass withFacets parameter on productSearch query.
+
+## [2.18.0] - 2019-05-07
+
+### Changed
+
+- Uses categoryTree property from store-resources instead of categories for breadcrumb props
+
+## [2.17.5] - 2019-05-07
+
+### Removed
+
+- Temporarily stop using `hideUnavailableItems` prop on `SearchContext` to make search filters work again.
+
+## [2.17.4] - 2019-05-06
+
+### Fixed
+
+- Remove the default 'Sort By' option on `OrderBy` component.
+
+## [2.17.3] - 2019-05-06
+
+### Added
+
+- Prop `hideUnavailableItems` on `SearchContext`.
+
+## [2.17.2] - 2019-05-02
+
+### Fixed
+
+- `SearchWrapper`: Fix bad rebase and decode URI when getting page title again.
+
+## [2.17.1] - 2019-05-02
+
+## [2.17.0] - 2019-05-01
+
+### Changed
+
+- Use `productSearchV2` query.
+
+## [2.16.1] - 2019-04-30
+
+### Fixed
+
+- `SearchWrapper`: Decode URI when getting page title.
+
+## [2.16.0] - 2019-04-29
+
+### Added
+
+- Add `refetch` parameter to `ProductContext`
+
+## [2.15.1] - 2019-04-29
+
+### Fixed
+
+- Prevent infinite error loop if image is undefined.
+
+## [2.15.0] - 2019-04-26
+
+### Changed
+
+- Split query and map used in facets from search.
+
+## [2.14.2] - 2019-04-26
+
+### Fixed
+
+- Append the URL hash to the `returnUrl` param to login.
+
+## [2.14.1] - 2019-04-25
+
+### Fixed
+
+- Error when splashes are null.
+
+## [2.14.0] - 2019-04-25
+
+### Added
+
+- Support for product review interfaces.
+
+## [2.13.0] - 2019-04-25
+
+### Deprecated
+
+- `rest` parameter in search routes.
+
+### Added
+
+- Add generic route for search.
+
+## [2.12.4] - 2019-04-25
+
+### Fixed
+
+- Search title and meta description not reflecting API result.
+
+## [2.12.3] - 2019-04-16
+
+### Fixed
+
+- Fix access `/account` route without any challenge.
+
+## [2.12.2] - 2019-04-12
+
+### Changed
+
+- Update `pwa-graphql` to 1.x.
+
+## [2.12.1] - 2019-04-12
+
+### Changed
+
+- Pass `navigationRoute` to history's replace in `StoreWrapper`.
+
+## [2.12.0] - 2019-04-10
+
+### Added
+
+- Add support for `flex-layout`.
+
+## [2.11.0] - 2019-04-04
+
+### Added
+
+- Add `rich-text` as allowed store block.
+
+## [2.10.0] - 2019-04-03
+
+### Added
+
+- Add `newsletter` as allowed store block.
+
+## [2.9.5] - 2019-04-01
+
+### Added
+
+- Add new allowed `notification.bar`.
+
+## [2.9.4] - 2019-03-28
+
+### Fixed
+
+- Toast proptypes warnings.
+
+## [2.9.3] - 2019-03-26
+
+### Fixed
+
+- Fix maximum call stack size exceeded error in helmet.
+
+## [2.9.2] - 2019-03-26
+
+### Changed
+
+- Explicitly allow conditions on `store` interface
+
+## [2.9.1] - 2019-03-22
+
+### Changed
+
+- Remove iconpack.
+
+## [2.9.0] - 2019-03-22
+
+### Added
+
+- Add the toast persistence logic as we know if there is a toast visible.
+
+## [2.8.0] - 2019-03-18
+
+### Changed
+
+- `vtex.orderplaced` is back!
+
+## [2.7.3] - 2019-03-11
+
+### Fixed
+
+- Add `vtex.store-components` as a dependency.
+
+## [2.7.2] - 2019-03-11
+
+### Added
+
+- Added the `NetworkStatusToast` component to the store.
+
+## [2.7.1] - 2019-03-08
+
+### Removed
+
+- Remove `order-placed` app because isn't work properly with pixel archtecture.
+
+## [2.7.0] - 2019-03-08
+
+### Added
+
+- Add `vtex.request-capture` and `vtex.store-sitemap` as a peer dependency.
+
+## [2.6.0] - 2019-03-01
+
+### Added
+
+- Add new `checkout/orderPlaced` route to render `OrderPlaced` app
+- Interface for `store.order-placed`
+
+## [2.5.7] - 2019-02-28
+
+### Added
+
+- Add updateOrderFormCheckin mutation to OrderFormProvider
+
+## [2.5.6] - 2019-02-26
+
+### Removed
+
+- Removed address-locator dependency.
+
+## [2.5.5] - 2019-02-26
+
+### Added
+
+- Add favicon's <link> to the store. Configurable through the admin settings.
+
+## [2.5.4] - 2019-02-25
+
+### Fixed
+
+- OrderBy using none instead of invalid value
+
+## [2.5.3] - 2019-02-25
+
+## [2.5.2] - 2019-02-25
+
+### Fixed
+
+- Add default orderBy to relevance
+
+## [2.5.1] - 2019-02-25
 
 ### Fixed
 
 - Add search term in title tag and keywords on search pages.
 
-## [1.36.1] - 2019-02-07
+## [2.5.0] - 2019-2-22
+
+### Added
+
+- Add new interface `store.custom` to enable user routes
+
+## [2.4.0] - 2019-02-21
+
+### Removed
+
+- Remove `info-card` from `interfaces.json`
+
+## [2.3.2] - 2019-02-21
+
+### Fixed
+
+- Attribute `className` on svg file.
+
+## [2.3.1] - 2019-02-21
+
+### Fixed
+
+- Loading icon didn't indicate the loading properly.
+
+## [2.3.0] - 2019-02-20
+
+### Added
+
+- Using `json+ld`to `Linked Data` instead `MicroData`.
+
+## [2.2.4] - 2019-02-18
+
+### Fixed
+
+- Remove `related-products` block from `store.product`.
+
+## [2.2.3] - 2019-02-15
+
+### Changed
+
+- rename `hero-header` to `info-card`
+
+## [2.2.2] - 2019-02-15
+
+### Added
+
+- Add `hero-header` to allowed interfaces and declare as extensible
+
+## [2.2.1] - 2019-02-15
+
+### Added
+
+- Create `promo-bar` to allowed interfaces and declare as extensible
+
+## [2.2.0] - 2019-02-15
+
+### Added
+
+- `highlight-overlay` to `storeWrapper` allowed interfaces and corresponding `ExtensionPoint` to `StoreWrapper` implementation.
+
+## [2.1.2] - 2019-02-14
+
+## [2.1.1] - 2019-02-14
+
+## [2.1.0] - 2019-02-12
+
+### Fixed
+
+- Now, SKU list is rendered as an offer in `MicroData`.
+
+### Added
+
+- Add SKU id in Product's microdata.
+
+### Fixed
+
+- Only seller that has match with the skuId can sell the item.
+
+## [2.0.5] - 2019-02-08
+
+### Changed
+
+- Removed usage of old context api.
+
+## [2.0.4] - 2019-02-08
+
+### Added
+
+- Added `nav-home` to iconpack.
+
+## [2.0.3] - 2019-02-07
 
 ### Fixed
 
 - Updated iOS icons query.
 
+## [2.0.2] - 2019-02-05
+
+### Added
+
+- Export default iconpack using styles builder
+
+## [2.0.1] - 2019-02-05
+
+### Fixed
+
+- Fix typo on `ProfileChallenge` state, making impossible to render anything.
+
+## [2.0.0] - 2019-02-01
+
+### Removed
+
+- Remove default `IconPack`. Now, it's served by render.
+
+## [2.0.0-rc.3] - 2019-02-01
+
+### Changed
+
+- Remove unused icons and rename icons without pattern.
+
+## [2.0.0-rc.2] - 2019-01-30
+
+## [2.0.0-rc.1] - 2019-01-30
+
+## [2.0.0-rc.0] - 2019-1-29
+
+### Changed
+
+- Release with new store builder
+
+## [2.0.0-rc] - 2019-01-28
+
+### Added
+
+- Basic challenge blocks.
+- Interface preview
+- Use outer blocks (before, around, after).
+- Move pixel apps to inside an iframe.
+- Add `rebuy` and `address-locator` on interfaces.
+- Bye `pages.json`! Welcome `store-builder`.
+
 ### Changed
 
 - Update messages builder to `1.x`.
+- Add challenge block on the `store` interface.
+- Minor changes on interfaces and routes.
+- Add loading svg on icon pack.
+- Adjust the way to import render components.
+- Update React builder to 3.x.
+- Bump vtex.styleguide to 9.x.
+- Move `productPreviewFragment` to `vtex.store-resources`.
+- Move all OrderForm mutations to `vtex.store-resources`.
+- Bump delivery dependencies.
+
+### Removed
+
+- GTM script and manifest configuration.
+- Auth in the account route.
 
 ## [1.35.3] - 2019-01-14
 
