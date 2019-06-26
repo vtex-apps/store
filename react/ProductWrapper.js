@@ -1,13 +1,110 @@
 import PropTypes from 'prop-types'
-import React, { useMemo, useState } from 'react'
-import { last, head, path } from 'ramda'
+import React, { useMemo, useReducer, useEffect } from 'react'
+import { last, head, path, propEq, find } from 'ramda'
 import { Helmet, useRuntime } from 'vtex.render-runtime'
 import { ProductOpenGraph } from 'vtex.open-graph'
 import { ProductContext as ProductContextApp } from 'vtex.product-context'
+import { ProductDispatchContext } from 'vtex.product-context/ProductDispatchContext'
 
 import StructuredData from './components/StructuredData'
 
 import useDataPixel from './hooks/useDataPixel'
+
+function reducer(state, action) {
+  const args = action.args || {}
+  switch (action.type) {
+    case 'SET_QUANTITY':
+      return {
+        ...state,
+        selectedQuantity: args.quantity,
+      }
+    case 'SKU_SELECTOR_SET_VARIATIONS_SELECTED': {
+      return {
+        ...state,
+        skuSelector: {
+          ...state.skuSelector,
+          areAllVariationsSelected: args.allSelected,
+        },
+      }
+    }
+    case 'SET_SELECTED_ITEM_BY_ID': {
+      return {
+        ...state,
+        selectedItem: findItemById(args.id)(state.product.items),
+      }
+    }
+    case 'SET_SELECTED_ITEM': {
+      return {
+        ...state,
+        selectedItem: args.item,
+      }
+    }
+    case 'SET_PRODUCT': {
+      return {
+        ...state,
+        product: args.product,
+      }
+    }
+    default:
+      return state
+  }
+}
+
+const findItemById = id => find(propEq('itemId', id))
+function findAvailableProduct(item) {
+  return item.sellers.find(
+    ({ commertialOffer = {} }) => commertialOffer.AvailableQuantity > 0
+  )
+}
+
+function getSelectedItem(skuId, items) {
+  return skuId
+    ? findItemById(skuId)(items)
+    : items.find(findAvailableProduct) || items[0]
+}
+
+function useProductInState(product, dispatch) {
+  useEffect(() => {
+    if (product) {
+      dispatch({
+        type: 'SET_PRODUCT',
+        args: { product },
+      })
+    }
+  }, [product, dispatch])
+}
+
+function useSelectedItemFromId(skuId, dispatch, selectedItem, product) {
+  useEffect(() => {
+    if (selectedItem && product && selectedItem.itemId !== skuId) {
+      const item = getSelectedItem(skuId, product.items)
+      dispatch({
+        type: 'SET_SELECTED_ITEM',
+        args: { item },
+      })
+    }
+  }, [dispatch, selectedItem, skuId, product])
+}
+
+function useSelectedQuantityInState(dispatch, slug) {
+  useEffect(() => {
+    dispatch({
+      type: 'SET_QUANTITY',
+      args: { quantity: 1 },
+    })
+  }, [dispatch, slug])
+}
+
+function initReducer({ query, items, product }) {
+  return {
+    selectedItem: getSelectedItem(query.skuId, items),
+    product,
+    selectedQuantity: 1,
+    skuSelector: {
+      areAllVariationsSelected: false,
+    },
+  }
+}
 
 const ProductWrapper = ({
   params: { slug },
@@ -18,8 +115,18 @@ const ProductWrapper = ({
   ...props
 }) => {
   const { account } = useRuntime()
+  const items = path(['items'], product) || []
 
-  const [selectedQuantity, setSelectedQuantity] = useState(1)
+  const [state, dispatch] = useReducer(
+    reducer,
+    { query, items, product },
+    initReducer
+  )
+
+  // These hooks are used to keep the state in sync with API data, specially when switching between products without exiting the product page
+  useSelectedQuantityInState(dispatch, slug)
+  useProductInState(product, dispatch)
+  useSelectedItemFromId(query.skuId, dispatch, state.selectedItem, product)
 
   const pixelEvents = useMemo(() => {
     const {
@@ -98,23 +205,6 @@ const ProductWrapper = ({
 
   const { titleTag, metaTagDescription } = product || {}
 
-  const items = path(['items'], product) || []
-
-  const selectedItem = query.skuId
-    ? items.find(sku => sku.itemId === query.skuId)
-    : items[0]
-
-  const value = useMemo(
-    () => ({
-      product,
-      categories: path(['categories'], product),
-      selectedItem,
-      onChangeQuantity: setSelectedQuantity,
-      selectedQuantity,
-    }),
-    [product, selectedItem, setSelectedQuantity, selectedQuantity]
-  )
-
   const childrenProps = useMemo(
     () => ({
       productQuery,
@@ -135,10 +225,12 @@ const ProductWrapper = ({
           },
         ].filter(Boolean)}
       />
-      <ProductContextApp.Provider value={value}>
-        {product && <ProductOpenGraph />}
-        {product && <StructuredData product={product} query={query} />}
-        {React.cloneElement(children, childrenProps)}
+      <ProductContextApp.Provider value={state}>
+        <ProductDispatchContext.Provider value={dispatch}>
+          {product && <ProductOpenGraph />}
+          {product && <StructuredData product={product} query={query} />}
+          {React.cloneElement(children, childrenProps)}
+        </ProductDispatchContext.Provider>
       </ProductContextApp.Provider>
     </div>
   )

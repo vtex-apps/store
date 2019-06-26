@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types'
-import React, { useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { withApollo, graphql, compose } from 'react-apollo'
-import { isEmpty, path } from 'ramda'
+import { isEmpty } from 'ramda'
 import { useRuntime } from 'vtex.render-runtime'
-import { ProductContext as ProductContextApp } from 'vtex.product-context'
 
 import {
   product,
@@ -40,12 +39,6 @@ function getLoading(props) {
   return catalogLoading || benefitsLoading
 }
 
-function findAvailableProduct(item) {
-  return item.sellers.find(
-    ({ commertialOffer = {} }) => commertialOffer.AvailableQuantity > 0
-  )
-}
-
 function useNotFound(loading, propsProduct, slug) {
   const { navigate } = useRuntime()
 
@@ -59,6 +52,7 @@ function useNotFound(loading, propsProduct, slug) {
     }
   }, [loading, propsProduct, navigate, slug])
 }
+
 const ProductContext = _props => {
   const {
     params,
@@ -67,8 +61,6 @@ const ProductContext = _props => {
     catalog: { refetch },
     ...props
   } = _props
-
-  const [selectedQuantity, setSelectedQuantity] = useState(1)
 
   const loading = getLoading(_props)
   const propsProduct = getProduct(_props)
@@ -83,11 +75,6 @@ const ProductContext = _props => {
   const product =
     propsProduct ||
     (productPreview && productPreview.items ? productPreview : null)
-
-  const items = path(['items'], product) || []
-  const selectedItem = props.query.skuId
-    ? items.find(sku => sku.itemId === props.query.skuId)
-    : items.find(findAvailableProduct) || items[0]
 
   /**
    * The breadcrumb component is being used in multiple pages,
@@ -124,22 +111,7 @@ const ProductContext = _props => {
     [props, breadcrumbsProps, loading, product, refetch, slug, params]
   )
 
-  const value = useMemo(
-    () => ({
-      product,
-      categories: path(['categories'], product),
-      selectedItem,
-      onChangeQuantity: setSelectedQuantity,
-      selectedQuantity: selectedQuantity,
-    }),
-    [product, selectedItem, setSelectedQuantity, selectedQuantity]
-  )
-
-  return (
-    <ProductContextApp.Provider value={value}>
-      {React.cloneElement(props.children, childrenProps)}
-    </ProductContextApp.Provider>
-  )
+  return React.cloneElement(props.children, childrenProps)
 }
 
 ProductContext.propTypes = {
