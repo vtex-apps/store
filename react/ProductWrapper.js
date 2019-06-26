@@ -76,13 +76,12 @@ function useProductInState(product, dispatch) {
 
 function useSelectedItemFromId(skuId, dispatch, selectedItem, product) {
   useEffect(() => {
-    if (selectedItem && product && selectedItem.itemId !== skuId) {
-      const item = getSelectedItem(skuId, product.items)
-      dispatch({
-        type: 'SET_SELECTED_ITEM',
-        args: { item },
-      })
-    }
+    const items = (product && product.items) || []
+    const item = selectedItem || getSelectedItem(skuId, items)
+    dispatch({
+      type: 'SET_SELECTED_ITEM',
+      args: { item },
+    })
   }, [dispatch, selectedItem, skuId, product])
 }
 
@@ -213,7 +212,8 @@ const ProductWrapper = ({
     }),
     [productQuery, slug, props]
   )
-
+  console.log('teste product: ', state.product)
+  console.log('teste selectedItem: ', state.selectedItem)
   return (
     <div className="vtex-product-context-provider">
       <Helmet
