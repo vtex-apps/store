@@ -212,8 +212,7 @@ const ProductWrapper = ({
     }),
     [productQuery, slug, props]
   )
-  console.log('teste product: ', state.product)
-  console.log('teste selectedItem: ', state.selectedItem)
+
   return (
     <div className="vtex-product-context-provider">
       <Helmet
