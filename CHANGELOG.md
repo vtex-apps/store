@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.33.1] - 2019-06-26
+
 ### Removed
 
 - Removed ProductContextProvider from ProductContext and left only on ProductWrapper.
