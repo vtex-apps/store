@@ -77,7 +77,7 @@ function useProductInState(product, dispatch) {
 function useSelectedItemFromId(skuId, dispatch, selectedItem, product) {
   useEffect(() => {
     const items = (product && product.items) || []
-    if (!selectedItem || selectedItem.itemId !== skuId) {
+    if (!selectedItem || (skuId && selectedItem.itemId !== skuId)) {
       dispatch({
         type: 'SET_SELECTED_ITEM',
         args: { item: getSelectedItem(skuId, items) },
