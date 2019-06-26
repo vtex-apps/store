@@ -95,6 +95,17 @@ function useSelectedQuantityInState(dispatch, slug) {
   }, [dispatch, slug])
 }
 
+function initReducer({ query, items, product }) {
+  return {
+    selectedItem: getSelectedItem(query.skuId, items),
+    product,
+    selectedQuantity: 1,
+    skuSelector: {
+      areAllVariationsSelected: false,
+    },
+  }
+}
+
 const ProductWrapper = ({
   params: { slug },
   productQuery,
@@ -106,18 +117,16 @@ const ProductWrapper = ({
   const { account } = useRuntime()
   const items = path(['items'], product) || []
 
-  const [state, dispatch] = useReducer(reducer, {
-    selectedItem: getSelectedItem(query.skuId, items),
-    product,
-    selectedQuantity: 1,
-    skuSelector: {
-      areAllVariationsSelected: false,
-    },
-  })
-  // This hooks are used to keep the state in sync with API data, specially when switching between products wihtout exiting the product page
+  const [state, dispatch] = useReducer(
+    reducer,
+    { query, items, product },
+    initReducer
+  )
+
+  // These hooks are used to keep the state in sync with API data, specially when switching between products without exiting the product page
   useSelectedQuantityInState(dispatch, slug)
-  useSelectedItemFromId(query.skuId, dispatch, state.selectedItem, product)
   useProductInState(product, dispatch)
+  useSelectedItemFromId(query.skuId, dispatch, state.selectedItem, product)
 
   const pixelEvents = useMemo(() => {
     const {
@@ -196,8 +205,6 @@ const ProductWrapper = ({
 
   const { titleTag, metaTagDescription } = product || {}
 
-  const dispatchValue = useMemo(() => ({ dispatch }), [dispatch])
-
   const childrenProps = useMemo(
     () => ({
       productQuery,
@@ -218,8 +225,8 @@ const ProductWrapper = ({
           },
         ].filter(Boolean)}
       />
-      <ProductContextApp.Provider value={state}>
-        <ProductDispatchContext.Provider value={dispatchValue}>
+      <ProductContextApp.Provider value={{ ...state, product }}>
+        <ProductDispatchContext.Provider value={dispatch}>
           {product && <ProductOpenGraph />}
           {product && <StructuredData product={product} query={query} />}
           {React.cloneElement(children, childrenProps)}
