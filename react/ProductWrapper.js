@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
-import React, { useMemo, useReducer } from 'react'
-import { last, head, path } from 'ramda'
+import React, { useMemo, useReducer, useEffect } from 'react'
+import { last, head, path, propEq, find } from 'ramda'
 import { Helmet, useRuntime } from 'vtex.render-runtime'
 import { ProductOpenGraph } from 'vtex.open-graph'
 import { ProductContext as ProductContextApp } from 'vtex.product-context'
@@ -18,18 +18,6 @@ function reducer(state, action) {
         ...state,
         selectedQuantity: args.quantity,
       }
-    case 'SKU_SELECTOR_SEE_MORE': {
-      return {
-        ...state,
-        skuSelector: {
-          ...state.skuSelector,
-          [args.name]: {
-            ...state.skuSelector[args.name],
-            seeMore: true,
-          },
-        },
-      }
-    }
     case 'SKU_SELECTOR_SET_VARIATIONS_SELECTED': {
       return {
         ...state,
@@ -39,16 +27,39 @@ function reducer(state, action) {
         },
       }
     }
+    case 'SET_SELECTED_ITEM': {
+      return {
+        ...state,
+        selectedItem: findItemById(args.id)(state.product.items),
+      }
+    }
     default:
       return state
   }
 }
 
-const initialState = {
-  selectedQuantity: 1,
-  skuSelector: {
-    areAllVariationsSelected: false,
-  },
+const findItemById = id => find(propEq('itemId', id))
+function findAvailableProduct(item) {
+  return item.sellers.find(
+    ({ commertialOffer = {} }) => commertialOffer.AvailableQuantity > 0
+  )
+}
+
+function getSelectedItem(query, items) {
+  return query.skuId
+    ? findItemById(query.skuId)(items)
+    : items.find(findAvailableProduct) || items[0]
+}
+
+function useSelectedItemFromId(skuId, dispatch, selectedItem) {
+  useEffect(() => {
+    if (skuId && selectedItem && selectedItem.itemId !== skuId) {
+      dispatch({
+        type: 'SET_SELECTED_ITEM',
+        args: { id: skuId },
+      })
+    }
+  }, [dispatch, selectedItem, skuId])
 }
 
 const ProductWrapper = ({
@@ -62,11 +73,16 @@ const ProductWrapper = ({
   const { account } = useRuntime()
   const items = path(['items'], product) || []
 
-  const selectedItem = query.skuId
-    ? items.find(sku => sku.itemId === query.skuId)
-    : items[0]
-
-  const [state, dispatch] = useReducer(reducer, initialState)
+  const [state, dispatch] = useReducer(reducer, {
+    selectedItem: getSelectedItem(query, items),
+    product,
+    categories: path(['categories'], product),
+    selectedQuantity: 1,
+    skuSelector: {
+      areAllVariationsSelected: false,
+    },
+  })
+  useSelectedItemFromId(query.skuId, dispatch, state.selectedItem)
 
   const pixelEvents = useMemo(() => {
     const {
@@ -145,16 +161,6 @@ const ProductWrapper = ({
 
   const { titleTag, metaTagDescription } = product || {}
 
-  const value = useMemo(
-    () => ({
-      product,
-      categories: path(['categories'], product),
-      selectedItem,
-      state,
-    }),
-    [product, selectedItem, state]
-  )
-
   const dispatchValue = useMemo(() => ({ dispatch }), [dispatch])
 
   const childrenProps = useMemo(
@@ -177,7 +183,7 @@ const ProductWrapper = ({
           },
         ].filter(Boolean)}
       />
-      <ProductContextApp.Provider value={value}>
+      <ProductContextApp.Provider value={state}>
         <ProductDispatchContext.Provider value={dispatchValue}>
           {product && <ProductOpenGraph />}
           {product && <StructuredData product={product} query={query} />}
