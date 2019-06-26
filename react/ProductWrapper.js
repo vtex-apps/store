@@ -225,7 +225,7 @@ const ProductWrapper = ({
           },
         ].filter(Boolean)}
       />
-      <ProductContextApp.Provider value={{ ...state, product }}>
+      <ProductContextApp.Provider value={state}>
         <ProductDispatchContext.Provider value={dispatch}>
           {product && <ProductOpenGraph />}
           {product && <StructuredData product={product} query={query} />}
