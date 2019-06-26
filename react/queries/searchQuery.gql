@@ -71,6 +71,10 @@ query search(
       linkText
       brand
       link
+      properties {
+        name
+        values
+      }
       items {
         itemId
         name
