@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { useMemo, useReducer, useEffect } from 'react'
-import { last, head, path, propEq, find, prop } from 'ramda'
+import { last, head, path, propEq, find } from 'ramda'
 import { Helmet, useRuntime } from 'vtex.render-runtime'
 import { ProductOpenGraph } from 'vtex.open-graph'
 import { ProductContext as ProductContextApp } from 'vtex.product-context'
@@ -53,16 +53,6 @@ function reducer(state, action) {
             areAllVariationsSelected: false,
           },
         }),
-      }
-    }
-    case 'RESET': {
-      return {
-        selectedItem: null,
-        product: args.product,
-        selectedQuantity: 1,
-        skuSelector: {
-          areAllVariationsSelected: false,
-        },
       }
     }
     default:
