@@ -96,16 +96,16 @@ function useSelectedItemFromId(skuId, dispatch, selectedItem, product) {
   }, [dispatch, selectedItem, skuId, product])
 }
 
-function useSlugChangeReset(dispatch, slug, product) {
+function useSlugChangeReset(dispatch, slug, product, state) {
+  const stateSlug = path(['product', 'linkText'], state)
   useEffect(() => {
-    const productSlug = path(['linkText'], product)
-    if (productSlug !== slug) {
+    if (stateSlug !== slug) {
       dispatch({
         type: 'RESET',
         args: { product },
       })
     }
-  }, [dispatch, product, slug])
+  }, [dispatch, product, slug, stateSlug])
 }
 
 function initReducer({ query, items, product }) {
