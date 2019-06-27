@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { useMemo, useReducer, useEffect } from 'react'
-import { last, head, path, propEq, find } from 'ramda'
+import { last, head, path, propEq, find, prop } from 'ramda'
 import { Helmet, useRuntime } from 'vtex.render-runtime'
 import { ProductOpenGraph } from 'vtex.open-graph'
 import { ProductContext as ProductContextApp } from 'vtex.product-context'
@@ -40,9 +40,19 @@ function reducer(state, action) {
       }
     }
     case 'SET_PRODUCT': {
+      const differentSlug =
+        path(['product', 'linkText'], state) !==
+        path(['product', 'linkText'], args)
       return {
         ...state,
         product: args.product,
+        ...(differentSlug && {
+          selectedItem: null,
+          selectedQuantity: 1,
+          skuSelector: {
+            areAllVariationsSelected: false,
+          },
+        }),
       }
     }
     case 'RESET': {
@@ -96,18 +106,6 @@ function useSelectedItemFromId(skuId, dispatch, selectedItem, product) {
   }, [dispatch, selectedItem, skuId, product])
 }
 
-function useSlugChangeReset(dispatch, slug, product, state) {
-  const stateSlug = path(['product', 'linkText'], state)
-  useEffect(() => {
-    if (stateSlug !== slug) {
-      dispatch({
-        type: 'RESET',
-        args: { product },
-      })
-    }
-  }, [dispatch, product, slug, stateSlug])
-}
-
 function initReducer({ query, items, product }) {
   return {
     selectedItem: getSelectedItem(query.skuId, items),
@@ -137,7 +135,6 @@ const ProductWrapper = ({
   )
 
   // These hooks are used to keep the state in sync with API data, specially when switching between products without exiting the product page
-  useSlugChangeReset(dispatch, slug, product)
   useProductInState(product, dispatch)
   useSelectedItemFromId(query.skuId, dispatch, state.selectedItem, product)
 
