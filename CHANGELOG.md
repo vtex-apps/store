@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Build assets with new builder hub.
+
 ## [2.33.3] - 2019-06-26
 ### Fixed
 - Problem when switching SKUs in flexible product page.
