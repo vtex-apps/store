@@ -98,10 +98,13 @@ function useSelectedItemFromId(skuId, dispatch, selectedItem, product) {
 
 function useSlugChangeReset(dispatch, slug, product) {
   useEffect(() => {
-    dispatch({
-      type: 'RESET',
-      args: { product },
-    })
+    const productSlug = path(['linkText'], product)
+    if (productSlug !== slug) {
+      dispatch({
+        type: 'RESET',
+        args: { product },
+      })
+    }
   }, [dispatch, product, slug])
 }
 
