@@ -40,9 +40,19 @@ function reducer(state, action) {
       }
     }
     case 'SET_PRODUCT': {
+      const differentSlug =
+        path(['product', 'linkText'], state) !==
+        path(['product', 'linkText'], args)
       return {
         ...state,
         product: args.product,
+        ...(differentSlug && {
+          selectedItem: null,
+          selectedQuantity: 1,
+          skuSelector: {
+            areAllVariationsSelected: false,
+          },
+        }),
       }
     }
     default:
@@ -86,15 +96,6 @@ function useSelectedItemFromId(skuId, dispatch, selectedItem, product) {
   }, [dispatch, selectedItem, skuId, product])
 }
 
-function useSelectedQuantityInState(dispatch, slug) {
-  useEffect(() => {
-    dispatch({
-      type: 'SET_QUANTITY',
-      args: { quantity: 1 },
-    })
-  }, [dispatch, slug])
-}
-
 function initReducer({ query, items, product }) {
   return {
     selectedItem: getSelectedItem(query.skuId, items),
@@ -124,7 +125,6 @@ const ProductWrapper = ({
   )
 
   // These hooks are used to keep the state in sync with API data, specially when switching between products without exiting the product page
-  useSelectedQuantityInState(dispatch, slug)
   useProductInState(product, dispatch)
   useSelectedItemFromId(query.skuId, dispatch, state.selectedItem, product)
 
