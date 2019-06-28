@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Wraps wrappers in min-height: 100vh wrappers.
 
 ## [2.34.0] - 2019-07-01
 ### Changed
