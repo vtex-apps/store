@@ -115,7 +115,7 @@ const ProductWrapper = ({
   children,
   ...props
 }) => {
-  const { account } = useRuntime()
+  const { account, getSettings } = useRuntime()
   const items = path(['items'], product) || []
 
   const [state, dispatch] = useReducer(
@@ -203,7 +203,23 @@ const ProductWrapper = ({
 
   useDataPixel(pixelEvents, loading)
 
-  const { titleTag, metaTagDescription } = product || {}
+  const { titleTag, productName, metaTagDescription } = product || {}
+
+  let title = titleTag || productName
+
+  try {
+    const settings = getSettings('vtex.store')
+    if (settings) {
+      const { storeName, titleTag: storeTitleTag } = settings
+      const suffix =
+        (storeTitleTag || storeName) && ` - ${storeTitleTag || storeName}`
+      if (suffix) {
+        title += suffix
+      }
+    }
+  } catch (e) {
+    console.error('Failed to suffix store name in title.', e)
+  }
 
   const childrenProps = useMemo(
     () => ({
@@ -217,7 +233,7 @@ const ProductWrapper = ({
   return (
     <div className="vtex-product-context-provider">
       <Helmet
-        title={titleTag}
+        title={title}
         meta={[
           metaTagDescription && {
             name: 'description',

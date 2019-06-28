@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+- Improve product page title.
+
 ## [2.33.5] - 2019-06-27
 ### Fixed
 - Issue when switching from products withou exiting product page.
