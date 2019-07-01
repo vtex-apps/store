@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import React, { useContext } from 'react'
-import { render, act } from '@vtex/test-tools/react'
+import { render } from '@vtex/test-tools/react'
 import { getProduct, getItem } from '../__mocks__/productMock'
 import ProductWrapper from '../ProductWrapper'
 import { ProductContext } from '../__mocks__/vtex.product-context'
@@ -17,6 +17,8 @@ const ProductPageMock = () => {
     </div>
   )
 }
+
+const descriptionId = 'description'
 
 describe('ProductWrapper component', () => {
   const getProps = customProps => {
@@ -46,7 +48,7 @@ describe('ProductWrapper component', () => {
     const { queryByTestId, getByText } = renderComponent()
     getByText(new RegExp(product.titleTag))
     // Doesnt have metatag description, <meta> should not be rendered
-    expect(queryByTestId('descritpion')).toBeNull()
+    expect(queryByTestId(descriptionId)).toBeNull()
   })
 
   it('should render with correct title and meta', () => {
@@ -56,7 +58,7 @@ describe('ProductWrapper component', () => {
       params: { slug: product.linkText },
       productQuery: { product, loading: false },
     })
-    getByTestId('description')
+    getByTestId(descriptionId)
     getByText(new RegExp(product.titleTag))
   })
 
@@ -87,9 +89,6 @@ describe('ProductWrapper component', () => {
         <ProductPageMock />
       </ProductWrapper>
     )
-    // make sure all hooks took place
-    act(() => {})
-    await Promise.resolve()
 
     getByText(new RegExp(newProduct.titleTag))
     getByText(`Selected Item id: ${newProduct.items[0].itemId}`)
@@ -140,8 +139,6 @@ describe('ProductWrapper component', () => {
         <ProductPageMock />
       </ProductWrapper>
     )
-    // make sure all hooks took place
-    act(() => {})
     getByText(`Selected Item id: ${itemtwo.itemId}`)
     getByText(`Selected Item name: ${itemtwo.name}`)
   })
