@@ -71,7 +71,7 @@ describe('ProductWrapper component', () => {
     getTitleTag(product)
   })
 
-  it('should switch items and reset state', async () => {
+  it('should switch items and reset state', () => {
     const product = getProduct()
     const {
       rerender,
