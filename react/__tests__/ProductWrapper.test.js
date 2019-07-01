@@ -36,35 +36,50 @@ describe('ProductWrapper component', () => {
     return props
   }
   const renderComponent = customProps => {
-    return render(
+    const component = render(
       <ProductWrapper {...getProps(customProps)}>
         <ProductPageMock />
       </ProductWrapper>
     )
+    const { getByText } = component
+    return {
+      ...component,
+      getTitleTag: product => getByText(new RegExp(product.titleTag)),
+      getSelectedItemId: item => getByText(`Selected Item id: ${item.itemId}`),
+      getSelectedItemName: item =>
+        getByText(`Selected Item name: ${item.name}`),
+      getProductSlug: product => getByText(`product slug: ${product.linkText}`),
+    }
   }
 
   it('should render with correct title and no meta', () => {
     const product = getProduct()
-    const { queryByTestId, getByText } = renderComponent()
-    getByText(new RegExp(product.titleTag))
+    const { queryByTestId, getTitleTag } = renderComponent()
+    getTitleTag(product)
     // Doesnt have metatag description, <meta> should not be rendered
     expect(queryByTestId(descriptionId)).toBeNull()
   })
 
   it('should render with correct title and meta', () => {
     const product = getProduct({ metaTagDescription: 'MetaDescription' })
-    const { getByText, getByTestId } = renderComponent({
+    const { getTitleTag, getByTestId } = renderComponent({
       product,
       params: { slug: product.linkText },
       productQuery: { product, loading: false },
     })
     getByTestId(descriptionId)
-    getByText(new RegExp(product.titleTag))
+    getTitleTag(product)
   })
 
   it('should switch items and reset state', async () => {
     const product = getProduct()
-    const { rerender, getByText } = renderComponent()
+    const {
+      rerender,
+      getTitleTag,
+      getSelectedItemId,
+      getSelectedItemName,
+      getProductSlug,
+    } = renderComponent()
 
     const newItem = getItem('2')
     const newProduct = getProduct({
@@ -75,10 +90,10 @@ describe('ProductWrapper component', () => {
       productName: 'Product 2',
     })
 
-    getByText(new RegExp(product.titleTag))
-    getByText(`Selected Item id: ${product.items[0].itemId}`)
-    getByText(`Selected Item name: ${product.items[0].name}`)
-    getByText(`product slug: ${product.linkText}`)
+    getTitleTag(product)
+    getSelectedItemId(product.items[0])
+    getSelectedItemName(product.items[0])
+    getProductSlug(product)
     const newProps = {
       product: newProduct,
       params: { slug: newProduct.linkText },
@@ -90,10 +105,10 @@ describe('ProductWrapper component', () => {
       </ProductWrapper>
     )
 
-    getByText(new RegExp(newProduct.titleTag))
-    getByText(`Selected Item id: ${newProduct.items[0].itemId}`)
-    getByText(`Selected Item name: ${newProduct.items[0].name}`)
-    getByText(`product slug: ${newProduct.linkText}`)
+    getTitleTag(newProduct)
+    getSelectedItemId(newProduct.items[0])
+    getSelectedItemName(newProduct.items[0])
+    getProductSlug(newProduct)
   })
 
   it('should select first item with available quantity', async () => {
@@ -103,14 +118,14 @@ describe('ProductWrapper component', () => {
     const newProduct = getProduct({
       items: [noQuantity, noQuantity, itemWithQuantity, otherItemWithQuantity],
     })
-    const { getByText } = renderComponent({
+    const { getSelectedItemId, getSelectedItemName } = renderComponent({
       product: newProduct,
       params: { slug: newProduct.linkText },
       productQuery: { product: newProduct, loading: false },
     })
 
-    getByText(`Selected Item id: ${itemWithQuantity.itemId}`)
-    getByText(`Selected Item name: ${itemWithQuantity.name}`)
+    getSelectedItemId(itemWithQuantity)
+    getSelectedItemName(itemWithQuantity)
   })
 
   it('should switch items when changing query prop', async () => {
@@ -125,10 +140,14 @@ describe('ProductWrapper component', () => {
       params: { slug: newProduct.linkText },
       productQuery: { product: newProduct, loading: false },
     }
-    const { getByText, rerender } = renderComponent(props)
+    const {
+      getSelectedItemId,
+      getSelectedItemName,
+      rerender,
+    } = renderComponent(props)
 
-    getByText(`Selected Item id: ${itemone.itemId}`)
-    getByText(`Selected Item name: ${itemone.name}`)
+    getSelectedItemId(itemone)
+    getSelectedItemName(itemone)
 
     const newProps = {
       ...props,
@@ -139,7 +158,7 @@ describe('ProductWrapper component', () => {
         <ProductPageMock />
       </ProductWrapper>
     )
-    getByText(`Selected Item id: ${itemtwo.itemId}`)
-    getByText(`Selected Item name: ${itemtwo.name}`)
+    getSelectedItemId(itemtwo)
+    getSelectedItemName(itemtwo)
   })
 })
