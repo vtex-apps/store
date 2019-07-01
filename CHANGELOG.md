@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.35.1] - 2019-07-01
+
 ### Changed
 - Remove `disableSSR` option from settings schema.
 
