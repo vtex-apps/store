@@ -87,6 +87,7 @@ describe('ProductWrapper component', () => {
         <ProductPageMock />
       </ProductWrapper>
     )
+    // make sure all hooks took place
     act(() => {})
     await Promise.resolve()
 
@@ -139,7 +140,7 @@ describe('ProductWrapper component', () => {
         <ProductPageMock />
       </ProductWrapper>
     )
-
+    // make sure all hooks took place
     act(() => {})
     getByText(`Selected Item id: ${itemtwo.itemId}`)
     getByText(`Selected Item name: ${itemtwo.name}`)
