@@ -15,6 +15,7 @@ import { PWAProvider } from 'vtex.store-resources/PWAContext'
 import PageViewPixel from './components/PageViewPixel'
 import OrderFormProvider from './components/OrderFormProvider'
 import NetworkStatusToast from './components/NetworkStatusToast'
+import WrapperContainer from './components/WrapperContainer'
 
 import pwaDataQuery from './queries/pwaDataQuery.gql'
 
@@ -186,9 +187,9 @@ class StoreWrapper extends Component {
           <ToastProvider positioning="window">
             <NetworkStatusToast />
             <OrderFormProvider>
-              <div className="vtex-store__template bg-base">
+              <WrapperContainer className="vtex-store__template bg-base">
                 {this.props.children}
-              </div>
+              </WrapperContainer>
             </OrderFormProvider>
           </ToastProvider>
         </PixelProvider>

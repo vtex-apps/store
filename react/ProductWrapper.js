@@ -7,6 +7,7 @@ import { ProductContext as ProductContextApp } from 'vtex.product-context'
 import { ProductDispatchContext } from 'vtex.product-context/ProductDispatchContext'
 
 import StructuredData from './components/StructuredData'
+import WrapperContainer from './components/WrapperContainer'
 
 import useDataPixel from './hooks/useDataPixel'
 
@@ -231,7 +232,7 @@ const ProductWrapper = ({
   )
 
   return (
-    <div className="vtex-product-context-provider">
+    <WrapperContainer className="vtex-product-context-provider">
       <Helmet
         title={title}
         meta={[
@@ -248,7 +249,7 @@ const ProductWrapper = ({
           {React.cloneElement(children, childrenProps)}
         </ProductDispatchContext.Provider>
       </ProductContextApp.Provider>
-    </div>
+    </WrapperContainer>
   )
 }
 
