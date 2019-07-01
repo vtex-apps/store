@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
-- Adds optional id to routes with translatable slugs
+- Adds optional id to routes with translatable terms
 
 ## [2.33.6] - 2019-06-28
 
