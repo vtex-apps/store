@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+- Remove `disableSSR` option from settings schema.
+
 ## [2.35.0] - 2019-07-01
 ### Changed
 - Makes wrappers have a min-height of 100vh, allowing aligning the footer to the bottom of the screen.
