@@ -107,11 +107,6 @@
           ]
         },
         "description": "Configure your store's favicons"
-      },
-      "disableSSR": {
-        "title": "Disable server-side rendering",
-        "type": "boolean",
-        "description": "Deliver store as a client-side single-page application."
       }
     }
   },
