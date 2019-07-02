@@ -20,7 +20,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Makes wrappers have a min-height of 100vh, allowing aligning the footer to the bottom of the screen.
 
-## [2.34.0] - 2019-07-01 [YANKED]
+## [2.34.0] - 2019-07-01
 ### Changed
 - Adds optional id to routes with translatable terms
 
