@@ -43,6 +43,7 @@
     "vtex.product-availability": "0.x",
     "vtex.product-quantity": "1.x",
     "vtex.shop-review-interfaces": "0.x",
+    "vtex.product-identifier": "0.x",
     "vtex.open-graph": "1.x"
   },
   "settingsSchema": {
