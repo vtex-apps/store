@@ -3,7 +3,7 @@
     "allowConditions": true,
     "component": "*",
     "around": ["storeWrapper", "challenge"],
-    "before": ["header"],
+    "before": ["header.full"],
     "after": ["footer", "pixels"],
     "allowed": [
       "notification.bar",
@@ -25,7 +25,6 @@
   },
   "store.home": {
     "around": ["homeWrapper"],
-    "before": ["header.full"],
     "allowed": ["search-result"],
     "preview": {
       "type": "box",
@@ -72,7 +71,6 @@
   },
   "store.search": {
     "around": ["searchWrapper"],
-    "before": ["header.full"],
     "required": ["search-result"],
     "context": "SearchContext",
     "preview": {
@@ -81,7 +79,6 @@
     }
   },
   "store.account": {
-    "before": ["header.full"],
     "required": ["my-account"],
     "around": ["challenge.profile"],
     "preview": {
@@ -90,7 +87,6 @@
     }
   },
   "store.login": {
-    "before": ["header.full"],
     "required": ["login-content"],
     "preview": {
       "type": "spinner",
@@ -106,7 +102,6 @@
     }
   },
   "store.product-review-form": {
-    "before": ["header.full"],
     "allowed": ["product-review-form"],
     "preview": {
       "type": "spinner",
