@@ -131,6 +131,10 @@ const catalogOptions = {
   options: props => ({
     variables: {
       slug: props.params.slug,
+      identifier: {
+        field: 'id',
+        value: props.params.id || '',
+      },
     },
     errorPolicy: 'all',
   }),
@@ -141,6 +145,10 @@ const productBenefitsOptions = {
   options: props => ({
     variables: {
       slug: props.params.slug,
+      identifier: {
+        field: 'id',
+        value: props.params.id || '',
+      },
     },
     errorPolicy: 'all',
     ssr: false,
