@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [2.35.2] - 2019-07-02
 ### Fixed
 - Fixed issues with navigation. Reverted changes made in 2.34.0, as they were causing the issue.
 
