@@ -9,28 +9,28 @@
     "path": "/login"
   },
   "store.product": {
-    "path": "/:slug/p(/:id)"
+    "path": "/:slug/p"
   },
   "store.search": {
     "path": "/:term/s",
     "canonical": "/:term"
   },
   "store.search#brand": {
-    "path": "/:brand/b(/:id)",
+    "path": "/:brand/b",
     "canonical": "/:brand",
     "map": ["b"]
   },
   "store.search#department": {
-    "path": "/:department/d(/:id)",
+    "path": "/:department/d",
     "canonical": "/:department",
     "map": ["c"]
   },
   "store.search#category": {
-    "path": "/:department/:category(/c/:id)",
+    "path": "/:department/:category",
     "map": ["c", "c"]
   },
   "store.search#subcategory": {
-    "path": "/:department/:category/:subcategory(/c/:id)",
+    "path": "/:department/:category/:subcategory",
     "map": ["c", "c", "c"]
   },
   "store.search#subcategory-terms": {

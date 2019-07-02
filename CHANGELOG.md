@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- Fixed issues with navigation. Reverted changes made in 2.34.0, as they were causing the issue.
 
 ## [2.35.1] - 2019-07-01
 
@@ -16,7 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Makes wrappers have a min-height of 100vh, allowing aligning the footer to the bottom of the screen.
 
-## [2.34.0] - 2019-07-01
+## [2.34.0] - 2019-07-01 [YANKED]
 ### Changed
 - Adds optional id to routes with translatable terms
 
