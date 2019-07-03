@@ -61,7 +61,8 @@
       "availability-subscriber",
       "share",
       "product-highlights",
-      "product-availability"
+      "product-availability",
+      "product-identifier"
     ],
     "context": "ProductContext",
     "preview": {
