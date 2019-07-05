@@ -105,8 +105,8 @@ const ProductContext = _props => {
       },
       slug,
       params,
-      breadcrumbsProps,
-      props,
+      ...breadcrumbsProps,
+      ...props,
     }),
     [props, breadcrumbsProps, loading, product, refetch, slug, params]
   )
