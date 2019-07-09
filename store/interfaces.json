@@ -16,7 +16,8 @@
       "rich-text",
       "flex-layout",
       "sandbox",
-      "image"
+      "image",
+      "sticky-layout"
     ],
     "preview": {
       "type": "transparent",
@@ -32,12 +33,8 @@
     }
   },
   "store.product": {
-    "around": [
-      "productWrapper"
-    ],
-    "before": [
-      "header.full"
-    ],
+    "around": ["productWrapper"],
+    "before": ["header.full"],
     "allowed": [
       "product-add-to-list-button",
       "product-details",
@@ -139,6 +136,5 @@
   "promo-bar": {
     "component": "*"
   },
-  "store.custom": {
-  }
+  "store.custom": {}
 }
