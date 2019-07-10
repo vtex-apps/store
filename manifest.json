@@ -44,7 +44,8 @@
     "vtex.product-quantity": "1.x",
     "vtex.shop-review-interfaces": "0.x",
     "vtex.product-identifier": "0.x",
-    "vtex.open-graph": "1.x"
+    "vtex.open-graph": "1.x",
+    "vtex.sticky-layout": "0.x"
   },
   "settingsSchema": {
     "title": "VTEX Store",
@@ -102,10 +103,7 @@
               "type": "string"
             }
           },
-          "required": [
-            "rel",
-            "href"
-          ]
+          "required": ["rel", "href"]
         },
         "description": "Configure your store's favicons"
       }
