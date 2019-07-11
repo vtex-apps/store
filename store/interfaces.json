@@ -136,5 +136,7 @@
   "promo-bar": {
     "component": "*"
   },
-  "store.custom": {}
+  "store.custom": {
+    "allowed": ["search-result"]
+  }
 }
