@@ -25,7 +25,7 @@ const getPageEventName = (products, params) => {
 
 const getTitleTag = (titleTag, storeTitle, term) => {
   return titleTag
-    ? `${capitalize(decodeURI(titleTag))} - ${storeTitle}`
+    ? `${titleTag} - ${storeTitle}`
     : term
     ? `${capitalize(decodeURI(term))} - ${storeTitle}`
     : `${storeTitle}`
