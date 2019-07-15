@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.42.1] - 2019-07-15
+
 ## [2.42.0] - 2019-07-11
 ### Added
 - Allow `search-result` to `store.custom`.
