@@ -29,6 +29,6 @@
     "children": ["flex-layout.row#institutional-body"]
   },
   "flex-layout.row#institutional-body": {
-    "children": ["rich-text.static"]
+    "children": ["rich-text"]
   }
 }
