@@ -11,6 +11,13 @@ import WrapperContainer from './components/WrapperContainer'
 
 import useDataPixel from './hooks/useDataPixel'
 
+const findItemById = id => find(propEq('itemId', id))
+function findAvailableProduct(item) {
+  return item.sellers.find(
+    ({ commertialOffer = {} }) => commertialOffer.AvailableQuantity > 0
+  )
+}
+
 function reducer(state, action) {
   const args = action.args || {}
   switch (action.type) {
@@ -61,13 +68,6 @@ function reducer(state, action) {
   }
 }
 
-const findItemById = id => find(propEq('itemId', id))
-function findAvailableProduct(item) {
-  return item.sellers.find(
-    ({ commertialOffer = {} }) => commertialOffer.AvailableQuantity > 0
-  )
-}
-
 function getSelectedItem(skuId, items) {
   return skuId
     ? findItemById(skuId)(items)
@@ -88,10 +88,10 @@ function useProductInState(product, dispatch) {
 function useSelectedItemFromId(skuId, dispatch, selectedItem, product) {
   useEffect(() => {
     const items = (product && product.items) || []
-      dispatch({
-        type: 'SET_SELECTED_ITEM',
-        args: { item: getSelectedItem(skuId, items) },
-      })
+    dispatch({
+      type: 'SET_SELECTED_ITEM',
+      args: { item: getSelectedItem(skuId, items) },
+    })
   }, [dispatch, selectedItem, skuId, product])
 }
 
