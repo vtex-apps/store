@@ -85,14 +85,14 @@ function useProductInState(product, dispatch) {
   }, [product, dispatch])
 }
 
-function useSelectedItemFromId(skuId, dispatch, selectedItem, product) {
+function useSelectedItemFromId(skuId, dispatch, product) {
   useEffect(() => {
     const items = (product && product.items) || []
     dispatch({
       type: 'SET_SELECTED_ITEM',
       args: { item: getSelectedItem(skuId, items) },
     })
-  }, [dispatch, selectedItem, skuId, product])
+  }, [dispatch, skuId, product])
 }
 
 function initReducer({ query, items, product }) {
@@ -125,7 +125,7 @@ const ProductWrapper = ({
 
   // These hooks are used to keep the state in sync with API data, specially when switching between products without exiting the product page
   useProductInState(product, dispatch)
-  useSelectedItemFromId(query.skuId, dispatch, state.selectedItem, product)
+  useSelectedItemFromId(query.skuId, dispatch, product)
 
   const pixelEvents = useMemo(() => {
     const {
