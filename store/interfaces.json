@@ -176,5 +176,8 @@
   },
   "store.custom": {
     "allowed": ["search-result"]
+  },
+  "store.offline": {
+    "required": ["offline-page"]
   }
 }
