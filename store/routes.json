@@ -45,8 +45,5 @@
   },
   "store.orderplaced": {
     "path": "/checkout/orderPlaced"
-  },
-  "store.institutional": {
-    "path": "/institutional"
   }
 }
