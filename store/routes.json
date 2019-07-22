@@ -37,9 +37,6 @@
   "store.search#subcategory-terms": {
     "path": "/:department/:category/:subcategory/*terms"
   },
-  "store.search#custom": {
-    "path": "/*terms"
-  },
   "store.search#configurable": {
     "path": "/s/*terms"
   },
