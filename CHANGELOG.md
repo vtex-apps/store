@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- `store.institutional` to interfaces
+
 ## [2.43.1] - 2019-07-19
 ### Fixed
 - Fix issue where product pages when open through CSR wouldn't display product variations.
