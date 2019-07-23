@@ -18,6 +18,18 @@ function findAvailableProduct(item) {
   )
 }
 
+const defaultState = {
+  selectedItem: null,
+  selectedQuantity: 1,
+  skuSelector: {
+    areAllVariationsSelected: true,
+  },
+  assemblyOptions: {
+    items: {},
+    isValid: true,
+  },
+}
+
 function reducer(state, action) {
   const args = action.args || {}
   switch (action.type) {
@@ -47,6 +59,21 @@ function reducer(state, action) {
         selectedItem: args.item,
       }
     }
+    case 'SET_ASSEMBLY_OPTIONS': {
+      const { groupId, groupItems, isValid } = args
+      return {
+        ...state,
+        assemblyOptions: {
+          ...state.assemblyOptions,
+          items: {
+            ...state.assemblyOptions.items,
+            [groupId]: groupItems,
+          },
+          isValid,
+        },
+      }
+    }
+
     case 'SET_PRODUCT': {
       const differentSlug =
         path(['product', 'linkText'], state) !==
@@ -54,13 +81,7 @@ function reducer(state, action) {
       return {
         ...state,
         product: args.product,
-        ...(differentSlug && {
-          selectedItem: null,
-          selectedQuantity: 1,
-          skuSelector: {
-            areAllVariationsSelected: false,
-          },
-        }),
+        ...(differentSlug && defaultState),
       }
     }
     default:
@@ -97,12 +118,9 @@ function useSelectedItemFromId(skuId, dispatch, product) {
 
 function initReducer({ query, items, product }) {
   return {
+    ...defaultState,
     selectedItem: getSelectedItem(query.skuId, items),
     product,
-    selectedQuantity: 1,
-    skuSelector: {
-      areAllVariationsSelected: false,
-    },
   }
 }
 

@@ -60,7 +60,8 @@
       "product-highlights",
       "product-availability",
       "product-identifier",
-      "blog-related-posts"
+      "blog-related-posts",
+      "product-assembly-options"
     ],
     "context": "ProductContext",
     "preview": {
@@ -118,31 +119,18 @@
   },
   "store.blog-category": {
     "before": ["header.full"],
-    "required": [
-      "blog-category-list"
-    ],
-    "allowed": [
-      "blog-search",
-      "blog-category-preview"
-    ]
+    "required": ["blog-category-list"],
+    "allowed": ["blog-search", "blog-category-preview"]
   },
   "store.blog-post": {
     "before": ["header.full"],
-    "required": [
-      "blog-post-details"
-    ],
-    "allowed": [
-      "blog-search"
-    ]
+    "required": ["blog-post-details"],
+    "allowed": ["blog-search"]
   },
   "store.blog-search-result": {
     "before": ["header.full"],
-    "required": [
-      "blog-search-list"
-    ],
-    "allowed": [
-      "blog-search"
-    ]
+    "required": ["blog-search-list"],
+    "allowed": ["blog-search"]
   },
   "storeWrapper": {
     "allowed": ["highlight-overlay"],
