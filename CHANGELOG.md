@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Added
-- `store.institutional` to interfaces
+- `store.content` to interfaces
 
 ## [2.43.1] - 2019-07-19
 ### Fixed
