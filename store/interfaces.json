@@ -177,7 +177,7 @@
   "store.custom": {
     "allowed": ["search-result"]
   },
-  "store.institutional": {
-    "context": "InstitutionalContext"
+  "store.content": {
+    "context": "ContentPageContext"
   }
 }

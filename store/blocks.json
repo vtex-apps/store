@@ -25,10 +25,10 @@
       "header": "header.full"
     }
   },
-  "store.institutional": {
-    "children": ["flex-layout.row#institutional-body"]
+  "store.content": {
+    "children": ["flex-layout.row#content-body"]
   },
-  "flex-layout.row#institutional-body": {
+  "flex-layout.row#content-body": {
     "children": ["rich-text"]
   }
 }
