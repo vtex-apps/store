@@ -178,7 +178,7 @@ class StoreWrapper extends Component {
             canonicalPath &&
               canonicalHost && {
                 rel: 'canonical',
-                href: `https://${canonicalHost}${canonicalPath}`,
+                href: `https://${canonicalHost}${rootPath}${canonicalPath}`,
               },
           ].filter(Boolean)}
         />
