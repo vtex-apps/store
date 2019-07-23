@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 
 import { useRuntime, canUseDOM, Loading } from 'vtex.render-runtime'
 
-const LOGIN_PATH = '/login'
-const API_SESSION_URL = '/api/sessions?items=*'
+const loginPathTemplate = rootPath => rootPath + '/login'
+const sessionPathTemplate = rootPath => rootPath + '/api/sessions?items=*'
 
 function useSafeState(initialState) {
   const [state, setState] = useState(initialState)
@@ -30,20 +30,22 @@ const getLocation = () =>
 const ProfileChallenge = ({ children, page }) => {
   const [loading, setLoading] = useSafeState(true)
   const [loggedIn, setLoggedIn] = useSafeState(false)
-  const { navigate } = useRuntime()
+  const { navigate, rootPath = '' } = useRuntime()
   const { url, pathName } = getLocation()
+  const loginPath = loginPathTemplate(rootPath)
+  const sessionPath = sessionPathTemplate(rootPath)
 
   const redirectToLogin = useCallback(() => {
-    if (page !== 'store.login' && pathName !== LOGIN_PATH) {
+    if (page !== 'store.login' && pathName !== loginPath) {
       navigate({
         fallbackToWindowLocation: false,
-        to: `${LOGIN_PATH}?returnUrl=${encodeURIComponent(url)}`,
+        to: `${loginPath}?returnUrl=${encodeURIComponent(url)}`,
       })
     }
-  }, [page, pathName, navigate, url])
+  }, [page, pathName, navigate, url, loginPath])
 
   useEffect(() => {
-    fetch(API_SESSION_URL, { credentials: 'same-origin' })
+    fetch(sessionPath, { credentials: 'same-origin' })
       .then(response => response.json())
       .then(response => {
         if (
@@ -62,7 +64,7 @@ const ProfileChallenge = ({ children, page }) => {
         setLoggedIn(false)
         redirectToLogin()
       })
-  }, [page, redirectToLogin, setLoading, setLoggedIn])
+  }, [page, redirectToLogin, setLoading, setLoggedIn, sessionPath])
 
   if (loading) {
     return (
