@@ -176,5 +176,8 @@
   },
   "store.custom": {
     "allowed": ["search-result"]
+  },
+  "store.content": {
+    "context": "ContentPageContext"
   }
 }

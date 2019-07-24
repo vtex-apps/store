@@ -24,5 +24,11 @@
     "parent": {
       "header": "header.full"
     }
+  },
+  "store.content": {
+    "children": ["flex-layout.row#content-body"]
+  },
+  "flex-layout.row#content-body": {
+    "children": ["rich-text"]
   }
 }
