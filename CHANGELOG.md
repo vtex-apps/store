@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.44.0] - 2019-07-24
+
 ### Added
 - `store.content` to interfaces
 
