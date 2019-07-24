@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { useRuntime, canUseDOM, Loading } from 'vtex.render-runtime'
 
-const loginPathTemplate = rootPath => rootPath + '/login'
+const loginPath = '/login'
 const sessionPathTemplate = rootPath => rootPath + '/api/sessions?items=*'
 
 function useSafeState(initialState) {
@@ -32,7 +32,6 @@ const ProfileChallenge = ({ children, page }) => {
   const [loggedIn, setLoggedIn] = useSafeState(false)
   const { navigate, rootPath = '' } = useRuntime()
   const { url, pathName } = getLocation()
-  const loginPath = loginPathTemplate(rootPath)
   const sessionPath = sessionPathTemplate(rootPath)
 
   const redirectToLogin = useCallback(() => {
@@ -42,7 +41,7 @@ const ProfileChallenge = ({ children, page }) => {
         to: `${loginPath}?returnUrl=${encodeURIComponent(url)}`,
       })
     }
-  }, [page, pathName, navigate, url, loginPath])
+  }, [page, pathName, navigate, url])
 
   useEffect(() => {
     fetch(sessionPath, { credentials: 'same-origin' })
