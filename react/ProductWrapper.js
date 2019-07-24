@@ -26,7 +26,7 @@ const defaultState = {
   },
   assemblyOptions: {
     items: {},
-    isValid: true,
+    areAssemblyGroupsValid: {},
   },
 }
 
@@ -69,7 +69,10 @@ function reducer(state, action) {
             ...state.assemblyOptions.items,
             [groupId]: groupItems,
           },
-          isValid,
+          areGroupsValid: {
+            ...state.assemblyOptions.areGroupsValid,
+            [groupId]: isValid,
+          }
         },
       }
     }
