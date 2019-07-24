@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Support for root path (e.g. a site served under /ar) to canonical routes and to login challenge.
+
 ## [2.44.0] - 2019-07-24
 
 ### Added
