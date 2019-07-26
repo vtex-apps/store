@@ -46,7 +46,8 @@
     "vtex.blog-interfaces": "0.x",
     "vtex.product-identifier": "0.x",
     "vtex.open-graph": "1.x",
-    "vtex.sticky-layout": "0.x"
+    "vtex.sticky-layout": "0.x",
+    "vtex.product-customizer": "2.x"
   },
   "settingsSchema": {
     "title": "VTEX Store",
