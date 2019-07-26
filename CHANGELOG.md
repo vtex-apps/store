@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - `product-assembly-options` to allowed component list of `store.product`.
-- `assemblyuOptions` variable to ProductPage reducer state.
+- `assemblyOptions` variable to ProductPage reducer state.
 
 ## [2.45.0] - 2019-07-24
 
