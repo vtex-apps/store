@@ -9,21 +9,17 @@
     "path": "/login"
   },
   "store.product": {
-    "path": "/:slug/p(/:id)",
-    "canonical": "/:slug/p"
+    "path": "/:slug/p(/:id)"
   },
   "store.search": {
-    "path": "/:term/s",
-    "canonical": "/:term"
+    "path": "/:term/s"
   },
   "store.search#brand": {
     "path": "/:brand/b(/:id)",
-    "canonical": "/:brand",
     "map": ["b"]
   },
   "store.search#department": {
     "path": "/:department/d(/:id)",
-    "canonical": "/:department",
     "map": ["c"]
   },
   "store.search#category": {
