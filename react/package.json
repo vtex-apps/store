@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "test": "vtex-test-tools test",
-    "lint": "eslint --ext js,jsx,ts,tsx . --fix"
+    "lint": "eslint --ext js,jsx,ts,tsx ."
   },
   "dependencies": {
     "hoist-non-react-statics": "^3.0.1",
