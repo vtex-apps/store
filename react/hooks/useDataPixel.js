@@ -1,25 +1,28 @@
 import { useEffect, useRef } from 'react'
 import { usePixel } from 'vtex.pixel-manager/PixelContext'
+import { isEmpty } from 'ramda'
 
-const useDataPixel = (data, isLoading = false) => {
+const useDataPixel = (data, slug, isLoading = false) => {
   const { push } = usePixel()
-  const prevLoadingRef = useRef(true)
+  const previousSlugRef = useRef(null)
+
+  const previousSlug = previousSlugRef.current
 
   useEffect(() => {
-    if (prevLoadingRef.current && !isLoading) {
-      if (!data) {
+    if (slug && !isLoading && previousSlug !== slug) {
+      if (!data || isEmpty(data)) {
         return
       }
 
       if (Array.isArray(data)) {
-        data.forEach(event => push(event))
+        data.forEach(push)
       } else {
         push(data)
       }
-    }
 
-    prevLoadingRef.current = isLoading
-  }, [data, isLoading, push])
+      previousSlugRef.current = slug
+    }
+  }, [data, isLoading, previousSlug, push, slug])
 }
 
 export default useDataPixel

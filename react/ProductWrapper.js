@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { useMemo, useReducer, useEffect } from 'react'
 import { last, head, path, propEq, find } from 'ramda'
-import { Helmet, useRuntime } from 'vtex.render-runtime'
+import { useRuntime } from 'vtex.render-runtime'
 import { ProductOpenGraph } from 'vtex.open-graph'
 import { ProductContext as ProductContextApp } from 'vtex.product-context'
 import { ProductDispatchContext } from 'vtex.product-context/ProductDispatchContext'
@@ -10,6 +10,7 @@ import StructuredData from './components/StructuredData'
 import WrapperContainer from './components/WrapperContainer'
 
 import useDataPixel from './hooks/useDataPixel'
+import ProductTitle from './components/ProductTitle'
 
 const findItemById = id => find(propEq('itemId', id))
 function findAvailableProduct(item) {
@@ -135,7 +136,7 @@ const ProductWrapper = ({
   children,
   ...props
 }) => {
-  const { account, getSettings } = useRuntime()
+  const { account } = useRuntime()
   const items = path(['items'], product) || []
 
   const [state, dispatch] = useReducer(
@@ -148,6 +149,8 @@ const ProductWrapper = ({
   useProductInState(product, dispatch)
   useSelectedItemFromId(query.skuId, dispatch, product)
 
+  const { selectedItem } = state
+
   const pixelEvents = useMemo(() => {
     const {
       titleTag,
@@ -156,10 +159,9 @@ const ProductWrapper = ({
       categoryTree,
       productId,
       productName,
-      items,
     } = product || {}
 
-    if (!product || typeof document === 'undefined') {
+    if (!product || typeof document === 'undefined' || !selectedItem) {
       return []
     }
 
@@ -183,12 +185,7 @@ const ProductWrapper = ({
       skuStockOutFromShelf: [],
     }
 
-    const skuId = query.skuId || (items && head(items).itemId)
-
-    const [sku] =
-      (items && items.filter(product => product.itemId === skuId)) || []
-
-    const { ean, referenceId, sellers } = sku || {}
+    const { ean, referenceId, sellers } = selectedItem || {}
 
     pageInfo.productEans = [ean]
 
@@ -210,7 +207,7 @@ const ProductWrapper = ({
     }
 
     // Add selected SKU property to the product object
-    product.selectedSku = query.skuId ? query.skuId : product.items[0].itemId
+    product.selectedSku = selectedItem
 
     return [
       pageInfo,
@@ -219,27 +216,9 @@ const ProductWrapper = ({
         product,
       },
     ]
-  }, [account, product, query.skuId])
+  }, [account, product, selectedItem])
 
-  useDataPixel(pixelEvents, loading)
-
-  const { titleTag, productName, metaTagDescription } = product || {}
-
-  let title = titleTag || productName
-
-  try {
-    const settings = getSettings('vtex.store')
-    if (settings) {
-      const { storeName, titleTag: storeTitleTag } = settings
-      const suffix =
-        (storeName || storeTitleTag) && ` - ${storeName || storeTitleTag}`
-      if (suffix) {
-        title += suffix
-      }
-    }
-  } catch (e) {
-    console.error('Failed to suffix store name in title.', e)
-  }
+  useDataPixel(pixelEvents, path(['linkText'], product), loading)
 
   const childrenProps = useMemo(
     () => ({
@@ -252,19 +231,13 @@ const ProductWrapper = ({
 
   return (
     <WrapperContainer className="vtex-product-context-provider">
-      <Helmet
-        title={title}
-        meta={[
-          metaTagDescription && {
-            name: 'description',
-            content: metaTagDescription,
-          },
-        ].filter(Boolean)}
-      />
+      <ProductTitle product={product} />
       <ProductContextApp.Provider value={state}>
         <ProductDispatchContext.Provider value={dispatch}>
           {product && <ProductOpenGraph />}
-          {product && <StructuredData product={product} query={query} />}
+          {product && selectedItem && (
+            <StructuredData product={product} selectedItem={selectedItem} />
+          )}
           {React.cloneElement(children, childrenProps)}
         </ProductDispatchContext.Provider>
       </ProductContextApp.Provider>
