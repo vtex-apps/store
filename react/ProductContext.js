@@ -76,20 +76,6 @@ const ProductContext = _props => {
     propsProduct ||
     (productPreview && productPreview.items ? productPreview : null)
 
-  /**
-   * The breadcrumb component is being used in multiple pages,
-   * therefore we need to adapt the data to its needs instead of
-   * making the component do the changes itself.
-   **/
-  const breadcrumbsProps = useMemo(
-    () => ({
-      term: slug,
-      categories: product ? product.categories : null,
-      categoryTree: product ? product.categoryTree : null,
-    }),
-    [product, slug]
-  )
-
   const childrenProps = useMemo(
     () => ({
       productQuery: {
@@ -105,10 +91,8 @@ const ProductContext = _props => {
       },
       slug,
       params,
-      breadcrumbsProps,
-      props,
     }),
-    [props, breadcrumbsProps, loading, product, refetch, slug, params]
+    [loading, product, refetch, slug, params]
   )
 
   return React.cloneElement(props.children, childrenProps)
