@@ -6,10 +6,10 @@ const useDataPixel = (data, pageIdentifier, isLoading = false) => {
   const { push } = usePixel()
   const previousIdRef = useRef(null)
 
-  const previuousId = previousIdRef.current
+  const previousId = previousIdRef.current
 
   useEffect(() => {
-    if (pageIdentifier && !isLoading && previuousId !== pageIdentifier) {
+    if (pageIdentifier && !isLoading && previousId !== pageIdentifier) {
       if (!data || isEmpty(data)) {
         return
       }
@@ -22,7 +22,7 @@ const useDataPixel = (data, pageIdentifier, isLoading = false) => {
 
       previousIdRef.current = pageIdentifier
     }
-  }, [data, isLoading, pageIdentifier, previuousId, push])
+  }, [data, isLoading, pageIdentifier, previousId, push])
 }
 
 export default useDataPixel
