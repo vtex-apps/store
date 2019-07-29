@@ -14,7 +14,7 @@ const OfflineWarning = ({ intl, warningTitle, message, buttonLabel }) => (
         intl.formatMessage({ id: 'store/store.offline-warning.message' })}
     </p>
     <div className="pt5">
-      <Button variation="secondary" size="small">
+      <Button variation="secondary" size="small" onClick={() => window.location.reload()}>
         <span className="flex align-baseline">
           {buttonLabel ||
             intl.formatMessage({ id: 'store/store.offline-warning.button' })}
