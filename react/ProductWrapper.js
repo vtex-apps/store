@@ -232,7 +232,7 @@ const ProductWrapper = ({
     if (settings) {
       const { storeName, titleTag: storeTitleTag } = settings
       const suffix =
-        (storeTitleTag || storeName) && ` - ${storeTitleTag || storeName}`
+        (storeName || storeTitleTag) && ` - ${storeName || storeTitleTag}`
       if (suffix) {
         title += suffix
       }
