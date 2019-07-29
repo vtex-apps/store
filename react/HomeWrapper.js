@@ -20,7 +20,7 @@ const HomeWrapper = ({ children }) => {
     [account]
   )
 
-  useDataPixel(pixelEvents)
+  useDataPixel(pixelEvents, 'Home')
 
   return children
 }

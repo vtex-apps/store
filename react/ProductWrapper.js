@@ -207,13 +207,16 @@ const ProductWrapper = ({
     }
 
     // Add selected SKU property to the product object
-    product.selectedSku = selectedItem
+    const eventProduct = {
+      ...product,
+      selectedSku: selectedItem,
+    }
 
     return [
       pageInfo,
       {
         event: 'productView',
-        product,
+        product: eventProduct,
       },
     ]
   }, [account, product, selectedItem])

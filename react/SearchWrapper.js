@@ -31,6 +31,15 @@ const getTitleTag = (titleTag, storeTitle, term) => {
     : `${storeTitle}`
 }
 
+const getSearchIdentifier = searchQuery => {
+  const { variables } = searchQuery || {}
+  if (!variables) {
+    return null
+  }
+  const { query, map } = variables
+  return query + map
+}
+
 const SearchWrapper = props => {
   const {
     params,
@@ -42,13 +51,23 @@ const SearchWrapper = props => {
     children,
   } = props
   const { account, getSettings } = useRuntime()
-
+  const settings = getSettings(APP_LOCATOR) || {}
+  const { titleTag: defaultStoreTitle, metaTagKeywords, storeName } = settings
+  const title = getTitleTag(
+    titleTag,
+    storeName || defaultStoreTitle,
+    params.term
+  )
   const pixelEvents = useMemo(() => {
-    if (!searchQuery || typeof document === 'undefined') {
+    if (
+      !searchQuery ||
+      typeof document === 'undefined' ||
+      !searchQuery.products
+    ) {
       return null
     }
 
-    const { products, titleTag } = searchQuery
+    const { products } = searchQuery
     const { department } = params
 
     const event = getPageEventName(products, params)
@@ -61,7 +80,7 @@ const SearchWrapper = props => {
         pageCategory: pageCategory(products, params),
         pageDepartment: department,
         pageFacets: [],
-        pageTitle: titleTag,
+        pageTitle: title,
         pageUrl: window.location.href,
       },
       {
@@ -69,21 +88,14 @@ const SearchWrapper = props => {
         products,
       },
     ]
-  }, [account, params, searchQuery])
+  }, [account, params, searchQuery, title])
 
-  useDataPixel(pixelEvents, loading)
-
-  const settings = getSettings(APP_LOCATOR) || {}
-  const { titleTag: defaultStoreTitle, metaTagKeywords, storeName } = settings
+  useDataPixel(pixelEvents, getSearchIdentifier(searchQuery), loading)
 
   return (
     <Fragment>
       <Helmet
-        title={getTitleTag(
-          titleTag,
-          storeName || defaultStoreTitle,
-          params.term
-        )}
+        title={title}
         meta={[
           params.term && {
             name: 'keywords',

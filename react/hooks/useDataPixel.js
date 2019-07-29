@@ -2,14 +2,14 @@ import { useEffect, useRef } from 'react'
 import { usePixel } from 'vtex.pixel-manager/PixelContext'
 import { isEmpty } from 'ramda'
 
-const useDataPixel = (data, slug, isLoading = false) => {
+const useDataPixel = (data, pageIdentifier, isLoading = false) => {
   const { push } = usePixel()
-  const previousSlugRef = useRef(null)
+  const previousIdRef = useRef(null)
 
-  const previousSlug = previousSlugRef.current
+  const previuousId = previousIdRef.current
 
   useEffect(() => {
-    if (slug && !isLoading && previousSlug !== slug) {
+    if (pageIdentifier && !isLoading && previuousId !== pageIdentifier) {
       if (!data || isEmpty(data)) {
         return
       }
@@ -20,9 +20,9 @@ const useDataPixel = (data, slug, isLoading = false) => {
         push(data)
       }
 
-      previousSlugRef.current = slug
+      previousIdRef.current = pageIdentifier
     }
-  }, [data, isLoading, previousSlug, push, slug])
+  }, [data, isLoading, pageIdentifier, previuousId, push])
 }
 
 export default useDataPixel

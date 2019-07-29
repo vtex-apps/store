@@ -74,23 +74,28 @@ const ProductContext = _props => {
     propsProduct ||
     (productPreview && productPreview.items ? productPreview : null)
 
+  const productQuery = useMemo(
+    () => ({
+      loading,
+      product,
+      refetch,
+      error:
+        !product && !loading
+          ? {
+              message: 'Product not found!',
+            }
+          : null,
+    }),
+    [loading, product, refetch]
+  )
+
   const childrenProps = useMemo(
     () => ({
-      productQuery: {
-        loading,
-        product,
-        refetch,
-        error:
-          !product && !loading
-            ? {
-                message: 'Product not found!',
-              }
-            : null,
-      },
+      productQuery,
       slug,
       params,
     }),
-    [loading, product, refetch, slug, params]
+    [productQuery, slug, params]
   )
 
   return React.cloneElement(props.children, childrenProps)
