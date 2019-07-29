@@ -2,7 +2,7 @@
   "store": {
     "allowConditions": true,
     "component": "*",
-    "around": ["storeWrapper", "challenge"],
+    "around": ["storeWrapper", "challenge", "offlineWrapper"],
     "before": ["header.full"],
     "after": ["footer", "pixels"],
     "allowed": [
@@ -148,6 +148,11 @@
     "allowed": ["highlight-overlay"],
     "component": "StoreWrapper"
   },
+  "offlineWrapper": {
+    "before": ["header.full"],
+    "component": "OfflineWrapper",
+    "required": ["offline-warning"]
+  },
   "homeWrapper": {
     "component": "HomeWrapper"
   },
@@ -178,6 +183,9 @@
     "allowed": ["search-result"]
   },
   "store.offline": {
-    "required": ["offline-page"]
+    "required": ["offline-warning"]
+  },
+  "offline-warning": {
+    "component": "OfflineWarning"
   }
 }

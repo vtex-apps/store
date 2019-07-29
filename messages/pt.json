@@ -2,5 +2,12 @@
   "admin/editor.product-search.title": "Contexto de busca de produtos",
   "admin/editor.product-search.maxItemsPerPage": "Número máximo de elementos por página",
   "admin/editor.product-search.hideUnavailableItems": "Esconder itens indisponíveis",
-  "store/store.network-status.offline": "Sem conexão à internet."
+  "admin/editor.offline-warning.title": "OfflineWarning",
+  "admin/editor.offline-warning.button": "Texto do botão",
+  "admin/editor.offline-warning.warningTitle": "Título",
+  "admin/editor.offline-warning.message": "Mensagem",
+  "store/store.network-status.offline": "Sem conexão à internet.",
+  "store/store.offline-warning.button": "Atualizar",
+  "store/store.offline-warning.warningTitle": "Esta página não pode ser carregada",
+  "store/store.offline-warning.message": "Não é possível carregar está página. Verifique sua conexão de rede"
 }

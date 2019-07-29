@@ -2,5 +2,12 @@
   "admin/editor.product-search.title": "admin/editor.product-search.title",
   "admin/editor.product-search.maxItemsPerPage": "admin/editor.product-search.maxItemsPerPage",
   "admin/editor.product-search.hideUnavailableItems": "Title of hideUnavailableItems prop",
-  "store/store.network-status.offline": "store/store.network-status.offline"
+  "admin/editor.offline-warning.title": "admin/editor.offline-warning.title",
+  "admin/editor.offline-warning.button": "admin/editor.offline-warning.button",
+  "admin/editor.offline-warning.warningTitle": "admin/editor.offline-warning.warningTitle",
+  "admin/editor.offline-warning.message": "admin/editor.offline-warning.message",
+  "store/store.network-status.offline": "store/store.network-status.offline",
+  "store/store.offline-warning.warningTitle": "store/store.offline-warning.warningTitle",
+  "store/store.offline-warning.button": "store/store.offline-warning.button",
+  "store/store.offline-warning.message": "store/store.offline-warning.message"
 }

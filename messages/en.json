@@ -2,5 +2,12 @@
   "admin/editor.product-search.title": "Product search context",
   "admin/editor.product-search.maxItemsPerPage": "Maximum number of items per page",
   "admin/editor.product-search.hideUnavailableItems": "Hide unavailable items",
-  "store/store.network-status.offline": "No internet connection."
+  "admin/editor.offline-warning.title": "OfflineWarning",
+  "admin/editor.offline-warning.button": "Button Label",
+  "admin/editor.offline-warning.warningTitle": "Title",
+  "admin/editor.offline-warning.message": "Message",
+  "store/store.network-status.offline": "No internet connection.",
+  "store/store.offline-warning.button": "Refresh",
+  "store/store.offline-warning.warningTitle": "This page cannot be loaded",
+  "store/store.offline-warning.message": "Unable to load this page. Check your network connection"
 }

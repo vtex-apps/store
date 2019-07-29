@@ -26,6 +26,6 @@
     }
   },
   "store.offline": {
-    "blocks": ["offline-page"]
+    "blocks": ["offline-warning"]
   }
 }
