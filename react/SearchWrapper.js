@@ -74,12 +74,16 @@ const SearchWrapper = props => {
   useDataPixel(pixelEvents, loading)
 
   const settings = getSettings(APP_LOCATOR) || {}
-  const { titleTag: storeTitle, metaTagKeywords } = settings
+  const { titleTag: defaultStoreTitle, metaTagKeywords, storeName } = settings
 
   return (
     <Fragment>
       <Helmet
-        title={getTitleTag(titleTag, storeTitle, params.term)}
+        title={getTitleTag(
+          titleTag,
+          storeName || defaultStoreTitle,
+          params.term
+        )}
         meta={[
           params.term && {
             name: 'keywords',
