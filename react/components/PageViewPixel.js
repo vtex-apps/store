@@ -25,7 +25,6 @@ const PageViewPixel = ({ title }) => {
           : document.referrer,
       accountName: account,
     }
-    console.log('teste PUSHING DATA: ', data)
     push(data)
   }
 
