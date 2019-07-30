@@ -1,41 +1,35 @@
-import PropTypes from 'prop-types'
-import { Component } from 'react'
+import { useRef } from 'react'
+import { usePixel } from 'vtex.pixel-manager/PixelContext'
+import { useRuntime } from 'vtex.render-runtime'
 
-import { withRuntimeContext } from 'vtex.render-runtime'
-import { Pixel } from 'vtex.pixel-manager/PixelContext'
+// Page view events for home, search and product pages are sent by their own wrappers!
+const BLACKLIST_PAGES = ['store.home', 'store.search', 'store.product']
 
-class PageViewPixel extends Component {
-  static propTypes = {
-    push: PropTypes.func.isRequired,
-    runtime: PropTypes.object.isRequired,
-  }
+const PageViewPixel = ({ title }) => {
+  const { push } = usePixel()
+  const { route, page, account } = useRuntime()
 
-  sendPageViewEvent() {
-    this.props.push({
+  const routeRef = useRef(route)
+
+  if (
+    routeRef.current !== route &&
+    BLACKLIST_PAGES.findIndex(elem => page.includes(elem)) < 0
+  ) {
+    const data = {
       event: 'pageView',
-      pageTitle: document.title,
+      pageTitle: title,
       pageUrl: location.href,
       referrer:
         document.referrer.indexOf(location.origin) === 0
           ? undefined
           : document.referrer,
-      accountName: this.props.runtime.account,
-    })
-  }
-
-  componentDidMount() {
-    this.sendPageViewEvent()
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.runtime.route.path !== this.props.runtime.route.path) {
-      this.sendPageViewEvent()
+      accountName: account,
     }
+    console.log('teste PUSHING DATA: ', data)
+    push(data)
   }
 
-  render() {
-    return null
-  }
+  return null
 }
 
-export default Pixel(withRuntimeContext(PageViewPixel))
+export default PageViewPixel

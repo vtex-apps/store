@@ -13,7 +13,7 @@ const useDataPixel = (data, pageIdentifier, isLoading = false) => {
       if (!data || isEmpty(data)) {
         return
       }
-
+      console.log('teste PUSHING: ', data)
       if (Array.isArray(data)) {
         data.forEach(push)
       } else {

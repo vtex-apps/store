@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { useMemo, useReducer, useEffect } from 'react'
-import { last, head, path, propEq, find } from 'ramda'
-import { useRuntime } from 'vtex.render-runtime'
+import { path, propEq, find } from 'ramda'
 import { ProductOpenGraph } from 'vtex.open-graph'
 import { ProductContext as ProductContextApp } from 'vtex.product-context'
 import { ProductDispatchContext } from 'vtex.product-context/ProductDispatchContext'
@@ -9,8 +8,7 @@ import { ProductDispatchContext } from 'vtex.product-context/ProductDispatchCont
 import StructuredData from './components/StructuredData'
 import WrapperContainer from './components/WrapperContainer'
 
-import useDataPixel from './hooks/useDataPixel'
-import ProductTitle from './components/ProductTitle'
+import ProductTitleAndPixel from './components/ProductTitleAndPixel'
 
 const findItemById = id => find(propEq('itemId', id))
 function findAvailableProduct(item) {
@@ -136,7 +134,6 @@ const ProductWrapper = ({
   children,
   ...props
 }) => {
-  const { account } = useRuntime()
   const items = path(['items'], product) || []
 
   const [state, dispatch] = useReducer(
@@ -151,78 +148,6 @@ const ProductWrapper = ({
 
   const { selectedItem } = state
 
-  const pixelEvents = useMemo(() => {
-    const {
-      titleTag,
-      brand,
-      categoryId,
-      categoryTree,
-      productId,
-      productName,
-    } = product || {}
-
-    if (!product || typeof document === 'undefined' || !selectedItem) {
-      return []
-    }
-
-    const pageInfo = {
-      event: 'pageInfo',
-      eventType: 'productView',
-      accountName: account,
-      pageCategory: 'Product',
-      pageDepartment: categoryTree ? head(categoryTree).name : '',
-      pageFacets: [],
-      pageTitle: titleTag,
-      pageUrl: window.location.href,
-      productBrandName: brand,
-      productCategoryId: Number(categoryId),
-      productCategoryName: categoryTree ? last(categoryTree).name : '',
-      productDepartmentId: categoryTree ? head(categoryTree).id : '',
-      productDepartmentName: categoryTree ? head(categoryTree).name : '',
-      productId: productId,
-      productName: productName,
-      skuStockOutFromProductDetail: [],
-      skuStockOutFromShelf: [],
-    }
-
-    const { ean, referenceId, sellers } = selectedItem || {}
-
-    pageInfo.productEans = [ean]
-
-    if (referenceId && referenceId.length >= 0) {
-      const [{ Value: refIdValue }] = referenceId
-
-      pageInfo.productReferenceId = refIdValue
-    }
-
-    if (sellers && sellers.length >= 0) {
-      const [{ commertialOffer, sellerId }] = sellers
-
-      pageInfo.productListPriceFrom = `${commertialOffer.ListPrice}`
-      pageInfo.productListPriceTo = `${commertialOffer.ListPrice}`
-      pageInfo.productPriceFrom = `${commertialOffer.Price}`
-      pageInfo.productPriceTo = `${commertialOffer.Price}`
-      pageInfo.sellerId = `${sellerId}`
-      pageInfo.sellerIds = `${sellerId}`
-    }
-
-    // Add selected SKU property to the product object
-    const eventProduct = {
-      ...product,
-      selectedSku: selectedItem,
-    }
-
-    return [
-      pageInfo,
-      {
-        event: 'productView',
-        product: eventProduct,
-      },
-    ]
-  }, [account, product, selectedItem])
-
-  useDataPixel(pixelEvents, path(['linkText'], product), loading)
-
   const childrenProps = useMemo(
     () => ({
       productQuery,
@@ -234,7 +159,11 @@ const ProductWrapper = ({
 
   return (
     <WrapperContainer className="vtex-product-context-provider">
-      <ProductTitle product={product} />
+      <ProductTitleAndPixel
+        product={product}
+        selectedItem={selectedItem}
+        loading={loading}
+      />
       <ProductContextApp.Provider value={state}>
         <ProductDispatchContext.Provider value={dispatch}>
           {product && <ProductOpenGraph />}

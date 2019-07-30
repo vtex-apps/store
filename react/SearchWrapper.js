@@ -71,8 +71,19 @@ const SearchWrapper = props => {
     const { department } = params
 
     const event = getPageEventName(products, params)
+    const pageView = {
+      event: 'pageView',
+      pageTitle: title,
+      pageUrl: window.location.href,
+      referrer:
+        document.referrer.indexOf(location.origin) === 0
+          ? undefined
+          : document.referrer,
+      accountName: account,
+    }
 
     return [
+      pageView,
       {
         event: 'pageInfo',
         eventType: event,
