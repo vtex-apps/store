@@ -183,7 +183,7 @@ class StoreWrapper extends Component {
           ].filter(Boolean)}
         />
         <PixelProvider currency={currency}>
-          <PageViewPixel />
+          <PageViewPixel title={title} />
           <ToastProvider positioning="window">
             <NetworkStatusToast />
             <OrderFormProvider>

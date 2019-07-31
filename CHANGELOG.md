@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- Wrong information being passed at StructuredData
+- Send pageView event on  ProductPage at the correct moments.
+
+### Changed
+- Create and use ProductTitle at ProductWrapper
 
 ## [2.47.1] - 2019-07-30
 ### Fixed

@@ -7,9 +7,22 @@ import useDataPixel from './hooks/useDataPixel'
 const HomeWrapper = ({ children }) => {
   const { account } = useRuntime()
 
-  const pixelEvents = useMemo(
-    () =>
-      typeof document !== 'undefined' && {
+  const pixelEvents = useMemo(() => {
+    if (typeof document === 'undefined') {
+      return null
+    }
+    return [
+      {
+        event: 'pageView',
+        pageTitle: document.title,
+        pageUrl: location.href,
+        referrer:
+          document.referrer.indexOf(location.origin) === 0
+            ? undefined
+            : document.referrer,
+        accountName: account,
+      },
+      {
         event: 'pageInfo',
         eventType: 'homeView',
         accountName: account,
@@ -17,10 +30,9 @@ const HomeWrapper = ({ children }) => {
         pageUrl: location.href,
         pageCategory: 'Home',
       },
-    [account]
-  )
-
-  useDataPixel(pixelEvents)
+    ]
+  }, [account])
+  useDataPixel(pixelEvents, 'Home')
 
   return children
 }

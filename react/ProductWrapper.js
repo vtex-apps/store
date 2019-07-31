@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { useMemo, useReducer, useEffect } from 'react'
-import { last, head, path, propEq, find } from 'ramda'
-import { Helmet, useRuntime } from 'vtex.render-runtime'
+import { path, propEq, find } from 'ramda'
 import { ProductOpenGraph } from 'vtex.open-graph'
 import { ProductContext as ProductContextApp } from 'vtex.product-context'
 import { ProductDispatchContext } from 'vtex.product-context/ProductDispatchContext'
@@ -9,7 +8,7 @@ import { ProductDispatchContext } from 'vtex.product-context/ProductDispatchCont
 import StructuredData from './components/StructuredData'
 import WrapperContainer from './components/WrapperContainer'
 
-import useDataPixel from './hooks/useDataPixel'
+import ProductTitleAndPixel from './components/ProductTitleAndPixel'
 
 const findItemById = id => find(propEq('itemId', id))
 function findAvailableProduct(item) {
@@ -135,7 +134,6 @@ const ProductWrapper = ({
   children,
   ...props
 }) => {
-  const { account, getSettings } = useRuntime()
   const items = path(['items'], product) || []
 
   const [state, dispatch] = useReducer(
@@ -148,98 +146,7 @@ const ProductWrapper = ({
   useProductInState(product, dispatch)
   useSelectedItemFromId(query.skuId, dispatch, product)
 
-  const pixelEvents = useMemo(() => {
-    const {
-      titleTag,
-      brand,
-      categoryId,
-      categoryTree,
-      productId,
-      productName,
-      items,
-    } = product || {}
-
-    if (!product || typeof document === 'undefined') {
-      return []
-    }
-
-    const pageInfo = {
-      event: 'pageInfo',
-      eventType: 'productView',
-      accountName: account,
-      pageCategory: 'Product',
-      pageDepartment: categoryTree ? head(categoryTree).name : '',
-      pageFacets: [],
-      pageTitle: titleTag,
-      pageUrl: window.location.href,
-      productBrandName: brand,
-      productCategoryId: Number(categoryId),
-      productCategoryName: categoryTree ? last(categoryTree).name : '',
-      productDepartmentId: categoryTree ? head(categoryTree).id : '',
-      productDepartmentName: categoryTree ? head(categoryTree).name : '',
-      productId: productId,
-      productName: productName,
-      skuStockOutFromProductDetail: [],
-      skuStockOutFromShelf: [],
-    }
-
-    const skuId = query.skuId || (items && head(items).itemId)
-
-    const [sku] =
-      (items && items.filter(product => product.itemId === skuId)) || []
-
-    const { ean, referenceId, sellers } = sku || {}
-
-    pageInfo.productEans = [ean]
-
-    if (referenceId && referenceId.length >= 0) {
-      const [{ Value: refIdValue }] = referenceId
-
-      pageInfo.productReferenceId = refIdValue
-    }
-
-    if (sellers && sellers.length >= 0) {
-      const [{ commertialOffer, sellerId }] = sellers
-
-      pageInfo.productListPriceFrom = `${commertialOffer.ListPrice}`
-      pageInfo.productListPriceTo = `${commertialOffer.ListPrice}`
-      pageInfo.productPriceFrom = `${commertialOffer.Price}`
-      pageInfo.productPriceTo = `${commertialOffer.Price}`
-      pageInfo.sellerId = `${sellerId}`
-      pageInfo.sellerIds = `${sellerId}`
-    }
-
-    // Add selected SKU property to the product object
-    product.selectedSku = query.skuId ? query.skuId : product.items[0].itemId
-
-    return [
-      pageInfo,
-      {
-        event: 'productView',
-        product,
-      },
-    ]
-  }, [account, product, query.skuId])
-
-  useDataPixel(pixelEvents, loading)
-
-  const { titleTag, productName, metaTagDescription } = product || {}
-
-  let title = titleTag || productName
-
-  try {
-    const settings = getSettings('vtex.store')
-    if (settings) {
-      const { storeName, titleTag: storeTitleTag } = settings
-      const suffix =
-        (storeName || storeTitleTag) && ` - ${storeName || storeTitleTag}`
-      if (suffix) {
-        title += suffix
-      }
-    }
-  } catch (e) {
-    console.error('Failed to suffix store name in title.', e)
-  }
+  const { selectedItem } = state
 
   const childrenProps = useMemo(
     () => ({
@@ -252,19 +159,17 @@ const ProductWrapper = ({
 
   return (
     <WrapperContainer className="vtex-product-context-provider">
-      <Helmet
-        title={title}
-        meta={[
-          metaTagDescription && {
-            name: 'description',
-            content: metaTagDescription,
-          },
-        ].filter(Boolean)}
+      <ProductTitleAndPixel
+        product={product}
+        selectedItem={selectedItem}
+        loading={loading}
       />
       <ProductContextApp.Provider value={state}>
         <ProductDispatchContext.Provider value={dispatch}>
           {product && <ProductOpenGraph />}
-          {product && <StructuredData product={product} query={query} />}
+          {product && selectedItem && (
+            <StructuredData product={product} selectedItem={selectedItem} />
+          )}
           {React.cloneElement(children, childrenProps)}
         </ProductDispatchContext.Provider>
       </ProductContextApp.Provider>

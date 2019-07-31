@@ -12,7 +12,7 @@ import {
 
 import { cacheLocator } from './cacheLocator'
 
-function getProduct(props) {
+const useProduct = props => {
   const {
     catalog: { product: catalogProduct, loading: catalogLoading = true } = {},
     productBenefits: {
@@ -23,11 +23,10 @@ function getProduct(props) {
 
   const catalogInfo = !catalogLoading && catalogProduct
   const benefitsInfo = catalogInfo && !benefitsLoading && benefitsProduct
-  const product = {
-    ...catalogInfo,
-    ...benefitsInfo,
-  }
-  return isEmpty(product) ? null : product
+  return useMemo(() => {
+    const bothEmpty = isEmpty(catalogInfo) && isEmpty(benefitsInfo)
+    return bothEmpty ? null : { ...catalogInfo, ...benefitsInfo }
+  }, [benefitsInfo, catalogInfo])
 }
 
 function getLoading(props) {
@@ -35,7 +34,6 @@ function getLoading(props) {
     catalog: { loading: catalogLoading = true } = {},
     productBenefits: { loading: benefitsLoading = true } = {},
   } = props
-
   return catalogLoading || benefitsLoading
 }
 
@@ -63,7 +61,7 @@ const ProductContext = _props => {
   } = _props
 
   const loading = getLoading(_props)
-  const propsProduct = getProduct(_props)
+  const propsProduct = useProduct(_props)
 
   useNotFound(loading, propsProduct, slug)
 
@@ -76,23 +74,28 @@ const ProductContext = _props => {
     propsProduct ||
     (productPreview && productPreview.items ? productPreview : null)
 
+  const productQuery = useMemo(
+    () => ({
+      loading,
+      product,
+      refetch,
+      error:
+        !product && !loading
+          ? {
+              message: 'Product not found!',
+            }
+          : null,
+    }),
+    [loading, product, refetch]
+  )
+
   const childrenProps = useMemo(
     () => ({
-      productQuery: {
-        loading,
-        product,
-        refetch,
-        error:
-          !product && !loading
-            ? {
-                message: 'Product not found!',
-              }
-            : null,
-      },
+      productQuery,
       slug,
       params,
     }),
-    [loading, product, refetch, slug, params]
+    [productQuery, slug, params]
   )
 
   return React.cloneElement(props.children, childrenProps)
