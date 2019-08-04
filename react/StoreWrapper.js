@@ -11,7 +11,6 @@ import { PixelProvider } from 'vtex.pixel-manager/PixelContext'
 import { ToastProvider } from 'vtex.styleguide'
 
 import PageViewPixel from './components/PageViewPixel'
-import OrderFormProvider from './components/OrderFormProvider'
 import NetworkStatusToast from './components/NetworkStatusToast'
 import WrapperContainer from './components/WrapperContainer'
 
@@ -143,11 +142,9 @@ class StoreWrapper extends Component {
           <PageViewPixel title={title} />
           <ToastProvider positioning="window">
             <NetworkStatusToast />
-            <OrderFormProvider>
-              <WrapperContainer className="vtex-store__template bg-base">
-                {this.props.children}
-              </WrapperContainer>
-            </OrderFormProvider>
+            <WrapperContainer className="vtex-store__template bg-base">
+              {this.props.children}
+            </WrapperContainer>
           </ToastProvider>
         </PixelProvider>
         {this.isStorefrontIframe && (
