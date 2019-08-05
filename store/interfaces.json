@@ -1,10 +1,10 @@
 {
   "store": {
-    "allowConditions": true,
+    "allowConditions": false,
     "component": "*",
     "around": [],
-    "before": ["header.full"],
-    "after": ["footer", "pixels"],
+    "before": [],
+    "after": [],
     "allowed": [
       "notification.bar",
       "carousel",
@@ -18,14 +18,10 @@
       "sandbox",
       "image",
       "sticky-layout"
-    ],
-    "preview": {
-      "type": "transparent",
-      "height": 600
-    }
+    ]
   },
   "store.home": {
-    "around": ["homeWrapper"],
+    "around": [],
     "allowed": ["search-result"],
     "preview": {
       "type": "box",
