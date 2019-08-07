@@ -2,5 +2,8 @@
   "admin/editor.product-search.title": "Product search context",
   "admin/editor.product-search.maxItemsPerPage": "Maximum number of items per page",
   "admin/editor.product-search.hideUnavailableItems": "Hide unavailable items",
+  "admin/editor.add-to-home.firstVisit": "On the first visit",
+  "admin/editor.add-to-home.addToCart": "On the first item added to cart",
+  "admin/editor.add-to-home.checkout": "On the first purchase",
   "store/store.network-status.offline": "No internet connection."
 }

@@ -100,12 +100,14 @@ class StoreWrapper extends Component {
       metaTagRobots,
       storeName,
       faviconLinks,
+      addToHomeScreenPrompt // remember to change
     } = settings
     const { canonicalHost, canonicalPath } = systemToCanonical(route)
     const description = (metaTags && metaTags.description) || metaTagDescription
     const keywords =
       joinKeywords(metaTags && metaTags.keywords) || metaTagKeywords
     const title = pageTitle || titleTag
+    const pwaSettings = { addToHomeScreenPrompt } // remember to change
 
     const [queryMatch] = route.path.match(/\?.*/) || '?'
 
@@ -113,7 +115,7 @@ class StoreWrapper extends Component {
       <Fragment>
         <Query query={pwaDataQuery} ssr={false}>
           {({ data, loading, error }) => {
-            const { manifest, pwaSettings, iOSIcons, splashes } = data
+            const { manifest, iOSIcons, splashes } = data
             const hasManifest = !loading && manifest && !error
             return (
               <PWAProvider settings={pwaSettings}>
@@ -146,7 +148,23 @@ class StoreWrapper extends Component {
                     ].filter(Boolean)}
                   />
                 )}
-              </PWAProvider>
+                <PixelProvider currency={currency}>
+                <PageViewPixel title={title} />
+                <ToastProvider positioning="window">
+                  <NetworkStatusToast />
+                  <OrderFormProvider>
+                    <WrapperContainer className="vtex-store__template bg-base">
+                      {this.props.children}
+                    </WrapperContainer>
+                  </OrderFormProvider>
+                </ToastProvider>
+              </PixelProvider>
+              {this.isStorefrontIframe && (
+                <NoSSR>
+                  <ExtensionPoint id="highlight-overlay" />
+                </NoSSR>
+              )}
+            </PWAProvider>
             )
           }}
         </Query>
@@ -182,22 +200,6 @@ class StoreWrapper extends Component {
               },
           ].filter(Boolean)}
         />
-        <PixelProvider currency={currency}>
-          <PageViewPixel title={title} />
-          <ToastProvider positioning="window">
-            <NetworkStatusToast />
-            <OrderFormProvider>
-              <WrapperContainer className="vtex-store__template bg-base">
-                {this.props.children}
-              </WrapperContainer>
-            </OrderFormProvider>
-          </ToastProvider>
-        </PixelProvider>
-        {this.isStorefrontIframe && (
-          <NoSSR>
-            <ExtensionPoint id="highlight-overlay" />
-          </NoSSR>
-        )}
       </Fragment>
     )
   }
