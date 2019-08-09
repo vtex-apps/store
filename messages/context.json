@@ -2,9 +2,5 @@
   "admin/editor.product-search.title": "admin/editor.product-search.title",
   "admin/editor.product-search.maxItemsPerPage": "admin/editor.product-search.maxItemsPerPage",
   "admin/editor.product-search.hideUnavailableItems": "Title of hideUnavailableItems prop",
-  "admin/editor.add-to-home.neverShow": "admin/editor.add-to-home.neverShow",
-  "admin/editor.add-to-home.firstVisit": "admin/editor.add-to-home.firstVist",
-  "admin/editor.add-to-home.addToCart": "admin/editor.add-to-home.addToCart",
-  "admin/editor.add-to-home.checkout": "admin/editor.add-to-home.checkout",
   "store/store.network-status.offline": "store/store.network-status.offline"
 }

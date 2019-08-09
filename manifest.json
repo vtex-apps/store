@@ -113,13 +113,12 @@
       "addToHomeScreenPrompt": {
         "title": "Add to Home Screen Prompt",
         "type": "string",
-        "description": "Configure 'Add to Home Screen' prompt trigger",
         "enum": ["default", "addToCart", "checkout", "disable"],
         "enumNames": [
-          "admin/editor.add-to-home.firstVisit",
-          "admin/editor.add-to-home.addToCart",
-          "admin/editor.add-to-home.checkout",
-          "admin/editor.add-to-home.neverShow"
+          "On the first visit",
+          "On the first item added to cart",
+          "On the first purchase",
+          "Never show"
         ],
         "default": "default"
       }
