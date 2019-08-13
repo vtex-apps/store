@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Allow edit Add to home Screen prompt trigger in store.
+- Prompt config in PWA Context.
+
 ## [2.48.0] - 2019-08-01
 ### Added
 - Allow `product-teaser.product`.
