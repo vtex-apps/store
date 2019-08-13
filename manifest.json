@@ -115,10 +115,10 @@
         "type": "string",
         "enum": ["default", "addToCart", "checkout", "disable"],
         "enumNames": [
-          "On the first visit",
-          "On the first item added to cart",
-          "On the first purchase",
-          "Never show"
+          "Add to Home Screen Prompt on the first visit",
+          "Add to Home Screen Prompt on the first item added to cart",
+          "Add to Home Screen Prompt on the first purchase",
+          "Never show Add to Home Screen Prompt"
         ],
         "default": "default"
       }
