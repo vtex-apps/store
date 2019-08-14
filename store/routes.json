@@ -9,6 +9,7 @@
     "path": "/login"
   },
   "store.product": {
+    "path": "/:slug/p(/:id)",
     "canonical": "/:slug/p",
     "contentType": "product"
   },
