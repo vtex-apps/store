@@ -26,7 +26,7 @@
   },
   "store.home": {
     "around": ["homeWrapper"],
-    "allowed": ["search-result"],
+    "allowed": ["search-result", "search-result-layout"],
     "preview": {
       "type": "box",
       "height": 1400
@@ -72,7 +72,7 @@
   },
   "store.search": {
     "around": ["searchWrapper"],
-    "required": ["search-result"],
+    "allowed": ["search-result", "search-result-layout"],
     "context": "SearchContext",
     "preview": {
       "type": "grid",
