@@ -7,6 +7,7 @@ import {
   withRuntimeContext,
 } from 'vtex.render-runtime'
 import PropTypes from 'prop-types'
+import { parse } from 'query-string'
 import { Query } from 'react-apollo'
 import { PixelProvider } from 'vtex.pixel-manager/PixelContext'
 import { ToastProvider } from 'vtex.styleguide'
@@ -23,6 +24,8 @@ const APP_LOCATOR = 'vtex.store'
 const CONTENT_TYPE = 'text/html; charset=utf-8'
 const META_ROBOTS = 'index, follow'
 const MOBILE_SCALING = 'width=device-width, initial-scale=1'
+
+const DISABLE_SW_QUERYSTRING = 'disableSW'
 
 const systemToCanonical = ({ canonicalPath }) => {
   const canonicalHost =
@@ -108,48 +111,72 @@ class StoreWrapper extends Component {
     const title = pageTitle || titleTag
 
     const [queryMatch] = route.path.match(/\?.*/) || '?'
+    const query = parse(queryMatch)
+
+    const enableSW = !(DISABLE_SW_QUERYSTRING in query)
 
     return (
       <Fragment>
-        <Query query={pwaDataQuery} ssr={false}>
-          {({ data, loading, error }) => {
-            const { manifest, pwaSettings, iOSIcons, splashes } = data
-            const hasManifest = !loading && manifest && !error
-            return (
-              <PWAProvider settings={pwaSettings}>
-                {/* PWA */}
-                {hasManifest && (
-                  <Helmet
-                    meta={[
-                      { name: 'theme-color', content: manifest.theme_color },
-                      { name: 'apple-mobile-web-app-capable', content: 'yes' },
-                    ]}
-                    link={[
-                      {
-                        rel: 'manifest',
-                        href: `${rootPath}/pwa/manifest.json`,
-                      },
-                      ...(iOSIcons
-                        ? iOSIcons.map(icon => ({
-                            rel: 'apple-touch-icon',
-                            sizes: icon.sizes,
-                            href: `${rootPath}${icon.src}`,
-                          }))
-                        : []),
-                      ...(splashes
-                        ? splashes.map(splash => ({
-                            href: `${rootPath}${splash.src}`,
-                            sizes: splash.sizes,
-                            rel: 'apple-touch-startup-image',
-                          }))
-                        : []),
-                    ].filter(Boolean)}
-                  />
-                )}
-              </PWAProvider>
-            )
-          }}
-        </Query>
+        {enableSW && (
+          <>
+            <Query query={pwaDataQuery} ssr={false}>
+              {({ data, loading, error }) => {
+                const { manifest, pwaSettings, iOSIcons, splashes } = data
+                const hasManifest = !loading && manifest && !error
+                return (
+                  <PWAProvider settings={pwaSettings}>
+                    {/* PWA */}
+                    {hasManifest && (
+                      <Helmet
+                        meta={[
+                          {
+                            name: 'theme-color',
+                            content: manifest.theme_color,
+                          },
+                          {
+                            name: 'apple-mobile-web-app-capable',
+                            content: 'yes',
+                          },
+                        ]}
+                        link={[
+                          {
+                            rel: 'manifest',
+                            href: `${rootPath}/pwa/manifest.json`,
+                          },
+                          ...(iOSIcons
+                            ? iOSIcons.map(icon => ({
+                                rel: 'apple-touch-icon',
+                                sizes: icon.sizes,
+                                href: `${rootPath}${icon.src}`,
+                              }))
+                            : []),
+                          ...(splashes
+                            ? splashes.map(splash => ({
+                                href: `${rootPath}${splash.src}`,
+                                sizes: splash.sizes,
+                                rel: 'apple-touch-startup-image',
+                              }))
+                            : []),
+                        ].filter(Boolean)}
+                      />
+                    )}
+                  </PWAProvider>
+                )
+              }}
+            </Query>
+            <Helmet
+              script={[
+                {
+                  type: 'text/javascript',
+                  src: `${rootPath}/pwa/workers/register.js${queryMatch}&scope=${encodeURIComponent(
+                    rootPath
+                  )}`,
+                  defer: true,
+                },
+              ]}
+            />
+          </>
+        )}
         <Helmet
           title={title}
           meta={[
@@ -163,15 +190,6 @@ class StoreWrapper extends Component {
             { name: 'currency', content: currency },
             { name: 'robots', content: metaTagRobots || META_ROBOTS },
             { httpEquiv: 'Content-Type', content: CONTENT_TYPE },
-          ]}
-          script={[
-            {
-              type: 'text/javascript',
-              src: `${rootPath}/pwa/workers/register.js${queryMatch}&scope=${encodeURIComponent(
-                rootPath
-              )}`,
-              defer: true,
-            },
           ]}
           link={[
             ...(faviconLinks || []),
