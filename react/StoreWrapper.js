@@ -25,7 +25,7 @@ const CONTENT_TYPE = 'text/html; charset=utf-8'
 const META_ROBOTS = 'index, follow'
 const MOBILE_SCALING = 'width=device-width, initial-scale=1'
 
-const DISABLE_SW_QUERYSTRING = 'disableSW'
+const DISABLE_SW_QUERYSTRING = '__disableSW'
 
 const systemToCanonical = ({ canonicalPath }) => {
   const canonicalHost =
