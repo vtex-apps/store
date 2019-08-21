@@ -30,7 +30,9 @@ const SearchContext = ({
   const { page: runtimePage } = useRuntime()
   const map = mapQuery || initializeMap(params)
 
-  const query = Object.values(params)
+  // Remove params which don't compose a search path
+  const { id, ...searchParams } = params
+  const query = Object.values(searchParams)
     .filter(term => term && term.length > 0)
     .join('/')
     .replace(/\/\//g, '/') //This cleans some bad cases of two // on some terms.
