@@ -9,7 +9,7 @@
     "path": "/login"
   },
   "store.product": {
-    "path": "/:slug/p(/:id)",
+    "path": "/_v/segment/:slug/p(/:id)",
     "canonical": "/:slug/p",
     "contentType": "product"
   },
@@ -18,28 +18,32 @@
     "canonical": "/:term"
   },
   "store.search#brand": {
-    "path": "/:brand/b(/:id)",
+    "path": "/_v/segment/:brand/b(/:id)",
     "canonical": "/:brand",
     "map": ["b"],
     "contentType": "brand"
   },
   "store.search#department": {
-    "path": "/:department/d(/:id)",
+    "path": "/_v/segment/:department/d(/:id)",
     "canonical": "/:department",
     "map": ["c"],
     "contentType": "department"
   },
   "store.search#category": {
-    "path": "/:department/:category(/c/:id)",
+    "path": "/_v/segment/:department/:category(/c/:id)",
+    "canonical": "/:department/:category",
     "map": ["c", "c"],
     "contentType": "category"
   },
   "store.search#subcategory": {
-    "path": "/:department/:category/:subcategory(/c/:id)",
-    "map": ["c", "c", "c"]
+    "path": "/_v/segment/:department/:category/:subcategory(/c/:id)",
+    "canonical": "/:department/:category/:subcategory",
+    "map": ["c", "c", "c"],
+    "contentType": "subcategory"
   },
   "store.search#subcategory-terms": {
-    "path": "/:department/:category/:subcategory/*terms"
+    "path": "/_v/segment/:department/:category/:subcategory/*terms",
+    "canonical": "/:department/:category/:subcategory/*terms"
   },
   "store.search#configurable": {
     "path": "/s/*terms"
