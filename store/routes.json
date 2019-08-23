@@ -9,7 +9,7 @@
     "path": "/login"
   },
   "store.product": {
-    "path": "/_v/segment/:slug/p(/:id)",
+    "path": "/_v/segment/:slug/p/:id",
     "canonical": "/:slug/p",
     "contentType": "product"
   },
@@ -42,8 +42,7 @@
     "contentType": "subcategory"
   },
   "store.search#subcategory-terms": {
-    "path": "/_v/segment/:department/:category/:subcategory/*terms",
-    "canonical": "/:department/:category/:subcategory/*terms"
+    "path": "/:department/:category/:subcategory/*terms"
   },
   "store.search#custom": {
     "path": "/*terms"
