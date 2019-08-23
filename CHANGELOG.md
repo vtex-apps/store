@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.52.0] - 2019-08-23
+
 ## [2.51.0] - 2019-08-23
 ### Added
 - Prefetch `store.search` and `store.custom` pages
