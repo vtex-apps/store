@@ -7,7 +7,7 @@ import {
   withRuntimeContext,
 } from 'vtex.render-runtime'
 import PropTypes from 'prop-types'
-import { Query } from 'react-apollo'
+import { graphql } from 'react-apollo'
 import { PixelProvider } from 'vtex.pixel-manager/PixelContext'
 import { ToastProvider } from 'vtex.styleguide'
 import { PWAProvider } from 'vtex.store-resources/PWAContext'
@@ -111,7 +111,16 @@ class StoreWrapper extends Component {
       metaTagRobots,
       storeName,
       faviconLinks,
+      addToHomeScreenPrompt
     } = settings
+
+    const {
+      data: { manifest, iOSIcons, splashes, loading, error } = {},	
+    } = this.props	
+
+    const hasManifest = !loading && manifest && !error
+    const pwaSettings = { addToHomeScreenPrompt }
+
     const { canonicalHost, canonicalPath } = systemToCanonical(route)
     const description = (metaTags && metaTags.description) || metaTagDescription
     const keywords =
@@ -122,45 +131,53 @@ class StoreWrapper extends Component {
 
     return (
       <Fragment>
-        <Query query={pwaDataQuery} ssr={false}>
-          {({ data, loading, error }) => {
-            const { manifest, pwaSettings, iOSIcons, splashes } = data
-            const hasManifest = !loading && manifest && !error
-            return (
-              <PWAProvider settings={pwaSettings}>
-                {/* PWA */}
-                {hasManifest && (
-                  <Helmet
-                    meta={[
-                      { name: 'theme-color', content: manifest.theme_color },
-                      { name: 'apple-mobile-web-app-capable', content: 'yes' },
-                    ]}
-                    link={[
-                      {
-                        rel: 'manifest',
-                        href: `${rootPath}/pwa/manifest.json`,
-                      },
-                      ...(iOSIcons
-                        ? iOSIcons.map(icon => ({
-                            rel: 'apple-touch-icon',
-                            sizes: icon.sizes,
-                            href: `${rootPath}${icon.src}`,
-                          }))
-                        : []),
-                      ...(splashes
-                        ? splashes.map(splash => ({
-                            href: `${rootPath}${splash.src}`,
-                            sizes: splash.sizes,
-                            rel: 'apple-touch-startup-image',
-                          }))
-                        : []),
-                    ].filter(Boolean)}
-                  />
-                )}
-              </PWAProvider>
-            )
-          }}
-        </Query>
+        <PixelProvider currency={currency}>
+          <PWAProvider settings={pwaSettings}>
+            {/* PWA */}
+            {hasManifest && (
+              <Helmet
+                meta={[
+                  { name: 'theme-color', content: manifest.theme_color },
+                  { name: 'apple-mobile-web-app-capable', content: 'yes' },
+                ]}
+                link={[
+                  {
+                    rel: 'manifest',
+                    href: `${rootPath}/pwa/manifest.json`,
+                  },
+                  ...(iOSIcons
+                    ? iOSIcons.map(icon => ({
+                        rel: 'apple-touch-icon',
+                        sizes: icon.sizes,
+                        href: `${rootPath}${icon.src}`,
+                      }))
+                    : []),
+                  ...(splashes
+                    ? splashes.map(splash => ({
+                        href: `${rootPath}${splash.src}`,
+                        sizes: splash.sizes,
+                        rel: 'apple-touch-startup-image',
+                      }))
+                    : []),
+                ].filter(Boolean)}
+              />
+            )}
+            <PageViewPixel title={title} />
+            <ToastProvider positioning="window">
+              <NetworkStatusToast />
+              <OrderFormProvider>
+                <WrapperContainer className="vtex-store__template bg-base">
+                  {this.props.children}
+                </WrapperContainer>
+              </OrderFormProvider>
+            </ToastProvider>
+          </PWAProvider>
+        </PixelProvider>
+        {this.isStorefrontIframe && (
+          <NoSSR>
+            <ExtensionPoint id="highlight-overlay" />
+          </NoSSR>
+        )}
         <Helmet
           title={title}
           meta={[
@@ -197,25 +214,9 @@ class StoreWrapper extends Component {
               },
           ].filter(Boolean)}
         />
-        <PixelProvider currency={currency}>
-          <PageViewPixel title={title} />
-          <ToastProvider positioning="window">
-            <NetworkStatusToast />
-            <OrderFormProvider>
-              <WrapperContainer className="vtex-store__template bg-base">
-                {this.props.children}
-              </WrapperContainer>
-            </OrderFormProvider>
-          </ToastProvider>
-        </PixelProvider>
-        {this.isStorefrontIframe && (
-          <NoSSR>
-            <ExtensionPoint id="highlight-overlay" />
-          </NoSSR>
-        )}
       </Fragment>
     )
   }
 }
 
-export default withRuntimeContext(StoreWrapper)
+export default graphql(pwaDataQuery, {ssr: false})(withRuntimeContext(StoreWrapper))

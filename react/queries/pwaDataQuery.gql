@@ -1,7 +1,4 @@
 query pwaData {
-  pwaSettings {
-    promptOnCustomEvent
-  }
   manifest {
     theme_color
   }
