@@ -42,7 +42,9 @@
     "contentType": "subcategory"
   },
   "store.search#subcategory-terms": {
-    "path": "/:department/:category/:subcategory/*terms"
+    "path": "/_v/segment/:department/:category/:subcategory/*terms",
+    "canonical": "/:department/:category/:subcategory/*terms",
+    "contentType": "search"
   },
   "store.search#configurable": {
     "path": "/s/*terms"
