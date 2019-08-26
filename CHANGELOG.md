@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Fixed
-- Fxi redirect of empty product to `store.search` page.
+- Redirect of empty product to `store.search` page.
 
 ## [2.52.0] - 2019-08-23
 
