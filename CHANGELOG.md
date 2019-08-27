@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.52.2] - 2019-08-27
+
 ## [2.52.1] - 2019-08-26
 ### Fixed
 - Redirect of empty product to `store.search` page.
