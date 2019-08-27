@@ -6,9 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-### Added
-- Allow edit Add to home Screen prompt trigger in store.
-- Prompt config in PWA Context. 
+### Changed
+- Children in `storeWrapper` to consume PWA Context. 
 
 ## [2.52.3] - 2019-08-27
 ### Fixed

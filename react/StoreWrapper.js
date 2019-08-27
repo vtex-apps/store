@@ -110,16 +110,14 @@ class StoreWrapper extends Component {
       metaTagKeywords,
       metaTagRobots,
       storeName,
-      faviconLinks,
-      addToHomeScreenPrompt
+      faviconLinks
     } = settings
 
     const {
-      data: { manifest, iOSIcons, splashes, loading, error } = {},	
+      data: { manifest, iOSIcons, splashes, pwaSettings, loading, error } = {},	
     } = this.props	
 
     const hasManifest = !loading && manifest && !error
-    const pwaSettings = { addToHomeScreenPrompt }
 
     const { canonicalHost, canonicalPath } = systemToCanonical(route)
     const description = (metaTags && metaTags.description) || metaTagDescription
