@@ -83,7 +83,7 @@ function reducer(state, action) {
       return {
         ...state,
         product: args.product,
-        ...(differentSlug && defaultState),
+        ...(differentSlug ? defaultState : {}),
       }
     }
     default:
