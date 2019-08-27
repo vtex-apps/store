@@ -190,8 +190,9 @@ class StoreWrapper extends Component {
               canonicalHost && {
                 rel: 'canonical',
                 href: encodeURI(
-                  `https://${canonicalHost}${rootPath}${canonicalPath &&
-                    canonicalPath.toLowerCase()}`
+                  `https://${canonicalHost}${rootPath}${
+                    canonicalPath ? canonicalPath.toLowerCase() : ''
+                  }`
                 ),
               },
           ].filter(Boolean)}
