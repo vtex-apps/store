@@ -7,7 +7,6 @@ import {
   withRuntimeContext,
 } from 'vtex.render-runtime'
 import PropTypes from 'prop-types'
-import { graphql } from 'react-apollo'
 import { PixelProvider } from 'vtex.pixel-manager/PixelContext'
 import { ToastProvider } from 'vtex.styleguide'
 import { PWAProvider } from 'vtex.store-resources/PWAContext'
@@ -16,8 +15,6 @@ import PageViewPixel from './components/PageViewPixel'
 import OrderFormProvider from './components/OrderFormProvider'
 import NetworkStatusToast from './components/NetworkStatusToast'
 import WrapperContainer from './components/WrapperContainer'
-
-import pwaDataQuery from './queries/pwaDataQuery.gql'
 
 const APP_LOCATOR = 'vtex.store'
 const CONTENT_TYPE = 'text/html; charset=utf-8'
@@ -113,12 +110,6 @@ class StoreWrapper extends Component {
       faviconLinks
     } = settings
 
-    const {
-      data: { manifest, iOSIcons, splashes, pwaSettings, loading, error } = {},	
-    } = this.props	
-
-    const hasManifest = !loading && manifest && !error
-
     const { canonicalHost, canonicalPath } = systemToCanonical(route)
     const description = (metaTags && metaTags.description) || metaTagDescription
     const keywords =
@@ -130,36 +121,7 @@ class StoreWrapper extends Component {
     return (
       <Fragment>
         <PixelProvider currency={currency}>
-          <PWAProvider settings={pwaSettings}>
-            {/* PWA */}
-            {hasManifest && (
-              <Helmet
-                meta={[
-                  { name: 'theme-color', content: manifest.theme_color },
-                  { name: 'apple-mobile-web-app-capable', content: 'yes' },
-                ]}
-                link={[
-                  {
-                    rel: 'manifest',
-                    href: `${rootPath}/pwa/manifest.json`,
-                  },
-                  ...(iOSIcons
-                    ? iOSIcons.map(icon => ({
-                        rel: 'apple-touch-icon',
-                        sizes: icon.sizes,
-                        href: `${rootPath}${icon.src}`,
-                      }))
-                    : []),
-                  ...(splashes
-                    ? splashes.map(splash => ({
-                        href: `${rootPath}${splash.src}`,
-                        sizes: splash.sizes,
-                        rel: 'apple-touch-startup-image',
-                      }))
-                    : []),
-                ].filter(Boolean)}
-              />
-            )}
+          <PWAProvider rootPath={rootPath}>
             <PageViewPixel title={title} />
             <ToastProvider positioning="window">
               <NetworkStatusToast />
@@ -217,4 +179,4 @@ class StoreWrapper extends Component {
   }
 }
 
-export default graphql(pwaDataQuery, {ssr: false})(withRuntimeContext(StoreWrapper))
+export default withRuntimeContext(StoreWrapper)
