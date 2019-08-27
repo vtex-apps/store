@@ -25,9 +25,11 @@ const useProduct = props => {
     } = {},
   } = props
 
-  const catalogInfo = !catalogLoading ? catalogProduct : EMPTY_OBJECT
+  const catalogInfo =
+    !catalogLoading && catalogProduct ? catalogProduct : EMPTY_OBJECT
   const benefitsInfo =
-    catalogInfo && !benefitsLoading ? benefitsProduct : EMPTY_OBJECT
+    !benefitsLoading && benefitsProduct ? benefitsProduct : EMPTY_OBJECT
+
   return useMemo(() => {
     const bothEmpty = emptyOrNull(catalogInfo) && emptyOrNull(benefitsInfo)
     return bothEmpty ? null : { ...catalogInfo, ...benefitsInfo }
