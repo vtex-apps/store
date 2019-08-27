@@ -118,7 +118,7 @@ class StoreWrapper extends Component {
       joinKeywords(metaTags && metaTags.keywords) || metaTagKeywords
     const title = pageTitle || titleTag
 
-    const [queryMatch] = route.path.match(/\?.*/) || '?'
+    const [queryMatch] = route.path.match(/\?.*/) || ['?']
 
     return (
       <Fragment>

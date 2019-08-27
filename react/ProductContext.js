@@ -12,6 +12,8 @@ import {
 
 import { cacheLocator } from './cacheLocator'
 
+const EMPTY_OBJECT = {}
+
 const emptyOrNull = value => (value != null ? isEmpty(value) : true)
 
 const useProduct = props => {
@@ -23,8 +25,9 @@ const useProduct = props => {
     } = {},
   } = props
 
-  const catalogInfo = !catalogLoading && catalogProduct
-  const benefitsInfo = catalogInfo && !benefitsLoading && benefitsProduct
+  const catalogInfo = !catalogLoading ? catalogProduct : EMPTY_OBJECT
+  const benefitsInfo =
+    catalogInfo && !benefitsLoading ? benefitsProduct : EMPTY_OBJECT
   return useMemo(() => {
     const bothEmpty = emptyOrNull(catalogInfo) && emptyOrNull(benefitsInfo)
     return bothEmpty ? null : { ...catalogInfo, ...benefitsInfo }
