@@ -41,7 +41,7 @@
     "map": ["c", "c", "c"],
     "contentType": "subcategory"
   },
-  "store.search#subcategory-terms": {
+  "store.search#filtered-search": {
     "path": "/_v/segment/routing/vtex.store@2.x/search/:term(/*filters)",
     "canonical": "/:term",
     "contentType": "search"
