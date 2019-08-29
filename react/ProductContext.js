@@ -8,6 +8,7 @@ import {
   product,
   productPreviewFragment,
   productBenefits,
+  UNSTABLE__productCategoryTree,
 } from 'vtex.store-resources/Queries'
 
 import { cacheLocator } from './cacheLocator'
@@ -16,24 +17,24 @@ const EMPTY_OBJECT = {}
 
 const emptyOrNull = value => (value != null ? isEmpty(value) : true)
 
-const useProduct = props => {
-  const {
-    catalog: { product: catalogProduct, loading: catalogLoading = true } = {},
-    productBenefits: {
-      product: benefitsProduct,
-      loading: benefitsLoading = true,
-    } = {},
-  } = props
+const getInfoFromQuery = (queryObj = {}) => {
+  const { product, loading = true } = queryObj
+  return !loading && product ? product : EMPTY_OBJECT
+}
 
-  const catalogInfo =
-    !catalogLoading && catalogProduct ? catalogProduct : EMPTY_OBJECT
-  const benefitsInfo =
-    !benefitsLoading && benefitsProduct ? benefitsProduct : EMPTY_OBJECT
+const useProduct = ({ catalog, productBenefits, categoryTree }) => {
+  const catalogInfo = getInfoFromQuery(catalog)
+  const benefitsInfo = getInfoFromQuery(productBenefits)
+  const categoryTeeInfo = getInfoFromQuery(categoryTree)
 
   return useMemo(() => {
-    const bothEmpty = emptyOrNull(catalogInfo) && emptyOrNull(benefitsInfo)
-    return bothEmpty ? null : { ...catalogInfo, ...benefitsInfo }
-  }, [benefitsInfo, catalogInfo])
+    const allEmpty = [catalogInfo, benefitsInfo, categoryTeeInfo].every(
+      emptyOrNull
+    )
+    return allEmpty
+      ? null
+      : { ...catalogInfo, ...benefitsInfo, ...categoryTeeInfo }
+  }, [benefitsInfo, catalogInfo, categoryTeeInfo])
 }
 
 function getLoading(props) {
@@ -125,6 +126,7 @@ const catalogOptions = {
   options: props => ({
     variables: {
       slug: props.params.slug,
+      skipCategoryTree: true,
       identifier: {
         field: 'id',
         value: props.params.id || '',
@@ -149,8 +151,24 @@ const productBenefitsOptions = {
   }),
 }
 
+const categoryTreeOptions = {
+  name: 'categoryTree',
+  options: props => ({
+    variables: {
+      slug: props.params.slug,
+      identifier: {
+        field: 'id',
+        value: props.params.id || '',
+      },
+    },
+    errorPolicy: 'all',
+    ssr: false,
+  }),
+}
+
 export default compose(
   withApollo,
   graphql(product, catalogOptions),
-  graphql(productBenefits, productBenefitsOptions)
+  graphql(productBenefits, productBenefitsOptions),
+  graphql(UNSTABLE__productCategoryTree, categoryTreeOptions)
 )(ProductContext)
