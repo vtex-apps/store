@@ -8,7 +8,7 @@ import {
   product,
   productPreviewFragment,
   productBenefits,
-  UNSTABLE__productCategoryTree,
+  UNSTABLE__productCategoryTree as productCategoryTree,
 } from 'vtex.store-resources/Queries'
 
 import { cacheLocator } from './cacheLocator'
@@ -170,5 +170,5 @@ export default compose(
   withApollo,
   graphql(product, catalogOptions),
   graphql(productBenefits, productBenefitsOptions),
-  graphql(UNSTABLE__productCategoryTree, categoryTreeOptions)
+  graphql(productCategoryTree, categoryTreeOptions)
 )(ProductContext)
