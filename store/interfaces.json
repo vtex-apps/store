@@ -113,6 +113,7 @@
     "before": ["header.full"],
     "allowed": [
       "blog-all-posts",
+      "blog-breadcrumb",
       "blog-latest-posts-preview",
       "blog-category-preview",
       "blog-search"
@@ -121,17 +122,17 @@
   "store.blog-category": {
     "before": ["header.full"],
     "required": ["blog-category-list"],
-    "allowed": ["blog-search", "blog-category-preview"]
+    "allowed": ["blog-breadcrumb", "blog-search", "blog-category-preview"]
   },
   "store.blog-post": {
     "before": ["header.full"],
     "required": ["blog-post-details"],
-    "allowed": ["blog-search"]
+    "allowed": ["blog-breadcrumb", "blog-search"]
   },
   "store.blog-search-result": {
     "before": ["header.full"],
     "required": ["blog-search-list"],
-    "allowed": ["blog-search"]
+    "allowed": ["blog-breadcrumb", "blog-search"]
   },
   "storeWrapper": {
     "allowed": ["highlight-overlay"],
