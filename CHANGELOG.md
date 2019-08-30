@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Made `blog-breadcrumb` an allowed block on blog pages.
 
 ## [2.53.2] - 2019-08-30
 ### Fixed
