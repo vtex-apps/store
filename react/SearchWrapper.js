@@ -44,11 +44,9 @@ const SearchWrapper = props => {
   const {
     params,
     searchQuery,
-    searchQuery: {
-      data: { productSearch: { titleTag, metaTagDescription } = {} } = {},
-      loading,
-    } = {},
+    searchQuery: { loading } = {},
     children,
+    searchMetadata: { titleTag, metaTagDescription } = {},
   } = props
   const { account, getSettings } = useRuntime()
   const settings = getSettings(APP_LOCATOR) || {}
