@@ -11,7 +11,7 @@
   "store.search#subcategory": {
     "blocks": ["search-result"]
   },
-  "store.search#filtered-search": {
+  "store.search#subcategory-terms": {
     "blocks": ["search-result"]
   },
   "store.search#custom": {
