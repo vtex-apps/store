@@ -2,8 +2,6 @@ import PropTypes from 'prop-types'
 import { path } from 'ramda'
 import React from 'react'
 import { useRuntime } from 'vtex.render-runtime'
-import { Query } from 'react-apollo'
-import { searchMetadata as searchMetadataQuery } from 'vtex.store-resources/Queries'
 import SearchQuery from 'vtex.search-result/SearchQuery'
 
 import { initializeMap, SORT_OPTIONS } from './utils/search'
@@ -46,64 +44,49 @@ const SearchContext = ({
   const mapValue = queryField ? mapField : map
 
   return (
-    <Query
-      query={searchMetadataQuery}
-      variables={{ query: queryValue, map: mapValue }}
+    <SearchQuery
+      maxItemsPerPage={maxItemsPerPage}
+      query={queryValue}
+      map={mapValue}
+      orderBy={orderBy}
+      priceRange={priceRange}
+      hideUnavailableItems={hideUnavailableItems}
+      pageQuery={pageQuery}
     >
-      {searchMetadataQuery => {
-        return (
-          <SearchQuery
-            maxItemsPerPage={maxItemsPerPage}
-            query={queryValue}
-            map={mapValue}
-            orderBy={orderBy}
-            priceRange={priceRange}
-            hideUnavailableItems={hideUnavailableItems}
-            pageQuery={pageQuery}
-          >
-            {(searchQuery, extraParams) => {
-              return React.cloneElement(children, {
-                searchQuery: {
-                  ...searchQuery,
-                  // backwards-compatibility
-                  data: {
-                    ...(searchQuery.data || {}),
-                    products: path(
-                      ['data', 'productSearch', 'products'],
-                      searchQuery
-                    ),
-                  },
-                  facets: path(['data', 'facets'], searchQuery),
-                  products: path(
-                    ['data', 'productSearch', 'products'],
-                    searchQuery
-                  ),
-                  recordsFiltered: path(
-                    ['data', 'productSearch', 'recordsFiltered'],
-                    searchQuery
-                  ),
-                },
-                searchMetadata: path(
-                  ['data', 'searchMetadata'],
-                  searchMetadataQuery
-                ),
-                searchContext: runtimePage,
-                pagesPath: nextTreePath,
-                map,
-                orderBy,
-                priceRange,
-                page: extraParams.page,
-                from: extraParams.from,
-                to: extraParams.to,
-                maxItemsPerPage,
-                // backwards-compatibility
-                rest,
-              })
-            }}
-          </SearchQuery>
-        )
+      {(searchQuery, extraParams) => {
+        return React.cloneElement(children, {
+          searchQuery: {
+            ...searchQuery,
+            // backwards-compatibility
+            data: {
+              ...(searchQuery.data || {}),
+              products: path(
+                ['data', 'productSearch', 'products'],
+                searchQuery
+              ),
+            },
+            facets: path(['data', 'facets'], searchQuery),
+            products: path(['data', 'productSearch', 'products'], searchQuery),
+            recordsFiltered: path(
+              ['data', 'productSearch', 'recordsFiltered'],
+              searchQuery
+            ),
+            searchMetadata: path(['data', 'searchMetadata'], searchQuery),
+          },
+          searchContext: runtimePage,
+          pagesPath: nextTreePath,
+          map,
+          orderBy,
+          priceRange,
+          page: extraParams.page,
+          from: extraParams.from,
+          to: extraParams.to,
+          maxItemsPerPage,
+          // backwards-compatibility
+          rest,
+        })
       }}
-    </Query>
+    </SearchQuery>
   )
 }
 
