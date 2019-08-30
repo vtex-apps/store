@@ -107,7 +107,7 @@ class StoreWrapper extends Component {
       metaTagKeywords,
       metaTagRobots,
       storeName,
-      faviconLinks
+      faviconLinks,
     } = settings
 
     const { canonicalHost, canonicalPath } = systemToCanonical(route)
@@ -120,24 +120,6 @@ class StoreWrapper extends Component {
 
     return (
       <Fragment>
-        <PixelProvider currency={currency}>
-          <PWAProvider rootPath={rootPath}>
-            <PageViewPixel title={title} />
-            <ToastProvider positioning="window">
-              <NetworkStatusToast />
-              <OrderFormProvider>
-                <WrapperContainer className="vtex-store__template bg-base">
-                  {this.props.children}
-                </WrapperContainer>
-              </OrderFormProvider>
-            </ToastProvider>
-          </PWAProvider>
-        </PixelProvider>
-        {this.isStorefrontIframe && (
-          <NoSSR>
-            <ExtensionPoint id="highlight-overlay" />
-          </NoSSR>
-        )}
         <Helmet
           title={title}
           meta={[
@@ -174,6 +156,24 @@ class StoreWrapper extends Component {
               },
           ].filter(Boolean)}
         />
+        <PixelProvider currency={currency}>
+          <PWAProvider rootPath={rootPath}>
+            <PageViewPixel title={title} />
+            <ToastProvider positioning="window">
+              <NetworkStatusToast />
+              <OrderFormProvider>
+                <WrapperContainer className="vtex-store__template bg-base">
+                  {this.props.children}
+                </WrapperContainer>
+              </OrderFormProvider>
+            </ToastProvider>
+          </PWAProvider>
+        </PixelProvider>
+        {this.isStorefrontIframe && (
+          <NoSSR>
+            <ExtensionPoint id="highlight-overlay" />
+          </NoSSR>
+        )}
       </Fragment>
     )
   }
