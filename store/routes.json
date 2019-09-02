@@ -29,6 +29,7 @@
     "map": ["c"],
     "contentType": "department"
   },
+
   "store.search#category": {
     "path": "/_v/segment/routing/vtex.store@2.x/category/:id/:department/:category(/*terms)",
     "canonical": "/:department/:category",
