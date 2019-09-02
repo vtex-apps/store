@@ -1,6 +1,7 @@
-import { useMemo } from 'react'
+import React, { useMemo, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { useRuntime } from 'vtex.render-runtime'
+import SearchAction from 'vtex.structured-data/SearchAction'
 
 import useDataPixel from './hooks/useDataPixel'
 
@@ -34,7 +35,12 @@ const HomeWrapper = ({ children }) => {
   }, [account])
   useDataPixel(pixelEvents, 'Home')
 
-  return children
+  return (
+    <Fragment>
+      <SearchAction />
+      {children}
+    </Fragment>
+  )
 }
 
 HomeWrapper.propTypes = {

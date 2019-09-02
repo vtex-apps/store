@@ -10,7 +10,6 @@ import PropTypes from 'prop-types'
 import { PixelProvider } from 'vtex.pixel-manager/PixelContext'
 import { ToastProvider } from 'vtex.styleguide'
 import { PWAProvider } from 'vtex.store-resources/PWAContext'
-import SearchAction from 'vtex.structured-data/SearchAction'
 
 import PageViewPixel from './components/PageViewPixel'
 import OrderFormProvider from './components/OrderFormProvider'
@@ -175,7 +174,6 @@ class StoreWrapper extends Component {
             <ExtensionPoint id="highlight-overlay" />
           </NoSSR>
         )}
-        {route && route.id === 'store.home' && <SearchAction />}
       </Fragment>
     )
   }
