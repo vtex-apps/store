@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import { path } from 'ramda'
 import React from 'react'
 import { useRuntime } from 'vtex.render-runtime'
+
 import SearchQuery from 'vtex.search-result/SearchQuery'
 
 import { initializeMap, SORT_OPTIONS } from './utils/search'
@@ -71,7 +72,6 @@ const SearchContext = ({
               ['data', 'productSearch', 'recordsFiltered'],
               searchQuery
             ),
-            searchMetadata: path(['data', 'searchMetadata'], searchQuery),
           },
           searchContext: runtimePage,
           pagesPath: nextTreePath,
