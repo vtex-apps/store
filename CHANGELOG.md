@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - Add structured-data dependency.
-- Add GoogleSearchBox component in storewrapper.
+- Add SearchAction component in StoreWrapper.
 
 ## [2.53.4] - 2019-09-02
 ### Changed
