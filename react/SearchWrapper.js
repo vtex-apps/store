@@ -45,8 +45,8 @@ const SearchWrapper = props => {
     params,
     searchQuery,
     searchQuery: {
-      data: { productSearch: { titleTag, metaTagDescription } = {} } = {},
       loading,
+      searchMetadata: { titleTag, metaTagDescription } = {},
     } = {},
     children,
   } = props
