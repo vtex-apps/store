@@ -141,7 +141,6 @@ const parseToJsonLD = (product, selectedItem, currency, locale) => {
   const image = head(path(['images'], selectedItem))
   const brand = product.brand
   const name = product.productName
-  const description = tryParsingLocale(product.description, locale)
 
   const productLD = {
     '@context': 'https://schema.org/',
@@ -149,7 +148,7 @@ const parseToJsonLD = (product, selectedItem, currency, locale) => {
     name: name,
     brand: brand,
     image: image && image.imageUrl,
-    description: description,
+    description: product.metaTagDescription,
     mpn: product.productId,
     sku: selectedItem.itemId,
     offers: composeAggregateOffer(product, currency),
