@@ -128,8 +128,8 @@ const catalogOptions = {
       slug: props.params.slug,
       skipCategoryTree: true,
       identifier: {
-        field: 'slug',
-        value: props.params.slug,
+        field: 'id',
+        value: props.params.id || '',
       },
     },
     errorPolicy: 'all',
@@ -142,8 +142,8 @@ const productBenefitsOptions = {
     variables: {
       slug: props.params.slug,
       identifier: {
-        field: 'slug',
-        value: props.params.slug,
+        field: 'id',
+        value: props.params.id || '',
       },
     },
     errorPolicy: 'all',
@@ -157,8 +157,8 @@ const categoryTreeOptions = {
     variables: {
       slug: props.params.slug,
       identifier: {
-        field: 'slug',
-        value: props.params.slug,
+        field: 'id',
+        value: props.params.id || '',
       },
     },
     errorPolicy: 'all',
