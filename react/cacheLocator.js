@@ -1,7 +1,7 @@
 import { buildCacheLocator } from 'vtex.render-runtime'
 
-const STORE_GRAPHQL = 'vtex.store-graphql@2.x'
+const SEARCH_GRAPHQL = 'vtex.search-graphql@0.x'
 
 export const cacheLocator = {
-  product: slug => buildCacheLocator(STORE_GRAPHQL, 'Product', slug),
+  product: slug => buildCacheLocator(SEARCH_GRAPHQL, 'Product', slug),
 }
