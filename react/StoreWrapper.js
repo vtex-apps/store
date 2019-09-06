@@ -30,10 +30,6 @@ const systemToCanonical = ({ canonicalPath }) => {
   }
 }
 
-const joinKeywords = keywords => {
-  return keywords && keywords.length > 0 ? keywords.join(', ') : ''
-}
-
 class StoreWrapper extends Component {
   static propTypes = {
     runtime: PropTypes.shape({
@@ -104,7 +100,6 @@ class StoreWrapper extends Component {
     const {
       titleTag,
       metaTagDescription,
-      metaTagKeywords,
       metaTagRobots,
       storeName,
       faviconLinks,
@@ -112,8 +107,6 @@ class StoreWrapper extends Component {
 
     const { canonicalHost, canonicalPath } = systemToCanonical(route)
     const description = (metaTags && metaTags.description) || metaTagDescription
-    const keywords =
-      joinKeywords(metaTags && metaTags.keywords) || metaTagKeywords
     const title = pageTitle || titleTag
 
     const [queryMatch] = route.path.match(/\?.*/) || ['?']
@@ -125,7 +118,6 @@ class StoreWrapper extends Component {
           meta={[
             { name: 'viewport', content: MOBILE_SCALING },
             { name: 'description', content: description },
-            { name: 'keywords', content: keywords },
             { name: 'copyright', content: storeName },
             { name: 'author', content: storeName },
             { name: 'country', content: country },
