@@ -2,9 +2,11 @@ import { useEffect, useRef } from 'react'
 import { usePixel } from 'vtex.pixel-manager/PixelContext'
 import { isEmpty } from 'ramda'
 
-const useDataPixel = (data, pageIdentifier, isLoading = false) => {
+type Data = unknown[] | unknown
+
+const useDataPixel = (data: Data, pageIdentifier: string = '', isLoading = false) => {
   const { push } = usePixel()
-  const previousIdRef = useRef(null)
+  const previousIdRef = useRef<string|null>(null)
 
   const previousId = previousIdRef.current
 
