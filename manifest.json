@@ -71,15 +71,6 @@
         "title": "Meta description tag",
         "type": "string"
       },
-      "metaTagKeywords": {
-        "title": "Meta keywords tag",
-        "type": "string"
-      },
-      "metaTagRobots": {
-        "title": "Meta robots tag",
-        "type": "string",
-        "description": "Default value: index, follow"
-      },
       "faviconLinks": {
         "title": "Favicons",
         "type": "array",
@@ -107,10 +98,7 @@
               "type": "string"
             }
           },
-          "required": [
-            "rel",
-            "href"
-          ]
+          "required": ["rel", "href"]
         },
         "description": "Configure your store's favicons"
       }

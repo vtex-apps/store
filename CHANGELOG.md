@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Removed
+
+- Meta tag `keywords` from manifest and components that still used it.
+- Meta tag `robots` from manifest and `StoreWrapper`.
+
 ## [2.54.0] - 2019-09-09
 ### Changed
 - Trigger `productView` when selected SKU changes.
@@ -42,7 +47,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [2.53.0] - 2019-08-28
 ### Changed
-- PWA helmet and query in `StoreWrapper` and move it to `PWAProvider`. 
+- PWA helmet and query in `StoreWrapper` and move it to `PWAProvider`.
 
 ## [2.52.3] - 2019-08-27
 ### Fixed

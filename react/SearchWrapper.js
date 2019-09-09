@@ -52,7 +52,7 @@ const SearchWrapper = props => {
   } = props
   const { account, getSettings } = useRuntime()
   const settings = getSettings(APP_LOCATOR) || {}
-  const { titleTag: defaultStoreTitle, metaTagKeywords, storeName } = settings
+  const { titleTag: defaultStoreTitle, storeName } = settings
   const title = getTitleTag(
     titleTag,
     storeName || defaultStoreTitle,
@@ -108,10 +108,6 @@ const SearchWrapper = props => {
       <Helmet
         title={title}
         meta={[
-          params.term && {
-            name: 'keywords',
-            content: `${params.term}, ${metaTagKeywords}`,
-          },
           params.term && {
             name: 'robots',
             content: 'noindex,follow',
