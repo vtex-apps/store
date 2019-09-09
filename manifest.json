@@ -71,11 +71,6 @@
         "title": "Meta description tag",
         "type": "string"
       },
-      "metaTagRobots": {
-        "title": "Meta robots tag",
-        "type": "string",
-        "description": "Default value: index, follow"
-      },
       "faviconLinks": {
         "title": "Favicons",
         "type": "array",
