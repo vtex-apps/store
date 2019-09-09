@@ -975,6 +975,13 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.1.tgz#f1a11e7babb0c3cad68100be381d1e064c68f1f6"
   integrity sha512-CFzn9idOEpHrgdw8JsoTkaDDyRWk1jrzIV8djzcgpq0y9tG4B4lFT+Nxh52DVpDXV+n4+NPNv7M1Dj5uMp6XFg==
 
+"@types/ramda@^0.26.21":
+  version "0.26.21"
+  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.26.21.tgz#cfd552c679453d153a9e2fd89ffc5dd5aa93d2c9"
+  integrity sha512-zMYtIZMceA6BvH+or6LmewLBgojbXg5+FGCwjO8K+Z+d/ZWxILmhhASXkehW0PqJL+V0QbyDeeAHix0dvEKXfQ==
+  dependencies:
+    ts-toolbelt "^3.8.4"
+
 "@types/react-intl@^2.3.17":
   version "2.3.17"
   resolved "https://registry.yarnpkg.com/@types/react-intl/-/react-intl-2.3.17.tgz#e1fc6e46e8af58bdef9531259d509380a8a99e8e"
@@ -2029,11 +2036,19 @@ eslint-config-prettier@^4.0.0:
   dependencies:
     get-stdin "^6.0.0"
 
-eslint-config-vtex-react@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-vtex-react/-/eslint-config-vtex-react-4.0.0.tgz#35c537a2f183bd12436e260948454830d8934051"
-  integrity sha512-wbZxl7B6riIlPY7RCieHEDIcv1mJ9PqjY0F79yYcbXLLQtNcz1gzRl/JAnXNRfePiTJqFtFdgB2HXwlCwXMk8w==
+eslint-config-prettier@^4.2.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-4.3.0.tgz#c55c1fcac8ce4518aeb77906984e134d9eb5a4f0"
+  integrity sha512-sZwhSTHVVz78+kYD3t5pCWSYEdVSBR0PXnwjDRsUs8ytIrK8PLXw+6FKp8r3Z7rx4ZszdetWlXYKOHoUrrwPlA==
   dependencies:
+    get-stdin "^6.0.0"
+
+eslint-config-vtex-react@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-vtex-react/-/eslint-config-vtex-react-4.1.0.tgz#ff3af3a9fbff717e42fa0d207e0344ec1ec19a0f"
+  integrity sha512-DJJ4HQEAx4EVvJPE9zz52IlRbf+GL+Rscr50fDJQkM8UTUlndAHXCuYrqir1VvSps9+xvFNnc+LnwdjQv5dIlw==
+  dependencies:
+    eslint-config-prettier "^4.2.0"
     eslint-config-vtex "^10.0.0"
     eslint-plugin-jsx-a11y "^6.2.1"
     eslint-plugin-react "^7.0.0"
@@ -5244,6 +5259,11 @@ ts-invariant@^0.4.0, ts-invariant@^0.4.2:
   integrity sha512-PTAAn8lJPEdRBJJEs4ig6MVZWfO12yrFzV7YaPslmyhG7+4MA279y4BXT3f72gXeVl0mC1aAWq2rMX4eKTWU/Q==
   dependencies:
     tslib "^1.9.3"
+
+ts-toolbelt@^3.8.4:
+  version "3.8.70"
+  resolved "https://registry.yarnpkg.com/ts-toolbelt/-/ts-toolbelt-3.8.70.tgz#edd146112ed648c6d041f5273305b5dd08c787d5"
+  integrity sha512-bq/fOstfWjVewZeQZStflejgVoKm54w56+Tf5LTZ59AowxpUSVuSRWBPX7AW8aUlnxuV78pyC2DE7SNVFGwuvg==
 
 tslib@^1.8.1, tslib@^1.9.0, tslib@^1.9.3:
   version "1.9.3"

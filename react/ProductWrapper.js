@@ -46,12 +46,6 @@ function reducer(state, action) {
         },
       }
     }
-    case 'SET_SELECTED_ITEM_BY_ID': {
-      return {
-        ...state,
-        selectedItem: findItemById(args.id)(state.product.items),
-      }
-    }
     case 'SET_SELECTED_ITEM': {
       return {
         ...state,
