@@ -97,13 +97,7 @@ class StoreWrapper extends Component {
       },
     } = this.props
     const settings = getSettings(APP_LOCATOR) || {}
-    const {
-      titleTag,
-      metaTagDescription,
-      metaTagRobots,
-      storeName,
-      faviconLinks,
-    } = settings
+    const { titleTag, metaTagDescription, storeName, faviconLinks } = settings
 
     const { canonicalHost, canonicalPath } = systemToCanonical(route)
     const description = (metaTags && metaTags.description) || metaTagDescription
@@ -123,7 +117,7 @@ class StoreWrapper extends Component {
             { name: 'country', content: country },
             { name: 'language', content: locale },
             { name: 'currency', content: currency },
-            { name: 'robots', content: metaTagRobots || META_ROBOTS },
+            { name: 'robots', content: META_ROBOTS },
             { httpEquiv: 'Content-Type', content: CONTENT_TYPE },
           ]}
           script={[
