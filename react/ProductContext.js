@@ -47,7 +47,6 @@ function getLoading(props) {
 
 function useNotFound(loading, propsProduct, slug) {
   const { navigate } = useRuntime()
-
   useEffect(() => {
     if (!propsProduct && !loading) {
       navigate({
@@ -71,7 +70,7 @@ const ProductContext = _props => {
   const loading = getLoading(_props)
   const propsProduct = useProduct(_props)
 
-  useNotFound(loading, propsProduct, slug)
+  // useNotFound(loading, propsProduct, slug)
 
   const productPreview = client.readFragment({
     id: cacheLocator.product(slug),
