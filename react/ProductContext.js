@@ -47,6 +47,7 @@ function getLoading(props) {
 
 function useNotFound(loading, propsProduct, slug) {
   const { navigate } = useRuntime()
+
   useEffect(() => {
     if (!propsProduct && !loading) {
       navigate({
