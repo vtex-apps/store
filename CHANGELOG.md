@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Revert the following change:
+> - Meta tag `robots` from manifest and `StoreWrapper`.
+
 ## [2.55.1] - 2019-09-10
 ### Changed
 - Start using `search-graphql`.
