@@ -71,7 +71,7 @@ const ProductContext = _props => {
   const loading = getLoading(_props)
   const propsProduct = useProduct(_props)
 
-  useNotFound(loading, propsProduct, slug)
+  // useNotFound(loading, propsProduct, slug)
 
   const productPreview = client.readFragment({
     id: cacheLocator.product(slug),
