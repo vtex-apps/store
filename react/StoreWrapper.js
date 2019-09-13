@@ -113,6 +113,13 @@ class StoreWrapper extends Component {
 
     const [queryMatch] = route.path.match(/\?.*/) || ['?']
 
+    const canonicalLink =
+      canonicalHost &&
+      canonicalPath &&
+      `https://${canonicalHost}${rootPath}${
+        canonicalPath ? canonicalPath.toLowerCase() : ''
+      }`
+
     return (
       <Fragment>
         <Helmet
@@ -142,23 +149,16 @@ class StoreWrapper extends Component {
           ]}
           link={[
             ...(faviconLinks || []),
-            ...(!amp
+            ...(!amp && canonicalLink
               ? [
                   {
                     rel: 'amphtml',
-                    href: encodeURI(
-                      `https://${canonicalHost}${rootPath}${canonicalPath.toLowerCase()}?amp`
-                    ),
+                    href: encodeURI(`${canonicalLink}?amp`),
                   },
-                  canonicalPath &&
-                    canonicalHost && {
-                      rel: 'canonical',
-                      href: encodeURI(
-                        `https://${canonicalHost}${rootPath}${
-                          canonicalPath ? canonicalPath.toLowerCase() : ''
-                        }`
-                      ),
-                    },
+                  {
+                    rel: 'canonical',
+                    href: encodeURI(canonicalLink),
+                  },
                 ]
               : []),
           ].filter(Boolean)}
