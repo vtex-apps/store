@@ -54,18 +54,6 @@ const lowestPriceInStockSKU = sku => {
   }
 }
 
-const tryParsingLocale = (description, locale) => {
-  let parsedDescription
-  try {
-    const descriptionObject = JSON.parse(description)
-    parsedDescription =
-      descriptionObject[locale] || descriptionObject[head(split('-', locale))]
-  } catch (e) {
-    console.warn('Failed to parse multilanguage product description')
-  }
-  return parsedDescription || description
-}
-
 const highestPriceItem = compose(
   last,
   sort(
@@ -137,7 +125,7 @@ const composeAggregateOffer = (product, currency) => {
   return aggregateOffer
 }
 
-const parseToJsonLD = (product, selectedItem, currency, locale) => {
+export const parseToJsonLD = (product, selectedItem, currency) => {
   const image = head(path(['images'], selectedItem))
   const brand = product.brand
   const name = product.productName
