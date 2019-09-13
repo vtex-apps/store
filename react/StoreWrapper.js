@@ -33,6 +33,7 @@ const systemToCanonical = ({ canonicalPath }) => {
 class StoreWrapper extends Component {
   static propTypes = {
     runtime: PropTypes.shape({
+      amp: PropTypes.boolean,
       prefetchDefaultPages: PropTypes.func,
       culture: PropTypes.shape({
         country: PropTypes.string,
@@ -89,6 +90,7 @@ class StoreWrapper extends Component {
   render() {
     const {
       runtime: {
+        amp,
         culture: { country, locale, currency },
         route,
         route: { metaTags, title: pageTitle },
@@ -111,12 +113,20 @@ class StoreWrapper extends Component {
 
     const [queryMatch] = route.path.match(/\?.*/) || ['?']
 
+    const canonicalLink =
+      canonicalHost &&
+      canonicalPath &&
+      `https://${canonicalHost}${rootPath}${
+        canonicalPath ? canonicalPath.toLowerCase() : ''
+      }`
+
     return (
       <Fragment>
         <Helmet
           title={title}
           meta={[
-            { name: 'viewport', content: MOBILE_SCALING },
+            // viewport meta tag is already handled in render-server for AMP pages
+            !amp && { name: 'viewport', content: MOBILE_SCALING },
             { name: 'description', content: description },
             { name: 'copyright', content: storeName },
             { name: 'author', content: storeName },
@@ -125,7 +135,9 @@ class StoreWrapper extends Component {
             { name: 'currency', content: currency },
             { name: 'robots', content: metaTagRobots || META_ROBOTS },
             { httpEquiv: 'Content-Type', content: CONTENT_TYPE },
-          ]}
+          ]
+            .filter(Boolean)
+            .filter(meta => meta.content && meta.content.length > 0)}
           script={[
             {
               type: 'text/javascript',
@@ -137,15 +149,18 @@ class StoreWrapper extends Component {
           ]}
           link={[
             ...(faviconLinks || []),
-            canonicalPath &&
-              canonicalHost && {
-                rel: 'canonical',
-                href: encodeURI(
-                  `https://${canonicalHost}${rootPath}${
-                    canonicalPath ? canonicalPath.toLowerCase() : ''
-                  }`
-                ),
-              },
+            ...(!amp && canonicalLink
+              ? [
+                  {
+                    rel: 'amphtml',
+                    href: encodeURI(`${canonicalLink}?amp`),
+                  },
+                  {
+                    rel: 'canonical',
+                    href: encodeURI(canonicalLink),
+                  },
+                ]
+              : []),
           ].filter(Boolean)}
         />
         <PixelProvider currency={currency}>
