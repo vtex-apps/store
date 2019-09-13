@@ -147,7 +147,7 @@ class StoreWrapper extends Component {
                   {
                     rel: 'amphtml',
                     href: encodeURI(
-                      `https://${canonicalHost}${rootPath}${canonicalPath}?amp`
+                      `https://${canonicalHost}${rootPath}${canonicalPath.toLowerCase()}?amp`
                     ),
                   },
                   canonicalPath &&
