@@ -17,7 +17,8 @@
       "flex-layout",
       "sandbox",
       "image",
-      "sticky-layout"
+      "sticky-layout",
+      "__fold__"
     ],
     "preview": {
       "type": "transparent",
@@ -169,5 +170,10 @@
   },
   "store.content": {
     "context": "ContentPageContext"
-  }
+  },
+  "__fold__": {
+    "component": "Fold"
+  },
+  "__fold__.mobile": {},
+  "__fold__.desktop": {}
 }
