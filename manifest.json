@@ -46,6 +46,7 @@
     "vtex.blog-interfaces": "0.x",
     "vtex.product-identifier": "0.x",
     "vtex.open-graph": "1.x",
+    "vtex.slider-layout": "0.x",
     "vtex.sticky-layout": "0.x",
     "vtex.product-customizer": "2.x",
     "vtex.product-teaser-interfaces": "1.x",
