@@ -166,7 +166,7 @@
     "component": "*"
   },
   "store.custom": {
-    "allowed": ["search-result"]
+    "allowed": ["search-result", "search-result-layout"]
   },
   "store.content": {
     "context": "ContentPageContext"
