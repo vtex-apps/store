@@ -16,8 +16,8 @@
     "vtex.store-sitemap": "1.x"
   },
   "dependencies": {
-    "vtex.store-graphql": "2.x",
     "vtex.store-resources": "0.x",
+    "vtex.store-graphql": "2.x",
     "vtex.store-header": "2.x",
     "vtex.store-footer": "2.x",
     "vtex.store-components": "3.x",
