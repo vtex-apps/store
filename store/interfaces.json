@@ -18,7 +18,10 @@
       "sandbox",
       "image",
       "sticky-layout",
-      "__fold__"
+      "__fold__",
+      "tab-layout",
+      "tab-list",
+      "tab-content"
     ],
     "preview": {
       "type": "transparent",
