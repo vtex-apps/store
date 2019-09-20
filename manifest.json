@@ -49,7 +49,8 @@
     "vtex.sticky-layout": "0.x",
     "vtex.product-customizer": "2.x",
     "vtex.product-teaser-interfaces": "1.x",
-    "vtex.structured-data": "0.x"
+    "vtex.structured-data": "0.x",
+    "vtex.tab-layout": "0.x"
   },
   "settingsSchema": {
     "title": "VTEX Store",
