@@ -10,6 +10,7 @@
     "ramda": "^0.26.1"
   },
   "devDependencies": {
+    "@types/jest": "^24.0.18",
     "@types/ramda": "^0.26.21",
     "@vtex/test-tools": "^0.3.2",
     "apollo-client-preset": "^1.0.8",

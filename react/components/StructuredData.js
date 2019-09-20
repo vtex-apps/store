@@ -8,84 +8,53 @@ import {
   sort,
   compose,
   head,
-  split,
   length,
   last,
   flip,
   gt,
+  flatten,
+  prop,
 } from 'ramda'
 
-const lowestPriceInStockSeller = item => {
-  if (item.sellers.length) {
-    return sort(
-      (itemA, itemB) =>
-        itemA.commertialOffer && itemA.commertialOffer.AvailableQuantity > 0
-          ? itemB.commertialOffer && itemB.commertialOffer.AvailableQuantity > 0
-            ? itemA.commertialOffer.Price - itemB.commertialOffer.Price
-            : -1
-          : -1,
-      item.sellers
-    )[0]
-  }
-  return null
-}
-
-const lowestPriceItem = compose(
-  head,
-  sort(
-    (itemA, itemB) =>
-      path(['seller', 'commertialOffer', 'Price'], itemA) -
-      path(['seller', 'commertialOffer', 'Price'], itemB)
-  )
+const sortByPriceAsc = sort(
+  (itemA, itemB) =>
+    path(['commertialOffer', 'Price'], itemA) -
+    path(['commertialOffer', 'Price'], itemB)
 )
 
-const lowestPriceInStockSKU = sku => {
-  const itemSeller = [
-    {
-      sku,
-      seller: lowestPriceInStockSeller(sku),
-    },
-  ]
-  const { item, seller } = lowestPriceItem(itemSeller)
-
-  return {
-    item,
-    seller,
+const lowHighForSellers = sellers => {
+  const sortedByPrice = sortByPriceAsc(sellers)
+  const withStock = sortedByPrice.filter(isSkuAvailable)
+  if (withStock.length === 0) {
+    return {
+      low: sortedByPrice[0],
+      high: last(sortedByPrice),
+    }
   }
-}
 
-const highestPriceItem = compose(
-  last,
-  sort(
-    (itemA, itemB) =>
-      path(['seller', 'commertialOffer', 'Price'], itemA) -
-      path(['seller', 'commertialOffer', 'Price'], itemB)
-  )
-)
-
-const priceItems = items => {
-  const lowPrice = lowestPriceItem(items)
-  const highPrice = highestPriceItem(items)
   return {
-    lowPrice,
-    highPrice,
+    low: withStock[0],
+    high: last(withStock),
   }
 }
 
 const isSkuAvailable = compose(
-  isAvailable =>
-    isAvailable ? 'http://schema.org/InStock' : 'http://schema.org/OutOfStock',
   flip(gt)(0),
   pathOr(0, ['commertialOffer', 'AvailableQuantity'])
 )
 
+const getSKUAvailabilityString = seller =>
+  isSkuAvailable(seller)
+    ? 'http://schema.org/InStock'
+    : 'http://schema.org/OutOfStock'
+
 const parseSKUToOffer = (item, currency) => {
-  const { seller } = lowestPriceInStockSKU(item)
+  const { low: seller } = lowHighForSellers(item.sellers)
   const offer = {
     '@type': 'Offer',
     price: path(['commertialOffer', 'Price'], seller),
     priceCurrency: currency,
-    availability: isSkuAvailable(seller),
+    availability: getSKUAvailabilityString(seller),
     sku: item.itemId,
     itemCondition: 'http://schema.org/NewCondition',
     priceValidUntil: path(['commertialOffer', 'PriceValidUntil'], seller),
@@ -98,32 +67,39 @@ const parseSKUToOffer = (item, currency) => {
   return offer
 }
 
+const getAllSellers = items => {
+  const allSellers = items.map(i => i.sellers)
+  const flat = flatten(allSellers)
+  return flat
+}
+
 const composeAggregateOffer = (product, currency) => {
   const safeItems = product.items || []
-  const items = map(
-    item => ({
-      item,
-      seller: lowestPriceInStockSeller(item),
-    }),
-    safeItems
-  )
 
-  const { lowPrice, highPrice } = priceItems(items)
+  const allSellers = getAllSellers(safeItems)
+  const { low, high } = lowHighForSellers(allSellers)
+
   const offersList = map(element => {
     return parseSKUToOffer(element, currency)
   }, safeItems)
 
   const aggregateOffer = {
     '@type': 'AggregateOffer',
-    lowPrice: path(['seller', 'commertialOffer', 'Price'], lowPrice),
-    highPrice: path(['seller', 'commertialOffer', 'Price'], highPrice),
+    lowPrice: path(['commertialOffer', 'Price'], low),
+    highPrice: path(['commertialOffer', 'Price'], high),
     priceCurrency: currency,
     offers: offersList,
-    offerCount: length(items),
+    offerCount: length(safeItems),
   }
 
   return aggregateOffer
 }
+
+const getCategoryName = compose(
+  prop('name'),
+  last,
+  prop('categoryTree')
+)
 
 export const parseToJsonLD = (product, selectedItem, currency) => {
   const image = head(path(['images'], selectedItem))
@@ -139,6 +115,10 @@ export const parseToJsonLD = (product, selectedItem, currency) => {
     description: product.metaTagDescription,
     mpn: product.productId,
     sku: selectedItem.itemId,
+    category:
+      product.categoryTree &&
+      product.categoryTree.length > 0 &&
+      getCategoryName(product),
     offers: composeAggregateOffer(product, currency),
   }
 
