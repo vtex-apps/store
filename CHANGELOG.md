@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.62.0] - 2019-09-24
+
 ## [2.61.1] - 2019-09-23
 ### Fixed
 - Strctured data not filtering out of stock sellers correctly.
