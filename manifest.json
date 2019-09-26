@@ -9,9 +9,6 @@
     "messages": "1.x",
     "react": "3.x"
   },
-  "scripts": {
-    "postreleasy": "vtex publish --verbose"
-  },
   "peerDependencies": {
     "vtex.store-sitemap": "1.x"
   },
