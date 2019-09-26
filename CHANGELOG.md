@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.62.1-beta] - 2019-09-26
+
 ### Changed
 - Remove prefetch of pages to test impact on load time
 
