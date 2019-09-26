@@ -1,16 +1,13 @@
 {
   "vendor": "vtex",
   "name": "store",
-  "version": "2.62.0",
+  "version": "2.62.1-beta",
   "title": "VTEX Store",
   "description": "The VTEX basic store.",
   "builders": {
     "store": "0.x",
     "messages": "1.x",
     "react": "3.x"
-  },
-  "scripts": {
-    "postreleasy": "vtex publish --verbose"
   },
   "peerDependencies": {
     "vtex.store-sitemap": "1.x"
@@ -105,7 +102,10 @@
               "type": "string"
             }
           },
-          "required": ["rel", "href"]
+          "required": [
+            "rel",
+            "href"
+          ]
         },
         "description": "Configure your store's favicons"
       }
