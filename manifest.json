@@ -48,7 +48,8 @@
     "vtex.product-customizer": "2.x",
     "vtex.product-teaser-interfaces": "1.x",
     "vtex.structured-data": "0.x",
-    "vtex.tab-layout": "0.x"
+    "vtex.tab-layout": "0.x",
+    "vtex.pickup-availability": "0.x"
   },
   "settingsSchema": {
     "title": "VTEX Store",

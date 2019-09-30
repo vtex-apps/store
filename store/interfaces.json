@@ -67,7 +67,8 @@
       "product-identifier",
       "blog-related-posts",
       "product-assembly-options",
-      "product-teaser.product"
+      "product-teaser.product",
+      "pickup-availability"
     ],
     "context": "ProductContext",
     "preview": {
