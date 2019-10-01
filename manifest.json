@@ -52,7 +52,8 @@
     "vtex.pickup-availability": "0.x",
     "vtex.stack-layout": "0.x",
     "vtex.product-specification-badges": "0.x",
-    "vtex.visibility-layout": "0.x"
+    "vtex.visibility-layout": "0.x",
+    "vtex.store-image": "0.x"
   },
   "settingsSchema": {
     "title": "VTEX Store",
@@ -106,10 +107,7 @@
               "type": "string"
             }
           },
-          "required": [
-            "rel",
-            "href"
-          ]
+          "required": ["rel", "href"]
         },
         "description": "Configure your store's favicons"
       }
