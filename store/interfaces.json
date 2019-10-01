@@ -24,7 +24,8 @@
       "tab-list",
       "tab-content",
       "stack-layout",
-      "experimental__visibility-layout"
+      "experimental__visibility-layout",
+      "image-slider"
     ],
     "preview": {
       "type": "transparent",
