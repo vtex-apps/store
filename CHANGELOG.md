@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- `image-list` and `image-slider` blocks from `vtex.store-image` as allowed.
+- `image-slider` block from `vtex.store-image` as allowed.
 
 ## [2.65.0] - 2019-10-14
 
