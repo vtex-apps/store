@@ -22,7 +22,8 @@
       "__fold__",
       "tab-layout",
       "tab-list",
-      "tab-content"
+      "tab-content",
+      "stack-layout"
     ],
     "preview": {
       "type": "transparent",
@@ -68,7 +69,8 @@
       "blog-related-posts",
       "product-assembly-options",
       "product-teaser.product",
-      "pickup-availability"
+      "pickup-availability",
+      "product-specification-badges"
     ],
     "context": "ProductContext",
     "preview": {
