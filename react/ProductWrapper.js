@@ -4,7 +4,7 @@ import { ProductOpenGraph } from 'vtex.open-graph'
 import useProduct from 'vtex.product-context/useProduct'
 import ProductContextProvider from 'vtex.product-context/ProductContextProvider'
 
-import StructuredData from './components/StructuredData'
+import { Product as ProductStructuredData } from 'vtex.structured-data'
 import WrapperContainer from './components/WrapperContainer'
 
 import ProductTitleAndPixel from './components/ProductTitleAndPixel'
@@ -20,7 +20,7 @@ const Content = ({ loading, children, childrenProps }) => {
       />
       {product && <ProductOpenGraph />}
       {product && selectedItem && (
-        <StructuredData product={product} selectedItem={selectedItem} />
+        <ProductStructuredData product={product} selectedItem={selectedItem} />
       )}
       {React.cloneElement(children, childrenProps)}
     </Fragment>
