@@ -23,7 +23,8 @@
       "tab-layout",
       "tab-list",
       "tab-content",
-      "stack-layout"
+      "stack-layout",
+      "experimental__visibility-layout"
     ],
     "preview": {
       "type": "transparent",

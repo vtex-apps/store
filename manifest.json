@@ -51,7 +51,8 @@
     "vtex.tab-layout": "0.x",
     "vtex.pickup-availability": "0.x",
     "vtex.stack-layout": "0.x",
-    "vtex.product-specification-badges": "0.x"
+    "vtex.product-specification-badges": "0.x",
+    "vtex.visibility-layout": "0.x"
   },
   "settingsSchema": {
     "title": "VTEX Store",
