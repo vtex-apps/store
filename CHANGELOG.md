@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.65.0] - 2019-10-14
+
 ## [2.64.0] - 2019-10-08
 ### Added
 - `stack-layout` and `product-specification-badges` to allowed lists.
