@@ -9,6 +9,8 @@ import { initializeMap, SORT_OPTIONS } from './utils/search'
 
 const DEFAULT_MAX_ITEMS_PER_PAGE = 10
 
+const trimStartingSlash = value => value && value.replace(/^\//, '')
+
 const SearchContext = ({
   nextTreePath,
   params,
@@ -27,8 +29,20 @@ const SearchContext = ({
   },
   children,
 }) => {
-  const { page: runtimePage } = useRuntime()
-  const map = mapQuery || initializeMap(params)
+  const { page: runtimePage, query: runtimeQuery } = useRuntime()
+
+  const fieldsFromQueryString = {
+    mapField: runtimeQuery.map,
+    queryField: trimStartingSlash(runtimeQuery.query),
+  }
+
+  const areFieldsFromQueryStringValid = !!(
+    fieldsFromQueryString.mapField && fieldsFromQueryString.queryField
+  )
+
+  const map = areFieldsFromQueryStringValid
+    ? fieldsFromQueryString.mapField
+    : mapQuery || initializeMap(params)
 
   // Remove params which don't compose a search path
   const { id, ...searchParams } = params
@@ -37,12 +51,21 @@ const SearchContext = ({
     .join('/')
     .replace(/\/\//g, '/') //This cleans some bad cases of two // on some terms.
 
-  const queryValue = queryField
+  const queryValue = areFieldsFromQueryStringValid
+    ? fieldsFromQueryString.queryField
+    : queryField
     ? queryField
     : rest && rest.length > 0
     ? `${query}/${rest.replace(',', '/')}`
     : query
   const mapValue = queryField ? mapField : map
+
+  console.log({
+    query,
+    queryField,
+    queryFieldFromQueryString: fieldsFromQueryString.queryField,
+    queryValue,
+  })
 
   return (
     <SearchQuery
