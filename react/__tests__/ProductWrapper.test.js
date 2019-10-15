@@ -66,4 +66,14 @@ describe('ProductWrapper component', () => {
     getByTestId(descriptionId)
     getTitleTag(product)
   })
+
+  it('product wont break if category tree is an empty array', () => {
+    const product = getProduct({ categoryTree: [] })
+    const { getTitleTag } = renderComponent({
+      product,
+      params: { slug: product.linkText },
+      productQuery: { product, loading: false },
+    })
+    getTitleTag(product)
+  })
 })
