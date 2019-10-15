@@ -25,7 +25,8 @@
       "tab-content",
       "stack-layout",
       "experimental__visibility-layout",
-      "image-slider"
+      "image-slider",
+      "responsive-layout"
     ],
     "preview": {
       "type": "transparent",
