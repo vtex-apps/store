@@ -53,20 +53,22 @@ function usePageEvents(titleTag: string, product: MaybeProduct, selectedItem: SK
       return []
     }
 
+    const hasCategoryTree = categoryTree && categoryTree.length
+
     const pageInfo: any = {
       event: 'pageInfo',
       eventType: 'productView',
       accountName: account,
       pageCategory: 'Product',
-      pageDepartment: categoryTree ? head(categoryTree).name : '',
+      pageDepartment: hasCategoryTree ? head(categoryTree!).name : '',
       pageFacets: [],
       pageTitle: titleTag,
       pageUrl: window.location.href,
       productBrandName: brand,
       productCategoryId: Number(categoryId),
-      productCategoryName: categoryTree ? last(categoryTree).name : '',
-      productDepartmentId: categoryTree ? head(categoryTree).id : '',
-      productDepartmentName: categoryTree ? head(categoryTree).name : '',
+      productCategoryName: hasCategoryTree ? last(categoryTree!).name : '',
+      productDepartmentId: hasCategoryTree ? head(categoryTree!).id : '',
+      productDepartmentName: hasCategoryTree ? head(categoryTree!).name : '',
       productId: productId,
       productName: productName,
       skuStockOutFromProductDetail: [],
