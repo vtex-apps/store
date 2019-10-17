@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `iframe` to allowed list on `store.custom`
+
 ## [2.67.0] - 2019-10-15
 ### Added
 - `responsive-layout` to allowed lists.
