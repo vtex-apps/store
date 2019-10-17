@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.68.0] - 2019-10-17
+
 ### Added
 
 - `iframe` to allowed list on `store.custom`

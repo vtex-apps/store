@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "store",
-  "version": "2.67.0",
+  "version": "2.68.0",
   "title": "VTEX Store",
   "description": "The VTEX basic store.",
   "builders": {
@@ -109,7 +109,10 @@
               "type": "string"
             }
           },
-          "required": ["rel", "href"]
+          "required": [
+            "rel",
+            "href"
+          ]
         },
         "description": "Configure your store's favicons"
       }
