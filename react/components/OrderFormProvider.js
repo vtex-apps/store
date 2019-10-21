@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { graphql, compose } from 'react-apollo'
+import React, { useState, useCallback, useMemo } from 'react'
+import { useQuery, useMutation } from 'react-apollo'
 
 import {
   addToCart,
@@ -11,76 +11,57 @@ import {
 import { Provider } from 'vtex.store-resources/OrderFormContext'
 import { orderForm } from 'vtex.store-resources/Queries'
 
-class OrderFormProvider extends Component {
-  state = {
-    orderFormContext: {
-      message: { isSuccess: null, text: null },
-      loading: true,
-      orderForm: {},
-      refetch: () => {},
-      addItem: this.props.addItem,
-      updateToastMessage: this.handleMessageUpdate,
-      updateOrderForm: this.props.updateOrderForm,
-      updateAndRefetchOrderForm: this.handleUpdateAndRefetchOrderForm,
-      updateOrderFormProfile: this.props.updateOrderFormProfile,
-      updateOrderFormShipping: this.props.updateOrderFormShipping,
-      updateOrderFormCheckin: this.props.updateOrderFormCheckin,
+const OrderFormProvider = ({ children }) => {
+  const { loading, data = {}, refetch } = useQuery(orderForm, { ssr: false })
+  const [addItem] = useMutation(addToCart)
+  const [updateItemsMutation] = useMutation(updateItems)
+  const [updateOrderFormProfileMutation] = useMutation(updateOrderFormProfile)
+  const [updateOrderFormShippingMutation] = useMutation(updateOrderFormShipping)
+  const [updateOrderFormCheckinMutation] = useMutation(updateOrderFormCheckin)
+
+  const [toastMessage, updateToastMessage] = useState({
+    isSuccess: null,
+    text: null,
+  })
+  const updateAndRefetchOrderForm = useCallback(
+    vars => {
+      return updateItemsMutation(vars).then(() => {
+        return refetch()
+      })
     },
-  }
+    [updateItemsMutation, refetch]
+  )
 
-  static getDerivedStateFromProps(props, state) {
-    if (!props.data.loading && !props.data.error) {
-      const orderFormContext = props.data
-
-      orderFormContext.message = state.orderFormContext.message
-
-      return {
-        orderFormContext,
-      }
+  const context = useMemo(() => {
+    return {
+      orderFormContext: {
+        loading,
+        orderForm: data,
+        refetch,
+        message: toastMessage,
+        addItem,
+        updateToastMessage,
+        updateOrderForm: updateItemsMutation,
+        updateAndRefetchOrderForm,
+        updateOrderFormProfile: updateOrderFormProfileMutation,
+        updateOrderFormShipping: updateOrderFormShippingMutation,
+        updateOrderFormCheckin: updateOrderFormCheckinMutation,
+      },
     }
+  }, [
+    loading,
+    data,
+    refetch,
+    toastMessage,
+    addItem,
+    updateItemsMutation,
+    updateAndRefetchOrderForm,
+    updateOrderFormProfileMutation,
+    updateOrderFormShippingMutation,
+    updateOrderFormCheckinMutation,
+  ])
 
-    return state
-  }
-
-  handleUpdateAndRefetchOrderForm = vars => {
-    return this.props.updateOrderForm(vars).then(() => {
-      return this.props.data.refetch()
-    })
-  }
-
-  handleMessageUpdate = message => {
-    const context = this.state.orderFormContext
-    context.message = message
-
-    this.setState({ orderFormContext: context })
-  }
-
-  render() {
-    const state = this.state
-
-    state.orderFormContext.updateToastMessage = this.handleMessageUpdate
-    state.orderFormContext.updateAndRefetchOrderForm = this.handleUpdateAndRefetchOrderForm
-    state.orderFormContext.updateOrderForm = this.props.updateOrderForm
-    state.orderFormContext.addItem = this.props.addItem
-    state.orderFormContext.updateOrderFormProfile = this.props.updateOrderFormProfile
-    state.orderFormContext.updateOrderFormShipping = this.props.updateOrderFormShipping
-    state.orderFormContext.updateOrderFormCheckin = this.props.updateOrderFormCheckin
-
-    return <Provider value={this.state}>{this.props.children}</Provider>
-  }
+  return <Provider value={context}>{children}</Provider>
 }
 
-const options = {
-  options: () => ({
-    ssr: false,
-  }),
-}
-
-export default compose(
-  graphql(orderForm, options),
-  graphql(addToCart, { name: 'addItem' }),
-  graphql(updateItems, { name: 'updateOrderForm' }),
-  graphql(updateOrderFormProfile, { name: 'updateOrderFormProfile' }),
-  graphql(updateOrderFormShipping, { name: 'updateOrderFormShipping' }),
-  graphql(updateOrderFormCheckin, { name: 'updateOrderFormCheckin' })
-)(OrderFormProvider)
+export default OrderFormProvider
