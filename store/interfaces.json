@@ -181,6 +181,9 @@
   "store.content": {
     "context": "ContentPageContext"
   },
+  "store.offline": {
+    "required": ["offline-warning"]
+  },
   "__fold__": {
     "component": "Fold"
   },
