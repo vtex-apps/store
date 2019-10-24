@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Add `/offline` route to be used to edit `offline-warning` component.
+- Add `/offline` route with `offline-warning` block.
 
 ## [2.68.1] - 2019-10-22
 ### Fixed
