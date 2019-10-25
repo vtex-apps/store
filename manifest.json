@@ -56,7 +56,8 @@
     "vtex.store-image": "0.x",
     "vtex.responsive-layout": "0.x",
     "vtex.iframe": "0.x",
-    "vtex.pwa-components": "0.x"
+    "vtex.pwa-components": "0.x",
+    "gocommerce.inject-into": "0.x"
   },
   "settingsSchema": {
     "title": "VTEX Store",

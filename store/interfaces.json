@@ -26,7 +26,8 @@
       "stack-layout",
       "experimental__visibility-layout",
       "image-slider",
-      "responsive-layout"
+      "responsive-layout",
+      "inject-into"
     ],
     "preview": {
       "type": "transparent",
