@@ -83,8 +83,7 @@ const useProductQueries = params => {
     benefitsLoading ? null : benefitsProduct,
   ].filter(maybeProduct => maybeProduct && !isEmpty(maybeProduct))
 
-  const allEmpty = validProducts.length === 0
-  const product = allEmpty
+  const product = catalogLoading
     ? null
     : validProducts.reduce((acc, product) => ({ ...acc, ...product }), {})
 
