@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- `list-context` to allowed list.
 
 ## [2.69.0] - 2019-10-24
 ### Added
@@ -16,9 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Move code to vtex.structured-data.
 
 ## [2.68.0] - 2019-10-17
-
 ### Added
-
 - `iframe` to allowed list on `store.custom`
 
 ## [2.67.0] - 2019-10-15
