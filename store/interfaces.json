@@ -27,8 +27,7 @@
       "experimental__visibility-layout",
       "image-slider",
       "responsive-layout",
-      "list-context",
-      "product-list-block"
+      "list-context"
     ],
     "preview": {
       "type": "transparent",

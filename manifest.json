@@ -57,8 +57,7 @@
     "vtex.responsive-layout": "0.x",
     "vtex.iframe": "0.x",
     "vtex.pwa-components": "0.x",
-    "vtex.list-context": "0.x",
-    "vtex.product-summary": "2.x"
+    "vtex.list-context": "0.x"
   },
   "settingsSchema": {
     "title": "VTEX Store",
