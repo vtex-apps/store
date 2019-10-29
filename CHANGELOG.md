@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- `list-context` and `product-list-block` to allowed list.
+- `list-context` to allowed list.
 
 ## [2.69.0] - 2019-10-24
 ### Added
