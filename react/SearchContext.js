@@ -51,21 +51,21 @@ const SearchContext = ({
     .join('/')
     .replace(/\/\//g, '/') //This cleans some bad cases of two // on some terms.
 
-  const queryValue = areFieldsFromQueryStringValid
-    ? fieldsFromQueryString.queryField
-    : queryField
-    ? queryField
-    : rest && rest.length > 0
-    ? `${query}/${rest.replace(',', '/')}`
-    : query
-  const mapValue = queryField ? mapField : map
+  const getCorrectQueryValue = () => {
+    if (areFieldsFromQueryStringValid) {
+      return fieldsFromQueryString.queryField
+    }
+    if (queryField) {
+      return queryField
+    }
+    if (rest && rest.length > 0) {
+      return `${query}/${rest.replace(',', '/')}`
+    }
+    return query
+  }
 
-  console.log({
-    query,
-    queryField,
-    queryFieldFromQueryString: fieldsFromQueryString.queryField,
-    queryValue,
-  })
+  const queryValue = getCorrectQueryValue()
+  const mapValue = queryField ? mapField : map
 
   return (
     <SearchQuery
@@ -125,6 +125,7 @@ SearchContext.propTypes = {
     map: PropTypes.string,
     order: PropTypes.oneOf(SORT_OPTIONS.map(o => o.value)),
     priceRange: PropTypes.string,
+    rest: PropTypes.any,
   }),
   /** Custom query `query` param */
   queryField: PropTypes.string,
