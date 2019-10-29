@@ -69,6 +69,24 @@ class StoreWrapper extends Component {
   isStorefrontIframe =
     canUseDOM && window.top !== window.self && window.top.__provideRuntime
 
+  componentDidMount() {
+    const {
+      runtime: { prefetchDefaultPages },
+    } = this.props
+    prefetchDefaultPages([
+      'store.custom',
+      'store.product',
+      'store.search',
+      'store.search#brand',
+      'store.search#category',
+      'store.search#configurable',
+      'store.search#custom',
+      'store.search#department',
+      'store.search#subcategory',
+      'store.search#subcategory-terms',
+    ])
+  }
+
   render() {
     const {
       runtime: {
