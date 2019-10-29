@@ -52,12 +52,15 @@ const SearchContext = ({
     .replace(/\/\//g, '/') //This cleans some bad cases of two // on some terms.
 
   const getCorrectQueryValue = () => {
+    // Checks if this is on the format of preventRouteChange and get the correct data
     if (areFieldsFromQueryStringValid) {
       return fieldsFromQueryString.queryField
     }
+    // Normal query format, without preventRouteChange
     if (queryField) {
       return queryField
     }
+    // Legacy search
     if (rest && rest.length > 0) {
       return `${query}/${rest.replace(',', '/')}`
     }
