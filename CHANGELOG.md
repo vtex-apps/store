@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Support for queries with Prevent Route CHange.
+- Support for queries with `preventRouteChange`.
 
 ## [2.68.1] - 2019-10-22
 ### Fixed
