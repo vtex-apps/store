@@ -9,6 +9,8 @@ import { initializeMap, SORT_OPTIONS } from './utils/search'
 
 const DEFAULT_MAX_ITEMS_PER_PAGE = 10
 
+const trimStartingSlash = value => value && value.replace(/^\//, '')
+
 const SearchContext = ({
   nextTreePath,
   params,
@@ -27,8 +29,20 @@ const SearchContext = ({
   },
   children,
 }) => {
-  const { page: runtimePage } = useRuntime()
-  const map = mapQuery || initializeMap(params)
+  const { page: runtimePage, query: runtimeQuery } = useRuntime()
+
+  const fieldsFromQueryString = {
+    mapField: runtimeQuery.map,
+    queryField: trimStartingSlash(runtimeQuery.query),
+  }
+
+  const areFieldsFromQueryStringValid = !!(
+    fieldsFromQueryString.mapField && fieldsFromQueryString.queryField
+  )
+
+  const map = areFieldsFromQueryStringValid
+    ? fieldsFromQueryString.mapField
+    : mapQuery || initializeMap(params)
 
   // Remove params which don't compose a search path
   const { id, ...searchParams } = params
@@ -37,11 +51,23 @@ const SearchContext = ({
     .join('/')
     .replace(/\/\//g, '/') //This cleans some bad cases of two // on some terms.
 
-  const queryValue = queryField
-    ? queryField
-    : rest && rest.length > 0
-    ? `${query}/${rest.replace(',', '/')}`
-    : query
+  const getCorrectQueryValue = () => {
+    // Checks if this is on the format of preventRouteChange and get the correct data
+    if (areFieldsFromQueryStringValid) {
+      return fieldsFromQueryString.queryField
+    }
+    // Normal query format, without preventRouteChange
+    if (queryField) {
+      return queryField
+    }
+    // Legacy search
+    if (rest && rest.length > 0) {
+      return `${query}/${rest.replace(',', '/')}`
+    }
+    return query
+  }
+
+  const queryValue = getCorrectQueryValue()
   const mapValue = queryField ? mapField : map
 
   return (
@@ -102,6 +128,7 @@ SearchContext.propTypes = {
     map: PropTypes.string,
     order: PropTypes.oneOf(SORT_OPTIONS.map(o => o.value)),
     priceRange: PropTypes.string,
+    rest: PropTypes.any,
   }),
   /** Custom query `query` param */
   queryField: PropTypes.string,
