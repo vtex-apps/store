@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { Fragment, useMemo } from 'react'
-import { Helmet, useRuntime, LoadingContext } from 'vtex.render-runtime'
+import { Helmet, useRuntime, LoadingContextProvider } from 'vtex.render-runtime'
 
 import { capitalize } from './utils/capitalize'
 import useDataPixel from './hooks/useDataPixel'
@@ -118,9 +118,9 @@ const SearchWrapper = props => {
           },
         ].filter(Boolean)}
       />
-      <LoadingContext.Provider value={{ isParentLoading: loading }}>
+      <LoadingContextProvider value={{ isParentLoading: loading }}>
         {React.cloneElement(children, props)}
-      </LoadingContext.Provider>
+      </LoadingContextProvider>
     </Fragment>
   )
 }
