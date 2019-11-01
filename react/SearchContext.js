@@ -27,6 +27,7 @@ const SearchContext = ({
     // backwards-compatibility
     rest,
   },
+  quickSearch,
   children,
 }) => {
   const { page: runtimePage, query: runtimeQuery } = useRuntime()
@@ -79,6 +80,7 @@ const SearchContext = ({
       priceRange={priceRange}
       hideUnavailableItems={hideUnavailableItems}
       pageQuery={pageQuery}
+      quickSearch={quickSearch}
     >
       {(searchQuery, extraParams) => {
         return React.cloneElement(children, {
@@ -122,6 +124,7 @@ SearchContext.propTypes = {
     category: PropTypes.string,
     department: PropTypes.string,
     term: PropTypes.string,
+    id: PropTypes.string,
   }),
   /** Query params */
   query: PropTypes.shape({
@@ -129,6 +132,7 @@ SearchContext.propTypes = {
     order: PropTypes.oneOf(SORT_OPTIONS.map(o => o.value)),
     priceRange: PropTypes.string,
     rest: PropTypes.any,
+    page: PropTypes.any,
   }),
   /** Custom query `query` param */
   queryField: PropTypes.string,
@@ -143,6 +147,7 @@ SearchContext.propTypes = {
   /** Max items to show per result page */
   maxItemsPerPage: PropTypes.number,
   hideUnavailableItems: PropTypes.bool,
+  quickSearch: PropTypes.bool,
 }
 
 SearchContext.schema = {
