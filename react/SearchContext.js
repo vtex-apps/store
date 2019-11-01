@@ -44,14 +44,6 @@ const SearchContext = ({
     ? fieldsFromQueryString.mapField
     : mapQuery || initializeMap(params)
 
-  console.log('teste ARGS: ', {
-    areFieldsFromQueryStringValid,
-    params,
-    map,
-    query,
-    runtimeQuery,
-  })
-
   // Remove params which don't compose a search path
   const { id, ...searchParams } = params
   const query = Object.values(searchParams)
