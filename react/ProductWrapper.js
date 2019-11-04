@@ -45,13 +45,20 @@ const ProductWrapper = ({
     [productQuery, slug, props]
   )
 
+  const hasProductData = !!product
+
+  const loadingValue = useMemo(
+    () => ({
+      isParentLoading: loading || !hasProductData,
+    }),
+    [loading, hasProductData]
+  )
+
   return (
     <WrapperContainer className="vtex-product-context-provider">
       <ProductContextProvider query={query} product={product}>
         <Content loading={loading} childrenProps={childrenProps}>
-          <LoadingContextProvider
-            value={{ isParentLoading: loading || !product }}
-          >
+          <LoadingContextProvider value={loadingValue}>
             {children}
           </LoadingContextProvider>
         </Content>
