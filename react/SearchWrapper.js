@@ -101,6 +101,13 @@ const SearchWrapper = props => {
     ]
   }, [account, params, searchQuery, title])
 
+  const loadingValue = useMemo(
+    () => ({
+      isParentLoading: loading,
+    }),
+    [loading]
+  )
+
   useDataPixel(pixelEvents, getSearchIdentifier(searchQuery), loading)
 
   return (
@@ -118,7 +125,7 @@ const SearchWrapper = props => {
           },
         ].filter(Boolean)}
       />
-      <LoadingContextProvider value={{ isParentLoading: loading }}>
+      <LoadingContextProvider value={loadingValue}>
         {React.cloneElement(children, props)}
       </LoadingContextProvider>
     </Fragment>
