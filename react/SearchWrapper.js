@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React, { Fragment, useMemo } from 'react'
+import React, { Fragment, useMemo, useState, useEffect } from 'react'
 import { Helmet, useRuntime, LoadingContextProvider } from 'vtex.render-runtime'
 
 import { capitalize } from './utils/capitalize'
@@ -101,6 +101,8 @@ const SearchWrapper = props => {
     ]
   }, [account, params, searchQuery, title])
 
+  const [isLoaded, setIsLoaded] = useState(true)
+
   const loadingValue = useMemo(
     () => ({
       isParentLoading: loading,
@@ -109,6 +111,11 @@ const SearchWrapper = props => {
   )
 
   useDataPixel(pixelEvents, getSearchIdentifier(searchQuery), loading)
+  useEffect(() => {
+    if (!loading) {
+      setIsLoaded(false)
+    }
+  }, [loading])
 
   return (
     <Fragment>
@@ -125,7 +132,7 @@ const SearchWrapper = props => {
           },
         ].filter(Boolean)}
       />
-      <LoadingContextProvider value={loadingValue}>
+      <LoadingContextProvider value={loadingValue && isLoaded}>
         {React.cloneElement(children, props)}
       </LoadingContextProvider>
     </Fragment>
