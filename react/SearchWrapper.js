@@ -101,19 +101,22 @@ const SearchWrapper = props => {
     ]
   }, [account, params, searchQuery, title])
 
-  const [isLoaded, setIsLoaded] = useState(true)
+  const [hasLoaded, setHasLoaded] = useState(true)
 
   const loadingValue = useMemo(
     () => ({
-      isParentLoading: loading,
+      isParentLoading: loading && hasLoaded,
     }),
-    [loading]
+    [loading, hasLoaded]
   )
 
   useDataPixel(pixelEvents, getSearchIdentifier(searchQuery), loading)
+
+  /** Prevents the loader from showing up after initial data is loaded,
+   * e.g. when setQuery changes the query variables */
   useEffect(() => {
     if (!loading) {
-      setIsLoaded(false)
+      setHasLoaded(false)
     }
   }, [loading])
 
@@ -132,7 +135,7 @@ const SearchWrapper = props => {
           },
         ].filter(Boolean)}
       />
-      <LoadingContextProvider value={loadingValue && isLoaded}>
+      <LoadingContextProvider value={loadingValue}>
         {React.cloneElement(children, props)}
       </LoadingContextProvider>
     </Fragment>
