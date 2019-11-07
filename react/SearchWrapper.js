@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
-import React, { Fragment, useMemo } from 'react'
-import { Helmet, useRuntime } from 'vtex.render-runtime'
+import React, { Fragment, useMemo, useState, useEffect } from 'react'
+import { Helmet, useRuntime, LoadingContextProvider } from 'vtex.render-runtime'
 
 import { capitalize } from './utils/capitalize'
 import useDataPixel from './hooks/useDataPixel'
@@ -101,7 +101,24 @@ const SearchWrapper = props => {
     ]
   }, [account, params, searchQuery, title])
 
+  const [hasLoaded, setHasLoaded] = useState(true)
+
+  const loadingValue = useMemo(
+    () => ({
+      isParentLoading: loading && hasLoaded,
+    }),
+    [loading, hasLoaded]
+  )
+
   useDataPixel(pixelEvents, getSearchIdentifier(searchQuery), loading)
+
+  /** Prevents the loader from showing up after initial data is loaded,
+   * e.g. when setQuery changes the query variables */
+  useEffect(() => {
+    if (!loading) {
+      setHasLoaded(false)
+    }
+  }, [loading])
 
   return (
     <Fragment>
@@ -118,7 +135,9 @@ const SearchWrapper = props => {
           },
         ].filter(Boolean)}
       />
-      {React.cloneElement(children, props)}
+      <LoadingContextProvider value={loadingValue}>
+        {React.cloneElement(children, props)}
+      </LoadingContextProvider>
     </Fragment>
   )
 }
