@@ -19,6 +19,7 @@ const SearchContext = ({
   mapField,
   orderByField,
   hideUnavailableItems,
+  skusFilter,
   query: {
     order: orderBy = orderByField || SORT_OPTIONS[0].value,
     page: pageQuery,
@@ -79,6 +80,7 @@ const SearchContext = ({
       priceRange={priceRange}
       hideUnavailableItems={hideUnavailableItems}
       pageQuery={pageQuery}
+      skusFilter={skusFilter}
     >
       {(searchQuery, extraParams) => {
         return React.cloneElement(children, {
