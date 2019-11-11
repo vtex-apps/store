@@ -10,6 +10,8 @@ import PropTypes from 'prop-types'
 import { PixelProvider } from 'vtex.pixel-manager/PixelContext'
 import { ToastProvider } from 'vtex.styleguide'
 import { PWAProvider } from 'vtex.store-resources/PWAContext'
+import { OrderQueueProvider } from 'vtex.order-manager/OrderQueue'
+import { OrderFormProvider as OrderFormProviderCheckout } from 'vtex.order-manager/OrderForm'
 
 import PageViewPixel from './components/PageViewPixel'
 import OrderFormProvider from './components/OrderFormProvider'
@@ -169,9 +171,13 @@ class StoreWrapper extends Component {
             <ToastProvider positioning="window">
               <NetworkStatusToast />
               <OrderFormProvider>
-                <WrapperContainer className="vtex-store__template bg-base">
-                  {this.props.children}
-                </WrapperContainer>
+                <OrderQueueProvider>
+                  <OrderFormProviderCheckout>
+                    <WrapperContainer className="vtex-store__template bg-base">
+                      {this.props.children}
+                    </WrapperContainer>
+                  </OrderFormProviderCheckout>
+                </OrderQueueProvider>
               </OrderFormProvider>
             </ToastProvider>
           </PWAProvider>
