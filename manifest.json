@@ -57,7 +57,8 @@
     "vtex.responsive-layout": "0.x",
     "vtex.iframe": "0.x",
     "vtex.pwa-components": "0.x",
-    "vtex.list-context": "0.x"
+    "vtex.list-context": "0.x",
+    "vtex.menu": "2.x"
   },
   "settingsSchema": {
     "title": "VTEX Store",
@@ -111,10 +112,7 @@
               "type": "string"
             }
           },
-          "required": [
-            "rel",
-            "href"
-          ]
+          "required": ["rel", "href"]
         },
         "description": "Configure your store's favicons"
       }

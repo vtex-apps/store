@@ -27,7 +27,8 @@
       "experimental__visibility-layout",
       "image-slider",
       "responsive-layout",
-      "list-context"
+      "list-context",
+      "menu"
     ],
     "preview": {
       "type": "transparent",
