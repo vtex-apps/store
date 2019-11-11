@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.74.0] - 2019-11-11 [YANKED]
+### Added	
+- New contexts from vtex.order-manager to the StoreWrapper component
+
 ## [2.73.0] - 2019-11-11
 ### Added
 - `menu` to allowed list for `store` interface.
