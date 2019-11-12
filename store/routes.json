@@ -48,6 +48,6 @@
     "path": "/checkout/orderPlaced"
   },
   "store.offline": {
-    "path": "/offline"
+    "path": "/_v/offline"
   }
 }
