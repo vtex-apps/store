@@ -1,10 +1,10 @@
-import React, { Component, Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import {
   canUseDOM,
   ExtensionPoint,
   Helmet,
   NoSSR,
-  withRuntimeContext,
+  useRuntime,
 } from 'vtex.render-runtime'
 import PropTypes from 'prop-types'
 import { PixelProvider } from 'vtex.pixel-manager/PixelContext'
@@ -32,49 +32,23 @@ const systemToCanonical = ({ canonicalPath }) => {
   }
 }
 
-class StoreWrapper extends Component {
-  static propTypes = {
-    runtime: PropTypes.shape({
-      amp: PropTypes.boolean,
-      prefetchDefaultPages: PropTypes.func,
-      culture: PropTypes.shape({
-        country: PropTypes.string,
-        locale: PropTypes.string,
-        currency: PropTypes.string,
-      }),
-      route: PropTypes.shape({
-        metaTags: PropTypes.shape({
-          description: PropTypes.string,
-          keywords: PropTypes.arrayOf(PropTypes.string),
-        }),
-        title: PropTypes.string,
-      }),
-    }),
-    children: PropTypes.element,
-    push: PropTypes.func,
-    data: PropTypes.shape({
-      loading: PropTypes.bool,
-      manifest: PropTypes.shape({
-        // eslint-disable-next-line @typescript-eslint/camelcase
-        theme_color: PropTypes.string,
-        icons: PropTypes.arrayOf(
-          PropTypes.shape({
-            src: PropTypes.string,
-            type: PropTypes.string,
-            sizes: PropTypes.string,
-          })
-        ),
-      }),
-    }),
-  }
+const StoreWrapper = ({ children }) => {
+  const {
+    amp,
+    culture: { country, locale, currency },
+    route,
+    route: { metaTags, title: pageTitle },
+    getSettings,
+    rootPath = '',
+    prefetchDefaultPages,
+  } = useRuntime()
 
-  isStorefrontIframe =
+  const isStorefrontIframe =
     canUseDOM && window.top !== window.self && window.top.__provideRuntime
 
-  componentDidMount() {
-    const {
-      runtime: { prefetchDefaultPages },
-    } = this.props
+  const supportsServiceWorker = canUseDOM && 'serviceWorker' in navigator
+
+  useEffect(() => {
     prefetchDefaultPages([
       'store.custom',
       'store.product',
@@ -87,109 +61,101 @@ class StoreWrapper extends Component {
       'store.search#subcategory',
       'store.search#subcategory-terms',
     ])
-  }
+  }, [prefetchDefaultPages])
 
-  render() {
-    const {
-      runtime: {
-        amp,
-        culture: { country, locale, currency },
-        route,
-        route: { metaTags, title: pageTitle },
-        getSettings,
-        rootPath = '',
-      },
-    } = this.props
-    const settings = getSettings(APP_LOCATOR) || {}
-    const {
-      titleTag,
-      metaTagDescription,
-      metaTagRobots,
-      storeName,
-      faviconLinks,
-    } = settings
+  const settings = getSettings(APP_LOCATOR) || {}
+  const {
+    titleTag,
+    metaTagDescription,
+    metaTagRobots,
+    storeName,
+    faviconLinks,
+  } = settings
 
-    const { canonicalHost, canonicalPath } = systemToCanonical(route)
-    const description = (metaTags && metaTags.description) || metaTagDescription
-    const title = pageTitle || titleTag
+  const { canonicalHost, canonicalPath } = systemToCanonical(route)
+  const description = (metaTags && metaTags.description) || metaTagDescription
+  const title = pageTitle || titleTag
 
-    const [queryMatch] = route.path.match(/\?.*/) || ['?']
+  const [queryMatch] = route.path.match(/\?.*/) || ['?']
 
-    const canonicalLink =
-      canonicalHost &&
-      canonicalPath &&
-      `https://${canonicalHost}${rootPath}${
-        canonicalPath ? canonicalPath.toLowerCase() : ''
-      }`
+  const canonicalLink =
+    canonicalHost &&
+    canonicalPath &&
+    `https://${canonicalHost}${rootPath}${
+      canonicalPath ? canonicalPath.toLowerCase() : ''
+    }`
 
-    return (
-      <Fragment>
-        <Helmet
-          title={title}
-          meta={[
-            // viewport meta tag is already handled in render-server for AMP pages
-            !amp && { name: 'viewport', content: MOBILE_SCALING },
-            { name: 'description', content: description },
-            { name: 'copyright', content: storeName },
-            { name: 'author', content: storeName },
-            { name: 'country', content: country },
-            { name: 'language', content: locale },
-            { name: 'currency', content: currency },
-            { name: 'robots', content: metaTagRobots || META_ROBOTS },
-            { httpEquiv: 'Content-Type', content: CONTENT_TYPE },
-          ]
-            .filter(Boolean)
-            .filter(meta => meta.content && meta.content.length > 0)}
-          script={[
-            {
-              type: 'text/javascript',
-              src: `${rootPath}/pwa/workers/register.js${queryMatch}&scope=${encodeURIComponent(
-                rootPath
-              )}`,
-              defer: true,
-            },
-          ]}
-          link={[
-            ...(faviconLinks || []),
-            ...(!amp && canonicalLink
-              ? [
-                  /*{
+  return (
+    <Fragment>
+      <Helmet
+        title={title}
+        meta={[
+          // viewport meta tag is already handled in render-server for AMP pages
+          !amp && { name: 'viewport', content: MOBILE_SCALING },
+          { name: 'description', content: description },
+          { name: 'copyright', content: storeName },
+          { name: 'author', content: storeName },
+          { name: 'country', content: country },
+          { name: 'language', content: locale },
+          { name: 'currency', content: currency },
+          { name: 'robots', content: metaTagRobots || META_ROBOTS },
+          { httpEquiv: 'Content-Type', content: CONTENT_TYPE },
+        ]
+          .filter(Boolean)
+          .filter(meta => meta.content && meta.content.length > 0)}
+        script={[
+          supportsServiceWorker && {
+            type: 'text/javascript',
+            src: `${rootPath}/pwa/workers/register.js${queryMatch}&scope=${encodeURIComponent(
+              rootPath
+            )}`,
+            defer: true,
+          },
+        ].filter(Boolean)}
+        link={[
+          ...(faviconLinks || []),
+          ...(!amp && canonicalLink
+            ? [
+                /*{
                     rel: 'amphtml',
                     href: encodeURI(`${canonicalLink}?amp`),
                   },*/
-                  {
-                    rel: 'canonical',
-                    href: encodeURI(canonicalLink),
-                  },
-                ]
-              : []),
-          ].filter(Boolean)}
-        />
-        <PixelProvider currency={currency}>
-          <PWAProvider rootPath={rootPath}>
-            <PageViewPixel title={title} />
-            <ToastProvider positioning="window">
-              <NetworkStatusToast />
-              <OrderFormProvider>
-                <OrderQueueProvider>
-                  <OrderFormProviderCheckout>
-                    <WrapperContainer className="vtex-store__template bg-base">
-                      {this.props.children}
-                    </WrapperContainer>
-                  </OrderFormProviderCheckout>
-                </OrderQueueProvider>
-              </OrderFormProvider>
-            </ToastProvider>
-          </PWAProvider>
-        </PixelProvider>
-        {this.isStorefrontIframe && (
-          <NoSSR>
-            <ExtensionPoint id="highlight-overlay" />
-          </NoSSR>
-        )}
-      </Fragment>
-    )
-  }
+                {
+                  rel: 'canonical',
+                  href: encodeURI(canonicalLink),
+                },
+              ]
+            : []),
+        ].filter(Boolean)}
+      />
+      <PixelProvider currency={currency}>
+        <PWAProvider rootPath={rootPath}>
+          <PageViewPixel title={title} />
+          <ToastProvider positioning="window">
+            <NetworkStatusToast />
+            <OrderFormProvider>
+              <OrderQueueProvider>
+                <OrderFormProviderCheckout>
+                  <WrapperContainer className="vtex-store__template bg-base">
+                    {children}
+                  </WrapperContainer>
+                </OrderFormProviderCheckout>
+              </OrderQueueProvider>
+            </OrderFormProvider>
+          </ToastProvider>
+        </PWAProvider>
+      </PixelProvider>
+      {isStorefrontIframe && (
+        <NoSSR>
+          <ExtensionPoint id="highlight-overlay" />
+        </NoSSR>
+      )}
+    </Fragment>
+  )
 }
 
-export default withRuntimeContext(StoreWrapper)
+StoreWrapper.propTypes = {
+  children: PropTypes.element,
+}
+
+export default StoreWrapper
