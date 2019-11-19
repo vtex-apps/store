@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Removed
+- `customWrapper` from `interfaces.json`
+
 ## [2.68.1] - 2019-10-22
 ### Fixed
 - Move code to vtex.structured-data.
