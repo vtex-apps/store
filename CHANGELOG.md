@@ -10,14 +10,57 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 - `customWrapper` from `interfaces.json`
 
+## [2.75.1] - 2019-11-19
+### Changed
+- Update to only add the register service worker script if the browser supports
+  it. This also changes to only add this script in the client-side.
+
+## [2.75.0] - 2019-11-13
+### Added	
+- New contexts from vtex.order-manager to the StoreWrapper component
+
+## [2.74.1] - 2019-11-13
+### Changed
+- Renamed offline page route to `/_v/offline`.
+
+## [2.74.0] - 2019-11-11 [YANKED]
+### Added	
+- New contexts from vtex.order-manager to the StoreWrapper component
+
+## [2.73.0] - 2019-11-11
+### Added
+- `menu` to allowed list for `store` interface.
+
+## [2.72.0] - 2019-11-08
+### Added
+- Support for `skusFilter` variable in SearchContext.
+
+## [2.71.0] - 2019-11-07
+### Added
+- LoadingContext to Product and Search wrappers.
+
+## [2.70.2] - 2019-10-29
+### Added
+- Support for queries with `preventRouteChange`.
+
+## [2.70.1] - 2019-10-29
+### Fixed
+- Revert remove prefetch default pages
+
+## [2.70.0] - 2019-10-29
+### Added
+- `list-context` to allowed list.
+
+## [2.69.0] - 2019-10-24
+### Added
+- Add `/offline` route with `offline-warning` block.
+
 ## [2.68.1] - 2019-10-22
 ### Fixed
 - Move code to vtex.structured-data.
 
 ## [2.68.0] - 2019-10-17
-
 ### Added
-
 - `iframe` to allowed list on `store.custom`
 
 ## [2.67.0] - 2019-10-15

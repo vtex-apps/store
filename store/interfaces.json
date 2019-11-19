@@ -26,7 +26,9 @@
       "stack-layout",
       "experimental__visibility-layout",
       "image-slider",
-      "responsive-layout"
+      "responsive-layout",
+      "list-context",
+      "menu"
     ],
     "preview": {
       "type": "transparent",
@@ -177,6 +179,9 @@
   },
   "store.content": {
     "context": "ContentPageContext"
+  },
+  "store.offline": {
+    "required": ["offline-warning"]
   },
   "__fold__": {
     "component": "Fold"

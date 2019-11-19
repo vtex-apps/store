@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { useMemo, Fragment } from 'react'
+import { LoadingContextProvider } from 'vtex.render-runtime'
 import { ProductOpenGraph } from 'vtex.open-graph'
 import useProduct from 'vtex.product-context/useProduct'
 import ProductContextProvider from 'vtex.product-context/ProductContextProvider'
@@ -44,11 +45,22 @@ const ProductWrapper = ({
     [productQuery, slug, props]
   )
 
+  const hasProductData = !!product
+
+  const loadingValue = useMemo(
+    () => ({
+      isParentLoading: loading || !hasProductData,
+    }),
+    [loading, hasProductData]
+  )
+
   return (
     <WrapperContainer className="vtex-product-context-provider">
       <ProductContextProvider query={query} product={product}>
         <Content loading={loading} childrenProps={childrenProps}>
-          {children}
+          <LoadingContextProvider value={loadingValue}>
+            {children}
+          </LoadingContextProvider>
         </Content>
       </ProductContextProvider>
     </WrapperContainer>
