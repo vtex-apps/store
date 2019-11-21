@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 - `customWrapper` from `interfaces.json`
 
+## [2.76.0] - 2019-11-21
+### Added
+- `add-to-cart` button to allowed list for `store.product`.
+
 ## [2.75.1] - 2019-11-19
 ### Changed
 - Update to only add the register service worker script if the browser supports

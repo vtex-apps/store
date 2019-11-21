@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "store",
-  "version": "2.75.1",
+  "version": "2.76.0",
   "title": "VTEX Store",
   "description": "The VTEX basic store.",
   "builders": {
@@ -59,7 +59,8 @@
     "vtex.pwa-components": "0.x",
     "vtex.list-context": "0.x",
     "vtex.menu": "2.x",
-    "vtex.order-manager": "0.x"
+    "vtex.order-manager": "0.x",
+    "vtex.add-to-cart-button": "0.x"
   },
   "settingsSchema": {
     "title": "VTEX Store",
