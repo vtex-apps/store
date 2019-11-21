@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.76.1] - 2019-11-21
+
 ### Removed
 - `customWrapper` from `interfaces.json`
 
