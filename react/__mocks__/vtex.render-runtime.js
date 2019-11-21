@@ -1,5 +1,6 @@
 import React from 'react'
 
+export const canUseDOM = true
 export const useRuntime = () => {
   return {
     account: 'vtex',
@@ -9,6 +10,10 @@ export const useRuntime = () => {
     }),
     culture: { currency: 'BRL', locale: 'pt-BR' },
   }
+}
+
+export const LoadingContextProvider = ({ children }) => {
+  return <>{children}</>
 }
 
 export const Helmet = ({ title, meta }) => {
