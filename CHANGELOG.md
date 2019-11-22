@@ -6,6 +6,39 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Removed
+The following changes does not consist in a breaking change since those events are not part of the public API:
+
+- Params removed from `emptySearchView`, `categoryView`, `departmentView`, `productView`, and `internalSiteSearchView` events:
+  - `pageCategory`
+  - `pageDepartment`
+  - `pageFacets`
+- Params removed from `productView` event:
+  - `productBrandName`
+  - `productCategoryId`
+  - `productCategoryName`
+  - `productDepartmentId`
+  - `productDepartmentName`
+  - `productId`
+  - `productName`
+  - `productListPriceFrom`
+  - `productListPriceTo`
+  - `productPriceFrom`
+  - `productPriceTo`
+  - `sellerId`
+  - `sellerIds`
+  - `productReferenceId`
+  - `productEans`
+  - `skuStockOutFromProductDetail`
+  - `skuStockOutFromShelf`
+
+### Added
+- Params added to `emptySearchView`, `categoryView`, `departmentView`, and `internalSiteSearchView` events:
+  - `category`
+  - `department`
+
+### Changed
+- `productView` event now only passes the required data.
 
 ## [2.76.1] - 2019-11-21
 
