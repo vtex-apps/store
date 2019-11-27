@@ -2,12 +2,14 @@ import { endsWith } from 'ramda'
 import { SearchQueryData, CategoriesTrees } from './searchTypes'
 
 const getDepartment = (searchQuery: SearchQueryData) => {
-  return searchQuery.facets && searchQuery.facets.categoriesTrees.find(
-    department => department.selected
+  return (
+    searchQuery.facets &&
+    searchQuery.facets.categoriesTrees &&
+    searchQuery.facets.categoriesTrees.find(department => department.selected)
   )
 }
 
-export const getDepartmentMetadata = (searchQuery: SearchQueryData) => {
+export const getDepartmentMetadata = (searchQuery?: SearchQueryData) => {
   if (
     !searchQuery ||
     !searchQuery.facets ||
@@ -41,7 +43,7 @@ const getLastCategory = (category: CategoriesTrees): CategoriesTrees => {
   return getLastCategory(selectedCategory)
 }
 
-export const getCategoryMetadata = (searchQuery: SearchQueryData) => {
+export const getCategoryMetadata = (searchQuery?: SearchQueryData) => {
   if (
     !searchQuery ||
     !searchQuery.facets ||
@@ -68,7 +70,7 @@ export const getCategoryMetadata = (searchQuery: SearchQueryData) => {
   }
 }
 
-export const getSearchMetadata = (searchQuery: SearchQueryData) => {
+export const getSearchMetadata = (searchQuery?: SearchQueryData) => {
   if (
     !searchQuery ||
     !searchQuery.productSearch ||

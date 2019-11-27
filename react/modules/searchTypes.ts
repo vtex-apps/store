@@ -18,7 +18,7 @@ export interface SearchQueryData {
     recordsFiltered: number
   }
   facets?: {
-    categoriesTrees: CategoriesTrees[]
+    categoriesTrees?: CategoriesTrees[]
   }
 }
 
@@ -31,5 +31,5 @@ export interface CategoriesTrees {
   id: string
   name: string
   selected: boolean
-  children: CategoriesTrees[]
+  children?: CategoriesTrees[]
 }

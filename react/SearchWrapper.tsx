@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useMemo, useEffect, FC, ReactElement } from 'react'
-import { Helmet, useRuntime, LoadingContextProvider } from 'vtex.render-runtime'
+import { Helmet, useRuntime, LoadingContextProvider, canUseDOM } from 'vtex.render-runtime'
 
 import { capitalize } from './modules/capitalize'
 import useDataPixel from './hooks/useDataPixel'
@@ -61,9 +61,9 @@ const getSearchIdentifier = (searchQuery: SearchQuery) => {
 }
 
 interface SearchPageInfoEvent {
-  department: DepartmentMetadata | null | undefined
-  category: CategoryMetadata | null | undefined
-  search: SearchMetadata | null | undefined
+  department?: DepartmentMetadata | null
+  category?: CategoryMetadata | null
+  search?: SearchMetadata | null
 }
 
 interface DepartmentMetadata {
@@ -110,7 +110,7 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
   const pixelEvents = useMemo(() => {
     if (
       !searchQuery ||
-      typeof document === 'undefined' ||
+      !canUseDOM ||
       !searchQuery.products
     ) {
       return null

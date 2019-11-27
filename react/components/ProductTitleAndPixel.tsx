@@ -1,5 +1,5 @@
 import React, { useMemo, FC } from 'react'
-import { Helmet, useRuntime } from 'vtex.render-runtime'
+import { Helmet, useRuntime, canUseDOM } from 'vtex.render-runtime'
 import { path } from 'ramda'
 import useDataPixel from '../hooks/useDataPixel'
 import { usePageView } from '../components/PageViewPixel'
@@ -72,7 +72,7 @@ function usePageInfo(
   const { account } = useRuntime()
 
   const pageEvents = useMemo(() => {
-    if (!product || typeof document === 'undefined') {
+    if (!product || !canUseDOM) {
       return []
     }
 
@@ -113,9 +113,9 @@ function useProductEvents(
   loading: boolean
 ) {
   const productEvents = useMemo(() => {
-    const hasCategoryTree = product && product.categoryTree && product.categoryTree.length
+    const hasCategoryTree = Boolean(product && product.categoryTree && product.categoryTree.length)
 
-    if (!product || typeof document === 'undefined' || !selectedItem || !hasCategoryTree) {
+    if (!product || !canUseDOM || !selectedItem || !hasCategoryTree) {
       return []
     }
 

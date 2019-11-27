@@ -1,6 +1,7 @@
-import { useRuntime, canUseDOM } from 'vtex.render-runtime'
-import useDataPixel from '../hooks/useDataPixel'
 import { useMemo } from 'react'
+import { useRuntime, canUseDOM } from 'vtex.render-runtime'
+
+import useDataPixel from '../hooks/useDataPixel'
 
 interface UsePageViewArgs {
   title?: string
