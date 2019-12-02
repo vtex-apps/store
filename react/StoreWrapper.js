@@ -25,7 +25,7 @@ const APP_LOCATOR = 'vtex.store'
 const CONTENT_TYPE = 'text/html; charset=utf-8'
 const META_ROBOTS = 'index, follow'
 const MOBILE_SCALING = 'width=device-width, initial-scale=1'
-const CATEGORY_TREE_MAX_DEPTH = 3
+const CATEGORY_TREE_MAX_DEPTH = 5
 
 const normalizeQueryMap = (categoryTreeDepth, queryMap) => {
   const splitMap = queryMap.map && queryMap.map.split(',')
