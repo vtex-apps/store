@@ -91,7 +91,9 @@ export const getSearchMetadata = (searchQuery?: SearchQueryData) => {
 
   return {
     term: searchTerm.name,
-    category: department ? department.name : null,
+    category: department
+      ? { id: department.id, name: department.name }
+      : null,
     results: searchQuery.productSearch.recordsFiltered,
   }
 }

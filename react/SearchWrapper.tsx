@@ -35,9 +35,10 @@ const mapEvent = {
 const fallbackView = 'otherView'
 
 const getPageEventName = (products: unknown[], params: SearchRouteParams) : PageEventName => {
-  if (!products || products.length === 0) {
+  if (!products) {
     return fallbackView as PageEventName
   }
+
   const category = pageCategory(products, params)
 
   return (mapEvent[category] || fallbackView) as PageEventName
@@ -78,7 +79,7 @@ interface CategoryMetadata {
 
 interface SearchMetadata {
   term: string
-  category: string | null
+  category: CategoryMetadata | null
   results: number
 }
 

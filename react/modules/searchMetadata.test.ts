@@ -130,7 +130,8 @@ test('should get the searched metadata', () => {
   const result = getSearchMetadata(searchQuery)
 
   expect(result!.term).toBe('Top')
-  expect(result!.category).toBe('foo')
+  expect(result!.category!.id).toBe('1')
+  expect(result!.category!.name).toBe('foo')
   expect(result!.results).toBe(3)
 })
 
