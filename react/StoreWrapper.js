@@ -17,7 +17,7 @@ import PageViewPixel from './components/PageViewPixel'
 import OrderFormProvider from './components/OrderFormProvider'
 import NetworkStatusToast from './components/NetworkStatusToast'
 import WrapperContainer from './components/WrapperContainer'
-import normalizeNavigation from './utils/navigation'
+import { normalizeNavigation } from './utils/navigation'
 
 const APP_LOCATOR = 'vtex.store'
 const CONTENT_TYPE = 'text/html; charset=utf-8'
