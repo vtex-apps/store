@@ -25,7 +25,8 @@ const queryMapComparator = (tuple1, tuple2) => {
 const normalizeQueryMap = (categoryTreeDepth, queryMap) => {
   const splitMap = queryMap.map && queryMap.map.split(',')
   const splitQuery = queryMap.query && queryMap.query.split('/').slice(1)
-  const zippedMapQuery = zip(splitMap, splitQuery)
+  const zippedMapQuery =
+    splitMap && splitQuery ? zip(splitMap, splitQuery) : splitMap
 
   const sorted =
     zippedMapQuery &&
@@ -36,8 +37,13 @@ const normalizeQueryMap = (categoryTreeDepth, queryMap) => {
     ...uniq(sorted),
   ]
 
-  queryMap.map = assembledSortedQuery.map(tuple => tuple[0]).join(',')
-  queryMap.query = `/${assembledSortedQuery.map(tuple => tuple[1]).join('/')}`
+  queryMap.map =
+    splitMap &&
+    assembledSortedQuery
+      .map(value => (Array.isArray(value) ? value[0] : value))
+      .join(',')
+  queryMap.query =
+    splitQuery && `/${assembledSortedQuery.map(tuple => tuple[1]).join('/')}`
 }
 
 export const normalizeNavigation = navigation => {
