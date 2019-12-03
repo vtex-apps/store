@@ -3,6 +3,25 @@ import queryString from 'query-string'
 
 const CATEGORY_TREE_MAX_DEPTH = 5
 
+const queryMapComparator = (tuple1, tuple2) => {
+  const [, specFilterVal1] = tuple1[0].split('specificationFilter_')
+  const [, specFilterVal2] = tuple2[0].split('specificationFilter_')
+  const facetName1 = tuple1[1]
+  const facetName2 = tuple2[1]
+
+  const considerSpecificationFilter =
+    specFilterVal1 &&
+    specFilterVal2 &&
+    !isNaN(Number(specFilterVal1)) &&
+    !isNaN(Number(specFilterVal2))
+
+  return considerSpecificationFilter
+    ? Number(specFilterVal1) -
+        Number(specFilterVal2) +
+        facetName1.localeCompare(facetName2)
+    : facetName1.localeCompare(facetName2)
+}
+
 const normalizeQueryMap = (categoryTreeDepth, queryMap) => {
   const splitMap = queryMap.map && queryMap.map.split(',')
   const splitQuery = queryMap.query && queryMap.query.split('/').slice(1)
@@ -10,17 +29,7 @@ const normalizeQueryMap = (categoryTreeDepth, queryMap) => {
 
   const sorted =
     zippedMapQuery &&
-    zippedMapQuery.slice(categoryTreeDepth).sort((tuple1, tuple2) => {
-      const [, specFilterVal1] = tuple1[0].split('specificationFilter_')
-      const [, specFilterVal2] = tuple2[0].split('specificationFilter_')
-      const facetName1 = tuple1[1]
-      const facetName2 = tuple2[1]
-      return (
-        Number(specFilterVal1) -
-        Number(specFilterVal2) +
-        facetName1.localeCompare(facetName2)
-      )
-    })
+    zippedMapQuery.slice(categoryTreeDepth).sort(queryMapComparator)
 
   const assembledSortedQuery = [
     ...zippedMapQuery.slice(0, categoryTreeDepth),
