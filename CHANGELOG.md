@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [2.77.0] - 2019-12-03
 ### Removed
 The following changes does not consist in a breaking change since those events are not part of the public API:
 
