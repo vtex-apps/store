@@ -86,9 +86,7 @@ const StoreWrapper = ({ children }) => {
   const canonicalLink =
     canonicalHost &&
     canonicalPath &&
-    `https://${canonicalHost}${rootPath}${
-      canonicalPath ? canonicalPath.toLowerCase() : ''
-    }`
+    `https://${canonicalHost}${rootPath}${canonicalPath}`
 
   return (
     <Fragment>
