@@ -4,8 +4,8 @@ import queryString from 'query-string'
 const CATEGORY_TREE_MAX_DEPTH = 5
 
 const queryMapComparator = (tuple1, tuple2) => {
-  const [, specFilterVal1] = tuple1[0].split('specificationFilter_')
-  const [, specFilterVal2] = tuple2[0].split('specificationFilter_')
+  const [, specFilterVal1] = tuple1 && tuple1[0].split('specificationFilter_')
+  const [, specFilterVal2] = tuple2 && tuple2[0].split('specificationFilter_')
   const facetName1 = tuple1[1]
   const facetName2 = tuple2[1]
 
@@ -22,11 +22,17 @@ const queryMapComparator = (tuple1, tuple2) => {
     : facetName1.localeCompare(facetName2)
 }
 
-const normalizeQueryMap = (categoryTreeDepth, queryMap) => {
+const normalizeQueryMap = (path, queryMap) => {
   const splitMap = queryMap.map && queryMap.map.split(',')
-  const splitQuery = queryMap.query && queryMap.query.split('/').slice(1)
-  const zippedMapQuery =
-    splitMap && splitQuery ? zip(splitMap, splitQuery) : splitMap
+  const splitQuery = queryMap.query
+    ? queryMap.query.split('/').slice(1)
+    : path.split('/')
+
+  const categoryTreeDepth = Math.min(
+    path.split('/').length,
+    CATEGORY_TREE_MAX_DEPTH
+  )
+  const zippedMapQuery = zip(splitMap, splitQuery)
 
   const sorted =
     zippedMapQuery &&
@@ -37,13 +43,15 @@ const normalizeQueryMap = (categoryTreeDepth, queryMap) => {
     ...uniq(sorted),
   ]
 
-  queryMap.map =
-    splitMap &&
-    assembledSortedQuery
-      .map(value => (Array.isArray(value) ? value[0] : value))
-      .join(',')
-  queryMap.query =
-    splitQuery && `/${assembledSortedQuery.map(tuple => tuple[1]).join('/')}`
+  const sortedQueryMap = assembledSortedQuery
+    .map(value => (Array.isArray(value) ? value[0] : value))
+    .join(',')
+  const sortedQueryPath = assembledSortedQuery.map(tuple => tuple[1]).join('/')
+
+  return {
+    map: sortedQueryMap,
+    path: sortedQueryPath,
+  }
 }
 
 export const normalizeNavigation = navigation => {
@@ -58,26 +66,33 @@ export const normalizeNavigation = navigation => {
       ? path.split('/').slice(1)
       : path.split('/')
     const mapValues = queryMap.map.split(',').slice(0, pathSegments.length)
-    const convertedSegments = map(
+    let convertedSegments = map(
       ([pathSegment, mapValue]) =>
         contains('specificationFilter', mapValue)
           ? pathSegment
           : pathSegment.toLowerCase(),
       zip(pathSegments, mapValues)
-    )
-    const categoryTreeDepth = Math.min(
-      convertedSegments.length,
-      CATEGORY_TREE_MAX_DEPTH
+    ).join('/')
+
+    const { map: sortedMap, path: sortedPath } = normalizeQueryMap(
+      convertedSegments,
+      queryMap
     )
 
-    normalizeQueryMap(categoryTreeDepth, queryMap)
+    if (queryMap.query) {
+      queryMap.query = `/${sortedPath}`
+    } else {
+      convertedSegments = sortedPath
+    }
+
+    queryMap.map = sortedMap
     navigation.query = queryString.stringify(queryMap, {
       encode: false,
     })
 
     navigation.path = path.startsWith('/')
-      ? `/${convertedSegments.join('/')}`
-      : convertedSegments.join('/')
+      ? `/${convertedSegments}`
+      : convertedSegments
     return navigation
   }
 
