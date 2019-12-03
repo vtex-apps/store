@@ -5,7 +5,7 @@ import { useRuntime } from 'vtex.render-runtime'
 
 import SearchQuery from 'vtex.search-result/SearchQuery'
 
-import { initializeMap, SORT_OPTIONS } from './utils/search'
+import { initializeMap, SORT_OPTIONS } from './modules/search'
 
 const DEFAULT_MAX_ITEMS_PER_PAGE = 10
 
@@ -128,6 +128,7 @@ SearchContext.propTypes = {
   /** Query params */
   query: PropTypes.shape({
     map: PropTypes.string,
+    page: PropTypes.string,
     order: PropTypes.oneOf(SORT_OPTIONS.map(o => o.value)),
     priceRange: PropTypes.string,
     rest: PropTypes.any,

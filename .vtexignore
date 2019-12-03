@@ -10,7 +10,10 @@ typings.d.ts
 yarn.lock
 render/node_modules/
 service/node_modules/
-react/__tests__/**
-react/.babelrc
-react/.eslintrc
-react/setupTests.js
+
+react/**/__tests__/**
+react/**/__mocks__/**
+react/**/__snapshots__/**
+react/**/*.test.js
+react/**/*.test.ts
+react/**/*.test.tsx

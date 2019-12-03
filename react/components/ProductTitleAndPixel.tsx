@@ -1,7 +1,9 @@
 import React, { useMemo, FC } from 'react'
-import { Helmet, useRuntime } from 'vtex.render-runtime'
-import { head, last, path } from 'ramda'
+import { Helmet, useRuntime, canUseDOM } from 'vtex.render-runtime'
+import { path } from 'ramda'
 import useDataPixel from '../hooks/useDataPixel'
+import { usePageView } from '../components/PageViewPixel'
+import { PixelEvent } from '../typings/event'
 
 const titleSeparator = ' - '
 
@@ -11,11 +13,29 @@ interface Product {
   linkText: string
   productName: string
   brand: string
+  brandId: string
   categoryId: string
+  categories: string[]
   categoryTree: Category[]
   productId: string
   titleTag: string
   metaTagDescription: string
+  productReference: string
+  items: SKU[]
+}
+
+interface ProductViewEvent {
+  brand: string
+  brandId: string
+  productReference: string
+  linkText: string
+  categoryId: string
+  categories: string[]
+  categoryTree: Category[]
+  productId: string
+  productName: string
+  items: SKU[]
+  selectedSku: SKU
 }
 
 interface Category {
@@ -26,6 +46,7 @@ interface Category {
 interface SKU {
   itemId: string
   ean: string
+  name: string
   referenceId: [{ Value: string }]
   sellers: Seller[]
 }
@@ -38,91 +59,78 @@ interface Seller {
 interface CommertialOffer {
   ListPrice: number
   Price: number
+  AvailableQuantity: number
 }
 
 type MaybeProduct = Product | null
 
-function usePageEvents(titleTag: string, product: MaybeProduct, selectedItem: SKU, loading: boolean) {
+function usePageInfo(
+  titleTag: string,
+  product: MaybeProduct,
+  loading: boolean
+) {
   const { account } = useRuntime()
-  const { productName = undefined } = product || {}
 
   const pageEvents = useMemo(() => {
-    const { brand = undefined, categoryId = undefined, categoryTree = undefined, productId = undefined } = product || {}
-
-    if (!product || typeof document === 'undefined' || !selectedItem) {
+    if (!product || !canUseDOM) {
       return []
     }
 
-    const hasCategoryTree = categoryTree && categoryTree.length
-
-    const pageInfo: any = {
+    const pageInfo: PixelEvent = {
       event: 'pageInfo',
       eventType: 'productView',
       accountName: account,
-      pageCategory: 'Product',
-      pageDepartment: hasCategoryTree ? head(categoryTree!).name : '',
-      pageFacets: [],
       pageTitle: titleTag,
       pageUrl: window.location.href,
-      productBrandName: brand,
-      productCategoryId: Number(categoryId),
-      productCategoryName: hasCategoryTree ? last(categoryTree!).name : '',
-      productDepartmentId: hasCategoryTree ? head(categoryTree!).id : '',
-      productDepartmentName: hasCategoryTree ? head(categoryTree!).name : '',
-      productId: productId,
-      productName: productName,
-      skuStockOutFromProductDetail: [],
-      skuStockOutFromShelf: [],
     }
 
-    const { ean = undefined, referenceId = undefined, sellers = undefined } = selectedItem || {}
-
-    pageInfo.productEans = [ean]
-
-    if (referenceId && referenceId.length >= 0) {
-      const [{ Value: refIdValue }] = referenceId
-
-      pageInfo.productReferenceId = refIdValue
-    }
-
-    if (sellers && sellers.length >= 0) {
-      const [{ commertialOffer, sellerId }] = sellers
-
-      pageInfo.productListPriceFrom = `${commertialOffer.ListPrice}`
-      pageInfo.productListPriceTo = `${commertialOffer.ListPrice}`
-      pageInfo.productPriceFrom = `${commertialOffer.Price}`
-      pageInfo.productPriceTo = `${commertialOffer.Price}`
-      pageInfo.sellerId = `${sellerId}`
-      pageInfo.sellerIds = `${sellerId}`
-    }
-
-    const pageView = {
-      event: 'pageView',
-      pageTitle: titleTag,
-      pageUrl: location.href,
-      referrer:
-        document.referrer.indexOf(location.origin) === 0
-          ? undefined
-          : document.referrer,
-      accountName: account,
-    }
-
-    return [pageView, pageInfo]
-  }, [account, product, productName, selectedItem, titleTag])
+    return pageInfo
+  }, [account, titleTag])
 
   useDataPixel(pageEvents, path(['linkText'], product), loading)
 }
 
-function useProductEvents(product: Product, selectedItem: SKU, loading: boolean) {
+function getSkuProperties(item: SKU) {
+  return {
+    itemId: item.itemId,
+    name: item.name,
+    ean: item.ean,
+    referenceId: item.referenceId,
+    sellers: item.sellers.map(seller => ({
+      sellerId: seller.sellerId,
+      commertialOffer: {
+        Price: seller.commertialOffer.Price,
+        ListPrice: seller.commertialOffer.ListPrice,
+        AvailableQuantity: seller.commertialOffer.AvailableQuantity
+      }
+    }))
+  }
+}
+
+function useProductEvents(
+  product: Product,
+  selectedItem: SKU,
+  loading: boolean
+) {
   const productEvents = useMemo(() => {
-    if (!product || typeof document === 'undefined' || !selectedItem) {
+    const hasCategoryTree = Boolean(product && product.categoryTree && product.categoryTree.length)
+
+    if (!product || !canUseDOM || !selectedItem || !hasCategoryTree) {
       return []
     }
 
-    // Add selected SKU property to the product object
-    const eventProduct = {
-      ...product,
-      selectedSku: selectedItem,
+    const eventProduct: ProductViewEvent = {
+      brand: product.brand,
+      brandId: product.brandId,
+      productReference: product.productReference,
+      linkText: product.linkText,
+      categoryId: product.categoryId,
+      categories: product.categories,
+      categoryTree: product.categoryTree,
+      productId: product.productId,
+      productName: product.productName,
+      items: product.items.map(getSkuProperties),
+      selectedSku: getSkuProperties(selectedItem),
     }
 
     return [
@@ -164,11 +172,21 @@ interface Props {
   loading: boolean
 }
 
-const ProductTitleAndPixel: FC<Props> = ({ product, selectedItem, loading }) => {
+const ProductTitleAndPixel: FC<Props> = ({
+  product,
+  selectedItem,
+  loading,
+}) => {
   const { metaTagDescription = undefined } = product || {}
   const title = useTitle(product)
 
-  usePageEvents(title, product, selectedItem, loading)
+  const pixelCacheKey = path<string>(['linkText'], product)
+  usePageView({
+    title,
+    skip: pixelCacheKey === undefined,
+    cacheKey: pixelCacheKey,
+  })
+  usePageInfo(title, product, loading)
   useProductEvents(product, selectedItem, loading)
 
   return (

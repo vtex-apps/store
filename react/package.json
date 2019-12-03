@@ -12,7 +12,8 @@
   "devDependencies": {
     "@types/jest": "^24.0.18",
     "@types/ramda": "^0.26.21",
-    "@vtex/test-tools": "^0.3.2",
+    "@vtex/test-tools": "^1.2.1",
+    "@vtex/tsconfig": "^0.3.0",
     "apollo-client-preset": "^1.0.8",
     "eslint": "^5.15.1",
     "eslint-config-vtex-react": "^4.1.0",
