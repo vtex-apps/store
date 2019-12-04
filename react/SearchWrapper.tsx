@@ -100,7 +100,7 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
   } = props
   const { account, getSettings } = useRuntime()
   const settings = getSettings(APP_LOCATOR) || {}
-  const loading = searchQuery.loading
+  const loading = searchQuery ? searchQuery.loading : undefined
   const { titleTag: defaultStoreTitle, storeName } = settings
   const title = getTitleTag(
     titleTag,
