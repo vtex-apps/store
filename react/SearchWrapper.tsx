@@ -94,13 +94,13 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
     params,
     searchQuery,
     searchQuery: {
-      loading = true,
       data: { searchMetadata: { titleTag = '', metaTagDescription = '' } = {} } = {},
     } = {},
     children,
   } = props
   const { account, getSettings } = useRuntime()
   const settings = getSettings(APP_LOCATOR) || {}
+  const loading = searchQuery.loading
   const { titleTag: defaultStoreTitle, storeName } = settings
   const title = getTitleTag(
     titleTag,
