@@ -176,7 +176,7 @@
     "component": "*"
   },
   "store.custom": {
-    "allowed": ["search-result", "iframe"]
+    "allowed": ["search-result", "iframe", "search-result-layout"]
   },
   "store.content": {
     "context": "ContentPageContext"
