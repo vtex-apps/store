@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.76.0-beta] - 2019-12-05
+
 ## [2.75.1] - 2019-11-19
 ### Changed
 - Update to only add the register service worker script if the browser supports
