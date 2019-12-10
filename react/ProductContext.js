@@ -1,49 +1,15 @@
 import PropTypes from 'prop-types'
 import React, { useEffect, useMemo } from 'react'
-import { withApollo, graphql, compose } from 'react-apollo'
+import { useApolloClient, useQuery } from 'react-apollo'
 import { isEmpty } from 'ramda'
 import { useRuntime } from 'vtex.render-runtime'
 
 import {
-  product,
+  product as productQuery,
   productPreviewFragment,
   productBenefits,
   UNSTABLE__productCategoryTree as productCategoryTree,
 } from 'vtex.store-resources/Queries'
-
-import { cacheLocator } from './cacheLocator'
-
-const EMPTY_OBJECT = {}
-
-const emptyOrNull = value => (value != null ? isEmpty(value) : true)
-
-const getInfoFromQuery = (queryObj = {}) => {
-  const { product, loading = true } = queryObj
-  return !loading && product ? product : EMPTY_OBJECT
-}
-
-const useProduct = ({ catalog, productBenefits, categoryTree }) => {
-  const catalogInfo = getInfoFromQuery(catalog)
-  const benefitsInfo = getInfoFromQuery(productBenefits)
-  const categoryTeeInfo = getInfoFromQuery(categoryTree)
-
-  return useMemo(() => {
-    const allEmpty = [catalogInfo, benefitsInfo, categoryTeeInfo].every(
-      emptyOrNull
-    )
-    return allEmpty
-      ? null
-      : { ...catalogInfo, ...benefitsInfo, ...categoryTeeInfo }
-  }, [benefitsInfo, catalogInfo, categoryTeeInfo])
-}
-
-function getLoading(props) {
-  const {
-    catalog: { loading: catalogLoading = true } = {},
-    productBenefits: { loading: benefitsLoading = true } = {},
-  } = props
-  return catalogLoading || benefitsLoading
-}
 
 function useNotFound(loading, propsProduct, slug) {
   const { navigate } = useRuntime()
@@ -59,28 +25,93 @@ function useNotFound(loading, propsProduct, slug) {
   }, [loading, propsProduct, navigate, slug])
 }
 
-const ProductContext = _props => {
+const useProductQueries = params => {
+  const client = useApolloClient()
   const {
-    params,
-    params: { slug },
-    client,
-    catalog: { refetch },
-    ...props
-  } = _props
-
-  const loading = getLoading(_props)
-  const propsProduct = useProduct(_props)
-
-  useNotFound(loading, propsProduct, slug)
-
-  const productPreview = client.readFragment({
-    id: cacheLocator.product(slug),
-    fragment: productPreviewFragment,
+    loading: catalogLoading,
+    data: { product: catalogProduct } = {},
+    refetch,
+  } = useQuery(productQuery, {
+    variables: {
+      slug: params.slug,
+      skipCategoryTree: true,
+      identifier: {
+        field: 'id',
+        value: params.id || '',
+      },
+    },
+    errorPolicy: 'all',
+    displayName: 'ProductQuery',
   })
 
-  const product =
-    propsProduct ||
-    (productPreview && productPreview.items ? productPreview : null)
+  const {
+    data: { product: categoryTreeProduct } = {},
+    loading: categoryTreeLoading,
+  } = useQuery(productCategoryTree, {
+    variables: {
+      slug: params.slug,
+      identifier: {
+        field: 'id',
+        value: params.id || '',
+      },
+    },
+    errorPolicy: 'all',
+    ssr: false,
+    displayName: 'ProductCategoryTreeQuery',
+  })
+
+  const {
+    loading: benefitsLoading,
+    data: { product: benefitsProduct } = {},
+  } = useQuery(productBenefits, {
+    variables: {
+      slug: params.slug,
+      identifier: {
+        field: 'id',
+        value: params.id || '',
+      },
+    },
+    errorPolicy: 'all',
+    ssr: false,
+    displayName: 'ProductBenefitsQuery',
+  })
+
+  const loading = catalogLoading || benefitsLoading
+  const validProducts = [
+    catalogLoading ? null : catalogProduct,
+    categoryTreeLoading ? null : categoryTreeProduct,
+    benefitsLoading ? null : benefitsProduct,
+  ].filter(maybeProduct => maybeProduct && !isEmpty(maybeProduct))
+
+  const product = catalogLoading
+    ? null
+    : validProducts.reduce((acc, product) => ({ ...acc, ...product }), {})
+
+  let productFragment = null
+
+  if (!product) {
+    try {
+      productFragment = client.readFragment({
+        id: `Product:${params.slug}`,
+        fragment: productPreviewFragment,
+      })
+    } catch (e) {
+      //do nothing
+      productFragment = null
+    }
+  }
+
+  return {
+    product: product || productFragment,
+    loading,
+    refetch,
+  }
+}
+
+const ProductContext = ({ params, params: { slug }, children }) => {
+  const { loading, product, refetch } = useProductQueries(params)
+
+  useNotFound(loading, product, slug)
 
   const productQuery = useMemo(
     () => ({
@@ -106,7 +137,7 @@ const ProductContext = _props => {
     [productQuery, slug, params]
   )
 
-  return React.cloneElement(props.children, childrenProps)
+  return React.cloneElement(children, childrenProps)
 }
 
 ProductContext.propTypes = {
@@ -116,59 +147,8 @@ ProductContext.propTypes = {
   }),
   data: PropTypes.object,
   children: PropTypes.node,
-  client: PropTypes.object,
   catalog: PropTypes.object,
   productBenefits: PropTypes.object,
 }
 
-const catalogOptions = {
-  name: 'catalog',
-  options: props => ({
-    variables: {
-      slug: props.params.slug,
-      skipCategoryTree: true,
-      identifier: {
-        field: 'id',
-        value: props.params.id || '',
-      },
-    },
-    errorPolicy: 'all',
-  }),
-}
-
-const productBenefitsOptions = {
-  name: 'productBenefits',
-  options: props => ({
-    variables: {
-      slug: props.params.slug,
-      identifier: {
-        field: 'id',
-        value: props.params.id || '',
-      },
-    },
-    errorPolicy: 'all',
-    ssr: false,
-  }),
-}
-
-const categoryTreeOptions = {
-  name: 'categoryTree',
-  options: props => ({
-    variables: {
-      slug: props.params.slug,
-      identifier: {
-        field: 'id',
-        value: props.params.id || '',
-      },
-    },
-    errorPolicy: 'all',
-    ssr: false,
-  }),
-}
-
-export default compose(
-  withApollo,
-  graphql(product, catalogOptions),
-  graphql(productBenefits, productBenefitsOptions),
-  graphql(productCategoryTree, categoryTreeOptions)
-)(ProductContext)
+export default ProductContext
