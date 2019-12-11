@@ -1,7 +1,16 @@
 import { contains, map, path as ramdaPath, uniq, zip } from 'ramda'
 import queryString from 'query-string'
 
-const CATEGORY_TREE_MAX_DEPTH = 5
+const categoriesInSequence = mapValues => {
+  let count = 0
+  for (const value of mapValues) {
+    if (value !== 'c') {
+      return count
+    }
+    count++
+  }
+  return count
+}
 
 const queryMapComparator = (tuple1, tuple2) => {
   const [, specFilterVal1] = tuple1 && tuple1[0].split('specificationFilter_')
@@ -23,15 +32,12 @@ const queryMapComparator = (tuple1, tuple2) => {
 }
 
 const normalizeQueryMap = (path, queryMap) => {
-  const splitMap = queryMap.map && queryMap.map.split(',')
+  const splitMap = queryMap.map.split(',')
   const splitQuery = queryMap.query
     ? queryMap.query.split('/').slice(1)
     : path.split('/')
 
-  const categoryTreeDepth = Math.min(
-    path.split('/').length,
-    CATEGORY_TREE_MAX_DEPTH
-  )
+  const categoryTreeDepth = categoriesInSequence(splitMap)
   const zippedMapQuery = zip(splitMap, splitQuery)
 
   const sorted =
@@ -61,7 +67,7 @@ export const normalizeNavigation = navigation => {
   }
 
   const queryMap = query ? queryString.parse(query) : {}
-  if (queryMap && queryMap.map) {
+  if (queryMap.map) {
     const pathSegments = path.startsWith('/')
       ? path.split('/').slice(1)
       : path.split('/')
