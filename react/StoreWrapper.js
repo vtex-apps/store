@@ -17,6 +17,7 @@ import PageViewPixel from './components/PageViewPixel'
 import OrderFormProvider from './components/OrderFormProvider'
 import NetworkStatusToast from './components/NetworkStatusToast'
 import WrapperContainer from './components/WrapperContainer'
+import { normalizeNavigation } from './utils/navigation'
 
 const APP_LOCATOR = 'vtex.store'
 const CONTENT_TYPE = 'text/html; charset=utf-8'
@@ -41,8 +42,8 @@ const StoreWrapper = ({ children }) => {
     getSettings,
     rootPath = '',
     prefetchDefaultPages,
+    addNavigationRouteModifier,
   } = useRuntime()
-
   const isStorefrontIframe =
     canUseDOM && window.top !== window.self && window.top.__provideRuntime
 
@@ -63,6 +64,10 @@ const StoreWrapper = ({ children }) => {
     ])
   }, [prefetchDefaultPages])
 
+  useEffect(() => {
+    addNavigationRouteModifier(normalizeNavigation)
+  }, [addNavigationRouteModifier])
+
   const settings = getSettings(APP_LOCATOR) || {}
   const {
     titleTag,
@@ -81,9 +86,7 @@ const StoreWrapper = ({ children }) => {
   const canonicalLink =
     canonicalHost &&
     canonicalPath &&
-    `https://${canonicalHost}${rootPath}${
-      canonicalPath ? canonicalPath.toLowerCase() : ''
-    }`
+    `https://${canonicalHost}${rootPath}${canonicalPath}`
 
   return (
     <Fragment>

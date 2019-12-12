@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Navigation normalisation with path.toLowerCase and sort of specificationFilters
 
 ## [2.78.1] - 2019-12-11
 ### Added
