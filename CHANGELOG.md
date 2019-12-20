@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
-- ProductContext loading prop is only set true while the main product quuery is being done.
+- ProductContext loading prop is only set true while the main product query is not done.
 
 ## [2.79.1] - 2019-12-16
 ### Fixed
