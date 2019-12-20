@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- ProductContext loading prop is only set true while the main product quuery is being done.
 
 ## [2.79.1] - 2019-12-16
 ### Fixed
