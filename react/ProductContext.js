@@ -40,9 +40,8 @@ const useProduct = ({ catalog, productBenefits, categoryTree }) => {
 function getLoading(props) {
   const {
     catalog: { loading: catalogLoading = true } = {},
-    productBenefits: { loading: benefitsLoading = true } = {},
   } = props
-  return catalogLoading || benefitsLoading
+  return catalogLoading
 }
 
 function useNotFound(loading, propsProduct, slug) {
