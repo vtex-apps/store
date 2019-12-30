@@ -19,7 +19,7 @@ const SearchContext = ({
   mapField,
   orderByField,
   hideUnavailableItems,
-  ignoreSpecificationFilters,
+  facetsBehavior = 'Static',
   skusFilter,
   query: {
     order: orderBy = orderByField || SORT_OPTIONS[0].value,
@@ -80,7 +80,7 @@ const SearchContext = ({
       orderBy={orderBy}
       priceRange={priceRange}
       hideUnavailableItems={hideUnavailableItems}
-      ignoreSpecificationFilters={ignoreSpecificationFilters}
+      facetsBehavior={facetsBehavior}
       pageQuery={pageQuery}
       skusFilter={skusFilter}
     >
@@ -149,7 +149,7 @@ SearchContext.propTypes = {
   /** Max items to show per result page */
   maxItemsPerPage: PropTypes.number,
   hideUnavailableItems: PropTypes.bool,
-  ignoreSpecificationFilters: PropTypes.bool,
+  facetsBehavior: PropTypes.string,
 }
 
 SearchContext.schema = {
