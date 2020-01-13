@@ -28,7 +28,8 @@
       "image-slider",
       "responsive-layout",
       "list-context",
-      "menu"
+      "menu",
+      "iframe"
     ],
     "preview": {
       "type": "transparent",
