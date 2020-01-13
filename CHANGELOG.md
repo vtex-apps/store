@@ -6,10 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Allow `iframe` on any page.
 
 ## [2.80.0] - 2020-01-02
 ### Added
--  `facetsBehavior` on the `SearchContext`.
+- `facetsBehavior` on the `SearchContext`.
 
 ## [2.79.2] - 2019-12-20
 ### Changed
