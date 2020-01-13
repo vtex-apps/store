@@ -77,7 +77,8 @@
       "product-assembly-options",
       "product-teaser.product",
       "pickup-availability",
-      "product-specification-badges"
+      "product-specification-badges",
+      "product-bookmark"
     ],
     "context": "ProductContext",
     "preview": {
