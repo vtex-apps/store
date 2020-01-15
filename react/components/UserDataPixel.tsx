@@ -40,36 +40,46 @@ const getSessionPromiseFromWindow: any = () =>
 
 const toBoolean = (value: string) => value.toLowerCase() === 'true'
 
+function getUserData(profileFields: SessionResponse['response']['namespaces']['profile']) {
+  if (!profileFields) {
+    return {}
+  }
+
+  return fields.reduce<Record<string, string | boolean>>(
+    (acc, key) => {
+      const value = profileFields[key]?.value
+
+      if (value) {
+        acc[key] = key === 'isAuthenticated'
+          ? toBoolean(value)
+          : value
+      }
+
+      return acc
+    },
+    {}
+  )
+}
+
 const UserDataPixel: FC = () => {
   const { push } = usePixel()
 
   useEffect(() => {
     getSessionPromiseFromWindow().then((data: SessionResponse) => {
       const profileFields = data?.response?.namespaces?.profile
+
       if (!profileFields) {
         return
       }
-      const userData = fields.reduce(
-        (acc, key) => {
-          const value = profileFields[key]?.value as string | undefined
-          if (value) {
-            if (key === 'isAuthenticated') {
-              acc[key] = toBoolean(value)
-            } else {
-              acc[key] = value
-            }
-          }
-          return acc
-        },
-        {} as Record<string, string | boolean>
-      )
-      
+
+      const userData = getUserData(profileFields)
+
       push({
         event: 'userData',
-        data: userData,
+        ...userData,
       })
     })
-  }, [])
+  }, [push])
 
   return null
 }
