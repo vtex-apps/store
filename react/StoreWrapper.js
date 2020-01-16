@@ -11,6 +11,7 @@ import { PixelProvider } from 'vtex.pixel-manager/PixelContext'
 import { ToastProvider } from 'vtex.styleguide'
 import { PWAProvider } from 'vtex.store-resources/PWAContext'
 import { OrderQueueProvider } from 'vtex.order-manager/OrderQueue'
+import { OrderItemsProvider } from 'vtex.order-items/OrderItems'
 import { OrderFormProvider as OrderFormProviderCheckout } from 'vtex.order-manager/OrderForm'
 
 import PageViewPixel from './components/PageViewPixel'
@@ -139,9 +140,11 @@ const StoreWrapper = ({ children }) => {
             <OrderFormProvider>
               <OrderQueueProvider>
                 <OrderFormProviderCheckout>
-                  <WrapperContainer className="vtex-store__template bg-base">
-                    {children}
-                  </WrapperContainer>
+                  <OrderItemsProvider>
+                    <WrapperContainer className="vtex-store__template bg-base">
+                      {children}
+                    </WrapperContainer>
+                  </OrderItemsProvider>
                 </OrderFormProviderCheckout>
               </OrderQueueProvider>
             </OrderFormProvider>
