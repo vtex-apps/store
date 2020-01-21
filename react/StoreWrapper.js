@@ -14,6 +14,7 @@ import { OrderQueueProvider } from 'vtex.order-manager/OrderQueue'
 import { OrderItemsProvider } from 'vtex.order-items/OrderItems'
 import { OrderFormProvider as OrderFormProviderCheckout } from 'vtex.order-manager/OrderForm'
 
+import UserDataPixel from './components/UserDataPixel'
 import PageViewPixel from './components/PageViewPixel'
 import OrderFormProvider from './components/OrderFormProvider'
 import NetworkStatusToast from './components/NetworkStatusToast'
@@ -135,6 +136,7 @@ const StoreWrapper = ({ children }) => {
       <PixelProvider currency={currency}>
         <PWAProvider rootPath={rootPath}>
           <PageViewPixel title={title} />
+          <UserDataPixel />
           <ToastProvider positioning="window">
             <NetworkStatusToast />
             <OrderFormProvider>
