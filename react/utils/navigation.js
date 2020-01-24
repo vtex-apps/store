@@ -6,8 +6,7 @@ const MAP_CATEGORY_CHAR = 'c'
 const MAP_VALUES_SEP = ','
 const PATH_SEPARATOR = '/'
 
-const isLegacySearchFormat = (pathSegments, queryMap) => {
-  const { map } = queryMap
+const isLegacySearchFormat = (pathSegments, map) => {
   if (!map) {
     return false
   }
