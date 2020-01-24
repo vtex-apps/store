@@ -88,28 +88,35 @@ const getIgnoredSegments = ignore => {
 }
 
 const normalizeLegacySearchNavigation = (pathSegments, queryMap, query) => {
-  const { map } = queryMap
-  if (map) {
-    const mapValues = map.split(MAP_VALUES_SEP)
-    let convertedSegments = map(
+  if (queryMap.map) {
+    const mapValues = queryMap.map.split(MAP_VALUES_SEP)
+    let convertedSegments = zip(pathSegments, mapValues).map(
       ([pathSegment, mapValue]) =>
         contains(SPEC_FILTER, mapValue)
           ? pathSegment
-          : pathSegment.toLowerCase(),
-      zip(pathSegments, mapValues)
+          : pathSegment.toLowerCase()
     )
 
     const {
       pathSegments: sortedPathSegments,
       map: sortedMap,
-    } = normalizeQueryMap(convertedSegments, map)
+    } = normalizeQueryMap(
+      queryMap.query ? queryMap.query.split('/').slice(1) : convertedSegments,
+      mapValues
+    )
+
     queryMap.map = sortedMap
+    if (queryMap.query) {
+      queryMap.query = `/${sortedPathSegments.join('/')}`
+    } else {
+      convertedSegments = sortedPathSegments
+    }
 
     const normalizedQuery = queryString.stringify(queryMap, {
       encode: false,
     })
 
-    return { pathSegments: sortedPathSegments, query: normalizedQuery }
+    return { pathSegments: convertedSegments, query: normalizedQuery }
   }
   return { pathSegments: pathSegments, query: query }
 }
@@ -129,9 +136,10 @@ export const normalizeNavigation = navigation => {
 
   const segmentsToIgnore = getIgnoredSegments(ignore)
 
-  const normalizedNavigation = isLegacySearchFormat(pathSegments, map)
-    ? normalizeLegacySearchNavigation(pathSegments, map, query)
-    : normalizeSearchNavigation(pathSegments, query, segmentsToIgnore)
+  const normalizedNavigation =
+    parsedQuery.query || isLegacySearchFormat(pathSegments, map)
+      ? normalizeLegacySearchNavigation(pathSegments, parsedQuery, query)
+      : normalizeSearchNavigation(pathSegments, query, segmentsToIgnore)
 
   navigation.path = path.startsWith('/')
     ? '/' + normalizedNavigation.pathSegments.join('/')
