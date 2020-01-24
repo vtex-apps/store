@@ -20,6 +20,9 @@
   "store.search#configurable": {
     "blocks": ["search-result"]
   },
+  "store.not-found#product": {
+    "blocks": []
+  },
   "store.custom": {
     "parent": {
       "header": "header.full"

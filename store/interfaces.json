@@ -150,7 +150,7 @@
     "required": ["blog-search-list"],
     "allowed": ["blog-breadcrumb", "blog-search"]
   },
-  "store.not-found-product": {
+  "store.not-found": {
     "preview": {
       "type":"box",
       "height": 800
