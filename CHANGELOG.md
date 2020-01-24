@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Separate URL normalization on navigate for new and legacy search URLs
 
 ## [2.86.0] - 2020-02-06 [YANKED]
 ### Added
