@@ -21,6 +21,7 @@ const SearchContext = ({
   hideUnavailableItems,
   facetsBehavior = 'Static',
   skusFilter,
+  simulationBehavior,
   query: {
     order: orderBy = orderByField || SORT_OPTIONS[0].value,
     page: pageQuery,
@@ -83,6 +84,7 @@ const SearchContext = ({
       facetsBehavior={facetsBehavior}
       pageQuery={pageQuery}
       skusFilter={skusFilter}
+      simulationBehavior={simulationBehavior}
     >
       {(searchQuery, extraParams) => {
         return React.cloneElement(children, {
@@ -150,6 +152,8 @@ SearchContext.propTypes = {
   maxItemsPerPage: PropTypes.number,
   hideUnavailableItems: PropTypes.bool,
   facetsBehavior: PropTypes.string,
+  skusFilter: PropTypes.string,
+  simulationBehavior: PropTypes.string,
 }
 
 SearchContext.schema = {
