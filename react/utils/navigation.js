@@ -1,4 +1,4 @@
-import { contains, path as ramdaPath, uniq, zip, flatten } from 'ramda'
+import { contains, path as ramdaPath, zip, flatten } from 'ramda'
 import queryString from 'query-string'
 
 const SPEC_FILTER = 'specificationFilter'
