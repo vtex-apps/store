@@ -49,5 +49,9 @@
   },
   "store.offline": {
     "path": "/_v/offline"
+  },
+  "store.not-found-product": {
+    "path": "/_v/segment/routing/vtex.store@2.x/productNotFound/:id/:slug/p",
+    "canonical": "/:slug/p"
   }
 }

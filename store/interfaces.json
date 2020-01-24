@@ -150,6 +150,12 @@
     "required": ["blog-search-list"],
     "allowed": ["blog-breadcrumb", "blog-search"]
   },
+  "store.not-found-product": {
+    "preview": {
+      "type":"box",
+      "height": 800
+    }
+  },
   "storeWrapper": {
     "allowed": ["highlight-overlay"],
     "component": "StoreWrapper"
