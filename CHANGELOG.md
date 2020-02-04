@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [2.85.5] - 2020-02-03 [YANKED]
+## [2.85.5] - 2020-02-03
 ### Removed
 - Dependencies that became unnecessary.
 

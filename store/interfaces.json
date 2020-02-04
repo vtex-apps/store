@@ -5,32 +5,6 @@
     "around": ["storeWrapper", "challenge"],
     "before": ["header.full"],
     "after": ["footer", "pixels"],
-    "allowed": [
-      "notification.bar",
-      "carousel",
-      "shelf",
-      "rebuy",
-      "promo-bar",
-      "info-card",
-      "newsletter",
-      "rich-text",
-      "flex-layout",
-      "sandbox",
-      "image",
-      "sticky-layout",
-      "slider-layout",
-      "__fold__",
-      "tab-layout",
-      "tab-list",
-      "tab-content",
-      "stack-layout",
-      "experimental__visibility-layout",
-      "image-slider",
-      "responsive-layout",
-      "list-context",
-      "menu",
-      "iframe"
-    ],
     "preview": {
       "type": "transparent",
       "height": 600
@@ -47,39 +21,6 @@
   "store.product": {
     "around": ["productWrapper"],
     "before": ["header.full"],
-    "allowed": [
-      "product-add-to-list-button",
-      "product-details",
-      "product-kit",
-      "product-reviews",
-      "product-questions-and-answers",
-      "product-rating-summary",
-      "product-rating-inline",
-      "product-images",
-      "product-brand",
-      "product-name",
-      "product-price",
-      "sku-selector",
-      "buy-button",
-      "add-to-cart-button",
-      "product-separator",
-      "product-description",
-      "product-specifications",
-      "product-quantity",
-      "breadcrumb",
-      "shipping-simulator",
-      "availability-subscriber",
-      "share",
-      "product-highlights",
-      "product-availability",
-      "product-identifier",
-      "blog-related-posts",
-      "product-assembly-options",
-      "product-teaser.product",
-      "pickup-availability",
-      "product-specification-badges",
-      "product-bookmark"
-    ],
     "context": "ProductContext",
     "preview": {
       "type": "box",
@@ -96,7 +37,6 @@
     }
   },
   "store.account": {
-    "required": ["my-account"],
     "around": ["challenge.profile"],
     "preview": {
       "type": "text",
@@ -111,48 +51,32 @@
     }
   },
   "store.orderplaced": {
-    "required": ["order-placed"],
-    "allowed": ["shop-review-form"],
     "preview": {
       "type": "spinner",
       "height": 600
     }
   },
   "store.product-review-form": {
-    "allowed": ["product-review-form"],
     "preview": {
       "type": "spinner",
       "height": 800
     }
   },
   "store.blog-home": {
-    "before": ["header.full"],
-    "allowed": [
-      "blog-all-posts",
-      "blog-breadcrumb",
-      "blog-latest-posts-preview",
-      "blog-category-preview",
-      "blog-search"
-    ]
+    "before": ["header.full"]
   },
   "store.blog-category": {
-    "before": ["header.full"],
-    "required": ["blog-category-list"],
-    "allowed": ["blog-breadcrumb", "blog-search", "blog-category-preview"]
+    "before": ["header.full"]
   },
   "store.blog-post": {
-    "before": ["header.full"],
-    "required": ["blog-post-details"],
-    "allowed": ["blog-breadcrumb", "blog-search"]
+    "before": ["header.full"]
   },
   "store.blog-search-result": {
-    "before": ["header.full"],
-    "required": ["blog-search-list"],
-    "allowed": ["blog-breadcrumb", "blog-search"]
+    "before": ["header.full"]
   },
   "store.not-found": {
     "preview": {
-      "type":"box",
+      "type": "box",
       "height": 800
     }
   },
@@ -184,7 +108,7 @@
     "component": "*"
   },
   "store.custom": {
-    "allowed": ["search-result", "iframe", "search-result-layout"]
+    "allowed": ["search-result", "search-result-layout"]
   },
   "store.content": {
     "context": "ContentPageContext"
