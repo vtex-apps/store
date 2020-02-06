@@ -125,7 +125,7 @@ export const normalizeNavigation = navigation => {
     return navigation
   }
 
-  const { path, query, ignore } = navigation
+  const { path, query, options } = navigation
   const parsedQuery = query ? queryString.parse(query) : {}
   const { map } = parsedQuery
 
@@ -133,7 +133,7 @@ export const normalizeNavigation = navigation => {
     ? path.split(PATH_SEPARATOR).slice(1)
     : path.split(PATH_SEPARATOR)
 
-  const segmentsToIgnore = getIgnoredSegments(ignore)
+  const segmentsToIgnore = getIgnoredSegments(options)
 
   const normalizedNavigation =
     parsedQuery.query || isLegacySearchFormat(pathSegments, map)
