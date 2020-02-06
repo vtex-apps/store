@@ -28,7 +28,13 @@
       "header": "header.full"
     }
   },
+  "store.content": {
+    "children": ["flex-layout.row#content-body"]
+  },
   "store.offline": {
     "blocks": ["offline-warning"]
+  },
+  "flex-layout.row#content-body": {
+    "children": ["rich-text"]
   }
 }

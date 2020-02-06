@@ -7,11 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [2.86.0] - 2020-02-06
+## [2.86.0] - 2020-02-06 [YANKED]
 ### Added
 - Adds fallbackEntities to product route
 
-## [2.85.5] - 2020-02-03
+## [2.85.5] - 2020-02-03 [YANKED]
 ### Removed
 - Dependencies that became unnecessary.
 
