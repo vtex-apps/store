@@ -11,35 +11,41 @@
   "store.product": {
     "path": "/_v/segment/routing/vtex.store@2.x/product/:id/:slug/p",
     "canonical": "/:slug/p",
-    "contentType": "product"
+    "contentType": "product",
+    "fallbackEntity": "notFoundProduct"
   },
   "store.search": {
     "path": "/:term/s",
-    "canonical": "/:term"
+    "canonical": "/:term",
+    "contentType": "search"
   },
   "store.search#brand": {
     "path": "/_v/segment/routing/vtex.store@2.x/brand/:id/:brand(/*terms)",
     "canonical": "/:brand",
     "map": ["b"],
-    "contentType": "brand"
+    "contentType": "brand",
+    "fallbackEntity": "search"
   },
   "store.search#department": {
     "path": "/_v/segment/routing/vtex.store@2.x/department/:id/:department(/*terms)",
     "canonical": "/:department",
     "map": ["c"],
-    "contentType": "department"
+    "contentType": "department",
+    "fallbackEntity": "search"
   },
   "store.search#category": {
     "path": "/_v/segment/routing/vtex.store@2.x/category/:id/:department/:category(/*terms)",
     "canonical": "/:department/:category",
     "map": ["c", "c"],
-    "contentType": "category"
+    "contentType": "category",
+    "fallbackEntity": "department"
   },
   "store.search#subcategory": {
     "path": "/_v/segment/routing/vtex.store@2.x/subcategory/:id/:department/:category/:subcategory(/*terms)",
     "canonical": "/:department/:category/:subcategory(/*terms)",
     "map": ["c", "c", "c"],
-    "contentType": "subcategory"
+    "contentType": "subcategory",
+    "fallbackEntity": "category"
   },
   "store.search#configurable": {
     "path": "/s/*terms"
