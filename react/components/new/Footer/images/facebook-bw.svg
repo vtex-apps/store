@@ -1,0 +1,17 @@
+<svg width="200" height="200" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="Canvas" fill="none">
+<g id="facebook2" clip-path="url(#clip0)">
+<circle id="Ellipse" cx="100" cy="100" r="95" stroke="#727273" stroke-width="10"/>
+<g id="Group">
+<g id="Group_2">
+<path id="Vector" d="M 49.1221 55.0757L 49.1221 35.0482C 49.1221 29.5206 53.5235 25.0344 58.9465 25.0344L 68.771 25.0344L 68.771 0L 49.1221 0C 32.843 0 19.6488 13.4485 19.6488 30.0413L 19.6488 55.0757L 0 55.0757L 0 80.1101L 19.6488 80.1101L 19.6488 160.22L 49.1221 160.22L 49.1221 80.1101L 68.771 80.1101L 78.5954 55.0757L 49.1221 55.0757Z" transform="translate(61 31)" fill="#727273"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<clipPath id="clip0">
+<rect width="200" height="200" fill="#727273"/>
+</clipPath>
+</defs>
+</svg>

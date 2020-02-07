@@ -1,0 +1,184 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Footer /> component should match the snapshot 1`] = `
+<DocumentFragment>
+  <footer
+    class="footer bt bw1 b--muted-4 mt4 pv5"
+  >
+    <section>
+      <div
+        class="w-100 mw9"
+      >
+        <nav
+          class="container navigation pt5-s flex justify-between bg-base c-muted-1"
+        >
+          <div
+            class="links t-small w-100-s w-80-ns pb5-s"
+          >
+            <div
+              class="matrixContainer flex flex-wrap"
+            >
+              <div
+                class="matrixItem flex flex-auto dn-s flex-ns"
+              >
+                <div
+                  class="listContainer pl0 w-100 mt0-ns"
+                >
+                  <span
+                    class="listTitle t-small ma0 db ttu"
+                  >
+                    Section title
+                  </span>
+                  <ul
+                    class="list list flex flex-column flex-wrap pa0 mb0 mt3"
+                  >
+                    <li
+                      class="listItem mr0 mr3"
+                    >
+                      <a
+                        class="listLink dib no-underline underline-hover mb0 mt2 w-100 t-small truncate c-muted-1 pointer"
+                        href="mockedUrl"
+                        target="_self"
+                      >
+                        Some title
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div
+                class="matrixItemSmall bb b--muted-2 dn-ns db-s w-100 ph2 pv3"
+              >
+                <div
+                  class="accordion pv2"
+                >
+                  <div
+                    class="pointer"
+                    role="button"
+                    tabindex="0"
+                  >
+                    <div>
+                      <span
+                        class="accordionTitle dib ma0 ttu"
+                      >
+                        Section title
+                      </span>
+                      <span
+                        class="accordionIcon fr"
+                      >
+                        <div>
+                           Icon Caret 
+                        </div>
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    style="overflow-y: auto;"
+                  >
+                    <div
+                      class="ReactCollapse--collapse"
+                      style="overflow: hidden; height: 0px;"
+                    >
+                      <div
+                        class="ReactCollapse--content"
+                      >
+                        <div
+                          class="accordionItem pt1"
+                        >
+                          <a
+                            class="listLink dib no-underline underline-hover mb0 mt2 w-100 t-small truncate c-muted-1 pointer"
+                            href="mockedUrl"
+                            target="_self"
+                          >
+                            Some title
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="socialNetworkContainer pv5-s pa1-ns"
+          >
+            <div
+              class="listContainer pl0 w-100 mt0-ns listContainerRightAligned ml-auto-m listContainerHorizontal w-auto-m"
+            >
+              <span
+                class="listTitle t-small ma0 db"
+              >
+                Social Networks
+              </span>
+              <ul
+                class="list list flex flex-column flex-wrap pa0 mb0 mt3 listHorizontal flex-row flex-wrap"
+              >
+                <li
+                  class="listItem mr0 mr3 listItemHorizontal"
+                />
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div
+          class="container payment pv5-s flex justify-between bg-base c-muted-1"
+        >
+          <div
+            class="paymentMatrix flex flex-wrap"
+          >
+            <div
+              class="paymentMatrixItem"
+            >
+              <div
+                class="listContainer pl0 w-100 mt0-ns listContainerHorizontal w-auto-m"
+              >
+                <span
+                  class="listTitle t-small ma0 db ttu"
+                >
+                  Title payment
+                </span>
+                <ul
+                  class="list list flex flex-column flex-wrap pa0 mb0 mt3 listHorizontal flex-row flex-wrap"
+                >
+                  <li
+                    class="listItem mr0 mr3 listItemHorizontal"
+                  />
+                  <li
+                    class="listItem mr0 mr3 listItemHorizontal"
+                  />
+                  <li
+                    class="listItem mr0 mr3 listItemHorizontal"
+                  />
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="container informationContainer pt5-s flex justify-between bg-base c-muted-1"
+        >
+          <div
+            class="textContainer w-100-s pb5-s w-80-ns flex flex-wrap"
+          />
+          <div
+            class="listContainer pl0 w-100 mt0-ns"
+          >
+            <ul
+              class="list list flex flex-column flex-wrap pa0 mb0 mt3"
+            >
+              <li
+                class="listItem mr0 mr3"
+              >
+                <img
+                  src="imageURL"
+                />
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </footer>
+</DocumentFragment>
+`;

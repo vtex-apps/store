@@ -1,0 +1,100 @@
+.footer {
+  --vpadding: 1.25rem;
+  --vpadding-limits: 1.5rem;
+  --icon-filling: #727273;
+  --tilte-min-height: 0.875rem;
+}
+
+.listTitle {
+  min-height: var(--tilte-min-height);
+}
+
+.accordionIcon path {
+  fill: var(--icon-filling);
+}
+
+/* Mobile */
+@media screen and (min-width: 10em) {
+  .container {
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 40em) {
+  .container {
+    flex-flow: row wrap;
+  }
+}
+
+@media screen and (min-width: 64em) {
+  .container {
+    padding-top: var(--vpadding);
+    padding-bottom: var(--vpadding);
+  }
+
+  .container:first-of-type {
+    padding-top: var(--vpadding-limits);
+  }
+
+  .container:last-of-type {
+    padding-bottom: var(--vpadding-limits);
+  }
+}
+
+.accordion {}
+
+.accordionTitle {}
+
+.listLink {}
+
+.matrixContainer {}
+
+.matrixItem {}
+
+.matrixItemSmall {}
+
+.accordionItem {}
+
+.listContainer {}
+
+.listContainerRightAligned {}
+
+.listContainerHorizontal {}
+
+.list {}
+
+.listHorizontal {}
+
+.listItem {}
+
+.listItemHorizontal {}
+
+.paymentFormItem {}
+
+.paymentMatrix {}
+
+.paymentMatrixItem {}
+
+.socialNetworkItem {}
+
+.vtexLogoItem {}
+
+.badgeList {}
+
+.badge {}
+
+.logoImage {}
+
+.textInformation {}
+
+.links {}
+
+.socialNetworkContainer {}
+
+.textContainer {}
+
+.socialNetworkList {}
+
+.navigation {}
+
+.payment {}

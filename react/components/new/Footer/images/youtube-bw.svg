@@ -1,0 +1,13 @@
+<svg width="200" height="200" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="Canvas" fill="none">
+<g id="youtube2" clip-path="url(#clip0)">
+<path id="Vector" d="M 106.962 0L 28.0378 0C 12.5529 0 0 11.8263 0 26.4149L 0 63.5851C 0 78.1737 12.5529 90 28.0378 90L 106.962 90C 122.447 90 135 78.1737 135 63.5851L 135 26.4149C 135 11.8263 122.447 0 106.962 0ZM 88.0005 46.8085L 51.0849 63.3958C 50.1013 63.8378 48.9651 63.1622 48.9651 62.1356L 48.9651 27.924C 48.9651 26.8828 50.1312 26.208 51.1169 26.6786L 88.0324 44.3028C 89.13 44.8267 89.1109 46.3097 88.0005 46.8085Z" transform="translate(33 55)" fill="#727273"/>
+<circle id="Ellipse" cx="100" cy="100" r="95" stroke="#727273" stroke-width="10"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0">
+<rect width="200" height="200" fill="#727273"/>
+</clipPath>
+</defs>
+</svg>
