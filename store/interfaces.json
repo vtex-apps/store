@@ -2,7 +2,7 @@
   "store": {
     "allowConditions": true,
     "component": "*",
-    "around": ["storeWrapper", "challenge"],
+    "around": ["storeWrapper"],
     "before": ["header.full"],
     "after": ["footer", "pixels"],
     "allowed": [

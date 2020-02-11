@@ -1,0 +1,220 @@
+# File deprecated. To be removed in next major!
+query RecommendationsAndBenefits(
+  $slug: String
+  $identifier: ProductUniqueIdentifier
+) {
+  product(slug: $slug, identifier: $identifier)
+    @context(provider: "vtex.search-graphql") {
+    cacheId
+    recommendations {
+      view {
+        cacheId
+        productId
+        productName
+        description
+        link
+        linkText
+        brand
+        items {
+          name
+          itemId
+          referenceId {
+            Value
+          }
+          images {
+            imageId
+            imageLabel
+            imageTag
+            imageUrl
+            imageText
+          }
+          sellers {
+            sellerId
+            sellerName
+            addToCartLink
+            sellerDefault
+            commertialOffer {
+              Price
+              ListPrice
+              PriceWithoutDiscount
+              RewardValue
+              PriceValidUntil
+              AvailableQuantity
+              Tax
+              CacheVersionUsedToCallCheckout
+              Installments(criteria: MAX) {
+                Value
+                InterestRate
+                TotalValuePlusInterestRate
+                NumberOfInstallments
+                Name
+              }
+            }
+          }
+        }
+      }
+      buy {
+        cacheId
+        productId
+        productName
+        description
+        link
+        linkText
+        brand
+        items {
+          name
+          itemId
+          referenceId {
+            Value
+          }
+          images {
+            imageId
+            imageLabel
+            imageTag
+            imageUrl
+            imageText
+          }
+          sellers {
+            sellerId
+            sellerName
+            addToCartLink
+            sellerDefault
+            commertialOffer {
+              Price
+              ListPrice
+              PriceWithoutDiscount
+              RewardValue
+              PriceValidUntil
+              AvailableQuantity
+              Tax
+              CacheVersionUsedToCallCheckout
+              Installments(criteria: MAX) {
+                Value
+                InterestRate
+                TotalValuePlusInterestRate
+                NumberOfInstallments
+                Name
+              }
+            }
+          }
+        }
+      }
+      similars {
+        cacheId
+        productId
+        productName
+        description
+        link
+        linkText
+        brand
+        items {
+          name
+          itemId
+          referenceId {
+            Value
+          }
+          images {
+            imageId
+            imageLabel
+            imageTag
+            imageUrl
+            imageText
+          }
+          sellers {
+            sellerId
+            sellerName
+            addToCartLink
+            sellerDefault
+            commertialOffer {
+              Price
+              ListPrice
+              PriceWithoutDiscount
+              RewardValue
+              PriceValidUntil
+              AvailableQuantity
+              Tax
+              CacheVersionUsedToCallCheckout
+              Installments(criteria: MAX) {
+                Value
+                InterestRate
+                TotalValuePlusInterestRate
+                NumberOfInstallments
+                Name
+              }
+            }
+          }
+        }
+      }
+    }
+    benefits {
+      featured
+      id
+      name
+      items {
+        benefitProduct {
+          cacheId
+          productName
+          productId
+          description
+          linkText
+          categoryId
+          brand
+          properties {
+            name
+            values
+          }
+          items {
+            itemId
+            name
+            nameComplete
+            complementName
+            ean
+            referenceId {
+              Key
+              Value
+            }
+            measurementUnit
+            unitMultiplier
+            images {
+              imageId
+              imageLabel
+              imageTag
+              imageUrl
+              imageText
+            }
+            sellers {
+              sellerId
+              sellerName
+              addToCartLink
+              sellerDefault
+              commertialOffer {
+                Price
+                ListPrice
+                PriceWithoutDiscount
+                RewardValue
+                PriceValidUntil
+                AvailableQuantity
+                Tax
+                CacheVersionUsedToCallCheckout
+                Installments(criteria: MAX) {
+                  Value
+                  InterestRate
+                  TotalValuePlusInterestRate
+                  NumberOfInstallments
+                  Name
+                }
+              }
+            }
+            variations {
+              name
+            }
+          }
+        }
+        discount
+        minQuantity
+        benefitSKUIds
+      }
+      teaserType
+    }
+  }
+}

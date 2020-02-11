@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import { useCssHandles } from 'vtex.css-handles'
+import useCssHandles from '../CssHandles/useCssHandles'
 
 const CSS_HANDLES = ['footerSpacer'] as const
 

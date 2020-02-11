@@ -4,12 +4,10 @@ import { withApollo, graphql, compose } from 'react-apollo'
 import { isEmpty } from 'ramda'
 import { useRuntime } from 'vtex.render-runtime'
 
-import {
-  product,
+import {product,
   productPreviewFragment,
   productBenefits,
-  UNSTABLE__productCategoryTree as productCategoryTree,
-} from 'vtex.store-resources/Queries'
+  UNSTABLE__productCategoryTree as productCategoryTree,} from './components/new/StoreResources/Queries'
 
 import { cacheLocator } from './cacheLocator'
 

@@ -1,0 +1,9 @@
+query Locales {
+  languages @context(provider: "vtex.messages") {
+    default
+    supported
+  }
+   currentBinding  @context(provider: "vtex.tenant-graphql") {
+    supportedLocales
+  }
+}

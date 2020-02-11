@@ -8,8 +8,9 @@ import {
 } from 'vtex.render-runtime'
 import PropTypes from 'prop-types'
 import { PixelProvider } from 'vtex.pixel-manager/PixelContext'
-import { ToastProvider } from 'vtex.styleguide'
-import { PWAProvider } from 'vtex.store-resources/PWAContext'
+import ToastProvider from './components/new/Styleguide/ToastProvider'
+import PWAContext from './components/new/StoreResources/PWAContext'
+const { PWAProvider } = PWAContext
 import { OrderQueueProvider } from 'vtex.order-manager/OrderQueue'
 import { OrderItemsProvider } from 'vtex.order-items/OrderItems'
 import { OrderFormProvider as OrderFormProviderCheckout } from 'vtex.order-manager/OrderForm'

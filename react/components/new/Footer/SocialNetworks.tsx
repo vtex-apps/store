@@ -1,6 +1,6 @@
 import React from 'react'
-import { IOMessage } from 'vtex.native-types'
-import { useCssHandles } from 'vtex.css-handles'
+import IOMessage from '../NativeTypes/IOMessage'
+import useCssHandles from '../CssHandles/useCssHandles'
 
 import SocialNetwork from './components/SocialNetwork'
 

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import { injectIntl, intlShape } from 'react-intl'
-import { IOMessage, formatIOMessage } from 'vtex.native-types'
+import formatIOMessage from '../../NativeTypes/formatIOMessage'
 
 import footerList from './footerList'
 import footer from './footer.css'

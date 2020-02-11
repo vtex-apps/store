@@ -1,0 +1,9 @@
+query category($id: Int) {
+  category(id: $id) {
+    cacheId
+    id
+    href
+    name
+    titleTag
+  }
+}

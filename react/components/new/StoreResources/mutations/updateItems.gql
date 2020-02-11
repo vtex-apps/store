@@ -1,0 +1,108 @@
+mutation updateItems($orderFormId: String, $items: [OrderFormItemInput]) {
+  updateItems(orderFormId: $orderFormId, items: $items) {
+    cacheId
+    orderFormId
+    value
+    totalizers {
+      id
+      name
+      value
+    }
+    items {
+      id
+      name
+      imageUrl
+      detailUrl
+      productRefId
+      additionalInfo {
+        brandName
+      }
+      productCategoryIds
+      productCategories
+      skuName
+      quantity
+      sellingPrice
+      listPrice
+      parentItemIndex
+      parentAssemblyBinding
+      seller
+      cartIndex
+      sellingPriceWithAssemblies
+      assemblyOptions {
+        added {
+          item {
+            name
+            sellingPrice
+            quantity
+            sellingPriceWithAssemblies
+            assemblyOptions {
+              added {
+                item {
+                  name
+                  sellingPrice
+                  quantity
+                  sellingPriceWithAssemblies
+                }
+                normalizedQuantity
+                choiceType
+                extraQuantity
+              }
+              removed {
+                removedQuantity
+                initialQuantity
+                name
+              }
+              parentPrice
+            }
+          }
+          normalizedQuantity
+          choiceType
+          extraQuantity
+        }
+        removed {
+          removedQuantity
+          initialQuantity
+          name
+        }
+        parentPrice
+      }
+    }
+    shippingData {
+      address {
+        id
+        neighborhood
+        complement
+        number
+        street
+        postalCode
+        city
+        reference
+        addressName
+        addressType
+      }
+      availableAddresses {
+        id
+        neighborhood
+        complement
+        number
+        street
+        postalCode
+        city
+        reference
+        addressName
+        addressType
+      }
+    }
+    clientProfileData {
+      email
+      firstName
+    }
+    storePreferencesData {
+      countryCode
+      currencyCode
+      timeZone
+    }
+    checkedInPickupPointId
+    isCheckedIn
+  }
+}

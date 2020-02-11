@@ -1,0 +1,13 @@
+@keyframes sti-loading-rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.sti-loading-rotate {
+  transform-origin: 50px 50px;
+  animation: sti-loading-rotate 0.7s infinite linear;
+}

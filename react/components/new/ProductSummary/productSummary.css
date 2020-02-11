@@ -1,0 +1,90 @@
+.containerInline .imageContainer {
+  max-width: 30%;
+}
+
+.containerInline .imageContainer > img {
+  max-height: 100%;
+}
+
+.container {
+}
+.containerSmall {
+}
+.containerInline {
+}
+.containerInlinePrice {
+}
+.information {
+}
+.element {
+}
+.image {
+}
+.buyButtonContainer {
+}
+.buyButton {
+}
+.description {
+}
+.quantityStepperContainer {
+}
+.imageInline {
+  max-height: 7rem;
+}
+
+.isHidden {
+  visibility: hidden;
+}
+
+.containerNormal {
+}
+
+.nameContainer {
+}
+
+.clearLink {
+  text-decoration: inherit;
+  color: inherit;
+}
+
+.aspectRatio {
+  padding-top: 100%;
+  background: center / contain no-repeat;
+}
+
+.priceContainer {
+}
+
+.SKUSelectorContainer {}
+
+.attachmentListContainer {
+}
+
+.attachmentItemContainer {
+}
+
+.imageNormal {
+  max-height: 17.56rem;
+}
+
+.addToListBtn {
+}
+
+.imagePlaceholder {
+}
+
+.attachmentChildrenContainer {
+}
+
+.imageStackContainer {
+}
+
+.hoverEffect {
+}
+
+.hoverEffect:hover .hoverImage {
+  display: inline;
+}
+
+.hoverImage {
+}

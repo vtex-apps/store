@@ -1,0 +1,83 @@
+query ProductRecommendations(
+  $identifier: ProductUniqueIdentifier
+  $type: CrossSelingInputEnum
+) {
+  productRecommendations(identifier: $identifier, type: $type)
+    @context(provider: "vtex.search-graphql") {
+    cacheId
+    productId
+    productName
+    description
+    link
+    linkText
+    brand
+    brandId
+    categories
+    priceRange {
+      sellingPrice {
+        highPrice
+        lowPrice
+      }
+      listPrice {
+        highPrice
+        lowPrice
+      }
+    }
+    specificationGroups {
+      name
+      specifications {
+        name
+        values
+      }
+    }
+    items {
+      name
+      itemId
+      measurementUnit
+      unitMultiplier
+      referenceId {
+        Value
+      }
+      images {
+        imageId
+        imageLabel
+        imageTag
+        imageUrl
+        imageText
+      }
+      sellers {
+        sellerId
+        sellerName
+        addToCartLink
+        sellerDefault
+        commertialOffer {
+          Price
+          ListPrice
+          PriceWithoutDiscount
+          RewardValue
+          PriceValidUntil
+          AvailableQuantity
+          Tax
+          CacheVersionUsedToCallCheckout
+          Installments(criteria: MAX) {
+            Value
+            InterestRate
+            TotalValuePlusInterestRate
+            NumberOfInstallments
+            Name
+          }
+          teasers {
+            name
+          }
+          discountHighlights {
+            name
+          }
+        }
+      }
+    }
+    properties {
+      name
+      values
+    }
+  }
+}

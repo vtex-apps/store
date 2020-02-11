@@ -1,0 +1,3 @@
+import ProductSummaryAddToListButton from './components/ProductSummaryAddToListButton/ProductSummaryAddToListButton'
+
+export default ProductSummaryAddToListButton

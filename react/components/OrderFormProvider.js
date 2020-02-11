@@ -7,9 +7,14 @@ import {
   updateOrderFormProfile,
   updateOrderFormShipping,
   updateOrderFormCheckin,
-} from 'vtex.store-resources/Mutations'
-import { Provider } from 'vtex.store-resources/OrderFormContext'
-import { orderForm } from 'vtex.store-resources/Queries'
+} from './new/StoreResources/Mutations'
+
+import {
+  orderForm
+} from './new/StoreResources/Queries'
+import {
+  Provider
+} from './new/StoreResources/OrderFormContext'
 
 class OrderFormProvider extends Component {
   state = {

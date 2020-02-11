@@ -1,0 +1,96 @@
+query Products(
+  $category: String
+  $collection: String
+  $specificationFilters: [String]
+  $orderBy: String
+  $from: Int
+  $to: Int
+  $hideUnavailableItems: Boolean = false
+  $skusFilter: ItemsFilter = ALL_AVAILABLE
+) {
+  products(
+    category: $category
+    collection: $collection
+    specificationFilters: $specificationFilters
+    orderBy: $orderBy
+    from: $from
+    to: $to
+    hideUnavailableItems: $hideUnavailableItems
+  ) @context(provider: "vtex.search-graphql") {
+    cacheId
+    productId
+    productName
+    productReference
+    description
+    link
+    linkText
+    brand
+    brandId
+    categories
+    priceRange {
+      sellingPrice {
+        highPrice
+        lowPrice
+      }
+      listPrice {
+        highPrice
+        lowPrice
+      }
+    }
+    specificationGroups {
+      name
+      specifications {
+        name
+        values
+      }
+    }
+    items(filter: $skusFilter) {
+      name
+      itemId
+      measurementUnit
+      unitMultiplier
+      referenceId {
+        Value
+      }
+      images {
+        imageUrl
+        imageTag
+        imageLabel
+      }
+      variations {
+        name
+        values
+      }
+      sellers {
+        sellerId
+        commertialOffer {
+          Installments(criteria: MAX) {
+            Value
+            InterestRate
+            TotalValuePlusInterestRate
+            NumberOfInstallments
+            Name
+          }
+          AvailableQuantity
+          Price
+          PriceWithoutDiscount
+          ListPrice
+          teasers {
+            name
+          }
+          discountHighlights {
+            name
+          }
+        }
+      }
+    }
+    productClusters {
+      id
+      name
+    }
+    properties {
+      name
+      values
+    }
+  }
+}

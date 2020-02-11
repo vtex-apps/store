@@ -1,7 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
-import { useCssHandles } from 'vtex.css-handles'
-import { Container } from 'vtex.store-components'
+import useCssHandles from '../CssHandles/useCssHandles'
+import Container from '../StoreComponents/Container'
 
 interface RowProps {
   fullWidth?: boolean

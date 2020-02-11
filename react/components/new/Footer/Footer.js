@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDevice } from 'vtex.device-detector'
+import useDevice from '../DeviceDetector/useDevice'
 import Row from './Row'
 import Spacer from './Spacer'
 import SocialNetworks from './SocialNetworks'

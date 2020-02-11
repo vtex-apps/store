@@ -1,0 +1,3 @@
+import ProductSummaryBuyButton from './components/ProductSummaryBuyButton/ProductSummaryBuyButton'
+
+export default ProductSummaryBuyButton

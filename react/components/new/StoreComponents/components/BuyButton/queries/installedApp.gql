@@ -1,0 +1,5 @@
+query installedAppPublic($slug: String!) {
+  installedAppPublic(slug: $slug) @context(provider: "vtex.apps-graphql") {
+    version
+  }
+}

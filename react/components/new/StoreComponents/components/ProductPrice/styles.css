@@ -1,0 +1,26 @@
+/**
+*   ProductPrice CSS Modules
+*/
+.priceContainer {}
+.listPrice {}
+.listPriceLabel {}
+.listPriceValue {}
+
+.sellingPriceContainer {}
+.sellingPrice {} /* deprecated */
+.sellingPriceLabel {}
+.sellingPriceValue {}
+.sellingPriceValue--range {}
+
+.savingPrice {}
+.savingPriceValue {}
+
+.installmentsPrice {}
+.interestRatePrice {}
+
+.priceLoaderContainer {}
+.listPriceLoader {}
+.sellingPriceLabelLoader {}
+.sellingPriceLoader {}
+.installmentsPriceLoader {}
+.savingsPriceLoader {}

@@ -1,0 +1,3 @@
+mutation addToCart($items: [MinicartItem]) {
+  addToCart(items: $items) @client
+}

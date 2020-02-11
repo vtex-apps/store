@@ -1,7 +1,7 @@
 import { path, pathOr } from 'ramda'
 import { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { injectIntl, intlShape } from 'react-intl'
-import { ToastContext } from 'vtex.styleguide'
+import ToastContext from '../components/new/Styleguide/ToastContext'
 import { useRuntime } from 'vtex.render-runtime'
 
 function NetworkStatusToast({ intl }) {

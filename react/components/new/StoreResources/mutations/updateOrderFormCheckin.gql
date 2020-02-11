@@ -1,0 +1,27 @@
+mutation updateOrderFormCheckin(
+  $orderFormId: String
+  $checkin: OrderFormCheckinInput
+) {
+  updateOrderFormCheckin(orderFormId: $orderFormId, checkin: $checkin) {
+    isCheckedIn
+    checkedInPickupPointId
+    shippingData {
+      selectedAddresses {
+        id
+        street
+        number
+        receiverName
+        complement
+        neighborhood
+        country
+        state
+        geoCoordinates
+        postalCode
+        city
+        reference
+        addressName
+        addressType
+      }
+    }
+  }
+}

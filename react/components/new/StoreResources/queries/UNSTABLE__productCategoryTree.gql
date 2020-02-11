@@ -1,0 +1,11 @@
+query ProductCategoryTree($slug: String, $identifier: ProductUniqueIdentifier) {
+  product(slug: $slug, identifier: $identifier)
+    @context(provider: "vtex.search-graphql") {
+    cacheId
+    categoryTree {
+      id
+      name
+      href
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { injectIntl, InjectedIntl } from 'react-intl'
-import { formatIOMessage } from 'vtex.native-types'
-import { useCssHandles } from 'vtex.css-handles'
+import formatIOMessage from '../../NativeTypes/formatIOMessage'
+import useCssHandles from '../../CssHandles/useCssHandles'
 
 import withImage from './withImage'
 

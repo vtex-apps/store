@@ -1,0 +1,409 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header Component should match snapshot mobile with leanmode 1`] = `
+<DocumentFragment>
+  <div
+    class="container fixed top-0 z-4 w-100 leanMode"
+  >
+    <div
+      class="left-0 w-100"
+      style="transform: translateZ(0);"
+    >
+      <div
+        class="extension-point-mock"
+      >
+        telemarketing
+      </div>
+      <div
+        class="extension-point-mock"
+      >
+        menu-link
+      </div>
+    </div>
+    <div
+      class="w-100 bg-base"
+    >
+      <section
+        class="container-mock"
+      >
+        <div
+          class="w-100 mw9 flex justify-center pv0"
+          style="pointer-events: none;"
+        >
+          <div
+            class="flex w-100 justify-between-m items-center pv3"
+            style="pointer-events: auto;"
+          >
+            <div
+              class="topMenuLogo pv2 mr5"
+            >
+              <div
+                class="link-mock"
+              >
+                <div
+                  class="extension-point-mock"
+                >
+                  logo
+                </div>
+              </div>
+            </div>
+            <div
+              class="extension-point-mock"
+            >
+              locale-switcher
+            </div>
+            <div
+              class="topMenuIcons flex justify-end flex-grow-1 flex-grow-0-ns items-center order-1-s ml-auto-s order-2-ns"
+            >
+              <div
+                class="flex"
+              >
+                <div
+                  class="extension-point-mock"
+                >
+                  login
+                </div>
+              </div>
+            </div>
+            <div
+              class="extension-point-mock"
+            >
+              user-address
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div
+      class="bb bw1 b--muted-4 relative"
+      style="box-sizing: content-box; z-index: -2;"
+    />
+  </div>
+  <div
+    class="z-1 bg-base w-100 relative"
+    style="height: 160px; width: 0px;"
+  />
+</DocumentFragment>
+`;
+
+exports[`Header Component should match snapshot mobile without leanmode 1`] = `
+<DocumentFragment>
+  <div
+    class="container fixed top-0 z-4 w-100"
+  >
+    <div
+      class="left-0 w-100"
+      style="transform: translateZ(0);"
+    >
+      <div
+        class="extension-point-mock"
+      >
+        telemarketing
+      </div>
+      <div
+        class="extension-point-mock"
+      >
+        menu-link
+      </div>
+    </div>
+    <div
+      class="w-100 bg-base"
+    >
+      <section
+        class="container-mock"
+      >
+        <div
+          class="w-100 mw9 flex justify-center pv6-l pv2-m"
+          style="pointer-events: none;"
+        >
+          <div
+            class="flex w-100 justify-between-m items-center pv3"
+            style="pointer-events: auto;"
+          >
+            <div
+              class="topMenuLogo pv2 mr5"
+            >
+              <div
+                class="link-mock"
+              >
+                <div
+                  class="extension-point-mock"
+                >
+                  logo
+                </div>
+              </div>
+            </div>
+            <div
+              class="dn db-ns flex-grow-1"
+            >
+              <div
+                class="topMenuSearchBar flex pa2-m flex-grow-1 justify-center"
+              >
+                <div
+                  class="w-75"
+                >
+                  <div
+                    class="extension-point-mock"
+                  >
+                    search-bar
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="extension-point-mock"
+            >
+              locale-switcher
+            </div>
+            <div
+              class="topMenuIcons flex justify-end flex-grow-1 flex-grow-0-ns items-center order-1-s ml-auto-s order-2-ns"
+            >
+              <div
+                class="flex"
+              >
+                <div
+                  class="extension-point-mock"
+                >
+                  login
+                </div>
+                <div
+                  class="extension-point-mock"
+                >
+                  minicart
+                </div>
+              </div>
+            </div>
+            <div
+              class="extension-point-mock"
+            >
+              user-address
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div
+      class="no-ssr-mock"
+    >
+      <div
+        class="topMenuCollapsible bg-base flex justify-center relative bb bw1 b--muted-4"
+        style="transform: translate3d(0, 0rem, 0); z-index: -2;"
+      >
+        <div
+          class="extension-point-mock"
+        >
+          category-menu
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="z-1 bg-base w-100 relative"
+    style="height: 160px; width: 0px;"
+  />
+</DocumentFragment>
+`;
+
+exports[`Header Component should match snapshot with leanmode 1`] = `
+<DocumentFragment>
+  <div
+    class="container fixed top-0 z-4 w-100 leanMode"
+  >
+    <div
+      class="left-0 w-100"
+      style="transform: translateZ(0);"
+    >
+      <div
+        class="extension-point-mock"
+      >
+        telemarketing
+      </div>
+      <div
+        class="extension-point-mock"
+      >
+        menu-link
+      </div>
+    </div>
+    <div
+      class="w-100 bg-base"
+    >
+      <section
+        class="container-mock"
+      >
+        <div
+          class="w-100 mw9 flex justify-center pv0"
+          style="pointer-events: none;"
+        >
+          <div
+            class="flex w-100 justify-between-m items-center pv3"
+            style="pointer-events: auto;"
+          >
+            <div
+              class="topMenuLogo pv2 mr5"
+            >
+              <div
+                class="link-mock"
+              >
+                <div
+                  class="extension-point-mock"
+                >
+                  logo
+                </div>
+              </div>
+            </div>
+            <div
+              class="extension-point-mock"
+            >
+              locale-switcher
+            </div>
+            <div
+              class="topMenuIcons flex justify-end flex-grow-1 flex-grow-0-ns items-center order-1-s ml-auto-s order-2-ns"
+            >
+              <div
+                class="flex"
+              >
+                <div
+                  class="extension-point-mock"
+                >
+                  login
+                </div>
+              </div>
+            </div>
+            <div
+              class="extension-point-mock"
+            >
+              user-address
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div
+      class="bb bw1 b--muted-4 relative"
+      style="box-sizing: content-box; z-index: -2;"
+    />
+  </div>
+  <div
+    class="z-1 bg-base w-100 relative"
+    style="height: 160px; width: 0px;"
+  />
+</DocumentFragment>
+`;
+
+exports[`Header Component should match snapshot without leanmode 1`] = `
+<DocumentFragment>
+  <div
+    class="container fixed top-0 z-4 w-100"
+  >
+    <div
+      class="left-0 w-100"
+      style="transform: translateZ(0);"
+    >
+      <div
+        class="extension-point-mock"
+      >
+        telemarketing
+      </div>
+      <div
+        class="extension-point-mock"
+      >
+        menu-link
+      </div>
+    </div>
+    <div
+      class="w-100 bg-base"
+    >
+      <section
+        class="container-mock"
+      >
+        <div
+          class="w-100 mw9 flex justify-center pv6-l pv2-m"
+          style="pointer-events: none;"
+        >
+          <div
+            class="flex w-100 justify-between-m items-center pv3"
+            style="pointer-events: auto;"
+          >
+            <div
+              class="topMenuLogo pv2 mr5"
+            >
+              <div
+                class="link-mock"
+              >
+                <div
+                  class="extension-point-mock"
+                >
+                  logo
+                </div>
+              </div>
+            </div>
+            <div
+              class="dn db-ns flex-grow-1"
+            >
+              <div
+                class="topMenuSearchBar flex pa2-m flex-grow-1 justify-center"
+              >
+                <div
+                  class="w-75"
+                >
+                  <div
+                    class="extension-point-mock"
+                  >
+                    search-bar
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="extension-point-mock"
+            >
+              locale-switcher
+            </div>
+            <div
+              class="topMenuIcons flex justify-end flex-grow-1 flex-grow-0-ns items-center order-1-s ml-auto-s order-2-ns"
+            >
+              <div
+                class="flex"
+              >
+                <div
+                  class="extension-point-mock"
+                >
+                  login
+                </div>
+                <div
+                  class="extension-point-mock"
+                >
+                  minicart
+                </div>
+              </div>
+            </div>
+            <div
+              class="extension-point-mock"
+            >
+              user-address
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div
+      class="no-ssr-mock"
+    >
+      <div
+        class="topMenuCollapsible bg-base flex justify-center relative bb bw1 b--muted-4"
+        style="transform: translate3d(0, 0rem, 0); z-index: -2;"
+      >
+        <div
+          class="extension-point-mock"
+        >
+          category-menu
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="z-1 bg-base w-100 relative"
+    style="height: 160px; width: 0px;"
+  />
+</DocumentFragment>
+`;

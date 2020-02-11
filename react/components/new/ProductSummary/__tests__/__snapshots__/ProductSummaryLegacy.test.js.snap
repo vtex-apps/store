@@ -1,0 +1,405 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProductSummary /> component should match the snapshot for inline normal mode 1`] = `
+<DocumentFragment>
+  <section
+    class="container containerInlinePrice overflow-hidden br3 h-100 w-100"
+  >
+    <article
+      class="flex"
+    >
+      <div
+        class="imageContainer db w-70"
+      >
+        <div
+          class="relative"
+        >
+          <div
+            class="imagePlaceholder absolute w-100 h-100 contain bg-center"
+          />
+          <svg
+            data-testid="image-placeholder"
+            fill="none"
+            height="100%"
+            viewBox="0 0 512 512"
+            width="100%"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect
+              fill="#F2F2F2"
+              height="512"
+              width="512"
+            />
+            <rect
+              height="150.474"
+              stroke="#CACBCC"
+              stroke-width="2"
+              width="144.286"
+              x="183.857"
+              y="180.2"
+            />
+            <path
+              d="M183.78 303.688H328.214"
+              stroke="#CACBCC"
+              stroke-width="2"
+            />
+            <path
+              d="M205.082 279.563L223.599 240.507L242.116 260.035L269.892 220.979L306.926 279.563H205.082Z"
+              stroke="#CACBCC"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+            <path
+              d="M252.225 213.939C252.225 219.822 247.66 224.52 242.114 224.52C236.569 224.52 232.004 219.822 232.004 213.939C232.004 208.057 236.569 203.359 242.114 203.359C247.66 203.359 252.225 208.057 252.225 213.939Z"
+              stroke="#CACBCC"
+              stroke-width="2"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        class="information w-80 pb2 pl3 flex flex-wrap flex-column justify-between"
+      >
+        <div
+          class="flex flex-column"
+        >
+          <div
+            class="flex items-start justify-left tl w-90 t-mini pb2"
+          >
+            <div>
+              ProductName
+            </div>
+          </div>
+          <div
+            class="nr2"
+          >
+            <div
+              class="flex flex-column nr1 priceContainer"
+            >
+              <div>
+                ProductPrice
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex flex-column-reverse"
+        >
+          <div
+            class="buyButtonContainer pt3 w-100"
+          >
+            <div
+              class="buyButton center mw-100"
+            >
+              <div
+                class="buy-button-mock"
+              >
+                <span>
+                  Buy
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+</DocumentFragment>
+`;
+
+exports[`<ProductSummary /> component should match the snapshot for inline price mode 1`] = `
+<DocumentFragment>
+  <section
+    class="container containerInline br3 h-100 w-100"
+  >
+    <article
+      class="element pointer ph2 pt3 pb4 flex flex-column h-100"
+    >
+      <div
+        class="imageContainer db h-100"
+      >
+        <div
+          class="relative"
+        >
+          <div
+            class="imagePlaceholder absolute w-100 h-100 contain bg-center"
+          />
+          <svg
+            data-testid="image-placeholder"
+            fill="none"
+            height="100%"
+            viewBox="0 0 512 512"
+            width="100%"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect
+              fill="#F2F2F2"
+              height="512"
+              width="512"
+            />
+            <rect
+              height="150.474"
+              stroke="#CACBCC"
+              stroke-width="2"
+              width="144.286"
+              x="183.857"
+              y="180.2"
+            />
+            <path
+              d="M183.78 303.688H328.214"
+              stroke="#CACBCC"
+              stroke-width="2"
+            />
+            <path
+              d="M205.082 279.563L223.599 240.507L242.116 260.035L269.892 220.979L306.926 279.563H205.082Z"
+              stroke="#CACBCC"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+            <path
+              d="M252.225 213.939C252.225 219.822 247.66 224.52 242.114 224.52C236.569 224.52 232.004 219.822 232.004 213.939C232.004 208.057 236.569 203.359 242.114 203.359C247.66 203.359 252.225 208.057 252.225 213.939Z"
+              stroke="#CACBCC"
+              stroke-width="2"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        class="information w-70 pb2 ph3"
+      >
+        <div
+          class="flex items-start justify-left tl w-90 t-mini pb2"
+        >
+          <div>
+            ProductName
+          </div>
+        </div>
+        <div
+          class="mv3 nr2"
+        >
+          <div
+            class="flex justify-end nr4 mb2 quantityStepperContainer"
+          >
+            <div>
+              NumericStepper
+            </div>
+          </div>
+          <div
+            class="flex flex-column nr1 h1 items-end priceContainer pv5"
+          >
+            <div>
+              ProductPrice
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+</DocumentFragment>
+`;
+
+exports[`<ProductSummary /> component should match the snapshot for normal mode 1`] = `
+<DocumentFragment>
+  <section
+    class="container containerNormal overflow-hidden br3 h-100 w-100 flex flex-column justify-between center tc"
+  >
+    <div
+      class="addToListBtn absolute z-1 mt3"
+    >
+      <div
+        id="addon-summary-btn"
+        product="[object Object]"
+      />
+    </div>
+    <article
+      class="element pointer pt3 pb4 flex flex-column h-100"
+    >
+      <div
+        class="imageContainer db w-100 center"
+      >
+        <div
+          class="relative"
+        >
+          <div
+            class="imagePlaceholder absolute w-100 h-100 contain bg-center"
+          />
+          <svg
+            data-testid="image-placeholder"
+            fill="none"
+            height="100%"
+            viewBox="0 0 512 512"
+            width="100%"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect
+              fill="#F2F2F2"
+              height="512"
+              width="512"
+            />
+            <rect
+              height="150.474"
+              stroke="#CACBCC"
+              stroke-width="2"
+              width="144.286"
+              x="183.857"
+              y="180.2"
+            />
+            <path
+              d="M183.78 303.688H328.214"
+              stroke="#CACBCC"
+              stroke-width="2"
+            />
+            <path
+              d="M205.082 279.563L223.599 240.507L242.116 260.035L269.892 220.979L306.926 279.563H205.082Z"
+              stroke="#CACBCC"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+            <path
+              d="M252.225 213.939C252.225 219.822 247.66 224.52 242.114 224.52C236.569 224.52 232.004 219.822 232.004 213.939C232.004 208.057 236.569 203.359 242.114 203.359C247.66 203.359 252.225 208.057 252.225 213.939Z"
+              stroke="#CACBCC"
+              stroke-width="2"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        class="information h-100 flex flex-column justify-between"
+      >
+        <div
+          class="flex items-start nameContainer justify-center pv6"
+        >
+          <div>
+            ProductName
+          </div>
+        </div>
+        <div>
+          <div
+            class="flex flex-column justify-end items-center relative priceContainer pv5"
+          >
+            <div>
+              ProductPrice
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    <div
+      class="buyButtonContainer pv3 w-100 db"
+    >
+      <div
+        class="buyButton center mw-100"
+      >
+        <div
+          class="buy-button-mock"
+        >
+          <span>
+            Buy
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+</DocumentFragment>
+`;
+
+exports[`<ProductSummary /> component should match the snapshot for small mode 1`] = `
+<DocumentFragment>
+  <section
+    class="container containerSmall overflow-hidden br3 h-100 flex flex-column justify-between center tc"
+  >
+    <article
+      class="element pointer pt3 pb4 flex flex-column"
+    >
+      <div
+        class="imageContainer db w-100 center"
+      >
+        <div
+          class="relative"
+        >
+          <div
+            class="imagePlaceholder absolute w-100 h-100 contain bg-center"
+          />
+          <svg
+            data-testid="image-placeholder"
+            fill="none"
+            height="100%"
+            viewBox="0 0 512 512"
+            width="100%"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect
+              fill="#F2F2F2"
+              height="512"
+              width="512"
+            />
+            <rect
+              height="150.474"
+              stroke="#CACBCC"
+              stroke-width="2"
+              width="144.286"
+              x="183.857"
+              y="180.2"
+            />
+            <path
+              d="M183.78 303.688H328.214"
+              stroke="#CACBCC"
+              stroke-width="2"
+            />
+            <path
+              d="M205.082 279.563L223.599 240.507L242.116 260.035L269.892 220.979L306.926 279.563H205.082Z"
+              stroke="#CACBCC"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+            <path
+              d="M252.225 213.939C252.225 219.822 247.66 224.52 242.114 224.52C236.569 224.52 232.004 219.822 232.004 213.939C232.004 208.057 236.569 203.359 242.114 203.359C247.66 203.359 252.225 208.057 252.225 213.939Z"
+              stroke="#CACBCC"
+              stroke-width="2"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        class="information"
+      >
+        <div
+          class="flex items-start nameContainer justify-center pv5 t-mini pb2"
+        >
+          <div>
+            ProductName
+          </div>
+        </div>
+        <div>
+          <div
+            class="flex flex-column justify-end items-center priceContainer pv5"
+          >
+            <div>
+              ProductPrice
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    <div
+      class="buyButtonContainer pv3 w-100 dn"
+    >
+      <div
+        class="buyButton center mw-100"
+      >
+        <div
+          class="buy-button-mock"
+        >
+          <span>
+            Buy
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+</DocumentFragment>
+`;

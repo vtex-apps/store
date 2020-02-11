@@ -1,0 +1,225 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<InfoCard /> should insert span with class on headline 1`] = `
+<DocumentFragment>
+  <div
+    class="infoCardContainer items-center bg-center bb b--muted-4 flex justify-center"
+    data-testid="container"
+    style="background-image: url(my-image.com/image.png); background-size: cover;"
+  >
+    <div
+      class="infoCardTextContainer flex flex-column mw-100 mh8-ns mh4-s w-40-ns items-center"
+    >
+      <div
+        class="infoCardHeadline t-heading-2 mt6 tc c-on-base mw-100"
+      >
+        HEADLINE 
+        <span
+          class="my-custom-class"
+        >
+          THIS IS BOOOLD AND BLUE
+        </span>
+         HEADLINE STILL
+      </div>
+      <div
+        class="infoCardSubhead t-body mt6 c-on-base tc mw-100"
+      >
+        MY SUBHEAD
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`<InfoCard /> should not render subhead 1`] = `
+<DocumentFragment>
+  <div
+    class="infoCardContainer items-center bg-center bb b--muted-4 flex justify-center"
+    data-testid="container"
+    style="background-image: url(my-image.com/image.png); background-size: cover;"
+  >
+    <div
+      class="infoCardTextContainer flex flex-column mw-100 mh8-ns mh4-s w-40-ns items-center"
+    >
+      <div
+        class="infoCardHeadline t-heading-2 mt6 tc c-on-base mw-100"
+      >
+        HEADLINE 
+        <span
+          class="my-custom-class"
+        >
+          THIS IS BOOOLD AND BLUE
+        </span>
+         HEADLINE STILL
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`<InfoCard /> should render with full mode style 1`] = `
+<DocumentFragment>
+  <div
+    class="infoCardContainer items-center bg-center bb b--muted-4 flex justify-start"
+    data-testid="container"
+    style="background-image: url(my-image.com/image.png); background-size: cover;"
+  >
+    <div
+      class="infoCardTextContainer flex flex-column mw-100 mh8-ns mh4-s w-40-ns items-start"
+    >
+      <div
+        class="infoCardHeadline t-heading-2 mt6 tl c-on-base mw-100"
+      >
+        MY HEADLINE
+      </div>
+      <div
+        class="infoCardSubhead t-body mt6 c-on-base tl mw-100"
+      >
+        MY SUBHEAD
+      </div>
+      <a
+        href="dummy"
+      >
+        <button>
+          CLICK HERE
+        </button>
+      </a>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`<InfoCard /> should render with image and text side by side 1`] = `
+<DocumentFragment>
+  <div
+    class="infoCardContainer items-center flex-ns flex-row bg-base ph2-ns pb2 justify-between"
+    data-testid="container"
+  >
+    <div
+      class="infoCardTextContainer flex flex-column mw-100 w-50-ns ph3-s items-start pr4-ns"
+    >
+      <div
+        class="infoCardHeadline t-heading-2 mt6 tl c-on-base mw-100"
+      >
+        MY HEADLINE
+      </div>
+      <div
+        class="infoCardSubhead t-body mt6 c-on-base tl mw-100"
+      >
+        MY SUBHEAD
+      </div>
+      <a
+        href="dummy"
+      >
+        <button>
+          CLICK HERE
+        </button>
+      </a>
+    </div>
+    <div
+      class="infoCardImageContainer w-50-ns"
+    >
+      <img
+        alt=""
+        class="infoCardImage"
+        data-testid="half-image"
+        src="my-image.com/image.png"
+        style="object-fit: cover;"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`<InfoCard /> should render without a call to action 1`] = `
+<DocumentFragment>
+  <div
+    class="infoCardContainer items-center bg-center bb b--muted-4 flex justify-start"
+    data-testid="container"
+    style="background-image: url(my-image.com/image.png); background-size: cover;"
+  >
+    <div
+      class="infoCardTextContainer flex flex-column mw-100 mh8-ns mh4-s w-40-ns items-start"
+    >
+      <div
+        class="infoCardHeadline t-heading-2 mt6 tl c-on-base mw-100"
+      >
+        MY HEADLINE
+      </div>
+      <div
+        class="infoCardSubhead t-body mt6 c-on-base tl mw-100"
+      >
+        MY SUBHEAD
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`<InfoCard /> should wrap half image in a link with imageActionUrl 1`] = `
+<DocumentFragment>
+  <div
+    class="infoCardContainer items-center flex-ns flex-row bg-base ph2-ns pb2 justify-between"
+    data-testid="container"
+  >
+    <div
+      class="infoCardTextContainer flex flex-column mw-100 w-50-ns ph3-s items-start pr4-ns"
+    >
+      <div
+        class="infoCardHeadline t-heading-2 mt6 tl c-on-base mw-100"
+      >
+        MY HEADLINE
+      </div>
+      <div
+        class="infoCardSubhead t-body mt6 c-on-base tl mw-100"
+      >
+        MY SUBHEAD
+      </div>
+    </div>
+    <div
+      class="infoCardImageContainer w-50-ns"
+    >
+      <a
+        href="dummy"
+      >
+        <img
+          alt=""
+          class="infoCardImage"
+          data-testid="half-image"
+          src="my-image.com/image.png"
+          style="object-fit: cover;"
+        />
+      </a>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`<InfoCard /> should wrap whole container in a link with imageActionUrl 1`] = `
+<DocumentFragment>
+  <a
+    href="dummy"
+  >
+    <div
+      class="infoCardContainer items-center bg-center bb b--muted-4 flex justify-center"
+      data-testid="container"
+      style="background-image: url(my-image.com/image.png); background-size: cover;"
+    >
+      <div
+        class="infoCardTextContainer flex flex-column mw-100 mh8-ns mh4-s w-40-ns items-center"
+      >
+        <div
+          class="infoCardHeadline t-heading-2 mt6 tc c-on-base mw-100"
+        >
+          MY HEADLINE
+        </div>
+        <div
+          class="infoCardSubhead t-body mt6 c-on-base tc mw-100"
+        >
+          MY SUBHEAD
+        </div>
+      </div>
+    </div>
+  </a>
+</DocumentFragment>
+`;

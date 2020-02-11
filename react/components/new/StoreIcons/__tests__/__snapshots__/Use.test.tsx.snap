@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Use should match snapshot 1`] = `
+<DocumentFragment>
+  <svg>
+    <use
+      href="#tst-snapshot"
+      xlink:href="#tst-snapshot"
+    />
+  </svg>
+</DocumentFragment>
+`;

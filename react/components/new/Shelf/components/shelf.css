@@ -1,0 +1,9 @@
+.arrow {
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.dot {
+  height: 0.625rem;
+  width: 0.625rem;
+}

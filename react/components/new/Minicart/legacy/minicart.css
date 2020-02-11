@@ -1,0 +1,102 @@
+.container {
+}
+.label {
+}
+.itemImage {
+}
+.item {
+}
+.itemContainer {
+}
+.itemDeleteIcon {
+}
+.itemDeleteIcon {
+}
+.itemDeleteIconLoader {
+}
+.content {
+}
+.contentDiscount {
+}
+.contentPrice {
+}
+.itemName {
+}
+.itemNameLarge {
+}
+.itemFooter {
+}
+.imgContainer {
+}
+.itemRemoveBtn {
+}
+.sidebarScrim {
+}
+.sidebarHeader {
+}
+
+.contentSmall {
+  max-height: 383px;
+}
+
+.contentLarge {
+  max-height: stretch;
+}
+
+.badge {
+  top: -0.7rem;
+  right: -0.8rem;
+}
+
+.arrowUp {
+  right: 7px;
+}
+
+.box {
+  width: 364px;
+  top: 100%;
+}
+
+.itemImageLoader {
+  width: 100%;
+  height: 100%;
+}
+
+.contentFooter {
+}
+
+.footerSpacer {
+}
+
+.footerShippingPriceContainer {
+}
+
+.footerShippingPriceLabelContainer {
+}
+
+.popupContentContainer {
+}
+
+.popupChildrenContainer {
+}
+
+.sidebarRightCaretContainer {
+}
+
+.sidebarItemQuantityContainer {
+}
+
+.labelDiscountText{
+}
+
+@media only screen and (max-width: 40rem) {
+  body.sidebarOpen {
+    overflow: hidden;
+  }
+}
+
+@media only screen and (min-width: 40em) {
+  .sidebar {
+    width: 340px;
+  }
+}

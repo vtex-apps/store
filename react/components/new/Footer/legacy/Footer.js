@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import classNames from 'classnames'
-import { Container } from 'vtex.store-components'
-import { IOMessage } from 'vtex.native-types'
+import Container from '../../StoreComponents/Container'
+import IOMessage from '../../NativeTypes/IOMessage'
 
 import FooterBadgeList from './FooterBadgeList'
 import FooterLinksMatrix from './FooterLinksMatrix'

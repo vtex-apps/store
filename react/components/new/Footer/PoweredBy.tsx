@@ -1,5 +1,5 @@
 import React from 'react'
-import { useCssHandles } from 'vtex.css-handles'
+import useCssHandles from '../CssHandles/useCssHandles'
 import { withRuntimeContext } from 'vtex.render-runtime'
 
 import withImage from './components/withImage'

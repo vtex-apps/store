@@ -1,0 +1,11 @@
+.sizeDesktop {
+  max-width: 150px;
+  max-height: 75px;
+  min-width: 120px;
+}
+
+.sizeMobile {
+  max-width: 90px;
+  max-height: 40px;
+  min-width: 72px;
+}

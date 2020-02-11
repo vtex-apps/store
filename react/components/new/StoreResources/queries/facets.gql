@@ -1,0 +1,103 @@
+query facets(
+  $query: String
+  $map: String
+  $hideUnavailableItems: Boolean = false
+  $behavior: String = "Static"
+) {
+  facets(query: $query, map: $map, hideUnavailableItems: $hideUnavailableItems, behavior: $behavior)
+    @context(provider: "vtex.search-graphql") {
+    departments {
+      quantity
+      name
+      link
+      linkEncoded
+      map
+      selected
+      value
+    }
+    brands {
+      quantity
+      name
+      link
+      linkEncoded
+      map
+      selected
+      value
+    }
+    specificationFilters {
+      name
+      facets {
+        quantity
+        name
+        link
+        linkEncoded
+        map
+        selected
+        value
+      }
+    }
+    categoriesTrees {
+      id
+      quantity
+      name
+      link
+      href
+      linkEncoded
+      map
+      selected
+      value
+      children {
+        id
+        quantity
+        name
+        link
+        href
+        linkEncoded
+        map
+        selected
+        value
+        children {
+          id
+          quantity
+          name
+          link
+          href
+          linkEncoded
+          map
+          selected
+          value
+          children {
+            id
+            quantity
+            name
+            link
+            href
+            linkEncoded
+            map
+            selected
+            value
+            children {
+              id
+              quantity
+              name
+              link
+              href
+              linkEncoded
+              map
+              selected
+              value
+            }
+          }
+        }
+      }
+    }
+    priceRanges {
+      quantity
+      name
+      link
+      linkEncoded
+      slug
+      map
+    }
+  }
+}

@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AvailabilitySubscriber /> should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="subscriberContainer"
+  >
+    <div
+      class="title t-body mb3"
+    >
+      This product isn't available right now
+    </div>
+    <div
+      class="subscribeLabel t-small fw3"
+    >
+      I want to know when this product becomes available
+    </div>
+    <form
+      class="form mb4"
+    >
+      <div
+        class="content flex-ns justify-between mt4 mw6"
+      >
+        <div
+          class="input inputName w-100 mr5 mb4"
+        >
+          <label>
+            <input
+              name="name"
+              placeholder="Name"
+              type="text"
+              value=""
+            />
+          </label>
+        </div>
+        <div
+          class="input inputEmail w-100 mr5 mb4"
+        >
+          <label>
+            <input
+              data-error="false"
+              data-errormessage=""
+              name="email"
+              placeholder="Email"
+              type="text"
+              value=""
+            />
+          </label>
+        </div>
+        <div
+          class="submit flex items-center mb4"
+        >
+          <button
+            data-isloading="false"
+            data-variation="primary"
+            disabled=""
+            type="submit"
+          >
+            Send
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</DocumentFragment>
+`;

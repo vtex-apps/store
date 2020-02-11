@@ -1,0 +1,236 @@
+query productSearchV2(
+  $query: String
+  $map: String
+  $facetQuery: String
+  $facetMap: String
+  $category: String
+  $collection: String
+  $specificationFilters: [String]
+  $orderBy: String
+  $priceRange: String
+  $from: Int
+  $to: Int
+  $withFacets: Boolean = true
+  $hideUnavailableItems: Boolean = false
+  $skusFilter: ItemsFilter = ALL_AVAILABLE
+  $simulationBehavior: SimulationBehavior = default
+) {
+  productSearch(
+    query: $query
+    map: $map
+    category: $category
+    collection: $collection
+    specificationFilters: $specificationFilters
+    orderBy: $orderBy
+    priceRange: $priceRange
+    from: $from
+    to: $to
+    hideUnavailableItems: $hideUnavailableItems
+    simulationBehavior: $simulationBehavior
+  ) @context(provider: "vtex.search-graphql") {
+    products {
+      cacheId
+      productId
+      description
+      productName
+      productReference
+      linkText
+      brand
+      brandId
+      link
+      categories
+      priceRange {
+        sellingPrice {
+          highPrice
+          lowPrice
+        }
+        listPrice {
+          highPrice
+          lowPrice
+        }
+      }
+      specificationGroups {
+        name
+        specifications {
+          name
+          values
+        }
+      }
+      items(filter: $skusFilter) {
+        itemId
+        name
+        nameComplete
+        complementName
+        ean
+        variations {
+          name
+          values
+        }
+        referenceId {
+          Key
+          Value
+        }
+        measurementUnit
+        unitMultiplier
+        images {
+          cacheId
+          imageId
+          imageLabel
+          imageTag
+          imageUrl
+          imageText
+        }
+        sellers {
+          sellerId
+          sellerName
+          commertialOffer {
+            discountHighlights {
+              name
+            }
+            teasers {
+              name
+              conditions {
+                minimumQuantity
+                parameters {
+                  name
+                  value
+                }
+              }
+              effects {
+                parameters {
+                  name
+                  value
+                }
+              }
+            }
+            Installments(criteria: MAX) {
+              Value
+              InterestRate
+              TotalValuePlusInterestRate
+              NumberOfInstallments
+              Name
+            }
+            Price
+            ListPrice
+            PriceWithoutDiscount
+            RewardValue
+            PriceValidUntil
+            AvailableQuantity
+          }
+        }
+      }
+      productClusters {
+        id
+        name
+      }
+      properties {
+        name
+        values
+      }
+    }
+    recordsFiltered
+    breadcrumb {
+      name
+      href
+    }
+  }
+  facets(
+    query: $facetQuery
+    map: $facetMap
+    hideUnavailableItems: $hideUnavailableItems
+  ) @include(if: $withFacets) @context(provider: "vtex.search-graphql") {
+    departments {
+      quantity
+      name
+      link
+      linkEncoded
+      map
+      selected
+      value
+    }
+    brands {
+      quantity
+      name
+      link
+      linkEncoded
+      map
+      selected
+      value
+    }
+    specificationFilters {
+      name
+      facets {
+        quantity
+        name
+        link
+        linkEncoded
+        map
+        selected
+        value
+      }
+    }
+    categoriesTrees {
+      id
+      quantity
+      name
+      link
+      href
+      linkEncoded
+      map
+      selected
+      value
+      children {
+        id
+        quantity
+        name
+        link
+        href
+        linkEncoded
+        map
+        selected
+        value
+        children {
+          id
+          quantity
+          name
+          link
+          href
+          linkEncoded
+          map
+          selected
+          value
+          children {
+            id
+            quantity
+            name
+            link
+            href
+            linkEncoded
+            map
+            selected
+            value
+            children {
+              id
+              quantity
+              name
+              link
+              href
+              linkEncoded
+              map
+              selected
+              value
+            }
+          }
+        }
+      }
+    }
+    priceRanges {
+      quantity
+      name
+      link
+      linkEncoded
+      slug
+      map
+    }
+  }
+}

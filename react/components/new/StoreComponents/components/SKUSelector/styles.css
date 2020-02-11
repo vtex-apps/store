@@ -1,0 +1,80 @@
+/**
+*   SKU Selector CSS Module
+*/
+.skuSelectorContainer {
+}
+.skuSelectorSubcontainer {
+}
+.skuSelectorName {
+}
+.skuSelectorNameContainer {
+}
+.skuSelectorNameSeparator {
+}
+.skuSelectorSelectorImageValue {
+}
+.skuSelectorTextContainer {
+}
+
+.skuSelectorSelectContainer {}
+
+.skuSelectorItem {
+  font-size: 90%;
+  height: 36px;
+}
+
+.skuSelectorItemImage {
+  padding: 0;
+  height: 40px;
+  width: 40px;
+}
+
+.skuSelectorItem p {
+  margin: 0;
+  padding-top: 10px;
+}
+
+.skuSelectorBagde {
+  font-size: 0.71429rem;
+  background-color: #ff4136;
+  border-radius: 50%;
+  color: #fff;
+  height: 18px;
+  line-height: 18px;
+  right: -5px;
+  text-align: center;
+  top: -6px;
+  width: 18px;
+  position: absolute;
+  padding: 3px;
+}
+
+.diagonalCross {
+  background-image: linear-gradient(
+    to top right,
+    transparent 44%,
+    rgba(0, 0, 0, 0.3) 48%,
+    currentColor 48%,
+    currentColor 52%,
+    transparent 52%
+  );
+}
+
+.frameAround {
+  bottom: -0.25rem;
+  top: -0.25rem;
+  left: -0.25rem;
+  right: -0.25rem;
+}
+
+.seeMoreButton {
+}
+
+.skuSelectorOptionsList {
+}
+
+.skuSelectorItemTextValue {
+}
+
+.skuSelectorItemImageValue {
+}

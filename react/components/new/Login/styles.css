@@ -1,0 +1,176 @@
+.container {}
+
+.contentInitialScreen {}
+
+.contentFormVisible {}
+
+.profile {}
+
+.label {}
+
+.loading {}
+
+.optionsSticky {}
+
+.optionsList {}
+
+.optionsListItem {}
+
+.optionsListItemContainer {}
+
+.accessCodeOptionBtn {}
+
+.emailPasswordOptionBtn {}
+
+.facebookOptionBtn {}
+
+.googleOptionBtn {}
+
+.customOAuthOptionBtn {}
+
+.oauthProvider {}
+
+.oauthAutoRedirect {}
+
+.oauthAutoRedirectLoading {}
+
+.inputContainer {}
+
+.inputContainerAccessCode {}
+
+.inputContainerPassword {}
+
+.inputContainerEmail {}
+
+.emailVerification {}
+
+.emailForm {}
+
+.emailAndPasswordForm {}
+
+.forgotPasswordForm {}
+
+.formLinkContainer {}
+
+.arrowUp {}
+
+.buttonLink {}
+
+.formError {}
+
+.content {}
+
+.button {}
+
+.sendButton {}
+
+.buttonSocial {}
+
+.buttonDanger {}
+
+.backButton {}
+
+.accountOptions {}
+
+.codeConfirmation {}
+
+.formTitle {
+  white-space: pre-line;
+}
+
+.box {
+  top: 100%;
+  visibility: visible;
+  min-width: 19.375rem;
+}
+
+.contentContainer {
+  min-width: 100%;
+}
+
+.formFooter {
+  min-height: 2rem;
+}
+
+.contentForm {
+  min-width: 18.125rem;
+}
+
+.contentAlwaysWithOptions {
+  min-height: 18.75rem;
+  max-width: 43.75rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .contentAlwaysWithOptions {
+    max-width: 25rem;
+  }
+}
+
+.options {
+  min-width: 20rem;
+}
+
+.sendButton:only-child {
+  margin: 0;
+  width: 100%;
+}
+
+.sendButton:only-child :global(.vtex-button) {
+  width: 100%;
+}
+
+.tooltipContainer {
+  width: max-content;
+} 
+
+.tooltipContainerTop {
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tooltipContainerLeft {
+  top: 50%;
+  transform: translateY(-50%);
+  right: 102%;
+}
+
+.tooltipContainerLeft::after {
+  content: '';
+  position: absolute;
+  top: 45%;
+  left: 100%;
+  border-width: 0.625rem;
+  border-style: solid;
+  border-color: transparent transparent transparent #3b3b3b;
+}
+
+.tooltipContainerTop::after {
+  content: '';
+  position: absolute;
+  left: 45%;
+  top: 100%;
+  border-width: 0.625rem;
+  border-style: solid;
+  border-color: #3b3b3b transparent transparent transparent;
+}
+
+.button :global(.vtex-button) {
+  border: 1px solid rgb(233, 233, 233);
+  width: 100%;
+  min-height: 2.5rem;
+}
+
+.button :global(.vtex-button) .oauthLabel {
+  margin: 0 1.25rem 0 1.25rem;
+}
+
+.buttonDanger > :global(.vtex-button){
+  background-color: #ffe6e6;
+  color: #FF4C4C;
+}
+
+.buttonDanger > :global(.vtex-button) :global(.vtex__icon-spinner){
+  color: #FF4C4C;
+}

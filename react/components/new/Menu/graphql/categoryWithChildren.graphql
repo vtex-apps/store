@@ -1,0 +1,15 @@
+query categoryWithChildren($id: Int) {
+  category(id: $id) {
+    cacheId
+    id
+    href
+    name
+    titleTag
+    children {
+      id
+      href
+      name
+      titleTag
+    }
+  }
+}

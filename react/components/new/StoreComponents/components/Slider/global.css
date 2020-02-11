@@ -1,0 +1,24 @@
+@import url('~slick-carousel/slick/slick.css');
+@import url('~slick-carousel/slick/slick-theme.css');
+@import url('./slider.css');
+
+/* Fixes uneven arrows distance */
+.slick-prev, .slick-next {
+    width: inherit !important;
+    height: inherit !important;
+}
+
+/* Clearfix for left arrow */
+.slick-prev {
+    left: 0 !important;
+}
+
+/* Clearfix for right arrow */
+.slick-next {
+    right: 0 !important;
+}
+
+.slick-dots {
+    position: inherit !important;
+}
+

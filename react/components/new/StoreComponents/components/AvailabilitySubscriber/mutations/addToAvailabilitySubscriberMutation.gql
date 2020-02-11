@@ -1,0 +1,8 @@
+mutation availabilitySubscribe($acronym: String!, $document: DocumentInput) {
+  createDocument(acronym: $acronym, document: $document) {
+    cacheId
+    id
+    href
+    documentId
+  }
+}

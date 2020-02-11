@@ -1,0 +1,157 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SKUSelector /> should consider order from skuSpecifications 1`] = `
+<DocumentFragment>
+  <div
+    class="skuSelectorContainer"
+  >
+    <div
+      class="flex flex-column mb7 skuSelectorSubcontainer skuSelectorSubcontainer--color"
+    >
+      <div
+        class="skuSelectorNameContainer ma1"
+      >
+        <div
+          class="skuSelectorTextContainer db mb3"
+        >
+          <span
+            class="skuSelectorName c-muted-1 t-small overflow-hidden"
+          >
+            Color
+          </span>
+        </div>
+        <div
+          class="skuSelectorOptionsList w-100 inline-flex flex-wrap ml2 items-center"
+        >
+          <div
+            class="skuSelectorItem skuSelectorItem--black relative di pointer flex items-center outline-0 ma2 skuSelectorItemImage"
+            role="button"
+            tabindex="0"
+          >
+            <div
+              class="frameAround absolute b--action-primary br3 bw1"
+            />
+            <div
+              class="w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden hover-b--muted-2 ba"
+            >
+              <div
+                class="absolute absolute--fill"
+              />
+              <div
+                class="h-100"
+              >
+                Black
+              </div>
+            </div>
+          </div>
+          <div
+            class="skuSelectorItem skuSelectorItem--gray relative di pointer flex items-center outline-0 ma2 skuSelectorItemImage"
+            role="button"
+            tabindex="0"
+          >
+            <div
+              class="frameAround absolute b--action-primary br3 bw1 ba"
+            />
+            <div
+              class="w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden ba"
+            >
+              <div
+                class="absolute absolute--fill"
+              />
+              <div
+                class="h-100"
+              >
+                Gray
+              </div>
+            </div>
+          </div>
+          <div
+            class="skuSelectorItem skuSelectorItem--blue relative di pointer flex items-center outline-0 ma2 skuSelectorItemImage"
+            role="button"
+            tabindex="0"
+          >
+            <div
+              class="frameAround absolute b--action-primary br3 bw1"
+            />
+            <div
+              class="w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden hover-b--muted-2 ba"
+            >
+              <div
+                class="absolute absolute--fill"
+              />
+              <div
+                class="h-100"
+              >
+                Blue
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="flex flex-column mb7 skuSelectorSubcontainer skuSelectorSubcontainer--size"
+    >
+      <div
+        class="skuSelectorNameContainer ma1"
+      >
+        <div
+          class="skuSelectorTextContainer db mb3"
+        >
+          <span
+            class="skuSelectorName c-muted-1 t-small overflow-hidden"
+          >
+            Size
+          </span>
+        </div>
+        <div
+          class="skuSelectorOptionsList w-100 inline-flex flex-wrap ml2 items-center"
+        >
+          <div
+            class="skuSelectorItem skuSelectorItem--42 relative di pointer flex items-center outline-0 ma2"
+            role="button"
+            tabindex="0"
+          >
+            <div
+              class="frameAround absolute b--action-primary br3 bw1"
+            />
+            <div
+              class="w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden hover-b--muted-2 ba"
+            >
+              <div
+                class="absolute absolute--fill"
+              />
+              <div
+                class="skuSelectorItemTextValue c-on-base center pl5 pr5 z-1 t-body"
+              >
+                42
+              </div>
+            </div>
+          </div>
+          <div
+            class="skuSelectorItem skuSelectorItem--41 relative di pointer flex items-center outline-0 ma2"
+            role="button"
+            tabindex="0"
+          >
+            <div
+              class="frameAround absolute b--action-primary br3 bw1 ba"
+            />
+            <div
+              class="w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden ba"
+            >
+              <div
+                class="absolute absolute--fill"
+              />
+              <div
+                class="skuSelectorItemTextValue c-on-base center pl5 pr5 z-1 t-body"
+              >
+                41
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

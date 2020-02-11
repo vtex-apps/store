@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Dots /> component should match snapshot 1`] = `
+<DocumentFragment>
+  <ul
+    class="dotsContainer absolute ma0 pa0 dib list"
+  >
+    <li
+      class="dib "
+    />
+    <li
+      class="dib "
+    />
+    <li
+      class="dib "
+    />
+    <li
+      class="dib "
+    />
+    <li
+      class="dib "
+    />
+    <li
+      class="dib "
+    />
+    <li
+      class="dib "
+    />
+    <li
+      class="dib "
+    />
+    <li
+      class="dib "
+    />
+    <li
+      class="dib "
+    />
+  </ul>
+</DocumentFragment>
+`;

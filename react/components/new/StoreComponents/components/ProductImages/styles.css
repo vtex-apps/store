@@ -1,0 +1,56 @@
+/**
+*   Product Image CSS Module
+*/
+
+.productVideo { }
+
+.productImage { }
+
+.carouselGaleryCursor {
+  cursor: url('./components/Carousel/cursor.svg') 8 8, default;
+}
+
+.carouselGaleryThumbs :global(.swiper-slide) {
+  height: auto;
+}
+
+.carouselIconCaretRight,
+.carouselIconCaretLeft {
+  stroke: white;
+  stroke-width: 0.5px;
+  -webkit-filter: drop-shadow(0px 1px 1px #cacbcc);
+  filter: drop-shadow(0px 1px 1px #cacbcc);
+}
+
+.carouselCursorDefault:hover {
+  cursor: default;
+}
+
+.carouselImagePlaceholder {
+}
+
+/** Overrides figure css declaration from vtex-tachyons, which
+ * for some reason adds margin to all figure elements */
+.figure {
+  margin: 0;
+}
+
+.gradientBaseBottom {
+  /** TODO: use the actual bg-base token instead of a hardcoded color */
+  background: linear-gradient(transparent, white);
+}
+
+.gradientBaseTop {
+  /** TODO: use the actual bg-base token instead of a hardcoded color */
+  background: linear-gradient(white, transparent);
+}
+
+.gradientBaseRight {
+  /** TODO: use the actual bg-base token instead of a hardcoded color */
+  background: linear-gradient(90deg, transparent, white);
+}
+
+.gradientBaseLeft {
+  /** TODO: use the actual bg-base token instead of a hardcoded color */
+  background: linear-gradient(90deg, white, transparent);
+}

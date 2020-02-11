@@ -1,0 +1,13 @@
+/** Stretches the width of the children to 100% (except images, which would be distorted. They are then centered)
+ * This is done because the direct parent of the children of the Row component is flex now, which changes the
+ * way children blocks are rendered (children with display: block of non-flex elements have 100% width, and
+ * children of flex elements have the minimum possible width in respect of their content).
+ * This can be cancelled with the prop `preventHorizontalStretch`
+ */
+
+.stretchChildrenWidth {
+  justify-content: center;
+}
+.stretchChildrenWidth > *:not(img) {
+  width: 100%;
+}

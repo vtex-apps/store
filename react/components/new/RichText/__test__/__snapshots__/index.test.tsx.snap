@@ -1,0 +1,540 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rich text component should allow mailto scheme on link 1`] = `
+<DocumentFragment>
+  <div
+    class="container flex tl items-start justify-start t-body c-on-base"
+  >
+    <div>
+      <p
+        class="lh-copy paragraph"
+      >
+        <a
+          class="link"
+          href="mailto:test@vtex.com.br"
+        >
+          Mail me
+        </a>
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Rich text component should allow tel scheme on link 1`] = `
+<DocumentFragment>
+  <div
+    class="container flex tl items-start justify-start t-body c-on-base"
+  >
+    <div>
+      <p
+        class="lh-copy paragraph"
+      >
+        <a
+          class="link"
+          href="tel:+18882165252"
+        >
+          Telefone
+        </a>
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Rich text component should render a link with target 1`] = `
+<DocumentFragment>
+  <div
+    class="container flex tl items-start justify-start t-body c-on-base"
+  >
+    <div>
+      <p
+        class="lh-copy paragraph"
+      >
+        <a
+          href="https://google.com"
+          target="_blank"
+        >
+          bc
+        </a>
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Rich text component should render a link with target as query string on markdown and erase ? 1`] = `
+<DocumentFragment>
+  <div
+    class="container flex tl items-start justify-start t-body c-on-base"
+  >
+    <div>
+      <p
+        class="lh-copy paragraph"
+      >
+        <a
+          class="link"
+          href="https://www.google.com"
+          target="_blank"
+        >
+          text
+        </a>
+          
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Rich text component should render a link with target as query string on markdown and keep others params 1`] = `
+<DocumentFragment>
+  <div
+    class="container flex tl items-start justify-start t-body c-on-base"
+  >
+    <div>
+      <p
+        class="lh-copy paragraph"
+      >
+        <a
+          class="link"
+          href="https://www.google.com?foo=tree&bar=lala"
+          target="_blank"
+        >
+          text
+        </a>
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Rich text component should render a link with target as query string on markdown and keep others params, remove trailing & 1`] = `
+<DocumentFragment>
+  <div
+    class="container flex tl items-start justify-start t-body c-on-base"
+  >
+    <div>
+      <p
+        class="lh-copy paragraph"
+      >
+        <a
+          class="link"
+          href="https://www.google.com?foo=tree&bar=lala"
+          target="_blank"
+        >
+          text
+        </a>
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Rich text component should render a table 1`] = `
+<DocumentFragment>
+  <div
+    class="container flex tl items-start justify-start t-body c-on-base"
+  >
+    <div>
+      
+    
+      <table
+        class="table"
+      >
+        
+      
+        <thead
+          class="tableHead"
+        >
+          
+        
+          <tr>
+            
+
+            <th>
+              foo
+            </th>
+            
+
+            <th>
+              bar
+            </th>
+            
+
+          </tr>
+          
+
+      
+        </thead>
+        
+      
+        <tbody
+          class="tableBody"
+        >
+          
+        
+          <tr>
+            
+
+            <td>
+              teste
+            </td>
+            
+
+            <td>
+              abc
+            </td>
+            
+
+          </tr>
+          
+
+      
+        </tbody>
+        
+    
+      </table>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Rich text component should render an iframe 1`] = `
+<DocumentFragment>
+  <div
+    class="container flex tl items-start justify-start t-body c-on-base"
+  >
+    <div>
+      <p
+        class="lh-copy paragraph"
+      >
+        <span
+          class="b strong"
+        >
+          <iframe
+            frameborder="0"
+            height="100%"
+            src="https://invictastores.typeform.com/to/KmycOT?typeform-embed=embed-widget&embed-hide-footer=true&embed-hide-headers=true&embed-opacity=50&typeform-embed-id=d0pe3"
+            style="border: 0px;"
+            width="100%"
+          />
+        </span>
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Rich text component should render and sanitize malicious javascript 1`] = `
+<DocumentFragment>
+  <div
+    class="container flex tl items-start justify-start t-body c-on-base"
+  >
+    <div>
+      <p
+        class="lh-copy paragraph"
+      >
+        <a>
+          HEHEHE
+        </a>
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Rich text component should render and sanitize malicious javascript 2`] = `
+<DocumentFragment>
+  <div
+    class="container flex tl items-start justify-start t-body c-on-base"
+  >
+    <div>
+      &lt;DIV STYLE="background-image: url(&#1;javascript:alert('XSS'))"&gt;
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Rich text component should render and sanitize malicious text 1`] = `
+<DocumentFragment>
+  <div
+    class="container flex tl items-start justify-start t-body c-on-base"
+  >
+    <div>
+      <p
+        class="lh-copy paragraph"
+      >
+        Hi everyone! This is 
+        <span
+          class="b strong"
+        >
+          how
+        </span>
+         you do XSS 
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Rich text component should render and sanitize malicious text 2`] = `
+<DocumentFragment>
+  <div
+    class="container flex tl items-start justify-start t-body c-on-base"
+  >
+    <div>
+      <p
+        class="lh-copy paragraph"
+      >
+        <a
+          class="link"
+        >
+          some text
+        </a>
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Rich text component should render link with title 1`] = `
+<DocumentFragment>
+  <div
+    class="container flex tl items-start justify-start t-body c-on-base"
+  >
+    <div>
+      <p
+        class="lh-copy paragraph"
+      >
+        <a
+          class="link"
+          href="https://www.google.com"
+          title="Google's Homepage"
+        >
+          I'm an inline-style link with title
+        </a>
+        <br />
+        <span
+          class="b strong"
+        >
+          Bollllddd
+        </span>
+        <br />
+        <span
+          class="i italic"
+        >
+          this is talic
+        </span>
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Rich text component should render list 1`] = `
+<DocumentFragment>
+  <div
+    class="container flex tl items-start justify-start t-body c-on-base"
+  >
+    <div>
+      <p
+        class="lh-copy paragraph"
+      >
+        Teste 
+      </p>
+      <ul
+        class="list "
+      >
+        <li
+          class="listItem"
+        >
+          Item 1
+        </li>
+        <li
+          class="listItem"
+        >
+          Item 2
+        </li>
+        <li
+          class="listItem"
+        >
+          Item 3
+        </li>
+      </ul>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Rich text component should render ordered list 1`] = `
+<DocumentFragment>
+  <div
+    class="container flex tl items-start justify-start t-body c-on-base"
+  >
+    <div>
+      <p
+        class="lh-copy paragraph"
+      >
+        Teste 
+      </p>
+      <ol
+        class="list listOrdered"
+      >
+        <li
+          class="listItem"
+        >
+          Item 1
+        </li>
+        <li
+          class="listItem"
+        >
+          Item 2
+        </li>
+        <li
+          class="listItem"
+        >
+          Item 3
+        </li>
+      </ol>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Rich text component should render with bold 1`] = `
+<DocumentFragment>
+  <div
+    class="container flex tl items-start justify-start t-body c-on-base"
+  >
+    <div>
+      <p
+        class="lh-copy paragraph"
+      >
+        <span
+          class="b strong"
+        >
+          be bold
+        </span>
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Rich text component should render with image 1`] = `
+<DocumentFragment>
+  <div
+    class="container flex tl items-start justify-start t-body c-on-base"
+  >
+    <div>
+      <p
+        class="lh-copy paragraph"
+      >
+        Inline-style:
+        <br />
+                  
+        <img
+          alt="alt text"
+          class="image"
+          src="https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png"
+          title="Logo Title Text 1"
+        />
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Rich text component should render with image block class props 1`] = `
+<DocumentFragment>
+  <div
+    class="container flex tl items-start justify-start t-body c-on-base"
+  >
+    <div>
+      <p
+        class="lh-copy paragraph"
+      >
+        <a
+          class="link"
+          href="https://www.google.com"
+          title="Google's Homepage"
+        >
+          I'm an inline-style link with title
+        </a>
+        <br />
+        <span
+          class="b strong"
+        >
+          Bollllddd
+        </span>
+        <br />
+        <span
+          class="i italic"
+        >
+          this is talic
+        </span>
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Rich text component should render with image no title 1`] = `
+<DocumentFragment>
+  <div
+    class="container flex tl items-start justify-start t-body c-on-base"
+  >
+    <div>
+      <p
+        class="lh-copy paragraph"
+      >
+        Inline-style:
+        <br />
+                  
+        <img
+          alt="alt text"
+          class="image"
+          src="https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png"
+        />
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Rich text component should render with paragraph 1`] = `
+<DocumentFragment>
+  <div
+    class="container flex tl items-start justify-start t-body c-on-base"
+  >
+    <div>
+      <p
+        class="lh-copy paragraph"
+      >
+        IAM BOLD
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Rich text component should render with two different heading levels 1`] = `
+<DocumentFragment>
+  <div
+    class="container flex tl items-start justify-start t-body c-on-base"
+  >
+    <div>
+      <h1
+        class="heading t-heading-1 headingLevel1 heading-level-1"
+      >
+        Heading 1
+      </h1>
+      <h3
+        class="heading t-heading-3 headingLevel3 heading-level-3"
+      >
+        Heading level 3
+      </h3>
+    </div>
+  </div>
+</DocumentFragment>
+`;

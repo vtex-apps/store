@@ -1,0 +1,21 @@
+.slideImg {
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+}
+
+.dotsContainer {
+  margin-right: -50%;
+  transform: translate(-50%, 0);
+  left: 50%;
+}
+
+.arrowContainer {
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.sliderFrame {
+  will-change: transform;
+}

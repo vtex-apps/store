@@ -1,0 +1,28 @@
+.shadowTransition {
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.mh100 {
+  max-height: 100%;
+}
+
+.scrollBar::-webkit-scrollbar {
+  background-color: transparent;
+  width: 8px;
+}
+
+/* background of the scrollbar except button or resizer */
+.scrollBar::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+/* scrollbar itself */
+.scrollBar::-webkit-scrollbar-thumb {
+  background-color: #e3e4e6;
+  border-radius: 16px;
+}
+
+/* set button(top and bottom of the scrollbar) */
+.scrollBar::-webkit-scrollbar-button {
+  display: none;
+}

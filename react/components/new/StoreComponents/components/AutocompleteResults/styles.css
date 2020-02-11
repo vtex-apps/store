@@ -1,0 +1,24 @@
+.resultsList {
+  max-height: 60vh;
+}
+
+.resultsList a,
+.resultsList div {
+  text-decoration: none;
+  color: #727273;
+}
+
+.resultsList a:hover {
+  background-color: #f2f4f5;
+}
+
+.resultsItemImage {
+  width: 50px;
+}
+
+@media only screen and (max-width: 49rem) {
+  .resultsList {
+    margin: 0px;
+    max-height: calc(100vh - 6.2rem);
+  }
+}

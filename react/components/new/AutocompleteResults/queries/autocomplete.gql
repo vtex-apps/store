@@ -1,0 +1,13 @@
+query Autocomplete($maxRows: Int, $inputValue: String) {
+  autocomplete(maxRows: $maxRows, searchTerm: $inputValue)
+    @context(provider: "vtex.search-graphql") {
+    itemsReturned {
+      thumb
+      name
+      href
+      productId
+      criteria
+      slug
+    }
+  }
+}

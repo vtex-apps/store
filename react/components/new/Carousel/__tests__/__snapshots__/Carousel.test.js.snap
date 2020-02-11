@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Carousel component should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="slider-container-mock"
+  >
+    <div
+      class="slider-mock"
+    >
+      <div
+        class="slide-mock"
+      >
+        <a
+          class="bannerLink w-100"
+          href="banner1-url"
+          target="_blank"
+        >
+          <div
+            class="containerImg w-100"
+          >
+            <div
+              class="imgRegular flex items-center justify-center"
+              style="max-height: 440px;"
+            >
+              <img
+                alt="banner1"
+                class="img w-100 h-100"
+                src="https://raw.githubusercontent.com/vtex-apps/carousel/master/images/banners-01.png"
+              />
+            </div>
+          </div>
+        </a>
+      </div>
+      <div
+        class="slide-mock"
+      >
+        <a
+          class="bannerLink w-100"
+          href="banner2-url"
+          target="_blank"
+        >
+          <div
+            class="containerImg w-100"
+          >
+            <div
+              class="imgRegular flex items-center justify-center"
+              style="max-height: 440px;"
+            >
+              <img
+                alt="banner2"
+                class="img w-100 h-100"
+                src="https://raw.githubusercontent.com/vtex-apps/carousel/master/images/banners-02.png"
+              />
+            </div>
+          </div>
+        </a>
+      </div>
+      <div
+        class="slide-mock"
+      >
+        <a
+          class="bannerLink w-100"
+          href="banner3-url"
+          target="_blank"
+        >
+          <div
+            class="containerImg w-100"
+          >
+            <div
+              class="imgRegular flex items-center justify-center"
+              style="max-height: 440px;"
+            >
+              <img
+                alt="banner3"
+                class="img w-100 h-100"
+                src="https://raw.githubusercontent.com/vtex-apps/carousel/master/images/banners-03.png"
+              />
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div
+      class="dots-mock"
+    />
+  </div>
+</DocumentFragment>
+`;

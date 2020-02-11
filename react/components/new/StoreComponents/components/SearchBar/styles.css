@@ -1,0 +1,36 @@
+.searchBarContainer :global(.vtex-input-prefix__group) {
+  height: 38px;
+}
+
+.searchBarContainer input {
+  color: #727273;
+  border-radius: 1px;
+}
+
+.compactMode input {
+  border-top-style: none !important;
+  border-left-style: none !important;
+  border-right-style: none !important;
+  border-bottom: 2px solid !important;
+}
+
+.paddingInput input {
+  -webkit-appearance: none;
+  padding-left: 40px !important;
+}
+
+.searchMobile .vtex-button {
+  padding: 0.9rem;
+  font-weight: 400;
+  font-size: 0.875rem;
+}
+
+.searchMobile input {
+  border: none;
+}
+
+@media only screen and (max-width: 49rem) {
+  .searchBarContainer input {
+    box-shadow: none;
+  }
+}

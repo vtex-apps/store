@@ -1,0 +1,5 @@
+query {
+  minicart @client {
+    items
+  }
+}

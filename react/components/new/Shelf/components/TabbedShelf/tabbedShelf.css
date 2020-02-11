@@ -1,0 +1,68 @@
+.container {
+  display:block;
+}
+
+.container .mh7-ns,
+.container .pv4,
+.container .pb7 {
+  margin:0 0 0 25px;
+  padding:0;
+}
+
+.blockContainer {
+  font-size: .625em;
+  width: 15%;
+  position: absolute;
+  margin-top: -320px;
+  color: #45474a;
+  line-height: 17px;
+}
+
+.blockContainer:after {
+  clear:both;
+}
+
+.blockText {
+  margin:0 0 19px;
+}
+
+.buttonContainer {
+  margin: 0 !important;
+  padding: 8px 20px !important;
+  text-transform: inherit;
+  font-size: 16px !important;
+}
+
+@media only screen and (max-width: 1047px) {
+  .blockContainer {
+      margin-top: -300px;
+  }
+}
+
+@media only screen and (max-width: 854px) {
+  .blockContainer {
+      margin-top: -280px;
+  }
+}
+
+@media only screen and (max-width: 821px) {
+  .blockContainer {
+      margin-top: -320px;
+  }
+}
+
+@media only screen and (max-width: 639px) {
+  .blockContainer {
+      margin-top: -220px;
+      width:25%;
+  }
+}
+
+/* Switch to mobile tabs */
+@media only screen and (max-width: 570px) {
+  .blockContainer {
+      margin-top: 45px;
+      width: 100%;
+      position: relative;
+  }
+}

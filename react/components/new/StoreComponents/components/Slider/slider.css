@@ -1,0 +1,16 @@
+.arrowRight:before {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    background: url(./images/stre-right.svg); 
+    content: '';
+}
+.arrowLeft:before {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    background: url(./images/stre-left.svg); 
+    content: '';
+}
+
+.dots {}

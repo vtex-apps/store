@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ShippingSimulator /> component should match snapshot with skuId and seller 1`] = `
+<DocumentFragment>
+  <div
+    class="shippingContainer t-small c-on-base"
+  >
+    <div
+      class="address-rules-mock"
+    >
+      <div
+        class="address-container-mock"
+      >
+        <div
+          class="postal-code-getter-mock"
+        />
+      </div>
+    </div>
+    <button
+      class="shippingCTA"
+      data-block="true"
+      data-isloading="false"
+      disabled=""
+      type="submit"
+    >
+      Calculate shipping
+    </button>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`<ShippingSimulator /> component should match snapshot without skuId and seller 1`] = `
+<DocumentFragment>
+  <div
+    class="shippingContainer"
+  >
+    <svg
+      class="content-loader-mock"
+    >
+      <rect
+        height="100%"
+        width="7em"
+      />
+      <rect
+        height="100%"
+        width="15em"
+        x="8em"
+      />
+    </svg>
+  </div>
+</DocumentFragment>
+`;

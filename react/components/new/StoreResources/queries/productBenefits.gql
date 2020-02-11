@@ -1,0 +1,83 @@
+query ProductBenefits($slug: String, $identifier: ProductUniqueIdentifier) {
+  product(slug: $slug, identifier: $identifier)
+    @context(provider: "vtex.search-graphql") {
+    cacheId
+    benefits {
+      featured
+      id
+      name
+      items {
+        benefitProduct {
+          cacheId
+          productName
+          productId
+          description
+          linkText
+          categoryId
+          brand
+          properties {
+            name
+            values
+          }
+          specificationGroups {
+            name
+            specifications {
+              name
+              values
+            }
+          }
+          items {
+            itemId
+            name
+            nameComplete
+            complementName
+            ean
+            referenceId {
+              Key
+              Value
+            }
+            measurementUnit
+            unitMultiplier
+            images {
+              imageId
+              imageLabel
+              imageTag
+              imageUrl
+              imageText
+            }
+            sellers {
+              sellerId
+              sellerName
+              addToCartLink
+              sellerDefault
+              commertialOffer {
+                Price
+                ListPrice
+                PriceWithoutDiscount
+                RewardValue
+                PriceValidUntil
+                AvailableQuantity
+                Tax
+                CacheVersionUsedToCallCheckout
+                Installments {
+                  Value
+                  InterestRate
+                  TotalValuePlusInterestRate
+                  NumberOfInstallments
+                  Name
+                }
+              }
+            }
+            variations {
+              name
+            }
+          }
+        }
+        discount
+        minQuantity
+        benefitSKUIds
+      }
+      teaserType
+    }
+  }
+}

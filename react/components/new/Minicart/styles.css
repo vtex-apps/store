@@ -1,0 +1,26 @@
+.drawerStyles {
+  height: 100%;
+}
+
+.popupStyles {
+  max-height: 600px;
+}
+
+.minicartEmptyStateContainerDefault {
+  width: 340px;
+}
+
+.minicartQuantityBadgeDefault {
+  top: -0.7rem;
+  right: -0.8rem;
+}
+
+.popupBoxPosition {
+  right: -40px;
+  width: 364px;
+  top: 100%;
+}
+
+.popupArrowUp {
+  right: 7px;
+}

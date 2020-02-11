@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Slider /> component should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="db"
+  >
+    <div>
+      arrow left
+    </div>
+    <div>
+      arrow right
+    </div>
+  </div>
+  <div
+    class="overflow-hidden h-100"
+  >
+    <ul
+      class="sliderFrame list pa0 h-100 ma0 flex"
+      style="width: 400%; transform: translate3d(0, 0, 0); transition: all 0ms ease-out; cursor: default;"
+    >
+      <li
+        class="inline-flex h-100 relative overflow-hidden"
+        style="width: 25%;"
+      >
+        <div>
+          <p>
+            Slide 2
+          </p>
+        </div>
+      </li>
+      <li
+        class="inline-flex h-100 relative overflow-hidden"
+        style="width: 25%;"
+      >
+        <div>
+          <p>
+            Slide 1
+          </p>
+        </div>
+      </li>
+      <li
+        class="inline-flex h-100 relative overflow-hidden"
+        style="width: 25%;"
+      >
+        <div>
+          <p>
+            Slide 2
+          </p>
+        </div>
+      </li>
+      <li
+        class="inline-flex h-100 relative overflow-hidden"
+        style="width: 25%;"
+      >
+        <div>
+          <p>
+            Slide 1
+          </p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</DocumentFragment>
+`;

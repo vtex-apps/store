@@ -1,0 +1,9 @@
+.vtex-modal__overlay.pa0 {
+  padding: 0;
+}
+
+@media screen and (min-width: 40rem) {
+  .vtex-modal__overlay.pa5-ns {
+    padding: 1.25rem;
+  }
+}

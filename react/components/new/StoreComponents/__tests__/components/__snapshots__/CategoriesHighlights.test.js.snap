@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CategoriesHighlights /> should match snapshot Rectangular 1`] = `
+<DocumentFragment>
+  <div
+    class="rectangularCategoriesHighlights relative"
+  >
+    <div
+      class="flex flex-row flex-wrap items-center justify-center"
+    >
+      <div
+        class="flex flex-row flex-wrap items-center justify-center"
+      >
+        <div
+          class="rectangularCard shadow-1 ma1"
+        >
+          <a
+            href="dummy"
+          >
+            <img
+              alt=""
+              class="rectangularCardImage"
+              src="rectangular-placeholder.svg"
+            />
+          </a>
+        </div>
+        <div
+          class="rectangularCard shadow-1 ma1"
+        >
+          <a
+            href="dummy"
+          >
+            <img
+              alt=""
+              class="rectangularCardImage"
+              src="rectangular-placeholder.svg"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`<CategoriesHighlights /> should match snapshot Squared 1`] = `
+<DocumentFragment>
+  <div
+    class="squaredCategoriesHighlights relative"
+  >
+    <div
+      class="flex flex-row flex-wrap items-center justify-center"
+    >
+      <div
+        class="flex flex-row flex-wrap items-center justify-center"
+      >
+        <div
+          class="squaredCard shadow-1 ma1"
+        >
+          <a
+            href="dummy"
+          >
+            <img
+              alt=""
+              class="squaredCardImage"
+              src="squared-placeholder.svg"
+            />
+          </a>
+        </div>
+        <div
+          class="squaredCard shadow-1 ma1"
+        >
+          <a
+            href="dummy"
+          >
+            <img
+              alt=""
+              class="squaredCardImage"
+              src="squared-placeholder.svg"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
