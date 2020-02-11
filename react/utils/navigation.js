@@ -70,9 +70,10 @@ const normalizeQueryMap = (pathSegments, mapSegments) => {
 }
 
 const normalizeSearchNavigation = (pathSegments, map, segmentsToIgnore) => {
+  const mapSegments = map.split(',')
   const normalizedSegments = pathSegments.map((segment, index) =>
     segmentsToIgnore.includes(segment) ||
-    (map[index] && map[index].includes(SPEC_FILTER))
+    (mapSegments[index] && mapSegments[index].includes(SPEC_FILTER))
       ? segment
       : segment.toLowerCase()
   )
