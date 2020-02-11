@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [2.87.2] - 2020-02-11
+## [2.87.2] - 2020-02-11 [YANKED]
 ### Changed
 - `vtex.order-placed` dependency to `vtex.oder-placed-1-x-copy`.
 
