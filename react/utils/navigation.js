@@ -75,7 +75,7 @@ const normalizeSearchNavigation = (pathSegments, map, segmentsToIgnore) => {
     segmentsToIgnore.includes(segment) ||
     (mapSegments[index] && mapSegments[index].includes(SPEC_FILTER))
       ? segment
-      : segment.toLowerCase()
+      : segment
   )
   return { pathSegments: normalizedSegments, map }
 }
