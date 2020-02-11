@@ -11,7 +11,7 @@ const isLegacySearchFormat = (pathSegments, map) => {
     return false
   }
   return (
-    map.includes(SPEC_FILTER) ||
+    map.includes(SPEC_FILTER) &&
     map.split(MAP_VALUES_SEP).length === pathSegments.length
   )
 }
