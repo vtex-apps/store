@@ -8,7 +8,8 @@ import React, {
 } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { ExtensionPoint, useChildBlock } from 'vtex.render-runtime'
-import { useOrderForm } from 'vtex.order-manager/OrderForm'
+import OrderFormOrder from '../OrderManager/OrderForm'
+const { useOrderForm } = OrderFormOrder
 import useCssHandles from '../CssHandles/useCssHandles'
 
 import { useMinicartState } from './MinicartContext'

@@ -1,4 +1,4 @@
-import { useProductImpression } from 'vtex.product-list-context'
+import useProductImpression from '../../ProductListContext/useProductImpression'
 
 const ProductListEventCaller = () => {
   useProductImpression()

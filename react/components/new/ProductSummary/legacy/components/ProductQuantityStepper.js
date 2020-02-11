@@ -3,7 +3,8 @@ import { path } from 'ramda'
 import PropTypes from 'prop-types'
 import NumericStepper from '../../../Styleguide/NumericStepper'
 import withToast from '../../../Styleguide/withToast'
-import { Pixel } from 'vtex.pixel-manager/PixelContext'
+import PixelContext from '../../../PixelContext/PixelContext'
+const { Pixel } = PixelContext
 import { debounce } from 'debounce'
 import { injectIntl, intlShape } from 'react-intl'
 import { compose, graphql } from 'react-apollo'
@@ -12,7 +13,7 @@ import gql from 'graphql-tag'
 import { productShape } from '../../utils/propTypes'
 
 const UPDATE_ITEMS_MUTATION = gql`
-  mutation updateItems($items: [MinicartItem]) {
+  mutation updateItemsStepper($items: [MinicartItem]) {
     updateItems(items: $items) @client
   }
 `

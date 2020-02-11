@@ -1,8 +1,10 @@
 import React, { FC } from 'react'
-import { useOrderForm } from 'vtex.order-manager/OrderForm'
-import { useOrderItems } from 'vtex.order-items/OrderItems'
+import OrderFormOrder from '../OrderManager/OrderForm'
+const { useOrderForm } = OrderFormOrder
+import OrderItems from '../OrderItems/OrderItems'
+const { useOrderItems } = OrderItems
 import { ExtensionPoint } from 'vtex.render-runtime'
-import { usePixel } from 'vtex.pixel-manager/PixelContext'
+import { usePixel } from '../PixelContext/PixelContext'
 import useCssHandles from '../CssHandles/useCssHandles'
 
 import { mapCartItemToPixel } from './modules/pixelHelper'

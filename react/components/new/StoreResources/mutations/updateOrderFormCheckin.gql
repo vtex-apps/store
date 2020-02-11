@@ -2,7 +2,7 @@ mutation updateOrderFormCheckin(
   $orderFormId: String
   $checkin: OrderFormCheckinInput
 ) {
-  updateOrderFormCheckin(orderFormId: $orderFormId, checkin: $checkin) {
+  updateOrderFormCheckin(orderFormId: $orderFormId, checkin: $checkin) @context(provider:"vtex.store-graphql"){
     isCheckedIn
     checkedInPickupPointId
     shippingData {

@@ -1,0 +1,5 @@
+query installedApp($slug: String!) {
+  installedApp(slug: $slug) {
+    version
+  }
+}

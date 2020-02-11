@@ -1,7 +1,9 @@
 import React from 'react'
 import { pathOr, reject } from 'ramda'
 
-import { useProductSummary } from 'vtex.product-summary-context/ProductSummaryContext'
+import ProductSummaryContextApp from '../../../ProductSummaryContext/ProductSummaryContext'
+const { useProductSummary } = ProductSummaryContextApp
+
 import RemovedAttachmentsList from './RemovedAttachmentsList'
 import AddedAttachmentsList from './AddedAttachmentsList'
 

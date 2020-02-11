@@ -2,7 +2,8 @@ import React, { FC } from 'react'
 import { FormattedMessage } from 'react-intl'
 import Button from '../Styleguide/Button'
 import useCssHandles from '../CssHandles/useCssHandles'
-import { useCheckoutURL } from 'vtex.checkout-resources/Utils'
+import CheckoutUtils from '../CheckoutResources/Utils'
+const { useCheckoutURL } = CheckoutUtils
 
 import useCheckout from './modules/checkoutHook'
 

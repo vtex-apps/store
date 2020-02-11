@@ -1,7 +1,9 @@
 import React, { FC } from 'react'
 import useCssHandles from '../CssHandles/useCssHandles'
-import { useCheckoutURL } from 'vtex.checkout-resources/Utils'
-import { useOrderForm } from 'vtex.order-manager/OrderForm'
+import CheckoutUtils from '../CheckoutResources/Utils'
+const { useCheckoutURL } = CheckoutUtils
+import OrderFormOrder from '../OrderManager/OrderForm'
+const { useOrderForm } = OrderFormOrder
 
 import MinicartIconButton from './components/MinicartIconButton'
 import DrawerMode from './components/DrawerMode'

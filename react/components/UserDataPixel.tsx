@@ -1,5 +1,5 @@
 import { useEffect, FC } from 'react'
-import { usePixel } from 'vtex.pixel-manager/PixelContext'
+import {usePixel} from './new/PixelContext/PixelContext'
 
 const fields = ['firstName', 'lastName', 'document', 'id', 'email', 'phone', 'isAuthenticated'] as const
 

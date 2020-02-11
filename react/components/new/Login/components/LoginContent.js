@@ -22,7 +22,8 @@ import { setCookie } from '../utils/set-cookie'
 import { LoginSchema } from '../schema'
 import { LoginPropTypes } from '../propTypes'
 import { getProfile } from '../utils/profile'
-import {session} from '../../StoreResources/Queries'
+import StoreQueries from '../../StoreResources/Queries'
+const {session} = StoreQueries
 import { AuthStateLazy } from 'vtex.react-vtexid'
 import { SELF_APP_NAME_AND_VERSION } from '../common/global'
 

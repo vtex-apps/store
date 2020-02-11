@@ -2,10 +2,8 @@ import React from 'react'
 import { head } from 'ramda'
 import SKUSelector from '../../../StoreComponents/SKUSelector'
 import useCssHandles from '../../../CssHandles/useCssHandles'
-import {
-  useProductSummaryDispatch,
-  useProductSummary,
-} from 'vtex.product-summary-context/ProductSummaryContext'
+import ProductSummaryContextApp from '../../../ProductSummaryContext/ProductSummaryContext'
+const { useProductSummaryDispatch, useProductSummary } = ProductSummaryContextApp
 
 const CSS_HANDLES = ['SKUSelectorContainer']
 

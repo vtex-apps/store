@@ -11,7 +11,8 @@ import applyModifiers from '../../../CssHandles/applyModifiers'
 
 import ImagePlaceholder from './ImagePlaceholder'
 
-import { useProductSummary } from 'vtex.product-summary-context/ProductSummaryContext'
+import ProductSummaryContextApp from '../../../ProductSummaryContext/ProductSummaryContext'
+const { useProductSummary } = ProductSummaryContextApp
 
 import productSummary from '../../productSummary.css'
 

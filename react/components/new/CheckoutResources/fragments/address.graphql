@@ -1,0 +1,14 @@
+fragment Address on Address {
+  addressId
+  addressType
+  city
+  complement
+  country
+  neighborhood
+  number
+  postalCode
+  receiverName
+  reference
+  state
+  street
+}

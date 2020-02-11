@@ -7,13 +7,17 @@ import {
   useRuntime,
 } from 'vtex.render-runtime'
 import PropTypes from 'prop-types'
-import { PixelProvider } from 'vtex.pixel-manager/PixelContext'
+import PixelContext from './components/new/PixelContext/PixelContext'
+const { PixelProvider } = PixelContext
 import ToastProvider from './components/new/Styleguide/ToastProvider'
 import PWAContext from './components/new/StoreResources/PWAContext'
 const { PWAProvider } = PWAContext
-import { OrderQueueProvider } from 'vtex.order-manager/OrderQueue'
-import { OrderItemsProvider } from 'vtex.order-items/OrderItems'
-import { OrderFormProvider as OrderFormProviderCheckout } from 'vtex.order-manager/OrderForm'
+import OrderQueue from './components/new/OrderManager/OrderQueue'
+const { OrderQueueProvider } = OrderQueue
+import OrderItems from './components/new/OrderItems/OrderItems'
+const { OrderItemsProvider } = OrderItems
+import OrderManagerForm from './components/new/OrderManager/OrderForm'
+const { OrderFormProvider: OrderFormProviderCheckout } = OrderManagerForm
 
 import UserDataPixel from './components/UserDataPixel'
 import PageViewPixel from './components/PageViewPixel'

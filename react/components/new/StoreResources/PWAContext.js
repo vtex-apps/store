@@ -8,7 +8,7 @@ import React, {
 } from 'react'
 import { Helmet } from 'vtex.render-runtime'
 import { graphql } from 'react-apollo'
-import { usePixel } from 'vtex.pixel-manager/PixelContext'
+import {usePixel} from '../PixelContext/PixelContext'
 
 import pwaData from './queries/pwaData.gql'
 

@@ -1,0 +1,8 @@
+# import '../fragments/orderForm.graphql'
+
+mutation selectDeliveryOption($deliveryOptionId: String) {
+  selectDeliveryOption(deliveryOptionId: $deliveryOptionId)
+    @context(provider: "vtex.checkout-graphql") {
+    ...OrderFormFragment
+  }
+}

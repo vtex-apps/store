@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 
-import { useProductSummary } from 'vtex.product-summary-context/ProductSummaryContext'
+import ProductSummaryContextApp from '../../../ProductSummaryContext/ProductSummaryContext'
+const { useProductSummary } = ProductSummaryContextApp
 import useCssHandles from '../../../CssHandles/useCssHandles'
 
 const MAX_SIZE_DESCRIPTION = 120

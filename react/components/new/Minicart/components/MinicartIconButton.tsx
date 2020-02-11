@@ -1,7 +1,8 @@
 import React from 'react'
 import ButtonWithIcon from '../Styleguide/ButtonWithIcon'
 import IconCart from '../../StoreIcons/IconCart'
-import { useOrderForm } from 'vtex.order-manager/OrderForm'
+import OrderFormOrder from '../OrderManager/OrderForm'
+const { useOrderForm } = OrderFormOrder
 import useCssHandles from '../../CssHandles/useCssHandles'
 
 import { useMinicartDispatch, useMinicartState } from '../MinicartContext'

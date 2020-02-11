@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ProductBrand from '../../../StoreComponents/ProductBrand'
 
-import { useProductSummary } from 'vtex.product-summary-context/ProductSummaryContext'
+import ProductSummaryContextApp from '../../../ProductSummaryContext/ProductSummaryContext'
+const { useProductSummary } = ProductSummaryContextApp
 
 const DISPLAY_MODE = {
   LOGO: 'logo',

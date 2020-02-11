@@ -1,0 +1,92 @@
+#import './address.graphql'
+
+fragment OrderFormFragment on OrderForm {
+  id
+  items {
+    additionalInfo {
+      brandName
+    }
+    parentAssemblyBinding
+    sellingPriceWithAssemblies
+    options {
+      assemblyId
+      id
+      quantity
+      seller
+      inputValues
+      options {
+        assemblyId
+        id
+        quantity
+        seller
+        inputValues
+        options {
+          assemblyId
+          id
+          quantity
+          seller
+          inputValues
+        }
+      }
+    }
+    availability
+    detailUrl
+    id
+    imageUrls {
+      at1x
+      at2x
+      at3x
+    }
+    listPrice
+    measurementUnit
+    name
+    price
+    productCategories
+    productCategoryIds
+    productRefId
+    productId
+    quantity
+    sellingPrice
+    skuName
+    skuSpecifications {
+      fieldName
+      fieldValues
+    }
+    uniqueId
+  }
+  canEditData
+  marketingData {
+    coupon
+  }
+  totalizers {
+    id
+    name
+    value
+  }
+  shipping {
+    countries
+    availableAddresses {
+      ...Address
+    }
+    selectedAddress {
+      ...Address
+    }
+    deliveryOptions {
+      id
+      price
+      estimate
+      isSelected
+    }
+  }
+  messages {
+    couponMessages {
+      code
+    }
+    generalMessages {
+      code
+      text
+      status
+    }
+  }
+  value
+}

@@ -1,0 +1,7 @@
+# import '../fragments/orderForm.graphql'
+
+query orderFormCheckout {
+  orderForm @context(provider: "vtex.checkout-graphql") {
+    ...OrderFormFragment
+  }
+}

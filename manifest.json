@@ -13,7 +13,6 @@
     "vtex.store-sitemap": "1.x"
   },
   "dependencies": {
-    "vtex.store-resources": "0.x",
     "vtex.store-graphql": "2.x",
     "vtex.store-header": "2.x",
     "vtex.store-footer": "2.x",
@@ -66,9 +65,7 @@
     "vtex.tenant-graphql": "0.x",
     "vtex.store-session": "0.x",
     "vtex.react-vtexid": "4.x",
-    "vtex.checkout-resources": "0.x",
     "vtex.product-list-context": "0.x",
-    "vtex.product-summary-context": "0.x",
     "vtex.search-graphql": "0.x",
     "vtex.checkout-graphql": "0.x",
     "vtex.apps-graphql": "2.x"

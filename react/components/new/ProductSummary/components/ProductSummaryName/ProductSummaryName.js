@@ -4,7 +4,8 @@ import { path } from 'ramda'
 import ProductName from '../../../StoreComponents/ProductName'
 import useCssHandles from '../../../CssHandles/useCssHandles'
 
-import { useProductSummary } from 'vtex.product-summary-context/ProductSummaryContext'
+import ProductSummaryContextApp from '../../../ProductSummaryContext/ProductSummaryContext'
+const { useProductSummary } = ProductSummaryContextApp
 
 const CSS_HANDLES = [
   'nameContainer',

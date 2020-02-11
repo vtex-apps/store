@@ -4,13 +4,13 @@ import classNames from 'classnames'
 import { pathOr, path } from 'ramda'
 import { useInView } from 'react-intersection-observer'
 import { Link } from 'vtex.render-runtime'
-import { ProductListContext } from 'vtex.product-list-context'
+import ProductListContext from '../../ProductListContext/ProductListContext'
 import ProductSummaryContext from './ProductSummaryContext'
-import {
+import ProductSummaryContextApp from '../../ProductSummaryContext/ProductSummaryContext'
+const {
   ProductSummaryProvider,
   useProductSummaryDispatch,
-  useProductSummary,
-} from 'vtex.product-summary-context/ProductSummaryContext'
+  useProductSummary } = ProductSummaryContextApp
 import ProductContextProvider from '../../ProductContext/ProductContextProvider'
 import { productShape } from '../utils/propTypes'
 import { mapCatalogProductToProductSummary } from '../utils/normalize'

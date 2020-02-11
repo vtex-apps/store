@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import { ExtensionPoint } from 'vtex.render-runtime'
-import { useOrderForm } from 'vtex.order-manager/OrderForm'
+import OrderForm from '../OrderManager/OrderForm'
+const { useOrderForm } = OrderForm
 
 const Summary: FC = () => {
   const {

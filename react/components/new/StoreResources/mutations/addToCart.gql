@@ -1,5 +1,5 @@
 mutation addItem($orderFormId: String, $items: [OrderFormItemInput], $utmParams: OrderFormInputUTMParams, $utmiParams: OrderFormInputUTMIParams) {
-  addItem(orderFormId: $orderFormId, items: $items, utmParams: $utmParams, utmiParams: $utmiParams) {
+  addItem(orderFormId: $orderFormId, items: $items, utmParams: $utmParams, utmiParams: $utmiParams) @context(provider:"vtex.store-graphql") {
     cacheId
     orderFormId
     value

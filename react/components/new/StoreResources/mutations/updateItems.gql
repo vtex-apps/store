@@ -1,5 +1,5 @@
 mutation updateItems($orderFormId: String, $items: [OrderFormItemInput]) {
-  updateItems(orderFormId: $orderFormId, items: $items) {
+  updateItems(orderFormId: $orderFormId, items: $items) @context(provider:"vtex.store-graphql") {
     cacheId
     orderFormId
     value

@@ -4,7 +4,8 @@ import { path, prop, flatten, pluck } from 'ramda'
 import classNames from 'classnames'
 import Spinner from '../../../Styleguide/Spinner'
 import ProductPrice from '../../../StoreComponents/ProductPrice'
-import { useProductSummary } from 'vtex.product-summary-context/ProductSummaryContext'
+import ProductSummaryContextApp from '../../../ProductSummaryContext/ProductSummaryContext'
+const { useProductSummary } = ProductSummaryContextApp
 
 import useCssHandles from '../../../CssHandles/useCssHandles'
 

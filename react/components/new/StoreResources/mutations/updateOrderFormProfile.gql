@@ -2,7 +2,7 @@ mutation updateOrderFormProfile(
   $orderFormId: String
   $fields: OrderFormProfileInput
 ) {
-  updateOrderFormProfile(orderFormId: $orderFormId, fields: $fields) {
+  updateOrderFormProfile(orderFormId: $orderFormId, fields: $fields) @context(provider:"vtex.store-graphql"){
     orderFormId
   }
 }

@@ -1,0 +1,7 @@
+# import '../fragments/orderForm.graphql'
+
+mutation insertCoupon($text: String) {
+  insertCoupon(text: $text) @context(provider: "vtex.checkout-graphql") {
+    ...OrderFormFragment
+  }
+}

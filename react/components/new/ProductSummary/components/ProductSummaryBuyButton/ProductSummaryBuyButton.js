@@ -6,7 +6,8 @@ import { equals, path } from 'ramda'
 import classnames from 'classnames'
 import IOMessage from '../../../NativeTypes/IOMessage'
 
-import { useProductSummary } from 'vtex.product-summary-context/ProductSummaryContext'
+import ProductSummaryContextApp from '../../../ProductSummaryContext/ProductSummaryContext'
+const { useProductSummary } = ProductSummaryContextApp
 import displayButtonTypes, {
   getDisplayButtonNames,
   getDisplayButtonValues,

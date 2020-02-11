@@ -1,0 +1,7 @@
+# import '../fragments/orderForm.graphql'
+
+mutation updateItems($orderItems: [ItemInput]) {
+  updateItems(orderItems: $orderItems) @context(provider: "vtex.checkout-graphql") {
+    ...OrderFormFragment
+  }
+}

@@ -8,12 +8,14 @@ import {
 } from 'react-intl'
 import Button from '../Styleguide/Button'
 import Tooltip from '../Styleguide/Tooltip'
-import { OrderForm } from 'vtex.order-manager'
-import { useCheckoutURL } from 'vtex.checkout-resources/Utils'
+import OrderForm from '../OrderManager/OrderForm'
+import CheckoutUtils from '../CheckoutResources/Utils'
+const { useCheckoutURL } = CheckoutUtils
 import useCssHandles from '../CssHandles/useCssHandles'
 import { useRuntime } from 'vtex.render-runtime'
-import { usePixel } from 'vtex.pixel-manager/PixelContext'
-import { addToCart as ADD_TO_CART } from 'vtex.checkout-resources/Mutations'
+import { usePixel } from '../PixelContext/PixelContext'
+import CheckoutMutations from '../CheckoutResources/Mutations'
+const { addToCart: ADD_TO_CART } = CheckoutMutations
 import ProductDispatchContext from '../ProductContext/ProductDispatchContext'
 const { useProductDispatch } = ProductDispatchContext
 import PWAContext from '../StoreResources/PWAContext'

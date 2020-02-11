@@ -1,10 +1,10 @@
 import React, { useMemo, useCallback, useEffect } from 'react'
 import { assocPath } from 'ramda'
 import { useInView } from 'react-intersection-observer'
-import { ProductListContext } from 'vtex.product-list-context'
-// import ProductSummary from 'vtex.product-summary/ProductSummaryCustom'
+import ProductListContext from '../../ProductListContext/ProductListContext'
+
 // import { ExtensionPoint } from 'vtex.render-runtime'
-import { usePixel } from 'vtex.pixel-manager/PixelContext'
+import {usePixel} from '../../PixelContext/PixelContext'
 import ProductSummaryShelf from '../../ProductSummary/ProductSummaryCustom'
 import ProductSummaryImage from '../../ProductSummary/ProductSummaryImage'
 import ProductSummarySpecificationBadges from '../../ProductSummary/ProductSummarySpecificationBadges'

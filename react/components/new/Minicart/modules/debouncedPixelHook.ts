@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { usePixel } from 'vtex.pixel-manager/PixelContext'
+import { usePixel } from '../../PixelContext/PixelContext'
 import debounce from 'debounce'
 
 export default function useDebouncedPush() {

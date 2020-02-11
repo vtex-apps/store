@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { usePixel } from 'vtex.pixel-manager/PixelContext'
+import { usePixel } from '../../PixelContext/PixelContext'
 
 const useCartIdPixel = (orderFormId?: string) => {
   const { push } = usePixel()

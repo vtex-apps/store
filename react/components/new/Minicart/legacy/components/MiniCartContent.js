@@ -5,7 +5,7 @@ import { graphql } from 'react-apollo'
 import { injectIntl } from 'react-intl'
 import classNames from 'classnames'
 
-import { withPixel } from 'vtex.pixel-manager/PixelContext'
+import { withPixel } from '../../../PixelContext/PixelContext'
 // import { ExtensionPoint } from 'vtex.render-runtime'
 import ButtonWithIcon from '../../../Styleguide/ButtonWithIcon'
 import Spinner from '../../../Styleguide/Spinner'

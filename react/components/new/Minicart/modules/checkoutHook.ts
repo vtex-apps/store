@@ -1,4 +1,5 @@
-import { useCheckoutURL } from 'vtex.checkout-resources/Utils'
+import CheckoutUtils from '../../CheckoutResources/Utils'
+const { useCheckoutURL } = CheckoutUtils
 import { useRuntime } from 'vtex.render-runtime'
 
 export default function useCheckout() {

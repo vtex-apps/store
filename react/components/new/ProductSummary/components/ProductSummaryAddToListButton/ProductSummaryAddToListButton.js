@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react'
 import { ExtensionPoint } from 'vtex.render-runtime'
 import { path } from 'ramda'
-import { useProductSummary } from 'vtex.product-summary-context/ProductSummaryContext'
+import ProductSummaryContextApp from '../../../ProductSummaryContext/ProductSummaryContext'
+const { useProductSummary } = ProductSummaryContextApp
 import useCssHandles from '../../../CssHandles/useCssHandles'
 
 // TODO: change ProductSummaryContext to have `selectedSku` field instead of `sku`

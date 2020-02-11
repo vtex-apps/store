@@ -4,7 +4,7 @@ import { graphql } from 'react-apollo'
 import { Loading } from 'vtex.render-runtime'
 import useDevice from '../DeviceDetector/useDevice'
 import useCssHandles from '../CssHandles/useCssHandles'
-import { ProductListContext } from 'vtex.product-list-context'
+import ProductListContext from '../ProductListContext/ProductListContext'
 
 import OrdenationTypes, {
   getOrdenationNames,

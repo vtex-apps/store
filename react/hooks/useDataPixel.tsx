@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { usePixel } from 'vtex.pixel-manager/PixelContext'
+import {usePixel} from '../components/new/PixelContext/PixelContext'
 import { isEmpty } from 'ramda'
 
 type Data = unknown[] | unknown

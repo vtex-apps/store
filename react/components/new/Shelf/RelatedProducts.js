@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { path, last } from 'ramda'
 import { Query } from 'react-apollo'
 import useDevice from '../DeviceDetector/useDevice'
-import { ProductListContext } from 'vtex.product-list-context'
+import ProductListContext from '../ProductListContext/ProductListContext'
 import useProduct from '../ProductContext/useProduct'
 import useCssHandles from '../CssHandles/useCssHandles'
 
