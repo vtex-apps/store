@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- `vtex.order-placed` dependency to `vtex.oder-placed-1-x-copy`.
 
 ## [2.87.1] - 2020-02-07
 ### Fixed
