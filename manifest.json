@@ -31,7 +31,7 @@
     "vtex.login": "2.x",
     "vtex.my-account": "1.x",
     "vtex.rebuy": "1.x",
-    "vtex.order-placed-1-x-copy": "1.x",
+    "vtex.order-placed": "1.x",
     "vtex.pixel-manager": "1.x",
     "vtex.rich-text": "0.x",
     "vtex.flex-layout": "0.x",
@@ -116,10 +116,7 @@
               "type": "string"
             }
           },
-          "required": [
-            "rel",
-            "href"
-          ]
+          "required": ["rel", "href"]
         },
         "description": "Configure your store's favicons"
       }
