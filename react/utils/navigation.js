@@ -69,15 +69,8 @@ const normalizeQueryMap = (pathSegments, mapSegments) => {
   }
 }
 
-const normalizeSearchNavigation = (pathSegments, map, segmentsToIgnore) => {
-  const mapSegments = map.split(',')
-  const normalizedSegments = pathSegments.map((segment, index) =>
-    segmentsToIgnore.includes(segment) ||
-    (mapSegments[index] && mapSegments[index].includes(SPEC_FILTER))
-      ? segment
-      : segment
-  )
-  return { pathSegments: normalizedSegments, map }
+const normalizeSearchNavigation = (pathSegments, map) => {
+  return { pathSegments, map }
 }
 
 const getIgnoredSegments = ignore => {
@@ -137,12 +130,10 @@ export const normalizeNavigation = navigation => {
     ? path.split(PATH_SEPARATOR).slice(1)
     : path.split(PATH_SEPARATOR)
 
-  const segmentsToIgnore = getIgnoredSegments(options)
-
   const normalizedNavigation =
     parsedQuery.query || isLegacySearchFormat(pathSegments, map)
       ? normalizeLegacySearchNavigation(pathSegments, parsedQuery, query)
-      : normalizeSearchNavigation(pathSegments, query, segmentsToIgnore)
+      : normalizeSearchNavigation(pathSegments, query)
 
   navigation.path = path.startsWith('/')
     ? '/' + normalizedNavigation.pathSegments.join('/')
