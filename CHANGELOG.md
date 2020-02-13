@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- `imagePerSKUQuantity` on `ProductContext`.
+- `imageQuantity` on `ProductContext`.
 
 ## [2.87.2] - 2020-02-11 [YANKED]
 ### Changed
