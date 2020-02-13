@@ -23,6 +23,9 @@
   "store.not-found#product": {
     "blocks": []
   },
+  "store.not-found#search": {
+    "blocks": []
+  },
   "store.custom": {
     "parent": {
       "header": "header.full"

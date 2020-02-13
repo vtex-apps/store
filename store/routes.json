@@ -60,5 +60,10 @@
     "path": "/_v/segment/routing/vtex.store@2.x/notFoundProduct/:id/:slug/p",
     "canonical": "/:slug/p",
     "contentType": "notFoundProduct"
+  },
+  "store.not-found#search": {
+    "path": "/_v/segment/routing/vtex.store@2.x/notFoundSearch/:id/*terms",
+    "canonical": "/*terms",
+    "contentType": "notFoundSearch"
   }
 }
