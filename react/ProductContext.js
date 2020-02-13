@@ -126,6 +126,7 @@ const catalogOptions = {
     variables: {
       slug: props.params.slug,
       skipCategoryTree: true,
+      imagePerSKUQuantity: props.imagePerSKUQuantity,
       identifier: {
         field: 'id',
         value: props.params.id || '',
