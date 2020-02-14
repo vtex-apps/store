@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { path, isEmpty } from 'ramda'
-import { ProductContext } from 'vtex.product-context'
+import ProductContext from '../../../ProductContext/ProductContext'
 
 import ProductName from './index'
 

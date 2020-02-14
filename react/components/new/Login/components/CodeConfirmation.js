@@ -4,7 +4,8 @@ import { injectIntl, intlShape } from 'react-intl'
 
 import Input from '../../Styleguide/Input'
 import Button from '../../Styleguide/Button'
-import { AuthStateLazy, AuthServiceLazy } from 'vtex.react-vtexid'
+import AuthStateLazy from '../../VtexId/AuthStateLazy'
+import AuthServiceLazy from '../../VtexId/AuthServiceLazy'
 
 import { translate } from '../utils/translate'
 import { isValidAccessCode } from '../utils/format-check'

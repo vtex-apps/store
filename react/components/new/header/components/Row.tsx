@@ -10,6 +10,7 @@ interface Props {
   zIndex?: number
   fullWidth?: boolean
   inverted?: boolean
+  blockClass?: string
 }
 
 const CSS_HANDLES = [
@@ -25,8 +26,9 @@ const Row: FunctionComponent<Props> = ({
   zIndex,
   fullWidth,
   inverted,
+  blockClass,
 }) => {
-  const handles = useCssHandles(CSS_HANDLES)
+  const handles = useCssHandles(CSS_HANDLES,{blockClass})
 
   const content = (
     <div className={`${handles.headerRowContainer} w-100 flex items-center`}>

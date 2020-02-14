@@ -24,7 +24,7 @@ import { LoginPropTypes } from '../propTypes'
 import { getProfile } from '../utils/profile'
 import StoreQueries from '../../StoreResources/Queries'
 const {session} = StoreQueries
-import { AuthStateLazy } from 'vtex.react-vtexid'
+import AuthStateLazy from '../../VtexId/AuthStateLazy'
 import { SELF_APP_NAME_AND_VERSION } from '../common/global'
 
 import styles from '../styles.css'

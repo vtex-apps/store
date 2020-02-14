@@ -8,12 +8,9 @@ import React, {
 } from 'react'
 import { filter, head, isEmpty, compose, keys, length } from 'ramda'
 import { useRuntime } from 'vtex.render-runtime'
-import {
-  useResponsiveValue,
-  MaybeResponsiveInput,
-  ResponsiveInput,
-} from 'vtex.responsive-values'
-import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
+import useResponsiveValue from '../../../ResponsiveValues/useResponsiveValue'
+import ProductDispatchContext from '../../../ProductContext/ProductDispatchContext'
+const { useProductDispatch } = ProductDispatchContext
 
 import SKUSelector, { ShowValueForVariation } from './components/SKUSelector'
 import {
@@ -147,10 +144,10 @@ interface Props {
   variationsSpacing?: number
   showVariationsErrorMessage?: boolean
   initialSelection?: InitialSelectionType
-  displayMode?: MaybeResponsiveInput<DisplayMode>
+  displayMode?: any
   sliderDisplayThreshold?: number
   sliderArrowSize?: number
-  sliderItemsPerPage?: ResponsiveInput<number>
+  sliderItemsPerPage?: any
 }
 
 const getNewSelectedVariations = (

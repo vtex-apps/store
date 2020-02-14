@@ -1,12 +1,9 @@
 import React, { useMemo, useEffect } from 'react'
-import useProduct from 'vtex.product-context/useProduct'
 import { pick } from 'ramda'
-import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
-import {
-  MaybeResponsiveInput,
-  ResponsiveInput,
-  useResponsiveValues,
-} from 'vtex.responsive-values'
+import useProduct from '../../../ProductContext/useProduct'
+import ProductDispatchContext from '../../../ProductContext/ProductDispatchContext'
+const { useProductDispatch } = ProductDispatchContext
+import useResponsiveValues from '../../../ResponsiveValues/useResponsiveValues'
 
 import SKUSelector from './index'
 import { Variations, InitialSelectionType, DisplayMode } from './types'
@@ -114,18 +111,18 @@ interface Props {
   hideImpossibleCombinations?: boolean
   showValueNameForImageVariation?: boolean
   showValueForVariation?: ShowValueForVariation
-  imageHeight?: MaybeResponsiveInput<number>
-  imageWidth?: MaybeResponsiveInput<number>
+  imageHeight?: any
+  imageWidth?: any
   thumbnailImage?: string
   visibleVariations?: string[]
   showVariationsLabels?: boolean
   variationsSpacing?: number
   showVariationsErrorMessage?: boolean
   initialSelection?: InitialSelectionType
-  displayMode?: MaybeResponsiveInput<DisplayMode>
+  displayMode?: any
   sliderDisplayThreshold?: number
   sliderArrowSize?: number
-  sliderItemsPerPage?: ResponsiveInput<number>
+  sliderItemsPerPage?: any
 }
 
 const SKUSelectorWrapper: StorefrontFC<Props> = props => {

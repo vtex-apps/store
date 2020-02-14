@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
 
 import Button from '../../Styleguide/Button'
-import { AuthServiceLazy } from 'vtex.react-vtexid'
+import AuthServiceLazy from '../../VtexId/AuthServiceLazy'
 
 import { translate } from '../utils/translate'
 import styles from '../styles.css'

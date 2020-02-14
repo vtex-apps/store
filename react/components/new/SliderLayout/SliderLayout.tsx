@@ -1,7 +1,7 @@
 import React from 'react'
 import { defineMessages } from 'react-intl'
-import { useListContext } from 'vtex.list-context'
-import { useResponsiveValue } from 'vtex.responsive-values'
+import useListContext from '../ListContext/useListContext'
+import useResponsiveValue from '../ResponsiveValues/useResponsiveValue'
 
 import Slider from './components/Slider'
 import { SliderContextProvider } from './components/SliderContext'

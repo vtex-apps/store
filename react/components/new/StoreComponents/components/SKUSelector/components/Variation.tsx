@@ -1,10 +1,9 @@
 import React, { FC, memo, useState, Fragment, useCallback } from 'react'
 import Button from '../../../../Styleguide/Button'
 import IOMessage from '../../../../NativeTypes/IOMessage'
-import { SliderLayout } from 'vtex.slider-layout'
+import SliderLayout from '../../../../SliderLayout/SliderLayout'
 import { findIndex, propEq } from 'ramda'
 import classnames from 'classnames'
-// import useProduct from 'vtex.product-context/useProduct'
 import useProduct from '../../../../ProductContext/useProduct'
 
 import { stripUrl, isColor, slug } from '../utils'

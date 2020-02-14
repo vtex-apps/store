@@ -205,9 +205,10 @@ const RichText: FunctionComponent<Props> = ({
   textPosition,
   htmlId,
   intl,
+  blockClass,
 }) => {
   const [isMounted, setMounted] = useState(false)
-  const handles = useCssHandles(CSS_HANDLES)
+  const handles = useCssHandles(CSS_HANDLES,{blockClass})
   const renderer = useRef<Renderer>()
   useEffect(() => {
     setMounted(true)

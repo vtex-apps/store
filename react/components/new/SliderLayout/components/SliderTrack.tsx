@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { useListContext } from 'vtex.list-context'
+import useListContext from '../../ListContext/useListContext'
 import useCssHandles from '../../CssHandles/useCssHandles'
 
 import { useSliderState } from './SliderContext'

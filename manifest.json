@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "store",
-  "version": "2.87.2",
+  "version": "2.87.3-beta.0",
   "title": "VTEX Store",
   "description": "The VTEX basic store.",
   "builders": {
@@ -34,7 +34,6 @@
     "vtex.pixel-manager": "1.x",
     "vtex.rich-text": "0.x",
     "vtex.flex-layout": "0.x",
-    "vtex.product-context": "0.x",
     "vtex.sandbox": "0.x",
     "vtex.breadcrumb": "1.x",
     "vtex.product-availability": "0.x",
@@ -59,13 +58,10 @@
     "vtex.pwa-components": "0.x",
     "vtex.list-context": "0.x",
     "vtex.menu": "2.x",
-    "vtex.order-manager": "0.x",
-    "vtex.order-items": "0.x",
     "vtex.add-to-cart-button": "0.x",
     "vtex.tenant-graphql": "0.x",
     "vtex.store-session": "0.x",
     "vtex.react-vtexid": "4.x",
-    "vtex.product-list-context": "0.x",
     "vtex.search-graphql": "0.x",
     "vtex.checkout-graphql": "0.x",
     "vtex.apps-graphql": "2.x"
@@ -122,7 +118,10 @@
               "type": "string"
             }
           },
-          "required": ["rel", "href"]
+          "required": [
+            "rel",
+            "href"
+          ]
         },
         "description": "Configure your store's favicons"
       }

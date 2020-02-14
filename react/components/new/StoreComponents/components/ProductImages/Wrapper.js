@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
-import useProduct from 'vtex.product-context/useProduct'
-import { useResponsiveValues } from 'vtex.responsive-values'
+import useProduct from '../../../ProductContext/useProduct'
+import useResponsiveValues from '../../../ResponsiveValues/useResponsiveValues'
 import { path, map, pick } from 'ramda'
 
 import ProductImages from './index'

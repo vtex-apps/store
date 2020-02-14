@@ -66,7 +66,7 @@ const useCssHandles = <T extends CssHandlesInput>(
   const extension = useExtension()
 
   const { props = {}, component = '' } = extension || {}
-  const blockClass = props.cssHandle || props.blockClass
+  const blockClass = props.cssHandle || props.blockClass || options.blockClass
 
   const values = useMemo<CssHandles<T>>(() => {
     const { migrationFrom } = options

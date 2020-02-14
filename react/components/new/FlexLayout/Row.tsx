@@ -79,9 +79,10 @@ const Row: StorefrontFunctionComponent<Props> = ({
   horizontalAlign,
   colSizing,
   colJustify = ColJustify.between,
+  blockClass,
 }) => {
   const context = useFlexLayoutContext()
-  const handles = useCssHandles(CSS_HANDLES)
+  const handles = useCssHandles(CSS_HANDLES, {blockClass})
 
   const gaps = parseTachyonsGroup({
     colGap: colGap != null ? colGap : context.colGap,

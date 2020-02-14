@@ -3,8 +3,8 @@
     "allowConditions": true,
     "component": "*",
     "around": ["storeWrapper"],
-    "before": ["header.full"],
-    "after": ["footer", "pixels"],
+    "before": [],
+    "after": ["pixels"],
     "allowed": [
       "notification.bar",
       "carousel",

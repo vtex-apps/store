@@ -1,5 +1,5 @@
 import React from 'react'
-import useProduct from 'vtex.product-context/useProduct'
+import useProduct from '../../../ProductContext/useProduct'
 import { isEmpty, propOr, propEq } from 'ramda'
 
 import ProductSpecifications from './index'

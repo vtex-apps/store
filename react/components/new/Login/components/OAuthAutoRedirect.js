@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
 import Spinner from '../../Styleguide/Spinner'
-import { AuthServiceLazy } from 'vtex.react-vtexid'
+import AuthServiceLazy from '../../VtexId/AuthServiceLazy'
 
 import styles from '../styles.css'
 

@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import useCssHandles from '../../CssHandles/useCssHandles'
-import { Drawer } from 'vtex.store-drawer'
+import Drawer from '../../Drawer/Drawer'
 
 import MinicartIconButton from './MinicartIconButton'
 

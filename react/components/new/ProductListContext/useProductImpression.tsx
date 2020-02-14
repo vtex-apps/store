@@ -1,6 +1,6 @@
 import { useEffect, useCallback } from 'react'
 import debounce from 'debounce'
-import { PixelContext } from 'vtex.pixel-manager'
+import PixelContext from '../PixelContext/PixelContext'
 
 import productImpressionHooks, { Product, Dispatch } from './ProductListContext'
 import { parseToProductImpression } from './utils/parser'

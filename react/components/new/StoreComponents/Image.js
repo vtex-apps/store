@@ -1,3 +1,3 @@
-import { Image } from 'vtex.store-image'
+import Image from '../StoreImage/Image'
 
 export default Image

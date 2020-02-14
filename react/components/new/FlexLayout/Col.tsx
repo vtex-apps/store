@@ -77,10 +77,11 @@ const Col: StorefrontFunctionComponent<Props> = ({ children, ...props }) => {
     preventVerticalStretch,
     verticalAlign,
     horizontalAlign,
+    blockClass,
   } = useResponsiveValues(props) as Props
 
   const context = useFlexLayoutContext()
-  const handles = useCssHandles(CSS_HANDLES)
+  const handles = useCssHandles(CSS_HANDLES, {blockClass})
 
   const gaps = parseTachyonsGroup({
     colGap: colGap != null ? colGap : context.colGap,

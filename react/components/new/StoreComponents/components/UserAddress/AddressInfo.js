@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { ExtensionPoint, useChildBlock } from 'vtex.render-runtime'
 import { pathOr } from 'ramda'
 import { injectIntl, FormattedMessage } from 'react-intl'
-import { IconLocationMarker } from 'vtex.store-icons'
+import IconLocationMarker from '../../../StoreIcons/IconLocationMarker'
 
 const AddressInfo = ({ inverted, inline, orderForm, intl }) => {
   const { shippingData } = orderForm

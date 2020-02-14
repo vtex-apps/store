@@ -2,7 +2,8 @@ import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
 
-import { AuthStateLazy, AuthServiceLazy } from 'vtex.react-vtexid'
+import AuthStateLazy from '../../VtexId/AuthStateLazy'
+import AuthServiceLazy from '../../VtexId/AuthServiceLazy'
 import Input from '../../Styleguide/Input'
 import Button from '../../Styleguide/Button'
 

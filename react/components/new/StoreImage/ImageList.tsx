@@ -1,7 +1,8 @@
 import React from 'react'
 import { defineMessages } from 'react-intl'
 import useDevice from '../DeviceDetector/useDevice'
-import { useListContext, ListContextProvider } from 'vtex.list-context'
+import useListContext from '../ListContext/useListContext'
+import ListContextProvider from '../ListContext/ListContextProvider'
 
 import Image from './Image'
 

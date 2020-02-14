@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { ProductContext } from 'vtex.product-context'
+import ProductContext from '../../../ProductContext/ProductContext'
 import { path, isEmpty } from 'ramda'
 import { injectIntl } from 'react-intl'
 import { useRuntime } from 'vtex.render-runtime'

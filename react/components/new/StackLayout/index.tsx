@@ -7,13 +7,15 @@ const CSS_HANDLES = ['stackContainer', 'stackItem'] as const
 
 interface Props {
   zIndexOffset?: number
+  blockClass?: string
 }
 
 const StackLayout: StorefrontFunctionComponent<Props> = ({
   children,
   zIndexOffset = 0,
+  blockClass,
 }) => {
-  const handles = useCssHandles(CSS_HANDLES)
+  const handles = useCssHandles(CSS_HANDLES,{blockClass})
   return (
     <div className={`${handles.stackContainer} relative`}>
       {React.Children.toArray(children).map((child, idx) => {

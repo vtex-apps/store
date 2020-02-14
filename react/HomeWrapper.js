@@ -1,7 +1,7 @@
 import React, { useMemo, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { useRuntime, canUseDOM } from 'vtex.render-runtime'
-import SearchAction from 'vtex.structured-data/SearchAction'
+// import SearchAction from 'vtex.structured-data/SearchAction'
 import useDataPixel from './hooks/useDataPixel'
 import Header from './components/new/header'
 import Carousel from './components/new/Carousel/Carousel'
@@ -97,7 +97,6 @@ const HomeWrapper = ({ children }) => {
 
   return (
     <Fragment>
-      <SearchAction />
       <FixedHome />
     </Fragment>
   )

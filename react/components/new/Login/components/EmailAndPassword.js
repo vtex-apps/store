@@ -4,7 +4,8 @@ import { injectIntl, intlShape } from 'react-intl'
 
 import Input from '../../Styleguide/Input'
 import Button from '../../Styleguide/Button'
-import { AuthStateLazy, AuthServiceLazy } from 'vtex.react-vtexid'
+import AuthStateLazy from '../../VtexId/AuthStateLazy'
+import AuthServiceLazy from '../../VtexId/AuthServiceLazy'
 import { ExtensionPoint, useChildBlock } from 'vtex.render-runtime'
 
 import { translate } from '../utils/translate'

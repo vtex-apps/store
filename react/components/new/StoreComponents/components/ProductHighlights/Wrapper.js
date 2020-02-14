@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { ProductContext } from 'vtex.product-context'
+import ProductContext from '../../../ProductContext/ProductContext'
 import { isEmpty, propOr } from 'ramda'
 
 import ProductHighlights from './index'

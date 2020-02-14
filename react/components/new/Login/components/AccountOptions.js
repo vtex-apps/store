@@ -3,7 +3,7 @@ import { injectIntl, intlShape } from 'react-intl'
 import { Link } from 'vtex.render-runtime'
 
 import Button from '../../Styleguide/Button'
-import { AuthServiceLazy } from 'vtex.react-vtexid'
+import AuthServiceLazy from '../../VtexId/AuthServiceLazy'
 
 import { translate } from '../utils/translate'
 import styles from '../styles.css'
