@@ -8,9 +8,7 @@ import useListContext from '../ListContext/useListContext'
 import { mapCatalogProductToProductSummary } from './utils/normalize'
 import ProductListEventCaller from './components/ProductListEventCaller'
 
-import StoreQueries from '../../StoreResources/Queries'
-const {productSearchV2
-} = StoreQueries
+import productSearchV2 from '../StoreResources/queries/productSearchV2.gql'
 
 const ORDER_BY_OPTIONS = {
   RELEVANCE: {

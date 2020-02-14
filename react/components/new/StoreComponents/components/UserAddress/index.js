@@ -2,9 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { graphql } from 'react-apollo'
 
-import StoreQueries from '../../../StoreResources/Queries'
-const {address: addressQuery
-} = StoreQueries
+import addressQuery from '../../../StoreResources/queries/address.gql'
 
 import Container from '../Container'
 import AddressInfo from './AddressInfo'

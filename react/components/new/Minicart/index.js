@@ -14,10 +14,11 @@ import ButtonWithIcon from '../Styleguide/ButtonWithIcon'
 import ToastContext from '../Styleguide/ToastContext'
 import { useRuntime } from 'vtex.render-runtime'
 import IconCart from '../StoreIcons/IconCart'
-import StoreQueries from '../StoreResources/Queries'
-const {orderForm: orderFormQuery} = StoreQueries
-import StoreMutations from '../StoreResources/Mutations'
-const { addToCart, updateItems } = StoreMutations
+
+import orderFormQuery from '../StoreResources/queries/orderForm.gql'
+import addToCart from '../StoreResources/mutations/addToCart.gql'
+import updateItems from '../StoreResources/mutations/updateItems.gql'
+
 import { usePixel } from '../PixelContext/PixelContext'
 import ProductPrice from '../StoreComponents/ProductPrice'
 import CheckoutUtils from '../CheckoutResources/Utils'

@@ -9,13 +9,12 @@ import React, {
 } from 'react'
 import { ApolloClient, ApolloError } from 'apollo-client'
 import { useQuery } from 'react-apollo'
-import Queries from '../CheckoutResources/Queries'
 import { OrderForm } from 'vtex.checkout-graphql'
 
 import { dummyOrderForm, emptyOrderForm } from './utils/dummyOrderForm'
 import { logSplunk } from './utils/logger'
 
-const { orderForm: OrderFormQuery } = Queries
+import OrderFormQuery from '../CheckoutResources/queries/orderForm.graphql'
 
 interface Context {
   loading: boolean

@@ -1,10 +1,7 @@
 import { head, mergeDeepRight, values } from 'ramda'
 
-import StoreMutations from '../../../StoreResources/Mutations'
-const {
-  updateOrderFormShipping,
-  updateOrderFormCheckin,
-} = StoreMutations
+import updateOrderFormShipping from '../../../StoreResources/mutations/updateOrderFormShipping.gql'
+import updateOrderFormCheckin from '../../../StoreResources/mutations/updateOrderFormCheckin.gql'
 
 import fullMinicartQuery from './graphql/fullMinicartQuery.gql'
 

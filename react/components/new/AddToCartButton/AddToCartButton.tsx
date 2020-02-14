@@ -14,8 +14,8 @@ const { useCheckoutURL } = CheckoutUtils
 import useCssHandles from '../CssHandles/useCssHandles'
 import { useRuntime } from 'vtex.render-runtime'
 import { usePixel } from '../PixelContext/PixelContext'
-import CheckoutMutations from '../CheckoutResources/Mutations'
-const { addToCart: ADD_TO_CART } = CheckoutMutations
+
+import ADD_TO_CART from '../CheckoutResources/mutations/addToCart.graphql'
 import ProductDispatchContext from '../ProductContext/ProductDispatchContext'
 const { useProductDispatch } = ProductDispatchContext
 import PWAContext from '../StoreResources/PWAContext'

@@ -1,19 +1,15 @@
 import React, { Component } from 'react'
 import { graphql, compose } from 'react-apollo'
 
-import StoreMutations from './new/StoreResources/Mutations'
-const {
-  addToCart,
-  updateItems,
-  updateOrderFormProfile,
-  updateOrderFormShipping,
-  updateOrderFormCheckin,
-} = StoreMutations
+import addToCart from './new/StoreResources/mutations/addToCart.gql'
+import updateItems from './new/StoreResources/mutations/updateItems.gql'
+import updateOrderFormProfile from './new/StoreResources/mutations/updateOrderFormProfile.gql'
+import updateOrderFormShipping from './new/StoreResources/mutations/updateOrderFormShipping.gql'
+import updateOrderFormCheckin from './new/StoreResources/mutations/updateOrderFormCheckin.gql'
 
-import StoreQueries from './new/StoreResources/Queries'
-const { orderForm } = StoreQueries
+import orderForm from './new/StoreResources/queries/orderForm.gql'
 import OrderFormContext from './new/StoreResources/OrderFormContext'
-const { Provider }= OrderFormContext
+const { Provider } = OrderFormContext
 
 class OrderFormProvider extends Component {
   state = {

@@ -4,13 +4,10 @@ import { withApollo, graphql, compose } from 'react-apollo'
 import { isEmpty } from 'ramda'
 import { useRuntime } from 'vtex.render-runtime'
 
-import StoreQueries from './components/new/StoreResources/Queries'
-const {
-  product,
-  productPreviewFragment,
-  productBenefits,
-  UNSTABLE__productCategoryTree: productCategoryTree
-} = StoreQueries
+import product from './components/new/StoreResources/queries/product.gql'
+import productPreviewFragment from './components/new/StoreResources/queries/productPreview.gql'
+import productBenefits from './components/new/StoreResources/queries/productBenefits.gql'
+import productCategoryTree from './components/new/StoreResources/queries/UNSTABLE__productCategoryTree.gql'
 
 import { cacheLocator } from './cacheLocator'
 

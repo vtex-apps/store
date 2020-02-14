@@ -7,8 +7,7 @@ import React, {
   useRef,
 } from 'react'
 import { useMutation } from 'react-apollo'
-import CheckoutMutations from '../CheckoutResources/Mutations'
-const { updateItems: UpdateItems } = CheckoutMutations
+import UpdateItems from '../CheckoutResources/mutations/updateItems.graphql'
 import OrderQueue from '../OrderManager/OrderQueue'
 const { 
   QueueStatus,
