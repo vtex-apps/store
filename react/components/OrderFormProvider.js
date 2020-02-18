@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
 import { graphql, compose } from 'react-apollo'
 
-import {
-  addToCart,
-  updateItems,
-  updateOrderFormProfile,
-  updateOrderFormShipping,
-  updateOrderFormCheckin,
-} from 'vtex.store-resources/Mutations'
+import addToCart from 'vtex.store-resources/MutationAddToCart'
+import updateItems from 'vtex.store-resources/MutationUpdateItems'
+import updateOrderFormProfile from 'vtex.store-resources/MutationUpdateOrderFormProfile'
+import updateOrderFormShipping from 'vtex.store-resources/MutationUpdateOrderFormShipping'
+import updateOrderFormCheckin from 'vtex.store-resources/MutationUpdateOrderFormCheckin'
+
 import { Provider } from 'vtex.store-resources/OrderFormContext'
-import { orderForm } from 'vtex.store-resources/Queries'
+import orderForm from 'vtex.store-resources/QueryOrderForm'
 
 class OrderFormProvider extends Component {
   state = {
