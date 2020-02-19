@@ -93,6 +93,11 @@
           ]
         },
         "description": "Configure your store's favicons"
+      },
+      "searchTerm": {
+        "title": "Search Term String",
+        "type": "string",
+        "description": "Indicate the search term to use with the robots"
       }
     }
   },
