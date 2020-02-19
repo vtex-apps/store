@@ -30,7 +30,10 @@
     "vtex.structured-data": "0.x",
     "vtex.pwa-components": "0.x",
     "vtex.order-manager": "0.x",
-    "vtex.order-items": "0.x"
+    "vtex.order-items": "0.x",
+    "vtex.product-specification-badges": "0.x",
+    "vtex.product-review-interfaces": "1.x",
+    "vtex.telemarketing": "2.x"
   },
   "settingsSchema": {
     "title": "VTEX Store",
