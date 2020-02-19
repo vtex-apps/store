@@ -3,7 +3,7 @@ import { path } from 'ramda'
 import React from 'react'
 import { useRuntime } from 'vtex.render-runtime'
 
-import SearchQuery from 'vtex.search-result/SearchQuery'
+import SearchQuery from 'vtex.search-result-3-x-copy/SearchQuery'
 
 import { initializeMap, SORT_OPTIONS } from './modules/search'
 

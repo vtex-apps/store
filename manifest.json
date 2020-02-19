@@ -20,7 +20,7 @@
     "vtex.pwa-graphql": "1.x",
     "vtex.styleguide": "9.x",
     "vtex.pixel-interfaces": "1.x",
-    "vtex.search-result": "3.x",
+    "vtex.search-result-3-x-copy": "0.x",
     "vtex.login": "2.x",
     "vtex.my-account": "1.x",
     "vtex.pixel-manager": "1.x",
@@ -87,10 +87,7 @@
               "type": "string"
             }
           },
-          "required": [
-            "rel",
-            "href"
-          ]
+          "required": ["rel", "href"]
         },
         "description": "Configure your store's favicons"
       }
