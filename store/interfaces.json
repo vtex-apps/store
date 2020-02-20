@@ -120,5 +120,6 @@
     "component": "Fold"
   },
   "__fold__.mobile": {},
-  "__fold__.desktop": {}
+  "__fold__.desktop": {},
+  "__fold__.experimentalLazyImages": {}
 }
