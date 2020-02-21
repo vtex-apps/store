@@ -94,10 +94,10 @@
         },
         "description": "Configure your store's favicons"
       },
-      "searchTerm": {
-        "title": "Search Term String",
+      "searchTermPath": {
+        "title": "Search Term Path",
         "type": "string",
-        "description": "Indicate the search term to use with the robots"
+        "description": "Indicate the search path of your store"
       }
     }
   },
