@@ -35,6 +35,22 @@ const systemToCanonical = ({ canonicalPath }) => {
   }
 }
 
+const useFavicons = faviconLinks => {
+  const { rootPath = '' } = useRuntime()
+  if (!rootPath) {
+    return faviconLinks
+  }
+
+  return (faviconLinks || []).map(favicon => {
+    // Only fix if is relative path
+    const { href } = favicon
+    if (!href || href[0] !== '/') {
+      return favicon
+    }
+    return { ...favicon, href: rootPath + href }
+  })
+}
+
 const StoreWrapper = ({ children }) => {
   const {
     amp,
@@ -90,6 +106,8 @@ const StoreWrapper = ({ children }) => {
     canonicalPath &&
     `https://${canonicalHost}${rootPath}${canonicalPath}`
 
+  const parsedFavicons = useFavicons(faviconLinks)
+
   return (
     <Fragment>
       <Helmet
@@ -118,7 +136,7 @@ const StoreWrapper = ({ children }) => {
           },
         ].filter(Boolean)}
         link={[
-          ...(faviconLinks || []),
+          ...(parsedFavicons || []),
           ...(!amp && canonicalLink
             ? [
                 /*{
