@@ -5,7 +5,8 @@ import SearchAction from 'vtex.structured-data/SearchAction'
 import useDataPixel from './hooks/useDataPixel'
 
 const HomeWrapper = ({ children }) => {
-  const { account, route } = useRuntime()
+  const { account, route, getSettings } = useRuntime()
+  const { searchTermPath } = getSettings('vtex.store')
 
   const pixelEvents = useMemo(() => {
     if (!canUseDOM) {
@@ -28,7 +29,7 @@ const HomeWrapper = ({ children }) => {
 
   return (
     <Fragment>
-      <SearchAction />
+      <SearchAction searchTermPath={searchTermPath} />
       {children}
     </Fragment>
   )

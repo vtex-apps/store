@@ -93,6 +93,11 @@
           ]
         },
         "description": "Configure your store's favicons"
+      },
+      "searchTermPath": {
+        "title": "Search Term Path",
+        "type": "string",
+        "description": "Indicate the search path of your store"
       }
     }
   },
