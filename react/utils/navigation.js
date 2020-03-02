@@ -1,4 +1,4 @@
-import { contains, path as ramdaPath, zip, flatten } from 'ramda'
+import { contains, path as ramdaPath, zip } from 'ramda'
 import queryString from 'query-string'
 
 const SPEC_FILTER = 'specificationFilter'
@@ -11,7 +11,7 @@ const isLegacySearchFormat = (pathSegments, map) => {
     return false
   }
   return (
-    map.includes(SPEC_FILTER) ||
+    map.includes(SPEC_FILTER) &&
     map.split(MAP_VALUES_SEP).length === pathSegments.length
   )
 }
@@ -69,21 +69,14 @@ const normalizeQueryMap = (pathSegments, mapSegments) => {
   }
 }
 
-const normalizeSearchNavigation = (pathSegments, map, segmentsToIgnore) => {
-  const normalizedSegments = pathSegments.map(segment =>
-    segmentsToIgnore.includes(segment) ? segment : segment.toLowerCase()
-  )
-  return { pathSegments: normalizedSegments, map }
-}
-
-const getIgnoredSegments = ignore => {
-  return ignore
-    ? flatten(
-        Object.values(ignore).map(routeModifier =>
-          routeModifier.path.split(PATH_SEPARATOR)
-        )
-      )
-    : []
+const normalizeSearchNavigation = (pathSegments, map, options) => {
+  if (options && options.LOWERCASE === false) {
+    return { pathSegments, map }
+  }
+  return {
+    pathSegments: pathSegments.map(segment => segment.toLowerCase()),
+    map,
+  }
 }
 
 const normalizeLegacySearchNavigation = (pathSegments, queryMap, query) => {
@@ -133,12 +126,10 @@ export const normalizeNavigation = navigation => {
     ? path.split(PATH_SEPARATOR).slice(1)
     : path.split(PATH_SEPARATOR)
 
-  const segmentsToIgnore = getIgnoredSegments(options)
-
   const normalizedNavigation =
     parsedQuery.query || isLegacySearchFormat(pathSegments, map)
       ? normalizeLegacySearchNavigation(pathSegments, parsedQuery, query)
-      : normalizeSearchNavigation(pathSegments, query, segmentsToIgnore)
+      : normalizeSearchNavigation(pathSegments, query, options)
 
   navigation.path = path.startsWith('/')
     ? '/' + normalizedNavigation.pathSegments.join('/')
