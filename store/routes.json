@@ -65,5 +65,8 @@
     "path": "/_v/segment/routing/vtex.store@2.x/notFoundSearch/:id/*terms",
     "canonical": "/*terms",
     "contentType": "notFoundSearch"
+  },
+  "store.example": {
+    "path": "/example"
   }
 }

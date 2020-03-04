@@ -2,5 +2,6 @@
   "admin/editor.product-search.title": "Contexto de búsqueda de productos",
   "admin/editor.product-search.maxItemsPerPage": "Número máximo de elementos por página",
   "admin/editor.product-search.hideUnavailableItems": "Esconder elementos no disponibles",
-  "store/store.network-status.offline": "Sin conexión a internet."
+  "store/store.network-status.offline": "Sin conexión a internet.",
+  "store/store.example-app":"ola {name}"
 }

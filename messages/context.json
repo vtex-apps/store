@@ -2,5 +2,6 @@
   "admin/editor.product-search.title": "admin/editor.product-search.title",
   "admin/editor.product-search.maxItemsPerPage": "admin/editor.product-search.maxItemsPerPage",
   "admin/editor.product-search.hideUnavailableItems": "Title of hideUnavailableItems prop",
-  "store/store.network-status.offline": "store/store.network-status.offline"
+  "store/store.network-status.offline": "store/store.network-status.offline",
+  "store/store.example-app":"store/store.example-app"
 }

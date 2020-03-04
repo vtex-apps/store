@@ -33,7 +33,8 @@
     "vtex.order-items": "0.x",
     "vtex.product-specification-badges": "0.x",
     "vtex.product-review-interfaces": "1.x",
-    "vtex.telemarketing": "2.x"
+    "vtex.telemarketing": "2.x",
+    "vtex.locale-switcher": "0.x"
   },
   "settingsSchema": {
     "title": "VTEX Store",

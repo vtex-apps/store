@@ -116,6 +116,13 @@
   "store.offline": {
     "required": ["offline-warning"]
   },
+  "example-on-boarding": {
+    "component": "Example"
+  },
+  "store.example": {
+    "before": ["header.full"],
+    "allowed": ["example-on-boarding", "locale-switcher"]
+  },
   "__fold__": {
     "component": "Fold"
   },
