@@ -1,26 +1,19 @@
 import { path, pathOr } from 'ramda'
-import { useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { useCallback, useContext, useEffect, useState, useRef } from 'react'
 import { injectIntl, intlShape } from 'react-intl'
 import { ToastContext } from 'vtex.styleguide'
-import { useRuntime } from 'vtex.render-runtime'
 
 function NetworkStatusToast({ intl }) {
-  const runtime = useRuntime()
   const [offline, setOffline] = useState(false)
   // Useful to dismissable toast flow.
   const [showingOffline, setShowingOffline] = useState(false)
   const { showToast, hideToast, toastState } = useContext(ToastContext)
 
-  const toastConfig = useMemo(
-    () => ({
-      message: intl.formatMessage({
-        id: 'store/store.network-status.offline',
-      }),
-      dismissable: pathOr(false, ['hints', 'mobile'], runtime),
-      duration: Infinity,
-    }),
-    [intl, runtime]
-  )
+  const toastConfig = useRef({
+    message: '',
+    dismissable: true,
+    duration: Infinity,
+  })
 
   const updateStatus = useCallback(() => {
     if (navigator) {
@@ -44,19 +37,33 @@ function NetworkStatusToast({ intl }) {
 
   useEffect(() => {
     if (offline && !toastState.currentToast) {
+      const message = intl.formatMessage({
+        id: 'store/store.network-status.offline',
+      })
+      toastConfig.current.message = message
+
       if (!showingOffline) {
-        showToast(toastConfig)
+        showToast(toastConfig.current)
       }
       setShowingOffline(!showingOffline)
     } else if (
       !offline &&
       toastState.isToastVisible &&
-      path(['currentToast', 'message'], toastState) === toastConfig.message
+      path(['currentToast', 'message'], toastState) ===
+        toastConfig.current.message
     ) {
       hideToast()
       setShowingOffline(false)
     }
-  }, [offline, toastState, toastConfig, showingOffline, showToast, hideToast])
+  }, [
+    offline,
+    toastState,
+    toastConfig,
+    showingOffline,
+    showToast,
+    hideToast,
+    intl,
+  ])
 
   return null
 }
