@@ -15,8 +15,8 @@
     "fallbackEntity": "notFoundProduct"
   },
   "store.search": {
-    "path": "/:term/s",
-    "canonical": "/:term",
+    "path": "/search",
+    "canonical": "/search/*terms",
     "contentType": "search"
   },
   "store.search#brand": {
