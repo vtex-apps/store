@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - Updated `CODEOWNERS` file with responsible teams for each directory.
+- Updated `.all-contributorsrc`.
 
 ## [2.90.2] - 2020-03-09
 ### Changed
