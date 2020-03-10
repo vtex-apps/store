@@ -34,40 +34,9 @@ const SearchContext = ({
 }) => {
   const { page: runtimePage, query: runtimeQuery } = useRuntime()
 
-  const fieldsFromQueryString = {
-    mapField: runtimeQuery.map,
-    queryField: trimStartingSlash(runtimeQuery.query),
-  }
-
-  const areFieldsFromQueryStringValid = !!(
-    fieldsFromQueryString.mapField && fieldsFromQueryString.queryField
-  )
-
-  const map = areFieldsFromQueryStringValid
-    ? fieldsFromQueryString.mapField
-    : mapQuery || initializeMap(params)
-
-  // Remove params which don't compose a search path
-  const query = runtimeQuery._q
-
-  const getCorrectQueryValue = () => {
-    // Checks if this is on the format of preventRouteChange and get the correct data
-    if (areFieldsFromQueryStringValid) {
-      return fieldsFromQueryString.queryField
-    }
-    // Normal query format, without preventRouteChange
-    if (queryField) {
-      return queryField
-    }
-    // Legacy search
-    if (rest && rest.length > 0) {
-      return `${query}/${rest.replace(',', '/')}`
-    }
-    return query
-  }
-
-  const queryValue = getCorrectQueryValue()
-  const mapValue = queryField ? mapField : map
+  const queryValue = trimStartingSlash(runtimeQuery.query || runtimeQuery._q)
+  const mapValue = runtimeQuery.map || 'ft'
+  const map = mapValue
 
   return (
     <SearchQuery
