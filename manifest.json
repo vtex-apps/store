@@ -99,6 +99,11 @@
         "title": "Search Term Path",
         "type": "string",
         "description": "Indicate the search path of your store"
+      },
+      "legacyOrderForm": {
+        "title": "Use legacy orderForm provider",
+        "type": "boolean",
+        "description": "Whether or not the legacy OrderFormProvider component should be rendered by your store. Setting this to true could hurt performance"
       }
     }
   },

@@ -93,6 +93,7 @@ const StoreWrapper = ({ children }) => {
     metaTagRobots,
     storeName,
     faviconLinks,
+    legacyOrderForm = true,
   } = settings
 
   const { canonicalHost, canonicalPath } = systemToCanonical(route)
@@ -108,6 +109,17 @@ const StoreWrapper = ({ children }) => {
 
   const parsedFavicons = useFavicons(faviconLinks)
 
+  const childrenWithNewOrderForm = (
+    <OrderQueueProvider>
+      <OrderFormProviderCheckout>
+        <OrderItemsProvider>
+          <WrapperContainer className="vtex-store__template bg-base">
+            {children}
+          </WrapperContainer>
+        </OrderItemsProvider>
+      </OrderFormProviderCheckout>
+    </OrderQueueProvider>
+  )
   return (
     <Fragment>
       <Helmet
@@ -157,17 +169,11 @@ const StoreWrapper = ({ children }) => {
           <UserDataPixel />
           <ToastProvider positioning="window">
             <NetworkStatusToast />
-            <OrderFormProvider>
-              <OrderQueueProvider>
-                <OrderFormProviderCheckout>
-                  <OrderItemsProvider>
-                    <WrapperContainer className="vtex-store__template bg-base">
-                      {children}
-                    </WrapperContainer>
-                  </OrderItemsProvider>
-                </OrderFormProviderCheckout>
-              </OrderQueueProvider>
-            </OrderFormProvider>
+            {legacyOrderForm ? (
+              <OrderFormProvider>{childrenWithNewOrderForm}</OrderFormProvider>
+            ) : (
+              childrenWithNewOrderForm
+            )}
           </ToastProvider>
         </PWAProvider>
       </PixelProvider>
