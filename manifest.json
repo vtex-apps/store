@@ -88,10 +88,7 @@
               "type": "string"
             }
           },
-          "required": [
-            "rel",
-            "href"
-          ]
+          "required": ["rel", "href"]
         },
         "description": "Configure your store's favicons"
       },
@@ -103,7 +100,7 @@
       "legacyOrderForm": {
         "title": "Use legacy orderForm provider",
         "type": "boolean",
-        "description": "Whether or not the legacy OrderFormProvider component should be rendered by your store. Setting this to true could hurt performance"
+        "description": "Whether or not the legacy OrderFormProvider component should be rendered by your store. Setting this to true could lead to a less smooth browsing experience."
       }
     }
   },
