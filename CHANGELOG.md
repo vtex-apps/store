@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- `legacyOrderForm` setting.
+- `enableOrderFormOptimization` setting.
 
 ## [2.90.2] - 2020-03-09
 ### Changed

@@ -93,7 +93,7 @@ const StoreWrapper = ({ children }) => {
     metaTagRobots,
     storeName,
     faviconLinks,
-    disableLegacyOrderForm = false,
+    enableOrderFormOptimization = false,
   } = settings
 
   const { canonicalHost, canonicalPath } = systemToCanonical(route)
@@ -169,7 +169,7 @@ const StoreWrapper = ({ children }) => {
           <UserDataPixel />
           <ToastProvider positioning="window">
             <NetworkStatusToast />
-            {disableLegacyOrderForm ? (
+            {enableOrderFormOptimization ? (
               childrenWithNewOrderForm
             ) : (
               <OrderFormProvider>{childrenWithNewOrderForm}</OrderFormProvider>

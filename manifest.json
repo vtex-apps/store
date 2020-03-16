@@ -101,11 +101,11 @@
         "title": "Advanced Store settings",
         "type": "object",
         "properties": {
-          "disableLegacyOrderForm": {
-            "title": "Disable legacy orderForm provider",
+          "enableOrderFormOptimization": {
+            "title": "Enable orderForm optimization",
             "type": "boolean",
             "default": false,
-            "description": "Whether or not the legacy OrderFormProvider component should be used in your store. Read more about it at: https://vtex.io/docs/"
+            "description": "This setting disables the legacy orderForm provider. More at: https://vtex.io/docs"
           }
         }
       }
