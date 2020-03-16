@@ -97,10 +97,17 @@
         "type": "string",
         "description": "Indicate the search path of your store"
       },
-      "legacyOrderForm": {
-        "title": "Use legacy orderForm provider",
-        "type": "boolean",
-        "description": "Whether or not the legacy OrderFormProvider component should be rendered by your store. Setting this to true could lead to a less smooth browsing experience."
+      "advancedSettings": {
+        "title": "Advanced Store settings",
+        "type": "object",
+        "properties": {
+          "disableLegacyOrderForm": {
+            "title": "Disable legacy orderForm provider",
+            "type": "boolean",
+            "default": false,
+            "description": "Whether or not the legacy OrderFormProvider component should be used in your store. Read more about it at: https://vtex.io/docs/"
+          }
+        }
       }
     }
   },
