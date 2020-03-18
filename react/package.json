@@ -25,7 +25,7 @@
     "react-apollo": "^2.0.4",
     "react-dom": "^16.2.0",
     "react-intl": "3.9.1",
-    "typescript": "3.7.3"
+    "typescript": "3.8.3"
   },
   "version": "2.90.2"
 }

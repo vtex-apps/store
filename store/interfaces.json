@@ -121,5 +121,6 @@
   },
   "__fold__.mobile": {},
   "__fold__.desktop": {},
-  "__fold__.experimentalLazyImages": {}
+  "__fold__.experimentalLazyImages": {},
+  "__fold__.experimentalLazyAssets": {}
 }
