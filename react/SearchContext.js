@@ -22,6 +22,7 @@ const SearchContext = ({
   facetsBehavior = 'Static',
   skusFilter,
   simulationBehavior,
+  installmentCriteria,
   query: {
     order: orderBy = orderByField || SORT_OPTIONS[0].value,
     page: pageQuery,
@@ -85,6 +86,7 @@ const SearchContext = ({
       pageQuery={pageQuery}
       skusFilter={skusFilter}
       simulationBehavior={simulationBehavior}
+      installmentCriteria={installmentCriteria}
     >
       {(searchQuery, extraParams) => {
         return React.cloneElement(children, {
@@ -154,6 +156,7 @@ SearchContext.propTypes = {
   facetsBehavior: PropTypes.string,
   skusFilter: PropTypes.string,
   simulationBehavior: PropTypes.string,
+  installmentCriteria: PropTypes.string,
 }
 
 SearchContext.schema = {
