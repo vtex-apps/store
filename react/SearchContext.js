@@ -30,8 +30,12 @@ const SearchContext = ({
     priceRange,
     // backwards-compatibility
     rest,
+    fuzzy,
+    operator,
+    searchState,
   },
   children,
+  __unstableProductOriginVtex,
 }) => {
   const { page: runtimePage, query: runtimeQuery } = useRuntime()
 
@@ -87,6 +91,10 @@ const SearchContext = ({
       skusFilter={skusFilter}
       simulationBehavior={simulationBehavior}
       installmentCriteria={installmentCriteria}
+      operator={operator}
+      fuzzy={fuzzy}
+      searchState={searchState}
+      __unstableProductOriginVtex={__unstableProductOriginVtex}
     >
       {(searchQuery, extraParams) => {
         return React.cloneElement(children, {
@@ -139,6 +147,9 @@ SearchContext.propTypes = {
     order: PropTypes.oneOf(SORT_OPTIONS.map(o => o.value)),
     priceRange: PropTypes.string,
     rest: PropTypes.any,
+    operator: PropTypes.string,
+    fuzzy: PropTypes.string,
+    searchState: PropTypes.string,
   }),
   /** Custom query `query` param */
   queryField: PropTypes.string,
@@ -157,6 +168,7 @@ SearchContext.propTypes = {
   skusFilter: PropTypes.string,
   simulationBehavior: PropTypes.string,
   installmentCriteria: PropTypes.string,
+  __unstableProductOriginVtex: PropTypes.bool,
 }
 
 SearchContext.schema = {
