@@ -20,11 +20,19 @@
   "store.search#configurable": {
     "blocks": ["search-result"]
   },
+  "rich-text#not-found": {
+    "props": {
+      "textAlignment": "CENTER",
+      "textPosition": "CENTER",
+      "text": "**PAGE NOT FOUND**",
+      "font": "t-heading-1"
+    }
+  },
   "store.not-found#product": {
-    "blocks": []
+    "blocks": ["rich-text#not-found"]
   },
   "store.not-found#search": {
-    "blocks": []
+    "blocks": ["rich-text#not-found"]
   },
   "store.custom": {
     "parent": {
