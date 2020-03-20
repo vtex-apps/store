@@ -109,7 +109,7 @@ const StoreWrapper = ({ children }) => {
 
   const parsedFavicons = useFavicons(faviconLinks)
 
-  const childrenWithNewOrderForm = (
+  const content = (
     <OrderQueueProvider>
       <OrderFormProviderCheckout>
         <OrderItemsProvider>
@@ -170,9 +170,9 @@ const StoreWrapper = ({ children }) => {
           <ToastProvider positioning="window">
             <NetworkStatusToast />
             {enableOrderFormOptimization ? (
-              childrenWithNewOrderForm
+              content
             ) : (
-              <OrderFormProvider>{childrenWithNewOrderForm}</OrderFormProvider>
+              <OrderFormProvider>{content}</OrderFormProvider>
             )}
           </ToastProvider>
         </PWAProvider>
