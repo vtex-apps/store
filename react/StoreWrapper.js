@@ -172,6 +172,11 @@ const StoreWrapper = ({ children }) => {
             {enableOrderFormOptimization ? (
               content
             ) : (
+              /** This is necessary for backwards compatibility, since stores
+               *  might still need the OrderFormProvider from store-resources.
+               *  If a store does not have `enableOrderFormOptimization` enabled,
+               *  we should always add this provider.
+               */
               <OrderFormProvider>{content}</OrderFormProvider>
             )}
           </ToastProvider>
