@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.92.0] - 2020-03-20
+
 ## [2.91.0] - 2020-03-18
 ### Added
 - Support for `__fold__.experimentalLazyAssets`.
