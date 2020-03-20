@@ -34,6 +34,7 @@
     "vtex.order-items": "0.x",
     "vtex.product-specification-badges": "0.x",
     "vtex.product-review-interfaces": "1.x",
+    "vtex.rich-text": "0.x",
     "vtex.telemarketing": "2.x"
   },
   "settingsSchema": {
