@@ -93,6 +93,7 @@ const StoreWrapper = ({ children }) => {
     metaTagRobots,
     storeName,
     faviconLinks,
+    enableOrderFormOptimization = false,
   } = settings
 
   const { canonicalHost, canonicalPath } = systemToCanonical(route)
@@ -108,6 +109,17 @@ const StoreWrapper = ({ children }) => {
 
   const parsedFavicons = useFavicons(faviconLinks)
 
+  const content = (
+    <OrderQueueProvider>
+      <OrderFormProviderCheckout>
+        <OrderItemsProvider>
+          <WrapperContainer className="vtex-store__template bg-base">
+            {children}
+          </WrapperContainer>
+        </OrderItemsProvider>
+      </OrderFormProviderCheckout>
+    </OrderQueueProvider>
+  )
   return (
     <Fragment>
       <Helmet
@@ -157,17 +169,16 @@ const StoreWrapper = ({ children }) => {
           <UserDataPixel />
           <ToastProvider positioning="window">
             <NetworkStatusToast />
-            <OrderFormProvider>
-              <OrderQueueProvider>
-                <OrderFormProviderCheckout>
-                  <OrderItemsProvider>
-                    <WrapperContainer className="vtex-store__template bg-base">
-                      {children}
-                    </WrapperContainer>
-                  </OrderItemsProvider>
-                </OrderFormProviderCheckout>
-              </OrderQueueProvider>
-            </OrderFormProvider>
+            {enableOrderFormOptimization ? (
+              content
+            ) : (
+              /** This is necessary for backwards compatibility, since stores
+               *  might still need the OrderFormProvider from store-resources.
+               *  If a store does not have `enableOrderFormOptimization` enabled,
+               *  we should always add this provider.
+               */
+              <OrderFormProvider>{content}</OrderFormProvider>
+            )}
           </ToastProvider>
         </PWAProvider>
       </PixelProvider>

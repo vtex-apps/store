@@ -89,10 +89,7 @@
               "type": "string"
             }
           },
-          "required": [
-            "rel",
-            "href"
-          ]
+          "required": ["rel", "href"]
         },
         "description": "Configure your store's favicons"
       },
@@ -100,6 +97,18 @@
         "title": "Search Term Path",
         "type": "string",
         "description": "Indicate the search path of your store"
+      },
+      "advancedSettings": {
+        "title": "Advanced Store settings",
+        "type": "object",
+        "properties": {
+          "enableOrderFormOptimization": {
+            "title": "Enable orderForm optimization",
+            "type": "boolean",
+            "default": false,
+            "description": "This setting disables the legacy orderForm provider. More at: https://vtex.io/docs/recipes/store-management/enabling-order-form-optimization."
+          }
+        }
       }
     }
   },
