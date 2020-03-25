@@ -51,6 +51,24 @@ const useFavicons = faviconLinks => {
   })
 }
 
+/**
+ * The setCheckoutCookie prop is necessary to protect stores using both
+ * OrderFormProviders from inconsistencies regarding the checkout.vtex.com cookie.
+ * Its goal is to prevent vtex.checkout-graphql from overwriting the value set by
+ * vtex.store-graphql.
+ */
+const StoreContent = ({ setCheckoutCookie, children }) => (
+  <OrderQueueProvider>
+    <OrderFormProviderCheckout setCheckoutCookie={setCheckoutCookie}>
+      <OrderItemsProvider>
+        <WrapperContainer className="vtex-store__template bg-base">
+          {children}
+        </WrapperContainer>
+      </OrderItemsProvider>
+    </OrderFormProviderCheckout>
+  </OrderQueueProvider>
+)
+
 const StoreWrapper = ({ children }) => {
   const {
     amp,
@@ -109,17 +127,6 @@ const StoreWrapper = ({ children }) => {
 
   const parsedFavicons = useFavicons(faviconLinks)
 
-  const content = (
-    <OrderQueueProvider>
-      <OrderFormProviderCheckout>
-        <OrderItemsProvider>
-          <WrapperContainer className="vtex-store__template bg-base">
-            {children}
-          </WrapperContainer>
-        </OrderItemsProvider>
-      </OrderFormProviderCheckout>
-    </OrderQueueProvider>
-  )
   return (
     <Fragment>
       <Helmet
@@ -170,14 +177,18 @@ const StoreWrapper = ({ children }) => {
           <ToastProvider positioning="window">
             <NetworkStatusToast />
             {enableOrderFormOptimization ? (
-              content
+              <StoreContent setCheckoutCookie>{children}</StoreContent>
             ) : (
               /** This is necessary for backwards compatibility, since stores
                *  might still need the OrderFormProvider from store-resources.
                *  If a store does not have `enableOrderFormOptimization` enabled,
                *  we should always add this provider.
                */
-              <OrderFormProvider>{content}</OrderFormProvider>
+              <OrderFormProvider>
+                <StoreContent setCheckoutCookie={false}>
+                  {children}
+                </StoreContent>
+              </OrderFormProvider>
             )}
           </ToastProvider>
         </PWAProvider>
