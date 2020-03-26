@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- `setCheckoutCookie` argument to control whether or not `vtex.checkout-graphql` not set the `'checkout.vtex.com'` cookie.
 
 ## [2.93.0] - 2020-03-24
 ### Added
