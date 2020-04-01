@@ -42,7 +42,7 @@
   },
   "store.search#subcategory": {
     "path": "/_v/segment/routing/vtex.store@2.x/subcategory/:id/:department/:category/:subcategory(/*terms)",
-    "canonical": "/:department/:category/:subcategory(/*terms)",
+    "canonical": "/:department/:category/:subcategory",
     "map": ["c", "c", "c"],
     "contentType": "subcategory",
     "fallbackEntity": "category"
