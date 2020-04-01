@@ -10,10 +10,7 @@ const isLegacySearchFormat = (pathSegments, map) => {
   if (!map) {
     return false
   }
-  return (
-    map.includes(SPEC_FILTER) &&
-    map.split(MAP_VALUES_SEP).length === pathSegments.length
-  )
+  return map.split(MAP_VALUES_SEP).length === pathSegments.length
 }
 
 const categoriesInSequence = mapValues => {
@@ -69,12 +66,9 @@ const normalizeQueryMap = (pathSegments, mapSegments) => {
   }
 }
 
-const normalizeSearchNavigation = (pathSegments, map, options) => {
-  if (options && options.LOWERCASE === false) {
-    return { pathSegments, map }
-  }
+const normalizeSearchNavigation = (pathSegments, map) => {
   return {
-    pathSegments: pathSegments.map(segment => segment.toLowerCase()),
+    pathSegments: pathSegments,
     map,
   }
 }
@@ -118,7 +112,7 @@ export const normalizeNavigation = navigation => {
     return navigation
   }
 
-  const { path, query, options } = navigation
+  const { path, query } = navigation
   const parsedQuery = query ? queryString.parse(query) : {}
   const { map } = parsedQuery
 
@@ -129,7 +123,7 @@ export const normalizeNavigation = navigation => {
   const normalizedNavigation =
     parsedQuery.query || isLegacySearchFormat(pathSegments, map)
       ? normalizeLegacySearchNavigation(pathSegments, parsedQuery, query)
-      : normalizeSearchNavigation(pathSegments, query, options)
+      : normalizeSearchNavigation(pathSegments, query)
 
   navigation.path = path.startsWith('/')
     ? '/' + normalizedNavigation.pathSegments.join('/')

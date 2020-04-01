@@ -29,7 +29,7 @@ describe('Navigation route modifier', () => {
     expect(result).toEqual({ path: expectedPath, query: expectedQuery })
   })
   it('should preserve case for new routes pattern', () => {
-    const path = '/foo/Bar/nice_Bar'
+    const path = '/foo/bar/nice_Bar'
     const expectedPath = '/foo/bar/nice_Bar'
     const ignore = { 'nice-bar': { path: 'nice_Bar' } }
     const result = normalizeNavigation({ path, ignore })
