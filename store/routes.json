@@ -56,6 +56,11 @@
   "store.offline": {
     "path": "/_v/offline"
   },
+  "store.custom": {
+    "path": "/_v/segment/routing/vtex.store@2.x/userRoute/:id(/*terms)",
+    "contentType": "userRoute",
+    "canonical": "/*terms"
+  },
   "store.not-found#product": {
     "path": "/_v/segment/routing/vtex.store@2.x/notFoundProduct/:id/:slug/p",
     "canonical": "/:slug/p",
