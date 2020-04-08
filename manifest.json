@@ -9,9 +9,6 @@
     "messages": "1.x",
     "react": "3.x"
   },
-  "peerDependencies": {
-    "vtex.store-sitemap": "1.x"
-  },
   "dependencies": {
     "vtex.store-indexer": "0.x",
     "vtex.store-resources": "0.x",
