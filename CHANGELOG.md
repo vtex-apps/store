@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- `__unstableProductOrigin`, `fuzzy`, `operator` and `searchState` props.
+
 ## [2.93.3] - 2020-04-02
 ### Fixed
 - Do not apply lowercase on navigate for new search URL format
