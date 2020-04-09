@@ -80,6 +80,7 @@ const ProfileChallenge: FC<Props> = ({ children, page }) => {
 
   useLoginRedirect(isLoggedIn, page)
 
+  // isLoggedIn null means that we still don't know, session is loading
   if (isLoggedIn === null) {
     return (
       <div className="flex justify-center ma4">
