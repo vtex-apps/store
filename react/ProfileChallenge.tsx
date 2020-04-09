@@ -49,7 +49,7 @@ function hasSession(session: SessionResponse | undefined): session is Session {
   )
 }
 
-const useRedirectLogin = (isLoggedIn: boolean | null, page: string) => {
+const useLoginRedirect = (isLoggedIn: boolean | null, page: string) => {
   const { navigate } = useRuntime()
 
   useEffect(() => {
@@ -78,7 +78,7 @@ const ProfileChallenge: FC<Props> = ({ children, page }) => {
     ? session.namespaces?.profile?.isAuthenticated?.value === 'true'
     : null
 
-  useRedirectLogin(isLoggedIn, page)
+  useLoginRedirect(isLoggedIn, page)
 
   if (isLoggedIn === null) {
     return (
