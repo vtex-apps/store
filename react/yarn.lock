@@ -5489,9 +5489,9 @@ verror@1.10.0:
   version "0.9.0"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.rich-text@0.9.0/public/@types/vtex.rich-text#282dee709256f790700c9a18d9fbbe3790ac3704"
 
-"vtex.search-result@https://breno--storecomponents.myvtex.com/_v/private/typings/linked/v1/vtex.search-result@3.53.2+build1586284330/public/_types/react":
+"vtex.search-result@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.search-result@3.55.1/public/_types/react":
   version "0.0.0"
-  resolved "https://breno--storecomponents.myvtex.com/_v/private/typings/linked/v1/vtex.search-result@3.53.2+build1586284330/public/_types/react#fa7a0347e046eab3dd768998fc9252b2c0dd5aef"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.search-result@3.55.1/public/_types/react#fa7a0347e046eab3dd768998fc9252b2c0dd5aef"
 
 "vtex.store-footer@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-footer@2.20.1/public/@types/vtex.store-footer":
   version "2.20.1"
