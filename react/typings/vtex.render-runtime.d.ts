@@ -61,5 +61,6 @@ declare module 'vtex.render-runtime' {
   export const Helmet
   export const canUseDOM: boolean
   export const LoadingContextProvider
-  export const Loading
 }
+
+export {}
