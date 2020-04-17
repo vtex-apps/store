@@ -7,6 +7,7 @@
   },
   "devDependencies": {
     "@types/node": "^12.7.12",
+    "@vtex/danger": "^0.0.16",
     "eslint": "^6.4.0",
     "eslint-config-vtex": "^11.0.0",
     "eslint-config-vtex-react": "^5.0.1",
