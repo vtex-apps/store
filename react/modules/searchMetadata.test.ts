@@ -128,6 +128,9 @@ test('should get the searched metadata', () => {
           href: '/electronics/top?map=c,ft',
         },
       ],
+      operator: 'and',
+      searchState: 'placeholder',
+      correction: { misspelled: false },
     },
     facets: {
       categoriesTrees: [
@@ -147,6 +150,9 @@ test('should get the searched metadata', () => {
   expect(result!.category!.id).toBe('1')
   expect(result!.category!.name).toBe('foo')
   expect(result!.results).toBe(3)
+  expect(result!.operator).toBe('and')
+  expect(result!.searchState).toBe('placeholder')
+  expect(result!.correction!.misspelled).toBe(false)
 })
 
 test('should get the searched metadata without category', () => {
@@ -159,6 +165,9 @@ test('should get the searched metadata without category', () => {
           href: '/electronics/top?map=c,ft',
         },
       ],
+      operator: 'and',
+      searchState: 'placeholder',
+      correction: { misspelled: true },
     },
     facets: {
       categoriesTrees: [
@@ -177,4 +186,7 @@ test('should get the searched metadata without category', () => {
   expect(result!.term).toBe('Top')
   expect(result!.category).toBeNull()
   expect(result!.results).toBe(3)
+  expect(result!.operator).toBe('and')
+  expect(result!.searchState).toBe('placeholder')
+  expect(result!.correction!.misspelled).toBe(true)
 })
