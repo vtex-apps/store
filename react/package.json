@@ -11,9 +11,10 @@
     "ramda": "^0.26.1"
   },
   "devDependencies": {
+    "@apollo/react-testing": "^3.1.4",
     "@types/jest": "^24.0.18",
     "@types/ramda": "^0.26.21",
-    "@vtex/test-tools": "^1.2.1",
+    "@vtex/test-tools": "^3.1.0",
     "@vtex/tsconfig": "^0.3.0",
     "apollo-client-preset": "^1.0.8",
     "graphql": "^0.13.0",
