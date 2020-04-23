@@ -4,9 +4,9 @@ import React, { useEffect, useMemo } from 'react'
 import { withApollo, graphql, compose } from 'react-apollo'
 import { isEmpty } from 'ramda'
 import { useRuntime } from 'vtex.render-runtime'
-import ProductQuery from 'vtex.store-resources/QueryProduct'
+import product from 'vtex.store-resources/QueryProduct'
 import productPreviewFragment from 'vtex.store-resources/QueryProductPreviewFragment'
-import ProductBenefitsQuery from 'vtex.store-resources/QueryProductBenefits'
+import productBenefits from 'vtex.store-resources/QueryProductBenefits'
 import productCategoryTree from 'vtex.store-resources/QueryUNSTABLEProductCategoryTree'
 
 import { cacheLocator } from './cacheLocator'
@@ -16,13 +16,17 @@ const EMPTY_OBJECT = {}
 const emptyOrNull = value => (value != null ? isEmpty(value) : true)
 
 const getInfoFromQuery = (queryObj = {}) => {
-  const { product, loading = true } = queryObj
-  return !loading && product ? product : EMPTY_OBJECT
+  const { product: productFromQuery, loading = true } = queryObj
+  return !loading && productFromQuery ? productFromQuery : EMPTY_OBJECT
 }
 
-const useProduct = ({ catalog, productBenefits, categoryTree }) => {
+const useProduct = ({
+  catalog,
+  productBenefits: productBenefitsQueryResult,
+  categoryTree,
+}) => {
   const catalogInfo = getInfoFromQuery(catalog)
-  const benefitsInfo = getInfoFromQuery(productBenefits)
+  const benefitsInfo = getInfoFromQuery(productBenefitsQueryResult)
   const categoryTeeInfo = getInfoFromQuery(categoryTree)
 
   return useMemo(() => {
@@ -73,23 +77,23 @@ const ProductContext = _props => {
     fragment: productPreviewFragment,
   })
 
-  const product =
+  const productToQueryFor =
     propsProduct ||
     (productPreview && productPreview.items ? productPreview : null)
 
   const productQuery = useMemo(
     () => ({
       loading,
-      product,
+      product: productToQueryFor,
       refetch,
       error:
-        !product && !loading
+        !productToQueryFor && !loading
           ? {
               message: 'Product not found!',
             }
           : null,
     }),
-    [loading, product, refetch]
+    [loading, productToQueryFor, refetch]
   )
 
   const childrenProps = useMemo(
@@ -163,7 +167,7 @@ const categoryTreeOptions = {
 
 export default compose(
   withApollo,
-  graphql(ProductQuery, catalogOptions),
-  graphql(ProductBenefitsQuery, productBenefitsOptions),
+  graphql(product, catalogOptions),
+  graphql(productBenefits, productBenefitsOptions),
   graphql(productCategoryTree, categoryTreeOptions)
 )(ProductContext)
