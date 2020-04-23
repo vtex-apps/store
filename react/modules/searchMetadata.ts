@@ -1,4 +1,6 @@
+// eslint-disable-next-line no-restricted-imports
 import { endsWith } from 'ramda'
+
 import { SearchQueryData, CategoriesTrees } from './searchTypes'
 
 const getDepartment = (searchQuery: SearchQueryData) => {
@@ -34,7 +36,7 @@ const getLastCategory = (category: CategoriesTrees): CategoriesTrees => {
   const selectedCategory =
     category.children &&
     category.children.length > 0 &&
-    category.children.find(category => category.selected)
+    category.children.find(currCategory => currCategory.selected)
 
   if (!selectedCategory) {
     return category
@@ -91,9 +93,7 @@ export const getSearchMetadata = (searchQuery?: SearchQueryData) => {
 
   return {
     term: searchTerm.name,
-    category: department
-      ? { id: department.id, name: department.name }
-      : null,
+    category: department ? { id: department.id, name: department.name } : null,
     results: searchQuery.productSearch.recordsFiltered,
   }
 }

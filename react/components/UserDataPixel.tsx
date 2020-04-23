@@ -1,7 +1,15 @@
 import { useEffect, FC } from 'react'
 import { usePixel } from 'vtex.pixel-manager/PixelContext'
 
-const fields = ['firstName', 'lastName', 'document', 'id', 'email', 'phone', 'isAuthenticated'] as const
+const fields = [
+  'firstName',
+  'lastName',
+  'document',
+  'id',
+  'email',
+  'phone',
+  'isAuthenticated',
+] as const
 
 interface SessionResponse {
   response: {
@@ -34,31 +42,29 @@ interface SessionResponse {
 }
 
 const getSessionPromiseFromWindow: any = () =>
-  !(window as any).__RENDER_8_SESSION__ || !(window as any).__RENDER_8_SESSION__.sessionPromise
+  !(window as any).__RENDER_8_SESSION__ ||
+  !(window as any).__RENDER_8_SESSION__.sessionPromise
     ? Promise.resolve(null)
     : (window as any).__RENDER_8_SESSION__.sessionPromise
 
 const toBoolean = (value: string) => value.toLowerCase() === 'true'
 
-function getUserData(profileFields: SessionResponse['response']['namespaces']['profile']) {
+function getUserData(
+  profileFields: SessionResponse['response']['namespaces']['profile']
+) {
   if (!profileFields) {
     return {}
   }
 
-  return fields.reduce<Record<string, string | boolean>>(
-    (acc, key) => {
-      const value = profileFields[key]?.value
+  return fields.reduce<Record<string, string | boolean>>((acc, key) => {
+    const value = profileFields[key]?.value
 
-      if (value) {
-        acc[key] = key === 'isAuthenticated'
-          ? toBoolean(value)
-          : value
-      }
+    if (value) {
+      acc[key] = key === 'isAuthenticated' ? toBoolean(value) : value
+    }
 
-      return acc
-    },
-    {}
-  )
+    return acc
+  }, {})
 }
 
 const UserDataPixel: FC = () => {

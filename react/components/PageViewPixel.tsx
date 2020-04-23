@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import { useMemo } from 'react'
 import { useRuntime, canUseDOM } from 'vtex.render-runtime'
 
@@ -9,9 +10,13 @@ interface UsePageViewArgs {
   skip?: boolean
 }
 
-export const usePageView = ({ title, cacheKey, skip }: UsePageViewArgs = {}) => {
+export const usePageView = ({
+  title,
+  cacheKey,
+  skip,
+}: UsePageViewArgs = {}) => {
   const { route, account } = useRuntime()
-  const pixelCacheKey = cacheKey || route.routeId
+  const pixelCacheKey = cacheKey ?? route.routeId
 
   const eventData = useMemo(() => {
     if (!canUseDOM || skip) {
@@ -20,15 +25,16 @@ export const usePageView = ({ title, cacheKey, skip }: UsePageViewArgs = {}) => 
 
     return {
       event: 'pageView',
-      pageTitle: title || document.title,
+      pageTitle: title ?? document.title,
       pageUrl: location.href,
       referrer:
         document.referrer.indexOf(location.origin) === 0
           ? undefined
           : document.referrer,
       accountName: account,
-      routeId: route && route.routeId ? route.routeId : '',
+      routeId: route?.routeId ? route.routeId : '',
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account, title, canUseDOM, pixelCacheKey])
 
   useDataPixel(skip ? null : eventData, pixelCacheKey)
@@ -45,7 +51,8 @@ const SKIP_PAGES = ['store.search', 'store.product']
 const PageViewPixel = ({ title }: Partial<UsePageViewArgs>) => {
   const { route } = useRuntime()
 
-  const skip = route && SKIP_PAGES.some(routeId => route.routeId.indexOf(routeId) === 0)
+  const skip =
+    route && SKIP_PAGES.some(routeId => route.routeId.indexOf(routeId) === 0)
   usePageView({ title, skip })
 
   return null

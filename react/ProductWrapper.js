@@ -4,10 +4,9 @@ import { LoadingContextProvider } from 'vtex.render-runtime'
 import { ProductOpenGraph } from 'vtex.open-graph'
 import useProduct from 'vtex.product-context/useProduct'
 import ProductContextProvider from 'vtex.product-context/ProductContextProvider'
-
 import { Product as ProductStructuredData } from 'vtex.structured-data'
-import WrapperContainer from './components/WrapperContainer'
 
+import WrapperContainer from './components/WrapperContainer'
 import ProductTitleAndPixel from './components/ProductTitleAndPixel'
 
 const Content = ({ loading, children, childrenProps }) => {

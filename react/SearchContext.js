@@ -1,8 +1,8 @@
+/* eslint-disable no-restricted-imports */
 import PropTypes from 'prop-types'
 import { path } from 'ramda'
 import React from 'react'
 import { useRuntime } from 'vtex.render-runtime'
-
 import SearchQuery from 'vtex.search-result/SearchQuery'
 
 import { initializeMap, SORT_OPTIONS } from './modules/search'
@@ -57,7 +57,7 @@ const SearchContext = ({
   const query = Object.values(searchParams)
     .filter(term => term && term.length > 0)
     .join('/')
-    .replace(/\/\//g, '/') //This cleans some bad cases of two // on some terms.
+    .replace(/\/\//g, '/') // This cleans some bad cases of two // on some terms.
 
   const getCorrectQueryValue = () => {
     // Checks if this is on the format of preventRouteChange and get the correct data
@@ -139,6 +139,7 @@ SearchContext.propTypes = {
     category: PropTypes.string,
     department: PropTypes.string,
     term: PropTypes.string,
+    id: PropTypes.string,
   }),
   /** Query params */
   query: PropTypes.shape({

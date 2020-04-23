@@ -1,7 +1,7 @@
 import { normalizeNavigation } from '../utils/navigation'
 
 describe('Navigation route modifier', () => {
-  window['__RUNTIME__'] = {
+  window.__RUNTIME__ = {
     route: {
       domain: 'store',
     },

@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-globals */
+// eslint-disable-next-line no-restricted-imports
 import { contains, path as ramdaPath, zip } from 'ramda'
 import queryString from 'query-string'
 
@@ -68,7 +70,7 @@ const normalizeQueryMap = (pathSegments, mapSegments) => {
 
 const normalizeSearchNavigation = (pathSegments, map) => {
   return {
-    pathSegments: pathSegments,
+    pathSegments,
     map,
   }
 }
@@ -76,11 +78,11 @@ const normalizeSearchNavigation = (pathSegments, map) => {
 const normalizeLegacySearchNavigation = (pathSegments, queryMap, query) => {
   if (queryMap.map) {
     const mapValues = queryMap.map.split(MAP_VALUES_SEP)
-    let convertedSegments = zip(pathSegments, mapValues).map(
-      ([pathSegment, mapValue]) =>
-        contains(SPEC_FILTER, mapValue)
-          ? pathSegment
-          : pathSegment.toLowerCase()
+    let convertedSegments = zip(
+      pathSegments,
+      mapValues
+    ).map(([pathSegment, mapValue]) =>
+      contains(SPEC_FILTER, mapValue) ? pathSegment : pathSegment.toLowerCase()
     )
 
     const {
@@ -104,7 +106,7 @@ const normalizeLegacySearchNavigation = (pathSegments, queryMap, query) => {
 
     return { pathSegments: convertedSegments, query: normalizedQuery }
   }
-  return { pathSegments: pathSegments, query: query }
+  return { pathSegments, query }
 }
 
 export const normalizeNavigation = navigation => {
@@ -126,7 +128,7 @@ export const normalizeNavigation = navigation => {
       : normalizeSearchNavigation(pathSegments, query)
 
   navigation.path = path.startsWith('/')
-    ? '/' + normalizedNavigation.pathSegments.join('/')
+    ? `/${normalizedNavigation.pathSegments.join('/')}`
     : normalizedNavigation.pathSegments.join('/')
   navigation.query = normalizedNavigation.query
   return navigation

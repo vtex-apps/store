@@ -1,8 +1,10 @@
+/* eslint-disable no-restricted-imports */
 import React, { useMemo, FC } from 'react'
 import { Helmet, useRuntime, canUseDOM } from 'vtex.render-runtime'
 import { path } from 'ramda'
+
 import useDataPixel from '../hooks/useDataPixel'
-import { usePageView } from '../components/PageViewPixel'
+import { usePageView } from './PageViewPixel'
 import { PixelEvent } from '../typings/event'
 
 const titleSeparator = ' - '
@@ -85,7 +87,7 @@ function usePageInfo(
     }
 
     return pageInfo
-  }, [account, titleTag])
+  }, [account, product, titleTag])
 
   useDataPixel(pageEvents, path(['linkText'], product), loading)
 }
@@ -101,9 +103,9 @@ function getSkuProperties(item: SKU) {
       commertialOffer: {
         Price: seller.commertialOffer.Price,
         ListPrice: seller.commertialOffer.ListPrice,
-        AvailableQuantity: seller.commertialOffer.AvailableQuantity
-      }
-    }))
+        AvailableQuantity: seller.commertialOffer.AvailableQuantity,
+      },
+    })),
   }
 }
 
@@ -113,7 +115,7 @@ function useProductEvents(
   loading: boolean
 ) {
   const productEvents = useMemo(() => {
-    const hasCategoryTree = Boolean(product && product.categoryTree && product.categoryTree.length)
+    const hasCategoryTree = Boolean(product?.categoryTree?.length)
 
     if (!product || !canUseDOM || !selectedItem || !hasCategoryTree) {
       return []
@@ -142,8 +144,7 @@ function useProductEvents(
   }, [product, selectedItem])
 
   // When linkText or selectedItem changes, it will trigger the productEvents
-  const pixelCacheKey =
-    '' + (product && product.linkText) + (selectedItem && selectedItem.itemId)
+  const pixelCacheKey = `${product?.linkText}${selectedItem?.itemId}`
 
   useDataPixel(productEvents, pixelCacheKey, loading)
 }
@@ -151,7 +152,7 @@ function useProductEvents(
 function useTitle(product: Product) {
   const { getSettings } = useRuntime()
   const { titleTag = undefined, productName = undefined } = product || {}
-  let title = titleTag || productName || ''
+  let title = titleTag ?? productName ?? ''
 
   const settings = getSettings(STORE_APP)
 

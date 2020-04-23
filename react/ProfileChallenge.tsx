@@ -1,6 +1,4 @@
 import React, { useState, useEffect, FC } from 'react'
-
-import { getSession } from './modules/session'
 import {
   useRuntime,
   canUseDOM,
@@ -8,6 +6,8 @@ import {
   SessionResponse,
   Session,
 } from 'vtex.render-runtime'
+
+import { getSession } from './modules/session'
 
 const loginPath = '/login'
 

@@ -1,6 +1,8 @@
+/* eslint-disable jest/no-mocks-import */
 /* eslint-env jest */
 import React, { useContext } from 'react'
 import { render } from '@vtex/test-tools/react'
+
 import { getProduct } from '../__mocks__/productMock'
 import ProductWrapper from '../ProductWrapper'
 import { ProductContext } from '../__mocks__/vtex.product-context'
