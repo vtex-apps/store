@@ -1,12 +1,12 @@
+/* eslint-disable no-restricted-imports */
 import PropTypes from 'prop-types'
 import React, { useEffect, useMemo } from 'react'
 import { withApollo, graphql, compose } from 'react-apollo'
 import { isEmpty } from 'ramda'
 import { useRuntime } from 'vtex.render-runtime'
-
-import product from 'vtex.store-resources/QueryProduct'
+import ProductQuery from 'vtex.store-resources/QueryProduct'
 import productPreviewFragment from 'vtex.store-resources/QueryProductPreviewFragment'
-import productBenefits from 'vtex.store-resources/QueryProductBenefits'
+import ProductBenefitsQuery from 'vtex.store-resources/QueryProductBenefits'
 import productCategoryTree from 'vtex.store-resources/QueryUNSTABLEProductCategoryTree'
 
 import { cacheLocator } from './cacheLocator'
@@ -36,9 +36,7 @@ const useProduct = ({ catalog, productBenefits, categoryTree }) => {
 }
 
 function getLoading(props) {
-  const {
-    catalog: { loading: catalogLoading = true } = {},
-  } = props
+  const { catalog: { loading: catalogLoading = true } = {} } = props
   return catalogLoading
 }
 
@@ -165,7 +163,7 @@ const categoryTreeOptions = {
 
 export default compose(
   withApollo,
-  graphql(product, catalogOptions),
-  graphql(productBenefits, productBenefitsOptions),
+  graphql(ProductQuery, catalogOptions),
+  graphql(ProductBenefitsQuery, productBenefitsOptions),
   graphql(productCategoryTree, categoryTreeOptions)
 )(ProductContext)

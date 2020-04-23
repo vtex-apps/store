@@ -1,10 +1,26 @@
-import React, { Fragment, useState, useMemo, useEffect, FC, ReactElement } from 'react'
-import { Helmet, useRuntime, LoadingContextProvider, canUseDOM } from 'vtex.render-runtime'
+import React, {
+  Fragment,
+  useState,
+  useMemo,
+  useEffect,
+  FC,
+  ReactElement,
+} from 'react'
+import {
+  Helmet,
+  useRuntime,
+  LoadingContextProvider,
+  canUseDOM,
+} from 'vtex.render-runtime'
 
 import { capitalize } from './modules/capitalize'
 import useDataPixel from './hooks/useDataPixel'
 import { usePageView } from './components/PageViewPixel'
-import { getDepartmentMetadata, getCategoryMetadata, getSearchMetadata } from './modules/searchMetadata'
+import {
+  getDepartmentMetadata,
+  getCategoryMetadata,
+  getSearchMetadata,
+} from './modules/searchMetadata'
 import { SearchQuery } from './modules/searchTypes'
 import { PixelEvent } from './typings/event'
 
@@ -24,7 +40,11 @@ const pageCategory = (products: unknown[], params: SearchRouteParams) => {
   return term ? 'InternalSiteSearch' : category ? 'Category' : 'Department'
 }
 
-type PageEventName = 'internalSiteSearchView' | 'categoryView' | 'departmentView' | 'emptySearchView'
+type PageEventName =
+  | 'internalSiteSearchView'
+  | 'categoryView'
+  | 'departmentView'
+  | 'emptySearchView'
 
 const mapEvent = {
   InternalSiteSearch: 'internalSiteSearchView',
@@ -34,7 +54,10 @@ const mapEvent = {
 }
 const fallbackView = 'otherView'
 
-const getPageEventName = (products: unknown[], params: SearchRouteParams) : PageEventName => {
+const getPageEventName = (
+  products: unknown[],
+  params: SearchRouteParams
+): PageEventName => {
   if (!products) {
     return fallbackView as PageEventName
   }
@@ -53,7 +76,7 @@ const getTitleTag = (titleTag: string, storeTitle: string, term?: string) => {
 }
 
 const getSearchIdentifier = (searchQuery: SearchQuery) => {
-  const variables = searchQuery.variables
+  const { variables } = searchQuery
   if (!variables) {
     return
   }
@@ -84,8 +107,8 @@ interface SearchMetadata {
 }
 
 interface SearchWrapperProps {
-  children: ReactElement,
-  params: SearchRouteParams,
+  children: ReactElement
+  params: SearchRouteParams
   searchQuery: SearchQuery
 }
 
@@ -94,7 +117,9 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
     params,
     searchQuery,
     searchQuery: {
-      data: { searchMetadata: { titleTag = '', metaTagDescription = '' } = {} } = {},
+      data: {
+        searchMetadata: { titleTag = '', metaTagDescription = '' } = {},
+      } = {},
     } = {},
     children,
   } = props
@@ -109,11 +134,7 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
   )
 
   const pixelEvents = useMemo(() => {
-    if (
-      !searchQuery ||
-      !canUseDOM ||
-      !searchQuery.products
-    ) {
+    if (!searchQuery || !canUseDOM || !searchQuery.products) {
       return null
     }
 
@@ -127,9 +148,13 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
       accountName: account,
       pageTitle: title,
       pageUrl: window.location.href,
-      category: searchQuery && searchQuery.data ? getCategoryMetadata(searchQuery.data) : null,
-      department: searchQuery && searchQuery.data ? getDepartmentMetadata(searchQuery.data) : null,
-      search: searchQuery && searchQuery.data ? getSearchMetadata(searchQuery.data) : null,
+      category: searchQuery?.data
+        ? getCategoryMetadata(searchQuery.data)
+        : null,
+      department: searchQuery?.data
+        ? getDepartmentMetadata(searchQuery.data)
+        : null,
+      search: searchQuery?.data ? getSearchMetadata(searchQuery.data) : null,
     }
 
     return [

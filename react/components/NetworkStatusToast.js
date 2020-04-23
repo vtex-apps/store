@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-imports */
 import { path, pathOr } from 'ramda'
 import { useCallback, useContext, useEffect, useState, useRef } from 'react'
 import { injectIntl, intlShape } from 'react-intl'

@@ -151,10 +151,10 @@ const StoreWrapper = ({ children }) => {
           ...(parsedFavicons || []),
           ...(!amp && canonicalLink
             ? [
-                /*{
+                /* {
                     rel: 'amphtml',
                     href: encodeURI(`${canonicalLink}?amp`),
-                  },*/
+                  }, */
                 {
                   rel: 'canonical',
                   href: encodeURI(canonicalLink),

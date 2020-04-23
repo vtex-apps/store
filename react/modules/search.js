@@ -40,7 +40,7 @@ const getParameterByName = (name, url) => {
   if (!url) url = window && window.location && window.location.href
   name = name.replace(/[[\]]/g, '\\$&')
 
-  const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)')
+  const regex = new RegExp(`[?&]${name}(=([^&#]*)|&|#|$)`)
   const results = regex.exec(url)
 
   if (!results) return null
@@ -60,13 +60,17 @@ export function getMapFromURL(url) {
 export function createInitialMap(params) {
   if (params.subcategory) {
     return 'c,c,c'
-  } else if (params.category) {
+  }
+  if (params.category) {
     return 'c,c'
-  } else if (params.department) {
+  }
+  if (params.department) {
     return 'c'
-  } else if (params.brand) {
+  }
+  if (params.brand) {
     return 'b'
-  } else if (params.term) {
+  }
+  if (params.term) {
     return 'ft'
   }
 

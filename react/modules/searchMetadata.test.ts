@@ -1,25 +1,31 @@
-import { getDepartmentMetadata, getCategoryMetadata, getSearchMetadata } from './searchMetadata'
+import {
+  getDepartmentMetadata,
+  getCategoryMetadata,
+  getSearchMetadata,
+} from './searchMetadata'
 
 test('should get department metadata', () => {
   const searchQuery = {
     facets: {
-      categoriesTrees: [{
-        id: '1',
-        name: 'foo',
-        selected: true,
-        children: [
-          {
-            id: '2',
-            name: 'bar',
-            selected: false,
-            children: [],
-          }
-        ]
-      }]
-    }
+      categoriesTrees: [
+        {
+          id: '1',
+          name: 'foo',
+          selected: true,
+          children: [
+            {
+              id: '2',
+              name: 'bar',
+              selected: false,
+              children: [],
+            },
+          ],
+        },
+      ],
+    },
   }
 
-  const result = getDepartmentMetadata(searchQuery)
+  const result = getDepartmentMetadata(searchQuery)
 
   expect(result!.id).toBe('1')
   expect(result!.name).toBe('foo')
@@ -28,23 +34,25 @@ test('should get department metadata', () => {
 test('should get category metadata', () => {
   const searchQuery = {
     facets: {
-      categoriesTrees: [{
-        id: '1',
-        name: 'foo',
-        selected: true,
-        children: [
-          {
-            id: '2',
-            name: 'bar',
-            selected: true,
-            children: [],
-          }
-        ]
-      }]
-    }
+      categoriesTrees: [
+        {
+          id: '1',
+          name: 'foo',
+          selected: true,
+          children: [
+            {
+              id: '2',
+              name: 'bar',
+              selected: true,
+              children: [],
+            },
+          ],
+        },
+      ],
+    },
   }
 
-  const result = getCategoryMetadata(searchQuery)
+  const result = getCategoryMetadata(searchQuery)
 
   expect(result!.id).toBe('2')
   expect(result!.name).toBe('bar')
@@ -53,20 +61,22 @@ test('should get category metadata', () => {
 test('should not get category metadata if none is selected', () => {
   const searchQuery = {
     facets: {
-      categoriesTrees: [{
-        id: '1',
-        name: 'foo',
-        selected: true,
-        children: [
-          {
-            id: '2',
-            name: 'bar',
-            selected: false,
-            children: [],
-          }
-        ]
-      }]
-    }
+      categoriesTrees: [
+        {
+          id: '1',
+          name: 'foo',
+          selected: true,
+          children: [
+            {
+              id: '2',
+              name: 'bar',
+              selected: false,
+              children: [],
+            },
+          ],
+        },
+      ],
+    },
   }
 
   const result = getCategoryMetadata(searchQuery)
@@ -77,27 +87,29 @@ test('should not get category metadata if none is selected', () => {
 test('should get deepest category metadata', () => {
   const searchQuery = {
     facets: {
-      categoriesTrees: [{
-        id: '1',
-        name: 'foo',
-        selected: true,
-        children: [
-          {
-            id: '2',
-            name: 'bar',
-            selected: true,
-            children: [
-              {
-                id: '3',
-                name: 'baz',
-                selected: true,
-                children: []
-              }
-            ]
-          }
-        ]
-      }]
-    }
+      categoriesTrees: [
+        {
+          id: '1',
+          name: 'foo',
+          selected: true,
+          children: [
+            {
+              id: '2',
+              name: 'bar',
+              selected: true,
+              children: [
+                {
+                  id: '3',
+                  name: 'baz',
+                  selected: true,
+                  children: [],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
   }
 
   const result = getCategoryMetadata(searchQuery)
@@ -114,17 +126,19 @@ test('should get the searched metadata', () => {
         {
           name: 'Top',
           href: '/electronics/top?map=c,ft',
-        }
-      ]
+        },
+      ],
     },
     facets: {
-      categoriesTrees: [{
-        id: '1',
-        name: 'foo',
-        selected: true,
-        children: [],
-      }]
-    }
+      categoriesTrees: [
+        {
+          id: '1',
+          name: 'foo',
+          selected: true,
+          children: [],
+        },
+      ],
+    },
   }
 
   const result = getSearchMetadata(searchQuery)
@@ -143,23 +157,24 @@ test('should get the searched metadata without category', () => {
         {
           name: 'Top',
           href: '/electronics/top?map=c,ft',
-        }
-      ]
+        },
+      ],
     },
     facets: {
-      categoriesTrees: [{
-        id: '1',
-        name: 'foo',
-        selected: false,
-        children: [],
-      }]
-    }
+      categoriesTrees: [
+        {
+          id: '1',
+          name: 'foo',
+          selected: false,
+          children: [],
+        },
+      ],
+    },
   }
 
   const result = getSearchMetadata(searchQuery)
 
   expect(result!.term).toBe('Top')
-  expect(result!.category).toBe(null)
+  expect(result!.category).toBeNull()
   expect(result!.results).toBe(3)
 })
-
