@@ -1,0 +1,82 @@
+{
+  "definitions": {
+    "StoreSettings": {
+      "title": "VTEX Store",
+      "type": "object",
+      "properties": {
+        "storeName": {
+          "title": "Store Name",
+          "type": "string"
+        },
+        "requiresAuthorization": {
+          "title": "Enables B2B behavior",
+          "type": "boolean"
+        },
+        "titleTag": {
+          "title": "Default title tag",
+          "$ref": "app:vtex.native-types#/definitions/text"
+        },
+        "metaTagDescription": {
+          "title": "Meta description tag",
+          "$ref": "app:vtex.native-types#/definitions/text"
+        },
+        "metaTagRobots": {
+          "title": "Meta robots tag",
+          "type": "string",
+          "description": "Default value: index, follow"
+        },
+        "faviconLinks": {
+          "title": "Favicons",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "rel": {
+                "title": "Favicon Relationship",
+                "type": "string",
+                "description": "This favicon relationship, e.g: 'icon', 'shortcut icon', 'apple-touch-icon'"
+              },
+              "type": {
+                "title": "Favicon Media Type",
+                "type": "string",
+                "description": "(Optional) Favicon type, e.g: image/png"
+              },
+              "sizes": {
+                "title": "Favicon Size",
+                "type": "string",
+                "pattern": "^[0-9]+x[0-9]+$",
+                "description": "(Optional) Favicon size, format: {width}x{height} e.g: 180x180"
+              },
+              "href": {
+                "title": "Favicon href",
+                "type": "string"
+              }
+            },
+            "required": [
+              "rel",
+              "href"
+            ]
+          },
+          "description": "Configure your store's favicons"
+        },
+        "searchTermPath": {
+          "title": "Search Term Path",
+          "type": "string",
+          "description": "Indicate the search path of your store"
+        },
+        "advancedSettings": {
+          "title": "Advanced Store settings",
+          "type": "object",
+          "properties": {
+            "enableOrderFormOptimization": {
+              "title": "Enable orderForm optimization",
+              "type": "boolean",
+              "default": false,
+              "description": "This setting disables the legacy orderForm provider. More at: https://vtex.io/docs/recipes/store-management/enabling-order-form-optimization."
+            }
+          }
+        }
+      }
+    }
+  }
+}
