@@ -37,7 +37,13 @@ const SearchContext = ({
   children,
   __unstableProductOriginVtex,
 }) => {
-  const { page: runtimePage, query: runtimeQuery } = useRuntime()
+  const {
+    page: runtimePage,
+    query: runtimeQuery,
+    route: {
+      queryString: { map: renderMap },
+    },
+  } = useRuntime()
 
   const fieldsFromQueryString = {
     mapField: runtimeQuery.map,
@@ -50,7 +56,7 @@ const SearchContext = ({
 
   const map = areFieldsFromQueryStringValid
     ? fieldsFromQueryString.mapField
-    : mapQuery || initializeMap(params)
+    : renderMap || mapQuery || initializeMap(params)
 
   // Remove params which don't compose a search path
   const { id, ...searchParams } = params
