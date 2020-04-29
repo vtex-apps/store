@@ -16,9 +16,6 @@
       "eslint --fix",
       "prettier --write"
     ],
-    "*.{json,graphql,gql}": [
-      "prettier --write"
-    ],
     "*.json": [
       "prettier --write"
     ]
