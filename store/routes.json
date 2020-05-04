@@ -14,8 +14,7 @@
     "contentType": "product"
   },
   "store.search": {
-    "path": "/:term/s",
-    "canonical": "/:term",
+    "path": "/s/*terms",
     "contentType": "search"
   },
   "store.search#brand": {
