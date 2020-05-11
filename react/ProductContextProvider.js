@@ -162,9 +162,12 @@ class ProductContextProvider extends Component {
     }
   }
 
+  getSelectedSKUFromQueryString = (query) => query && query.skuId || query.idsku
+
   render() {
     const {
       params: { slug },
+      query,
       client,
     } = this.props
 
@@ -201,6 +204,8 @@ class ProductContextProvider extends Component {
       categories: product ? product.categories : null,
     }
 
+    const selectedItem = this.getSelectedSKUFromQueryString(query)
+
     return (
       <div className="vtex-product-context-provider">
         <Helmet>
@@ -211,7 +216,7 @@ class ProductContextProvider extends Component {
         </Helmet>
         {
           <Fragment>
-            {product && <MicroData product={product} />}
+            {product && <MicroData product={product} selectedItem={selectedItem} />}
             <DataLayerApolloWrapper getData={this.getData} loading={loading}>
               {React.cloneElement(this.props.children, {
                 productQuery,

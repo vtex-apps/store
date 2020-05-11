@@ -4,7 +4,7 @@ import { pathOr, path, map, sort, compose, head, split } from 'ramda'
 
 const ITEM_AVAILABLE = 100
 
-const lowestPriceInStockSeller = item => {
+const lowestPriceInStockSeller = (item) => {
   if (item.sellers.length) {
     return sort((itemA, itemB) => itemA.commertialOffer && itemA.commertialOffer.AvailableQuantity > 0
       ? itemB.commertialOffer && itemB.commertialOffer.AvailableQuantity > 0
@@ -21,13 +21,15 @@ const lowestPriceItem = compose(
   sort((itemA, itemB) => (path(['seller', 'commertialOffer', 'Price'], itemA) - path(['seller', 'commertialOffer', 'Price'], itemB)))
 )
 
-const lowestPriceInStock = product => {
+const lowestPriceInStock = (product, selectedItem) => {
   const items = map(item => ({
     item,
     seller: lowestPriceInStockSeller(item),
   }), product.items)
 
-  const { item, seller } = lowestPriceItem(items)
+  const lowestPrice = lowestPriceItem(items)
+  const selected = selectedItem && items.find(item => item.item.itemId === selectedItem)
+  const { item, seller } = selected ? selected : lowestPrice
 
   const image = head(item.images)
 
@@ -49,8 +51,15 @@ const tryParsingLocale = (description, locale) => {
   return parsedDescription || description
 }
 
-export default function MicroData({ product }, { culture: { currency, locale } }) {
-  const { image, seller } = lowestPriceInStock(product)
+export default function MicroData({ product, selectedItem }, { culture: { currency, locale } }) {
+  const item = lowestPriceInStock(product, selectedItem)
+
+  if (!item) {
+    return null
+  }
+
+  const { image, seller } = item
+
   return (
     <div className="dn" vocab="http://schema.org/" typeof="Product">
       <span property="brand">{product.brand}</span>
@@ -70,7 +79,7 @@ export default function MicroData({ product }, { culture: { currency, locale } }
         </span>
         Condition: <link property="itemCondition" href="http://schema.org/NewCondition" />New
         { pathOr(ITEM_AVAILABLE, ['commertialOffer', 'AvailableQuantity'], seller)
-          ? <Fragment><link property="availability" href="http://schema.org/InStock"></link> In stock. Order now.</Fragment>
+          ? <Fragment><link property="availability" href="http://schema.org/InStock"></link>In stock. Order now.</Fragment>
           : <Fragment><link property="availability" href="http://schema.org/OutOfStock"></link>Out of Stock</Fragment>
         }
       </span>
