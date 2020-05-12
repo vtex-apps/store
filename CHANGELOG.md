@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [1.39.2] - 2020-05-12
 ### Fixed
 - Read `idsku` and `skuId` query string to render product Microdata.
 
