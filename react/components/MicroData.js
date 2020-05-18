@@ -127,7 +127,7 @@ export const parseToJsonLD = (product, selectedItem, currency) => {
 }
 
 export default function MicroData({ product, selectedItem }, { culture: { currency, locale } }) {
-  const item = product.items.find(item => item.id === selectedItem) || product.items[0]
+  const item = product.items.find(item => item.itemId === selectedItem) || product.items[0]
   const productLD = parseToJsonLD(product, item, currency, locale)
 
   return (
