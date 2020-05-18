@@ -15,7 +15,6 @@
   },
   "store.search": {
     "path": "/s/*terms",
-    "canonical": "/s/*terms",
     "contentType": "search"
   },
   "store.search#brand": {
