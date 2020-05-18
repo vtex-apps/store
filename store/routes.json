@@ -15,6 +15,7 @@
   },
   "store.search": {
     "path": "/s/*terms",
+    "canonical": "/s/*terms",
     "contentType": "search"
   },
   "store.search#brand": {
@@ -42,7 +43,7 @@
     "contentType": "subcategory"
   },
   "store.search#configurable": {
-    "path": "/s/*terms"
+    "path": "/search/*terms"
   },
   "store.orderplaced": {
     "path": "/checkout/orderPlaced"
