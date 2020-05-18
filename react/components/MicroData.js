@@ -1,89 +1,140 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { pathOr, path, map, sort, compose, head, split } from 'ramda'
+import { pathOr, path, sort, last, flatten } from 'ramda'
 
-const ITEM_AVAILABLE = 100
+const getPrice = path(['commertialOffer', 'Price'])
+const getAvailableQuantity = pathOr(0, ['commertialOffer', 'AvailableQuantity'])
 
-const lowestPriceInStockSeller = (item) => {
-  if (item.sellers.length) {
-    return sort((itemA, itemB) => itemA.commertialOffer && itemA.commertialOffer.AvailableQuantity > 0
-      ? itemB.commertialOffer && itemB.commertialOffer.AvailableQuantity > 0
-        ? itemA.commertialOffer.Price - itemB.commertialOffer.Price
-        : -1
-      : -1,
-    item.sellers)[0]
+const sortByPriceAsc = sort((itemA, itemB) => getPrice(itemA) - getPrice(itemB))
+
+const isSkuAvailable = sku => getAvailableQuantity(sku) > 0
+
+const lowHighForSellers = sellers => {
+  const sortedByPrice = sortByPriceAsc(sellers)
+  const withStock = sortedByPrice.filter(isSkuAvailable)
+  if (withStock.length === 0) {
+    return {
+      low: sortedByPrice[0],
+      high: last(sortedByPrice),
+    }
   }
-  return null
-}
-
-const lowestPriceItem = compose(
-  head,
-  sort((itemA, itemB) => (path(['seller', 'commertialOffer', 'Price'], itemA) - path(['seller', 'commertialOffer', 'Price'], itemB)))
-)
-
-const lowestPriceInStock = (product, selectedItem) => {
-  const items = map(item => ({
-    item,
-    seller: lowestPriceInStockSeller(item),
-  }), product.items)
-
-  const lowestPrice = lowestPriceItem(items)
-  const selected = selectedItem && items.find(item => item.item.itemId === selectedItem)
-  const { item, seller } = selected ? selected : lowestPrice
-
-  const image = head(item.images)
 
   return {
-    item,
-    image,
-    seller,
+    low: withStock[0],
+    high: last(withStock),
   }
 }
 
-const tryParsingLocale = (description, locale) => {
-  let parsedDescription
-  try {
-    const descriptionObject = JSON.parse(description)
-    parsedDescription = descriptionObject[locale] || descriptionObject[head(split('-', locale))]
-  } catch (e) {
-    console.log('Failed to parse multilanguage product description')
-  }
-  return parsedDescription || description
-}
+const IN_STOCK = 'http://schema.org/InStock'
+const OUT_OF_STOCK = 'http://schema.org/OutOfStock'
 
-export default function MicroData({ product, selectedItem }, { culture: { currency, locale } }) {
-  const item = lowestPriceInStock(product, selectedItem)
+const getSKUAvailabilityString = seller =>
+  isSkuAvailable(seller) ? IN_STOCK : OUT_OF_STOCK
 
-  if (!item) {
+const parseSKUToOffer = (item, currency) => {
+  const { low: seller } = lowHighForSellers(item.sellers)
+
+  const availability = getSKUAvailabilityString(seller)
+  const price = getPrice(seller)
+
+  // When a product is not available the API can't define its price and returns zero.
+  // If we set structured data product price as zero, Google will show that the
+  // product it's free (wrong info), but out of stock.
+  // It's better just not return any offer in that case.
+  if (availability === OUT_OF_STOCK && price === 0) {
     return null
   }
 
-  const { image, seller } = item
+  const offer = {
+    '@type': 'Offer',
+    price,
+    priceCurrency: currency,
+    availability: getSKUAvailabilityString(seller),
+    sku: item.itemId,
+    itemCondition: 'http://schema.org/NewCondition',
+    priceValidUntil: path(['commertialOffer', 'PriceValidUntil'], seller),
+    seller: {
+      '@type': 'Organization',
+      name: seller.sellerName,
+    },
+  }
+
+  return offer
+}
+
+const getAllSellers = items => {
+  const allSellers = items.map(item => item.sellers)
+  const flat = flatten(allSellers)
+  return flat
+}
+
+const composeAggregateOffer = (product, currency) => {
+  const items = product.items || []
+
+  const allSellers = getAllSellers(items)
+  const { low, high } = lowHighForSellers(allSellers)
+
+  const offersList = items
+    .map(element => parseSKUToOffer(element, currency))
+    .filter(Boolean)
+
+  if (offersList.length === 0) {
+    return null
+  }
+
+  const aggregateOffer = {
+    '@type': 'AggregateOffer',
+    lowPrice: getPrice(low),
+    highPrice: getPrice(high),
+    priceCurrency: currency,
+    offers: offersList,
+    offerCount: items.length,
+  }
+
+  return aggregateOffer
+}
+
+const getCategoryName = product =>
+  product.categoryTree &&
+  product.categoryTree.length > 0 &&
+  product.categoryTree[product.categoryTree.length - 1].name
+
+export const parseToJsonLD = (product, selectedItem, currency) => {
+  const image = selectedItem.images[0]
+  const brand = product.brand
+  const name = product.productName
+
+  const offers = composeAggregateOffer(product, currency)
+
+  if (offers === null) {
+    return null
+  }
+
+  const productLD = {
+    '@context': 'https://schema.org/',
+    '@type': 'Product',
+    name: name,
+    brand: brand,
+    image: image && image.imageUrl,
+    description: product.metaTagDescription,
+    mpn: product.productId,
+    sku: selectedItem.itemId,
+    category: getCategoryName(product),
+    offers,
+  }
+
+  return productLD
+}
+
+export default function MicroData({ product, selectedItem }, { culture: { currency, locale } }) {
+  const item = product.items.find(item => item.id === selectedItem) || product.items[0]
+  const productLD = parseToJsonLD(product, item, currency, locale)
 
   return (
-    <div className="dn" vocab="http://schema.org/" typeof="Product">
-      <span property="brand">{product.brand}</span>
-      <span property="name">{product.productName}</span>
-      {image && <img property="image" src={image.imageUrl} alt={image.imageLabel} />}
-      <span property="description">{tryParsingLocale(product.description, locale)}</span>
-      Product #: <span property="mpn">{product.productId}</span>
-      <span property="offers" typeof="Offer">
-        <meta property="priceCurrency" content={currency} />
-        $<span property="price">{path(['commertialOffer', 'Price'], seller)}</span>
-        (Sale ends <time property="priceValidUntil" dateTime={path(['commertialOffer', 'PriceValidUntil'], seller)}>
-          {path(['commertialOffer', 'PriceValidUntil'], seller)}
-        </time>)
-        Available from: <span property="seller" typeof="Organization"
-        >
-          <span property="name">{seller.sellerName}</span>
-        </span>
-        Condition: <link property="itemCondition" href="http://schema.org/NewCondition" />New
-        { pathOr(ITEM_AVAILABLE, ['commertialOffer', 'AvailableQuantity'], seller)
-          ? <Fragment><link property="availability" href="http://schema.org/InStock"></link>In stock. Order now.</Fragment>
-          : <Fragment><link property="availability" href="http://schema.org/OutOfStock"></link>Out of Stock</Fragment>
-        }
-      </span>
-    </div>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(productLD) }}
+    ></script>
   )
 }
 
