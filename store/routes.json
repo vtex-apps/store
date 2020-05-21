@@ -42,7 +42,7 @@
     "contentType": "subcategory"
   },
   "store.search#configurable": {
-    "path": "/search/*terms"
+    "path": "/searchc/*terms"
   },
   "store.orderplaced": {
     "path": "/checkout/orderPlaced"

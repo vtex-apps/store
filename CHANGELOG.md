@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- `store.search` and `store.search#configurable` paths so we can have 404 pages.
 
 ## [2.95.5] - 2020-05-04
 ### Fixed
