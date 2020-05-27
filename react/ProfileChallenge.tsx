@@ -51,13 +51,15 @@ function hasSession(session: SessionResponse | undefined): session is Session {
 const useLoginRedirect = (isLoggedIn: boolean | null, page: string) => {
   useEffect(() => {
     const { url, pathName } = getLocation()
-
     if (
       isLoggedIn === false &&
       page !== 'store.login' &&
-      pathName !== loginPath
+      pathName !== loginPath &&
+      canUseDOM
     ) {
-      window.location.assign(`${loginPath}?returnUrl=${encodeURIComponent(url)}`)
+      window.location.assign(
+        `${loginPath}?returnUrl=${encodeURIComponent(url)}`
+      )
     }
   }, [page, isLoggedIn])
 }
