@@ -50,7 +50,7 @@ function hasSession(session: SessionResponse | undefined): session is Session {
 }
 
 const useLoginRedirect = (isLoggedIn: boolean | null, page: string) => {
-  const { navigate } = useRuntime()
+  const { rootPath = '' } = useRuntime()
 
   useEffect(() => {
     const { url, pathName } = getLocation()
@@ -60,12 +60,11 @@ const useLoginRedirect = (isLoggedIn: boolean | null, page: string) => {
       pathName !== loginPath &&
       canUseDOM
     ) {
-      navigate({
-        fallbackToWindowLocation: false,
-        to: `${loginPath}?returnUrl=${encodeURIComponent(url)}`,
-      })
+      window.location.assign(
+        `${rootPath}${loginPath}?returnUrl=${encodeURIComponent(url)}`
+      )
     }
-  }, [page, navigate, isLoggedIn])
+  }, [page, isLoggedIn, rootPath])
 }
 
 interface Props {
