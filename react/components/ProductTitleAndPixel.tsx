@@ -110,7 +110,8 @@ function getSkuProperties(item: SKU): SKUEvent {
     name: item.name,
     ean: item.ean,
     referenceId: item.referenceId,
-    imageUrl: item.images && item.images.length > 0 ? item.images[0].imageUrl : '',
+    imageUrl:
+      item.images && item.images.length > 0 ? item.images[0].imageUrl : '',
     sellers: item.sellers.map(seller => ({
       sellerId: seller.sellerId,
       commertialOffer: {
