@@ -27,6 +27,7 @@ interface Product {
 }
 
 interface ProductViewEvent {
+  detailUrl: string
   brand: string
   brandId: string
   productReference: string
@@ -36,8 +37,8 @@ interface ProductViewEvent {
   categoryTree: Category[]
   productId: string
   productName: string
-  items: SKU[]
-  selectedSku: SKU
+  items: SKUEvent[]
+  selectedSku: SKUEvent
 }
 
 interface Category {
@@ -45,12 +46,23 @@ interface Category {
   name: string
 }
 
+interface SKUEvent extends Omit<SKU, 'images'> {
+  imageUrl: string
+}
+
 interface SKU {
   itemId: string
   ean: string
   name: string
+  images: Image[]
   referenceId: [{ Value: string }]
   sellers: Seller[]
+}
+
+interface Image {
+  imageId: string
+  imageLabel: string
+  imageUrl: string
 }
 
 interface Seller {
@@ -92,12 +104,13 @@ function usePageInfo(
   useDataPixel(pageEvents, path(['linkText'], product), loading)
 }
 
-function getSkuProperties(item: SKU) {
+function getSkuProperties(item: SKU): SKUEvent {
   return {
     itemId: item.itemId,
     name: item.name,
     ean: item.ean,
     referenceId: item.referenceId,
+    imageUrl: item.images && item.images.length > 0 ? item.images[0].imageUrl : '',
     sellers: item.sellers.map(seller => ({
       sellerId: seller.sellerId,
       commertialOffer: {
@@ -122,6 +135,7 @@ function useProductEvents(
     }
 
     const eventProduct: ProductViewEvent = {
+      detailUrl: `/${product.linkText}/p`,
       brand: product.brand,
       brandId: product.brandId,
       productReference: product.productReference,
