@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Property `detailUrl` to `productView` event
+- Property `items.imageUrl` and `selectedSku.imageUrl` to `productView` event
 
 ## [2.95.7] - 2020-06-02
 ### Added
