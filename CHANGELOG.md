@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- Revert changes of v2.95.6.
 
 ## [2.96.0] - 2020-06-02
 ### Added
@@ -16,7 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - `operator`, `searchState` and `correction` to SearchMetadata
 
-## [2.95.6] - 2020-06-01
+## [2.95.6] - 2020-06-01 [YANKED]
 ### Fixed
 - Redirect after login at the ProfileChallenge.
 
