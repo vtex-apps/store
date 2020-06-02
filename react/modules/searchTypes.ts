@@ -16,6 +16,11 @@ export interface SearchQueryData {
   productSearch?: {
     breadcrumb: Breadcrumb[]
     recordsFiltered: number
+    operator?: string
+    searchState?: string
+    correction?: {
+      misspelled: boolean
+    }
   }
   facets?: {
     categoriesTrees?: CategoriesTrees[]
