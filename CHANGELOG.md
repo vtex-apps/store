@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - `operator`, `searchState` and `correction` to SearchMetadata
 
-## [2.95.6] - 2020-06-01
+## [2.95.6] - 2020-06-01 [YANKED]
 ### Fixed
 - Redirect after login at the ProfileChallenge.
 

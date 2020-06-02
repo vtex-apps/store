@@ -1,5 +1,6 @@
 import React, { useState, useEffect, FC } from 'react'
 import {
+  useRuntime,
   canUseDOM,
   Loading,
   SessionResponse,
@@ -49,6 +50,8 @@ function hasSession(session: SessionResponse | undefined): session is Session {
 }
 
 const useLoginRedirect = (isLoggedIn: boolean | null, page: string) => {
+  const { navigate } = useRuntime()
+
   useEffect(() => {
     const { url, pathName } = getLocation()
     if (
@@ -57,11 +60,12 @@ const useLoginRedirect = (isLoggedIn: boolean | null, page: string) => {
       pathName !== loginPath &&
       canUseDOM
     ) {
-      window.location.assign(
-        `${loginPath}?returnUrl=${encodeURIComponent(url)}`
-      )
+      navigate({
+        fallbackToWindowLocation: false,
+        to: `${loginPath}?returnUrl=${encodeURIComponent(url)}`,
+      })
     }
-  }, [page, isLoggedIn])
+  }, [page, navigate, isLoggedIn])
 }
 
 interface Props {
