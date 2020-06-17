@@ -1,18 +1,27 @@
-#### What is the purpose of this pull request?
-
-<!--- Describe your changes in detail. -->
-
 #### What problem is this solving?
 
 <!--- What is the motivation and context for this change? -->
 
-#### How should this be manually tested?
+#### How to test it?
 
-#### Screenshots or example usage
+<!--- Don't forget to add a link to a Workspace where this branch is linked -->
 
-#### Types of changes
+[Workspace](Link goes here!)
 
-* [ ] Bug fix (a non-breaking change which fixes an issue)
-* [ ] New feature (a non-breaking change which adds functionality)
-* [ ] Breaking change (fix or feature that would cause existing functionality to change)
-* [ ] Requires change to documentation, which has been updated accordingly.
+#### Screenshots or example usage:
+
+<!--- Add some images or gifs to showcase changes in behaviour or layout. Example: before and after images -->
+
+#### Describe alternatives you've considered, if any.
+
+<!--- Optional -->
+
+#### Related to / Depends on
+
+<!--- Optional -->
+
+#### How does this PR make you feel? [:link:](http://giphy.com/)
+
+<!-- Go to http://giphy.com/ and pick a gif that represents how this PR makes you feel -->
+
+![](put .gif link here - can be found under "advanced" on giphy)
