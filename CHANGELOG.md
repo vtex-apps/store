@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- Prevent cross-origin frame access error.
 
 ## [2.96.1] - 2020-06-02
 ### Fixed
@@ -256,7 +258,7 @@ The following changes does not consist in a breaking change since those events a
   it. This also changes to only add this script in the client-side.
 
 ## [2.75.0] - 2019-11-13
-### Added	
+### Added
 - New contexts from vtex.order-manager to the StoreWrapper component
 
 ## [2.74.1] - 2019-11-13
@@ -264,7 +266,7 @@ The following changes does not consist in a breaking change since those events a
 - Renamed offline page route to `/_v/offline`.
 
 ## [2.74.0] - 2019-11-11 [YANKED]
-### Added	
+### Added
 - New contexts from vtex.order-manager to the StoreWrapper component
 
 ## [2.73.0] - 2019-11-11
@@ -376,7 +378,7 @@ The following changes does not consist in a breaking change since those events a
 ## [2.56.1] - 2019-09-10
 
 ## [2.56.1] - 2019-09-10
-- Removes call to `useNotFound` for hotfix 
+- Removes call to `useNotFound` for hotfix
 
 ## [2.56.0] - 2019-09-10
 
