@@ -38,9 +38,7 @@ const systemToCanonical = ({ canonicalPath }) => {
 const isSiteEditorIframe = () => {
   try {
     return (
-      canUseDOM &&
-      window.top !== window.self &&
-      window.top.__provideRuntime
+      canUseDOM && window.top !== window.self && window.top.__provideRuntime
     )
   } catch {
     return false
