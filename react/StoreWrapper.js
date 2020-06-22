@@ -35,6 +35,16 @@ const systemToCanonical = ({ canonicalPath }) => {
   }
 }
 
+const isSiteEditorIframe = () => {
+  try {
+    return (
+      canUseDOM && window.top !== window.self && window.top.__provideRuntime
+    )
+  } catch {
+    return false
+  }
+}
+
 const useFavicons = faviconLinks => {
   const { rootPath = '' } = useRuntime()
   if (!rootPath) {
@@ -62,9 +72,6 @@ const StoreWrapper = ({ children }) => {
     prefetchDefaultPages,
     addNavigationRouteModifier,
   } = useRuntime()
-  const isStorefrontIframe =
-    canUseDOM && window.top !== window.self && window.top.__provideRuntime
-
   const supportsServiceWorker = canUseDOM && 'serviceWorker' in navigator
 
   useEffect(() => {
@@ -182,7 +189,7 @@ const StoreWrapper = ({ children }) => {
           </ToastProvider>
         </PWAProvider>
       </PixelProvider>
-      {isStorefrontIframe && (
+      {isSiteEditorIframe() && (
         <NoSSR>
           <ExtensionPoint id="highlight-overlay" />
         </NoSSR>
