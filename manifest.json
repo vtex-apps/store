@@ -39,6 +39,7 @@
   "settingsSchema": {
     "title": "VTEX Store",
     "type": "object",
+    "bindingBounded": true,
     "properties": {
       "storeName": {
         "title": "Store Name",
