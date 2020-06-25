@@ -2,6 +2,7 @@ import React, { useMemo, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { useRuntime, canUseDOM } from 'vtex.render-runtime'
 import SearchAction from 'vtex.structured-data/SearchAction'
+import { HomeOpenGraph } from 'vtex.open-graph'
 
 import useDataPixel from './hooks/useDataPixel'
 
@@ -32,6 +33,7 @@ const HomeWrapper = ({ children }) => {
   return (
     <Fragment>
       <SearchAction searchTermPath={searchTermPath} />
+      <HomeOpenGraph />
       {children}
     </Fragment>
   )
