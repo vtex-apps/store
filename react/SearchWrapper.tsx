@@ -12,6 +12,7 @@ import {
   LoadingContextProvider,
   canUseDOM,
 } from 'vtex.render-runtime'
+import { SearchOpenGraph } from 'vtex.open-graph'
 
 import { capitalize } from './modules/capitalize'
 import useDataPixel from './hooks/useDataPixel'
@@ -133,6 +134,11 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
     params.term
   )
 
+  const openGraphParams = {
+    title,
+    description: metaTagDescription,
+  }
+
   const pixelEvents = useMemo(() => {
     if (!searchQuery || !canUseDOM || !searchQuery.products) {
       return null
@@ -202,6 +208,7 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
           },
         ].filter(Boolean)}
       />
+      <SearchOpenGraph meta={openGraphParams} />
       <LoadingContextProvider value={loadingValue}>
         {React.cloneElement(children, props)}
       </LoadingContextProvider>
