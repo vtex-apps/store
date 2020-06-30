@@ -14,8 +14,7 @@
     "contentType": "product"
   },
   "store.search": {
-    "path": "/:term/s",
-    "canonical": "/:term",
+    "path": "/s/*terms",
     "contentType": "search"
   },
   "store.search#brand": {
@@ -43,7 +42,7 @@
     "contentType": "subcategory"
   },
   "store.search#configurable": {
-    "path": "/s/*terms"
+    "path": "/searchc/*terms"
   },
   "store.orderplaced": {
     "path": "/checkout/orderPlaced"

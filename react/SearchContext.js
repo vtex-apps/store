@@ -28,6 +28,7 @@ const SearchContext = ({
     page: pageQuery,
     map: mapQuery,
     priceRange,
+    _q,
     // backwards-compatibility
     rest,
     fuzzy,
@@ -60,6 +61,10 @@ const SearchContext = ({
 
   // Remove params which don't compose a search path
   const { id, ...searchParams } = params
+  // TODO: validate if this check is enough, if there is any other case in which terms can be nothing
+  if (params.terms === "") {
+    searchParams._q = _q
+  }
   const query = Object.values(searchParams)
     .filter(term => term && term.length > 0)
     .join('/')
