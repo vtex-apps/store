@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-filename-extension */
 import React, { Fragment, useEffect } from 'react'
 import {
   canUseDOM,
@@ -101,6 +102,7 @@ const StoreWrapper = ({ children }) => {
     storeName,
     faviconLinks,
     enableOrderFormOptimization = false,
+    enableServiceWorker = true,
   } = settings
 
   const { canonicalHost, canonicalPath } = systemToCanonical(route)
@@ -148,9 +150,9 @@ const StoreWrapper = ({ children }) => {
         script={[
           supportsServiceWorker && {
             type: 'text/javascript',
-            src: `${rootPath}/pwa/workers/register.js${queryMatch}&scope=${encodeURIComponent(
-              rootPath
-            )}`,
+            src: `${rootPath}/pwa/workers/register.js${queryMatch}${
+              enableServiceWorker ? '' : '&__disableSW=true'
+            }&scope=${encodeURIComponent(rootPath)}`,
             defer: true,
           },
         ].filter(Boolean)}
