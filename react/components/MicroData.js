@@ -2,10 +2,11 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { pathOr, path, sort, last, flatten } from 'ramda'
 
+const getSpotPrice = path(['commertialOffer', 'spotPrice'])
 const getPrice = path(['commertialOffer', 'Price'])
 const getAvailableQuantity = pathOr(0, ['commertialOffer', 'AvailableQuantity'])
 
-const sortByPriceAsc = sort((itemA, itemB) => getPrice(itemA) - getPrice(itemB))
+const sortByPriceAsc = sort((itemA, itemB) => getSpotPrice(itemA) - getSpotPrice(itemB))
 
 const isSkuAvailable = sku => getAvailableQuantity(sku) > 0
 
@@ -35,7 +36,7 @@ const parseSKUToOffer = (item, currency) => {
   const { low: seller } = lowHighForSellers(item.sellers)
 
   const availability = getSKUAvailabilityString(seller)
-  const price = getPrice(seller)
+  const price = getSpotPrice(seller)
 
   // When a product is not available the API can't define its price and returns zero.
   // If we set structured data product price as zero, Google will show that the
@@ -84,7 +85,7 @@ const composeAggregateOffer = (product, currency) => {
 
   const aggregateOffer = {
     '@type': 'AggregateOffer',
-    lowPrice: getPrice(low),
+    lowPrice: getSpotPrice(low),
     highPrice: getPrice(high),
     priceCurrency: currency,
     offers: offersList,
