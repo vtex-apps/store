@@ -88,10 +88,7 @@
               "type": "string"
             }
           },
-          "required": [
-            "rel",
-            "href"
-          ]
+          "required": ["rel", "href"]
         },
         "description": "Configure your store's favicons"
       },
@@ -105,10 +102,16 @@
         "type": "object",
         "properties": {
           "enableOrderFormOptimization": {
-            "title": "Enable orderForm optimization",
+            "title": "orderForm optimization",
             "type": "boolean",
             "default": false,
-            "description": "This setting disables the legacy orderForm provider. More at: https://vtex.io/docs/recipes/store-management/enabling-order-form-optimization."
+            "description": "Disables the legacy orderForm provider. More at: https://vtex.io/docs/recipes/store-management/enabling-order-form-optimization."
+          },
+          "enableServiceWorker": {
+            "title": "Service Worker",
+            "type": "boolean",
+            "default": true,
+            "description": "Register the default Service Worker provided by VTEX."
           }
         }
       }
