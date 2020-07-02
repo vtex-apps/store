@@ -115,6 +115,12 @@
             "type": "boolean",
             "default": true,
             "description": "Register the default Service Worker provided by VTEX."
+          },
+          "enableCriticalCSS": {
+            "title": "Critical CSS Optimization",
+            "type": "boolean",
+            "default": false,
+            "description": "Enables CSS optimizations that can improve performance and the Lighthouse score. Only affects the home page. May cause style inconsistencies, test with caution after turning it on."
           }
         }
       }
