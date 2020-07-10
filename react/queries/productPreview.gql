@@ -31,6 +31,7 @@ fragment product on Product {
       commertialOffer {
         Price
         ListPrice
+        spotPrice
         PriceWithoutDiscount
         RewardValue
         PriceValidUntil

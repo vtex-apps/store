@@ -46,6 +46,7 @@ query Product($slug: String) {
           }
           Price
           ListPrice
+          spotPrice
           PriceWithoutDiscount
           RewardValue
           PriceValidUntil
@@ -104,6 +105,7 @@ query Product($slug: String) {
             commertialOffer {
               Price
               ListPrice
+              spotPrice
               PriceWithoutDiscount
               RewardValue
               PriceValidUntil
