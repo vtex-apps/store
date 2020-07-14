@@ -41,6 +41,6 @@ export interface CategoriesTrees {
 }
 
 interface QueryArgs {
-  query: string;
-  map: string;
+  query: string
+  map: string
 }

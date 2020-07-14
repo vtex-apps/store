@@ -143,8 +143,8 @@ test('should get the searched metadata', () => {
       ],
       queryArgs: {
         query: 'Top',
-        map: 'ft'
-      }
+        map: 'ft',
+      },
     },
   }
 
@@ -185,7 +185,7 @@ test('should get the searched metadata without category', () => {
       queryArgs: {
         query: 'Top',
         map: 'ft',
-      }
+      },
     },
   }
 
