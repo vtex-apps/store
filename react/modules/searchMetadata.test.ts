@@ -141,6 +141,10 @@ test('should get the searched metadata', () => {
           children: [],
         },
       ],
+      queryArgs: {
+        query: 'Top',
+        map: 'ft'
+      }
     },
   }
 
@@ -178,6 +182,10 @@ test('should get the searched metadata without category', () => {
           children: [],
         },
       ],
+      queryArgs: {
+        query: 'Top',
+        map: 'ft',
+      }
     },
   }
 
