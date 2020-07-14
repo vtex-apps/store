@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-restricted-imports
-import { endsWith } from 'ramda'
+import { zipObj } from 'ramda'
 
 import { SearchQueryData, CategoriesTrees } from './searchTypes'
 
@@ -76,14 +76,16 @@ export const getSearchMetadata = (searchQuery?: SearchQueryData) => {
   if (
     !searchQuery ||
     !searchQuery.productSearch ||
-    !searchQuery.productSearch.breadcrumb
+    !searchQuery.facets ||
+    !searchQuery.facets.queryArgs
   ) {
     return
   }
 
-  const searchTerm = searchQuery.productSearch.breadcrumb.find(breadcrumb => {
-    return breadcrumb.href.includes('?map=') && endsWith('ft', breadcrumb.href)
-  })
+  const { query, map } = searchQuery.facets.queryArgs
+  const queryMap = zipObj(map.split(','), query.split('/'))
+
+  const searchTerm = queryMap.ft
 
   if (!searchTerm) {
     return
@@ -92,7 +94,7 @@ export const getSearchMetadata = (searchQuery?: SearchQueryData) => {
   const department = getDepartment(searchQuery)
 
   return {
-    term: searchTerm.name,
+    term: decodeURIComponent(searchTerm),
     category: department ? { id: department.id, name: department.name } : null,
     results: searchQuery.productSearch.recordsFiltered,
     operator: searchQuery.productSearch.operator,
