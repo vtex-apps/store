@@ -4,6 +4,11 @@ import { path } from 'ramda'
 import React from 'react'
 import { useRuntime } from 'vtex.render-runtime'
 import SearchQuery from 'vtex.search-result/SearchQuery'
+import {
+  SearchPageStateContext,
+  SearchPageStateDispatch,
+  useSearchPageStateReducer,
+} from 'vtex.search-page-context/SearchPageContext'
 
 import { initializeMap, SORT_OPTIONS } from './modules/search'
 
@@ -84,58 +89,67 @@ const SearchContext = ({
   const queryValue = getCorrectQueryValue()
   const mapValue = queryField ? mapField : map
 
+  const [state, dispatch] = useSearchPageStateReducer({})
+
   return (
-    <SearchQuery
-      maxItemsPerPage={maxItemsPerPage}
-      query={queryValue}
-      map={mapValue}
-      orderBy={orderBy}
-      priceRange={priceRange}
-      hideUnavailableItems={hideUnavailableItems}
-      facetsBehavior={facetsBehavior}
-      pageQuery={pageQuery}
-      skusFilter={skusFilter}
-      simulationBehavior={simulationBehavior}
-      installmentCriteria={installmentCriteria}
-      operator={operator}
-      fuzzy={fuzzy}
-      searchState={searchState}
-      __unstableProductOriginVtex={__unstableProductOriginVtex}
-    >
-      {(searchQuery, extraParams) => {
-        return React.cloneElement(children, {
-          searchQuery: {
-            ...searchQuery,
-            // backwards-compatibility
-            data: {
-              ...(searchQuery.data || {}),
-              products: path(
-                ['data', 'productSearch', 'products'],
-                searchQuery
-              ),
-            },
-            facets: path(['data', 'facets'], searchQuery),
-            products: path(['data', 'productSearch', 'products'], searchQuery),
-            recordsFiltered: path(
-              ['data', 'productSearch', 'recordsFiltered'],
-              searchQuery
-            ),
-          },
-          searchContext: runtimePage,
-          pagesPath: nextTreePath,
-          map,
-          orderBy,
-          priceRange,
-          page: extraParams.page,
-          from: extraParams.from,
-          to: extraParams.to,
-          facetsLoading: extraParams.facetsLoading,
-          maxItemsPerPage,
-          // backwards-compatibility
-          rest,
-        })
-      }}
-    </SearchQuery>
+    <SearchPageStateContext.Provider value={state}>
+      <SearchPageStateDispatch.Provider value={dispatch}>
+        <SearchQuery
+          maxItemsPerPage={maxItemsPerPage}
+          query={queryValue}
+          map={mapValue}
+          orderBy={orderBy}
+          priceRange={priceRange}
+          hideUnavailableItems={hideUnavailableItems}
+          facetsBehavior={facetsBehavior}
+          pageQuery={pageQuery}
+          skusFilter={skusFilter}
+          simulationBehavior={simulationBehavior}
+          installmentCriteria={installmentCriteria}
+          operator={operator}
+          fuzzy={fuzzy}
+          searchState={searchState}
+          __unstableProductOriginVtex={__unstableProductOriginVtex}
+        >
+          {(searchQuery, extraParams) => {
+            return React.cloneElement(children, {
+              searchQuery: {
+                ...searchQuery,
+                // backwards-compatibility
+                data: {
+                  ...(searchQuery.data || {}),
+                  products: path(
+                    ['data', 'productSearch', 'products'],
+                    searchQuery
+                  ),
+                },
+                facets: path(['data', 'facets'], searchQuery),
+                products: path(
+                  ['data', 'productSearch', 'products'],
+                  searchQuery
+                ),
+                recordsFiltered: path(
+                  ['data', 'productSearch', 'recordsFiltered'],
+                  searchQuery
+                ),
+              },
+              searchContext: runtimePage,
+              pagesPath: nextTreePath,
+              map,
+              orderBy,
+              priceRange,
+              page: extraParams.page,
+              from: extraParams.from,
+              to: extraParams.to,
+              facetsLoading: extraParams.facetsLoading,
+              maxItemsPerPage,
+              // backwards-compatibility
+              rest,
+            })
+          }}
+        </SearchQuery>
+      </SearchPageStateDispatch.Provider>
+    </SearchPageStateContext.Provider>
   )
 }
 

@@ -34,7 +34,8 @@
     "vtex.product-review-interfaces": "1.x",
     "vtex.rich-text": "0.x",
     "vtex.native-types": "0.x",
-    "vtex.telemarketing": "2.x"
+    "vtex.telemarketing": "2.x",
+    "vtex.search-page-context": "0.x"
   },
   "settingsSchema": {
     "title": "VTEX Store",
@@ -88,10 +89,7 @@
               "type": "string"
             }
           },
-          "required": [
-            "rel",
-            "href"
-          ]
+          "required": ["rel", "href"]
         },
         "description": "Configure your store's favicons"
       },

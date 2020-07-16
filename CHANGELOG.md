@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- `SearchPageStateContext.Provider` and `SearchPageStateDispatch.Provider` to the `SearchContext`.
+
 ## [2.99.1] - 2020-07-14
 ### Fixed
 - Redirect after login at the ProfileChallenge taking rootPath into consideration.
