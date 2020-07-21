@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.99.2] - 2020-07-21
+
 ### Fixed
 - Uses `queryArgs` instead of `breadcrumb` to get the search metadata term.
 
