@@ -24,6 +24,7 @@ export interface SearchQueryData {
   }
   facets?: {
     categoriesTrees?: CategoriesTrees[]
+    queryArgs?: QueryArgs
   }
 }
 
@@ -37,4 +38,9 @@ export interface CategoriesTrees {
   name: string
   selected: boolean
   children?: CategoriesTrees[]
+}
+
+interface QueryArgs {
+  query: string
+  map: string
 }
