@@ -76,19 +76,31 @@ const getTitleTag = (titleTag: string, storeTitle: string, term?: string) => {
     : `${storeTitle}`
 }
 
-const getSearchIdentifier = (searchQuery: SearchQuery) => {
+const getSearchIdentifier = (
+  searchQuery: SearchQuery,
+  orderBy?: string,
+  page?: string
+) => {
   const { variables } = searchQuery
+
   if (!variables) {
     return
   }
   const { query, map } = variables
-  return query + map
+  return query + map + (orderBy ?? '') + (page ?? '')
+}
+
+interface AppliedFilters {
+  name: string
 }
 
 interface SearchPageInfoEvent {
   department?: DepartmentMetadata | null
   category?: CategoryMetadata | null
   search?: SearchMetadata | null
+  orderBy?: string
+  page?: string
+  appliedFilters?: AppliedFilters[]
 }
 
 interface DepartmentMetadata {
@@ -111,20 +123,28 @@ interface SearchWrapperProps {
   children: ReactElement
   params: SearchRouteParams
   searchQuery: SearchQuery
+  orderBy?: string
+  to?: number
 }
 
 const SearchWrapper: FC<SearchWrapperProps> = props => {
   const {
     params,
+    orderBy,
     searchQuery,
     searchQuery: {
+      variables: { map } = {},
       data: {
         searchMetadata: { titleTag = '', metaTagDescription = '' } = {},
       } = {},
     } = {},
     children,
   } = props
-  const { account, getSettings } = useRuntime()
+  const {
+    account,
+    getSettings,
+    query: { page },
+  } = useRuntime()
   const settings = getSettings(APP_LOCATOR) || {}
   const loading = searchQuery ? searchQuery.loading : undefined
   const { titleTag: defaultStoreTitle, storeName } = settings
@@ -147,13 +167,15 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
     const { products } = searchQuery
 
     const event = getPageEventName(products, params)
-
     const pageInfoEvent: SearchPageInfoEvent & PixelEvent = {
       event: 'pageInfo',
       eventType: event,
       accountName: account,
       pageTitle: title,
       pageUrl: window.location.href,
+      orderBy,
+      appliedFilters: map?.split(',').map(name => ({ name })),
+      page,
       category: searchQuery?.data
         ? getCategoryMetadata(searchQuery.data)
         : null,
@@ -170,7 +192,7 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
         products,
       },
     ]
-  }, [account, params, searchQuery, title])
+  }, [account, params, searchQuery, title, orderBy, page, map])
 
   const [hasLoaded, setHasLoaded] = useState(true)
 
@@ -181,7 +203,7 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
     [loading, hasLoaded]
   )
 
-  const pixelCacheKey = getSearchIdentifier(searchQuery)
+  const pixelCacheKey = getSearchIdentifier(searchQuery, orderBy, page)
   usePageView({ title, cacheKey: pixelCacheKey })
   useDataPixel(pixelEvents, pixelCacheKey, loading)
 

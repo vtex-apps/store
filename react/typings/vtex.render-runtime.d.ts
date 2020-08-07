@@ -2,6 +2,7 @@ declare module 'vtex.render-runtime' {
   interface Runtime {
     account: string
     rootPath: string
+    query: Record<string, string>
     navigate: (args: NavigateArgs) => void
     getSettings(id: string): StoreSettings
     route: {
