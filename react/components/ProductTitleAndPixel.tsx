@@ -68,6 +68,7 @@ interface Image {
 interface Seller {
   commertialOffer: CommertialOffer
   sellerId: string
+  sellerName: string
 }
 
 interface CommertialOffer {
@@ -114,6 +115,7 @@ function getSkuProperties(item: SKU): SKUEvent {
       item.images && item.images.length > 0 ? item.images[0].imageUrl : '',
     sellers: item.sellers.map(seller => ({
       sellerId: seller.sellerId,
+      sellerName: seller.sellerName,
       commertialOffer: {
         Price: seller.commertialOffer.Price,
         ListPrice: seller.commertialOffer.ListPrice,
