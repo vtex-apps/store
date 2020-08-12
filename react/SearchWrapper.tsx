@@ -160,7 +160,12 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
   }
 
   const pixelEvents = useMemo(() => {
-    if (!searchQuery || !canUseDOM || !searchQuery.products) {
+    if (
+      !searchQuery ||
+      !canUseDOM ||
+      !searchQuery.products ||
+      !searchQuery.data?.facets?.queryArgs
+    ) {
       return null
     }
 
