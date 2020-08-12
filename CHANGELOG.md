@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.100.1] - 2020-08-12
+
 ### Fixed
 - Do not push the `internalSiteSearchView` event while the `facets` query is not completed.
 
