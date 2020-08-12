@@ -9,6 +9,17 @@
   "imageSize": 100,
   "commit": true,
   "commitConvention": "none",
-  "contributors": [],
-  "contributorsPerLine": 7
+  "contributors": [
+    {
+      "login": "gustavopvasconcellos",
+      "name": "gustavopvasconcellos",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/49173685?v=4",
+      "profile": "https://github.com/gustavopvasconcellos",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "skipCi": true
 }
