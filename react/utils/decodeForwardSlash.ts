@@ -6,7 +6,7 @@
  * @returns {string}
  */
 const decodeForwardSlash = (str: string) => {
-  return str.replace(/\$2F/gi, "/")
+  return str.replace(/\$2F/gi, '/')
 }
 
 export default decodeForwardSlash

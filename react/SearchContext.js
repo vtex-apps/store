@@ -6,7 +6,6 @@ import { useRuntime } from 'vtex.render-runtime'
 import SearchQuery from 'vtex.search-result/SearchQuery'
 
 import { initializeMap, SORT_OPTIONS } from './modules/search'
-import decodeForwardSlash from './utils/decodeForwardSlash'
 
 const DEFAULT_MAX_ITEMS_PER_PAGE = 10
 
@@ -82,7 +81,7 @@ const SearchContext = ({
     return query
   }
 
-  const queryValue = getCorrectQueryValue().replace(/\$2F/gi, "%2F")
+  const queryValue = getCorrectQueryValue().replace(/\$2F/gi, '%2F')
   const mapValue = queryField ? mapField : map
 
   return (
