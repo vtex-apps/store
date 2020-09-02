@@ -71,9 +71,11 @@ const getPageEventName = (
 
 const getTitleTag = (titleTag: string, storeTitle: string, term?: string) => {
   return titleTag
-    ? `${titleTag} - ${storeTitle}`
+    ? `${decodeURIComponent(titleTag)} - ${storeTitle}`
     : term
-    ? `${capitalize(decodeURI(decodeForwardSlash(term)))} - ${storeTitle}`
+    ? `${capitalize(
+        decodeURIComponent(decodeForwardSlash(term))
+      )} - ${storeTitle}`
     : `${storeTitle}`
 }
 
