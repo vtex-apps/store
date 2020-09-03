@@ -81,7 +81,7 @@ const SearchContext = ({
     return query
   }
 
-  const queryValue = getCorrectQueryValue()
+  const queryValue = getCorrectQueryValue().replace(/\$2F/gi, '%2F')
   const mapValue = queryField ? mapField : map
 
   return (
