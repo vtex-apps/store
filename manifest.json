@@ -123,7 +123,7 @@
             "description": "Enables CSS optimizations that can improve performance and the Lighthouse score. Only affects the home page. May cause style inconsistencies, test with caution after turning it on."
           },
           "enableMenuRenderingOptimization": {
-            "title": "Menu rendering optimization",
+            "title": "Submenu rendering optimization",
             "type": "boolean",
             "default": false,
             "description": "Enables optimized submenu rendering, which improves performance. May cause style issues, test with caution after turning it on."
