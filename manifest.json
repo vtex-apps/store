@@ -126,7 +126,7 @@
             "title": "Menu rendering optimization",
             "type": "boolean",
             "default": false,
-            "description": "Enables optimized menu rendering, which improves performance."
+            "description": "Enables optimized submenu rendering, which improves performance. May cause style issues, test with caution after turning it on."
           }
         }
       }
