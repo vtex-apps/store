@@ -121,6 +121,24 @@
             "type": "boolean",
             "default": false,
             "description": "Enables CSS optimizations that can improve performance and the Lighthouse score. Only affects the home page. May cause style inconsistencies, test with caution after turning it on."
+          },
+          "enableCSSConcatenation": {
+            "title": "Enables CSS Concatenation",
+            "description": "Concatenates a page's CSS in a single file for faster download.",
+            "type": "boolean",
+            "default": false
+          },
+          "enablePrefetch": {
+            "title": "Enables Prefetch",
+            "description": "Prefetches pages on mouse hover for faster navigation.",
+            "type": "boolean",
+            "default": false
+          },
+          "enableLazyRuntime": {
+            "title": "Enables Lazy Runtime",
+            "description": "Lazily loads the page's metadata.",
+            "type": "boolean",
+            "default": false
           }
         }
       }
