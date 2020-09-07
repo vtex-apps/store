@@ -145,6 +145,12 @@
             "description": "Enables optimized submenu rendering, which improves performance. May cause style issues, test with caution after turning it on.",
             "type": "boolean",
             "default": false
+          },
+          "enableSearchRenderingOptimization": {
+            "title": "Enables lazy rendering of search results",
+            "description": "Enables optimized search results rendering, which improves performance. May cause style issues, test with caution after turning it on.",
+            "type": "boolean",
+            "default": false
           }
         }
       }
