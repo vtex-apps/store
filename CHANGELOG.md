@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- New performance settings (CSS Concatenation, Prefetch, and Lazy Runtime).
+- New performance settings.
 
 ## [2.101.1] - 2020-09-03
 ### Fixed

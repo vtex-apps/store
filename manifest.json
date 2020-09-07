@@ -139,6 +139,12 @@
             "description": "Lazily loads the page's metadata.",
             "type": "boolean",
             "default": false
+          },
+          "enableMenuRenderingOptimization": {
+            "title": "Enables Menu Rendering Optimization",
+            "description": "Enables lazy rendering of submenu items.",
+            "type": "boolean",
+            "default": false
           }
         }
       }
