@@ -141,8 +141,8 @@
             "default": false
           },
           "enableMenuRenderingOptimization": {
-            "title": "Enables Menu Rendering Optimization",
-            "description": "Enables lazy rendering of submenu items.",
+            "title": "Enables lazy rendering of submenu items",
+            "description": "Enables optimized submenu rendering, which improves performance. May cause style issues, test with caution after turning it on.",
             "type": "boolean",
             "default": false
           }
