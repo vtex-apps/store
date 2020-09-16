@@ -137,6 +137,7 @@ const SearchContext = ({
           maxItemsPerPage,
           // backwards-compatibility
           rest,
+          lazyItemsRemaining: extraParams.lazyItemsRemaining,
         })
       }}
     </SearchQuery>
