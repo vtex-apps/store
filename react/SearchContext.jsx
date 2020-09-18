@@ -23,6 +23,8 @@ const SearchContext = ({
   skusFilter,
   simulationBehavior,
   installmentCriteria,
+  excludedPaymentSystems,
+  includedPaymentSystems,
   query: {
     order: orderBy = orderByField || SORT_OPTIONS[0].value,
     page: pageQuery,
@@ -97,6 +99,8 @@ const SearchContext = ({
       skusFilter={skusFilter}
       simulationBehavior={simulationBehavior}
       installmentCriteria={installmentCriteria}
+      excludedPaymentSystems={excludedPaymentSystems}
+      includedPaymentSystems={includedPaymentSystems}
       operator={operator}
       fuzzy={fuzzy}
       searchState={searchState}
@@ -175,6 +179,8 @@ SearchContext.propTypes = {
   skusFilter: PropTypes.string,
   simulationBehavior: PropTypes.string,
   installmentCriteria: PropTypes.string,
+  excludedPaymentSystems: PropTypes.string,
+  includedPaymentSystems: PropTypes.string,
   __unstableProductOriginVtex: PropTypes.bool,
 }
 
