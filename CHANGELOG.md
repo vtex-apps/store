@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
-- Passes down `lazyItemsRemaining` prop form SearchQuery to its children
+- Passes down `lazyItemsRemaining` prop from SearchQuery to its children
 
 ## [2.103.0] - 2020-09-18
 ### Added
