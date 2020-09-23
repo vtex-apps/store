@@ -151,6 +151,18 @@
             "description": "Enables optimized rendering of search results and facets, which improves performance. May cause style issues, test with caution after turning it on.",
             "type": "boolean",
             "default": false
+          },
+          "enableAsyncScripts": {
+            "title": "Enables loading scripts asynchronously",
+            "description": "Start processing scripts sooner by asynchronously loading and executing them.",
+            "type": "boolean",
+            "default": false
+          },
+          "enableConcurrentMode": {
+            "title": "Enables React Concurrent Mode",
+            "description": "Help the store to stay responsive and adjust to the user’s device capabilities and network speed.",
+            "type": "boolean",
+            "default": false
           }
         }
       }
