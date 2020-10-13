@@ -163,6 +163,12 @@
             "description": "Help the store to stay responsive and adjust to the user’s device capabilities and network speed.",
             "type": "boolean",
             "default": true
+          },
+          "enableFiltersFetchOptimization": {
+            "title": "Enables fetching filters partially",
+            "description": "Improves search pages' performance by fetching only the 10 first facets of every filter, adding a button to show the rest. May cause issues when going to a page with facets selected, especially on search-resolver v0. Test with caution after turning it on",
+            "type": "boolean",
+            "default": false
           }
         }
       }
