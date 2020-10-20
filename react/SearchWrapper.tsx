@@ -224,7 +224,6 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
     }
   }, [loading])
 
-
   return (
     <Fragment>
       <Helmet
