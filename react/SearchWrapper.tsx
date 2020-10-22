@@ -13,6 +13,7 @@ import {
   canUseDOM,
 } from 'vtex.render-runtime'
 import { SearchOpenGraph } from 'vtex.open-graph'
+import { ProductList as ProductListStructuredData } from 'vtex.structured-data'
 
 import { capitalize } from './modules/capitalize'
 import useDataPixel from './hooks/useDataPixel'
@@ -238,6 +239,7 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
           },
         ].filter(Boolean)}
       />
+      <ProductListStructuredData products={searchQuery.products} />
       <SearchOpenGraph meta={openGraphParams} />
       <LoadingContextProvider value={loadingValue}>
         {React.cloneElement(children, props)}

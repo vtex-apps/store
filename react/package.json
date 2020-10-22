@@ -24,7 +24,7 @@
     "react-apollo": "^3.1.5",
     "react-dom": "^16.2.0",
     "react-intl": "3.9.1",
-    "typescript": "3.8.3",
+    "typescript": "3.9.7",
     "vtex.blog-interfaces": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.blog-interfaces@0.0.6/public/@types/vtex.blog-interfaces",
     "vtex.login": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.login@2.28.0/public/_types/react",
     "vtex.my-account": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.my-account@1.13.2/public/@types/vtex.my-account",
