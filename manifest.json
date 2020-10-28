@@ -122,6 +122,18 @@
             "default": true,
             "description": "Enables CSS optimizations that can improve performance and the Lighthouse score. Only affects the home page. May cause style inconsistencies, test with caution after turning it on."
           },
+          "enableCriticalCSSOnSearch": {
+            "title": "Critical CSS Optimization on Search Page",
+            "type": "boolean",
+            "default": false,
+            "description": "Enables CSS optimizations that can improve performance and the Lighthouse score. Only affects the search page. May cause style inconsistencies, test with caution after turning it on."
+          },
+          "enableCriticalCSSOnCustom": {
+            "title": "Critical CSS Optimization on Custom Page",
+            "type": "boolean",
+            "default": false,
+            "description": "Enables CSS optimizations that can improve performance and the Lighthouse score. Only affects custom pages. May cause style inconsistencies, test with caution after turning it on."
+          },
           "enableCSSConcatenation": {
             "title": "Enables CSS Concatenation",
             "description": "Concatenates a page's CSS in a single file for faster download.",
