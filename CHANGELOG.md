@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
-- Default `orderBy` value to `OrderByDefault`, which follows the behavior defined by the Catalog.
+- Default `orderBy` value to an empty string. This way the result will follow the behavior defined by the API.
 
 ## [2.108.1] - 2020-10-27
 ### Chore

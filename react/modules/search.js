@@ -1,6 +1,6 @@
 export const SORT_OPTIONS = [
   {
-    value: 'OrderByDefault',
+    value: '',
     label: 'store/ordenation.default',
   },
   {
