@@ -1,5 +1,9 @@
 export const SORT_OPTIONS = [
   {
+    value: 'OrderByDefault',
+    label: 'store/ordenation.default',
+  },
+  {
     value: 'OrderByScoreDESC',
     label: 'store/ordenation.relevance',
   },
