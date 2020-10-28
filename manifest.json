@@ -88,10 +88,7 @@
               "type": "string"
             }
           },
-          "required": [
-            "rel",
-            "href"
-          ]
+          "required": ["rel", "href"]
         },
         "description": "Configure your store's favicons"
       },
@@ -167,6 +164,12 @@
           "enableFiltersFetchOptimization": {
             "title": "Enables fetching filters partially",
             "description": "Improves search pages' performance by fetching only the 10 first facets of every filter, adding a button to show the rest. May cause issues when going to a page with facets selected, especially on search-resolver v0. Test with caution after turning it on",
+            "type": "boolean",
+            "default": false
+          },
+          "enableFullSSROnProduct": {
+            "title": "Enables executing all GraphQL queries on the product page",
+            "description": "It helps when a product page needs to fetch extra data to render components above the fold. Just turn it on if your product page really needs it, otherwise it will be a deoptimization.",
             "type": "boolean",
             "default": false
           }
