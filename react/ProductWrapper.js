@@ -59,17 +59,15 @@ const ProductWrapper = ({
     [loading, hasProductData]
   )
 
-  const SSRLoading =
-    loadingValue.isParentLoading && enableFullSSROnProduct && !canUseDOM ? (
-      <Fragment />
-    ) : null
+  const isSSRLoading =
+    loadingValue.isParentLoading && enableFullSSROnProduct && !canUseDOM
 
   return (
     <WrapperContainer className="vtex-product-context-provider">
       <ProductContextProvider query={query} product={product}>
         <Content loading={loading} childrenProps={childrenProps}>
           <LoadingContextProvider value={loadingValue}>
-            {SSRLoading || children}
+            {isSSRLoading ? <Fragment /> : children}
           </LoadingContextProvider>
         </Content>
       </ProductContextProvider>
