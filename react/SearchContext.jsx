@@ -43,6 +43,7 @@ const SearchContext = ({
     page: runtimePage,
     query: runtimeQuery,
     route: {
+      params: { id: runtimeId },
       queryString: { map: renderMap },
     },
   } = useRuntime()
@@ -107,6 +108,8 @@ const SearchContext = ({
       __unstableProductOriginVtex={__unstableProductOriginVtex}
     >
       {(searchQuery, extraParams) => {
+
+        searchQuery.category = runtimeId
         return React.cloneElement(children, {
           searchQuery: {
             ...searchQuery,
