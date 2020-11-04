@@ -43,7 +43,6 @@ const SearchContext = ({
     page: runtimePage,
     query: runtimeQuery,
     route: {
-      params: { id: runtimeId },
       queryString: { map: renderMap },
     },
   } = useRuntime()
@@ -89,6 +88,7 @@ const SearchContext = ({
 
   return (
     <SearchQuery
+      category={params.id}
       maxItemsPerPage={maxItemsPerPage}
       query={queryValue}
       map={mapValue}
@@ -108,8 +108,6 @@ const SearchContext = ({
       __unstableProductOriginVtex={__unstableProductOriginVtex}
     >
       {(searchQuery, extraParams) => {
-
-        searchQuery.category = runtimeId
         return React.cloneElement(children, {
           searchQuery: {
             ...searchQuery,
@@ -133,6 +131,7 @@ const SearchContext = ({
           map,
           orderBy,
           priceRange,
+          category: params.id,
           page: extraParams.page,
           from: extraParams.from,
           to: extraParams.to,
