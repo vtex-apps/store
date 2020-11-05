@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Default `orderBy` value to an empty string. This way the result will follow the behavior defined by the API.
 
 ## [2.109.0] - 2020-10-28
 ### Added
