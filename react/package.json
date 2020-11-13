@@ -50,5 +50,5 @@
     "vtex.styleguide": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.113.0/public/@types/vtex.styleguide",
     "vtex.telemarketing": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.telemarketing@2.10.1/public/@types/vtex.telemarketing"
   },
-  "version": "2.109.2"
+  "version": "2.109.3"
 }
