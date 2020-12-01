@@ -187,6 +187,18 @@
             "description": "It helps when a product page needs to fetch extra data to render components above the fold. Just turn it on if your product page really needs it, otherwise it will be a deoptimization.",
             "type": "boolean",
             "default": false
+          },
+          "enableLazyFooter": {
+            "title": "Enables lazy rendering of the page footer",
+            "description": "Lazily render the page footer and lazily loads its assets, which helps improving the performance of the first render of the page.",
+            "type": "boolean",
+            "default": false
+          },
+          "enableLazyFold": {
+            "title": "Enables lazy loading of assets below-the-fold",
+            "description": "Enables lazy loading of the JS files of the components below the `__fold__` block.",
+            "type": "boolean",
+            "default": false
           }
         }
       }
