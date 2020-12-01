@@ -135,56 +135,68 @@
             "description": "Enables CSS optimizations that can improve performance and the Lighthouse score. Only affects custom pages. May cause style inconsistencies, test with caution after turning it on."
           },
           "enableCSSConcatenation": {
-            "title": "Enables CSS Concatenation",
+            "title": "Enable CSS Concatenation",
             "description": "Concatenates a page's CSS in a single file for faster download.",
             "type": "boolean",
             "default": true
           },
           "enablePrefetch": {
-            "title": "Enables Prefetch",
+            "title": "Enable Prefetch",
             "description": "Prefetches pages on mouse hover for faster navigation.",
             "type": "boolean",
             "default": true
           },
           "enableLazyRuntime": {
-            "title": "Enables Lazy Runtime",
+            "title": "Enable Lazy Runtime",
             "description": "Lazily loads the page's metadata.",
             "type": "boolean",
             "default": true
           },
           "enableMenuRenderingOptimization": {
-            "title": "Enables lazy rendering of submenu items",
+            "title": "Enable lazy rendering of submenu items",
             "description": "Enables optimized submenu rendering, which improves performance. May cause style issues, test with caution after turning it on.",
             "type": "boolean",
             "default": true
           },
           "enableSearchRenderingOptimization": {
-            "title": "Enables lazy rendering of search results and facets",
+            "title": "Enable lazy rendering of search results and facets",
             "description": "Enables optimized rendering of search results and facets, which improves performance. May cause style issues, test with caution after turning it on.",
             "type": "boolean",
             "default": true
           },
           "enableAsyncScripts": {
-            "title": "Enables loading scripts asynchronously",
+            "title": "Enable loading scripts asynchronously",
             "description": "Start processing scripts sooner by asynchronously loading and executing them.",
             "type": "boolean",
             "default": true
           },
           "enableConcurrentMode": {
-            "title": "Enables React Concurrent Mode",
+            "title": "Enable React Concurrent Mode",
             "description": "Help the store to stay responsive and adjust to the user’s device capabilities and network speed.",
             "type": "boolean",
             "default": true
           },
           "enableFiltersFetchOptimization": {
-            "title": "Enables fetching filters partially",
+            "title": "Enable fetching filters partially",
             "description": "Improves search pages' performance by fetching only the 10 first facets of every filter, adding a button to show the rest. May cause issues when going to a page with facets selected, especially on search-resolver v0. Test with caution after turning it on",
             "type": "boolean",
             "default": false
           },
           "enableFullSSROnProduct": {
-            "title": "Enables executing all GraphQL queries on the product page",
+            "title": "Enable executing all GraphQL queries on the product page",
             "description": "It helps when a product page needs to fetch extra data to render components above the fold. Just turn it on if your product page really needs it, otherwise it will be a deoptimization.",
+            "type": "boolean",
+            "default": false
+          },
+          "enableLazyFooter": {
+            "title": "Enable lazy rendering of the page footer",
+            "description": "Lazily render the page footer and lazily loads its assets, which helps improving the performance of the first render of the page.",
+            "type": "boolean",
+            "default": false
+          },
+          "enableLazyFold": {
+            "title": "Enable lazy loading of assets below-the-fold",
+            "description": "Enables lazy loading of the JS files of the components below the `__fold__` block.",
             "type": "boolean",
             "default": false
           }
