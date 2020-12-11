@@ -134,6 +134,12 @@
             "default": false,
             "description": "Enables CSS optimizations that can improve performance and the Lighthouse score. Only affects custom pages. May cause style inconsistencies, test with caution after turning it on."
           },
+          "enableCriticalCSSOnProduct": {
+            "title": "Critical CSS Optimization on Product Page",
+            "type": "boolean",
+            "default": false,
+            "description": "Enables CSS optimizations that can improve performance and the Lighthouse score. Only affects product pages. May cause style inconsistencies, test with caution after turning it on."
+          },
           "enableCSSConcatenation": {
             "title": "Enable CSS Concatenation",
             "description": "Concatenates a page's CSS in a single file for faster download.",
