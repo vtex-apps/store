@@ -36,6 +36,7 @@ const ProductWrapper = ({
   productQuery,
   productQuery: { product, loading } = {},
   query,
+  CustomContext,
   children,
   ...props
 }) => {
@@ -62,12 +63,16 @@ const ProductWrapper = ({
   const isSSRLoading =
     loadingValue.isParentLoading && enableFullSSROnProduct && !canUseDOM
 
+  const CustomContextElement = CustomContext || Fragment
+
   return (
     <WrapperContainer className="vtex-product-context-provider">
       <ProductContextProvider query={query} product={product}>
         <Content loading={loading} childrenProps={childrenProps}>
           <LoadingContextProvider value={loadingValue}>
-            {isSSRLoading ? <Fragment /> : children}
+            <CustomContextElement>
+              {isSSRLoading ? <Fragment /> : children}
+            </CustomContextElement>
           </LoadingContextProvider>
         </Content>
       </ProductContextProvider>
@@ -81,6 +86,7 @@ ProductWrapper.propTypes = {
   children: PropTypes.node,
   /* URL query params */
   query: PropTypes.object,
+  CustomContext: PropTypes.any,
 }
 
 export default ProductWrapper

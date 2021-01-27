@@ -62,7 +62,7 @@ const useFavicons = faviconLinks => {
   })
 }
 
-const StoreWrapper = ({ children }) => {
+const StoreWrapper = ({ children, CustomContext }) => {
   const {
     amp,
     culture: { country, locale, currency },
@@ -118,12 +118,14 @@ const StoreWrapper = ({ children }) => {
 
   const parsedFavicons = useFavicons(faviconLinks)
 
+  const CustomContextElement = CustomContext || Fragment
+
   const content = (
     <OrderQueueProvider>
       <OrderFormProviderCheckout>
         <OrderItemsProvider>
           <WrapperContainer className="vtex-store__template bg-base">
-            {children}
+            <CustomContextElement>{children}</CustomContextElement>
           </WrapperContainer>
         </OrderItemsProvider>
       </OrderFormProviderCheckout>
@@ -202,6 +204,7 @@ const StoreWrapper = ({ children }) => {
 
 StoreWrapper.propTypes = {
   children: PropTypes.element,
+  CustomContext: PropTypes.any,
 }
 
 export default StoreWrapper
