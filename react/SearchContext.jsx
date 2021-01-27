@@ -85,6 +85,10 @@ const SearchContext = ({
 
   const queryValue = getCorrectQueryValue().replace(/\$2F/gi, '%2F')
   const mapValue = queryField ? mapField : map
+  const state =
+    (typeof sessionStorage !== 'undefined' &&
+      sessionStorage.getItem('searchState')) ||
+    searchState
 
   return (
     <SearchQuery
@@ -103,7 +107,7 @@ const SearchContext = ({
       includedPaymentSystems={includedPaymentSystems}
       operator={operator}
       fuzzy={fuzzy}
-      searchState={searchState}
+      searchState={state}
       __unstableProductOriginVtex={__unstableProductOriginVtex}
     >
       {(searchQuery, extraParams) => {
