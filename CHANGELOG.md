@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+- Use `searchState` of the `sessionStorage` when it exists.
+
 ## [2.110.0] - 2020-12-11
 ### Added
 - PDP critical CSS settings on schema.
