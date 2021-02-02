@@ -5,6 +5,7 @@ import React, {
   useEffect,
   FC,
   ReactElement,
+  ComponentType,
 } from 'react'
 import {
   Helmet,
@@ -134,6 +135,7 @@ interface SearchWrapperProps {
   searchQuery: SearchQuery
   orderBy?: string
   to?: number
+  CustomContext?: ComponentType
 }
 
 const SearchWrapper: FC<SearchWrapperProps> = props => {
@@ -147,6 +149,7 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
         searchMetadata: { titleTag = '', metaTagDescription = '' } = {},
       } = {},
     } = {},
+    CustomContext,
     children,
   } = props
   const {
@@ -229,6 +232,8 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
     }
   }, [loading])
 
+  const CustomContextElement = CustomContext ?? Fragment
+
   return (
     <Fragment>
       <Helmet
@@ -247,7 +252,9 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
       <ProductListStructuredData products={searchQuery.products} />
       <SearchOpenGraph meta={openGraphParams} />
       <LoadingContextProvider value={loadingValue}>
-        {React.cloneElement(children, props)}
+        <CustomContextElement>
+          {React.cloneElement(children, props)}
+        </CustomContextElement>
       </LoadingContextProvider>
     </Fragment>
   )
