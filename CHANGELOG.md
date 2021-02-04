@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Intelligent search URLs now have the following order: `/[category hierarchy/alphabetically]/[brand alphabetically]/[specs alphabetically]`
+
 ## [2.111.0] - 2021-02-02
 ### Added
 - Possibility to add a custom global context in page wrappers.
