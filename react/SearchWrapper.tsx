@@ -27,7 +27,6 @@ import {
 } from './modules/searchMetadata'
 import { SearchQuery } from './modules/searchTypes'
 import { PixelEvent } from './typings/event'
-import decodeForwardSlash from './utils/decodeForwardSlash'
 
 const APP_LOCATOR = 'vtex.store'
 
@@ -98,9 +97,7 @@ const getTitleTag = ({
   }
 
   return term
-    ? `${capitalize(
-        decodeURIComponent(decodeForwardSlash(term))
-      )} - ${storeTitle}`
+    ? `${capitalize(decodeURIComponent(term))} - ${storeTitle}`
     : `${storeTitle}`
 }
 
