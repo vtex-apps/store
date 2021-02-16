@@ -12,6 +12,7 @@ import {
   useRuntime,
   LoadingContextProvider,
   canUseDOM,
+  Runtime,
 } from 'vtex.render-runtime'
 import { SearchOpenGraph } from 'vtex.open-graph'
 import { ProductList as ProductListStructuredData } from 'vtex.structured-data'
@@ -71,7 +72,7 @@ const getPageEventName = (
   return (mapEvent[category] || fallbackView) as PageEventName
 }
 
-const getTitleTag = (titleTag: string, storeTitle: string, term?: string) => {
+const getTitleTag = (titleTag: string, storeTitle: string, term?: string, pageTitle?: string) => {
   if (titleTag) {
     try {
       return `${decodeURIComponent(titleTag)} - ${storeTitle}`
@@ -79,10 +80,15 @@ const getTitleTag = (titleTag: string, storeTitle: string, term?: string) => {
       return `${titleTag} - ${storeTitle}`
     }
   }
+
+  if (pageTitle) {
+    return `${decodeURIComponent(pageTitle)} - ${storeTitle}`
+  }
+
   return term
     ? `${capitalize(
-        decodeURIComponent(decodeForwardSlash(term))
-      )} - ${storeTitle}`
+      decodeURIComponent(decodeForwardSlash(term))
+    )} - ${storeTitle}`
     : `${storeTitle}`
 }
 
@@ -138,6 +144,18 @@ interface SearchWrapperProps {
   CustomContext?: ComponentType
 }
 
+interface MetaTagsParams {
+  description: string,
+  keywords: string[]
+}
+interface RuntimeWithRoute extends Runtime {
+  route: {
+    routeId: string,
+    title?: string,
+    metaTags?: MetaTagsParams
+  }
+}
+
 const SearchWrapper: FC<SearchWrapperProps> = props => {
   const {
     params,
@@ -156,19 +174,21 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
     account,
     getSettings,
     query: { page },
-  } = useRuntime()
+    route: { title: pageTitle, metaTags },
+  } = useRuntime() as RuntimeWithRoute
   const settings = getSettings(APP_LOCATOR) || {}
   const loading = searchQuery ? searchQuery.loading : undefined
   const { titleTag: defaultStoreTitle, storeName } = settings
   const title = getTitleTag(
     titleTag,
     storeName || defaultStoreTitle,
-    params.term
+    params.term,
+    pageTitle
   )
 
   const openGraphParams = {
     title,
-    description: metaTagDescription,
+    description: metaTagDescription || metaTags?.description,
   }
 
   const pixelEvents = useMemo(() => {
@@ -249,6 +269,7 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
           },
         ].filter(Boolean)}
       />
+
       <ProductListStructuredData products={searchQuery.products} />
       <SearchOpenGraph meta={openGraphParams} />
       <LoadingContextProvider value={loadingValue}>
