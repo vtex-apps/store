@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.112.0] - 2021-02-17
+
 ### Added
 - Use pageTitle and description in `SearchWrapper` when there is no `searchQuery`
 
