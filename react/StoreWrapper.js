@@ -152,7 +152,7 @@ const StoreWrapper = ({ children, CustomContext }) => {
         script={[
           supportsServiceWorker && {
             type: 'text/javascript',
-            src: `${rootPath}/pwa/workers/register.js${queryMatch}${
+            src: `${rootPath}/serviceWorkerRegister.js${queryMatch}${
               enableServiceWorker ? '' : '&__disableSW=true'
             }&scope=${encodeURIComponent(rootPath)}`,
             defer: true,
