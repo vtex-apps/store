@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- manifest with new translation paths
+
 ## [2.112.1] - 2021-02-25
 ### Removed
 - `decodeForwardSlash` function.
