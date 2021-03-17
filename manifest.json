@@ -37,54 +37,54 @@
     "vtex.telemarketing": "2.x"
   },
   "settingsSchema": {
-    "title": "VTEX Store",
+    "title": "admin/store.title",
     "type": "object",
     "properties": {
       "storeName": {
-        "title": "Store Name",
+        "title": "admin/store.storeName.title",
         "type": "string"
       },
       "requiresAuthorization": {
-        "title": "Enables B2B behavior",
+        "title": "admin/store.requiresAuthorization.title",
         "type": "boolean"
       },
       "titleTag": {
-        "title": "Default title tag",
+        "title": "admin/store.titleTag.title",
         "type": "string"
       },
       "metaTagDescription": {
-        "title": "Meta description tag",
+        "title": "admin/store.metaTagDescription.title",
         "type": "string"
       },
       "metaTagRobots": {
-        "title": "Meta robots tag",
+        "title": "admin/store.metaTagRobots.title",
         "type": "string",
-        "description": "Default value: index, follow"
+        "description": "admin/store.metaTagRobots.description"
       },
       "faviconLinks": {
-        "title": "Favicons",
+        "title": "admin/store.faviconLinks.title",
         "type": "array",
         "items": {
           "type": "object",
           "properties": {
             "rel": {
-              "title": "Favicon Relationship",
+              "title": "admin/store.faviconLinks.rel.title",
               "type": "string",
-              "description": "This favicon relationship, e.g: 'icon', 'shortcut icon', 'apple-touch-icon'"
+              "description": "admin/store.faviconLinks.rel.description"
             },
             "type": {
-              "title": "Favicon Media Type",
+              "title": "admin/store.faviconLinks.type.title",
               "type": "string",
-              "description": "(Optional) Favicon type, e.g: image/png"
+              "description": "admin/store.faviconLinks.type.description"
             },
             "sizes": {
-              "title": "Favicon Size",
+              "title": "admin/store.faviconLinks.sizes.title",
               "type": "string",
               "pattern": "^[0-9]+x[0-9]+$",
-              "description": "(Optional) Favicon size, format: {width}x{height} e.g: 180x180"
+              "description": "admin/store.faviconLinks.sizes.description"
             },
             "href": {
-              "title": "Favicon href",
+              "title": "admin/store.faviconLinks.href.title",
               "type": "string"
             }
           },
@@ -93,116 +93,116 @@
             "href"
           ]
         },
-        "description": "Configure your store's favicons"
+        "description": "admin/store.faviconLinks.description"
       },
       "searchTermPath": {
-        "title": "Search Term Path",
+        "title": "admin/store.searchTermPath.title",
         "type": "string",
-        "description": "Indicate the search path of your store"
+        "description": "admin/store.searchTermPath.description"
       },
       "advancedSettings": {
-        "title": "Advanced Store settings",
+        "title": "admin/store.advancedSettings.title",
         "type": "object",
         "properties": {
           "enableOrderFormOptimization": {
-            "title": "orderForm optimization",
+            "title": "admin/store.advancedSettings.enableOrderFormOptimization.title",
             "type": "boolean",
             "default": false,
-            "description": "Disables the legacy orderForm provider. More at: https://vtex.io/docs/recipes/store-management/enabling-order-form-optimization."
+            "description": "admin/store.advancedSettings.enableOrderFormOptimization.description"
           },
           "enableServiceWorker": {
-            "title": "Service Worker",
+            "title": "admin/store.advancedSettings.enableServiceWorker.title",
             "type": "boolean",
             "default": true,
-            "description": "Register the default Service Worker provided by VTEX."
+            "description": "admin/store.advancedSettings.enableServiceWorker.description"
           },
           "enableCriticalCSS": {
-            "title": "Critical CSS Optimization",
+            "title": "admin/store.advancedSettings.enableCriticalCSS.title",
             "type": "boolean",
-            "default": true,
-            "description": "Enables CSS optimizations that can improve performance and the Lighthouse score. Only affects the home page. May cause style inconsistencies, test with caution after turning it on."
+            "default": false,
+            "description": "admin/store.advancedSettings.enableCriticalCSS.description"
           },
           "enableCriticalCSSOnSearch": {
-            "title": "Critical CSS Optimization on Search Page",
+            "title": "admin/store.advancedSettings.enableCriticalCSSOnSearch.title",
             "type": "boolean",
             "default": false,
-            "description": "Enables CSS optimizations that can improve performance and the Lighthouse score. Only affects the search page. May cause style inconsistencies, test with caution after turning it on."
+            "description": "admin/store.advancedSettings.enableCriticalCSSOnSearch.description"
           },
           "enableCriticalCSSOnCustom": {
-            "title": "Critical CSS Optimization on Custom Page",
+            "title": "admin/store.advancedSettings.enableCriticalCSSOnCustom.title",
             "type": "boolean",
             "default": false,
-            "description": "Enables CSS optimizations that can improve performance and the Lighthouse score. Only affects custom pages. May cause style inconsistencies, test with caution after turning it on."
+            "description": "admin/store.advancedSettings.enableCriticalCSSOnCustom.description"
           },
           "enableCriticalCSSOnProduct": {
-            "title": "Critical CSS Optimization on Product Page",
+            "title": "admin/store.advancedSettings.enableCriticalCSSOnProduct.title",
             "type": "boolean",
             "default": false,
-            "description": "Enables CSS optimizations that can improve performance and the Lighthouse score. Only affects product pages. May cause style inconsistencies, test with caution after turning it on."
+            "description": "admin/store.advancedSettings.enableCriticalCSSOnProduct.description"
           },
           "enableCSSConcatenation": {
-            "title": "Enable CSS Concatenation",
-            "description": "Concatenates a page's CSS in a single file for faster download.",
+            "title": "admin/store.advancedSettings.enableCSSConcatenation.title",
+            "description": "admin/store.advancedSettings.enableCSSConcatenation.description",
             "type": "boolean",
             "default": true
           },
           "enablePrefetch": {
-            "title": "Enable Prefetch",
-            "description": "Prefetches pages on mouse hover for faster navigation.",
+            "title": "admin/store.advancedSettings.enablePrefetch.title",
+            "description": "admin/store.advancedSettings.enablePrefetch.description",
             "type": "boolean",
             "default": true
           },
           "enableLazyRuntime": {
-            "title": "Enable Lazy Runtime",
-            "description": "Lazily loads the page's metadata.",
+            "title": "admin/store.advancedSettings.enableLazyRuntime.title",
+            "description": "admin/store.advancedSettings.enableLazyRuntime.description",
             "type": "boolean",
             "default": true
           },
           "enableMenuRenderingOptimization": {
-            "title": "Enable lazy rendering of submenu items",
-            "description": "Enables optimized submenu rendering, which improves performance. May cause style issues, test with caution after turning it on.",
+            "title": "admin/store.advancedSettings.enableMenuRenderingOptimization.title",
+            "description": "admin/store.advancedSettings.enableMenuRenderingOptimization.description",
             "type": "boolean",
             "default": true
           },
           "enableSearchRenderingOptimization": {
-            "title": "Enable lazy rendering of search results and facets",
-            "description": "Enables optimized rendering of search results and facets, which improves performance. May cause style issues, test with caution after turning it on.",
+            "title": "admin/store.advancedSettings.enableSearchRenderingOptimization.title",
+            "description": "admin/store.advancedSettings.enableSearchRenderingOptimization.description",
             "type": "boolean",
             "default": true
           },
           "enableAsyncScripts": {
-            "title": "Enable loading scripts asynchronously",
-            "description": "Start processing scripts sooner by asynchronously loading and executing them.",
+            "title": "admin/store.advancedSettings.enableAsyncScripts.title",
+            "description": "admin/store.advancedSettings.enableAsyncScripts.description",
             "type": "boolean",
             "default": true
           },
           "enableConcurrentMode": {
-            "title": "Enable React Concurrent Mode",
-            "description": "Help the store to stay responsive and adjust to the user’s device capabilities and network speed.",
+            "title": "admin/store.advancedSettings.enableConcurrentMode.title",
+            "description": "admin/store.advancedSettings.enableConcurrentMode.description",
             "type": "boolean",
             "default": true
           },
           "enableFiltersFetchOptimization": {
-            "title": "Enable fetching filters partially",
-            "description": "Improves search pages' performance by fetching only the 10 first facets of every filter, adding a button to show the rest. May cause issues when going to a page with facets selected, especially on search-resolver v0. Test with caution after turning it on",
+            "title": "admin/store.advancedSettings.enableFiltersFetchOptimization.title",
+            "description": "admin/store.advancedSettings.enableFiltersFetchOptimization.description",
             "type": "boolean",
             "default": false
           },
           "enableFullSSROnProduct": {
-            "title": "Enable executing all GraphQL queries on the product page",
-            "description": "It helps when a product page needs to fetch extra data to render components above the fold. Just turn it on if your product page really needs it, otherwise it will be a deoptimization.",
+            "title": "admin/store.advancedSettings.enableFullSSROnProduct.title",
+            "description": "admin/store.advancedSettings.enableFullSSROnProduct.description",
             "type": "boolean",
             "default": false
           },
           "enableLazyFooter": {
-            "title": "Enable lazy rendering of the page footer",
-            "description": "Lazily render the page footer and lazily loads its assets, which helps improving the performance of the first render of the page.",
+            "title": "admin/store.advancedSettings.enableLazyFooter.title",
+            "description": "admin/store.advancedSettings.enableLazyFooter.description",
             "type": "boolean",
             "default": false
           },
           "enableLazyFold": {
-            "title": "Enable lazy loading of assets below-the-fold",
-            "description": "Enables lazy loading of the JS files of the components below the `__fold__` block.",
+            "title": "admin/store.advancedSettings.enableLazyFold.title",
+            "description": "admin/store.advancedSettings.enableLazyFold.description",
             "type": "boolean",
             "default": false
           }
