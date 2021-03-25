@@ -20,6 +20,7 @@ const SearchContext = ({
   orderByField,
   hideUnavailableItems,
   facetsBehavior = 'Static',
+  __unstableCategoryTreeBehavior = 'default',
   skusFilter,
   simulationBehavior,
   installmentCriteria,
@@ -99,6 +100,7 @@ const SearchContext = ({
       priceRange={priceRange}
       hideUnavailableItems={hideUnavailableItems}
       facetsBehavior={facetsBehavior}
+      categoryTreeBehavior={__unstableCategoryTreeBehavior}
       pageQuery={pageQuery}
       skusFilter={skusFilter}
       simulationBehavior={simulationBehavior}
@@ -181,6 +183,7 @@ SearchContext.propTypes = {
   maxItemsPerPage: PropTypes.number,
   hideUnavailableItems: PropTypes.bool,
   facetsBehavior: PropTypes.string,
+  __unstableCategoryTreeBehavior: PropTypes.string,
   skusFilter: PropTypes.string,
   simulationBehavior: PropTypes.string,
   installmentCriteria: PropTypes.string,

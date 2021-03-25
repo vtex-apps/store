@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- `__unstableCategoryTreeBehavior` prop to the `SearchContext`.
+
 ## [2.113.0] - 2021-03-17
 
 ### Changed
