@@ -69,6 +69,7 @@ interface Seller {
   commertialOffer: CommertialOffer
   sellerId: string
   sellerName: string
+  sellerDefault: boolean
 }
 
 interface CommertialOffer {
@@ -116,6 +117,7 @@ function getSkuProperties(item: SKU): SKUEvent {
     sellers: item.sellers.map(seller => ({
       sellerId: seller.sellerId,
       sellerName: seller.sellerName,
+      sellerDefault: seller.sellerDefault,
       commertialOffer: {
         Price: seller.commertialOffer.Price,
         ListPrice: seller.commertialOffer.ListPrice,
