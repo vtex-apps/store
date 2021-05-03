@@ -127,11 +127,19 @@ function getSkuProperties(item: SKU): SKUEvent {
   }
 }
 
-function useProductEvents(
-  product: Product,
-  selectedItem: SKU,
+interface UseProductEventsParams {
+  product: Product
+  selectedItem: SKU
   loading: boolean
-) {
+  listName?: string
+}
+
+function useProductEvents({
+  product,
+  selectedItem,
+  loading,
+  listName,
+}: UseProductEventsParams) {
   const productEvents = useMemo(() => {
     const hasCategoryTree = Boolean(product?.categoryTree?.length)
 
@@ -158,9 +166,10 @@ function useProductEvents(
       {
         event: 'productView',
         product: eventProduct,
+        list: listName,
       },
     ]
-  }, [product, selectedItem])
+  }, [product, selectedItem, listName])
 
   // When linkText or selectedItem changes, it will trigger the productEvents
   const pixelCacheKey = `${product?.linkText}${selectedItem?.itemId}`
@@ -187,6 +196,7 @@ function useTitle(product: Product) {
 }
 
 interface Props {
+  listName?: string
   product: Product
   selectedItem: SKU
   loading: boolean
@@ -196,6 +206,7 @@ const ProductTitleAndPixel: FC<Props> = ({
   product,
   selectedItem,
   loading,
+  listName,
 }) => {
   const { metaTagDescription = undefined } = product || {}
   const title = useTitle(product)
@@ -207,7 +218,7 @@ const ProductTitleAndPixel: FC<Props> = ({
     cacheKey: pixelCacheKey,
   })
   usePageInfo(title, product, loading)
-  useProductEvents(product, selectedItem, loading)
+  useProductEvents({ product, selectedItem, loading, listName })
 
   return (
     <Helmet
