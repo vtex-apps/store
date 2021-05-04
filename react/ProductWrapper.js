@@ -54,7 +54,7 @@ const ProductWrapper = ({
 
   const hasProductData = !!product
 
-  const { listName } = query
+  const { listName } = query || {}
 
   const loadingValue = useMemo(
     () => ({
