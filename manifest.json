@@ -88,10 +88,7 @@
               "type": "string"
             }
           },
-          "required": [
-            "rel",
-            "href"
-          ]
+          "required": ["rel", "href"]
         },
         "description": "admin/store.faviconLinks.description"
       },
