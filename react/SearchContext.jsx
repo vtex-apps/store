@@ -19,6 +19,7 @@ const SearchContext = ({
   mapField,
   orderByField,
   hideUnavailableItems,
+  disableRegionalization,
   facetsBehavior = 'Static',
   __unstableCategoryTreeBehavior = 'default',
   skusFilter,
@@ -99,6 +100,7 @@ const SearchContext = ({
       orderBy={orderBy}
       priceRange={priceRange}
       hideUnavailableItems={hideUnavailableItems}
+      disableRegionalization={disableRegionalization}
       facetsBehavior={facetsBehavior}
       categoryTreeBehavior={__unstableCategoryTreeBehavior}
       pageQuery={pageQuery}
@@ -182,6 +184,7 @@ SearchContext.propTypes = {
   /** Max items to show per result page */
   maxItemsPerPage: PropTypes.number,
   hideUnavailableItems: PropTypes.bool,
+  disableRegionalization: PropTypes.bool,
   facetsBehavior: PropTypes.string,
   __unstableCategoryTreeBehavior: PropTypes.string,
   skusFilter: PropTypes.string,

@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- `disableRegionalization` prop to the `SearchContext`.
+
 ## [2.116.0] - 2021-04-05
 ### Changed
 - Service Worker Merged implementation adapted.
