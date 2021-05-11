@@ -88,10 +88,7 @@
               "type": "string"
             }
           },
-          "required": [
-            "rel",
-            "href"
-          ]
+          "required": ["rel", "href"]
         },
         "description": "admin/store.faviconLinks.description"
       },
@@ -208,6 +205,11 @@
           }
         }
       }
+    }
+  },
+  "settingsUiSchema": {
+    "requiresAuthorization": {
+      "ui:disabled": true
     }
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
