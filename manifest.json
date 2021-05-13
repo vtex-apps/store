@@ -205,12 +205,42 @@
           }
         }
       }
+    },
+    "dependencies": {
+      "requiresAuthorization": {
+        "oneOf": [
+          {
+            "properties": {
+              "requiresAuthorization": {
+                "enum": [false]
+              }
+            }
+          },
+          {
+            "properties": {
+              "requiresAuthorization": {
+                "enum": [true]
+              },
+              "b2bEnabled": {
+                "title": "admin/store.b2benabled.title",
+                "type": "string",
+                "format": "read-only",
+                "default": "true"
+              }
+            }
+          }
+        ]
+      }
     }
   },
   "settingsUiSchema": {
     "requiresAuthorization": {
-      "ui:disabled": true
-    }
+      "ui:widget": "hidden"
+    },
+    "b2bEnabled": {
+      "ui:disabled": "true"
+    },
+    "ui:order": ["storeName", "requiresAuthorization", "b2bEnabled", "*"]
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
