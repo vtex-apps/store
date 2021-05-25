@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Canonical url for search pages now includes page number to improve SEO
+
+### Added
+- `<link>` elements pointing to previous and next pages to improve SEO
 
 ## [2.117.0] - 2021-05-13
 ### Changed

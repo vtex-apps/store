@@ -12,7 +12,7 @@ import {
   useRuntime,
   LoadingContextProvider,
   canUseDOM,
-  Runtime,
+  RuntimeWithRoute,
 } from 'vtex.render-runtime'
 import { SearchOpenGraph } from 'vtex.open-graph'
 import { ProductList as ProductListStructuredData } from 'vtex.structured-data'
@@ -27,6 +27,7 @@ import {
 } from './modules/searchMetadata'
 import { SearchQuery } from './modules/searchTypes'
 import { PixelEvent } from './typings/event'
+import { useCanonicalLink } from './hooks/useCanonicalLink'
 
 const APP_LOCATOR = 'vtex.store'
 
@@ -115,6 +116,75 @@ const getSearchIdentifier = (
   return query + map + (orderBy ?? '') + (page ?? '')
 }
 
+function getCanonicalMaybeWithPage(canonicalLink: string, page: number) {
+  if (page <= 0) {
+    return null
+  }
+
+  const canonicalWithPage = `${canonicalLink}?page=${page}`
+
+  return canonicalWithPage
+}
+
+function getHelmetLink(
+  canonicalLink: string | null,
+  page: number,
+  rel: 'canonical' | 'prev' | 'next'
+) {
+  if (!canonicalLink) {
+    return null
+  }
+
+  let pageAfterTransformation = 0
+
+  if (rel === 'canonical') {
+    pageAfterTransformation = page
+  } else if (rel === 'next') {
+    pageAfterTransformation = page + 1
+  } else if (rel === 'prev') {
+    pageAfterTransformation = page - 1
+  }
+
+  if (pageAfterTransformation === 1) {
+    return {
+      rel,
+      href: encodeURI(canonicalLink),
+    }
+  }
+
+  const canonicalMaybeWithPage = getCanonicalMaybeWithPage(
+    canonicalLink,
+    pageAfterTransformation
+  )
+
+  if (!canonicalMaybeWithPage) {
+    return null
+  }
+
+  return {
+    rel,
+    href: encodeURI(canonicalMaybeWithPage),
+  }
+}
+
+function isNotLastPage(
+  products: SearchQuery['products'],
+  to: number | undefined,
+  recordsFiltered: number | undefined
+) {
+  if (
+    !products ||
+    to === undefined ||
+    to === null ||
+    recordsFiltered === undefined ||
+    recordsFiltered === null
+  ) {
+    return null
+  }
+
+  return to + 1 < recordsFiltered
+}
+
 interface AppliedFilters {
   name: string
 }
@@ -150,19 +220,8 @@ interface SearchWrapperProps {
   searchQuery: SearchQuery
   orderBy?: string
   to?: number
+  page?: number
   CustomContext?: ComponentType
-}
-
-interface MetaTagsParams {
-  description: string
-  keywords: string[]
-}
-interface RuntimeWithRoute extends Runtime {
-  route: {
-    routeId: string
-    title?: string
-    metaTags?: MetaTagsParams
-  }
 }
 
 const SearchWrapper: FC<SearchWrapperProps> = props => {
@@ -174,9 +233,12 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
       variables: { map } = {},
       data: {
         searchMetadata: { titleTag = '', metaTagDescription = '' } = {},
+        productSearch: { recordsFiltered = undefined } = {},
       } = {},
     } = {},
     CustomContext,
+    page: pageFromQuery = 0,
+    to,
     children,
   } = props
   const {
@@ -194,6 +256,8 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
     term: params.term,
     pageTitle,
   })
+
+  const canonicalLink = useCanonicalLink()
 
   const openGraphParams = {
     title,
@@ -276,6 +340,13 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
             name: 'description',
             content: metaTagDescription,
           },
+        ].filter(Boolean)}
+        link={[
+          getHelmetLink(canonicalLink, pageFromQuery, 'canonical'),
+          getHelmetLink(canonicalLink, pageFromQuery, 'prev'),
+          isNotLastPage(searchQuery.products, to, recordsFiltered)
+            ? getHelmetLink(canonicalLink, pageFromQuery, 'next')
+            : null,
         ].filter(Boolean)}
       />
 

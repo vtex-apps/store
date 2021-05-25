@@ -10,6 +10,20 @@ declare module 'vtex.render-runtime' {
     }
   }
 
+  interface RuntimeWithRoute extends Runtime {
+    route: {
+      routeId: string
+      title?: string
+      metaTags?: MetaTagsParams
+      canonicalPath?: string
+    }
+  }
+
+  interface MetaTagsParams {
+    description: string
+    keywords: string[]
+  }
+
   interface NavigateArgs {
     fallbackToWindowLocation: boolean
     to: string
