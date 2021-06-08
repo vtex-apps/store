@@ -126,7 +126,7 @@ function getCanonicalMaybeWithPage(canonicalLink: string, page: number) {
   return canonicalWithPage
 }
 
-function getHelmetLink(
+export function getHelmetLink(
   canonicalLink: string | null,
   page: number,
   rel: 'canonical' | 'prev' | 'next'
