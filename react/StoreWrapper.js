@@ -21,20 +21,12 @@ import OrderFormProvider from './components/OrderFormProvider'
 import NetworkStatusToast from './components/NetworkStatusToast'
 import WrapperContainer from './components/WrapperContainer'
 import { normalizeNavigation } from './utils/navigation'
+import { useCanonicalLink } from './hooks/useCanonicalLink'
 
 const APP_LOCATOR = 'vtex.store'
 const CONTENT_TYPE = 'text/html; charset=utf-8'
 const META_ROBOTS = 'index, follow'
 const MOBILE_SCALING = 'width=device-width, initial-scale=1'
-
-const systemToCanonical = ({ canonicalPath }) => {
-  const canonicalHost =
-    window.__hostname__ || (window.location && window.location.hostname)
-  return {
-    canonicalPath,
-    canonicalHost,
-  }
-}
 
 const isSiteEditorIframe = () => {
   try {
@@ -105,16 +97,12 @@ const StoreWrapper = ({ children, CustomContext }) => {
     enableServiceWorker = true,
   } = settings
 
-  const { canonicalHost, canonicalPath } = systemToCanonical(route)
   const description = (metaTags && metaTags.description) || metaTagDescription
   const title = pageTitle || titleTag
 
   const [queryMatch] = route.path.match(/\?.*/) || ['?']
 
-  const canonicalLink =
-    canonicalHost &&
-    canonicalPath &&
-    `https://${canonicalHost}${rootPath}${canonicalPath}`
+  const canonicalLink = useCanonicalLink()
 
   const parsedFavicons = useFavicons(faviconLinks)
 
