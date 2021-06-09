@@ -13,11 +13,12 @@ import { Product as ProductStructuredData } from 'vtex.structured-data'
 import WrapperContainer from './components/WrapperContainer'
 import ProductTitleAndPixel from './components/ProductTitleAndPixel'
 
-const Content = ({ loading, children, childrenProps }) => {
+const Content = ({ listName, loading, children, childrenProps }) => {
   const { product, selectedItem } = useProduct()
   return (
     <Fragment>
       <ProductTitleAndPixel
+        listName={listName}
         product={product}
         selectedItem={selectedItem}
         loading={loading}
@@ -53,6 +54,8 @@ const ProductWrapper = ({
 
   const hasProductData = !!product
 
+  const { listName } = query || {}
+
   const loadingValue = useMemo(
     () => ({
       isParentLoading: loading || !hasProductData,
@@ -68,7 +71,11 @@ const ProductWrapper = ({
   return (
     <WrapperContainer className="vtex-product-context-provider">
       <ProductContextProvider query={query} product={product}>
-        <Content loading={loading} childrenProps={childrenProps}>
+        <Content
+          listName={listName}
+          loading={loading}
+          childrenProps={childrenProps}
+        >
           <LoadingContextProvider value={loadingValue}>
             <CustomContextElement>
               {isSSRLoading ? <Fragment /> : children}
