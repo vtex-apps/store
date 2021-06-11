@@ -154,7 +154,6 @@ function useProductEvents({
       return []
     }
 
-    debugger
     const eventProduct: ProductViewEvent = {
       detailUrl: `/${product.linkText}/p`,
       brand: product.brand,
