@@ -24,6 +24,7 @@ interface Product {
   metaTagDescription: string
   productReference: string
   items: SKU[]
+  properties: Properties[]
 }
 
 interface ProductViewEvent {
@@ -39,6 +40,12 @@ interface ProductViewEvent {
   productName: string
   items: SKUEvent[]
   selectedSku: SKUEvent
+  properties: Properties[]
+}
+
+interface Properties {
+  name: string
+  values: string[]
 }
 
 interface Category {
@@ -147,6 +154,7 @@ function useProductEvents({
       return []
     }
 
+    debugger
     const eventProduct: ProductViewEvent = {
       detailUrl: `/${product.linkText}/p`,
       brand: product.brand,
@@ -158,6 +166,7 @@ function useProductEvents({
       categoryTree: product.categoryTree,
       productId: product.productId,
       productName: product.productName,
+      properties: product.properties,
       items: product.items.map(getSkuProperties),
       selectedSku: getSkuProperties(selectedItem),
     }
