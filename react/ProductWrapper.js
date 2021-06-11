@@ -33,7 +33,7 @@ const Content = ({ listName, loading, children, childrenProps }) => {
 }
 
 const ProductWrapper = ({
-  params: { slug },
+  params: { slug, __listName: listName },
   productQuery,
   productQuery: { product, loading } = {},
   query,
@@ -53,8 +53,6 @@ const ProductWrapper = ({
   )
 
   const hasProductData = !!product
-
-  const { listName } = query || {}
 
   const loadingValue = useMemo(
     () => ({
