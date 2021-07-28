@@ -34,7 +34,8 @@
     "vtex.product-review-interfaces": "1.x",
     "vtex.rich-text": "0.x",
     "vtex.native-types": "0.x",
-    "vtex.telemarketing": "2.x"
+    "vtex.telemarketing": "2.x",
+    "vtex.twitter-meta-tags": "0.x"
   },
   "settingsSchema": {
     "title": "admin/store.title",
@@ -88,10 +89,7 @@
               "type": "string"
             }
           },
-          "required": [
-            "rel",
-            "href"
-          ]
+          "required": ["rel", "href"]
         },
         "description": "admin/store.faviconLinks.description"
       },
@@ -99,6 +97,23 @@
         "title": "admin/store.searchTermPath.title",
         "type": "string",
         "description": "admin/store.searchTermPath.description"
+      },
+      "includeTwitterMetaTags": {
+        "title": "Include Twitter meta tags",
+        "type": "boolean"
+      },
+      "twitterUsername": {
+        "title": "Twitter username",
+        "description": "The username your business uses on Twitter, for example: VTEXcommerce. (Do not include the @ sign)",
+        "type": "string"
+      },
+      "twitterCard": {
+        "title": "Twitter Card",
+        "description": "Please choose the type for the Twitter Card",
+        "type": "string",
+        "default": "summary",
+        "enum": ["photo", "summary", "summary_large_image"],
+        "enumNames": ["Photo", "Summary", "Summmary Large Image"]
       },
       "advancedSettings": {
         "title": "admin/store.advancedSettings.title",
@@ -215,18 +230,14 @@
           {
             "properties": {
               "requiresAuthorization": {
-                "enum": [
-                  false
-                ]
+                "enum": [false]
               }
             }
           },
           {
             "properties": {
               "requiresAuthorization": {
-                "enum": [
-                  true
-                ]
+                "enum": [true]
               },
               "b2bEnabled": {
                 "title": "admin/store.b2benabled.title",
@@ -247,12 +258,7 @@
     "b2bEnabled": {
       "ui:disabled": "true"
     },
-    "ui:order": [
-      "storeName",
-      "requiresAuthorization",
-      "b2bEnabled",
-      "*"
-    ]
+    "ui:order": ["storeName", "requiresAuthorization", "b2bEnabled", "*"]
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
