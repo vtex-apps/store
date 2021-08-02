@@ -102,19 +102,6 @@
         "title": "Include Twitter meta tags",
         "type": "boolean"
       },
-      "twitterUsername": {
-        "title": "Twitter username",
-        "description": "The username your business uses on Twitter, for example: VTEXcommerce. (Do not include the @ sign)",
-        "type": "string"
-      },
-      "twitterCard": {
-        "title": "Twitter Card",
-        "description": "Please choose the type for the Twitter Card",
-        "type": "string",
-        "default": "summary",
-        "enum": ["photo", "summary", "summary_large_image"],
-        "enumNames": ["Photo", "Summary", "Summmary Large Image"]
-      },
       "advancedSettings": {
         "title": "admin/store.advancedSettings.title",
         "type": "object",
@@ -244,6 +231,37 @@
                 "type": "string",
                 "format": "read-only",
                 "default": "true"
+              }
+            }
+          }
+        ]
+      },
+      "includeTwitterMetaTags": {
+        "oneOf": [
+          {
+            "properties": {
+              "includeTwitterMetaTags": {
+                "enum": [false]
+              }
+            }
+          },
+          {
+            "properties": {
+              "includeTwitterMetaTags": {
+                "enum": [true]
+              },
+              "twitterUsername": {
+                "title": "Twitter username",
+                "description": "The username your business uses on Twitter, for example: VTEXcommerce. (Do not include the @ sign)",
+                "type": "string"
+              },
+              "twitterCard": {
+                "title": "Twitter Card",
+                "description": "Please choose the type for the Twitter Card",
+                "type": "string",
+                "default": "summary",
+                "enum": ["photo", "summary", "summary_large_image"],
+                "enumNames": ["Photo", "Summary", "Summmary Large Image"]
               }
             }
           }
