@@ -7,7 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Fixed
-- Canonical url on search pages that explicitly need `map` query strings declarations
+- Canonical url on search pages that explicitly need `map` query strings declarations.
+- Canonical url on product pages when accessed with dIfFeReNt casing. It respects the linkText property now.
 
 ## [2.120.0] - 2021-06-28
 ### Changed
