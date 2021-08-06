@@ -9,6 +9,7 @@ export const useRuntime = () => {
       titleTag: 'Store TitleTag',
     }),
     culture: { currency: 'BRL', locale: 'pt-BR' },
+    route: {},
   }
 }
 
