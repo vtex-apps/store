@@ -197,7 +197,7 @@ function useTitle(product: Product) {
 }
 
 interface UseProductCanonicalLinkParams {
-  linkText: string
+  linkText?: string
 }
 
 function useProductCanonicalLink({ linkText }: UseProductCanonicalLinkParams) {
@@ -207,14 +207,21 @@ function useProductCanonicalLink({ linkText }: UseProductCanonicalLinkParams) {
     return null
   }
 
+  const rel = 'canonical'
+
+  if (!linkText) {
+    return {
+      rel,
+      href: encodeURI(canonicalLink),
+    }
+  }
+
   const lowerCaseLinkText = linkText.toLowerCase()
   const lowerCaseCanonical = canonicalLink.toLowerCase()
 
   const linkTextIndexOnCanonical = lowerCaseCanonical.lastIndexOf(
     lowerCaseLinkText
   )
-
-  const rel = 'canonical'
 
   if (linkTextIndexOnCanonical === -1) {
     return {
@@ -263,7 +270,7 @@ const ProductTitleAndPixel: FC<Props> = ({
   useProductEvents({ product, selectedItem, loading, listName })
 
   const productCanonical = useProductCanonicalLink({
-    linkText: product.linkText,
+    linkText: product?.linkText,
   })
 
   return (
