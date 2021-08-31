@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [2.120.1] - 2021-08-31
 ### Fixed
 - Canonical url on search pages that explicitly need `map` query strings declarations.
 - Canonical url on product pages when accessed with dIfFeReNt casing. It respects the linkText property now.
