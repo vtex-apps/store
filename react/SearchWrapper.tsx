@@ -16,6 +16,7 @@ import {
 } from 'vtex.render-runtime'
 import { SearchOpenGraph } from 'vtex.open-graph'
 import { ProductList as ProductListStructuredData } from 'vtex.structured-data'
+import queryString from 'query-string'
 
 import { capitalize } from './modules/capitalize'
 import useDataPixel from './hooks/useDataPixel'
@@ -116,21 +117,61 @@ const getSearchIdentifier = (
   return query + map + (orderBy ?? '') + (page ?? '')
 }
 
-function getCanonicalMaybeWithPage(canonicalLink: string, page: number) {
-  if (page <= 0) {
+interface GetSearchCanonicalParams {
+  canonicalLink: string
+  page?: number
+  map?: string
+}
+
+function shouldNotIncludeMap(map?: string) {
+  if (!map || map === 'b' || map === 'brand') {
+    return true
+  }
+
+  const mapTree = map.split(',')
+
+  if (mapTree.length > 3) {
+    return false
+  }
+
+  return mapTree.every(mapItem => mapItem === 'c')
+}
+
+function getSearchCanonical({
+  canonicalLink,
+  page,
+  map,
+}: GetSearchCanonicalParams) {
+  if (page !== null && page !== undefined && page < 1) {
     return null
   }
 
-  const canonicalWithPage = `${canonicalLink}?page=${page}`
+  const query = {
+    page: page !== undefined && page !== null && page > 1 ? page : undefined,
+    map: shouldNotIncludeMap(map) ? undefined : map,
+  }
+
+  const canonicalWithPage = queryString.stringifyUrl({
+    url: canonicalLink,
+    query,
+  })
 
   return canonicalWithPage
 }
 
-export function getHelmetLink(
-  canonicalLink: string | null,
-  page: number,
+interface GetHelmetLinkParams {
+  canonicalLink: string | null
+  page: number
+  map?: string
   rel: 'canonical' | 'prev' | 'next'
-) {
+}
+
+export function getHelmetLink({
+  canonicalLink,
+  page,
+  map,
+  rel,
+}: GetHelmetLinkParams) {
   if (!canonicalLink) {
     return null
   }
@@ -145,25 +186,19 @@ export function getHelmetLink(
     pageAfterTransformation = page - 1
   }
 
-  if (pageAfterTransformation === 1) {
-    return {
-      rel,
-      href: encodeURI(canonicalLink),
-    }
-  }
-
-  const canonicalMaybeWithPage = getCanonicalMaybeWithPage(
+  const canonicalWithParams = getSearchCanonical({
     canonicalLink,
-    pageAfterTransformation
-  )
+    page: pageAfterTransformation,
+    map,
+  })
 
-  if (!canonicalMaybeWithPage) {
+  if (!canonicalWithParams) {
     return null
   }
 
   return {
     rel,
-    href: encodeURI(canonicalMaybeWithPage),
+    href: canonicalWithParams,
   }
 }
 
@@ -342,10 +377,25 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
           },
         ].filter(Boolean)}
         link={[
-          getHelmetLink(canonicalLink, pageFromQuery, 'canonical'),
-          getHelmetLink(canonicalLink, pageFromQuery, 'prev'),
+          getHelmetLink({
+            canonicalLink,
+            page: pageFromQuery,
+            map,
+            rel: 'canonical',
+          }),
+          getHelmetLink({
+            canonicalLink,
+            page: pageFromQuery,
+            map,
+            rel: 'prev',
+          }),
           isNotLastPage(searchQuery.products, to, recordsFiltered)
-            ? getHelmetLink(canonicalLink, pageFromQuery, 'next')
+            ? getHelmetLink({
+                canonicalLink,
+                page: pageFromQuery,
+                map,
+                rel: 'next',
+              })
             : null,
         ].filter(Boolean)}
       />

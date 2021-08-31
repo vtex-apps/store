@@ -6,6 +6,7 @@ import { path } from 'ramda'
 import useDataPixel from '../hooks/useDataPixel'
 import { usePageView } from './PageViewPixel'
 import { PixelEvent } from '../typings/event'
+import { useCanonicalLink } from '../hooks/useCanonicalLink'
 
 const titleSeparator = ' - '
 
@@ -195,6 +196,54 @@ function useTitle(product: Product) {
   return title
 }
 
+interface UseProductCanonicalLinkParams {
+  linkText?: string
+}
+
+function useProductCanonicalLink({ linkText }: UseProductCanonicalLinkParams) {
+  const canonicalLink = useCanonicalLink()
+
+  if (!canonicalLink) {
+    return null
+  }
+
+  const rel = 'canonical'
+
+  if (!linkText) {
+    return {
+      rel,
+      href: encodeURI(canonicalLink),
+    }
+  }
+
+  const lowerCaseLinkText = linkText.toLowerCase()
+  const lowerCaseCanonical = canonicalLink.toLowerCase()
+
+  const linkTextIndexOnCanonical = lowerCaseCanonical.lastIndexOf(
+    lowerCaseLinkText
+  )
+
+  if (linkTextIndexOnCanonical === -1) {
+    return {
+      rel,
+      href: encodeURI(canonicalLink),
+    }
+  }
+
+  const canonicalBase = canonicalLink.substring(0, linkTextIndexOnCanonical)
+
+  const canonicalEnd = canonicalLink.substring(
+    linkTextIndexOnCanonical + linkText.length
+  )
+
+  const appropriateCanonical = `${canonicalBase}${linkText}${canonicalEnd}`
+
+  return {
+    rel,
+    href: encodeURI(appropriateCanonical),
+  }
+}
+
 interface Props {
   listName?: string
   product: Product
@@ -220,6 +269,10 @@ const ProductTitleAndPixel: FC<Props> = ({
   usePageInfo(title, product, loading)
   useProductEvents({ product, selectedItem, loading, listName })
 
+  const productCanonical = useProductCanonicalLink({
+    linkText: product?.linkText,
+  })
+
   return (
     <Helmet
       title={title}
@@ -229,6 +282,7 @@ const ProductTitleAndPixel: FC<Props> = ({
           content: metaTagDescription,
         },
       ].filter(Boolean)}
+      link={[productCanonical].filter(Boolean)}
     />
   )
 }
