@@ -99,7 +99,7 @@
         "description": "admin/store.searchTermPath.description"
       },
       "includeTwitterMetaTags": {
-        "title": "Include Twitter meta tags",
+        "title": "admin/store.includeTwitterMetaTags.title",
         "type": "boolean"
       },
       "advancedSettings": {
@@ -251,13 +251,13 @@
                 "enum": [true]
               },
               "twitterUsername": {
-                "title": "Twitter username",
-                "description": "The username your business uses on Twitter, for example: VTEXcommerce. (Do not include the @ sign)",
+                "title": "admin/store.twitterUsername.title",
+                "description": "admin/store.twitterUsername.description",
                 "type": "string"
               },
               "twitterCard": {
-                "title": "Twitter Card",
-                "description": "Please choose the type for the Twitter Card",
+                "title": "admin/store.twitterCard.title",
+                "description": "admin/store.twitterCard.description",
                 "type": "string",
                 "default": "summary",
                 "enum": ["photo", "summary", "summary_large_image"],
