@@ -10,7 +10,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - `Twitter meta tags` to all product pages.
 
-
 ## [2.120.0] - 2021-06-28
 ### Changed
 - Now gets `listName` from params, not from query string
