@@ -39,6 +39,7 @@
   "settingsSchema": {
     "title": "admin/store.title",
     "type": "object",
+    "bindingBounded": true,
     "properties": {
       "storeName": {
         "title": "admin/store.storeName.title",
@@ -88,10 +89,7 @@
               "type": "string"
             }
           },
-          "required": [
-            "rel",
-            "href"
-          ]
+          "required": ["rel", "href"]
         },
         "description": "admin/store.faviconLinks.description"
       },
@@ -215,18 +213,14 @@
           {
             "properties": {
               "requiresAuthorization": {
-                "enum": [
-                  false
-                ]
+                "enum": [false]
               }
             }
           },
           {
             "properties": {
               "requiresAuthorization": {
-                "enum": [
-                  true
-                ]
+                "enum": [true]
               },
               "b2bEnabled": {
                 "title": "admin/store.b2benabled.title",
@@ -247,12 +241,7 @@
     "b2bEnabled": {
       "ui:disabled": "true"
     },
-    "ui:order": [
-      "storeName",
-      "requiresAuthorization",
-      "b2bEnabled",
-      "*"
-    ]
+    "ui:order": ["storeName", "requiresAuthorization", "b2bEnabled", "*"]
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
