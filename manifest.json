@@ -260,8 +260,8 @@
                 "description": "admin/store.twitterCard.description",
                 "type": "string",
                 "default": "summary",
-                "enum": ["photo", "summary", "summary_large_image"],
-                "enumNames": ["Photo", "Summary", "Summmary Large Image"]
+                "enum": ["summary", "summary_large_image"],
+                "enumNames": ["Summary", "Summary with Large Image"]
               }
             }
           }
