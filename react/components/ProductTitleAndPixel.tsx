@@ -25,6 +25,12 @@ interface Product {
   metaTagDescription: string
   productReference: string
   items: SKU[]
+  properties: ProductProperties[]
+}
+
+interface ProductProperties {
+  name: string
+  values: string[]
 }
 
 interface ProductViewEvent {
@@ -40,6 +46,7 @@ interface ProductViewEvent {
   productName: string
   items: SKUEvent[]
   selectedSku: SKUEvent
+  properties: ProductProperties[]
 }
 
 interface Category {
@@ -161,6 +168,7 @@ function useProductEvents({
       productName: product.productName,
       items: product.items.map(getSkuProperties),
       selectedSku: getSkuProperties(selectedItem),
+      properties: product.properties
     }
 
     return [
