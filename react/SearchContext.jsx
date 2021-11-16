@@ -69,19 +69,28 @@ const SearchContext = ({
     .replace(/\/\//g, '/') // This cleans some bad cases of two // on some terms.
 
   const getCorrectQueryValue = () => {
+    let queryValue = query
+
     // Checks if this is on the format of preventRouteChange and get the correct data
     if (areFieldsFromQueryStringValid) {
-      return fieldsFromQueryString.queryField
+      queryValue = fieldsFromQueryString.queryField
     }
+
     // Normal query format, without preventRouteChange
-    if (queryField) {
-      return queryField
+    else if (queryField) {
+      queryValue = queryField
     }
+
     // Legacy search
-    if (rest && rest.length > 0) {
-      return `${query}/${rest.replace(',', '/')}`
+    else if (rest && rest.length > 0) {
+      queryValue = `${query}/${rest.replace(',', '/')}`
     }
-    return query
+
+    try {
+      return decodeURIComponent(queryValue)
+    } catch {
+      return queryValue
+    }
   }
 
   const queryValue = getCorrectQueryValue()
