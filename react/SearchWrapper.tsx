@@ -392,7 +392,7 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
           getHelmetLink({
             canonicalLink,
             page: pageFromQuery,
-            map,
+            map: (settings.canonicalWithUrlParams ? map : ''),
             rel: 'canonical',
           }),
           getHelmetLink({

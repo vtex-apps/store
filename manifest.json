@@ -211,6 +211,12 @@
             "description": "admin/store.advancedSettings.enablePageNumberTitle.description",
             "type": "boolean",
             "default": false
+          },
+          "canonicalWithUrlParams": {
+            "title": "admin/store.advancedSettings.canonicalWithUrlParams.title",
+            "description": "admin/store.advancedSettings.canonicalWithUrlParams.description",
+            "type": "boolean",
+            "default": false
           }
         }
       }

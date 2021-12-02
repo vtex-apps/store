@@ -80,6 +80,11 @@
           "title": "Enable Page Number Title",
           "type": "boolean",
           "description": "Indicate the search path of your store"
+        },
+        "canonicalWithUrlParams": {
+          "title": "Show canonical url with params Title",
+          "type": "boolean",
+          "description": "Show canonical url with params (description)"
         }
       }
     }
