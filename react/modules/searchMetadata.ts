@@ -73,6 +73,7 @@ export const getCategoryMetadata = (searchQuery?: SearchQueryData) => {
 }
 
 export const getSearchMetadata = (searchQuery?: SearchQueryData) => {
+  console.log('getSearchMetadata')
   if (
     !searchQuery ||
     !searchQuery.productSearch ||
@@ -92,6 +93,9 @@ export const getSearchMetadata = (searchQuery?: SearchQueryData) => {
   }
 
   const department = getDepartment(searchQuery)
+
+  console.log('searchTerm', searchTerm)
+  console.log(' searchQuery.productSearch', searchQuery.productSearch)
 
   return {
     term: decodeURIComponent(searchTerm),

@@ -13,6 +13,7 @@ import {
   LoadingContextProvider,
   canUseDOM,
   RuntimeWithRoute,
+  StoreSettings,
 } from 'vtex.render-runtime'
 import { SearchOpenGraph } from 'vtex.open-graph'
 import { ProductList as ProductListStructuredData } from 'vtex.structured-data'
@@ -78,6 +79,7 @@ interface GetTitleTagParams {
   storeTitle: string
   term?: string
   pageTitle?: string
+  pageNumber?: number
 }
 
 const getTitleTag = ({
@@ -85,21 +87,24 @@ const getTitleTag = ({
   storeTitle,
   term,
   pageTitle,
+  pageNumber = 0
 }: GetTitleTagParams) => {
+  const titleNumber = pageNumber > 0 ? ` #${pageNumber}` : ''
+
   if (titleTag) {
     try {
-      return `${decodeURIComponent(titleTag)} - ${storeTitle}`
+      return `${decodeURIComponent(titleTag)}${titleNumber} - ${storeTitle}`
     } catch {
-      return `${titleTag} - ${storeTitle}`
+      return `${titleTag}${titleNumber} - ${storeTitle}`
     }
   }
 
   if (pageTitle) {
-    return `${decodeURIComponent(pageTitle)} - ${storeTitle}`
+    return `${decodeURIComponent(pageTitle)}${titleNumber} - ${storeTitle}`
   }
 
   return term
-    ? `${capitalize(decodeURIComponent(term))} - ${storeTitle}`
+    ? `${capitalize(decodeURIComponent(term))}${titleNumber} - ${storeTitle}`
     : `${storeTitle}`
 }
 
@@ -189,7 +194,7 @@ export function getHelmetLink({
   const canonicalWithParams = getSearchCanonical({
     canonicalLink,
     page: pageAfterTransformation,
-    map,
+    map: true ? '' : map,
   })
 
   if (!canonicalWithParams) {
@@ -276,20 +281,27 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
     to,
     children,
   } = props
+  console.log('searchQuery', searchQuery)
   const {
     account,
     getSettings,
     query: { page },
     route: { title: pageTitle, metaTags },
   } = useRuntime() as RuntimeWithRoute
-  const settings = getSettings(APP_LOCATOR) || {}
+
+  const settings = getSettings(APP_LOCATOR) || {} as StoreSettings
+  console.log('settings', settings)
   const loading = searchQuery ? searchQuery.loading : undefined
-  const { titleTag: defaultStoreTitle, storeName } = settings
+  const { titleTag: defaultStoreTitle, storeName, enablePageNumberTitle } = settings
+
+  console.log('enablePageNumberTitle', enablePageNumberTitle)
+
   const title = getTitleTag({
     titleTag,
     storeTitle: storeName || defaultStoreTitle,
     term: params.term,
     pageTitle,
+    pageNumber: enablePageNumberTitle ? +page: 0
   })
 
   const canonicalLink = useCanonicalLink()

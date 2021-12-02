@@ -75,6 +75,11 @@
               "description": "This setting disables the legacy orderForm provider. More at: https://vtex.io/docs/recipes/store-management/enabling-order-form-optimization."
             }
           }
+        },
+        "enablePageNumberTitle": {
+          "title": "Enable Page Number Title",
+          "type": "boolean",
+          "description": "Indicate the search path of your store"
         }
       }
     }

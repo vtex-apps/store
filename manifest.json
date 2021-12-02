@@ -205,6 +205,12 @@
             "description": "admin/store.advancedSettings.enableLazyFold.description",
             "type": "boolean",
             "default": false
+          },
+          "enablePageNumberTitle": {
+            "title": "admin/store.advancedSettings.enablePageNumberTitle.title",
+            "description": "admin/store.advancedSettings.enablePageNumberTitle.description",
+            "type": "boolean",
+            "default": false
           }
         }
       }
