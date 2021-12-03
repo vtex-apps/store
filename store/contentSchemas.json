@@ -52,10 +52,7 @@
                 "type": "string"
               }
             },
-            "required": [
-              "rel",
-              "href"
-            ]
+            "required": ["rel", "href"]
           },
           "description": "Configure your store's favicons"
         },
@@ -79,12 +76,17 @@
         "enablePageNumberTitle": {
           "title": "Enable Page Number Title",
           "type": "boolean",
-          "description": "Indicate the search path of your store"
+          "description": "Show page number in the title"
         },
         "canonicalWithUrlParams": {
-          "title": "Show canonical url with params Title",
+          "title": "Show canonical url with params",
           "type": "boolean",
           "description": "Show canonical url with params (description)"
+        },
+        "removeStoreNameTitle": {
+          "title": "Enable Store Name Title",
+          "type": "boolean",
+          "description": "Show store name in the title"
         }
       }
     }

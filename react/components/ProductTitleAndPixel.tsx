@@ -179,6 +179,7 @@ function useProductEvents({
 }
 
 function useTitle(product: Product) {
+  // TODO: check title here
   const { getSettings } = useRuntime()
   const { titleTag = undefined, productName = undefined } = product || {}
   let title = titleTag ?? productName ?? ''
@@ -257,8 +258,9 @@ const ProductTitleAndPixel: FC<Props> = ({
   loading,
   listName,
 }) => {
+  // console.log('ProductTitleAndPixel')
   const { metaTagDescription = undefined } = product || {}
-  const title = useTitle(product)
+  const title = `${useTitle(product)}_DEMO`
 
   const pixelCacheKey = path<string>(['linkText'], product)
   usePageView({

@@ -74,12 +74,21 @@ const getPageEventName = (
   return (mapEvent[category] || fallbackView) as PageEventName
 }
 
+const getDecodeURIComponent = (encodedURIComponent: string) => {
+  try {
+    return decodeURIComponent(encodedURIComponent)
+  } catch {
+    return encodedURIComponent
+  }
+}
+
 interface GetTitleTagParams {
   titleTag: string
   storeTitle: string
   term?: string
   pageTitle?: string
   pageNumber?: number
+  removeStoreNameTitle?: boolean
 }
 
 const getTitleTag = ({
@@ -87,25 +96,31 @@ const getTitleTag = ({
   storeTitle,
   term,
   pageTitle,
-  pageNumber = 0
+  pageNumber = 0,
+  removeStoreNameTitle,
 }: GetTitleTagParams) => {
   const titleNumber = pageNumber > 0 ? ` #${pageNumber}` : ''
+  const storeTitleFormatted = removeStoreNameTitle ? ` - ${storeTitle}` : ''
 
   if (titleTag) {
-    try {
-      return `${decodeURIComponent(titleTag)}${titleNumber} - ${storeTitle}`
-    } catch {
-      return `${titleTag}${titleNumber} - ${storeTitle}`
-    }
+    return `${getDecodeURIComponent(
+      titleTag
+    )}${titleNumber}${storeTitleFormatted}`
   }
 
   if (pageTitle) {
-    return `${decodeURIComponent(pageTitle)}${titleNumber} - ${storeTitle}`
+    return `${getDecodeURIComponent(
+      pageTitle
+    )}${titleNumber}${storeTitleFormatted}`
   }
 
-  return term
-    ? `${capitalize(decodeURIComponent(term))}${titleNumber} - ${storeTitle}`
-    : `${storeTitle}`
+  if (term) {
+    return `${capitalize(
+      getDecodeURIComponent(term)
+    )}${titleNumber}${storeTitleFormatted}`
+  }
+
+  return `${storeTitle}`
 }
 
 const getSearchIdentifier = (
@@ -194,7 +209,7 @@ export function getHelmetLink({
   const canonicalWithParams = getSearchCanonical({
     canonicalLink,
     page: pageAfterTransformation,
-    map: true ? '' : map,
+    map,
   })
 
   if (!canonicalWithParams) {
@@ -281,7 +296,6 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
     to,
     children,
   } = props
-  console.log('searchQuery', searchQuery)
   const {
     account,
     getSettings,
@@ -289,19 +303,28 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
     route: { title: pageTitle, metaTags },
   } = useRuntime() as RuntimeWithRoute
 
-  const settings = getSettings(APP_LOCATOR) || {} as StoreSettings
-  console.log('settings', settings)
+  const settings = getSettings(APP_LOCATOR) || ({} as StoreSettings)
   const loading = searchQuery ? searchQuery.loading : undefined
-  const { titleTag: defaultStoreTitle, storeName, enablePageNumberTitle } = settings
+  const {
+    titleTag: defaultStoreTitle,
+    storeName,
+    enablePageNumberTitle = false,
+    canonicalWithUrlParams = false,
+    removeStoreNameTitle = false,
+  } = settings
 
-  console.log('enablePageNumberTitle', enablePageNumberTitle)
+  // console.log('enablePageNumberTitle', enablePageNumberTitle)
+  // console.log('canonicalWithUrlParams', canonicalWithUrlParams)
+  // console.log('removeStoreNameTitle', removeStoreNameTitle)
+  // console.log('storeName: ', storeName, '\ndefaultStoreTitle: ', defaultStoreTitle)
 
   const title = getTitleTag({
     titleTag,
     storeTitle: storeName || defaultStoreTitle,
     term: params.term,
     pageTitle,
-    pageNumber: enablePageNumberTitle ? +page: 0
+    pageNumber: enablePageNumberTitle ? +page : 0,
+    removeStoreNameTitle,
   })
 
   const canonicalLink = useCanonicalLink()
@@ -373,7 +396,6 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
   }, [loading])
 
   const CustomContextElement = CustomContext ?? Fragment
-
   return (
     <Fragment>
       <Helmet
@@ -392,7 +414,7 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
           getHelmetLink({
             canonicalLink,
             page: pageFromQuery,
-            map: (settings.canonicalWithUrlParams ? map : ''),
+            map: canonicalWithUrlParams ? map : '',
             rel: 'canonical',
           }),
           getHelmetLink({
