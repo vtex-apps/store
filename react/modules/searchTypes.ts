@@ -22,10 +22,21 @@ export interface SearchQueryData {
       misspelled: boolean
     }
   }
-  facets?: {
-    categoriesTrees?: CategoriesTrees[]
-    queryArgs?: QueryArgs
-  }
+  facets?: Facets
+}
+
+export interface Facets {
+  categoriesTrees?: CategoriesTrees[]
+  queryArgs?: QueryArgs
+  specificationFilters?: SpecificationFilter[]
+}
+
+interface SpecificationFilter {
+  facets?: any[]
+  hidden: boolean
+  name: string
+  quantity: number
+  type: string
 }
 
 export interface Breadcrumb {
