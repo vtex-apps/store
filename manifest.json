@@ -213,13 +213,13 @@
             "title": "admin/store.advancedSettings.canonicalWithUrlParams.title",
             "description": "admin/store.advancedSettings.canonicalWithUrlParams.description",
             "type": "boolean",
-            "default": false
+            "default": true
           },
           "removeStoreNameTitle": {
             "title": "admin/store.advancedSettings.removeStoreNameTitle.title",
             "description": "admin/store.advancedSettings.removeStoreNameTitle.description",
             "type": "boolean",
-            "default": true
+            "default": false
           }
         }
       }

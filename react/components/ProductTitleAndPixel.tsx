@@ -185,8 +185,9 @@ function useTitle(product: Product) {
   let title = titleTag ?? productName ?? ''
 
   const settings = getSettings(STORE_APP)
+  // console.log('settings', settings)
 
-  if (settings) {
+  if (settings?.removeStoreNameTitle === false) {
     const { storeName, titleTag: storeTitleTag } = settings
     const storeData = storeName || storeTitleTag
     if (storeData) {
@@ -258,9 +259,8 @@ const ProductTitleAndPixel: FC<Props> = ({
   loading,
   listName,
 }) => {
-  // console.log('ProductTitleAndPixel')
   const { metaTagDescription = undefined } = product || {}
-  const title = `${useTitle(product)}_DEMO`
+  const title = `${useTitle(product)}`
 
   const pixelCacheKey = path<string>(['linkText'], product)
   usePageView({
