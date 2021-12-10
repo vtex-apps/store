@@ -74,11 +74,11 @@
           }
         },
         "enablePageNumberTitle": {
-          "title": "Enable Page Number Title",
+          "title": "Enable page number in meta title",
           "type": "boolean",
           "description": "Show page number in the title"
         },
-        "canonicalWithUrlParams": {
+        "canonicalWithoutUrlParams": {
           "title": "Show canonical url with params",
           "type": "boolean",
           "description": "Show canonical url with params (description)"

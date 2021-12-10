@@ -312,15 +312,15 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
   } = useRuntime() as RuntimeWithRoute
 
   const settings = getSettings(APP_LOCATOR) || ({} as StoreSettings)
+  // console.log('settings', settings)
   const loading = searchQuery ? searchQuery.loading : undefined
   const {
     titleTag: defaultStoreTitle,
     storeName,
     enablePageNumberTitle = false,
-    canonicalWithUrlParams = true,
+    canonicalWithoutUrlParams = false,
     removeStoreNameTitle = false,
   } = settings
-  // console.log('settings', settings)
 
   const title = getTitleTag({
     titleTag,
@@ -418,7 +418,7 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
           getHelmetLink({
             canonicalLink,
             page: pageFromQuery,
-            map: canonicalWithUrlParams ? map : '',
+            map: canonicalWithoutUrlParams ? '' : map,
             rel: 'canonical',
           }),
           getHelmetLink({

@@ -209,11 +209,11 @@
             "type": "boolean",
             "default": false
           },
-          "canonicalWithUrlParams": {
-            "title": "admin/store.advancedSettings.canonicalWithUrlParams.title",
-            "description": "admin/store.advancedSettings.canonicalWithUrlParams.description",
+          "canonicalWithoutUrlParams": {
+            "title": "admin/store.advancedSettings.canonicalWithoutUrlParams.title",
+            "description": "admin/store.advancedSettings.canonicalWithoutUrlParams.description",
             "type": "boolean",
-            "default": true
+            "default": false
           },
           "removeStoreNameTitle": {
             "title": "admin/store.advancedSettings.removeStoreNameTitle.title",

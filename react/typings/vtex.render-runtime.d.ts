@@ -33,7 +33,7 @@ declare module 'vtex.render-runtime' {
     storeName: string
     titleTag: string
     enablePageNumberTitle: boolean
-    canonicalWithUrlParams: boolean
+    canonicalWithoutUrlParams: boolean
     removeStoreNameTitle: boolean
   }
 
