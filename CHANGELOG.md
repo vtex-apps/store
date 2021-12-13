@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Set new settings for:
+  - Add a #{Number} to the end of the title to avoid the title duplication issue
+  - Remove map parameter from canonical url. May cause issues when going to a page with facets selected. Test with caution after turning it on
+  - Remove store name at the end of Product and Category meta titles
 
 ## [2.120.1] - 2021-08-31
 ### Fixed
@@ -18,7 +23,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [2.119.0] - 2021-06-09
 ### Added
-- `list` to `productView` GTM event (`productDetail`) 
+- `list` to `productView` GTM event (`productDetail`)
 
 ## [2.118.0] - 2021-06-08
 ### Changed
