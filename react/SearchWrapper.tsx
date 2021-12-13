@@ -196,17 +196,10 @@ export function getHelmetLink({
     return null
   }
 
-  // console.log('\ncanonicalLink: ',canonicalLink,
-  //   '\npage: ',page,
-  //   '\nmap: ',map,
-  //   '\nrel: ',rel)
-
   let pageAfterTransformation = 0
 
   if (rel === 'canonical') {
     pageAfterTransformation = page
-
-    // console.log('canonical map', map )
   } else if (rel === 'next') {
     pageAfterTransformation = page + 1
   } else if (rel === 'prev') {
@@ -303,7 +296,6 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
     to,
     children,
   } = props
-  // console.log('map', map)
   const {
     account,
     getSettings,
@@ -312,7 +304,6 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
   } = useRuntime() as RuntimeWithRoute
 
   const settings = getSettings(APP_LOCATOR) || ({} as StoreSettings)
-  // console.log('settings', settings)
   const loading = searchQuery ? searchQuery.loading : undefined
   const {
     titleTag: defaultStoreTitle,

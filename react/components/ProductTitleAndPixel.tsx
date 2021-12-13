@@ -179,13 +179,11 @@ function useProductEvents({
 }
 
 function useTitle(product: Product) {
-  // TODO: check title here
   const { getSettings } = useRuntime()
   const { titleTag = undefined, productName = undefined } = product || {}
   let title = titleTag ?? productName ?? ''
 
   const settings = getSettings(STORE_APP)
-  // console.log('settings', settings)
 
   if (settings?.removeStoreNameTitle === false) {
     const { storeName, titleTag: storeTitleTag } = settings
