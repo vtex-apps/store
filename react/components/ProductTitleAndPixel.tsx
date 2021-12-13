@@ -258,7 +258,7 @@ const ProductTitleAndPixel: FC<Props> = ({
   listName,
 }) => {
   const { metaTagDescription = undefined } = product || {}
-  const title = `${useTitle(product)}`
+  const title = useTitle(product)
 
   const pixelCacheKey = path<string>(['linkText'], product)
   usePageView({
