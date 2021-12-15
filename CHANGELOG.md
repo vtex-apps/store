@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Add Open Graph `<meta>` to `store.custom` pages
+
 ### Fixed
 - Category and department metadata when `categoriesTree` doesn't exist.
 
