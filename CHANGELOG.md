@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [2.120.3] - 2021-12-20
 ### Fixed
 - Search's `query` is now URL decoded whenever possible. This avoids unnecessary updates on the page when the query contain spaces coded as `%20`, for example, and makes "Show More" functionality work correctly.
 
