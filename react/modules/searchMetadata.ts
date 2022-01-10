@@ -122,10 +122,21 @@ export const getSearchMetadata = (searchQuery?: SearchQueryData) => {
     return
   }
 
+  let decodedTerm = ''
+  
+  // This try catch works to prevent decoding terms when having % on the end 
+  // and the decode isn't necessary
+
+  try {
+    decodedTerm = decodeURIComponent(searchTerm)
+  } catch (e) {
+    decodedTerm = decodeURIComponent(encodeURIComponent(searchTerm))
+  }
+
   const department = getDepartment(searchQuery)
 
   return {
-    term: decodeURIComponent(searchTerm),
+    term: decodedTerm,
     category: department ? { id: department.id, name: department.name } : null,
     results: searchQuery.productSearch.recordsFiltered,
     operator: searchQuery.productSearch.operator,
