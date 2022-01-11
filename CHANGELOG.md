@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## Fixed
+### Fixed
 - Adjusted the logic on the searchMetadata file to avoid URI malformed error on searches with % at the end and keep the older logic working.
 
 ## [2.120.3] - 2021-12-20
