@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Adjusted the logic on the searchMetadata file to avoid URI malformed error on searches with % at the end and keep the older logic working.
+
 ## [2.121.0] - 2022-01-13
 ### Added
 - Add Open Graph `<meta>` to `store.custom` pages
