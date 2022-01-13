@@ -318,7 +318,7 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
     storeTitle: storeName || defaultStoreTitle,
     term: params.term,
     pageTitle,
-    pageNumber: enablePageNumberTitle ? +page : 0,
+    pageNumber: enablePageNumberTitle ? Number(page) : 0,
     removeStoreNameTitle,
   })
 
