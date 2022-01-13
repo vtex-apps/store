@@ -120,7 +120,7 @@ const getTitleTag = ({
     )}${titleNumber}${storeTitleFormatted}`
   }
 
-  return `${storeTitle}`
+  return storeTitle
 }
 
 const getSearchIdentifier = (
