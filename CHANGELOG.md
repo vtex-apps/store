@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- `SearchContext` query params with blank space.
+
 ## [2.121.1] - 2022-01-13
 
 ### Fixed

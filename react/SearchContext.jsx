@@ -65,6 +65,7 @@ const SearchContext = ({
   const { id, ...searchParams } = params
   const query = Object.values(searchParams)
     .filter(term => term && term.length > 0)
+    .map(term => term.trim())
     .join('/')
     .replace(/\/\//g, '/') // This cleans some bad cases of two // on some terms.
 
