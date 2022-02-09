@@ -99,6 +99,11 @@ const getTitleTag = ({
   pageNumber = 0,
   removeStoreNameTitle,
 }: GetTitleTagParams) => {
+  /*
+  titleNumber and storeTitleFormatted depend on the value of enablePageNumberTitle and removeStoreNameTitle params,
+  by default, the value of enablePageNumberTitle and removeStoreNameTitle is false, only if the value of these
+  parameters is true, it will affect the value of titleNumber or storeTitleFormatted
+  */
   const titleNumber = pageNumber > 0 ? ` #${pageNumber}` : ''
   const storeTitleFormatted = removeStoreNameTitle ? '' : ` - ${storeTitle}`
 
