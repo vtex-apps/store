@@ -13,6 +13,7 @@ import {
   LoadingContextProvider,
   canUseDOM,
   RuntimeWithRoute,
+  StoreSettings,
 } from 'vtex.render-runtime'
 import { SearchOpenGraph } from 'vtex.open-graph'
 import { ProductList as ProductListStructuredData } from 'vtex.structured-data'
@@ -73,11 +74,21 @@ const getPageEventName = (
   return (mapEvent[category] || fallbackView) as PageEventName
 }
 
+const getDecodeURIComponent = (encodedURIComponent: string) => {
+  try {
+    return decodeURIComponent(encodedURIComponent)
+  } catch {
+    return encodedURIComponent
+  }
+}
+
 interface GetTitleTagParams {
   titleTag: string
   storeTitle: string
   term?: string
   pageTitle?: string
+  pageNumber?: number
+  removeStoreNameTitle?: boolean
 }
 
 const getTitleTag = ({
@@ -85,22 +96,36 @@ const getTitleTag = ({
   storeTitle,
   term,
   pageTitle,
+  pageNumber = 0,
+  removeStoreNameTitle,
 }: GetTitleTagParams) => {
+  /*
+  titleNumber and storeTitleFormatted depend on the value of enablePageNumberTitle and removeStoreNameTitle params,
+  by default, the value of enablePageNumberTitle and removeStoreNameTitle is false, only if the value of these
+  parameters is true, it will affect the value of titleNumber or storeTitleFormatted
+  */
+  const titleNumber = pageNumber > 0 ? ` #${pageNumber}` : ''
+  const storeTitleFormatted = removeStoreNameTitle ? '' : ` - ${storeTitle}`
+
   if (titleTag) {
-    try {
-      return `${decodeURIComponent(titleTag)} - ${storeTitle}`
-    } catch {
-      return `${titleTag} - ${storeTitle}`
-    }
+    return `${getDecodeURIComponent(
+      titleTag
+    )}${titleNumber}${storeTitleFormatted}`
   }
 
   if (pageTitle) {
-    return `${decodeURIComponent(pageTitle)} - ${storeTitle}`
+    return `${getDecodeURIComponent(
+      pageTitle
+    )}${titleNumber}${storeTitleFormatted}`
   }
 
-  return term
-    ? `${capitalize(decodeURIComponent(term))} - ${storeTitle}`
-    : `${storeTitle}`
+  if (term) {
+    return `${capitalize(
+      getDecodeURIComponent(term)
+    )}${titleNumber}${storeTitleFormatted}`
+  }
+
+  return storeTitle
 }
 
 const getSearchIdentifier = (
@@ -282,14 +307,24 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
     query: { page },
     route: { title: pageTitle, metaTags },
   } = useRuntime() as RuntimeWithRoute
-  const settings = getSettings(APP_LOCATOR) || {}
+
+  const settings = getSettings(APP_LOCATOR) || ({} as StoreSettings)
   const loading = searchQuery ? searchQuery.loading : undefined
-  const { titleTag: defaultStoreTitle, storeName } = settings
+  const {
+    titleTag: defaultStoreTitle,
+    storeName,
+    enablePageNumberTitle = false,
+    canonicalWithoutUrlParams = false,
+    removeStoreNameTitle = false,
+  } = settings
+
   const title = getTitleTag({
     titleTag,
     storeTitle: storeName || defaultStoreTitle,
     term: params.term,
     pageTitle,
+    pageNumber: enablePageNumberTitle ? Number(page) : 0,
+    removeStoreNameTitle,
   })
 
   const canonicalLink = useCanonicalLink()
@@ -361,7 +396,6 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
   }, [loading])
 
   const CustomContextElement = CustomContext ?? Fragment
-
   return (
     <Fragment>
       <Helmet
@@ -380,7 +414,7 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
           getHelmetLink({
             canonicalLink,
             page: pageFromQuery,
-            map,
+            map: canonicalWithoutUrlParams ? '' : map,
             rel: 'canonical',
           }),
           getHelmetLink({

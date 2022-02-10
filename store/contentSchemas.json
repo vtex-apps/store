@@ -52,10 +52,7 @@
                 "type": "string"
               }
             },
-            "required": [
-              "rel",
-              "href"
-            ]
+            "required": ["rel", "href"]
           },
           "description": "Configure your store's favicons"
         },
@@ -75,6 +72,21 @@
               "description": "This setting disables the legacy orderForm provider. More at: https://vtex.io/docs/recipes/store-management/enabling-order-form-optimization."
             }
           }
+        },
+        "enablePageNumberTitle": {
+          "title": "Enable page number in meta title",
+          "type": "boolean",
+          "description": "Add a #{Number} to the end of the title to avoid the title duplication issue."
+        },
+        "canonicalWithoutUrlParams": {
+          "title": "Canonical url without url params",
+          "type": "boolean",
+          "description": "Remove map parameter from canonical url. May cause issues when going to a page with facets selected. Test with caution after turning it on."
+        },
+        "removeStoreNameTitle": {
+          "title": "Remove store name from title",
+          "type": "boolean",
+          "description": "Remove store name at the end of Product and Category meta titles."
         }
       }
     }
