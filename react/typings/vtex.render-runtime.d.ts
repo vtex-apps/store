@@ -32,6 +32,9 @@ declare module 'vtex.render-runtime' {
   interface StoreSettings {
     storeName: string
     titleTag: string
+    enablePageNumberTitle: boolean
+    canonicalWithoutUrlParams: boolean
+    removeStoreNameTitle: boolean
   }
 
   interface KeyValue {

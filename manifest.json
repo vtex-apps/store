@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "store",
-  "version": "2.120.1",
+  "version": "2.122.0",
   "title": "VTEX Store",
   "description": "The VTEX basic store.",
   "builders": {
@@ -201,6 +201,24 @@
           "enableLazyFold": {
             "title": "admin/store.advancedSettings.enableLazyFold.title",
             "description": "admin/store.advancedSettings.enableLazyFold.description",
+            "type": "boolean",
+            "default": false
+          },
+          "enablePageNumberTitle": {
+            "title": "admin/store.advancedSettings.enablePageNumberTitle.title",
+            "description": "admin/store.advancedSettings.enablePageNumberTitle.description",
+            "type": "boolean",
+            "default": false
+          },
+          "canonicalWithoutUrlParams": {
+            "title": "admin/store.advancedSettings.canonicalWithoutUrlParams.title",
+            "description": "admin/store.advancedSettings.canonicalWithoutUrlParams.description",
+            "type": "boolean",
+            "default": false
+          },
+          "removeStoreNameTitle": {
+            "title": "admin/store.advancedSettings.removeStoreNameTitle.title",
+            "description": "admin/store.advancedSettings.removeStoreNameTitle.description",
             "type": "boolean",
             "default": false
           }

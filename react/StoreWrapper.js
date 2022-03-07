@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-filename-extension */
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useMemo } from 'react'
 import {
   canUseDOM,
   ExtensionPoint,
@@ -27,6 +27,7 @@ const APP_LOCATOR = 'vtex.store'
 const CONTENT_TYPE = 'text/html; charset=utf-8'
 const META_ROBOTS = 'index, follow'
 const MOBILE_SCALING = 'width=device-width, initial-scale=1'
+const CUSTOM_PAGE = 'store.custom'
 
 const isSiteEditorIframe = () => {
   try {
@@ -36,6 +37,15 @@ const isSiteEditorIframe = () => {
   } catch {
     return false
   }
+}
+
+const getCustomPagesOpenGraph = ({ title, description, url }) => {
+  return [
+    { property: 'og:type', content: 'website' },
+    { property: 'og:title', content: title },
+    { property: 'og:url', content: url },
+    { property: 'og:description', content: description },
+  ]
 }
 
 const useFavicons = faviconLinks => {
@@ -59,7 +69,7 @@ const StoreWrapper = ({ children, CustomContext }) => {
     amp,
     culture: { country, locale, currency },
     route,
-    route: { metaTags, title: pageTitle },
+    route: { metaTags, title: pageTitle, rootName },
     getSettings,
     rootPath = '',
     prefetchDefaultPages,
@@ -108,6 +118,8 @@ const StoreWrapper = ({ children, CustomContext }) => {
 
   const CustomContextElement = CustomContext || Fragment
 
+  const isCustomPage = useMemo(() => rootName.includes(CUSTOM_PAGE), [rootName])
+
   const content = (
     <OrderQueueProvider>
       <OrderFormProviderCheckout>
@@ -124,6 +136,13 @@ const StoreWrapper = ({ children, CustomContext }) => {
       <Helmet
         title={title}
         meta={[
+          ...(isCustomPage
+            ? getCustomPagesOpenGraph({
+                title,
+                description,
+                url: canonicalLink,
+              })
+            : []),
           // viewport meta tag is already handled in render-server for AMP pages
           !amp && { name: 'viewport', content: MOBILE_SCALING },
           { name: 'description', content: description },

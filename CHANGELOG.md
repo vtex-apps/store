@@ -6,9 +6,31 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-
 ### Added
 - Handle app settings by bindings.
+
+## [2.122.0] - 2022-02-10
+### Added
+- Set new settings for:
+  - Add a #{Number} to the end of the title to avoid the title duplication issue
+  - Remove map parameter from canonical url. May cause issues when going to a page with facets selected. Test with caution after turning it on
+  - Remove store name at the end of Product and Category meta titles
+
+## [2.121.1] - 2022-01-13
+
+### Fixed
+- Adjusted the logic on the searchMetadata file to avoid URI malformed error on searches with % at the end and keep the older logic working.
+
+## [2.121.0] - 2022-01-13
+### Added
+- Add Open Graph `<meta>` to `store.custom` pages
+
+## [2.120.3] - 2021-12-20
+### Fixed
+- Search's `query` is now URL decoded whenever possible. This avoids unnecessary updates on the page when the query contain spaces coded as `%20`, for example, and makes "Show More" functionality work correctly.
+
+### Fixed
+- Category and department metadata when `categoriesTree` doesn't exist.
 
 ## [2.120.1] - 2021-08-31
 ### Fixed
@@ -21,7 +43,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [2.119.0] - 2021-06-09
 ### Added
-- `list` to `productView` GTM event (`productDetail`) 
+- `list` to `productView` GTM event (`productDetail`)
 
 ## [2.118.0] - 2021-06-08
 ### Changed
