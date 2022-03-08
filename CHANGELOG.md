@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Arabic, Norwegian and Norwegian variant translations.
+
 ## [2.122.0] - 2022-02-10
 ### Added
 - Set new settings for:
