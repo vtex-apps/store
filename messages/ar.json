@@ -1,0 +1,6 @@
+{
+  "admin/editor.product-search.title": "سياق البحث عن المنتج",
+  "admin/editor.product-search.maxItemsPerPage": "الحد الأقصى لعدد العناصر في كل صفحة",
+  "admin/editor.product-search.hideUnavailableItems": "إخفاء العناصر غير المتاحة",
+  "store/store.network-status.offline": "لا يوجد اتصال بالإنترنت."
+}

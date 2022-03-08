@@ -1,0 +1,6 @@
+{
+  "admin/editor.product-search.title": "Produktsøk kontekst",
+  "admin/editor.product-search.maxItemsPerPage": "Maksimalt antall varer per side",
+  "admin/editor.product-search.hideUnavailableItems": "Skjul utilgjengelige varer",
+  "store/store.network-status.offline": "Ingen Internett-forbindelse."
+}
