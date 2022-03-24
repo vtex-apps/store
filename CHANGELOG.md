@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Bug where queries with `/` are not being encoded.
+
 ## [2.123.0] - 2022-03-08
 ### Added
 - Arabic, Norwegian and Norwegian variant translations.
