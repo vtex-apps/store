@@ -87,7 +87,7 @@ const SearchContext = ({
     }
 
     try {
-      return decodeURIComponent(queryValue)
+      return decodeURI(queryValue)
     } catch {
       return queryValue
     }
