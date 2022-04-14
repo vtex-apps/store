@@ -282,6 +282,7 @@ interface SearchWrapperProps {
   to?: number
   page?: number
   CustomContext?: ComponentType
+  facetsLoading?: boolean
 }
 
 const SearchWrapper: FC<SearchWrapperProps> = props => {
@@ -289,6 +290,7 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
     params,
     orderBy,
     searchQuery,
+    facetsLoading,
     searchQuery: {
       variables: { map } = {},
       data: {
@@ -339,7 +341,8 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
       !searchQuery ||
       !canUseDOM ||
       !searchQuery.products ||
-      !searchQuery.data?.facets?.queryArgs
+      !searchQuery.data?.facets?.queryArgs ||
+      facetsLoading
     ) {
       return null
     }
@@ -372,7 +375,7 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
         products,
       },
     ]
-  }, [account, params, searchQuery, title, orderBy, page, map])
+  }, [searchQuery, facetsLoading, params, account, title, orderBy, map, page])
 
   const [hasLoaded, setHasLoaded] = useState(true)
 

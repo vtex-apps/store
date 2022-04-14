@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Term sent in pixel event.
+
 ## [2.123.1] - 2022-04-07
 
 ### Fixed
