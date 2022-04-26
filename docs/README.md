@@ -31,6 +31,8 @@ This project has the following capabilities:
 - Dispatch view events to analytics tools. 
 - Define the necessary interfaces and routes of the store.
 
+For use cases where the store has several bindings, the app can handle different values for each binding, by selecting the flag `Enable configuration by binding` in the application settings.
+
 ## Release schedule
 
 | Release |       Status        | Initial Release | Maintenance LTS Start | End-of-life | Store Compatibility |
