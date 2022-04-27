@@ -6,8 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- Advanced settings unavailable to users.
 
-## [2.124.0] - 2022-04-26
+## [2.124.0] - 2022-04-26 [YANKED]
 ### Added
 - Handle app settings by bindings.
 
