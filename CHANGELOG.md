@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [2.124.0] - 2022-04-26
+## [2.124.0] - 2022-04-26 [YANKED]
 ### Added
 - Handle app settings by bindings.
 
