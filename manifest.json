@@ -39,6 +39,7 @@
   "settingsSchema": {
     "title": "admin/store.title",
     "type": "object",
+    "bindingBounded": true,
     "properties": {
       "storeName": {
         "title": "admin/store.storeName.title",
