@@ -108,7 +108,7 @@ const StoreWrapper = ({ children, CustomContext }) => {
   } = settings
 
   const description = (metaTags && metaTags.description) || metaTagDescription
-  const title = pageTitle || titleTag
+  const title = titleTag || pageTitle
 
   const [queryMatch] = route.path.match(/\?.*/) || ['?']
 
