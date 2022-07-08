@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Setting a new flag to use the custom currency symbol `enableCustomCurrencySymbol`
+- Setting a new flag to use the custom currency symbol in store settings: `enableCustomCurrencySymbol`
 
 
 ## [2.125.0] - 2022-05-17
