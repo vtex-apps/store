@@ -269,7 +269,7 @@ interface CategoryMetadata {
 }
 
 interface SearchMetadata {
-  term: string
+  term?: string
   category: CategoryMetadata | null
   results: number
 }

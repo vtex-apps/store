@@ -118,22 +118,18 @@ export const getSearchMetadata = (searchQuery?: SearchQueryData) => {
 
   const searchTerm = queryMap.ft
 
-  if (!searchTerm) {
-    return
-  }
-
   let decodedTerm = ''
   // This try/catch works to prevent decoding search terms that end in "%".
   try {
-    decodedTerm = decodeURIComponent(searchTerm)
+    decodedTerm = decodeURIComponent(searchTerm || '')
   } catch (e) {
-    decodedTerm = decodeURIComponent(encodeURIComponent(searchTerm))
+    decodedTerm = decodeURIComponent(encodeURIComponent(searchTerm || ''))
   }
 
   const department = getDepartment(searchQuery)
 
   return {
-    term: decodedTerm,
+    term: decodedTerm || undefined,
     category: department ? { id: department.id, name: department.name } : null,
     results: searchQuery.productSearch.recordsFiltered,
     operator: searchQuery.productSearch.operator,
