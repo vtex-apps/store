@@ -1,0 +1,6 @@
+{
+  "admin/editor.product-search.title": "บริบทการค้นหาผลิตภัณฑ์",
+  "admin/editor.product-search.maxItemsPerPage": "จำนวนสินค้าสูงสุดต่อหน้า",
+  "admin/editor.product-search.hideUnavailableItems": "ซ่อนสินค้าที่ไม่พร้อมจำหน่าย",
+  "store/store.network-status.offline": "ไม่มีการเชื่อมต่ออินเทอร์เน็ต"
+}
