@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "store",
-  "version": "2.126.19",
+  "version": "2.126.20",
   "title": "VTEX Store",
   "description": "The VTEX basic store.",
   "builders": {
