@@ -51,7 +51,9 @@
     "vtex.telemarketing": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.telemarketing@2.10.1/public/@types/vtex.telemarketing"
   },
   "resolutions": {
-    "json-schema": "^0.4.0"
+    "json-schema": "^0.4.0",
+    "jsdom": "^16.5.0",
+    "jest-environment-jsdom": "^26.0.0"
   },
   "version": "2.126.21"
 }
