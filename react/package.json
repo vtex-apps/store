@@ -55,5 +55,5 @@
     "jsdom": "^16.5.0",
     "jest-environment-jsdom": "^26.0.0"
   },
-  "version": "2.126.21"
+  "version": "2.126.22"
 }
