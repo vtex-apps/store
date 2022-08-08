@@ -1,0 +1,8 @@
+{
+  "admin/editor.product-search.title": "Konteks pencarian produk",
+  "admin/editor.product-search.maxItemsPerPage": "Jumlah maksimum item per halaman",
+  "admin/editor.product-search.hideUnavailableItems": "Sembunyikan item yang tidak tersedia",
+  "store/store.network-status.offline": "Tidak ada koneksi internet.",
+  "admin/actions.enable-binding": "Aktifkan konfigurasi dengan pengikatan",
+  "admin/actions.binding-configurations": "Konfigurasi pengikatan"
+}
