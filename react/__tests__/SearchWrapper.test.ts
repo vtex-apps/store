@@ -183,9 +183,9 @@ describe('getHelmetLink function', () => {
     expect(canonicalLinkResult).toHaveProperty('href', expectedResult)
   })
 
-  it('should return the map on the canonical url when map has more than 3 categories', () => {
+  it('should return the map on the canonical url when map has more than 4 categories', () => {
     const canonicalLink = 'https://storetheme.vtex.com/apparel---accessories/'
-    const map = 'c,c,c,c'
+    const map = 'c,c,c,c,c'
 
     const canonicalLinkResult = getHelmetLink({
       canonicalLink,

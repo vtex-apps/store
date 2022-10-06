@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Allow `SearchWrapper` to support 4-level category maps
+
 ## [2.127.0] - 2022-08-03
 ### Added
 - Setting a new flag to use the custom currency symbol in store settings: `enableCustomCurrencySymbol`
