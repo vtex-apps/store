@@ -155,7 +155,7 @@ function shouldNotIncludeMap(map?: string) {
 
   const mapTree = map.split(',')
 
-  if (mapTree.length > 3) {
+  if (mapTree.length > 4) {
     return false
   }
 
