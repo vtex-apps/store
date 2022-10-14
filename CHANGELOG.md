@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.127.2] - 2022-10-14
+
 ### Fixed
 
 - Include `_q` query parameter in search page canonical URLs
