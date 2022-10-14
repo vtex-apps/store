@@ -146,6 +146,7 @@ interface GetSearchCanonicalParams {
   canonicalLink: string
   page?: number
   map?: string
+  term?: string
 }
 
 function shouldNotIncludeMap(map?: string) {
@@ -166,6 +167,7 @@ function getSearchCanonical({
   canonicalLink,
   page,
   map,
+  term,
 }: GetSearchCanonicalParams) {
   if (page !== null && page !== undefined && page < 1) {
     return null
@@ -174,10 +176,11 @@ function getSearchCanonical({
   const query = {
     page: page !== undefined && page !== null && page > 1 ? page : undefined,
     map: shouldNotIncludeMap(map) ? undefined : map,
+    _q: term,
   }
 
   const canonicalWithPage = queryString.stringifyUrl({
-    url: canonicalLink,
+    url: decodeURI(canonicalLink),
     query,
   })
 
@@ -188,6 +191,7 @@ interface GetHelmetLinkParams {
   canonicalLink: string | null
   page: number
   map?: string
+  term?: string
   rel: 'canonical' | 'prev' | 'next'
 }
 
@@ -196,6 +200,7 @@ export function getHelmetLink({
   page,
   map,
   rel,
+  term,
 }: GetHelmetLinkParams) {
   if (!canonicalLink) {
     return null
@@ -215,6 +220,7 @@ export function getHelmetLink({
     canonicalLink,
     page: pageAfterTransformation,
     map,
+    term,
   })
 
   if (!canonicalWithParams) {
@@ -306,7 +312,7 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
   const {
     account,
     getSettings,
-    query: { page },
+    query: { page, _q: termFromQuery },
     route: { title: pageTitle, metaTags },
   } = useRuntime() as RuntimeWithRoute
 
@@ -331,9 +337,18 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
 
   const canonicalLink = useCanonicalLink()
 
+  const helmetCanonicalLink = getHelmetLink({
+    canonicalLink,
+    page: pageFromQuery,
+    map: canonicalWithoutUrlParams ? '' : map,
+    term: termFromQuery,
+    rel: 'canonical',
+  })
+
   const openGraphParams = {
     title,
     description: metaTagDescription || metaTags?.description,
+    canonical: helmetCanonicalLink?.href,
   }
 
   const pixelEvents = useMemo(() => {
@@ -414,12 +429,7 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
           },
         ].filter(Boolean)}
         link={[
-          getHelmetLink({
-            canonicalLink,
-            page: pageFromQuery,
-            map: canonicalWithoutUrlParams ? '' : map,
-            rel: 'canonical',
-          }),
+          helmetCanonicalLink,
           getHelmetLink({
             canonicalLink,
             page: pageFromQuery,

@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Include `_q` query parameter in search page canonical URLs
+- Provide `meta.canonical` prop to `SearchOpenGraph` component, to ensure `og:url` and canonical are consistent 
+
 ## [2.127.1] - 2022-10-06
 
 ### Fixed
