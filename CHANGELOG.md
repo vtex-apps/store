@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Robots file scoped by page in `StoreWrapper`
+
 ## [2.127.2] - 2022-10-14
 
 ### Fixed
