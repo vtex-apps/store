@@ -2,5 +2,9 @@
   "admin/editor.product-search.title": "Produktsøk kontekst",
   "admin/editor.product-search.maxItemsPerPage": "Maksimalt antall varer per side",
   "admin/editor.product-search.hideUnavailableItems": "Skjul utilgjengelige varer",
-  "store/store.network-status.offline": "Ingen Internett-forbindelse."
+  "store/store.network-status.offline": "Ingen Internett-forbindelse.",
+  "admin/actions.enable-binding": "Enable configuration by binding",
+  "admin/actions.binding-configurations": "Binding configurations",
+  "admin/actions.binding-id": "Binding ID",
+  "admin/actions.binding-description": "Enter the binding ID"
 }

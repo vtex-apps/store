@@ -4,5 +4,7 @@
   "admin/editor.product-search.hideUnavailableItems": "Title of hideUnavailableItems prop",
   "store/store.network-status.offline": "store/store.network-status.offline",
   "admin/actions.enable-binding": "admin/actions.enable-binding",
-  "admin/actions.binding-configurations": "admin/actions.binding-configurations"
+  "admin/actions.binding-configurations": "admin/actions.binding-configurations",
+  "admin/actions.binding-id": "admin/actions.binding-id",
+  "admin/actions.binding-description": "admin/actions.binding-description"
 }
