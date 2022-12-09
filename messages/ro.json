@@ -1,0 +1,10 @@
+{
+  "admin/editor.product-search.title": "Contextul de căutare a produselor",
+  "admin/editor.product-search.maxItemsPerPage": "Numărul maxim de articole pe pagină",
+  "admin/editor.product-search.hideUnavailableItems": "Ascunde articolele indisponibile",
+  "store/store.network-status.offline": "Lipsă conexiune la internet.",
+  "admin/actions.enable-binding": "Activează configurația prin legătură",
+  "admin/actions.binding-configurations": "Configurații ale legăturii",
+  "admin/actions.binding-id": "ID de legătură",
+  "admin/actions.binding-description": "Introdu ID-ul de legătură"
+}
