@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.128.0] - 2022-12-12
+
 ### Fixed
 
 - Portuguese, Spanish, Norwegian, Arabic and Thai translations and add English messages for previously hardcoded strings rendering in other apps.
