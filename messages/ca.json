@@ -1,0 +1,10 @@
+{
+    "admin/editor.product-search.title": "Context de cerca de productes",
+    "admin/editor.product-search.maxItemsPerPage": "Nombre màxim d'elements per pàgina",
+    "admin/editor.product-search.hideUnavailableItems": "Amagar elements no disponibles",
+    "store/store.network-status.offline": "Sense connexió a internet.",
+    "admin/actions.enable-binding": "Activar la configuració per vinculació",
+    "admin/actions.binding-configurations": "Configuració de vinculació",
+    "admin/actions.binding-id": "ID d'enllaç",
+    "admin/actions.binding-description": "Introduïu l'ID d'enllaç"
+  }
