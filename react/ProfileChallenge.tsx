@@ -14,14 +14,16 @@ const loginPath = '/login'
 const getLocation = () =>
   canUseDOM
     ? {
-        url: window.location.pathname + window.location.search + window.location.hash,
+        url:
+          window.location.pathname +
+          window.location.search +
+          window.location.hash,
         pathName: window.location.pathname,
       }
     : {
         url: (global as any).__pathname__,
         pathName: (global as any).__pathname__,
       }
-
 
 const useSessionResponse = () => {
   const [session, setSession] = useState<SessionResponse>()
