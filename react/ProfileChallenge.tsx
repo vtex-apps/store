@@ -14,7 +14,10 @@ const loginPath = '/login'
 const getLocation = () =>
   canUseDOM
     ? {
-        url: window.location.pathname + window.location.hash,
+        url:
+          window.location.pathname +
+          window.location.search +
+          window.location.hash,
         pathName: window.location.pathname,
       }
     : {

@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- `ProfileChallenge` URL redirect not preserving the query params (`location.search`)
+
 ## [2.131.0] - 2023-03-28
 
 ### Added
