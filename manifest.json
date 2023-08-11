@@ -147,12 +147,6 @@
             "type": "boolean",
             "default": true
           },
-          "enablePrefetch": {
-            "title": "admin/store.advancedSettings.enablePrefetch.title",
-            "description": "admin/store.advancedSettings.enablePrefetch.description",
-            "type": "boolean",
-            "default": true
-          },
           "enableLazyRuntime": {
             "title": "admin/store.advancedSettings.enableLazyRuntime.title",
             "description": "admin/store.advancedSettings.enableLazyRuntime.description",
