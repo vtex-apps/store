@@ -26,6 +26,7 @@ const SearchContext = ({
   installmentCriteria,
   excludedPaymentSystems,
   includedPaymentSystems,
+  sponsoredProductsBehavior = 'skip',
   query: {
     order: orderBy = orderByField || SORT_OPTIONS[0].value,
     page: pageQuery,
@@ -120,6 +121,7 @@ const SearchContext = ({
       fuzzy={fuzzy}
       searchState={state}
       __unstableProductOriginVtex={__unstableProductOriginVtex}
+      sponsoredProductsBehavior={sponsoredProductsBehavior}
     >
       {(searchQuery, extraParams) => {
         return React.cloneElement(children, {

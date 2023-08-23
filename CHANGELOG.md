@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- `sponsoredProductsBehavior` flag to the `SearchContext`.
+
 ## [2.131.1] - 2023-04-24
 
 ### Fixed
