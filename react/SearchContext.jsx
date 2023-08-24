@@ -201,6 +201,7 @@ SearchContext.propTypes = {
   excludedPaymentSystems: PropTypes.string,
   includedPaymentSystems: PropTypes.string,
   __unstableProductOriginVtex: PropTypes.bool,
+  sponsoredProductsBehavior: PropTypes.string,
 }
 
 SearchContext.schema = {
@@ -230,6 +231,11 @@ SearchContext.schema = {
       title: 'admin/editor.product-search.hideUnavailableItems',
       type: 'boolean',
       default: false,
+    },
+    sponsoredProductsBehavior: {
+      title: 'Sponsored products behavior',
+      type: 'string',
+      default: 'skip',
     },
   },
 }
