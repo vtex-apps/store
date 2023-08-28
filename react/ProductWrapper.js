@@ -6,6 +6,7 @@ import {
   useRuntime,
 } from 'vtex.render-runtime'
 import { ProductOpenGraph } from 'vtex.open-graph'
+import { TwitterMetaTags } from 'vtex.twitter-meta-tags'
 import useProduct from 'vtex.product-context/useProduct'
 import ProductContextProvider from 'vtex.product-context/ProductContextProvider'
 import { Product as ProductStructuredData } from 'vtex.structured-data'
@@ -24,6 +25,9 @@ const Content = ({ listName, loading, children, childrenProps }) => {
         loading={loading}
       />
       {product && <ProductOpenGraph />}
+
+      {product && <TwitterMetaTags />}
+
       {product && selectedItem && (
         <ProductStructuredData product={product} selectedItem={selectedItem} />
       )}
