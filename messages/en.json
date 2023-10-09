@@ -4,5 +4,7 @@
   "admin/editor.product-search.hideUnavailableItems": "Hide unavailable items",
   "store/store.network-status.offline": "No internet connection.",
   "admin/actions.enable-binding": "Enable configuration by binding",
-  "admin/actions.binding-configurations": "Binding configurations"
+  "admin/actions.binding-configurations": "Binding configurations",
+  "admin/actions.binding-id": "Binding ID",
+  "admin/actions.binding-description": "Enter the binding ID"
 }

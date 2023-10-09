@@ -1,0 +1,10 @@
+{
+  "admin/editor.product-search.title": "제품 검색 컨텍스트",
+  "admin/editor.product-search.maxItemsPerPage": "페이지당 최대 항목 수",
+  "admin/editor.product-search.hideUnavailableItems": "이용할 수 없는 품목 숨기기",
+  "store/store.network-status.offline": "인터넷 연결 없음.",
+  "admin/actions.enable-binding": "바인딩하여 구성 활성화",
+  "admin/actions.binding-configurations": "바인딩 구성",
+  "admin/actions.binding-id": "바인딩 ID",
+  "admin/actions.binding-description": "바인딩 ID 입력"
+}

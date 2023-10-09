@@ -10,6 +10,44 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - Robots file scoped by page in `StoreWrapper`
+- 
+## [2.132.0] - 2023-08-24
+
+### Added
+- `sponsoredProductsBehavior` flag to the `SearchContext`.
+
+## [2.131.1] - 2023-04-24
+
+### Fixed
+- `ProfileChallenge` URL redirect not preserving the query params (`location.search`)
+
+## [2.131.0] - 2023-03-28
+
+### Added
+- Catalan translation.
+
+## [2.130.0] - 2023-03-28
+
+### Added
+- German translation.
+
+## [2.129.0] - 2022-12-23
+
+### Added
+- Indonesian translation.
+
+### Fixed
+- Spanish and Thai translations.
+
+## [2.128.0] - 2022-12-12
+
+### Fixed
+
+- Portuguese, Spanish, Norwegian, Arabic and Thai translations and add English messages for previously hardcoded strings rendering in other apps.
+
+### Added
+
+- Bulgarian, French, Korean, Dutch and Romanian translations.
 
 ## [2.127.2] - 2022-10-14
 
