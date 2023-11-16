@@ -230,6 +230,12 @@
             "description": "admin/store.advancedSettings.enableCustomCurrencySymbol.description",
             "type": "boolean",
             "default": false
+          },
+          "fetchSponsoredProductsOnSearch": {
+            "title": "admin/store.advancedSettings.fetchSponsoredProductsOnSearch.title",
+            "description": "admin/store.advancedSettings.fetchSponsoredProductsOnSearch.description",
+            "type": "boolean",
+            "default": false
           }
         }
       }
