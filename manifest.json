@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "store",
-  "version": "2.132.0",
+  "version": "2.133.0",
   "title": "VTEX Store",
   "description": "The VTEX basic store.",
   "builders": {
@@ -228,6 +228,12 @@
           "enableCustomCurrencySymbol": {
             "title": "admin/store.advancedSettings.enableCustomCurrencySymbol.title",
             "description": "admin/store.advancedSettings.enableCustomCurrencySymbol.description",
+            "type": "boolean",
+            "default": false
+          },
+          "fetchSponsoredProductsOnSearch": {
+            "title": "admin/store.advancedSettings.fetchSponsoredProductsOnSearch.title",
+            "description": "admin/store.advancedSettings.fetchSponsoredProductsOnSearch.description",
             "type": "boolean",
             "default": false
           }

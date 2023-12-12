@@ -10,7 +10,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - Robots file scoped by page in `StoreWrapper`
-- 
+
+## [2.133.0] - 2023-11-28
+
+### Added
+
+- Adds the advanced setting `fetchSponsoredProductsOnSearch`.
+
 ## [2.132.0] - 2023-08-24
 
 ### Added

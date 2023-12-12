@@ -70,6 +70,12 @@
               "type": "boolean",
               "default": false,
               "description": "This setting disables the legacy orderForm provider. More at: https://vtex.io/docs/recipes/store-management/enabling-order-form-optimization."
+            },
+            "fetchSponsoredProductsOnSearch": {
+              "title": "[BETA] Fetch sponsored products in search results",
+              "type": "boolean",
+              "default": false,
+              "description": "If this store's account has configured VTEX Ads, this option enables the fetching of sponsored products within search results."
             }
           }
         },
