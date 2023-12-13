@@ -109,7 +109,7 @@ const StoreWrapper = ({ children, CustomContext }) => {
 
   const description = (metaTags && metaTags.description) || metaTagDescription
   const title = pageTitle || titleTag
-  const robots = metaTags?.robots || metaTagRobots
+  const robots = (metaTags || {}).robots || metaTagRobots
 
   const [queryMatch] = route.path.match(/\?.*/) || ['?']
 
