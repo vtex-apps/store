@@ -109,6 +109,7 @@ const StoreWrapper = ({ children, CustomContext }) => {
 
   const description = (metaTags && metaTags.description) || metaTagDescription
   const title = pageTitle || titleTag
+  const robots = (metaTags || {}).robots || metaTagRobots
 
   const [queryMatch] = route.path.match(/\?.*/) || ['?']
 
@@ -151,7 +152,7 @@ const StoreWrapper = ({ children, CustomContext }) => {
           { name: 'country', content: country },
           { name: 'language', content: locale },
           { name: 'currency', content: currency },
-          { name: 'robots', content: metaTagRobots || META_ROBOTS },
+          { name: 'robots', content: robots || META_ROBOTS },
           { httpEquiv: 'Content-Type', content: CONTENT_TYPE },
         ]
           .filter(Boolean)
