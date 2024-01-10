@@ -21,6 +21,7 @@ declare module 'vtex.render-runtime' {
 
   interface MetaTagsParams {
     description: string
+    robots: string
     keywords: string[]
   }
 
@@ -31,6 +32,7 @@ declare module 'vtex.render-runtime' {
 
   interface StoreSettings {
     storeName: string
+    metaTagRobots: string
     titleTag: string
     enablePageNumberTitle: boolean
     canonicalWithoutUrlParams: boolean
