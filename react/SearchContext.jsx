@@ -26,7 +26,7 @@ const SearchContext = ({
   installmentCriteria,
   excludedPaymentSystems,
   includedPaymentSystems,
-  sponsoredProductsBehavior = 'skip',
+  sponsoredProductsBehavior = 'sync',
   query: {
     order: orderBy = orderByField || SORT_OPTIONS[0].value,
     page: pageQuery,
@@ -235,7 +235,7 @@ SearchContext.schema = {
     sponsoredProductsBehavior: {
       title: 'Sponsored products behavior',
       type: 'string',
-      default: 'skip',
+      default: 'sync',
     },
   },
 }
