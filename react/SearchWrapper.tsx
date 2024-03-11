@@ -32,6 +32,7 @@ import { PixelEvent } from './typings/event'
 import { useCanonicalLink } from './hooks/useCanonicalLink'
 
 const APP_LOCATOR = 'vtex.store'
+const META_ROBOTS = 'noindex,follow'
 
 interface SearchRouteParams {
   term?: string
@@ -321,11 +322,12 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
   const {
     titleTag: defaultStoreTitle,
     storeName,
+    metaTagRobots,
     enablePageNumberTitle = false,
     canonicalWithoutUrlParams = false,
     removeStoreNameTitle = false,
   } = settings
-
+ 
   const title = getTitleTag({
     titleTag,
     storeTitle: storeName || defaultStoreTitle,
@@ -334,6 +336,8 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
     pageNumber: enablePageNumberTitle ? Number(page) : 0,
     removeStoreNameTitle,
   })
+
+  const robots = !metaTagRobots ? (metaTags || {})?.robots : metaTagRobots
 
   const canonicalLink = useCanonicalLink()
 
@@ -421,7 +425,7 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
         meta={[
           params.term && {
             name: 'robots',
-            content: 'noindex,follow',
+            content: robots ?? META_ROBOTS,
           },
           metaTagDescription && {
             name: 'description',
