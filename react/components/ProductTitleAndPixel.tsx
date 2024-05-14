@@ -124,7 +124,7 @@ function getSkuProperties(item: SKU): SKUEvent {
         Price: seller.commertialOffer.Price,
         ListPrice: seller.commertialOffer.ListPrice,
         AvailableQuantity: seller.commertialOffer.AvailableQuantity,
-        PriceWithoutDiscount: seller.commertialOffer?.PriceWithoutDiscount || 0
+        PriceWithoutDiscount: seller.commertialOffer?.PriceWithoutDiscount || 0,
       },
     })),
   }
