@@ -77,6 +77,7 @@ interface CommertialOffer {
   ListPrice: number
   Price: number
   AvailableQuantity: number
+  PriceWithoutDiscount: number
 }
 
 type MaybeProduct = Product | null
@@ -123,6 +124,9 @@ function getSkuProperties(item: SKU): SKUEvent {
         Price: seller.commertialOffer.Price,
         ListPrice: seller.commertialOffer.ListPrice,
         AvailableQuantity: seller.commertialOffer.AvailableQuantity,
+        PriceWithoutDiscount:
+          seller.commertialOffer?.PriceWithoutDiscount ||
+          seller.commertialOffer.Price,
       },
     })),
   }
