@@ -34,7 +34,8 @@
     "vtex.product-review-interfaces": "1.x",
     "vtex.rich-text": "0.x",
     "vtex.native-types": "0.x",
-    "vtex.telemarketing": "2.x"
+    "vtex.telemarketing": "2.x",
+    "vtex.twitter-meta-tags": "0.x"
   },
   "settingsSchema": {
     "title": "admin/store.title",
@@ -89,10 +90,7 @@
               "type": "string"
             }
           },
-          "required": [
-            "rel",
-            "href"
-          ]
+          "required": ["rel", "href"]
         },
         "description": "admin/store.faviconLinks.description"
       },
@@ -100,6 +98,10 @@
         "title": "admin/store.searchTermPath.title",
         "type": "string",
         "description": "admin/store.searchTermPath.description"
+      },
+      "includeTwitterMetaTags": {
+        "title": "admin/store.includeTwitterMetaTags.title",
+        "type": "boolean"
       },
       "advancedSettings": {
         "title": "admin/store.advancedSettings.title",
@@ -246,24 +248,51 @@
           {
             "properties": {
               "requiresAuthorization": {
-                "enum": [
-                  false
-                ]
+                "enum": [false]
               }
             }
           },
           {
             "properties": {
               "requiresAuthorization": {
-                "enum": [
-                  true
-                ]
+                "enum": [true]
               },
               "b2bEnabled": {
                 "title": "admin/store.b2benabled.title",
                 "type": "string",
                 "format": "read-only",
                 "default": "true"
+              }
+            }
+          }
+        ]
+      },
+      "includeTwitterMetaTags": {
+        "oneOf": [
+          {
+            "properties": {
+              "includeTwitterMetaTags": {
+                "enum": [false]
+              }
+            }
+          },
+          {
+            "properties": {
+              "includeTwitterMetaTags": {
+                "enum": [true]
+              },
+              "twitterUsername": {
+                "title": "admin/store.twitterUsername.title",
+                "description": "admin/store.twitterUsername.description",
+                "type": "string"
+              },
+              "twitterCard": {
+                "title": "admin/store.twitterCard.title",
+                "description": "admin/store.twitterCard.description",
+                "type": "string",
+                "default": "summary",
+                "enum": ["summary", "summary_large_image"],
+                "enumNames": ["Summary", "Summary with Large Image"]
               }
             }
           }
@@ -278,12 +307,7 @@
     "b2bEnabled": {
       "ui:disabled": "true"
     },
-    "ui:order": [
-      "storeName",
-      "requiresAuthorization",
-      "b2bEnabled",
-      "*"
-    ]
+    "ui:order": ["storeName", "requiresAuthorization", "b2bEnabled", "*"]
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
