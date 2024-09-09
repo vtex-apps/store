@@ -6,5 +6,12 @@
   "admin/actions.enable-binding": "Enable configuration by binding",
   "admin/actions.binding-configurations": "Binding configurations",
   "admin/actions.binding-id": "Binding ID",
-  "admin/actions.binding-description": "Enter the binding ID"
+  "admin/actions.binding-description": "Enter the binding ID",
+  "admin/store.advancedSettings.customHeader.title": "Custom Headers",
+  "admin/store.advancedSettings.customHeader.__editorItemTitle.title": "Header ID",
+  "admin/store.advancedSettings.customHeader.__editorItemTitle.description": "Id to identify your header. eg: My new Custom Header",
+  "admin/store.advancedSettings.customHeader.key.title": "Header Key",
+  "admin/store.advancedSettings.customHeader.key.description": "Key to you header following HTTP patterns. e.g: Strict-Transport-Security",  
+  "admin/store.advancedSettings.customHeader.value.title": "Header Value",
+  "admin/store.advancedSettings.customHeader.value.description": "Value to you key following HTTP patterns. e.g: max-age=<expire-time>"
 }
