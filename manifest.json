@@ -233,27 +233,31 @@
             "default": false
           },
           "customHeader": {
-            "title": "Custom Header",
+            "title": "admin/store.advancedSettings.customHeader.title",
             "type": "array",
             "items": {
               "type": "object",
               "properties": {
                 "__editorItemTitle": {
-                  "title": "Header ID",
-                  "description": "Id to identify your header. eg: My new Custom Header",
-                  "type": "string"
+                  "type": "string",
+                  "title": "admin/store.advancedSettings.customHeader.__editorItemTitle.title",
+                  "description": "admin/store.advancedSettings.customHeader.__editorItemTitle.description"
                 },
                 "key": {
                   "type": "string",
-                  "description": "Key for you header following HTTP patterns. e.g: Strict-Transport-Security",
-                  "title": "Key"
+                  "title": "admin/store.advancedSettings.customHeader.key.title",
+                  "description": "admin/store.advancedSettings.customHeader.key.description"
                 },
                 "value": {
                   "type": "string",
-                  "description": "Value for you key following HTTP patterns. e.g: max-age=<expire-time>",
-                  "title": "Value"
+                  "title": "admin/store.advancedSettings.customHeader.value.title",
+                  "description": "admin/store.advancedSettings.customHeader.value.description"
                 }
-              }
+              },
+              "required": [
+                "key",
+                "value"
+              ]              
             }
           }
         }
