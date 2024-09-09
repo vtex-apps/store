@@ -95,12 +95,7 @@
           ]
         },
         "description": "admin/store.faviconLinks.description"
-      },
-      "searchTermPath": {
-        "title": "admin/store.searchTermPath.title",
-        "type": "string",
-        "description": "admin/store.searchTermPath.description"
-      },
+      },      
       "advancedSettings": {
         "title": "admin/store.advancedSettings.title",
         "type": "object",
@@ -236,6 +231,30 @@
             "description": "admin/store.advancedSettings.fetchSponsoredProductsOnSearch.description",
             "type": "boolean",
             "default": false
+          },
+          "customHeader": {
+            "title": "Custom Header",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "__editorItemTitle": {
+                  "title": "Header ID",
+                  "description": "Id to identify your header. eg: My new Custom Header",
+                  "type": "string"
+                },
+                "key": {
+                  "type": "string",
+                  "description": "Key for you header following HTTP patterns. e.g: Strict-Transport-Security",
+                  "title": "Key"
+                },
+                "value": {
+                  "type": "string",
+                  "description": "Value for you key following HTTP patterns. e.g: max-age=<expire-time>",
+                  "title": "Value"
+                }
+              }
+            }
           }
         }
       }
