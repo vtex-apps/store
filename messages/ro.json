@@ -6,5 +6,12 @@
   "admin/actions.enable-binding": "Activează configurația prin legătură",
   "admin/actions.binding-configurations": "Configurații ale legăturii",
   "admin/actions.binding-id": "ID de legătură",
-  "admin/actions.binding-description": "Introdu ID-ul de legătură"
+  "admin/actions.binding-description": "Introdu ID-ul de legătură",
+  "admin/store.advancedSettings.customHeader.title": "Antet Custom",
+  "admin/store.advancedSettings.customHeader.__editorItemTitle.title": "ID Antet",
+  "admin/store.advancedSettings.customHeader.__editorItemTitle.description": "Id pentru a vă identifica antetul. ex: noul meu antet personalizat",
+  "admin/store.advancedSettings.customHeader.key.title": "Cheie Antet",
+  "admin/store.advancedSettings.customHeader.key.description": "Cheia pentru antetul dvs. urmând modele HTTP. ex: Strict-Transport-Security",
+  "admin/store.advancedSettings.customHeader.value.title": "Valoare Antet",
+  "admin/store.advancedSettings.customHeader.value.description": "Valoare pentru cheia antetului urmând modele HTTP. ex: max-age=<expire-time>"
 }
