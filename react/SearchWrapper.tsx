@@ -16,7 +16,6 @@ import {
   StoreSettings,
 } from 'vtex.render-runtime'
 import { SearchOpenGraph } from 'vtex.open-graph'
-import { ProductList as ProductListStructuredData } from 'vtex.structured-data'
 import queryString from 'query-string'
 
 import { capitalize } from './modules/capitalize'
@@ -447,7 +446,6 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
         ].filter(Boolean)}
       />
 
-      <ProductListStructuredData products={searchQuery.products} />
       <SearchOpenGraph meta={openGraphParams} />
       <LoadingContextProvider value={loadingValue}>
         <CustomContextElement>
