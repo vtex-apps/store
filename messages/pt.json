@@ -7,11 +7,11 @@
   "admin/actions.binding-configurations": "Configurações de vínculos",
   "admin/actions.binding-id": "ID de vínculo",
   "admin/actions.binding-description": "Insira o ID de vínculo",
-  "admin/store.advancedSettings.customHeader.title": "Custom Headers",
-  "admin/store.advancedSettings.customHeader.__editorItemTitle.title": "Header ID",
-  "admin/store.advancedSettings.customHeader.__editorItemTitle.description": "Id para identificar seu Header. ex: Meu novo Header Customizado",
-  "admin/store.advancedSettings.customHeader.key.title": " Chave do Header",
-  "admin/store.advancedSettings.customHeader.key.description": "Chave do seu header seguindo o protocolo HTTP. ex: Strict-Transport-Security",  
-  "admin/store.advancedSettings.customHeader.value.title": "Valor do Header",
-  "admin/store.advancedSettings.customHeader.value.description": "Value da chave do seu header seguindo o protocolo HTTP. ex: max-age=<expire-time>"
+  "admin/store.advancedSettings.customHeader.title": "Cabeçalhos personalizados",
+  "admin/store.advancedSettings.customHeader.__editorItemTitle.title": "ID do cabeçalho",
+  "admin/store.advancedSettings.customHeader.__editorItemTitle.description": "Insira o ID para identificar o seu cabeçalho. Exemplo: Meu novo cabeçalho personalizado",
+  "admin/store.advancedSettings.customHeader.key.title": "Chave do cabeçalho",
+  "admin/store.advancedSettings.customHeader.key.description": "Insira a chave do seu cabeçalho, seguindo os padrões HTTP. Exemplo: Strict-Transport-Security",
+  "admin/store.advancedSettings.customHeader.value.title": "Valor do cabeçalho",
+  "admin/store.advancedSettings.customHeader.value.description": "Insira o valor de sua chave, seguindo os padrões HTTP. Exemplo: max-age=<expire-time>"
 }

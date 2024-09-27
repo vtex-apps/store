@@ -6,5 +6,12 @@
   "admin/actions.enable-binding": "Enable configuration by binding",
   "admin/actions.binding-configurations": "Binding configurations",
   "admin/actions.binding-id": "Binding ID",
-  "admin/actions.binding-description": "Enter the binding ID"
+  "admin/actions.binding-description": "Enter the binding ID",
+  "admin/store.advancedSettings.customHeader.title": "ترويسات مخصصة",
+  "admin/store.advancedSettings.customHeader.__editorItemTitle.title": "معرّف الترويسة",
+  "admin/store.advancedSettings.customHeader.__editorItemTitle.description": "أدخل المعرف لتعريف الترويسة الخاصة بك. مثال: ترويسة مخصصة جديدة",
+  "admin/store.advancedSettings.customHeader.key.title": "مفتاح الترويسة",
+  "admin/store.advancedSettings.customHeader.key.description": "أدخل مفتاح الترويسة الخاص بك، باتباع أنماط HTTP. مثال: Strict-Transport-Security",
+  "admin/store.advancedSettings.customHeader.value.title": "قيمة الترويسة",
+  "admin/store.advancedSettings.customHeader.value.description": "أدخل قيمة المفتاح الخاص بك، باتباع أنماط HTTP. مثال: max-age=<expire-time>"
 }

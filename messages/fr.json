@@ -6,5 +6,12 @@
   "admin/actions.enable-binding": "Permettre la configuration par liaison",
   "admin/actions.binding-configurations": "Configurations de liaison",
   "admin/actions.binding-id": "ID de liaison",
-  "admin/actions.binding-description": "Saisir l'ID de la liaison"
+  "admin/actions.binding-description": "Saisir l'ID de la liaison",
+  "admin/store.advancedSettings.customHeader.title": "En-têtes personnalisés",
+  "admin/store.advancedSettings.customHeader.__editorItemTitle.title": "ID de l'en-tête",
+  "admin/store.advancedSettings.customHeader.__editorItemTitle.description": "Saisissez l'ID pour identifier votre en-tête. Exemple : Mon nouvel en-tête personnalisé",
+  "admin/store.advancedSettings.customHeader.key.title": "Clé de l'en-tête",
+  "admin/store.advancedSettings.customHeader.key.description": "Saisissez la clé de votre en-tête, en suivant les modèles HTTP. Exemple : Strict-Transport-Sécurité",
+  "admin/store.advancedSettings.customHeader.value.title": "Valeur de l'en-tête",
+  "admin/store.advancedSettings.customHeader.value.description": "Saisissez la valeur de votre clé, en suivant les modèles HTTP. Exemple : max-age=<expire-time>"
 }
