@@ -6,5 +6,12 @@
   "admin/actions.enable-binding": "Configuratie inschakelen door binding",
   "admin/actions.binding-configurations": "Bindende configuraties",
   "admin/actions.binding-id": "Bindende ID",
-  "admin/actions.binding-description": "Voer de bindende ID in"
+  "admin/actions.binding-description": "Voer de bindende ID in",
+  "admin/store.advancedSettings.customHeader.title": "Aangepaste headers",
+  "admin/store.advancedSettings.customHeader.__editorItemTitle.title": "Header-id",
+  "admin/store.advancedSettings.customHeader.__editorItemTitle.description": "Voer de id in om uw header te identificeren. Voorbeeld: Mijn nieuwe aangepaste header",
+  "admin/store.advancedSettings.customHeader.key.title": "Headersleutel",
+  "admin/store.advancedSettings.customHeader.key.description": "Voer de sleutel in voor uw header, volgens HTTP-patronen. Voorbeeld: Strict-Transport-Security",
+  "admin/store.advancedSettings.customHeader.value.title": "Headerwaarde",
+  "admin/store.advancedSettings.customHeader.value.description": "Voer de waarde in voor uw sleutel, volgens HTTP-patronen. Voorbeeld: max-age=<expire-time>"
 }

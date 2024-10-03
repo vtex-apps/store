@@ -6,5 +6,12 @@
   "admin/actions.enable-binding": "Konfiguration durch Bindung aktivieren",
   "admin/actions.binding-configurations": "Bindung-Konfigurationen",
   "admin/actions.binding-id": "Bindungs-ID",
-  "admin/actions.binding-description": "Geben Sie die Bindungs-ID ein"
+  "admin/actions.binding-description": "Geben Sie die Bindungs-ID ein",
+  "admin/store.advancedSettings.customHeader.title": "Benutzerdefinierte Kopfzeilen",
+  "admin/store.advancedSettings.customHeader.__editorItemTitle.title": "Kopfzeilen-ID",
+  "admin/store.advancedSettings.customHeader.__editorItemTitle.description": "Geben Sie die ID ein, um Ihre Kopfzeile zu identifizieren. Beispiel: Meine neue benutzerdefinierte Kopfzeile",
+  "admin/store.advancedSettings.customHeader.key.title": "Kopfzeilen-Schlüssel",
+  "admin/store.advancedSettings.customHeader.key.description": "Geben Sie den Schlüssel für Ihre Kopfzeile ein und folgen Sie dabei den HTTP-Mustern. Beispiel: Strenge-Transport-Sicherheit",
+  "admin/store.advancedSettings.customHeader.value.title": "Kopfzeilen-Wert",
+  "admin/store.advancedSettings.customHeader.value.description": "Geben Sie den Wert für Ihren Schlüssel ein und folgen Sie dabei den HTTP-Mustern. Beispiel: Maximal-Alter=<expire-time>"
 }

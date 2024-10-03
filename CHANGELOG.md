@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Custom Headers to be added in the UI
+
+### Removed
+- Search term path from the UI
+
 ## [2.136.0] - 2024-05-22
 
 ### Added

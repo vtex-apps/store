@@ -6,5 +6,12 @@
   "admin/actions.enable-binding": "admin/actions.enable-binding",
   "admin/actions.binding-configurations": "admin/actions.binding-configurations",
   "admin/actions.binding-id": "admin/actions.binding-id",
-  "admin/actions.binding-description": "admin/actions.binding-description"
+  "admin/actions.binding-description": "admin/actions.binding-description",
+  "admin/store.advancedSettings.customHeader.title": "admin/store.advancedSettings.customHeader.title",
+  "admin/store.advancedSettings.customHeader.__editorItemTitle.title": "admin/store.advancedSettings.customHeader.__editorItemTitle.title",
+  "admin/store.advancedSettings.customHeader.__editorItemTitle.description": "admin/store.advancedSettings.customHeader.__editorItemTitle.description",
+  "admin/store.advancedSettings.customHeader.key.title": "admin/store.advancedSettings.customHeader.__editorItemTitle.title",
+  "admin/store.advancedSettings.customHeader.key.description": "admin/store.advancedSettings.customHeader.__editorItemTitle.description",
+  "admin/store.advancedSettings.customHeader.value.title": "admin/store.advancedSettings.customHeader.__editorItemTitle.title",
+  "admin/store.advancedSettings.customHeader.value.description": "admin/store.advancedSettings.customHeader.__editorItemTitle.description"
 }

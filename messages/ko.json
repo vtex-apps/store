@@ -6,5 +6,12 @@
   "admin/actions.enable-binding": "바인딩하여 구성 활성화",
   "admin/actions.binding-configurations": "바인딩 구성",
   "admin/actions.binding-id": "바인딩 ID",
-  "admin/actions.binding-description": "바인딩 ID 입력"
+  "admin/actions.binding-description": "바인딩 ID 입력",
+  "admin/store.advancedSettings.customHeader.title": "사용자 지정 헤더",
+  "admin/store.advancedSettings.customHeader.__editorItemTitle.title": "헤더 ID",
+  "admin/store.advancedSettings.customHeader.__editorItemTitle.description": "헤더를 식별할 ID를 입력합니다. 예시: 내 새 사용자 지정 헤더",
+  "admin/store.advancedSettings.customHeader.key.title": "헤더 키",
+  "admin/store.advancedSettings.customHeader.key.description": "HTTP 패턴에 따라 헤더의 키를 입력합니다. 예시: Strict-Transport-Security",
+  "admin/store.advancedSettings.customHeader.value.title": "헤더 값",
+  "admin/store.advancedSettings.customHeader.value.description": "HTTP 패턴에 따라 키의 값을 입력합니다. 예시: max-age=<expire-time>"
 }
