@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "store",
-  "version": "2.136.0",
+  "version": "2.137.0",
   "title": "VTEX Store",
   "description": "The VTEX basic store.",
   "builders": {
@@ -95,7 +95,7 @@
           ]
         },
         "description": "admin/store.faviconLinks.description"
-      },      
+      },
       "advancedSettings": {
         "title": "admin/store.advancedSettings.title",
         "type": "object",
@@ -257,7 +257,7 @@
               "required": [
                 "key",
                 "value"
-              ]              
+              ]
             }
           }
         }

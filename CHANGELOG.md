@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.137.0] - 2024-10-03
+
 ### Added
 - Custom Headers to be added in the UI
 
