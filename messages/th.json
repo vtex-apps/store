@@ -7,11 +7,11 @@
   "admin/actions.binding-configurations": "การกำหนดค่าการผูกข้อมูล",
   "admin/actions.binding-id": "รหัสการผูกข้อมูล",
   "admin/actions.binding-description": "ใส่รหัสการผูกข้อมูล",
-  "admin/store.advancedSettings.customHeader.title": "Custom Headers",
-  "admin/store.advancedSettings.customHeader.__editorItemTitle.title": "Header ID",
-  "admin/store.advancedSettings.customHeader.__editorItemTitle.description": "Enter the ID to identify your header. Example: My new custom header",
-  "admin/store.advancedSettings.customHeader.key.title": "Header key",
-  "admin/store.advancedSettings.customHeader.key.description": "Enter the key for your header, following HTTP patterns. Example: Strict-Transport-Security",
-  "admin/store.advancedSettings.customHeader.value.title": "Header value",
-  "admin/store.advancedSettings.customHeader.value.description": "Enter the value for your key, following HTTP patterns. Example: max-age=<expire-time>"
+  "admin/store.advancedSettings.customHeader.title": "Header ที่ปรับใช้",
+    "admin/store.advancedSettings.customHeader.__editorItemTitle.title": "รหัส Header",
+    "admin/store.advancedSettings.customHeader.__editorItemTitle.description": "ใส่รหัสเพื่อระบุ Header ของคุณ ตัวอย่าง: Header ที่ปรับใช้ใหม่ของฉัน",
+    "admin/store.advancedSettings.customHeader.key.title": "คีย์ Header",
+    "admin/store.advancedSettings.customHeader.key.description": "ป้อนคีย์สำหรับ Header ของคุณ ทำตามรูปแบบ HTTP ตัวอย่าง: Strict-Transport-Security",
+    "admin/store.advancedSettings.customHeader.value.title": "ค่า Header",
+    "admin/store.advancedSettings.customHeader.value.description": "ใส่ค่าคีย์ของคุณ ทำตามรูปแบบ HTTP ตัวอย่าง: max-age=<expire-time>"
 }
