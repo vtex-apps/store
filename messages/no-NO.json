@@ -6,12 +6,5 @@
   "admin/actions.enable-binding": "Aktiver konfigurasjon ved binding",
   "admin/actions.binding-configurations": "Konfigurasjoner ved binding",
   "admin/actions.binding-id": "Bindings-ID",
-  "admin/actions.binding-description": "Angi bindings-ID",
-  "admin/store.advancedSettings.customHeader.title": "Tilpass Topptekst",
-  "admin/store.advancedSettings.customHeader.__editorItemTitle.title": "Topptekst ID",
-  "admin/store.advancedSettings.customHeader.__editorItemTitle.description": "Skriv inn id for å identifisere topptekstet. Eksempel: Min nye egendefinerte topptekst",
-  "admin/store.advancedSettings.customHeader.key.title": "Topptekst nøkkel",
-  "admin/store.advancedSettings.customHeader.key.description": "Skriv inn nøkkelen for topptekstet etter HTTP-mønster. Eksempel: Strekk - Sikkerhet",
-  "admin/store.advancedSettings.customHeader.value.title": "Topptekst verdi",
-  "admin/store.advancedSettings.customHeader.value.description": "Angi verdien for nøkkelen din, etter HTTP mønster. Eksempel: max-age=<expire-time>"
+  "admin/actions.binding-description": "Angi bindings-ID"  
 }

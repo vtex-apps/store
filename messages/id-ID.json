@@ -4,12 +4,5 @@
   "admin/editor.product-search.hideUnavailableItems": "Sembunyikan item yang tidak tersedia",
   "store/store.network-status.offline": "Tidak ada koneksi internet.",
   "admin/actions.enable-binding": "Aktifkan konfigurasi dengan pengikatan",
-  "admin/actions.binding-configurations": "Konfigurasi pengikatan",
-  "admin/store.advancedSettings.customHeader.title": "Header Kustom",
-  "admin/store.advancedSettings.customHeader.__editorItemTitle.title": "ID header",
-  "admin/store.advancedSettings.customHeader.__editorItemTitle.description": "Masukkan ID untuk mengidentifikasi header Anda. Contoh: Header kustom baru saya",
-  "admin/store.advancedSettings.customHeader.key.title": "Kunci header",
-  "admin/store.advancedSettings.customHeader.key.description": "Masukkan kunci untuk header mengikuti pola HTTP. Contoh: Keamanan-Transportasi-Ketat",
-  "admin/store.advancedSettings.customHeader.value.title": "Isi header",
-  "admin/store.advancedSettings.customHeader.value.description": "Masukkan isi untuk kunci mengikuti pola HTTP. Contoh: usia maksimal=<expire-time>"
+  "admin/actions.binding-configurations": "Konfigurasi pengikatan"
 }

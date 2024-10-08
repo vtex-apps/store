@@ -6,12 +6,5 @@
   "admin/actions.enable-binding": "Activar la configuració per vinculació",
   "admin/actions.binding-configurations": "Configuració de vinculació",
   "admin/actions.binding-id": "ID d'enllaç",
-  "admin/actions.binding-description": "Introduïu l'ID d'enllaç",
-  "admin/store.advancedSettings.customHeader.title": "Capçaleres personalitzades",
-  "admin/store.advancedSettings.customHeader.__editorItemTitle.title": "ID de la capçalera",
-  "admin/store.advancedSettings.customHeader.__editorItemTitle.description": "Introduïu l'ID per identificar la capçalera. Exemple: La meva nova capçalera personalitzada",
-  "admin/store.advancedSettings.customHeader.key.title": "Clau de la capçalera",
-  "admin/store.advancedSettings.customHeader.key.description": "Introduïu la clau de la capçalera seguint patrons HTTP. Exemple: Seguretat-Estricta-en el Transport",
-  "admin/store.advancedSettings.customHeader.value.title": "Valor de la capçalera",
-  "admin/store.advancedSettings.customHeader.value.description": "Introduïu el valor de la capçalera seguint patrons HTTP. Exemple: edat-màxima=<expire-time>"
+  "admin/actions.binding-description": "Introduïu l'ID d'enllaç"
 }

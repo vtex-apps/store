@@ -6,12 +6,5 @@
   "admin/actions.enable-binding": "Активиране на конфигурацията чрез обвързване",
   "admin/actions.binding-configurations": "Обвързващи конфигурации",
   "admin/actions.binding-id": "ID за обвързване",
-  "admin/actions.binding-description": "Въведете ID за обвързване",
-  "admin/store.advancedSettings.customHeader.title": "Персонализирани заглавки",
-  "admin/store.advancedSettings.customHeader.__editorItemTitle.title": "ID на заглавка",
-  "admin/store.advancedSettings.customHeader.__editorItemTitle.description": "Въведете ID, за да идентифицирате заглавката си. Пример: Моята нова персонализирана заглавка",
-  "admin/store.advancedSettings.customHeader.key.title": "Ключ на заглавка",
-  "admin/store.advancedSettings.customHeader.key.description": "Въведете ключа за вашата заглавка, като следвате принципите на HTTP. Пример: Strict-Transport-Security",
-  "admin/store.advancedSettings.customHeader.value.title": "Стойност на заглавка",
-  "admin/store.advancedSettings.customHeader.value.description": "Въведете стойността на вашия ключ, като следвате принципите на HTTP. Пример: max-age=<expire-time>"
+  "admin/actions.binding-description": "Въведете ID за обвързване"
 }
