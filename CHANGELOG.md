@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+- Moved translations from `vtex.store` to `vtex.admin-pages`
+
 ### Fixed
 - Context message keys for customHeader
 

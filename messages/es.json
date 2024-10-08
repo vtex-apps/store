@@ -6,12 +6,5 @@
   "admin/actions.enable-binding": "Activar la configuración por vinculación",
   "admin/actions.binding-configurations": "Configuración de vinculación",
   "admin/actions.binding-id": "ID de vínculo",
-  "admin/actions.binding-description": "Introduce el ID de vínculo",
-  "admin/store.advancedSettings.customHeader.title": "Encabezados personalizados",
-  "admin/store.advancedSettings.customHeader.__editorItemTitle.title": "ID del encabezado",
-  "admin/store.advancedSettings.customHeader.__editorItemTitle.description": "Ingresa el ID para identificar tu encabezado. Ejemplo: Nuevo encabezado personalizado",
-  "admin/store.advancedSettings.customHeader.key.title": "Clave del encabezado",
-  "admin/store.advancedSettings.customHeader.key.description": "Ingresa la clave de tu encabezado, en formato HTTP. Ejemplo: Strict-Transport-Security",
-  "admin/store.advancedSettings.customHeader.value.title": "Valor del encabezado",
-  "admin/store.advancedSettings.customHeader.value.description": "Ingresa el valor de tu clave, en formato HTTP. Ejemplo: max-age=<expire-time>"
+  "admin/actions.binding-description": "Introduce el ID de vínculo"
 }
