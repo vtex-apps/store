@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.137.2] - 2024-10-08
+
 ### Fixed
 - Context message keys for customHeader
 
