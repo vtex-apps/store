@@ -184,8 +184,8 @@ const StoreWrapper = ({ children, CustomContext }) => {
       />
       <PixelProvider currency={currency}>
         <PWAProvider rootPath={rootPath}>
-          <PageViewPixel title={title} />
           <UserDataPixel />
+          <PageViewPixel title={title} />
           <ToastProvider positioning="window">
             <NetworkStatusToast />
             {enableOrderFormOptimization ? (

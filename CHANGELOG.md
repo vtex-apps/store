@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+- Trigger user event before page view to be able to track user interaction
+
 ## [2.137.3] - 2024-10-08
 
 ### Changed
