@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Removed
+- `sponsoredProductsBehavior` prop which is deprecated
+
+### Added
+- `sponsoredCount` prop
+
 ## [2.137.3] - 2024-10-08
 
 ### Changed
