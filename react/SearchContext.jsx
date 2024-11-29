@@ -26,7 +26,6 @@ const SearchContext = ({
   installmentCriteria,
   excludedPaymentSystems,
   includedPaymentSystems,
-  sponsoredProductsBehavior = 'sync',
   query: {
     order: orderBy = orderByField || SORT_OPTIONS[0].value,
     page: pageQuery,
@@ -39,6 +38,7 @@ const SearchContext = ({
     searchState,
   },
   children,
+  sponsoredCount,
   __unstableProductOriginVtex,
 }) => {
   const {
@@ -120,8 +120,8 @@ const SearchContext = ({
       operator={operator}
       fuzzy={fuzzy}
       searchState={state}
+      sponsoredCount={sponsoredCount}
       __unstableProductOriginVtex={__unstableProductOriginVtex}
-      sponsoredProductsBehavior={sponsoredProductsBehavior}
     >
       {(searchQuery, extraParams) => {
         return React.cloneElement(children, {
@@ -200,8 +200,8 @@ SearchContext.propTypes = {
   installmentCriteria: PropTypes.string,
   excludedPaymentSystems: PropTypes.string,
   includedPaymentSystems: PropTypes.string,
+  sponsoredCount: PropTypes.number,
   __unstableProductOriginVtex: PropTypes.bool,
-  sponsoredProductsBehavior: PropTypes.string,
 }
 
 SearchContext.schema = {
@@ -231,11 +231,6 @@ SearchContext.schema = {
       title: 'admin/editor.product-search.hideUnavailableItems',
       type: 'boolean',
       default: false,
-    },
-    sponsoredProductsBehavior: {
-      title: 'Sponsored products behavior',
-      type: 'string',
-      default: 'sync',
     },
   },
 }
