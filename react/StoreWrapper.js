@@ -153,6 +153,7 @@ const StoreWrapper = ({ children, CustomContext }) => {
           { name: 'language', content: locale },
           { name: 'currency', content: currency },
           { name: 'robots', content: robots || META_ROBOTS },
+          { name: 'storefront', content: 'store_framework' },
           { httpEquiv: 'Content-Type', content: CONTENT_TYPE },
         ]
           .filter(Boolean)
