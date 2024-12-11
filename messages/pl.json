@@ -1,0 +1,10 @@
+{
+  "admin/editor.product-search.title": "Kontekst wyszukiwania produktu",
+  "admin/editor.product-search.maxItemsPerPage": "Maksymalna liczba pozycji na stronę",
+  "admin/editor.product-search.hideUnavailableItems": "Ukryj niedostępne pozycje",
+  "store/store.network-status.offline": "Brak połączenia z Internetem.",
+  "admin/actions.enable-binding": "Włącz konfigurację przez powiązanie",
+  "admin/actions.binding-configurations": "Konfiguracje powiązań",
+  "admin/actions.binding-id": "Identyfikator powiązania",
+  "admin/actions.binding-description": "Wpisz identyfikator powiązania"
+}
