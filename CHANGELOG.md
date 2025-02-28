@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- page, maxItemsPerPage and products to search metadata
+
 ## [2.139.0] - 2025-01-06
 
 ### Added
