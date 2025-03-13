@@ -103,11 +103,7 @@ export const getCategoryMetadata = (searchQuery?: SearchQueryData) => {
   }
 }
 
-export const getSearchMetadata = (
-  searchQuery?: SearchQueryData,
-  page?: number,
-  maxItemsPerPage?: number
-) => {
+export const getSearchMetadata = (searchQuery?: SearchQueryData) => {
   if (
     !searchQuery ||
     !searchQuery.productSearch ||
@@ -132,12 +128,6 @@ export const getSearchMetadata = (
 
   const department = getDepartment(searchQuery)
 
-  const products = searchQuery?.products?.map(product => {
-    return {
-      productId: product.productId,
-    }
-  })
-
   return {
     term: decodedTerm || undefined,
     category: department ? { id: department.id, name: department.name } : null,
@@ -145,8 +135,5 @@ export const getSearchMetadata = (
     operator: searchQuery.productSearch.operator,
     searchState: searchQuery.productSearch.searchState,
     correction: searchQuery.productSearch.correction,
-    products,
-    page,
-    maxItemsPerPage,
   }
 }
