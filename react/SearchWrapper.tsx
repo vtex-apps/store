@@ -287,7 +287,6 @@ interface SearchWrapperProps {
   orderBy?: string
   to?: number
   page?: number
-  maxItemsPerPage?: number
   CustomContext?: ComponentType
   facetsLoading?: boolean
 }
@@ -308,7 +307,6 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
     CustomContext,
     page: pageFromQuery = 0,
     to,
-    maxItemsPerPage,
     children,
   } = props
   const {
@@ -382,9 +380,7 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
       department: searchQuery?.data
         ? getDepartmentMetadata(searchQuery.data)
         : null,
-      search: searchQuery?.data
-        ? getSearchMetadata(searchQuery.data, pageFromQuery, maxItemsPerPage)
-        : null,
+      search: searchQuery?.data ? getSearchMetadata(searchQuery.data) : null,
     }
 
     return [
@@ -394,18 +390,7 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
         products,
       },
     ]
-  }, [
-    searchQuery,
-    facetsLoading,
-    params,
-    account,
-    title,
-    orderBy,
-    map,
-    page,
-    pageFromQuery,
-    maxItemsPerPage,
-  ])
+  }, [searchQuery, facetsLoading, params, account, title, orderBy, map, page])
 
   const [hasLoaded, setHasLoaded] = useState(true)
 
