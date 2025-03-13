@@ -22,6 +22,7 @@ export interface SearchQueryData {
       misspelled: boolean
     }
   }
+  products?: Product[]
   facets?: Facets
 }
 
@@ -42,6 +43,10 @@ interface SpecificationFilter {
 export interface Breadcrumb {
   name: string
   href: string
+}
+
+export interface Product {
+  productId: string
 }
 
 export interface CategoriesTrees {
