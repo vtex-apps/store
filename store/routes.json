@@ -3,10 +3,12 @@
     "path": "/"
   },
   "store.account": {
-    "path": "/account"
+    "path": "/account",
+    "isSitemapEntry": true
   },
   "store.login": {
-    "path": "/login"
+    "path": "/login",
+    "isSitemapEntry": true
   },
   "store.product": {
     "path": "/_v/segment/routing/vtex.store@2.x/product/:id/:slug/p",
