@@ -56,5 +56,5 @@
     "jest-environment-jsdom": "^26.0.0",
     "node-notifier": "^8.0.1"
   },
-  "version": "2.140.0"
+  "version": "2.141.0"
 }
