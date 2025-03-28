@@ -7,9 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-### Changed
+### Added
 
-- Udated GitHub Actions cache@v1 to cache@v4
+- Setting to bypass render-runtime navigation (intended to be used in Fast Store accounts only)
 
 ## [2.140.0] - 2025-03-13
 

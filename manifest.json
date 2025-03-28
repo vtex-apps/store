@@ -259,6 +259,12 @@
                 "value"
               ]
             }
+          },
+          "useDefaultBrowserNavigation": {
+            "title": "admin/store.advancedSettings.useDefaultBrowserNavigation.title",
+            "description": "admin/store.advancedSettings.useDefaultBrowserNavigation.description",
+            "type": "boolean",
+            "default": false
           }
         }
       }
