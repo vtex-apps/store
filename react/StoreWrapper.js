@@ -22,6 +22,7 @@ import NetworkStatusToast from './components/NetworkStatusToast'
 import WrapperContainer from './components/WrapperContainer'
 import { normalizeNavigation } from './utils/navigation'
 import { useCanonicalLink } from './hooks/useCanonicalLink'
+import { ShippingOptionProvider } from 'vtex.shipping-option-components/ShippingOptionContext'
 
 const APP_LOCATOR = 'vtex.store'
 const CONTENT_TYPE = 'text/html; charset=utf-8'
@@ -75,6 +76,7 @@ const StoreWrapper = ({ children, CustomContext }) => {
     prefetchDefaultPages,
     addNavigationRouteModifier,
   } = useRuntime()
+  
   const supportsServiceWorker = canUseDOM && 'serviceWorker' in navigator
 
   useEffect(() => {
@@ -185,21 +187,23 @@ const StoreWrapper = ({ children, CustomContext }) => {
       />
       <PixelProvider currency={currency}>
         <PWAProvider rootPath={rootPath}>
-          <PageViewPixel title={title} />
-          <UserDataPixel />
-          <ToastProvider positioning="window">
-            <NetworkStatusToast />
-            {enableOrderFormOptimization ? (
-              content
-            ) : (
-              /** This is necessary for backwards compatibility, since stores
-               *  might still need the OrderFormProvider from store-resources.
-               *  If a store does not have `enableOrderFormOptimization` enabled,
-               *  we should always add this provider.
-               */
-              <OrderFormProvider>{content}</OrderFormProvider>
-            )}
-          </ToastProvider>
+          <ShippingOptionProvider>
+            <PageViewPixel title={title} />
+            <UserDataPixel />
+            <ToastProvider positioning="window">
+              <NetworkStatusToast />
+              {enableOrderFormOptimization ? (
+                content
+              ) : (
+                /** This is necessary for backwards compatibility, since stores
+                 *  might still need the OrderFormProvider from store-resources.
+                 *  If a store does not have `enableOrderFormOptimization` enabled,
+                 *  we should always add this provider.
+                 */
+                <OrderFormProvider>{content}</OrderFormProvider>
+              )}
+            </ToastProvider>
+          </ShippingOptionProvider>
         </PWAProvider>
       </PixelProvider>
       {isSiteEditorIframe() && (
