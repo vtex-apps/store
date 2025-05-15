@@ -14,6 +14,7 @@ import { PWAProvider } from 'vtex.store-resources/PWAContext'
 import { OrderQueueProvider } from 'vtex.order-manager/OrderQueue'
 import { OrderItemsProvider } from 'vtex.order-items/OrderItems'
 import { OrderFormProvider as OrderFormProviderCheckout } from 'vtex.order-manager/OrderForm'
+import { ShippingOptionProvider } from 'vtex.shipping-option-components/ShippingOptionContext'
 
 import UserDataPixel from './components/UserDataPixel'
 import PageViewPixel from './components/PageViewPixel'
@@ -22,7 +23,6 @@ import NetworkStatusToast from './components/NetworkStatusToast'
 import WrapperContainer from './components/WrapperContainer'
 import { normalizeNavigation } from './utils/navigation'
 import { useCanonicalLink } from './hooks/useCanonicalLink'
-import { ShippingOptionProvider } from 'vtex.shipping-option-components/ShippingOptionContext'
 
 const APP_LOCATOR = 'vtex.store'
 const CONTENT_TYPE = 'text/html; charset=utf-8'
@@ -76,7 +76,7 @@ const StoreWrapper = ({ children, CustomContext }) => {
     prefetchDefaultPages,
     addNavigationRouteModifier,
   } = useRuntime()
-  
+
   const supportsServiceWorker = canUseDOM && 'serviceWorker' in navigator
 
   useEffect(() => {
