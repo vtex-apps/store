@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `vtex.shipping-option-components@1.x` as a dependency
+
 ### Changed
 
 - Update GitHub actions/cache to v4
