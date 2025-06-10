@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "store",
-  "version": "2.141.0",
+  "version": "2.141.1",
   "title": "VTEX Store",
   "description": "The VTEX basic store.",
   "builders": {
@@ -90,7 +90,10 @@
               "type": "string"
             }
           },
-          "required": ["rel", "href"]
+          "required": [
+            "rel",
+            "href"
+          ]
         },
         "description": "admin/store.faviconLinks.description"
       },
@@ -252,7 +255,10 @@
                   "description": "admin/store.advancedSettings.customHeader.value.description"
                 }
               },
-              "required": ["key", "value"]
+              "required": [
+                "key",
+                "value"
+              ]
             }
           },
           "useDefaultBrowserNavigation": {
@@ -270,14 +276,18 @@
           {
             "properties": {
               "requiresAuthorization": {
-                "enum": [false]
+                "enum": [
+                  false
+                ]
               }
             }
           },
           {
             "properties": {
               "requiresAuthorization": {
-                "enum": [true]
+                "enum": [
+                  true
+                ]
               },
               "b2bEnabled": {
                 "title": "admin/store.b2benabled.title",
@@ -298,7 +308,12 @@
     "b2bEnabled": {
       "ui:disabled": "true"
     },
-    "ui:order": ["storeName", "requiresAuthorization", "b2bEnabled", "*"]
+    "ui:order": [
+      "storeName",
+      "requiresAuthorization",
+      "b2bEnabled",
+      "*"
+    ]
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
