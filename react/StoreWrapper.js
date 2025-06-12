@@ -14,6 +14,7 @@ import { PWAProvider } from 'vtex.store-resources/PWAContext'
 import { OrderQueueProvider } from 'vtex.order-manager/OrderQueue'
 import { OrderItemsProvider } from 'vtex.order-items/OrderItems'
 import { OrderFormProvider as OrderFormProviderCheckout } from 'vtex.order-manager/OrderForm'
+import { ShippingOptionProvider } from 'vtex.shipping-option-components/ShippingOptionContext'
 
 import UserDataPixel from './components/UserDataPixel'
 import PageViewPixel from './components/PageViewPixel'
@@ -75,6 +76,7 @@ const StoreWrapper = ({ children, CustomContext }) => {
     prefetchDefaultPages,
     addNavigationRouteModifier,
   } = useRuntime()
+
   const supportsServiceWorker = canUseDOM && 'serviceWorker' in navigator
 
   useEffect(() => {
@@ -125,9 +127,11 @@ const StoreWrapper = ({ children, CustomContext }) => {
     <OrderQueueProvider>
       <OrderFormProviderCheckout>
         <OrderItemsProvider>
-          <WrapperContainer className="vtex-store__template bg-base">
-            <CustomContextElement>{children}</CustomContextElement>
-          </WrapperContainer>
+          <ShippingOptionProvider>
+            <WrapperContainer className="vtex-store__template bg-base">
+              <CustomContextElement>{children}</CustomContextElement>
+            </WrapperContainer>
+          </ShippingOptionProvider>
         </OrderItemsProvider>
       </OrderFormProviderCheckout>
     </OrderQueueProvider>
