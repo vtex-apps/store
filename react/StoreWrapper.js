@@ -127,9 +127,11 @@ const StoreWrapper = ({ children, CustomContext }) => {
     <OrderQueueProvider>
       <OrderFormProviderCheckout>
         <OrderItemsProvider>
-          <WrapperContainer className="vtex-store__template bg-base">
-            <CustomContextElement>{children}</CustomContextElement>
-          </WrapperContainer>
+          <ShippingOptionProvider>
+            <WrapperContainer className="vtex-store__template bg-base">
+              <CustomContextElement>{children}</CustomContextElement>
+            </WrapperContainer>
+          </ShippingOptionProvider>
         </OrderItemsProvider>
       </OrderFormProviderCheckout>
     </OrderQueueProvider>
@@ -187,23 +189,21 @@ const StoreWrapper = ({ children, CustomContext }) => {
       />
       <PixelProvider currency={currency}>
         <PWAProvider rootPath={rootPath}>
-          <ShippingOptionProvider>
-            <PageViewPixel title={title} />
-            <UserDataPixel />
-            <ToastProvider positioning="window">
-              <NetworkStatusToast />
-              {enableOrderFormOptimization ? (
-                content
-              ) : (
-                /** This is necessary for backwards compatibility, since stores
-                 *  might still need the OrderFormProvider from store-resources.
-                 *  If a store does not have `enableOrderFormOptimization` enabled,
-                 *  we should always add this provider.
-                 */
-                <OrderFormProvider>{content}</OrderFormProvider>
-              )}
-            </ToastProvider>
-          </ShippingOptionProvider>
+          <PageViewPixel title={title} />
+          <UserDataPixel />
+          <ToastProvider positioning="window">
+            <NetworkStatusToast />
+            {enableOrderFormOptimization ? (
+              content
+            ) : (
+              /** This is necessary for backwards compatibility, since stores
+               *  might still need the OrderFormProvider from store-resources.
+               *  If a store does not have `enableOrderFormOptimization` enabled,
+               *  we should always add this provider.
+               */
+              <OrderFormProvider>{content}</OrderFormProvider>
+            )}
+          </ToastProvider>
         </PWAProvider>
       </PixelProvider>
       {isSiteEditorIframe() && (
