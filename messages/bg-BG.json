@@ -1,0 +1,10 @@
+{
+  "admin/editor.product-search.title": "Контекст на продуктово търсене",
+  "admin/editor.product-search.maxItemsPerPage": "Максимален брой артикули на страница",
+  "admin/editor.product-search.hideUnavailableItems": "Скриване на недостъпните елементи",
+  "store/store.network-status.offline": "Няма връзка с интернет.",
+  "admin/actions.enable-binding": "Активиране на конфигурацията чрез обвързване",
+  "admin/actions.binding-configurations": "Обвързващи конфигурации",
+  "admin/actions.binding-id": "ID за обвързване",
+  "admin/actions.binding-description": "Въведете ID за обвързване"
+}
