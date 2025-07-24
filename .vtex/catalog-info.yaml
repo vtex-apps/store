@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: store
+  description: Framework that is used by all ecommerce stores build on VTEX IO.
+  tags:
+    - typescript
+    - react:16
+  annotations:
+    vtex.com/janus-acronym: ""
+    vtex.com/o11y-os-index: ""
+    grafana/dashboard-selector: ""
+    github.com/project-slug: vtex-apps/store
+    vtex.com/platform-flow-id: ""
+    backstage.io/techdocs-ref: dir:../
+    vtex.com/application-id: 6BYLNHZR
+spec:
+  system: store-framework-ui-apps
+  lifecycle: stable
+  owner: te-0013
+  type: frontend-ui
+  dependsOn: []
