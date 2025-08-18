@@ -82,6 +82,12 @@
               "type": "boolean",
               "default": false,
               "description": "Enables semantic HTML improvements for accessibility that may introduce breaking changes. Components will use proper HTML elements like <label>, <main>, <nav> etc."
+            },
+            "publisherId": {
+              "title": "VTEX Ads Publisher ID",
+              "type": "string",
+              "default": "",
+              "description": "Publisher ID used by VTEX Ads to identify your store. It is used to display ads on your store."
             }
           }
         },
