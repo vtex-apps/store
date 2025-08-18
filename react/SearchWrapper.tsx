@@ -466,6 +466,7 @@ const SearchWrapper: FC<SearchWrapperProps> = props => {
       <SearchOpenGraph meta={openGraphParams} />
       <LoadingContextProvider value={loadingValue}>
         <CustomContextElement>
+          SearchWrapper
           {React.cloneElement(children, props)}
         </CustomContextElement>
       </LoadingContextProvider>
