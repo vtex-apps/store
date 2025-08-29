@@ -91,7 +91,7 @@ export const AdsProviderSF = ({ children }: AdsProviderSFProps) => {
       identity={{
         accountName: account,
         publisherId,
-        userId: userId ?? 'mock-user',
+        userId: userId ?? 'userId',
         sessionId,
         channel: 'site',
       }}
