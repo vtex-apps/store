@@ -37,3 +37,4 @@ lib
 *.orig
 
 package-lock.json
+**/coverage
