@@ -1,3 +1,9 @@
+### Added
+- Integration of VTEX Ads provider in store and search wrappers
+- Publisher ID configuration for ads
+- Utilities for fetching user/session data for ads
+- Type definitions to support ads features
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
