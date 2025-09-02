@@ -1,3 +1,11 @@
+### Added
+- Ads provider wrapper integrated into store and search contexts
+- Support for VTEX Ads Publisher ID setting
+- User/session data utilities for ads and pixel usage
+
+### Changed
+- Manifest advanced settings updated to include Ads configuration
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
