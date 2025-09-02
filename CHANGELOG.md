@@ -1,3 +1,11 @@
+### Added
+- Integrate Ads provider into store and search wrappers
+- Publisher ID setting for Ads configuration
+- User data utilities for reuse across components
+
+### Changed
+- Update type definitions to support Ads features
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
