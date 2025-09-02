@@ -1,19 +1,3 @@
-### Added
-- Integrated ads provider in store and search contexts
-- Configuration for publisher ID
-
-### Changed
-- Extracted user data utilities for reuse
-- Updated types and settings to support ads
-
-### Added
-- VTEX Ads provider integration into store and search contexts
-- Publisher ID configuration for ads identification
-
-### Changed
-- Extracted user data utilities for reuse
-- Updated type definitions and settings schema to support ads
-
 # Changelog
 
 All notable changes to this project will be documented in this file.
