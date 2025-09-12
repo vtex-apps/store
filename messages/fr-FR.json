@@ -1,0 +1,10 @@
+{
+  "admin/editor.product-search.title": "Contexte de la recherche de produits",
+  "admin/editor.product-search.maxItemsPerPage": "Nombre maximum d’articles par page",
+  "admin/editor.product-search.hideUnavailableItems": "Masquer les articles non disponibles",
+  "store/store.network-status.offline": "Pas de connexion Internet.",
+  "admin/actions.enable-binding": "Permettre la configuration par liaison",
+  "admin/actions.binding-configurations": "Configurations de liaison",
+  "admin/actions.binding-id": "ID de liaison",
+  "admin/actions.binding-description": "Saisir l'ID de la liaison"
+}
