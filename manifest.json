@@ -236,7 +236,7 @@
           "a11ySemanticHtmlMigration": {
             "title": "admin/store.advancedSettings.a11ySemanticHtmlMigration.title",
             "type": "boolean",
-            "default": true,
+            "default": false,
             "description": "admin/store.advancedSettings.a11ySemanticHtmlMigration.description"
           },
           "customHeader": {
