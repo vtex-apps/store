@@ -1,3 +1,6 @@
+### Added
+- Accessibility feature flag to gradually enable semantic HTML migration in advanced settings
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
