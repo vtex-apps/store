@@ -35,6 +35,7 @@ declare module 'vtex.render-runtime' {
     enablePageNumberTitle: boolean
     canonicalWithoutUrlParams: boolean
     removeStoreNameTitle: boolean
+    a11ySemanticHtmlMigration: boolean
   }
 
   interface KeyValue {
