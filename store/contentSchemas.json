@@ -76,6 +76,12 @@
               "type": "boolean",
               "default": false,
               "description": "If this store's account has configured VTEX Ads, this option enables the fetching of sponsored products within search results."
+            },
+            "a11ySemanticHtmlMigration": {
+              "title": "Enable accessibility semantic HTML migration",
+              "type": "boolean",
+              "default": false,
+              "description": "Enables semantic HTML improvements for accessibility that may introduce breaking changes. Components will use proper HTML elements like <label>, <main>, <nav> etc."
             }
           }
         },

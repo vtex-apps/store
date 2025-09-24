@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `a11ySemanticHtmlMigration` accessibility feature flag in advanced settings to control semantic HTML migration with breaking changes
+
 ## [2.142.0] - 2025-06-12
 
 ### Added

@@ -233,6 +233,12 @@
             "type": "boolean",
             "default": false
           },
+          "a11ySemanticHtmlMigration": {
+            "title": "admin/store.advancedSettings.a11ySemanticHtmlMigration.title",
+            "type": "boolean",
+            "default": false,
+            "description": "admin/store.advancedSettings.a11ySemanticHtmlMigration.description"
+          },
           "customHeader": {
             "title": "admin/store.advancedSettings.customHeader.title",
             "type": "array",
