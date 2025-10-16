@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- `vtex.store` signature to accept `vtex.login-alternative-key:login-content`
+
 ## [2.143.0] - 2025-09-24
 
 ### Added
@@ -139,7 +143,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Include `_q` query parameter in search page canonical URLs
-- Provide `meta.canonical` prop to `SearchOpenGraph` component, to ensure `og:url` and canonical are consistent 
+- Provide `meta.canonical` prop to `SearchOpenGraph` component, to ensure `og:url` and canonical are consistent
 
 ## [2.127.1] - 2022-10-06
 
