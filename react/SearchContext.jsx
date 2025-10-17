@@ -6,7 +6,7 @@ import { useRuntime } from 'vtex.render-runtime'
 import SearchQuery from 'vtex.search-result/SearchQuery'
 
 import { initializeMap, SORT_OPTIONS } from './modules/search'
-import { AdsProviderSF } from './components/AdsProviderSF'
+import { VTEXAdsProvider } from './components/VTEXAdsProvider'
 
 const DEFAULT_MAX_ITEMS_PER_PAGE = 10
 
@@ -105,7 +105,7 @@ const SearchContext = props => {
     searchState
 
   return (
-    <AdsProviderSF>
+    <VTEXAdsProvider>
       <SearchQuery
         maxItemsPerPage={maxItemsPerPage}
         query={queryValue}
@@ -165,7 +165,7 @@ const SearchContext = props => {
           })
         }}
       </SearchQuery>
-    </AdsProviderSF>
+    </VTEXAdsProvider>
   )
 }
 
