@@ -23,7 +23,7 @@ import NetworkStatusToast from './components/NetworkStatusToast'
 import WrapperContainer from './components/WrapperContainer'
 import { normalizeNavigation } from './utils/navigation'
 import { useCanonicalLink } from './hooks/useCanonicalLink'
-import { AdsProviderSF } from './components/AdsProviderSF'
+import { VTEXAdsProvider } from './components/VTEXAdsProvider'
 
 const APP_LOCATOR = 'vtex.store'
 const CONTENT_TYPE = 'text/html; charset=utf-8'
@@ -129,11 +129,11 @@ const StoreWrapper = ({ children, CustomContext }) => {
       <OrderFormProviderCheckout>
         <OrderItemsProvider>
           <ShippingOptionProvider>
-            <AdsProviderSF>
+            <VTEXAdsProvider>
               <WrapperContainer className="vtex-store__template bg-base">
                 <CustomContextElement>{children}</CustomContextElement>
               </WrapperContainer>
-            </AdsProviderSF>
+            </VTEXAdsProvider>
           </ShippingOptionProvider>
         </OrderItemsProvider>
       </OrderFormProviderCheckout>

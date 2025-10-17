@@ -11,7 +11,7 @@ import {
   SessionResponse,
 } from '../hooks/getUserData'
 
-interface AdsProviderSFProps {
+interface VTEXAdsProviderProps {
   children?: React.ReactNode
 }
 
@@ -48,7 +48,7 @@ const matcher = (product: Product, offer: Offer): boolean => {
   return true
 }
 
-export const AdsProviderSF = ({ children }: AdsProviderSFProps) => {
+export const VTEXAdsProvider = ({ children }: VTEXAdsProviderProps) => {
   const { account, getSettings } = useRuntime()
   const publisherId = getSettings('vtex.store')?.publisherId
 
@@ -56,30 +56,40 @@ export const AdsProviderSF = ({ children }: AdsProviderSFProps) => {
   const [sessionId, setSessionId] = useState<string>('session-id')
 
   useEffect(() => {
-    getSessionPromiseFromWindow().then((data: SessionResponse) => {
-      const profileFields = data?.response?.namespaces?.profile
+    getSessionPromiseFromWindow()
+      .then((data: SessionResponse) => {
+        const profileFields = data?.response?.namespaces?.profile
 
-      if (!profileFields) {
-        return
-      }
+        if (!profileFields) {
+          return
+        }
 
-      setSessionId(data.response?.id ?? 'session-id')
+        setSessionId(data.response?.id ?? 'session-id')
 
-      const userData = getUserData(profileFields)
-      setUserId(userData.id as string | undefined)
-    })
+        const userData = getUserData(profileFields)
+        setUserId(userData.id as string | undefined)
+      })
+      .catch(() => {})
   }, [])
 
   const client = useApolloClient()
   const fetcher = async (offers: Offer[]): Promise<Product[]> => {
-    const skuIds = offers.map(o => o.skuId).join(';')
-    const { data } = await client.query<{
-      productSearch: { products: Product[] }
-    }>({
-      query: productSearchV3,
-      variables: { fullText: `sku.id:${skuIds}` },
-    })
-    return data.productSearch.products
+    if (offers.length === 0) {
+      return []
+    }
+
+    try {
+      const skuIds = offers.map(o => o.skuId).join(';')
+      const { data } = await client.query<{
+        productSearch: { products: Product[] }
+      }>({
+        query: productSearchV3,
+        variables: { fullText: `sku.id:${skuIds}` },
+      })
+      return data?.productSearch.products ?? []
+    } catch {
+      return []
+    }
   }
 
   if (!publisherId) {
