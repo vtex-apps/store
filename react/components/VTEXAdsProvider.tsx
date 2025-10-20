@@ -101,7 +101,7 @@ export const VTEXAdsProvider = ({ children }: VTEXAdsProviderProps) => {
       identity={{
         accountName: account,
         publisherId,
-        userId: userId ?? 'userId',
+        userId,
         sessionId,
         channel: 'site',
       }}
