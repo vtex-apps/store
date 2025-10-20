@@ -10,16 +10,7 @@ const fields = [
 
 export interface SessionResponse {
   response: {
-    id: string
     namespaces: {
-      account?: {
-        accountName?: {
-          value: string
-        }
-        id?: {
-          value: string
-        }
-      }
       profile?: {
         firstName?: {
           value: string
