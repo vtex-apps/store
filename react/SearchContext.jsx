@@ -6,41 +6,44 @@ import { useRuntime } from 'vtex.render-runtime'
 import SearchQuery from 'vtex.search-result/SearchQuery'
 
 import { initializeMap, SORT_OPTIONS } from './modules/search'
+import { VTEXAdsProvider } from './components/VTEXAdsProvider'
 
 const DEFAULT_MAX_ITEMS_PER_PAGE = 10
 
 const trimStartingSlash = value => value && value.replace(/^\//, '')
 
-const SearchContext = ({
-  nextTreePath,
-  params,
-  maxItemsPerPage = DEFAULT_MAX_ITEMS_PER_PAGE,
-  queryField,
-  mapField,
-  orderByField,
-  hideUnavailableItems,
-  facetsBehavior = 'Static',
-  __unstableCategoryTreeBehavior = 'default',
-  skusFilter,
-  simulationBehavior,
-  installmentCriteria,
-  excludedPaymentSystems,
-  includedPaymentSystems,
-  sponsoredProductsBehavior = 'sync',
-  query: {
-    order: orderBy = orderByField || SORT_OPTIONS[0].value,
-    page: pageQuery,
-    map: mapQuery,
-    priceRange,
-    // backwards-compatibility
-    rest,
-    fuzzy,
-    operator,
-    searchState,
-  },
-  children,
-  __unstableProductOriginVtex,
-}) => {
+const SearchContext = props => {
+  const {
+    nextTreePath,
+    params,
+    maxItemsPerPage = DEFAULT_MAX_ITEMS_PER_PAGE,
+    queryField,
+    mapField,
+    orderByField,
+    hideUnavailableItems,
+    facetsBehavior = 'Static',
+    __unstableCategoryTreeBehavior = 'default',
+    skusFilter,
+    simulationBehavior,
+    installmentCriteria,
+    excludedPaymentSystems,
+    includedPaymentSystems,
+    sponsoredProductsBehavior = 'sync',
+    query: {
+      order: orderBy = orderByField || SORT_OPTIONS[0].value,
+      page: pageQuery,
+      map: mapQuery,
+      priceRange,
+      // backwards-compatibility
+      rest,
+      fuzzy,
+      operator,
+      searchState,
+    },
+    children,
+    __unstableProductOriginVtex,
+  } = props
+
   const {
     page: runtimePage,
     query: runtimeQuery,
@@ -102,62 +105,67 @@ const SearchContext = ({
     searchState
 
   return (
-    <SearchQuery
-      maxItemsPerPage={maxItemsPerPage}
-      query={queryValue}
-      map={mapValue}
-      orderBy={orderBy}
-      priceRange={priceRange}
-      hideUnavailableItems={hideUnavailableItems}
-      facetsBehavior={facetsBehavior}
-      categoryTreeBehavior={__unstableCategoryTreeBehavior}
-      pageQuery={pageQuery}
-      skusFilter={skusFilter}
-      simulationBehavior={simulationBehavior}
-      installmentCriteria={installmentCriteria}
-      excludedPaymentSystems={excludedPaymentSystems}
-      includedPaymentSystems={includedPaymentSystems}
-      operator={operator}
-      fuzzy={fuzzy}
-      searchState={state}
-      __unstableProductOriginVtex={__unstableProductOriginVtex}
-      sponsoredProductsBehavior={sponsoredProductsBehavior}
-    >
-      {(searchQuery, extraParams) => {
-        return React.cloneElement(children, {
-          searchQuery: {
-            ...searchQuery,
-            // backwards-compatibility
-            data: {
-              ...(searchQuery.data || {}),
+    <VTEXAdsProvider>
+      <SearchQuery
+        maxItemsPerPage={maxItemsPerPage}
+        query={queryValue}
+        map={mapValue}
+        orderBy={orderBy}
+        priceRange={priceRange}
+        hideUnavailableItems={hideUnavailableItems}
+        facetsBehavior={facetsBehavior}
+        categoryTreeBehavior={__unstableCategoryTreeBehavior}
+        pageQuery={pageQuery}
+        skusFilter={skusFilter}
+        simulationBehavior={simulationBehavior}
+        installmentCriteria={installmentCriteria}
+        excludedPaymentSystems={excludedPaymentSystems}
+        includedPaymentSystems={includedPaymentSystems}
+        operator={operator}
+        fuzzy={fuzzy}
+        searchState={state}
+        __unstableProductOriginVtex={__unstableProductOriginVtex}
+        sponsoredProductsBehavior={sponsoredProductsBehavior}
+      >
+        {(searchQuery, extraParams) => {
+          return React.cloneElement(children, {
+            searchQuery: {
+              ...searchQuery,
+              // backwards-compatibility
+              data: {
+                ...(searchQuery.data || {}),
+                products: path(
+                  ['data', 'productSearch', 'products'],
+                  searchQuery
+                ),
+              },
+              facets: path(['data', 'facets'], searchQuery),
               products: path(
                 ['data', 'productSearch', 'products'],
                 searchQuery
               ),
+              recordsFiltered: path(
+                ['data', 'productSearch', 'recordsFiltered'],
+                searchQuery
+              ),
             },
-            facets: path(['data', 'facets'], searchQuery),
-            products: path(['data', 'productSearch', 'products'], searchQuery),
-            recordsFiltered: path(
-              ['data', 'productSearch', 'recordsFiltered'],
-              searchQuery
-            ),
-          },
-          searchContext: runtimePage,
-          pagesPath: nextTreePath,
-          map,
-          orderBy,
-          priceRange,
-          page: extraParams.page,
-          from: extraParams.from,
-          to: extraParams.to,
-          facetsLoading: extraParams.facetsLoading,
-          maxItemsPerPage,
-          // backwards-compatibility
-          rest,
-          lazyItemsRemaining: extraParams.lazyItemsRemaining,
-        })
-      }}
-    </SearchQuery>
+            searchContext: runtimePage,
+            pagesPath: nextTreePath,
+            map,
+            orderBy,
+            priceRange,
+            page: extraParams.page,
+            from: extraParams.from,
+            to: extraParams.to,
+            facetsLoading: extraParams.facetsLoading,
+            maxItemsPerPage,
+            // backwards-compatibility
+            rest,
+            lazyItemsRemaining: extraParams.lazyItemsRemaining,
+          })
+        }}
+      </SearchQuery>
+    </VTEXAdsProvider>
   )
 }
 

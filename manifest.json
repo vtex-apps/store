@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "store",
-  "version": "2.143.0",
+  "version": "2.144.1-beta.0",
   "title": "VTEX Store",
   "description": "The VTEX basic store.",
   "builders": {
@@ -227,11 +227,11 @@
             "type": "boolean",
             "default": false
           },
-          "fetchSponsoredProductsOnSearch": {
-            "title": "admin/store.advancedSettings.fetchSponsoredProductsOnSearch.title",
-            "description": "admin/store.advancedSettings.fetchSponsoredProductsOnSearch.description",
-            "type": "boolean",
-            "default": false
+          "publisherId": {
+            "title": "admin/store.advancedSettings.publisherId.title",
+            "description": "admin/store.advancedSettings.publisherId.description",
+            "type": "string",
+            "default": ""
           },
           "a11ySemanticHtmlMigration": {
             "title": "admin/store.advancedSettings.a11ySemanticHtmlMigration.title",

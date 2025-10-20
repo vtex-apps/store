@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Wrap the store around AdsProvider component to allow requesting ads across the store.
+
 ## [2.143.0] - 2025-09-24
 
 ### Added
