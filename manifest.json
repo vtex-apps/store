@@ -21,6 +21,7 @@
     "vtex.pixel-interfaces": "1.x",
     "vtex.search-result": "3.x",
     "vtex.login": "2.x",
+    "vtex.login-alternative-key": "1.x",
     "vtex.my-account": "1.x",
     "vtex.pixel-manager": "1.x",
     "vtex.product-context": "0.x",
