@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `getAuthenticatedUser` query to be called instead of session
+
+### Reverted
+
+- 2.144.0
+
 ## [2.144.0] - 2025-10-22
 
 ### Changed

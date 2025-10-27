@@ -1,13 +1,12 @@
-import React, { useState, useEffect, FC } from 'react'
+import React, { useEffect, FC } from 'react'
 import {
   useRuntime,
   canUseDOM,
   Loading,
-  SessionResponse,
-  Session,
 } from 'vtex.render-runtime'
 
-import { getSession } from './modules/session'
+import getAuthenticatedUser from './graphql/getAuthenticatedUser.graphql'
+import { useQuery } from 'react-apollo'
 
 const loginPath = '/login'
 
@@ -25,35 +24,20 @@ const getLocation = () =>
         pathName: (global as any).__pathname__,
       }
 
-const useSessionResponse = () => {
-  const [session, setSession] = useState<SessionResponse>()
-  const sessionPromise = getSession()
+const useStoreGraphqlSession = () => {
 
-  useEffect(() => {
-    if (!sessionPromise) {
-      return
-    }
+  const shouldRunQuery = canUseDOM
 
-    sessionPromise.then(sessionResponse => {
-      const response = sessionResponse.response as SessionResponse
+  const { data, loading, error } = useQuery(getAuthenticatedUser, {
+    skip: !shouldRunQuery,
+  })
 
-      setSession(response)
-    })
-  }, [sessionPromise])
-
-  return session
-}
-
-function hasSession(session: SessionResponse | undefined): session is Session {
-  return (
-    session !== undefined &&
-    session.type !== 'Unauthorized' &&
-    session.type !== 'Forbidden'
-  )
+  return { data, loading, error }
 }
 
 const useLoginRedirect = (isLoggedIn: boolean | null, page: string) => {
   const { rootPath = '' } = useRuntime()
+
 
   useEffect(() => {
     const { url, pathName } = getLocation()
@@ -74,10 +58,11 @@ interface Props {
   page: string
 }
 
-const ProfileChallenge: FC<Props> = ({ children, page }) => {
-  const session = useSessionResponse()
-  const isLoggedIn = hasSession(session)
-    ? session.namespaces?.profile?.isAuthenticated?.value === 'true'
+const ProfileChallenge: FC<Props> = ({ children, page }) => {  
+
+  const storeGraphqlSession = useStoreGraphqlSession()
+  const isLoggedIn = storeGraphqlSession.loading === false
+    ? !!storeGraphqlSession.data?.authenticatedUser?.userId
     : null
 
   useLoginRedirect(isLoggedIn, page)
