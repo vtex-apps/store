@@ -1,12 +1,8 @@
 import React, { useEffect, FC } from 'react'
-import {
-  useRuntime,
-  canUseDOM,
-  Loading,
-} from 'vtex.render-runtime'
+import { useQuery } from 'react-apollo'
+import { useRuntime, canUseDOM, Loading } from 'vtex.render-runtime'
 
 import getAuthenticatedUser from './graphql/getAuthenticatedUser.graphql'
-import { useQuery } from 'react-apollo'
 
 const loginPath = '/login'
 
@@ -20,12 +16,11 @@ const getLocation = () =>
         pathName: window.location.pathname,
       }
     : {
-        url: (global as any).__pathname__,
-        pathName: (global as any).__pathname__,
+        url: (global as any).__pathname__, // eslint-disable-line @typescript-eslint/no-explicit-any
+        pathName: (global as any).__pathname__, // eslint-disable-line @typescript-eslint/no-explicit-any
       }
 
 const useStoreGraphqlSession = () => {
-
   const shouldRunQuery = canUseDOM
 
   const { data, loading, error } = useQuery(getAuthenticatedUser, {
@@ -37,7 +32,6 @@ const useStoreGraphqlSession = () => {
 
 const useLoginRedirect = (isLoggedIn: boolean | null, page: string) => {
   const { rootPath = '' } = useRuntime()
-
 
   useEffect(() => {
     const { url, pathName } = getLocation()
@@ -58,12 +52,12 @@ interface Props {
   page: string
 }
 
-const ProfileChallenge: FC<Props> = ({ children, page }) => {  
-
+const ProfileChallenge: FC<Props> = ({ children, page }) => {
   const storeGraphqlSession = useStoreGraphqlSession()
-  const isLoggedIn = storeGraphqlSession.loading === false
-    ? !!storeGraphqlSession.data?.authenticatedUser?.userId
-    : null
+  const isLoggedIn =
+    storeGraphqlSession.loading === false
+      ? !!storeGraphqlSession.data?.authenticatedUser?.userId
+      : null
 
   useLoginRedirect(isLoggedIn, page)
 

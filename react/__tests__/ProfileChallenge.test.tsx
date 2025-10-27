@@ -1,8 +1,9 @@
 import React from 'react'
-import { render, screen, waitFor } from '@vtex/test-tools/react'
-import ProfileChallenge from '../ProfileChallenge'
 import { useQuery } from 'react-apollo'
+import { render, screen, waitFor } from '@vtex/test-tools/react'
 import { useRuntime } from 'vtex.render-runtime'
+
+import ProfileChallenge from '../ProfileChallenge'
 
 jest.mock('react-apollo', () => ({
   useQuery: jest.fn(),
@@ -10,18 +11,18 @@ jest.mock('react-apollo', () => ({
 jest.mock('vtex.render-runtime', () => ({
   useRuntime: jest.fn(),
   canUseDOM: true,
-  Loading: () => <div>Loading...</div>,
+  Loading: () => <div>Loading...</div>, // eslint-disable-line react/display-name
 }))
 
 describe('ProfileChallenge', () => {
   const mockAssign = jest.fn()
   beforeAll(() => {
     Object.defineProperty(window, 'location', {
-      value: { 
-        assign: mockAssign, 
-        pathname: '/', 
-        search: '', 
-        hash: '' 
+      value: {
+        assign: mockAssign,
+        pathname: '/',
+        search: '',
+        hash: '',
       },
       writable: true,
     })
@@ -32,13 +33,13 @@ describe('ProfileChallenge', () => {
   })
 
   it('shows loading while query is loading', () => {
-    (useQuery as jest.Mock).mockReturnValue({ loading: true })
+    ;(useQuery as jest.Mock).mockReturnValue({ loading: true })
     render(<ProfileChallenge page="store.home">child</ProfileChallenge>)
     expect(screen.getByText('Loading...')).toBeInTheDocument()
   })
 
   it('renders children if user is authenticated', () => {
-    (useQuery as jest.Mock).mockReturnValue({
+    ;(useQuery as jest.Mock).mockReturnValue({
       loading: false,
       data: { authenticatedUser: { userId: 'abc123' } },
     })
@@ -47,7 +48,7 @@ describe('ProfileChallenge', () => {
   })
 
   it('redirects to login if not authenticated', async () => {
-    (useQuery as jest.Mock).mockReturnValue({
+    ;(useQuery as jest.Mock).mockReturnValue({
       loading: false,
       data: { authenticatedUser: null },
     })
@@ -58,7 +59,7 @@ describe('ProfileChallenge', () => {
   })
 
   it('does not redirect on login page', () => {
-    (useQuery as jest.Mock).mockReturnValue({
+    ;(useQuery as jest.Mock).mockReturnValue({
       loading: false,
       data: { authenticatedUser: null },
     })
