@@ -21,7 +21,6 @@
     "vtex.pixel-interfaces": "1.x",
     "vtex.search-result": "3.x",
     "vtex.login": "2.x",
-    "vtex.login-alternative-key": "1.x",
     "vtex.my-account": "1.x",
     "vtex.pixel-manager": "1.x",
     "vtex.product-context": "0.x",
@@ -91,10 +90,7 @@
               "type": "string"
             }
           },
-          "required": [
-            "rel",
-            "href"
-          ]
+          "required": ["rel", "href"]
         },
         "description": "admin/store.faviconLinks.description"
       },
@@ -262,10 +258,7 @@
                   "description": "admin/store.advancedSettings.customHeader.value.description"
                 }
               },
-              "required": [
-                "key",
-                "value"
-              ]
+              "required": ["key", "value"]
             }
           },
           "useDefaultBrowserNavigation": {
@@ -283,18 +276,14 @@
           {
             "properties": {
               "requiresAuthorization": {
-                "enum": [
-                  false
-                ]
+                "enum": [false]
               }
             }
           },
           {
             "properties": {
               "requiresAuthorization": {
-                "enum": [
-                  true
-                ]
+                "enum": [true]
               },
               "b2bEnabled": {
                 "title": "admin/store.b2benabled.title",
@@ -315,12 +304,7 @@
     "b2bEnabled": {
       "ui:disabled": "true"
     },
-    "ui:order": [
-      "storeName",
-      "requiresAuthorization",
-      "b2bEnabled",
-      "*"
-    ]
+    "ui:order": ["storeName", "requiresAuthorization", "b2bEnabled", "*"]
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
