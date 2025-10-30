@@ -43,7 +43,7 @@
     }
   },
   "store.login": {
-    "allowed": ["vtex.login:login-content", "vtex.login-alternative-key:login-content"],
+    "required": ["vtex.login:login-content"],
     "preview": {
       "type": "spinner",
       "height": 600
