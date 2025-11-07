@@ -54,9 +54,10 @@ interface Props {
 
 const ProfileChallenge: FC<Props> = ({ children, page }) => {
   const storeGraphqlSession = useStoreGraphqlSession()
+
   const isLoggedIn =
     storeGraphqlSession.loading === false
-      ? !!storeGraphqlSession.data?.authenticatedUser?.userId
+      ? !!storeGraphqlSession.data?.authenticatedUser?.id
       : null
 
   useLoginRedirect(isLoggedIn, page)
