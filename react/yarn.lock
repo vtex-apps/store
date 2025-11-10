@@ -1943,20 +1943,20 @@
   resolved "https://registry.yarnpkg.com/@types/zen-observable/-/zen-observable-0.8.0.tgz#8b63ab7f1aa5321248aad5ac890a485656dcea4d"
   integrity sha512-te5lMAWii1uEJ4FwLjzdlbw3+n0FZNOvFXHxQDKeT0dilh7HOzdMzV2TrJVUzq8ep7J4Na8OUYPRLSQkJHAlrg==
 
-"@vtex/ads-core@^0.2.3-beta.0":
-  version "0.2.3-beta.0"
-  resolved "https://registry.yarnpkg.com/@vtex/ads-core/-/ads-core-0.2.3-beta.0.tgz#e4abad4b2fd96cc8e074d2a79d492c5b0463b45d"
-  integrity sha512-EIRtr9IjKbw7MB7LY6LIizXWGBmwPCE5wpNyoeNwJxAsiCY9/AYVRsbNQziREylXuDpMjfoSg/RMAlCZZUWEzA==
+"@vtex/ads-core@^0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@vtex/ads-core/-/ads-core-0.3.1.tgz#abc6e10dd3fb18ab1744f7f1de44c6e5e8fb22e1"
+  integrity sha512-nQ2Ktf4BC/6A1QfEQU2zntuIKrshS6Z78Ir9C0/scIO4xei5OlLxpVD1sADeTmQacNk6Fht38ePM6Zq+K9kXPQ==
   dependencies:
     "@swc/core" "^1.13.3"
     cross-fetch "^4.1.0"
 
-"@vtex/ads-react@0.3.0-beta.8":
-  version "0.3.0-beta.8"
-  resolved "https://registry.yarnpkg.com/@vtex/ads-react/-/ads-react-0.3.0-beta.8.tgz#7a96405bc645791bfc70cdc73d7006d8c7dea515"
-  integrity sha512-UYP7VREbSNttAnnh9yC2Mu0PHQQq6RRJ7B+lAsytUWuH7tMIyzb0M1BrFVtNJwFX0sunq7VYqbqk1+f0zJExHw==
+"@vtex/ads-react@0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@vtex/ads-react/-/ads-react-0.3.1.tgz#7c74954e8d50c54dea70783bbb52f2358519e308"
+  integrity sha512-/ZQr++FUu0S2WCwIc4uRsCmZGl4S/LOUZHSk5fzh90G5fXnbK3EQ7lLv/Cm0g7h0l22kSGqxi8OlIzNFieYJvA==
   dependencies:
-    "@vtex/ads-core" "^0.2.3-beta.0"
+    "@vtex/ads-core" "^0.3.1"
 
 "@vtex/test-tools@^3.4.3":
   version "3.4.3"
