@@ -13,4 +13,3 @@
             - "docs/**"
             - ".vtex/deployment.yaml"
             - ".vtex/deployment.json"
-            - "README.md"
