@@ -96,7 +96,7 @@ export const VTEXAdsProvider = ({ children }: VTEXAdsProviderProps) => {
   if (!publisherId) {
     sendLog({
       message: 'PublisherId não encontrado no VTEXAdsProvider',
-      body: `PublisherId ausente para a conta: ${account}`
+      body: `PublisherId ausente para a conta: ${account}`,
     }).catch(() => {})
     return children
   }
