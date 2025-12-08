@@ -12,7 +12,7 @@ export async function sendLog(
     message,
     searchIndex = 'ads_pai',
     environment = 'production',
-    body
+    body,
   } = options
 
   const severityText = 'ERROR'
@@ -46,36 +46,36 @@ export async function sendLog(
             {
               key: '_msg',
               value: {
-                stringValue: message || 'Log message'
-              }
+                stringValue: message ?? 'Log message',
+              },
             },
             {
               key: 'hostname',
               value: {
-                stringValue: hostname
-              }
+                stringValue: hostname,
+              },
             },
             {
               key: 'path',
               value: {
-                stringValue: path
-              }
+                stringValue: path,
+              },
             },
             {
               key: 'environment',
               value: {
-                stringValue: environment
-              }
+                stringValue: environment,
+              },
             },
             {
               key: 'browserInfos',
               value: {
                 stringValue: JSON.stringify({
-                  url: url,
-                  hostname: hostname,
-                  path: path
-                })
-              }
+                  url,
+                  hostname,
+                  path,
+                }),
+              },
             },
             {
               key: 'searchParams',
@@ -83,42 +83,42 @@ export async function sendLog(
                 stringValue:
                   typeof window !== 'undefined' && window.location
                     ? window.location.search
-                    : ''
-              }
-            }
-          ]
+                    : '',
+              },
+            },
+          ],
         },
         scopeLogs: [
           {
             scope: {},
             logRecords: [
               {
-                timeUnixNano: timeUnixNano,
-                observedTimeUnixNano: observedTimeUnixNano,
-                severityText: severityText,
-                severityNumber: severityNumber,
+                timeUnixNano,
+                observedTimeUnixNano,
+                severityText,
+                severityNumber,
                 attributes: [
                   {
                     key: 'vtex.search_index',
                     value: {
-                      stringValue: searchIndex
-                    }
+                      stringValue: searchIndex,
+                    },
                   },
                   {
                     key: 'body',
                     value: {
-                      stringValue: body || message || 'Log message'
-                    }
-                  }
+                      stringValue: body ?? message ?? 'Log message',
+                    },
+                  },
                 ],
-                traceId: traceId,
-                spanId: spanId
-              }
-            ]
-          }
-        ]
-      }
-    ]
+                traceId,
+                spanId,
+              },
+            ],
+          },
+        ],
+      },
+    ],
   }
 
   try {
@@ -127,9 +127,9 @@ export async function sendLog(
       {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
       }
     )
     return response
@@ -137,4 +137,3 @@ export async function sendLog(
     console.error('Erro ao enviar log:', error)
   }
 }
-
