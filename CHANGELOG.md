@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Logging functionality to track domains missing `publisherId` configuration in VTEXAdsProvider
+
 ## [2.145.0] - 2025-12-04
 
 ### Added
