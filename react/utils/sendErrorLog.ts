@@ -5,15 +5,14 @@ interface SendLogOptions {
   body?: string
 }
 
-export async function sendLog(
+export async function sendErrorLog(
   options: SendLogOptions
 ): Promise<Response | void> {
-  const {
-    message,
-    searchIndex = 'ads_pai',
-    environment = 'production',
-    body,
-  } = options
+  if (!options?.searchIndex) {
+    return null
+  }
+
+  const { message, searchIndex, environment = 'production', body } = options
 
   const severityText = 'ERROR'
   const severityNumber = 17

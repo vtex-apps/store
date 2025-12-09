@@ -10,7 +10,7 @@ import {
   getUserData,
   SessionResponse,
 } from '../hooks/getUserData'
-import { sendLog } from '../utils/sendLog'
+import { sendErrorLog } from '../utils/sendErrorLog'
 
 interface VTEXAdsProviderProps {
   children?: React.ReactNode
@@ -94,9 +94,10 @@ export const VTEXAdsProvider = ({ children }: VTEXAdsProviderProps) => {
   }
 
   if (!publisherId) {
-    sendLog({
+    sendErrorLog({
       message: 'PublisherId não encontrado no VTEXAdsProvider',
       body: `PublisherId ausente para a conta: ${account}`,
+      searchIndex: 'ads_pai',
     }).catch(() => {})
     return children
   }
