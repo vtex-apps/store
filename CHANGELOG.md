@@ -17,6 +17,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [2.144.0] - 2025-10-22
 
+## [2.145.0] - 2025-12-04
+
+### Added
+
+- Wrap the store around AdsProvider component to allow requesting ads across the store.
+
+## [2.144.0] - 2025-10-22 [YANKED]
+
 ### Changed
 
 - `vtex.store` signature to accept `vtex.login-alternative-key:login-content`
