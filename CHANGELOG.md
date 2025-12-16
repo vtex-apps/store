@@ -11,11 +11,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `getAuthenticatedUser` query to be called instead of session
 
-### Reverted
+## [2.145.0] - 2025-12-04
 
-- 2.144.0
+### Added
 
-## [2.144.0] - 2025-10-22
+- Wrap the store around AdsProvider component to allow requesting ads across the store.
+
+## [2.144.0] - 2025-10-22 [YANKED]
 
 ### Changed
 

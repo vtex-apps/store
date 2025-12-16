@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "store",
-  "version": "2.144.0",
+  "version": "2.145.0",
   "title": "VTEX Store",
   "description": "The VTEX basic store.",
   "builders": {
@@ -21,7 +21,6 @@
     "vtex.pixel-interfaces": "1.x",
     "vtex.search-result": "3.x",
     "vtex.login": "2.x",
-    "vtex.login-alternative-key": "1.x",
     "vtex.my-account": "1.x",
     "vtex.pixel-manager": "1.x",
     "vtex.product-context": "0.x",
@@ -228,11 +227,11 @@
             "type": "boolean",
             "default": false
           },
-          "fetchSponsoredProductsOnSearch": {
-            "title": "admin/store.advancedSettings.fetchSponsoredProductsOnSearch.title",
-            "description": "admin/store.advancedSettings.fetchSponsoredProductsOnSearch.description",
-            "type": "boolean",
-            "default": false
+          "publisherId": {
+            "title": "admin/store.advancedSettings.publisherId.title",
+            "description": "admin/store.advancedSettings.publisherId.description",
+            "type": "string",
+            "default": ""
           },
           "a11ySemanticHtmlMigration": {
             "title": "admin/store.advancedSettings.a11ySemanticHtmlMigration.title",
