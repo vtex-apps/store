@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- `vtex.store` signature to accept `vtex.login-alternative-key:login-content`
+
 ## [2.146.0] - 2025-12-18
 
 ### Added
