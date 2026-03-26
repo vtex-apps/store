@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - Replace `vtex.shipping-option-components` by `vtex.delivery-promise-components`
+- `StoreWrapper` now uses `DeliveryPromiseProvider` from `vtex.delivery-promise-components/DeliveryPromiseContext` (replacing `ShippingOptionProvider` / `ShippingOptionContext`).
 
 ## [2.146.0] - 2025-12-18
 

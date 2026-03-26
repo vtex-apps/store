@@ -14,7 +14,7 @@ import { PWAProvider } from 'vtex.store-resources/PWAContext'
 import { OrderQueueProvider } from 'vtex.order-manager/OrderQueue'
 import { OrderItemsProvider } from 'vtex.order-items/OrderItems'
 import { OrderFormProvider as OrderFormProviderCheckout } from 'vtex.order-manager/OrderForm'
-import { ShippingOptionProvider } from 'vtex.shipping-option-components/ShippingOptionContext'
+import { DeliveryPromiseProvider } from 'vtex.delivery-promise-components/DeliveryPromiseContext'
 
 import UserDataPixel from './components/UserDataPixel'
 import PageViewPixel from './components/PageViewPixel'
@@ -128,13 +128,13 @@ const StoreWrapper = ({ children, CustomContext }) => {
     <OrderQueueProvider>
       <OrderFormProviderCheckout>
         <OrderItemsProvider>
-          <ShippingOptionProvider>
+          <DeliveryPromiseProvider>
             <VTEXAdsProvider>
               <WrapperContainer className="vtex-store__template bg-base">
                 <CustomContextElement>{children}</CustomContextElement>
               </WrapperContainer>
             </VTEXAdsProvider>
-          </ShippingOptionProvider>
+          </DeliveryPromiseProvider>
         </OrderItemsProvider>
       </OrderFormProviderCheckout>
     </OrderQueueProvider>
