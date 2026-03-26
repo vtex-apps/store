@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Replace `vtex.shipping-option-components` by `vtex.delivery-promise-components`
+
 ## [2.146.0] - 2025-12-18
 
 ### Added
