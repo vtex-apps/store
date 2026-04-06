@@ -1,8 +1,13 @@
-import React, { useEffect, FC } from 'react'
-import { useQuery } from 'react-apollo'
-import { useRuntime, canUseDOM, Loading } from 'vtex.render-runtime'
+import React, { useState, useEffect, FC } from 'react'
+import {
+  useRuntime,
+  canUseDOM,
+  Loading,
+  SessionResponse,
+  Session,
+} from 'vtex.render-runtime'
 
-import getAuthenticatedUser from './graphql/getAuthenticatedUser.graphql'
+import { getSession } from './modules/session'
 
 const loginPath = '/login'
 
@@ -16,18 +21,35 @@ const getLocation = () =>
         pathName: window.location.pathname,
       }
     : {
-        url: (global as any).__pathname__, // eslint-disable-line @typescript-eslint/no-explicit-any
-        pathName: (global as any).__pathname__, // eslint-disable-line @typescript-eslint/no-explicit-any
+        url: (global as any).__pathname__,
+        pathName: (global as any).__pathname__,
       }
 
-const useStoreGraphqlSession = () => {
-  const shouldRunQuery = canUseDOM
+const useSessionResponse = () => {
+  const [session, setSession] = useState<SessionResponse>()
+  const sessionPromise = getSession()
 
-  const { data, loading, error } = useQuery(getAuthenticatedUser, {
-    skip: !shouldRunQuery,
-  })
+  useEffect(() => {
+    if (!sessionPromise) {
+      return
+    }
 
-  return { data, loading, error }
+    sessionPromise.then(sessionResponse => {
+      const response = sessionResponse.response as SessionResponse
+
+      setSession(response)
+    })
+  }, [sessionPromise])
+
+  return session
+}
+
+function hasSession(session: SessionResponse | undefined): session is Session {
+  return (
+    session !== undefined &&
+    session.type !== 'Unauthorized' &&
+    session.type !== 'Forbidden'
+  )
 }
 
 const useLoginRedirect = (isLoggedIn: boolean | null, page: string) => {
@@ -53,12 +75,10 @@ interface Props {
 }
 
 const ProfileChallenge: FC<Props> = ({ children, page }) => {
-  const storeGraphqlSession = useStoreGraphqlSession()
-
-  const isLoggedIn =
-    storeGraphqlSession.loading === false
-      ? !!storeGraphqlSession.data?.authenticatedUser?.id
-      : null
+  const session = useSessionResponse()
+  const isLoggedIn = hasSession(session)
+    ? session.namespaces?.profile?.isAuthenticated?.value === 'true'
+    : null
 
   useLoginRedirect(isLoggedIn, page)
 

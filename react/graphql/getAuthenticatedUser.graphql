@@ -1,7 +1,0 @@
-query getAuthenticatedUser {
-  authenticatedUser @context(provider: "vtex.store-graphql") {
-    id
-    email
-    name
-  }
-}
