@@ -35,6 +35,7 @@
     "vtex.rich-text": "0.x",
     "vtex.native-types": "0.x",
     "vtex.telemarketing": "2.x",
+    "vtex.delivery-promise-components": "1.x",
     "vtex.shipping-option-components": "1.x"
   },
   "settingsSchema": {

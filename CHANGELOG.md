@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Add `vtex.delivery-promise-components` and keep `vtex.shipping-option-components@1.x` for backward compatibility.
+- `StoreWrapper` wraps the store with both `ShippingOptionProvider` (`vtex.shipping-option-components/ShippingOptionContext`) and `DeliveryPromiseProvider` (`vtex.delivery-promise-components/DeliveryPromiseContext`) so themes and apps can migrate gradually.
+
 ## [2.146.0] - 2025-12-18 [YANKED]
 
 ### Added
