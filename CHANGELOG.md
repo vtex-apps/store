@@ -11,6 +11,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Update DK Catalog platform-flow-id
 
+## [Unreleased]
+
+### Changed
+
+- Update DK Catalog platform-flow-id
+- Rebuild to pick up `vtex.store-resources@0.106.0`, which adds `attributes` (non-structured SKU specifications from Intelligent Search) to `ItemFragment`. This ensures the `product.gql` query used by `ProductContext` on PDP pages includes `SKU.attributes` in its compiled bundle.
+
 ## [2.147.0] - 2026-04-08
 
 ### Changed
