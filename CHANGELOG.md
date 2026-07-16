@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.147.2] - 2026-07-16
+
 ### Changed
 
 - Bump `@vtex/ads-react` from `0.3.1` to `0.5.4`
