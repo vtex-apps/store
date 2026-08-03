@@ -1,0 +1,10 @@
+{
+  "admin/editor.product-search.title": "Zoekcontext voor producten",
+  "admin/editor.product-search.maxItemsPerPage": "Maximum aantal items per pagina",
+  "admin/editor.product-search.hideUnavailableItems": "Verberg niet-beschikbare items",
+  "store/store.network-status.offline": "Geen internetverbinding.",
+  "admin/actions.enable-binding": "Configuratie inschakelen door binding",
+  "admin/actions.binding-configurations": "Bindende configuraties",
+  "admin/actions.binding-id": "Bindende ID",
+  "admin/actions.binding-description": "Voer de bindende ID in"
+}

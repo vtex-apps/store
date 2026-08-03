@@ -1,0 +1,10 @@
+{
+  "admin/editor.product-search.title": "Product search context",
+  "admin/editor.product-search.maxItemsPerPage": "Maximum number of items per page",
+  "admin/editor.product-search.hideUnavailableItems": "Hide unavailable items",
+  "store/store.network-status.offline": "No internet connection.",
+  "admin/actions.enable-binding": "Enable configuration through binding",
+  "admin/actions.binding-configurations": "Binding configuration",
+  "admin/actions.binding-id": "Binding ID",
+  "admin/actions.binding-description": "Enter the binding ID"
+}
