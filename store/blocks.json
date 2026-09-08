@@ -34,6 +34,9 @@
   "store.not-found#search": {
     "blocks": ["rich-text#not-found"]
   },
+  "store.login": {
+    "blocks": ["vtex.login:login-content"]
+  },
   "store.custom": {
     "parent": {
       "header": "header.full"
