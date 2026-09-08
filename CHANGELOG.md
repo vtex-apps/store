@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Default `store.login` block with `vtex.login:login-content`
+
+### Changed
+
+- `store.login` interface to no longer require `vtex.login:login-content`
+
 ## [2.147.2] - 2026-07-16
 
 ### Changed

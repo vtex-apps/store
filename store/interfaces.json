@@ -43,7 +43,6 @@
     }
   },
   "store.login": {
-    "required": ["vtex.login:login-content"],
     "preview": {
       "type": "spinner",
       "height": 600
