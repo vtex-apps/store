@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Keep a literal `+`, `&` and `#` escaped in the query string values rewritten by the navigation route modifier, so a search term with those characters is kept after a filter is applied
+
 ## [2.147.2] - 2026-07-16
 
 ### Changed

@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-globals */
 // eslint-disable-next-line no-restricted-imports
-import { contains, path as ramdaPath, zip } from 'ramda'
+import { contains, mapObjIndexed, path as ramdaPath, zip } from 'ramda'
 import queryString from 'query-string'
 
 const SPEC_FILTER = 'specificationFilter'
@@ -8,6 +8,17 @@ const MAP_CATEGORY_CHAR = 'c'
 const MAP_VALUES_SEP = ','
 const PATH_SEPARATOR = '/'
 const INTELLIGENT_SEARCH_BRAND = 'brand'
+
+// The query string is written unencoded, so a literal `+`, `&` or `#` inside a
+// value would be read back as a space, a param separator or the URL fragment.
+const escapeReserved = value => {
+  if (Array.isArray(value)) {
+    return value.map(escapeReserved)
+  }
+  return typeof value === 'string'
+    ? value.replace(/[+&#]/g, encodeURIComponent)
+    : value
+}
 
 const isLegacySearchFormat = (pathSegments, map) => {
   if (!map) {
@@ -129,9 +140,10 @@ const normalizeLegacySearchNavigation = (pathSegments, queryMap, query) => {
       convertedSegments = sortedPathSegments
     }
 
-    const normalizedQuery = queryString.stringify(queryMap, {
-      encode: false,
-    })
+    const normalizedQuery = queryString.stringify(
+      mapObjIndexed(escapeReserved, queryMap),
+      { encode: false }
+    )
 
     return { pathSegments: convertedSegments, query: normalizedQuery }
   }
