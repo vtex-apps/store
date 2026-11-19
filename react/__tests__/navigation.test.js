@@ -39,6 +39,19 @@ describe('Navigation route modifier', () => {
 
     expect(result).toEqual({ path: expectedPath, query: expectedQuery })
   })
+  it('should keep an escaped +, & and # in the query values', () => {
+    const queries = [
+      '_q=h%2B&map=ft,cor&query=/h%2B/verde',
+      '_q=h%26m&map=ft,cor&query=/h%26m/verde',
+      '_q=c%23&map=ft,cor&query=/c%23/verde',
+    ]
+
+    const results = queries.map(
+      query => normalizeNavigation({ path: '/h', query }).query
+    )
+
+    expect(results).toEqual(queries)
+  })
   it('should preserve case for new routes pattern', () => {
     const path = '/foo/bar/nice_Bar'
     const expectedPath = '/foo/bar/nice_Bar'
